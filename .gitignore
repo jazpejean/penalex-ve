@@ -1,0 +1,49 @@
+# Flutter/Dart
+.dart_tool/
+.packages
+build/
+.pub/
+*.lock
+
+# Environment variables (¡CRÍTICO PARA TU API KEY!)
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Android
+android/.gradle/
+android/.idea/
+android/app/release/
+android/app/debug/
+android/local.properties
+
+# iOS
+ios/Flutter/AppFrameworkInfo.plist
+ios/Pods/
+
+# Testing
+coverage/
+test/.test_coverage.dart
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Metadata
+.metadata
+.flutter-plugins
+.flutter-plugins-dependencies

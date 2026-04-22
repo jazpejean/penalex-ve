@@ -1,0 +1,54 @@
+name: penalex_ve
+description: Aplicación de dosimetría penal venezolana
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  animations: ^2.0.11
+  audioplayers: ^5.2.1
+  cloud_firestore: ^4.13.6
+  confetti: ^0.7.0
+  device_info_plus: ^9.0.0
+  firebase_auth: ^4.16.0
+  firebase_auth_web: ^5.8.13
+  firebase_core: ^2.24.2
+  firebase_core_web: ^2.24.0
+  firebase_messaging: ^14.7.10
+  firebase_messaging_web: ^3.5.18
+  firebase_storage: ^11.6.0
+  firebase_storage_web: ^3.6.22
+  flutter:
+    sdk: flutter
+  flutter_dotenv: ^5.1.0
+  flutter_local_notifications: ^18.0.1
+  flutter_localizations:
+    sdk: flutter
+  google_sign_in: ^6.1.5
+  image_picker: ^1.0.4
+  intl: ^0.20.2
+  nested: ^1.0.0
+  open_file: ^3.3.2
+  path_provider: ^2.1.1
+  pdf: ^3.10.4
+  permission_handler: ^11.0.1
+  provider: ^6.0.5
+  share_plus: ^7.2.1
+  shared_preferences: ^2.2.2
+  table_calendar: ^3.0.9
+  timezone: ^0.9.2
+  webview_flutter: ^4.4.2
+
+dev_dependencies:
+  flutter_lints: ^3.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/data/
+    - .env

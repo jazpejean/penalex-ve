@@ -1,0 +1,62 @@
+[
+  {
+    "nivel": 3,
+    "pregunta": "¿Qué artículo del Código Penal regula la legítima defensa?",
+    "opciones": [
+      "Artículo 35",
+      "Artículo 36",
+      "Artículo 37",
+      "Artículo 38"
+    ],
+    "respuesta_correcta": 1,
+    "fundamentacion": "El artículo 36 del Código Penal Venezolano regula la legítima defensa como causa de justificación."
+  },
+  {
+    "nivel": 4,
+    "pregunta": "¿Cuál es la pena para el delito de violación según el Código Penal?",
+    "opciones": [
+      "Presidio de 5 a 10 años",
+      "Presidio de 8 a 15 años",
+      "Presidio de 10 a 18 años",
+      "Presidio de 15 a 25 años"
+    ],
+    "respuesta_correcta": 2,
+    "fundamentacion": "El artículo 374 del Código Penal Venezolano establece que la violación será penada con presidio de diez a dieciocho años."
+  },
+  {
+    "nivel": 4,
+    "pregunta": "¿Qué se entiende por concurso real de delitos?",
+    "opciones": [
+      "Un solo hecho que viola varias normas penales",
+      "Varios hechos independientes que violan diferentes normas",
+      "La reincidencia delictiva",
+      "La habitualidad delictiva"
+    ],
+    "respuesta_correcta": 1,
+    "fundamentacion": "El artículo 85 del Código Penal define el concurso real como 'cuando una persona comete varios delitos independientes'."
+  },
+  {
+    "nivel": 5,
+    "pregunta": "¿Cuál es el máximo de pena que puede imponer un juez en Venezuela?",
+    "opciones": [
+      "25 años",
+      "30 años",
+      "35 años",
+      "40 años"
+    ],
+    "respuesta_correcta": 1,
+    "fundamentacion": "El artículo 37 del Código Penal establece que ninguna pena podrá exceder de treinta años de presidio."
+  },
+  {
+    "nivel": 5,
+    "pregunta": "¿Qué artículo regula el estado de necesidad como causa de justificación?",
+    "opciones": [
+      "Artículo 35",
+      "Artículo 36",
+      "Artículo 37",
+      "Artículo 38"
+    ],
+    "respuesta_correcta": 2,
+    "fundamentacion": "El artículo 37 del Código Penal Venezolano regula el estado de necesidad como causa de justificación."
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "nivel": 1,
+    "pregunta": "¿Cuál es el artículo del Código Penal Venezolano que define el delito de homicidio?",
+    "opciones": [
+      "Artículo 405",
+      "Artículo 406",
+      "Artículo 407",
+      "Artículo 408"
+    ],
+    "respuesta_correcta": 1,
+    "fundamentacion": "El artículo 406 del Código Penal Venezolano define el delito de homicidio como 'El que matare a otro, será penado con presidio de doce a dieciocho años'."
+  },
+  {
+    "nivel": 1,
+    "pregunta": "¿Qué tipo de pena establece el Código Penal para el delito de robo agravado?",
+    "opciones": [
+      "Multa únicamente",
+      "Presidio de 8 a 12 años",
+      "Presidio de 10 a 18 años",
+      "Presidio de 15 a 25 años"
+    ],
+    "respuesta_correcta": 2,
+    "fundamentacion": "El artículo 458 del Código Penal Venezolano establece que el robo agravado será penado con presidio de diez a dieciocho años."
+  },
+  {
+    "nivel": 2,
+    "pregunta": "¿Cuál es la edad de responsabilidad penal según el Código Penal Venezolano?",
+    "opciones": [
+      "14 años",
+      "16 años",
+      "18 años",
+      "21 años"
+    ],
+    "respuesta_correcta": 2,
+    "fundamentacion": "El artículo 69 del Código Penal Venezolano establece que no se impondrá pena alguna a los menores de dieciocho años."
+  },
+  {
+    "nivel": 2,
+    "pregunta": "¿Qué se entiende por tentativa en el derecho penal venezolano?",
+    "opciones": [
+      "La consumación del delito",
+      "Los actos ejecutados para cometer un delito sin consumarlo",
+      "La desistimiento voluntario del delito",
+      "La complicidad en el delito"
+    ],
+    "respuesta_correcta": 1,
+    "fundamentacion": "El artículo 80 del Código Penal define la tentativa como 'los actos ejecutados para cometer un delito que no se consuma por causas ajenas a la voluntad del agente'."
+  },
+  {
+    "nivel": 3,
+    "pregunta": "¿Cuál es el principio fundamental del Código Penal Venezolano?",
+    "opciones": [
+      "Principio de legalidad",
+      "Principio de oportunidad",
+      "Principio de necesidad",
+      "Principio de proporcionalidad"
+    ],
+    "respuesta_correcta": 0,
+    "fundamentacion": "El artículo 1 del Código Penal Venezolano establece el principio de legalidad: 'No hay pena sin ley previa que la establezca'."
+  }
+]

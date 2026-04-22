@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "653489758174",
+    "project_id": "penalex-ve",
+    "storage_bucket": "penalex-ve.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653489758174:android:4121535db47cf8eea1474f",
+        "android_client_info": {
+          "package_name": "com.penalex.ve"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "653489758174-qv0hh779ds95s7ie27aj1nsl7g763clo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.penalex.ve",
+            "certificate_hash": "fd0efab20211819041b34e9b5f7638ff1a0b73db"
+          }
+        },
+        {
+          "client_id": "653489758174-ruq2tjfs6fdhq3pafut36cfqmi5hthmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABl-uOPiV8BFcrw5YHOD-CqFtK89AWnGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653489758174-ruq2tjfs6fdhq3pafut36cfqmi5hthmo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

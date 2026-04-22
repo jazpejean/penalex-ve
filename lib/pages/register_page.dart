@@ -1,0 +1,205 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../services/auth_service.dart';
+
+String _getFirebaseErrorMessage(String errorCode) {
+  if (errorCode.contains('email-already-in-use')) {
+    return 'Este correo ya está registrado. Intenta iniciar sesión o usa otra cuenta.';
+  }
+  if (errorCode.contains('invalid-email')) {
+    return 'El correo electrónico no es válido.';
+  }
+  if (errorCode.contains('weak-password')) {
+    return 'La contraseña es muy débil. Debe tener al menos 6 caracteres.';
+  }
+  if (errorCode.contains('network-request-failed')) {
+    return 'Error de conexión. Revisa tu internet.';
+  }
+  return 'Ocurrió un error inesperado. Intenta de nuevo.';
+}
+
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmController = TextEditingController();
+  bool _isLoading = false;
+  bool _obscurePassword = true;
+  bool _obscureConfirm = true;
+
+  static const Color azulMarino = Color(0xFF0F172A);
+  static const Color dorado = Color(0xFFC5A059);
+  static const Color fondoGris = Color(0xFFF1F5F9);
+  static const Color grisTexto = Color(0xFF4A5568);
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmController.dispose();
+    super.dispose();
+  }
+
+  void _showSnackBar(String message, {bool isError = false}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: isError ? Colors.red : Colors.green,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        margin: const EdgeInsets.all(10),
+      ),
+    );
+  }
+
+  Future<void> _register() async {
+    FocusScope.of(context).unfocus();
+
+    if (_nameController.text.trim().isEmpty) {
+      _showSnackBar('Por favor, ingresa tu nombre completo.', isError: true);
+      return;
+    }
+    if (_emailController.text.trim().isEmpty || !_emailController.text.contains('@')) {
+      _showSnackBar('Ingresa un correo electrónico válido.', isError: true);
+      return;
+    }
+    if (_passwordController.text.isEmpty) {
+      _showSnackBar('La contraseña no puede estar vacía.', isError: true);
+      return;
+    }
+    if (_passwordController.text.length < 6) {
+      _showSnackBar('La contraseña debe tener al menos 6 caracteres.', isError: true);
+      return;
+    }
+    if (_passwordController.text != _confirmController.text) {
+      _showSnackBar('Las contraseñas ingresadas no son iguales.', isError: true);
+      return;
+    }
+
+    setState(() => _isLoading = true);
+    final AuthService auth = context.read<AuthService>();
+    try {
+      await auth.registerWithEmailAndPassword(
+        _emailController.text.trim(),
+        _passwordController.text,
+        _nameController.text.trim(),
+      );
+      if (mounted) {
+        _showSnackBar('¡Registro exitoso! Revisa tu correo para verificar tu cuenta.');
+        unawaited(Navigator.pushReplacementNamed(context, '/verify-email'));
+      }
+    } on Exception catch (e) {
+      final String errorMsg = _getFirebaseErrorMessage(e.toString());
+      _showSnackBar(errorMsg, isError: true);
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+      backgroundColor: fondoGris,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Icon(Icons.person_add_alt_1, size: 80, color: azulMarino),
+              const SizedBox(height: 24),
+              const Text("Crear cuenta", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: azulMarino)),
+              const SizedBox(height: 8),
+              const Text("Regístrate para comenzar", style: TextStyle(fontSize: 16, color: grisTexto)),
+              const SizedBox(height: 40),
+              TextField(
+                controller: _nameController,
+                decoration: InputDecoration(
+                  labelText: "Nombre completo",
+                  prefixIcon: const Icon(Icons.person_outline, color: azulMarino),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                textInputAction: TextInputAction.next,
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  labelText: "Correo electrónico",
+                  prefixIcon: const Icon(Icons.email_outlined, color: azulMarino),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                textInputAction: TextInputAction.next,
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: _passwordController,
+                obscureText: _obscurePassword,
+                decoration: InputDecoration(
+                  labelText: "Contraseña",
+                  prefixIcon: const Icon(Icons.lock_outline, color: azulMarino),
+                  suffixIcon: IconButton(
+                    icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility, color: azulMarino),
+                    onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+                  ),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                textInputAction: TextInputAction.next,
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: _confirmController,
+                obscureText: _obscureConfirm,
+                decoration: InputDecoration(
+                  labelText: "Confirmar contraseña",
+                  prefixIcon: const Icon(Icons.lock_outline, color: azulMarino),
+                  suffixIcon: IconButton(
+                    icon: Icon(_obscureConfirm ? Icons.visibility_off : Icons.visibility, color: azulMarino),
+                    onPressed: () => setState(() => _obscureConfirm = !_obscureConfirm),
+                  ),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                textInputAction: TextInputAction.done,
+                onSubmitted: (_) => _register(),
+              ),
+              const SizedBox(height: 32),
+              if (_isLoading)
+                const CircularProgressIndicator()
+              else
+                ElevatedButton(
+                  onPressed: _register,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: azulMarino,
+                    foregroundColor: dorado,
+                    minimumSize: const Size(double.infinity, 52),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  ),
+                  child: const Text("CREAR CUENTA", style: TextStyle(fontWeight: FontWeight.bold)),
+                ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text("¿Ya tienes cuenta? ", style: TextStyle(color: grisTexto)),
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text("Inicia sesión", style: TextStyle(color: dorado, fontWeight: FontWeight.bold)),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+}
