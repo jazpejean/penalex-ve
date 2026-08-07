@@ -27,12 +27,12 @@ MAX_WORKERS = 20                              # Hilos de descarga simultánea
 # CARPETAS DE DRIVE - IDS DE LAS CARPETAS (REEMPLAZA CON LOS TUYOS)
 # ============================================================
 FOLDER_IDS = {
-    'Sala_Constitucional': '1a2b3c4d5e6f7g8h9i0j',   # <--- CAMBIA ESTOS IDS
-    'Sala_Penal': '2b3c4d5e6f7g8h9i0j1k',
-    'Sustanciacion_Constitucional': '3c4d5e6f7g8h9i0j1k2l',
-    'Sala_Plena': '4d5e6f7g8h9i0j1k2l3m',
-    'Sala_Penal_Juris': '5e6f7g8h9i0j1k2l3m4n',
-    'Sala_Constitucional_Juris': '6f7g8h9i0j1k2l3m4n5o'
+    'Sala_Constitucional': '1kGbRPySacSvqZITKQ0ll4-T-O3Ns6ieN',   # <--- CAMBIA ESTOS IDS
+    'Sala_Penal': '1AlySvmxbfCsMV07Rs24FUt6VFQSPgPY1',
+    'Sustanciacion_Constitucional': '1gAXDSFKVAzVCKAXCBVAraKMM7xCXblD8',
+    'Sala_Plena': '1AlySvmxbfCsMV07Rs24FUt6VFQSPgPY1',
+    'Sala_Penal_Juris': '1BL50vMykxVDiCFIQJuYlhcbvlCoD5afg',
+    'Sala_Constitucional_Juris': '1Ais0FpCjLPOcwOCe8I86hgbGWYj2CQFK'
 }
 
 # Asignamos un 'tipo' a cada carpeta (para organizar en firebase)
