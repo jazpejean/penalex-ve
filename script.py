@@ -15,15 +15,15 @@ from googleapiclient.errors import HttpError
 from google.oauth2 import service_account
 
 # ============================================================
-# CONFIGURACIÓN (cambia según tu proyecto)
+# CONFIGURACIÓN
 # ============================================================
-PUB = '/content/staging/public'               # Carpeta local de salida
-LOGO_URL_PUBLIC = '/assets/logo-tsj.jpg'      # Ruta en Firebase Hosting
-PROGRESO_FILE = '/content/progreso.json'      # Archivo de progreso
-MAX_WORKERS = 20                              # Hilos de descarga simultánea
+PUB = '/content/staging/public'
+LOGO_URL_PUBLIC = '/assets/logo-tsj.jpg'
+PROGRESO_FILE = '/content/progreso.json'
+MAX_WORKERS = 20
 
 # ============================================================
-# CARPETAS DE DRIVE - IDS REALES (YA ESTÁN)
+# CARPETAS DE DRIVE (IDS REALES)
 # ============================================================
 FOLDER_IDS = {
     'Sala_Constitucional': '1kGbRPySacSvqZITKQ0ll4-T-O3Ns6ieN',
@@ -44,7 +44,7 @@ TIPO_POR_CARPETA = {
 }
 
 # ============================================================
-# AUTENTICACIÓN: SOLO USA EL SECRET (NO FALLBACK)
+# AUTENTICACIÓN
 # ============================================================
 _local = threading.local()
 
@@ -52,32 +52,39 @@ def get_drive():
     if hasattr(_local, 'drv'):
         return _local.drv
 
-    # Obtener el JSON desde la variable de entorno
+    # Intentar cargar desde GOOGLE_APPLICATION_CREDENTIALS_JSON (string)
     creds_json_str = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS_JSON')
-    if not creds_json_str:
-        # En Colab, permitir que use las credenciales por defecto
-        # (pero en GitHub Actions debe estar definida)
-        print("⚠️  GOOGLE_APPLICATION_CREDENTIALS_JSON no definida. Intentando credenciales por defecto...")
+    if creds_json_str:
         try:
-            _local.drv = build('drive', 'v3')
+            creds_dict = json.loads(creds_json_str)
+            creds = service_account.Credentials.from_service_account_info(
+                creds_dict,
+                scopes=['https://www.googleapis.com/auth/drive.readonly']
+            )
+            _local.drv = build('drive', 'v3', credentials=creds)
             return _local.drv
         except Exception as e:
-            raise Exception(f"❌ No se pudo autenticar sin credenciales: {e}")
+            print(f"❌ Error cargando credenciales desde JSON string: {e}")
 
+    # Fallback: intentar desde archivo (GOOGLE_APPLICATION_CREDENTIALS)
+    creds_file = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+    if creds_file and os.path.exists(creds_file):
+        try:
+            creds = service_account.Credentials.from_service_account_file(
+                creds_file,
+                scopes=['https://www.googleapis.com/auth/drive.readonly']
+            )
+            _local.drv = build('drive', 'v3', credentials=creds)
+            return _local.drv
+        except Exception as e:
+            print(f"❌ Error cargando credenciales desde archivo: {e}")
+
+    # En Colab, usar credenciales por defecto
     try:
-        # Cargar el JSON desde el string
-        creds_dict = json.loads(creds_json_str)
-        # Crear credenciales de servicio
-        creds = service_account.Credentials.from_service_account_info(
-            creds_dict,
-            scopes=['https://www.googleapis.com/auth/drive.readonly']
-        )
-        _local.drv = build('drive', 'v3', credentials=creds)
+        _local.drv = build('drive', 'v3')
         return _local.drv
-    except json.JSONDecodeError as e:
-        raise Exception(f"❌ El JSON de credenciales no es válido: {e}")
     except Exception as e:
-        raise Exception(f"❌ Error al cargar credenciales: {e}")
+        raise Exception(f"❌ No se pudo autenticar: {e}")
 
 # ============================================================
 # FUNCIONES DE DRIVE
@@ -135,7 +142,7 @@ def descargar_t(did):
     return None
 
 # ============================================================
-# FUNCIONES DE CURADO (TAL CUAL)
+# FUNCIONES DE CURADO
 # ============================================================
 MAPA = {
     'Ã¡':'á', 'Ã©':'é', 'Ã­':'í', 'Ã³':'ó', 'Ãº':'ú',
@@ -250,7 +257,6 @@ def procesar_archivo(rec, procesados_set, lock):
 # MAIN
 # ============================================================
 def main():
-    # Obtener límite y lote desde variables de entorno (GitHub Actions) o entrada (Colab)
     limite_env = os.environ.get('LIMITE')
     if limite_env is not None:
         limite = int(limite_env)
@@ -271,11 +277,9 @@ def main():
         except:
             lote = 10
 
-    # Cargar progreso
     procesados = cargar_progreso()
     print(f"📌 Archivos ya procesados: {len(procesados)}")
 
-    # Obtener lista de archivos desde Drive
     print("🔍 Obteniendo lista de archivos de Drive...")
     records = obtener_todos_archivos()
     print(f"📄 Total archivos encontrados: {len(records)}")
