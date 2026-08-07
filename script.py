@@ -8,11 +8,11 @@ import time
 import json
 import subprocess
 import threading
-import tempfile
 import concurrent.futures
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 from googleapiclient.errors import HttpError
+from google.oauth2 import service_account
 
 # ============================================================
 # CONFIGURACIÓN (cambia según tu proyecto)
@@ -24,13 +24,11 @@ LOTE = 10                                     # Publicar cada N archivos (por de
 MAX_WORKERS = 20                              # Hilos de descarga simultánea
 
 # ============================================================
-# CARPETAS DE DRIVE (id de cada carpeta)
+# CARPETAS DE DRIVE - IDS DE LAS CARPETAS (REEMPLAZA CON LOS TUYOS)
 # ============================================================
-# DEBES REEMPLAZAR ESTOS IDS POR LOS REALES DE TUS CARPETAS
-# Puedes obtenerlos de la URL de Drive: https://drive.google.com/drive/folders/xxxxx
 FOLDER_IDS = {
-    'Sala_Constitucional': '1a2b3c4d5e6f7g8h9i0j',   # <- CAMBIA ESTO
-    'Sala_Penal': '2b3c4d5e6f7g8h9i0j1k',            # <- CAMBIA ESTO
+    'Sala_Constitucional': '1a2b3c4d5e6f7g8h9i0j',   # <--- CAMBIA ESTOS IDS
+    'Sala_Penal': '2b3c4d5e6f7g8h9i0j1k',
     'Sustanciacion_Constitucional': '3c4d5e6f7g8h9i0j1k2l',
     'Sala_Plena': '4d5e6f7g8h9i0j1k2l3m',
     'Sala_Penal_Juris': '5e6f7g8h9i0j1k2l3m4n',
@@ -48,7 +46,7 @@ TIPO_POR_CARPETA = {
 }
 
 # ============================================================
-# AUTENTICACIÓN (funciona en Colab y GitHub Actions)
+# AUTENTICACIÓN: usa credenciales desde variable de entorno o desde archivo
 # ============================================================
 _local = threading.local()
 
@@ -56,23 +54,37 @@ def get_drive():
     if hasattr(_local, 'drv'):
         return _local.drv
 
-    # 1. Intentar usar credenciales desde variable de entorno
-    creds_json = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS_JSON')
-    if creds_json:
-        # Crear un archivo temporal con el JSON
-        temp_file = tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False)
-        temp_file.write(creds_json)
-        temp_file.close()
-        # Establecer la variable de entorno para que apunte al archivo
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = temp_file.name
-        
-        # Usar las credenciales por defecto (que ahora apuntan al archivo temporal)
-        from google.auth import default
-        credentials, project = default(scopes=['https://www.googleapis.com/auth/drive.readonly'])
-        _local.drv = build('drive', 'v3', credentials=credentials)
-    else:
-        # En Colab se asume que ya hay autenticación (google.colab.drive.mount)
-        _local.drv = build('drive', 'v3')
+    # Intentar obtener credenciales desde variable de entorno (JSON string)
+    creds_json_str = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS_JSON')
+    if creds_json_str:
+        try:
+            creds_dict = json.loads(creds_json_str)
+            creds = service_account.Credentials.from_service_account_info(
+                creds_dict,
+                scopes=['https://www.googleapis.com/auth/drive.readonly']
+            )
+            _local.drv = build('drive', 'v3', credentials=creds)
+            return _local.drv
+        except Exception as e:
+            print(f"❌ Error al cargar credenciales desde JSON string: {e}")
+            # Si falla, intentar con archivo (por compatibilidad)
+            pass
+
+    # Fallback: intentar usar el archivo si existe la variable GOOGLE_APPLICATION_CREDENTIALS
+    creds_file = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+    if creds_file and os.path.exists(creds_file):
+        try:
+            creds = service_account.Credentials.from_service_account_file(
+                creds_file,
+                scopes=['https://www.googleapis.com/auth/drive.readonly']
+            )
+            _local.drv = build('drive', 'v3', credentials=creds)
+            return _local.drv
+        except Exception as e:
+            print(f"❌ Error al cargar credenciales desde archivo: {e}")
+
+    # En Colab se asume que ya hay autenticación por defecto
+    _local.drv = build('drive', 'v3')
     return _local.drv
 
 def listar_archivos_en_carpeta(folder_id, page_token=None):
@@ -170,7 +182,7 @@ def descargar_t(did):
             while not done:
                 _, done = down.next_chunk()
             return buf.getvalue()
-        except Exception:
+        except Exception as e:
             time.sleep(2)
     return None
 
