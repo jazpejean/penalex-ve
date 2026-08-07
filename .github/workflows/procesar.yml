@@ -32,11 +32,6 @@ jobs:
           pip install -r requirements.txt
           npm install -g firebase-tools
 
-      - name: Crear archivo de credenciales
-        run: |
-          echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}" > /tmp/credentials.json
-          echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/credentials.json" >> $GITHUB_ENV
-
       - name: Cache progreso
         uses: actions/cache@v3
         with:
@@ -47,6 +42,7 @@ jobs:
 
       - name: Ejecutar script
         env:
+          GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           LIMITE: ${{ github.event.inputs.limite || '0' }}
           LOTE: ${{ github.event.inputs.lote || '10' }}
