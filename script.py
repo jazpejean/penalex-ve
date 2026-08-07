@@ -15,19 +15,18 @@ from googleapiclient.errors import HttpError
 from google.oauth2 import service_account
 
 # ============================================================
-# CONFIGURACIÓN (cambia según tu proyecto)
+# CONFIGURACIÓN
 # ============================================================
-PUB = '/content/staging/public'               # Carpeta local de salida
-LOGO_URL_PUBLIC = '/assets/logo-tsj.jpg'      # Ruta en Firebase Hosting
-PROGRESO_FILE = '/content/progreso.json'      # Archivo de progreso
-LOTE = 10                                     # Publicar cada N archivos (por defecto)
-MAX_WORKERS = 20                              # Hilos de descarga simultánea
+PUB = '/content/staging/public'
+LOGO_URL_PUBLIC = '/assets/logo-tsj.jpg'
+PROGRESO_FILE = '/content/progreso.json'
+MAX_WORKERS = 20
 
 # ============================================================
-# CARPETAS DE DRIVE - IDS DE LAS CARPETAS (REEMPLAZA CON LOS TUYOS)
+# IDs DE CARPETAS (REALES)
 # ============================================================
 FOLDER_IDS = {
-    'Sala_Constitucional': '1kGbRPySacSvqZITKQ0ll4-T-O3Ns6ieN',   # <--- CAMBIA ESTOS IDS
+    'Sala_Constitucional': '1kGbRPySacSvqZITKQ0ll4-T-O3Ns6ieN',
     'Sala_Penal': '1AlySvmxbfCsMV07Rs24FUt6VFQSPgPY1',
     'Sustanciacion_Constitucional': '1gAXDSFKVAzVCKAXCBVAraKMM7xCXblD8',
     'Sala_Plena': '1AlySvmxbfCsMV07Rs24FUt6VFQSPgPY1',
@@ -35,7 +34,6 @@ FOLDER_IDS = {
     'Sala_Constitucional_Juris': '1Ais0FpCjLPOcwOCe8I86hgbGWYj2CQFK'
 }
 
-# Asignamos un 'tipo' a cada carpeta (para organizar en firebase)
 TIPO_POR_CARPETA = {
     'Sala_Constitucional': 'sentencias',
     'Sala_Penal': 'sentencias',
@@ -46,7 +44,7 @@ TIPO_POR_CARPETA = {
 }
 
 # ============================================================
-# AUTENTICACIÓN: usa credenciales desde variable de entorno o desde archivo
+# AUTENTICACIÓN: OBTENER CREDENCIALES DESDE VARIABLE DE ENTORNO
 # ============================================================
 _local = threading.local()
 
@@ -54,7 +52,7 @@ def get_drive():
     if hasattr(_local, 'drv'):
         return _local.drv
 
-    # Intentar obtener credenciales desde variable de entorno (JSON string)
+    # 1. Intentar desde variable de entorno (JSON string)
     creds_json_str = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS_JSON')
     if creds_json_str:
         try:
@@ -67,10 +65,10 @@ def get_drive():
             return _local.drv
         except Exception as e:
             print(f"❌ Error al cargar credenciales desde JSON string: {e}")
-            # Si falla, intentar con archivo (por compatibilidad)
+            # Si falla, intentar con archivo
             pass
 
-    # Fallback: intentar usar el archivo si existe la variable GOOGLE_APPLICATION_CREDENTIALS
+    # 2. Intentar desde archivo (si existe GOOGLE_APPLICATION_CREDENTIALS)
     creds_file = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
     if creds_file and os.path.exists(creds_file):
         try:
@@ -83,12 +81,18 @@ def get_drive():
         except Exception as e:
             print(f"❌ Error al cargar credenciales desde archivo: {e}")
 
-    # En Colab se asume que ya hay autenticación por defecto
-    _local.drv = build('drive', 'v3')
-    return _local.drv
+    # 3. Fallback: usar credenciales por defecto (solo en Colab o entorno local)
+    try:
+        _local.drv = build('drive', 'v3')
+        return _local.drv
+    except Exception as e:
+        print(f"❌ Error al autenticar con credenciales por defecto: {e}")
+        raise
 
+# ============================================================
+# FUNCIONES DE DRIVE
+# ============================================================
 def listar_archivos_en_carpeta(folder_id, page_token=None):
-    """Lista recursivamente todos los archivos HTML dentro de una carpeta de Drive."""
     q = f"'{folder_id}' in parents and mimeType='text/html' and trashed=false"
     fields = "files(id, name, parents), nextPageToken"
     try:
@@ -101,13 +105,11 @@ def listar_archivos_en_carpeta(folder_id, page_token=None):
     except HttpError as e:
         print(f"❌ Error listando carpeta {folder_id}: {e}")
         return [], None
-
     files = results.get('files', [])
     next_token = results.get('nextPageToken')
     return files, next_token
 
 def obtener_todos_archivos():
-    """Recorre todas las carpetas configuradas y devuelve lista de registros."""
     records = []
     for sala, folder_id in FOLDER_IDS.items():
         print(f"📂 Listando {sala} (ID: {folder_id})...")
@@ -128,6 +130,19 @@ def obtener_todos_archivos():
                 break
         print(f"   ✅ {contador} archivos encontrados en {sala}")
     return records
+
+def descargar_t(did):
+    for intento in range(3):
+        try:
+            buf = io.BytesIO()
+            down = MediaIoBaseDownload(buf, get_drive().files().get_media(fileId=did))
+            done = False
+            while not done:
+                _, done = down.next_chunk()
+            return buf.getvalue()
+        except Exception:
+            time.sleep(2)
+    return None
 
 # ============================================================
 # FUNCIONES DE CURADO (TAL CUAL)
@@ -155,10 +170,8 @@ def curar(raw):
     t = re.sub(r'<meta[^>]*charset=[^>]*>', '<meta charset="UTF-8">', t, flags=re.I)
     if 'charset' not in t.lower():
         t = re.sub(r'(<head[^>]*>)', r'\1\n<meta charset="UTF-8">', t, count=1, flags=re.I)
-    # Añadir noindex (si no existe)
     if 'noindex' not in t.lower():
         t = re.sub(r'(<head[^>]*>)', r'\1\n<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">', t, count=1, flags=re.I)
-    # Reemplazar logo del TSJ
     t = re.sub(r'<img[^>]*src=["\'][^"\']*encabezado[^"\']*["\'][^>]*>',
                f'<img src="{LOGO_URL_PUBLIC}" alt="TSJ" style="max-width:100%">', t, flags=re.I)
     if 'logo-tsj' not in t.lower() and 'encabezadotsj' not in t.lower():
@@ -173,21 +186,8 @@ def a_texto(html):
     t = re.sub(r'<[^>]+>', ' ', t)
     return re.sub(r'\s+', ' ', t).strip()
 
-def descargar_t(did):
-    for intento in range(3):
-        try:
-            buf = io.BytesIO()
-            down = MediaIoBaseDownload(buf, get_drive().files().get_media(fileId=did))
-            done = False
-            while not done:
-                _, done = down.next_chunk()
-            return buf.getvalue()
-        except Exception as e:
-            time.sleep(2)
-    return None
-
 # ============================================================
-# CONTROL DE PROGRESO
+# PROGRESO
 # ============================================================
 def cargar_progreso():
     if os.path.exists(PROGRESO_FILE):
@@ -223,16 +223,15 @@ def publicar_firebase():
         return False
 
 # ============================================================
-# PROCESAR UN ARCHIVO
+# PROCESAR ARCHIVO
 # ============================================================
 def procesar_archivo(rec, procesados_set, lock):
     if rec['id'] in procesados_set:
-        return 0  # ya procesado
+        return 0
 
     hd = f"{PUB}/html/{rec['tipo']}/{rec['sala']}/{rec['nombre']}"
     td = f"{PUB}/txt/{rec['tipo']}/{rec['sala']}/{rec['id']}.txt"
 
-    # Si ya existen en disco, considerar procesados
     if os.path.exists(hd) and os.path.exists(td):
         with lock:
             procesados_set.add(rec['id'])
@@ -261,7 +260,6 @@ def procesar_archivo(rec, procesados_set, lock):
 # MAIN
 # ============================================================
 def main():
-    # Obtener límite desde variable de entorno (para GitHub Actions) o preguntar en Colab
     limite_env = os.environ.get('LIMITE')
     if limite_env is not None:
         limite = int(limite_env)
@@ -282,11 +280,9 @@ def main():
         except:
             lote = 10
 
-    # Cargar progreso
     procesados = cargar_progreso()
     print(f"📌 Archivos ya procesados: {len(procesados)}")
 
-    # Obtener lista de archivos desde Drive
     print("🔍 Obteniendo lista de archivos de Drive...")
     records = obtener_todos_archivos()
     print(f"📄 Total archivos encontrados: {len(records)}")
@@ -297,7 +293,6 @@ def main():
     print(f"🔧 Procesando {len(records)} archivos...")
     print(f"📤 Publicando cada {lote} archivos.")
 
-    # Preparar conjunto de procesados y lock para threads
     procesados_set = set(procesados)
     lock = threading.Lock()
 
@@ -305,7 +300,6 @@ def main():
     fallos = 0
     contador_lote = 0
 
-    # Usar ThreadPoolExecutor para descargas en paralelo
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         future_to_rec = {executor.submit(procesar_archivo, rec, procesados_set, lock): rec for rec in records}
         for i, future in enumerate(concurrent.futures.as_completed(future_to_rec), 1):
@@ -322,16 +316,13 @@ def main():
             elif resultado == -1:
                 fallos += 1
 
-            # Mostrar progreso
             if i % 10 == 0 or i == len(records):
                 print(f"⚙️ Procesados {i}/{len(records)} | nuevos: {hechos} | fallos: {fallos}")
 
-            # Publicar cada lote
             if contador_lote >= lote:
                 publicar_firebase()
                 contador_lote = 0
 
-    # Publicar lo que quede
     if contador_lote > 0 and hechos > 0:
         publicar_firebase()
 
