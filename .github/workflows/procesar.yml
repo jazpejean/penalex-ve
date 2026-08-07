@@ -1,0 +1,49 @@
+name: Procesar y Publicar Sentencias TSJ
+
+on:
+  workflow_dispatch:
+    inputs:
+      limite:
+        description: 'Número de archivos a procesar (0 = todos)'
+        required: false
+        default: '0'
+      lote:
+        description: 'Publicar cada N archivos (ej: 1, 5, 10)'
+        required: false
+        default: '10'
+  schedule:
+    - cron: '0 3 * * *'   # Todos los días a las 3 AM
+
+jobs:
+  procesar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependencias
+        run: |
+          pip install -r requirements.txt
+          npm install -g firebase-tools
+
+      - name: Cache progreso
+        uses: actions/cache@v3
+        with:
+          path: /content/progreso.json
+          key: progreso-${{ github.run_id }}
+          restore-keys: |
+            progreso-
+
+      - name: Ejecutar script
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          LIMITE: ${{ github.event.inputs.limite || '0' }}
+          LOTE: ${{ github.event.inputs.lote || '10' }}
+        run: python script.py
