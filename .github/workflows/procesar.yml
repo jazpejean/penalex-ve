@@ -23,17 +23,23 @@ jobs:
       - name: Configurar Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.11'  # Cambiamos a 3.11 para evitar warning
 
       - name: Instalar dependencias
         run: |
           pip install -r requirements.txt
           npm install -g firebase-tools
 
-      - name: Crear archivo de credenciales
+      # ----- AUTENTICACIÓN CON GOOGLE DRIVE (método seguro) -----
+      - name: Crear credenciales desde secret
+        env:
+          CREDS_JSON: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
         run: |
-          echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}" > /tmp/credentials.json
-          echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/credentials.json" >> $GITHUB_ENV
+          # Escribir el contenido del secret en un archivo, asegurando que sea exacto
+          echo "${CREDS_JSON}" > /tmp/creds.json
+          # Validar que sea un JSON válido
+          python -c "import json; f=open('/tmp/creds.json'); json.load(f); f.close(); print('✅ JSON válido')" || exit 1
+          echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/creds.json" >> $GITHUB_ENV
 
       - name: Cache progreso
         uses: actions/cache@v3
