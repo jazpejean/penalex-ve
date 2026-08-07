@@ -31,13 +31,11 @@ jobs:
           npm install -g firebase-tools
 
       - name: Configurar credenciales de Google
-        env:
-          CREDS_JSON: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
         run: |
-          # Validar que el JSON sea válido
-          echo "${CREDS_JSON}" > /tmp/creds.json
+          echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}" > /tmp/creds.json
+          echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/creds.json" >> $GITHUB_ENV
+          # Validar JSON
           python -c "import json; json.load(open('/tmp/creds.json')); print('✅ JSON válido')"
-          echo "GOOGLE_APPLICATION_CREDENTIALS_JSON=${CREDS_JSON}" >> $GITHUB_ENV
 
       - name: Cache progreso
         uses: actions/cache@v3
