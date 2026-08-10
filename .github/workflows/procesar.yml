@@ -1,76 +1,60 @@
-name: Procesar y Publicar Sentencias TSJ
+name: Procesar y Publicar TSJ
 
 on:
   workflow_dispatch:
     inputs:
       limite:
-        description: 'Número de archivos a procesar (0 = todos)'
+        description: 'Archivos a procesar (0 = todos)'
         required: false
         default: '0'
       lote:
-        description: 'Publicar cada N archivos (ej: 1, 5, 10)'
+        description: 'Publicar cada N archivos'
         required: false
-        default: '10'
+        default: '5000'
 
 jobs:
   procesar:
     runs-on: ubuntu-latest
+    timeout-minutes: 350
 
     steps:
-      - name: Checkout código
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configurar Python
+      - name: Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Instalar dependencias
+      - name: Instalar wkhtmltopdf y firebase-tools
         run: |
-          pip install -r requirements.txt
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq wkhtmltopdf
           npm install -g firebase-tools
+
+      - name: Instalar dependencias Python
+        run: pip install -r requirements.txt
 
       - name: Configurar credenciales de Google
         run: |
-          # Escribir secret a archivo usando heredoc
           cat > /tmp/creds.json << 'JSONEOF'
           ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
           JSONEOF
-          
-          # Remover espacios al inicio de cada línea (heredoc agrega indentación)
           sed -i 's/^[[:space:]]*//' /tmp/creds.json
-          
-          # Mostrar primer y último caracter para verificar
-          echo "=== VERIFICACIÓN DEL JSON ==="
           echo "Primer caracter: '$(head -c 1 /tmp/creds.json)'"
-          echo "Último caracter: '$(tail -c 2 /tmp/creds.json)'"
-          echo "Primeros 80 chars: $(head -c 80 /tmp/creds.json)"
-          echo ""
-          
-          # Validar JSON
           python3 -c "
-          import json
-          import sys
+          import json,sys
           try:
-              with open('/tmp/creds.json', 'r') as f:
-                  data = json.load(f)
-              print('✅ JSON válido')
-              print(f'   Tipo: {data.get(\"type\")}')
-              print(f'   Proyecto: {data.get(\"project_id\")}')
-              print(f'   Email: {data.get(\"client_email\")}')
-          except json.JSONDecodeError as e:
-              print(f'❌ JSON inválido: {e}')
-              print('Contenido (primeros 300 chars):')
-              with open('/tmp/creds.json', 'r') as f:
-                  print(f.read()[:300])
-              sys.exit(1)
+              d=json.load(open('/tmp/creds.json'))
+              print('✅ JSON válido | proyecto:', d.get('project_id'))
+          except Exception as e:
+              print('❌ JSON inválido:', e); sys.exit(1)
           "
-          
           echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/creds.json" >> $GITHUB_ENV
 
-      - name: Ejecutar script de procesamiento
+      - name: Ejecutar pipeline
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           LIMITE: ${{ github.event.inputs.limite || '0' }}
-          LOTE: ${{ github.event.inputs.lote || '10' }}
+          LOTE: ${{ github.event.inputs.lote || '5000' }}
         run: python script.py
