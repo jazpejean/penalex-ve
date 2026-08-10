@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 import os, re, io, csv, json, time, subprocess, threading, functools
 import concurrent.futures
-import requests
+import requests, urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 from googleapiclient.errors import HttpError
@@ -10,7 +11,6 @@ from google.oauth2 import service_account
 import firebase_admin
 from firebase_admin import credentials, firestore
 
-# SALIDA SIN BÚFER: cada print se muestra al instante
 print = functools.partial(print, flush=True)
 
 WORK_DIR = os.getcwd()
@@ -19,8 +19,8 @@ ASSETS = os.path.join(PUB, 'assets')
 LOGO_URL = 'https://historico.tsj.gob.ve/graficos/encabezadotsj.jpg'
 LOGO_LOCAL = os.path.join(ASSETS, 'logo-tsj.jpg')
 
-MAX_WORKERS = 4      # runners tienen 2 vCPU; menos workers = menos pelea por CPU
-BATCH_FS = 50        # commit a Firestore cada 50 docs (ves progreso pronto)
+MAX_WORKERS = 4
+BATCH_FS = 50
 
 FOLDERS = [
     ('Sala_Constitucional',         '1kGbRPySacSvqZITKQ0ll4-T-O3Ns6ieN', 'sentencia',     'constitucional'),
@@ -71,6 +71,7 @@ def fs_flush():
 
 MAPA_ENC = {'Ã¡':'á','Ã©':'é','Ã­':'í','Ã³':'ó','Ãº':'ú','Ã±':'ñ','Ã‘':'Ñ','Â°':'°','Â¿':'¿','Â¡':'¡','â€™':'’','â€˜':'‘','â€œ':'"','â€':'"','â€“':'–','â€"':'—','â€¦':'…','ï¿½':'ñ'}
 def rel_logo(p): return os.path.relpath(LOGO_LOCAL, os.path.dirname(p)).replace(os.sep,'/')
+
 def curar(raw, logo_rel):
     try: t = raw.decode('utf-8')
     except UnicodeDecodeError: t = raw.decode('windows-1252', errors='replace')
@@ -87,6 +88,7 @@ def curar(raw, logo_rel):
     if 'logo-tsj' not in t.lower() and 'encabezadotsj' not in t.lower():
         t = re.sub(r'(<body[^>]*>)',r'\1\n<div align="center" style="margin:8px 0"><img src="'+logo_rel+r'" alt="TSJ" style="max-width:100%"></div>',t,count=1,flags=re.I)
     return t
+
 def html_a_texto(h):
     t = re.sub(r'<script[\s\S]*?</script>','',h,flags=re.I)
     t = re.sub(r'<style[\s\S]*?</style>','',t,flags=re.I)
@@ -98,11 +100,11 @@ def generar_pdf(hp, pp):
     try:
         subprocess.run(['wkhtmltopdf','-q','--enable-local-file-access','--encoding','UTF-8',
             '--load-error-handling','ignore','--load-media-error-handling','ignore',
-            '--no-stop-slow-scripts','--javascript-delay','0',hp,pp],
-            capture_output=True, timeout=60, check=False)
-        return os.path.exists(pp) and os.path.getsize(pp)>0
+            '--no-stop-slow-scripts','--javascript-delay','0','--disable-external-links',
+            hp, pp], capture_output=True, timeout=60, check=False)
+        return os.path.exists(pp) and os.path.getsize(pp) > 0
     except Exception:
-        return False   # PDF opcional: si falla, no detiene el pipeline
+        return False
 
 MESES = {'enero':1,'febrero':2,'marzo':3,'abril':4,'mayo':5,'junio':6,'julio':7,'agosto':8,'septiembre':9,'octubre':10,'noviembre':11,'diciembre':12}
 def normalizar_fecha(s):
@@ -148,8 +150,7 @@ def cargar_metadata_csv(folder_id):
         for row in csv.DictReader(io.StringIO(buf.getvalue().decode('utf-8',errors='replace'))):
             m = normalizar_fila(row)
             if m and m.get('archivo'): lookup[m['archivo']]=m
-    except Exception as e:
-        print(f"   ⚠️ metadata.csv: {e}")
+    except Exception as e: print(f"   ⚠️ metadata.csv: {e}")
     return lookup
 
 def listar_htmls(folder_id):
@@ -157,8 +158,7 @@ def listar_htmls(folder_id):
     while True:
         try:
             res = get_drive().files().list(q=f"'{folder_id}' in parents and mimeType='text/html' and trashed=false",fields="files(id,name),nextPageToken",pageSize=1000,pageToken=pt).execute()
-        except HttpError as e:
-            print(f"   ❌ listando: {e}"); break
+        except HttpError as e: print(f"   ❌ listando: {e}"); break
         out += [{'id':f['id'],'nombre':f['name']} for f in res.get('files',[])]
         pt = res.get('nextPageToken')
         if not pt: break
@@ -168,8 +168,7 @@ def prueba_drive(folder_id):
     try:
         res = get_drive().files().list(q=f"'{folder_id}' in parents and trashed=false",fields="files(id)",pageSize=1).execute()
         return len(res.get('files',[]))
-    except Exception as e:
-        print(f"❌ Error acceso Drive: {e}"); return 0
+    except Exception as e: print(f"❌ Error acceso Drive: {e}"); return 0
 
 def descargar(did):
     for _ in range(3):
@@ -254,12 +253,17 @@ def main():
     os.makedirs(ASSETS,exist_ok=True)
     print("🚀 Iniciando pipeline...")
 
+    # Logo con SSL deshabilitado
     if not os.path.exists(LOGO_LOCAL):
         try:
-            r=requests.get(LOGO_URL,timeout=30)
-            if r.status_code==200:
-                open(LOGO_LOCAL,'wb').write(r.content); print("🖼️ Logo OK")
-        except Exception as e: print(f"⚠️ logo: {e}")
+            r = requests.get(LOGO_URL, timeout=30, verify=False)
+            if r.status_code == 200:
+                open(LOGO_LOCAL,'wb').write(r.content)
+                print(f"🖼️ Logo OK ({len(r.content)//1024} KB)")
+            else:
+                print(f"⚠️ logo HTTP {r.status_code}")
+        except Exception as e:
+            print(f"⚠️ logo: {e}")
 
     n = prueba_drive(FOLDERS[0][1])
     print(f"🔎 Acceso Drive: {n} archivo(s) en {FOLDERS[0][0]}")
