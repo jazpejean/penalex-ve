@@ -10,7 +10,7 @@ on:
       lote:
         description: 'Publicar cada N archivos'
         required: false
-        default: '5000'
+        default: '1000'
 
 jobs:
   procesar:
@@ -56,5 +56,5 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           LIMITE: ${{ github.event.inputs.limite || '0' }}
-          LOTE: ${{ github.event.inputs.lote || '5000' }}
+          LOTE: ${{ github.event.inputs.lote || '1000' }}
         run: python -u script.py
