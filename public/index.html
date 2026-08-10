@@ -64,16 +64,21 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebas
 import { getFirestore, collection, getDocs }
   from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
-// ⚠️ REEMPLAZA este bloque con tu config real:
-// Firebase Console > ⚙️ Configuración > General > Tus apps > App web
+// Tu config real (copia la que ves en Firebase Console > ⚙️ > General > App web)
 const firebaseConfig = {
-  apiKey: "REEMPLAZA_API_KEY",
+  apiKey: "AIzaSy...",
   authDomain: "penalex-ve.firebaseapp.com",
   projectId: "penalex-ve",
   storageBucket: "penalex-ve.appspot.com",
-  messagingSenderId: "REEMPLAZA",
-  appId: "REEMPLAZA"
+  messagingSenderId: "11726337...",
+  appId: "1:11726337...:web:..."
 };
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// ... resto del script igual
+</script>
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
