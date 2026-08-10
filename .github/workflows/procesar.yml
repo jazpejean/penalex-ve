@@ -32,10 +32,32 @@ jobs:
 
       - name: Configurar credenciales de Google
         run: |
-          echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}" > /tmp/creds.json
+          # Usar printf para preservar el formato exacto del JSON
+          printf '%s' "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}" > /tmp/creds.json
+          
+          # Validar que el JSON sea válido
+          python -c "
+          import json
+          import sys
+          
+          try:
+              with open('/tmp/creds.json', 'r') as f:
+                  data = json.load(f)
+              print('✅ JSON válido')
+              print(f'   Tipo: {data.get(\"type\", \"desconocido\")}')
+              print(f'   Proyecto: {data.get(\"project_id\", \"desconocido\")}')
+          except json.JSONDecodeError as e:
+              print(f'❌ JSON inválido: {e}')
+              print('Contenido del archivo (primeros 200 chars):')
+              with open('/tmp/creds.json', 'r') as f:
+                  print(f.read()[:200])
+              sys.exit(1)
+          except Exception as e:
+              print(f'❌ Error inesperado: {e}')
+              sys.exit(1)
+          "
+          
           echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/creds.json" >> $GITHUB_ENV
-          # Validar JSON
-          python -c "import json; json.load(open('/tmp/creds.json')); print('✅ JSON válido')"
 
       - name: Cache progreso
         uses: actions/cache@v3
