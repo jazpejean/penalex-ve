@@ -32,42 +32,43 @@ jobs:
 
       - name: Configurar credenciales de Google
         run: |
-          # Usar printf para preservar el formato exacto del JSON
-          printf '%s' "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}" > /tmp/creds.json
+          # Escribir secret a archivo usando heredoc
+          cat > /tmp/creds.json << 'JSONEOF'
+          ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
+          JSONEOF
           
-          # Validar que el JSON sea válido
-          python -c "
+          # Remover espacios al inicio de cada línea (heredoc agrega indentación)
+          sed -i 's/^[[:space:]]*//' /tmp/creds.json
+          
+          # Mostrar primer y último caracter para verificar
+          echo "=== VERIFICACIÓN DEL JSON ==="
+          echo "Primer caracter: '$(head -c 1 /tmp/creds.json)'"
+          echo "Último caracter: '$(tail -c 2 /tmp/creds.json)'"
+          echo "Primeros 80 chars: $(head -c 80 /tmp/creds.json)"
+          echo ""
+          
+          # Validar JSON
+          python3 -c "
           import json
           import sys
-          
           try:
               with open('/tmp/creds.json', 'r') as f:
                   data = json.load(f)
               print('✅ JSON válido')
-              print(f'   Tipo: {data.get(\"type\", \"desconocido\")}')
-              print(f'   Proyecto: {data.get(\"project_id\", \"desconocido\")}')
+              print(f'   Tipo: {data.get(\"type\")}')
+              print(f'   Proyecto: {data.get(\"project_id\")}')
+              print(f'   Email: {data.get(\"client_email\")}')
           except json.JSONDecodeError as e:
               print(f'❌ JSON inválido: {e}')
-              print('Contenido del archivo (primeros 200 chars):')
+              print('Contenido (primeros 300 chars):')
               with open('/tmp/creds.json', 'r') as f:
-                  print(f.read()[:200])
-              sys.exit(1)
-          except Exception as e:
-              print(f'❌ Error inesperado: {e}')
+                  print(f.read()[:300])
               sys.exit(1)
           "
           
           echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/creds.json" >> $GITHUB_ENV
 
-      - name: Cache progreso
-        uses: actions/cache@v3
-        with:
-          path: /content/progreso.json
-          key: progreso-${{ github.run_id }}
-          restore-keys: |
-            progreso-
-
-      - name: Ejecutar script
+      - name: Ejecutar script de procesamiento
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           LIMITE: ${{ github.event.inputs.limite || '0' }}
