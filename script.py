@@ -18,6 +18,7 @@ PUB = os.path.join(WORK_DIR, 'public')
 ASSETS = os.path.join(PUB, 'assets')
 LOGO_URL = 'https://historico.tsj.gob.ve/graficos/encabezadotsj.jpg'
 LOGO_LOCAL = os.path.join(ASSETS, 'logo-tsj.jpg')
+SITE_URL = os.environ.get('SITE_URL', 'https://penalex-ve.firebaseapp.com')
 
 MAX_WORKERS = 4
 BATCH_FS = 50
@@ -239,17 +240,56 @@ def publicar():
     cmd=['firebase','deploy','--only','hosting']
     tok=os.environ.get('FIREBASE_TOKEN')
     if tok: cmd+=['--token',tok]
-    try:
-        subprocess.run(cmd,check=True,capture_output=True,text=True,cwd=WORK_DIR)
-        print("   ✅ Publicado en Hosting")
-        return True
-    except subprocess.CalledProcessError as e:
-        print(f"   ❌ deploy: {(e.stderr or '')[:300]}")
+    r = subprocess.run(cmd, capture_output=True, text=True, cwd=WORK_DIR)
+    if r.stdout: print(r.stdout[-800:])
+    if r.returncode != 0:
+        print(f"❌ deploy falló:\n{(r.stderr or '')[-800:]}")
         return False
+    print("   ✅ Publicado en Hosting")
+    return True
+
+def presync(existentes):
+    """Baja del sitio lo ya publicado para que el deploy no lo borre."""
+    print(f"⬇️ Pre-sync: bajando {len(existentes)} docs ya publicados...")
+    t = time.time()
+    missing = []
+    mlock = threading.Lock()
+    done = [0]
+
+    def fetch(item):
+        doc_id, (tipo, sala) = item
+        sub = 'resoluciones' if tipo == 'resolucion' else tipo + 's'
+        ok_html = False
+        for ext in ('html', 'pdf'):
+            dest = os.path.join(PUB, ext, sub, sala, f"{doc_id}.{ext}")
+            if os.path.exists(dest):
+                if ext == 'html': ok_html = True
+                continue
+            try:
+                r = requests.get(f"{SITE_URL}/{ext}/{sub}/{sala}/{doc_id}.{ext}", timeout=30)
+                if r.status_code == 200 and r.content:
+                    os.makedirs(os.path.dirname(dest), exist_ok=True)
+                    with open(dest, 'wb') as f: f.write(r.content)
+                    if ext == 'html': ok_html = True
+            except Exception:
+                pass
+        if not ok_html:
+            with mlock: missing.append(doc_id)
+        done[0] += 1
+        if done[0] % 500 == 0:
+            print(f"   ⬇️ {done[0]}/{len(existentes)}")
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as ex:
+        list(ex.map(fetch, existentes.items()))
+    for mid in missing:
+        existentes.pop(mid, None)
+    if missing:
+        print(f"   ⚠️ {len(missing)} docs sin HTML en Hosting → se reprocesarán")
+    print(f"   ✅ Pre-sync listo en {(time.time()-t)/60:.1f} min")
 
 def main():
     limite=int(os.environ.get('LIMITE','0') or 0)
-    lote=int(os.environ.get('LOTE','1000') or 1000)
+    lote=int(os.environ.get('LOTE','5000') or 5000)
     os.makedirs(ASSETS,exist_ok=True)
     print("🚀 Iniciando pipeline...")
 
@@ -274,11 +314,16 @@ def main():
     threading.Thread(target=heartbeat,args=(t0,),daemon=True).start()
 
     print("📊 Leyendo existentes en Firestore...")
-    db=get_db(); existentes=set()
+    db=get_db(); existentes={}
     try:
-        for snap in db.collection('documentos').select([]).stream(): existentes.add(snap.id)
+        for snap in db.collection('documentos').select(['tipo','sala']).stream():
+            d=snap.to_dict() or {}
+            existentes[snap.id]=(d.get('tipo','sentencia'), d.get('sala','constitucional'))
     except Exception as e: print(f"⚠️ Firestore: {e}")
     print(f"   existentes: {len(existentes)}")
+
+    if existentes:
+        presync(existentes)
 
     nuevos=0
     for nombre,folder_id,tipo,sala in FOLDERS:
@@ -304,7 +349,7 @@ def main():
                 if nuevos>=lote:
                     fs_flush(); publicar(); nuevos=0
     fs_flush()
-    publicar()   # siempre publica (para que index.html/app.js actualizados suban)
+    publicar()   # siempre publica al final
     print(f"\n✅ FIN en {(time.time()-t0)/60:.1f} min | ok={stats['ok']} fail={stats['fail']} pdf={stats['pdf']}")
 
 if __name__=='__main__':
