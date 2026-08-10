@@ -253,7 +253,6 @@ def main():
     os.makedirs(ASSETS,exist_ok=True)
     print("🚀 Iniciando pipeline...")
 
-    # Logo con SSL deshabilitado
     if not os.path.exists(LOGO_LOCAL):
         try:
             r = requests.get(LOGO_URL, timeout=30, verify=False)
