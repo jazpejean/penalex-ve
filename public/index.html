@@ -1,4 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <title>Penalex VE - Dashboard</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 1100px; margin: 20px auto; padding: 0 20px; background:#0c1b30; color:#f4f1ea; }
+  h1 { color:#e3cd9a; border-bottom: 2px solid #c8a95c; padding-bottom: 10px; }
+  .stats { display: flex; gap: 20px; flex-wrap: wrap; margin: 20px 0; }
+  .stat { background: rgba(255,255,255,0.05); border: 1px solid #c8a95c40; padding: 15px 20px; border-radius: 8px; min-width: 120px; }
+  .stat-num { font-size: 32px; font-weight: bold; color: #e3cd9a; }
+  .stat-label { font-size: 12px; color: #93a3b8; text-transform: uppercase; }
+  #search { width: 100%; padding: 12px; font-size: 16px; border-radius: 6px; border: 1px solid #c8a95c60; background: rgba(0,0,0,0.3); color: white; margin: 10px 0; box-sizing: border-box; }
+  .filters { display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0; }
+  .filters select, .filters button { padding: 8px 14px; border-radius: 6px; border: 1px solid #c8a95c60; background: rgba(0,0,0,0.3); color: white; cursor: pointer; }
+  .filters button:hover { background: #c8a95c; color: #0c1b30; }
+  #results { margin-top: 20px; }
+  .doc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin-bottom: 10px; }
+  .doc-title { color: #e3cd9a; font-weight: bold; margin-bottom: 8px; }
+  .doc-meta { font-size: 13px; color: #93a3b8; margin-bottom: 8px; }
+  .doc-extracto { font-size: 14px; color: #b9c4d4; line-height: 1.5; }
+  .doc-links { margin-top: 10px; display: flex; gap: 10px; }
+  .doc-links a { padding: 6px 12px; background: #c8a95c; color: #0c1b30; text-decoration: none; border-radius: 4px; font-size: 13px; font-weight: bold; }
+  .doc-links a.pdf { background: transparent; color: #93a3b8; border: 1px solid #93a3b8; }
+  .loading { text-align: center; padding: 40px; color: #93a3b8; }
+  .error { background: #7f1d1d; padding: 15px; border-radius: 8px; }
+</style>
+</head>
+<body>
+
+<h1>📚 Penalex VE - Dashboard de Documentos</h1>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Total documentos</div></div>
+  <div class="stat"><div class="stat-num" id="stat-sent">0</div><div class="stat-label">Sentencias</div></div>
+  <div class="stat"><div class="stat-num" id="stat-juris">0</div><div class="stat-label">Jurisprudencias</div></div>
+  <div class="stat"><div class="stat-num" id="stat-res">0</div><div class="stat-label">Resoluciones</div></div>
+</div>
+
+<input id="search" type="text" placeholder="🔍 Buscar por partes, expediente, ponente, texto...">
+
+<div class="filters">
+  <select id="filter-tipo">
+    <option value="">Todos los tipos</option>
+    <option value="sentencia">Sentencia</option>
+    <option value="jurisprudencia">Jurisprudencia</option>
+    <option value="resolucion">Resolución</option>
+  </select>
+  <select id="filter-sala">
+    <option value="">Todas las salas</option>
+    <option value="constitucional">Constitucional</option>
+    <option value="penal">Penal</option>
+    <option value="sustanciacion">Sustanciación</option>
+  </select>
+  <button id="btn-load">Cargar documentos</button>
+  <span id="status" style="color:#93a3b8;align-self:center;"></span>
+</div>
+
+<div id="results"><div class="loading">Presiona "Cargar documentos" para ver los documentos publicados.</div></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getFirestore, collection, getDocs }
+  from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+// ⚠️ REEMPLAZA este bloque con tu config real:
+// Firebase Console > ⚙️ Configuración > General > Tus apps > App web
+const firebaseConfig = {
+  apiKey: "REEMPLAZA_API_KEY",
+  authDomain: "penalex-ve.firebaseapp.com",
+  projectId: "penalex-ve",
+  storageBucket: "penalex-ve.appspot.com",
+  messagingSenderId: "REEMPLAZA",
+  appId: "REEMPLAZA"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+let allDocs = [];
+
+document.getElementById('btn-load').addEventListener('click', async () => {
+  const status = document.getElementById('status');
+  status.textContent = 'Cargando...';
+  try {
+    const snap = await getDocs(collection(db, 'documentos'));
+    allDocs = snap.docs.map(d => ({id: d.id, ...d.data()}));
+    status.textContent = `${allDocs.length} documentos cargados`;
+    updateStats();
+    render();
+  } catch(e) {
+    status.textContent = '';
+    document.getElementById('results').innerHTML =
+      `<div class="error">❌ Error al leer Firestore: ${e.message}<br>
+       Revisa las reglas de Firestore (lectura pública).</div>`;
+  }
+});
+
+function updateStats() {
+  document.getElementById('stat-total').textContent = allDocs.length;
+  document.getElementById('stat-sent').textContent = allDocs.filter(d=>d.tipo==='sentencia').length;
+  document.getElementById('stat-juris').textContent = allDocs.filter(d=>d.tipo==='jurisprudencia').length;
+  document.getElementById('stat-res').textContent = allDocs.filter(d=>d.tipo==='resolucion').length;
+}
+
+function render() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const tipo = document.getElementById('filter-tipo').value;
+  const sala = document.getElementById('filter-sala').value;
+
+  let filtered = allDocs.filter(d => {
+    if (tipo && d.tipo !== tipo) return false;
+    if (sala && d.sala !== sala) return false;
+    if (q) {
+      const hay = [d.id, d.partes, d.ponente, d.expediente, d.procedimiento, d.decision, d.extracto, d.texto_busqueda]
+        .filter(Boolean).join(' ').toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  filtered.sort((a,b) => (b.fecha||'').localeCompare(a.fecha||''));
+
+  const container = document.getElementById('results');
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="loading">No se encontraron documentos.</div>';
+    return;
+  }
+
+  const mostrar = filtered.slice(0, 100);
+  container.innerHTML = `<div style="color:#93a3b8;margin-bottom:10px;">Mostrando ${mostrar.length} de ${filtered.length} resultados</div>` +
+    mostrar.map(d => {
+      const sub = d.tipo === 'resolucion' ? 'resoluciones' : d.tipo + 's';
+      const htmlUrl = `/html/${sub}/${d.sala}/${d.id}.html`;
+      const pdfUrl = `/pdf/${sub}/${d.sala}/${d.id}.pdf`;
+      return `
+        <div class="doc">
+          <div class="doc-title">${(d.tipo||'').toUpperCase()} ${d.num_sentencia||''} - Exp. ${d.expediente||'s/n'}</div>
+          <div class="doc-meta">
+            📅 ${d.fecha||'s/f'} · 🏛️ ${d.sala||''} · 👤 ${d.ponente||'s/p'}
+            ${d.procedimiento ? ' · ⚖️ '+d.procedimiento : ''}
+            ${d.decision ? ' · 📋 '+d.decision : ''}
+          </div>
+          ${d.partes ? `<div class="doc-meta"><strong>Partes:</strong> ${d.partes}</div>` : ''}
+          ${d.extracto ? `<div class="doc-extracto">${String(d.extracto).substring(0,400)}${String(d.extracto).length>400?'...':''}</div>` : ''}
+          <div class="doc-links">
+            <a href="${htmlUrl}" target="_blank">Ver HTML</a>
+            <a href="${pdfUrl}" target="_blank" class="pdf">Descargar PDF</a>
+            ${d.url_tsj ? `<a href="${d.url_tsj}" target="_blank" class="pdf">Fuente TSJ</a>` : ''}
+          </div>
+        </div>`;
+    }).join('');
+}
+
+document.getElementById('search').addEventListener('input', render);
+document.getElementById('filter-tipo').addEventListener('change', render);
+document.getElementById('filter-sala').addEventListener('change', render);
+</script>
+
+</body>
+</html>
