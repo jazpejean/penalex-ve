@@ -304,7 +304,7 @@ def main():
                 if nuevos>=lote:
                     fs_flush(); publicar(); nuevos=0
     fs_flush()
-    if nuevos>0: publicar()
+    publicar()   # siempre publica (para que index.html/app.js actualizados suban)
     print(f"\n✅ FIN en {(time.time()-t0)/60:.1f} min | ok={stats['ok']} fail={stats['fail']} pdf={stats['pdf']}")
 
 if __name__=='__main__':
