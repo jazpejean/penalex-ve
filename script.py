@@ -52,7 +52,6 @@ def get_drive():
     if hasattr(_local, 'drv'):
         return _local.drv
 
-    # Intentar cargar desde GOOGLE_APPLICATION_CREDENTIALS_JSON (string)
     creds_json_str = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS_JSON')
     if creds_json_str:
         try:
@@ -66,7 +65,6 @@ def get_drive():
         except Exception as e:
             print(f"❌ Error cargando credenciales desde JSON string: {e}")
 
-    # Fallback: intentar desde archivo (GOOGLE_APPLICATION_CREDENTIALS)
     creds_file = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
     if creds_file and os.path.exists(creds_file):
         try:
@@ -79,7 +77,6 @@ def get_drive():
         except Exception as e:
             print(f"❌ Error cargando credenciales desde archivo: {e}")
 
-    # En Colab, usar credenciales por defecto
     try:
         _local.drv = build('drive', 'v3')
         return _local.drv
@@ -188,13 +185,19 @@ def a_texto(html):
 # ============================================================
 def cargar_progreso():
     if os.path.exists(PROGRESO_FILE):
-        with open(PROGRESO_FILE, 'r') as f:
-            return set(json.load(f))
+        try:
+            with open(PROGRESO_FILE, 'r') as f:
+                return set(json.load(f))
+        except:
+            return set()
     return set()
 
 def guardar_progreso(conjunto):
-    with open(PROGRESO_FILE, 'w') as f:
-        json.dump(list(conjunto), f)
+    try:
+        with open(PROGRESO_FILE, 'w') as f:
+            json.dump(list(conjunto), f)
+    except Exception as e:
+        print(f"⚠️ Error guardando progreso: {e}")
 
 # ============================================================
 # PUBLICAR EN FIREBASE
