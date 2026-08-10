@@ -52,9 +52,9 @@ jobs:
           "
           echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/creds.json" >> $GITHUB_ENV
 
-              run: python -u script.py
+      - name: Ejecutar pipeline
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           LIMITE: ${{ github.event.inputs.limite || '0' }}
           LOTE: ${{ github.event.inputs.lote || '5000' }}
-        run: python script.py
+        run: python -u script.py
