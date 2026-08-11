@@ -1,28 +1,18 @@
 #!/usr/bin/env python3
 import os
-import sys
 import re
 import gzip
-import json
-import socket
 import time
-import urllib.request
-import urllib.error
-from concurrent.futures import ProcessPoolExecutor, as_completed
-
-# 1. FORZAR TIMEOUT GLOBAL A NIVEL DE SOCKET (Evita congelamientos para siempre)
-socket.setdefaulttimeout(15.0)
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import boto3
 from botocore.config import Config
 
-# Variables de entorno
+# Env Vars (Solo Cloudflare R2)
 R2_ACCOUNT_ID = os.environ.get('CLOUDFLARE_ACCOUNT_ID')
 R2_ACCESS_KEY = os.environ.get('R2_ACCESS_KEY_ID')
 R2_SECRET_KEY = os.environ.get('R2_SECRET_ACCESS_KEY')
 R2_BUCKET = os.environ.get('R2_BUCKET_NAME', 'penalex-ve')
-SUPABASE_URL = os.environ.get('SUPABASE_URL')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_KEY')
 R2_PUBLIC_URL = os.environ.get('R2_PUBLIC_URL', 'https://pub-a6e0bfa2e9174e91b031ae28c0667009.r2.dev')
 
 LOGO_CORRECTO = f'{R2_PUBLIC_URL}/assets/logo.jpg'
@@ -36,6 +26,14 @@ PATRONES_ROTOS = [
     r'/imagenes/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
 ]
 
+# Timeouts cortos para descargas/cargas en R2
+BOTO3_CONFIG = Config(
+    signature_version='s3v4',
+    connect_timeout=5,
+    read_timeout=5,
+    retries={'max_attempts': 2}
+)
+
 def get_s3():
     return boto3.client(
         's3',
@@ -43,20 +41,12 @@ def get_s3():
         aws_access_key_id=R2_ACCESS_KEY,
         aws_secret_access_key=R2_SECRET_KEY,
         region_name='auto',
-        config=Config(
-            signature_version='s3v4',
-            connect_timeout=10,
-            read_timeout=10,
-            retries={'max_attempts': 2}
-        )
+        config=BOTO3_CONFIG
     )
 
-def procesar_archivo_r2(key):
-    """Solo interactúa con R2 (Sin llamadas a Supabase)"""
+def procesar_html(s3, key):
     try:
-        s3 = get_s3()
         response = s3.get_object(Bucket=R2_BUCKET, Key=key)
-        
         content_encoding = response.get('ContentEncoding', '')
         raw_data = response['Body'].read()
         
@@ -68,13 +58,13 @@ def procesar_archivo_r2(key):
             except UnicodeDecodeError:
                 html = raw_data.decode('latin-1')
         
-        # Corrección del HTML
+        # Eliminación de comentarios VML y corrección de imágenes
         html_corregido = re.sub(r'<!--\[if gte vml 1\]>.*?<!\[endif\]-->', '', html, flags=re.DOTALL | re.IGNORECASE)
         for patron in PATRONES_ROTOS:
             html_corregido = re.sub(patron, LOGO_CORRECTO, html_corregido, flags=re.IGNORECASE)
         
-        modificado = (html_corregido != html)
-        if modificado:
+        # Solo guarda en R2 si hubo modificaciones reales
+        if html_corregido != html:
             data_corregida = gzip.compress(html_corregido.encode('utf-8'), 6)
             s3.put_object(
                 Bucket=R2_BUCKET,
@@ -83,46 +73,15 @@ def procesar_archivo_r2(key):
                 ContentType='text/html; charset=utf-8',
                 ContentEncoding='gzip'
             )
+            return True, None
             
-        doc_id = os.path.basename(key).replace('.html', '').replace('.HTML', '')
-        html_url = f"{R2_PUBLIC_URL}/{key}"
-        
-        return (key, doc_id, html_url, modificado, None)
+        return False, None
     except Exception as e:
-        return (key, None, None, False, str(e))
-
-def actualizar_supabase_en_lote(registros):
-    """
-    Actualiza Supabase en Lotes masivos via RPC/Upsert para no saturar HTTP
-    o realiza peticiones masivas agrupadas.
-    """
-    if not registros:
-        return True
-    
-    # Enviar los datos estructurados en lote
-    payload = [{"id": r["doc_id"], "url_html": r["html_url"]} for r in registros]
-    
-    url = f"{SUPABASE_URL}/rest/v1/documentos"
-    headers = {
-        'apikey': SUPABASE_KEY,
-        'Authorization': f'Bearer {SUPABASE_KEY}',
-        'Content-Type': 'application/json',
-        'Prefer': 'resolution=merge-duplicates' # Hace un UPSERT eficiente
-    }
-    
-    data = json.dumps(payload).encode('utf-8')
-    req = urllib.request.Request(url, data=data, headers=headers, method='POST')
-    
-    try:
-        with urllib.request.urlopen(req, timeout=15) as response:
-            return response.status in (200, 201, 204)
-    except Exception as e:
-        print(f"\n⚠️ Falló actualización de lote en Supabase: {e}", flush=True)
-        return False
+        return False, str(e)
 
 if __name__ == '__main__':
-    print("📂 Obteniendo lista de archivos desde R2...", flush=True)
     s3 = get_s3()
+    print("📂 Obteniendo lista completa de R2...", flush=True)
     html_keys = []
     continuation_token = None
 
@@ -142,43 +101,32 @@ if __name__ == '__main__':
             break
         continuation_token = response.get('NextContinuationToken')
 
-    print(f"✅ Total archivos encontrados: {len(html_keys):,}", flush=True)
+    total = len(html_keys)
+    print(f"✅ Total archivos: {total:,}", flush=True)
 
-    # Procesar con aislamiento por proceso (Evita congelamientos de Threading)
-    batch_supabase = []
     procesados = 0
     modificados = 0
     errores = 0
-
     start_time = time.time()
 
-    # ProcessPoolExecutor mata y aisla los procesos que se queden colgados
-    with ProcessPoolExecutor(max_workers=4) as executor:
-        futures = {executor.submit(procesar_archivo_r2, key): key for key in html_keys}
+    # Ejecución concurrente directa con 30 hilos
+    with ThreadPoolExecutor(max_workers=30) as executor:
+        futures = {executor.submit(procesar_html, s3, key): key for key in html_keys}
         
         for future in as_completed(futures):
-            key, doc_id, html_url, mod, err = future.result()
             procesados += 1
+            mod, err = future.result()
             
             if err:
                 errores += 1
-            else:
-                if mod:
-                    modificados += 1
-                batch_supabase.append({"doc_id": doc_id, "html_url": html_url})
+            elif mod:
+                modificados += 1
 
-            # Cuando se acumulen 100 registros, enviamos 1 sola petición a Supabase
-            if len(batch_supabase) >= 100:
-                actualizar_supabase_en_lote(batch_supabase)
-                batch_supabase.clear()
-
-            if procesados % 100 == 0 or procesados == len(html_keys):
+            if procesados % 1000 == 0 or procesados == total:
                 elapsed = time.time() - start_time
                 rate = procesados / elapsed if elapsed > 0 else 0
-                print(f"📊 Procesados: {procesados:,}/{len(html_keys):,} | Modificados: {modificados:,} | Rate: {rate:.1f} arch/s", flush=True)
+                print(f"📊 Procesados: {procesados:,}/{total:,} | Modificados: {modificados:,} | Errores: {errores} | Vel: {rate:.1f} arch/s", flush=True)
 
-    # Guardar los pendientes finales
-    if batch_supabase:
-        actualizar_supabase_en_lote(batch_supabase)
-
-    print("\n✅ PROCESO FINALIZADO SIN BLOQUEOS", flush=True)
+    tiempo_total = time.time() - start_time
+    print(f"\n✅ PROCESO COMPLETADO EN {tiempo_total:.1f} SEG")
+    print(f"Archivos revisados: {procesados:,} | Modificados en R2: {modificados:,} | Errores: {errores}")
