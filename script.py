@@ -62,24 +62,33 @@ def get_sb():
     return _sb
 
 _sb_buf=[]; _sb_lock=threading.Lock()
+
+def _clean(v):
+    if isinstance(v,str):
+        return re.sub(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]','',v).replace('\ufffd','')
+    return v
+
 def _flush_sb():
     global _sb_buf
     if not _sb_buf: return
-    rows=_sb_buf; _sb_buf=[]
+    rows=[{k:_clean(v) for k,v in r.items()} for r in _sb_buf]
+    _sb_buf=[]
     try: get_sb().table('documentos').upsert(rows,on_conflict='id').execute()
     except Exception as e: print(f"⚠️ upsert: {e}")
+
 def fs_set(doc_id,data):
     global _sb_buf
     with _sb_lock:
         _sb_buf.append(data)
         if len(_sb_buf)>=BATCH: _flush_sb()
+
 def fs_flush():
     with _sb_lock: _flush_sb()
 
 MAPA_ENC={'Ã¡':'á','Ã©':'é','Ã­':'í','Ã³':'ó','Ãº':'ú','Ã±':'ñ','Ã‘':'Ñ','Â°':'°','Â¿':'¿','Â¡':'¡','â€™':'’','â€˜':'‘','â€œ':'"','â€':'"','â€“':'–','â€"':'—','â€¦':'…','ï¿½':'','Ã':'í'}
 def corregir_encoding(t):
     if not isinstance(t,str): return str(t)
-    t=t.replace('\ufffd','')
+    t=re.sub(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]','',t).replace('\ufffd','')
     if 'Ã' in t or 'â€' in t or 'Â' in t:
         try: return t.encode('windows-1252',errors='ignore').decode('utf-8',errors='ignore')
         except Exception:
@@ -92,10 +101,25 @@ def curar(raw):
     t=corregir_encoding(t)
     t=re.sub(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]','',t).replace('\u00ad','')
     t=re.sub(r'<\?xml[^>]*\?>','',t)
+    # Eliminar SOLO imágenes que referencien *_archivos/ (las rotas)
+    t=re.sub(r'<img[^>]*src=["\'][^"\']*?_archivos/[^"\']*["\'][^>]*/?>','',t,flags=re.I)
+    # Eliminar CSS y scripts externos
+    t=re.sub(r'<link[^>]*href=["\'][^"\']*?\.css["\'][^>]*/?>','',t,flags=re.I)
+    t=re.sub(r'<script[\s\S]*?</script>','',t,flags=re.I)
+    # Inyectar CSS inline: centrado para logo/header, justificado para el resto
+    css_inline='''
+    <style>
+      body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+      img { max-width: 100%; height: auto; display: block; margin: 20px auto; }
+      h1, h2, h3, p:first-of-type, p:nth-of-type(2), p:nth-of-type(3), p:nth-of-type(4) { text-align: center; }
+      p { text-align: justify; }
+      .header, .logo { text-align: center; margin-bottom: 30px; }
+    </style>
+    '''
+    t=re.sub(r'<head[^>]*>',r'\g<0>'+css_inline,t,count=1,flags=re.I)
     t=re.sub(r'<meta[^>]*charset[^>]*>','<meta charset="UTF-8">',t,flags=re.I)
     if 'charset' not in t.lower(): t=re.sub(r'(<head[^>]*>)',r'\1\n<meta charset="UTF-8">',t,count=1,flags=re.I)
     if 'noindex' not in t.lower(): t=re.sub(r'(<head[^>]*>)',r'\1\n<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">',t,count=1,flags=re.I)
-    t=re.sub(r'<script[\s\S]*?</script>','',t,flags=re.I)
     t=re.sub(r'<style[\s\S]*?</style>','',t,flags=re.I)
     return t
 
@@ -307,18 +331,8 @@ def main():
                 if done%50==0:
                     el=(time.time()-t0)/60
                     print(f"   ⚙️ {done}/{len(pend)} ok={stats['ok']} fail={stats['fail']} url={stats['url']} pdf={stats['pdf']} | {done/el:.0f}/min")
-    def _clean(v):
-    if isinstance(v,str):
-        return re.sub(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]','',v).replace('\ufffd','')
-    return v
-
-def _flush_sb():
-    global _sb_buf
-    if not _sb_buf: return
-    rows=[{k:_clean(v) for k,v in r.items()} for r in _sb_buf]
-    _sb_buf=[]
-    try: get_sb().table('documentos').upsert(rows,on_conflict='id').execute()
-    except Exception as e: print(f"⚠️ upsert: {e}")
+    fs_flush()
+    print(f"\n✅ FIN en {(time.time()-t0)/60:.1f} min | ok={stats['ok']} fail={stats['fail']} url={stats['url']} pdf={stats['pdf']}")
 
 if __name__=='__main__':
     main()
