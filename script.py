@@ -15,6 +15,7 @@ print = functools.partial(print, flush=True)
 MAX_WORKERS = 8
 BATCH = 200
 R2_BUCKET = 'penalex-ve'
+LOGO_URL = 'https://pub-a6e0bfa2e9174e91b031ae28c0667009.r2.dev/assets/logo.jpg'
 
 FOLDERS = [
     ('Sala_Constitucional',         '1kGbRPySacSvqZITKQ0ll4-T-O3Ns6ieN', 'sentencia',     'constitucional'),
@@ -26,7 +27,6 @@ FOLDERS = [
 
 _local = threading.local()
 CREDS_PATH = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
-R2_PUBLIC_URL = os.environ.get('R2_PUBLIC_URL', '').rstrip('/')
 
 def get_drive():
     if not hasattr(_local,'drv'):
@@ -103,97 +103,26 @@ def corregir_encoding(t):
             for k,v in MAPA_ENC.items(): t=t.replace(k,v)
     return t
 
-LOGO_KEY='assets/logo.jpg'
-logo_url_global=None
-
-def asegurar_logo(folder_id):
-    global logo_url_global
+def asegurar_logo():
+    if r2_exists('assets/logo.jpg'):
+        print(f"🖼️ Logo ya en R2: {LOGO_URL}")
+        return
     try:
-        if R2_PUBLIC_URL and r2_exists(LOGO_KEY):
-            logo_url_global=f"{R2_PUBLIC_URL}/{LOGO_KEY}"
-            print(f"🖼️ Logo ya en R2: {logo_url_global}")
-            return
-        try:
-            r=requests.get('https://historico.tsj.gob.ve/graficos/encabezadotsj.jpg',timeout=20,verify=False)
-            if r.status_code==200 and len(r.content)>1000:
-                r2_put(LOGO_KEY, r.content, 'image/jpeg')
-                logo_url_global=f"{R2_PUBLIC_URL}/{LOGO_KEY}"
-                print(f"🖼️ Logo subido a R2: {logo_url_global}")
-            else:
-                print(f"⚠️ Logo: HTTP {r.status_code}")
-        except Exception as e:
-            print(f"⚠️ logo TSJ: {e}")
+        r=requests.get('https://historico.tsj.gob.ve/graficos/encabezadotsj.jpg',timeout=20,verify=False)
+        if r.status_code==200 and len(r.content)>1000:
+            r2_put('assets/logo.jpg', r.content, 'image/jpeg')
+            print(f"🖼️ Logo subido a R2: {LOGO_URL}")
+        else:
+            print(f"⚠️ Logo: HTTP {r.status_code}")
     except Exception as e:
-        print(f"⚠️ asegurar_logo: {e}")
+        print(f"⚠️ logo TSJ: {e}")
 
 def curar(raw):
     try: t=raw.decode('utf-8')
     except UnicodeDecodeError: t=raw.decode('latin-1')
     t=corregir_encoding(t)
-    t=re.sub(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]','',t).replace('\u00ad','')
-    t=re.sub(r'<\?xml[^>]*\?>','',t)
-    # Reemplazar imagen del header con logo del TSJ
-    if logo_url_global:
-        t=re.sub(r'<img[^>]*src=["\'][^"\']*?_archivos/[^"\']*["\'][^>]*/?>', f'<img src="{logo_url_global}" alt="Logo TSJ">', t, count=1, flags=re.I)
-    t=re.sub(r'<img[^>]*src=["\'][^"\']*?_archivos/[^"\']*["\'][^>]*/?>','',t,flags=re.I)
-    t=re.sub(r'<link[^>]*href=["\'][^"\']*?\.css["\'][^>]*/?>','',t,flags=re.I)
-    t=re.sub(r'<script[\s\S]*?</script>','',t,flags=re.I)
-    # CSS robusto: centra logo, sala, ponente y todos los subtítulos
-    css_inline='''
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        text-align: justify;
-      }
-      /* Logo del TSJ centrado */
-      img {
-        max-width: 600px;
-        width: 100%;
-        height: auto;
-        display: block;
-        margin: 20px auto;
-      }
-      /* Todos los encabezados centrados */
-      h1, h2, h3, h4, h5, h6 {
-        text-align: center;
-        font-weight: bold;
-        margin: 25px 0 15px 0;
-      }
-      /* Primeros 10 párrafos centrados (REPÚBLICA, TRIBUNAL, SALA, Ponente, fecha, etc.) */
-      p:nth-of-type(1), p:nth-of-type(2), p:nth-of-type(3), p:nth-of-type(4),
-      p:nth-of-type(5), p:nth-of-type(6), p:nth-of-type(7), p:nth-of-type(8),
-      p:nth-of-type(9), p:nth-of-type(10) {
-        text-align: center;
-        font-weight: bold;
-      }
-      /* Párrafos en MAYÚSCULAS completas = subtítulos del TSJ (ANTECEDENTES, DECISIÓN, etc.) */
-      p:has(*) { text-align: justify; }
-      /* Tablas del header centradas */
-      table:first-of-type, table:nth-of-type(2) {
-        margin: 20px auto;
-        text-align: center;
-      }
-      table:first-of-type td, table:nth-of-type(2) td {
-        text-align: center;
-      }
-    </style>
-    '''
-    t=re.sub(r'<head[^>]*>',r'\g<0>'+css_inline,t,count=1,flags=re.I)
-    t=re.sub(r'<meta[^>]*charset[^>]*>','<meta charset="UTF-8">',t,flags=re.I)
-    if 'charset' not in t.lower(): t=re.sub(r'(<head[^>]*>)',r'\1\n<meta charset="UTF-8">',t,count=1,flags=re.I)
-    if 'noindex' not in t.lower(): t=re.sub(r'(<head[^>]*>)',r'\1\n<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">',t,count=1,flags=re.I)
-    t=re.sub(r'<style(?!.*font-family:\s*Arial)[\s\S]*?</style>','',t,flags=re.I)
-    # Detectar subtítulos en mayúsculas (típico del TSJ) y envolverlos en <h3>
-    def mayus_a_h3(match):
-        txt = match.group(1).strip()
-        # Solo convertir si es corto (< 100 chars) y todo mayúsculas/acentuado
-        if len(txt) < 100 and re.search(r'[A-ZÁÉÍÓÚÑ]{5,}', txt) and txt.upper() == txt:
-            return f'<h3>{txt}</h3>'
-        return match.group(0)
-    t=re.sub(r'<p[^>]*>([^<]+)</p>', mayus_a_h3, t)
+    # Solo reemplazar la ruta del logo con la URL completa de R2
+    t=re.sub(r'/graficos/encabezadotsj\.jpg', LOGO_URL, t, flags=re.I)
     return t
 
 def html_a_texto(h):
@@ -400,7 +329,7 @@ def main():
     print(f"🔎 Acceso Drive: {n}")
     if n==0:
         print("❌ Sin acceso a Drive. Comparte carpetas con la cuenta de servicio."); return
-    asegurar_logo(FOLDERS[0][1])
+    asegurar_logo()
     t0=time.time()
     threading.Thread(target=heartbeat,args=(t0,),daemon=True).start()
 
