@@ -76,17 +76,19 @@ def fs_set(doc_id,data):
 def fs_flush():
     with _sb_lock: _flush_sb()
 
-MAPA_ENC={'Ã¡':'á','Ã©':'é','Ã­':'í','Ã³':'ó','Ãº':'ú','Ã±':'ñ','Ã‘':'Ñ','Â°':'°','Â¿':'¿','Â¡':'¡','â€™':'’','â€˜':'‘','â€œ':'"','â€':'"','â€“':'–','â€"':'—','â€¦':'…','ï¿½':'ñ'}
+MAPA_ENC={'Ã¡':'á','Ã©':'é','Ã­':'í','Ã³':'ó','Ãº':'ú','Ã±':'ñ','Ã‘':'Ñ','Â°':'°','Â¿':'¿','Â¡':'¡','â€™':'’','â€˜':'‘','â€œ':'"','â€':'"','â€“':'–','â€"':'—','â€¦':'…','ï¿½':'','Ã':'í'}
 def corregir_encoding(t):
-    if 'Ã' in t or 'â€' in t or 'ï¿½' in t:
-        try: return t.encode('windows-1252').decode('utf-8')
+    if not isinstance(t,str): return str(t)
+    t=t.replace('\ufffd','')
+    if 'Ã' in t or 'â€' in t or 'Â' in t:
+        try: return t.encode('windows-1252',errors='ignore').decode('utf-8',errors='ignore')
         except Exception:
             for k,v in MAPA_ENC.items(): t=t.replace(k,v)
     return t
 
 def curar(raw):
     try: t=raw.decode('utf-8')
-    except UnicodeDecodeError: t=raw.decode('windows-1252',errors='replace')
+    except UnicodeDecodeError: t=raw.decode('latin-1')
     t=corregir_encoding(t)
     t=re.sub(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]','',t).replace('\u00ad','')
     t=re.sub(r'<\?xml[^>]*\?>','',t)
@@ -149,7 +151,7 @@ def normalizar_fila(row):
         elif 'parte' in kl or 'demand' in kl or 'actor' in kl or 'recurrente' in kl or 'querell' in kl or 'acusad' in kl: d['partes']=(d.get('partes','')+' '+v).strip()
         elif 'procedimiento' in kl or 'recurso' in kl or 'accion' in kl or kl=='tipo': d['procedimiento']=v
         elif 'decision' in kl or 'fallo' in kl or 'veredicto' in kl: d['decision']=v
-        elif 'extracto' in kl or 'criterio' in kl or 'resumen' in kl or 'descripcion' in kl or 'motiva' in kl:
+        elif 'extracto' in kl or 'criterio' in kl or 'resumen' in kl or 'descripcion' in kl or 'motiva' in kl or 'texto' in kl:
             if len(v)>len(d.get('extracto','')): d['extracto']=v
     return d if d.get('archivo') else None
 
@@ -164,7 +166,7 @@ def cargar_metadata_csv(folder_id):
         while not done: _,done=down.next_chunk()
         raw=buf.getvalue()
         try: contenido=raw.decode('utf-8')
-        except UnicodeDecodeError: contenido=raw.decode('windows-1252',errors='replace')
+        except UnicodeDecodeError: contenido=raw.decode('latin-1')
         for row in csv.DictReader(io.StringIO(corregir_encoding(contenido))):
             m=normalizar_fila(row)
             if m and m.get('archivo'): lookup[m['archivo']]=m
@@ -287,6 +289,7 @@ def main():
         print(f"\n📂 {nombre} ({tipo}/{sala})")
         records=listar_htmls(folder_id)
         meta=cargar_metadata_csv(folder_id)
+        print(f"   archivos={len(records)} metadata={len(meta)}")
         if modo=='full':
             pend=[r for r in records if r['nombre'][:-5] not in existentes]
         else:
