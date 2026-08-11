@@ -4,9 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       modo:
-        description: 'full (indexar+html+txt) o pdf (generar PDFs)'
-        required: false
+        description: 'full | pdf | limpiar'
+        required: true
         default: 'full'
+        type: choice
+        options:
+          - full
+          - pdf
+          - limpiar
       limite:
         description: 'Archivos a procesar (0 = todos)'
         required: false
@@ -18,20 +23,27 @@ jobs:
     timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v4
-        with: { python-version: '3.11' }
+        with:
+          python-version: '3.11'
+
       - name: Instalar wkhtmltopdf
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq wkhtmltopdf
-      - run: pip install -r requirements.txt
-      - name: Credenciales Google
+
+      - name: Instalar dependencias Python
+        run: pip install -r requirements.txt
+
+      - name: Configurar credenciales de Google
         run: |
           cat > /tmp/creds.json << 'JSONEOF'
           ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
           JSONEOF
           sed -i 's/^[[:space:]]*//' /tmp/creds.json
           echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/creds.json" >> $GITHUB_ENV
+
       - name: Ejecutar pipeline
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
@@ -39,6 +51,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          MODO: ${{ github.event.inputs.modo || 'full' }}
+          R2_PUBLIC_URL: ${{ secrets.R2_PUBLIC_URL }}
+          MODO: ${{ github.event.inputs.modo }}
           LIMITE: ${{ github.event.inputs.limite || '0' }}
         run: python -u script.py
