@@ -33,7 +33,6 @@ instalar_deps()
 
 import boto3
 from botocore.config import Config
-import urllib3
 import urllib.request
 import urllib.error
 
@@ -63,7 +62,7 @@ if not all([R2_ACCOUNT_ID, R2_ACCESS_KEY, R2_SECRET_KEY, SUPABASE_URL, SUPABASE_
     print("❌ Faltan variables de entorno:")
     print(f"   CLOUDFLARE_ACCOUNT_ID: {'✅' if R2_ACCOUNT_ID else '❌'}")
     print(f"   R2_ACCESS_KEY_ID: {'✅' if R2_ACCESS_KEY else '❌'}")
-    print(f"   R2_SECRET_ACCESS_KEY: {'✅' if R2_SECRET_KEY else '❌'}")
+    print(f"   R2_SECRET_ACCESS_KEY: {'✅' if R2_SECRET_ACCESS_KEY else '❌'}")
     print(f"   SUPABASE_URL: {'✅' if SUPABASE_URL else '❌'}")
     print(f"   SUPABASE_SERVICE_KEY: {'✅' if SUPABASE_KEY else '❌'}")
     sys.exit(1)
@@ -125,7 +124,7 @@ def actualizar_supabase(doc_id, html_url):
         with urllib.request.urlopen(req, timeout=10) as response:
             return response.status == 204 or response.status == 200
         
-    except Exception as e:
+    except Exception:
         return False
 
 def arreglar_html(key):
@@ -153,49 +152,37 @@ def arreglar_html(key):
         
         # PASO 1: Eliminar todo el código VML de Microsoft Office (basura visual)
         # Elimina desde <!--[if gte vml 1]> hasta <![endif]-->
-        html_limpio = re.sub(
+        html_corregido = re.sub(
             r'<!--\[if gte vml 1\]>.*?<!\[endif\]-->',
             '',
             html,
             flags=re.DOTALL | re.IGNORECASE
         )
         
-        # PASO 2: Verificar si tiene imágenes rotas
-        tiene_rotas = False
-        for patron in PATRONES_ROTOS:
-            if re.search(patron, html_limpio):
-                tiene_rotas = True
-                break
-        
-        if not tiene_rotas:
-            # Igual actualizar URL en Supabase si no la tiene
-            doc_id = os.path.basename(key).replace('.html', '').replace('.HTML', '')
-            html_url = f"{R2_PUBLIC_URL}/{key}"
-            sb_ok = actualizar_supabase(doc_id, html_url)
-            return (key, False, sb_ok, None)
-        
-        # PASO 3: Reemplazar todas las rutas rotas por el logo correcto
-        html_corregido = html_limpio
+        # PASO 2: Reemplazar todas las rutas rotas por el logo correcto
         for patron in PATRONES_ROTOS:
             html_corregido = re.sub(patron, LOGO_CORRECTO, html_corregido, flags=re.IGNORECASE)
         
-        # Re-subir (comprimido)
-        data_corregida = gzip.compress(html_corregido.encode('utf-8'), 6)
+        modificado = (html_corregido != html)
         
-        s3.put_object(
-            Bucket=R2_BUCKET,
-            Key=key,
-            Body=data_corregida,
-            ContentType='text/html; charset=utf-8',
-            ContentEncoding='gzip'
-        )
+        if modificado:
+            # Re-subir (comprimido)
+            data_corregida = gzip.compress(html_corregido.encode('utf-8'), 6)
+            
+            s3.put_object(
+                Bucket=R2_BUCKET,
+                Key=key,
+                Body=data_corregida,
+                ContentType='text/html; charset=utf-8',
+                ContentEncoding='gzip'
+            )
         
         # Actualizar Supabase
         doc_id = os.path.basename(key).replace('.html', '').replace('.HTML', '')
         html_url = f"{R2_PUBLIC_URL}/{key}"
         sb_ok = actualizar_supabase(doc_id, html_url)
         
-        return (key, True, sb_ok, None)
+        return (key, modificado, sb_ok, None)
         
     except Exception as e:
         return (key, False, False, str(e))
@@ -277,7 +264,7 @@ with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         with stats_lock:
             if error:
                 stats['errores'] += 1
-                if procesados <= 5:  # Solo mostrar primeros errores
+                if stats['errores'] <= 5:  # Solo mostrar primeros errores
                     print(f"   ❌ {key}: {error}")
             else:
                 if modificado:
@@ -309,13 +296,13 @@ print("="*80)
 
 print(f"\n📊 RESUMEN:")
 print(f"   Total procesados:           {procesados:,}")
-print(f"   ✅ HTMLs modificados:         {stats['modificados']:,}")
-print(f"   ⚪ Sin cambios:               {stats['sin_cambios']:,}")
+print(f"   ✅ HTMLs modificados:       {stats['modificados']:,}")
+print(f"   ⚪ Sin cambios:              {stats['sin_cambios']:,}")
 print(f"   💾 Supabase actualizados:    {stats['sb_actualizados']:,}")
 print(f"   ⚠️  Supabase errores:         {stats['sb_errores']:,}")
 print(f"   ❌ Errores R2:                {stats['errores']:,}")
 print(f"   ⏱️  Tiempo total:             {elapsed/60:.1f} minutos")
-print(f"   📈 Velocidad:                 {procesados/elapsed:.1f} archivos/seg")
+print(f"   📈 Velocidad:                {procesados/elapsed:.1f} archivos/seg")
 
 print("\n" + "="*80 + "\n")
 
