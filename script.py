@@ -26,6 +26,7 @@ FOLDERS = [
 
 _local = threading.local()
 CREDS_PATH = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+R2_PUBLIC_URL = os.environ.get('R2_PUBLIC_URL', '').rstrip('/')
 
 def get_drive():
     if not hasattr(_local,'drv'):
@@ -53,6 +54,13 @@ def r2_put(key, data, ctype, compress=False):
             return True
         except Exception: time.sleep(2)
     return False
+
+def r2_exists(key):
+    try:
+        get_r2().head_object(Bucket=R2_BUCKET, Key=key)
+        return True
+    except Exception:
+        return False
 
 _sb=None
 def get_sb():
@@ -95,32 +103,97 @@ def corregir_encoding(t):
             for k,v in MAPA_ENC.items(): t=t.replace(k,v)
     return t
 
+LOGO_KEY='assets/logo.jpg'
+logo_url_global=None
+
+def asegurar_logo(folder_id):
+    global logo_url_global
+    try:
+        if R2_PUBLIC_URL and r2_exists(LOGO_KEY):
+            logo_url_global=f"{R2_PUBLIC_URL}/{LOGO_KEY}"
+            print(f"🖼️ Logo ya en R2: {logo_url_global}")
+            return
+        try:
+            r=requests.get('https://historico.tsj.gob.ve/graficos/encabezadotsj.jpg',timeout=20,verify=False)
+            if r.status_code==200 and len(r.content)>1000:
+                r2_put(LOGO_KEY, r.content, 'image/jpeg')
+                logo_url_global=f"{R2_PUBLIC_URL}/{LOGO_KEY}"
+                print(f"🖼️ Logo subido a R2: {logo_url_global}")
+            else:
+                print(f"⚠️ Logo: HTTP {r.status_code}")
+        except Exception as e:
+            print(f"⚠️ logo TSJ: {e}")
+    except Exception as e:
+        print(f"⚠️ asegurar_logo: {e}")
+
 def curar(raw):
     try: t=raw.decode('utf-8')
     except UnicodeDecodeError: t=raw.decode('latin-1')
     t=corregir_encoding(t)
     t=re.sub(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]','',t).replace('\u00ad','')
     t=re.sub(r'<\?xml[^>]*\?>','',t)
-    # Eliminar SOLO imágenes que referencien *_archivos/ (las rotas)
+    # Reemplazar imagen del header con logo del TSJ
+    if logo_url_global:
+        t=re.sub(r'<img[^>]*src=["\'][^"\']*?_archivos/[^"\']*["\'][^>]*/?>', f'<img src="{logo_url_global}" alt="Logo TSJ">', t, count=1, flags=re.I)
     t=re.sub(r'<img[^>]*src=["\'][^"\']*?_archivos/[^"\']*["\'][^>]*/?>','',t,flags=re.I)
-    # Eliminar CSS y scripts externos
     t=re.sub(r'<link[^>]*href=["\'][^"\']*?\.css["\'][^>]*/?>','',t,flags=re.I)
     t=re.sub(r'<script[\s\S]*?</script>','',t,flags=re.I)
-    # Inyectar CSS inline: centrado para logo/header, justificado para el resto
+    # CSS robusto: centra logo, sala, ponente y todos los subtítulos
     css_inline='''
     <style>
-      body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-      img { max-width: 100%; height: auto; display: block; margin: 20px auto; }
-      h1, h2, h3, p:first-of-type, p:nth-of-type(2), p:nth-of-type(3), p:nth-of-type(4) { text-align: center; }
-      p { text-align: justify; }
-      .header, .logo { text-align: center; margin-bottom: 30px; }
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: justify;
+      }
+      /* Logo del TSJ centrado */
+      img {
+        max-width: 600px;
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 20px auto;
+      }
+      /* Todos los encabezados centrados */
+      h1, h2, h3, h4, h5, h6 {
+        text-align: center;
+        font-weight: bold;
+        margin: 25px 0 15px 0;
+      }
+      /* Primeros 10 párrafos centrados (REPÚBLICA, TRIBUNAL, SALA, Ponente, fecha, etc.) */
+      p:nth-of-type(1), p:nth-of-type(2), p:nth-of-type(3), p:nth-of-type(4),
+      p:nth-of-type(5), p:nth-of-type(6), p:nth-of-type(7), p:nth-of-type(8),
+      p:nth-of-type(9), p:nth-of-type(10) {
+        text-align: center;
+        font-weight: bold;
+      }
+      /* Párrafos en MAYÚSCULAS completas = subtítulos del TSJ (ANTECEDENTES, DECISIÓN, etc.) */
+      p:has(*) { text-align: justify; }
+      /* Tablas del header centradas */
+      table:first-of-type, table:nth-of-type(2) {
+        margin: 20px auto;
+        text-align: center;
+      }
+      table:first-of-type td, table:nth-of-type(2) td {
+        text-align: center;
+      }
     </style>
     '''
     t=re.sub(r'<head[^>]*>',r'\g<0>'+css_inline,t,count=1,flags=re.I)
     t=re.sub(r'<meta[^>]*charset[^>]*>','<meta charset="UTF-8">',t,flags=re.I)
     if 'charset' not in t.lower(): t=re.sub(r'(<head[^>]*>)',r'\1\n<meta charset="UTF-8">',t,count=1,flags=re.I)
     if 'noindex' not in t.lower(): t=re.sub(r'(<head[^>]*>)',r'\1\n<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">',t,count=1,flags=re.I)
-    t=re.sub(r'<style[\s\S]*?</style>','',t,flags=re.I)
+    t=re.sub(r'<style(?!.*font-family:\s*Arial)[\s\S]*?</style>','',t,flags=re.I)
+    # Detectar subtítulos en mayúsculas (típico del TSJ) y envolverlos en <h3>
+    def mayus_a_h3(match):
+        txt = match.group(1).strip()
+        # Solo convertir si es corto (< 100 chars) y todo mayúsculas/acentuado
+        if len(txt) < 100 and re.search(r'[A-ZÁÉÍÓÚÑ]{5,}', txt) and txt.upper() == txt:
+            return f'<h3>{txt}</h3>'
+        return match.group(0)
+    t=re.sub(r'<p[^>]*>([^<]+)</p>', mayus_a_h3, t)
     return t
 
 def html_a_texto(h):
@@ -237,6 +310,34 @@ def generar_texto_busqueda(meta,texto):
        (meta.get('fecha','') or '')[:4],' '.join((meta.get('extracto','') or '').split()[:100])]
     return ' '.join([x for x in p if x]+texto.split()[:500])
 
+CAMPOS_LIMPIAR=['partes','ponente','procedimiento','decision','extracto','texto_busqueda','url_tsj','expediente','num_sentencia','fecha']
+
+def modo_limpiar():
+    print("🧹 MODO LIMPIAR: arreglando datos viejos en Supabase...")
+    docs=[]; off=0
+    while True:
+        r=get_sb().table('documentos').select('*').range(off,off+999).execute()
+        docs.extend(r.data)
+        if len(r.data)<1000: break
+        off+=1000
+    print(f"   {len(docs)} documentos")
+    batch=[]; act=0
+    for i,doc in enumerate(docs):
+        up={}
+        for c in CAMPOS_LIMPIAR:
+            if c in doc and doc[c]:
+                cl=corregir_encoding(doc[c])
+                if cl!=doc[c]: up[c]=cl
+        if up:
+            up['id']=doc['id']; batch.append(up); act+=1
+        if len(batch)>=100:
+            get_sb().table('documentos').upsert(batch,on_conflict='id').execute()
+            print(f"   ✅ {i+1}/{len(docs)}")
+            batch=[]; time.sleep(0.3)
+    if batch:
+        get_sb().table('documentos').upsert(batch,on_conflict='id').execute()
+    print(f"✅ Limpieza completa: {act} actualizados de {len(docs)}")
+
 stats_lock=threading.Lock()
 stats={'ok':0,'fail':0,'url':0,'pdf':0}
 def heartbeat(t0):
@@ -265,7 +366,6 @@ def procesar(rec,tipo,sala,meta_lookup,modo,verbose):
             with stats_lock: stats['ok']+=1
             return True
 
-        # modo full: HTML + TXT + metadata
         r2_put(f'html/{sub}/{sala}/{rec["nombre"]}',limpio.encode('utf-8'),'text/html; charset=utf-8',compress=True)
         r2_put(f'txt/{sub}/{sala}/{doc_id}.txt',texto.encode('utf-8'),'text/plain; charset=utf-8',compress=True)
         doc={'id':doc_id,'tipo':tipo,'sala':sala}; doc.update(parsear_nombre(rec['nombre']))
@@ -291,10 +391,16 @@ def main():
     limite=int(os.environ.get('LIMITE','0') or 0)
     modo=os.environ.get('MODO','full')
     print(f"🚀 Pipeline MODO={modo}...")
+
+    if modo=='limpiar':
+        modo_limpiar()
+        return
+
     n=prueba_drive(FOLDERS[0][1])
     print(f"🔎 Acceso Drive: {n}")
     if n==0:
         print("❌ Sin acceso a Drive. Comparte carpetas con la cuenta de servicio."); return
+    asegurar_logo(FOLDERS[0][1])
     t0=time.time()
     threading.Thread(target=heartbeat,args=(t0,),daemon=True).start()
 
