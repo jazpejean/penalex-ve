@@ -23,6 +23,7 @@ FOLDERS = [
     ('Sustanciacion_Constitucional','1gAXDSFKVAzVCKAXCBVAraKMM7xCXblD8', 'sentencia',     'sustanciacion'),
     ('Sala_Penal_Juris',            '1BL50vMykxVDiCFIQJuYlhcbvlCoD5afg', 'jurisprudencia','penal'),
     ('Sala_Constitucional_Juris',   '1Ais0FpCjLPOcwOCe8I86hgbGWYj2CQFK', 'jurisprudencia','constitucional'),
+    ('Sala_Plena',   '1hgpAKqvge2NF-QrWDv5Lf6EKGfZJzEUo', 'resoluciones','plena'),
 ]
 
 _local = threading.local()
