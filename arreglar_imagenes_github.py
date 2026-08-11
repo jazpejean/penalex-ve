@@ -76,14 +76,17 @@ LOGO_CORRECTO = f'{R2_PUBLIC_URL}/assets/logo.jpg'
 
 # Patrones a reemplazar (orden importa: más específicos primero)
 PATRONES_ROTOS = [
-    # Imágenes en carpetas _archivos (cualquier profundidad)
+    # URLs absolutas con dominio R2 (primero para evitar reemplazos parciales)
     r'https://pub-a6e0bfa2e9174e91b031ae28c0667009\.r2\.dev/html/[^"\'<>\s]+_archivos/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
     # Logo viejo del TSJ (URLs completas primero)
     r'https://historico\.tsj\.gob\.ve/graficos/encabezadotsj\.jpg',
     r'http://historico\.tsj\.gob\.ve/graficos/encabezadotsj\.jpg',
-    # Luego rutas relativas
+    # Rutas relativas con punto (./)
+    r'\./[^"\'<>\s]+_archivos/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
+    # Rutas relativas sin punto
+    r'(?<![:/])[^/"\s]+_archivos/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
+    # Rutas absolutas relativas al dominio
     r'/graficos/encabezadotsj\.jpg',
-    # Otras imágenes rotas comunes
     r'/imagenes/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
 ]
 
@@ -115,13 +118,13 @@ def actualizar_supabase(doc_id, html_url):
             'Content-Type': 'application/json',
             'Prefer': 'return=minimal'
         }
-
+        
         data = json.dumps({'url_html': html_url}).encode('utf-8')
-
+        
         req = urllib.request.Request(url, data=data, headers=headers, method='PATCH')
         with urllib.request.urlopen(req, timeout=10) as response:
             return response.status == 204 or response.status == 200
-
+        
     except Exception as e:
         return False
 
@@ -132,14 +135,14 @@ def arreglar_html(key):
     """
     try:
         s3 = get_s3()
-
+        
         # Descargar
         response = s3.get_object(Bucket=R2_BUCKET, Key=key)
-
+        
         # Leer contenido
         content_encoding = response.get('ContentEncoding', '')
         raw_data = response['Body'].read()
-
+        
         if 'gzip' in content_encoding:
             html = gzip.decompress(raw_data).decode('utf-8')
         else:
@@ -147,29 +150,38 @@ def arreglar_html(key):
                 html = raw_data.decode('utf-8')
             except UnicodeDecodeError:
                 html = raw_data.decode('latin-1')
-
-        # Verificar si tiene imágenes rotas
+        
+        # PASO 1: Eliminar todo el código VML de Microsoft Office (basura visual)
+        # Elimina desde <!--[if gte vml 1]> hasta <![endif]-->
+        html_limpio = re.sub(
+            r'<!--\[if gte vml 1\]>.*?<!\[endif\]-->',
+            '',
+            html,
+            flags=re.DOTALL | re.IGNORECASE
+        )
+        
+        # PASO 2: Verificar si tiene imágenes rotas
         tiene_rotas = False
         for patron in PATRONES_ROTOS:
-            if re.search(patron, html):
+            if re.search(patron, html_limpio):
                 tiene_rotas = True
                 break
-
+        
         if not tiene_rotas:
             # Igual actualizar URL en Supabase si no la tiene
             doc_id = os.path.basename(key).replace('.html', '').replace('.HTML', '')
             html_url = f"{R2_PUBLIC_URL}/{key}"
             sb_ok = actualizar_supabase(doc_id, html_url)
             return (key, False, sb_ok, None)
-
-        # Reemplazar todas las rutas rotas
-        html_corregido = html
+        
+        # PASO 3: Reemplazar todas las rutas rotas por el logo correcto
+        html_corregido = html_limpio
         for patron in PATRONES_ROTOS:
             html_corregido = re.sub(patron, LOGO_CORRECTO, html_corregido, flags=re.IGNORECASE)
-
+        
         # Re-subir (comprimido)
         data_corregida = gzip.compress(html_corregido.encode('utf-8'), 6)
-
+        
         s3.put_object(
             Bucket=R2_BUCKET,
             Key=key,
@@ -177,14 +189,14 @@ def arreglar_html(key):
             ContentType='text/html; charset=utf-8',
             ContentEncoding='gzip'
         )
-
+        
         # Actualizar Supabase
         doc_id = os.path.basename(key).replace('.html', '').replace('.HTML', '')
         html_url = f"{R2_PUBLIC_URL}/{key}"
         sb_ok = actualizar_supabase(doc_id, html_url)
-
+        
         return (key, True, sb_ok, None)
-
+        
     except Exception as e:
         return (key, False, False, str(e))
 
@@ -209,18 +221,18 @@ try:
             )
         else:
             response = s3.list_objects_v2(Bucket=R2_BUCKET, Prefix='html/')
-
+        
         if 'Contents' in response:
             for obj in response['Contents']:
                 key = obj['Key']
                 if key.endswith('.html') or key.endswith('.HTML'):
                     html_keys.append(key)
-
+        
         print(f"   HTMLs encontrados: {len(html_keys):,}", end='\r')
-
+        
         if not response.get('IsTruncated'):
             break
-
+        
         continuation_token = response.get('NextContinuationToken')
 
 except Exception as e:
@@ -254,14 +266,14 @@ start_time = time.time()
 
 with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
     futures = {executor.submit(arreglar_html, key): key for key in html_keys}
-
+    
     procesados = 0
-
+    
     for future in as_completed(futures):
         key, modificado, sb_ok, error = future.result()
-
+        
         procesados += 1
-
+        
         with stats_lock:
             if error:
                 stats['errores'] += 1
@@ -272,18 +284,18 @@ with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
                     stats['modificados'] += 1
                 else:
                     stats['sin_cambios'] += 1
-
+                
                 if sb_ok:
                     stats['sb_actualizados'] += 1
                 else:
                     stats['sb_errores'] += 1
-
+        
         # Mostrar progreso
         if procesados % 100 == 0 or procesados == len(html_keys):
             elapsed = time.time() - start_time
             rate = procesados / elapsed if elapsed > 0 else 0
             eta = (len(html_keys) - procesados) / rate if rate > 0 else 0
-
+            
             print(f"   📊 {procesados:,}/{len(html_keys):,} | "
                   f"Modificados: {stats['modificados']:,} | "
                   f"SB: {stats['sb_actualizados']:,} | "
