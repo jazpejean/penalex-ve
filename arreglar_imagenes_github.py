@@ -73,18 +73,13 @@ print(f"✅ Supabase: {SUPABASE_URL}")
 # Logo correcto
 LOGO_CORRECTO = f'{R2_PUBLIC_URL}/assets/logo.jpg'
 
-# Patrones a reemplazar (orden importa: más específicos primero)
+# Patrones a reemplazar
 PATRONES_ROTOS = [
-    # URLs absolutas con dominio R2 (primero para evitar reemplazos parciales)
     r'https://pub-a6e0bfa2e9174e91b031ae28c0667009\.r2\.dev/html/[^"\'<>\s]+_archivos/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
-    # Logo viejo del TSJ (URLs completas primero)
     r'https://historico\.tsj\.gob\.ve/graficos/encabezadotsj\.jpg',
     r'http://historico\.tsj\.gob\.ve/graficos/encabezadotsj\.jpg',
-    # Rutas relativas con punto (./)
     r'\./[^"\'<>\s]+_archivos/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
-    # Rutas relativas sin punto
     r'(?<![:/])[^/"\s]+_archivos/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
-    # Rutas absolutas relativas al dominio
     r'/graficos/encabezadotsj\.jpg',
     r'/imagenes/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
 ]
@@ -95,6 +90,14 @@ PATRONES_ROTOS = [
 
 _local = threading.local()
 
+# Configuración con Timeouts estrictos y reintentos automáticos
+BOTO3_CONFIG = Config(
+    signature_version='s3v4',
+    connect_timeout=10,
+    read_timeout=15,
+    retries={'max_attempts': 3, 'mode': 'standard'}
+)
+
 def get_s3():
     if not hasattr(_local, 's3'):
         _local.s3 = boto3.client(
@@ -103,12 +106,12 @@ def get_s3():
             aws_access_key_id=R2_ACCESS_KEY,
             aws_secret_access_key=R2_SECRET_KEY,
             region_name='auto',
-            config=Config(signature_version='s3v4')
+            config=BOTO3_CONFIG
         )
     return _local.s3
 
 def actualizar_supabase(doc_id, html_url):
-    """Actualiza la URL del HTML en Supabase"""
+    """Actualiza la URL del HTML en Supabase con timeout de 10 segundos"""
     try:
         url = f"{SUPABASE_URL}/rest/v1/documentos?id=eq.{doc_id}"
         headers = {
@@ -130,7 +133,6 @@ def actualizar_supabase(doc_id, html_url):
 def arreglar_html(key):
     """
     Descarga HTML de R2, corrige imágenes, re-sube, actualiza Supabase
-    Retorna: (key, modificado, sb_actualizado, error)
     """
     try:
         s3 = get_s3()
@@ -150,8 +152,7 @@ def arreglar_html(key):
             except UnicodeDecodeError:
                 html = raw_data.decode('latin-1')
         
-        # PASO 1: Eliminar todo el código VML de Microsoft Office (basura visual)
-        # Elimina desde <!--[if gte vml 1]> hasta <![endif]-->
+        # PASO 1: Eliminar código VML
         html_corregido = re.sub(
             r'<!--\[if gte vml 1\]>.*?<!\[endif\]-->',
             '',
@@ -159,7 +160,7 @@ def arreglar_html(key):
             flags=re.DOTALL | re.IGNORECASE
         )
         
-        # PASO 2: Reemplazar todas las rutas rotas por el logo correcto
+        # PASO 2: Reemplazar rutas rotas
         for patron in PATRONES_ROTOS:
             html_corregido = re.sub(patron, LOGO_CORRECTO, html_corregido, flags=re.IGNORECASE)
         
@@ -200,14 +201,11 @@ continuation_token = None
 
 try:
     while True:
+        kwargs = {'Bucket': R2_BUCKET, 'Prefix': 'html/'}
         if continuation_token:
-            response = s3.list_objects_v2(
-                Bucket=R2_BUCKET,
-                Prefix='html/',
-                ContinuationToken=continuation_token
-            )
-        else:
-            response = s3.list_objects_v2(Bucket=R2_BUCKET, Prefix='html/')
+            kwargs['ContinuationToken'] = continuation_token
+            
+        response = s3.list_objects_v2(**kwargs)
         
         if 'Contents' in response:
             for obj in response['Contents']:
@@ -264,7 +262,7 @@ with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         with stats_lock:
             if error:
                 stats['errores'] += 1
-                if stats['errores'] <= 5:  # Solo mostrar primeros errores
+                if stats['errores'] <= 5:
                     print(f"   ❌ {key}: {error}")
             else:
                 if modificado:
@@ -295,8 +293,8 @@ print("✅ PROCESO COMPLETADO")
 print("="*80)
 
 print(f"\n📊 RESUMEN:")
-print(f"   Total procesados:           {procesados:,}")
-print(f"   ✅ HTMLs modificados:       {stats['modificados']:,}")
+print(f"   Total procesados:            {procesados:,}")
+print(f"   ✅ HTMLs modificados:        {stats['modificados']:,}")
 print(f"   ⚪ Sin cambios:              {stats['sin_cambios']:,}")
 print(f"   💾 Supabase actualizados:    {stats['sb_actualizados']:,}")
 print(f"   ⚠️  Supabase errores:         {stats['sb_errores']:,}")
@@ -306,8 +304,7 @@ print(f"   📈 Velocidad:                {procesados/elapsed:.1f} archivos/seg"
 
 print("\n" + "="*80 + "\n")
 
-# Exit code para GitHub Actions
-if stats['errores'] > len(html_keys) * 0.05:  # Más del 5% de errores
+if stats['errores'] > len(html_keys) * 0.05:
     print("⚠️  Demasiados errores, marcando como fallido")
     sys.exit(1)
 else:
