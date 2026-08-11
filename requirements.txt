@@ -2,4 +2,5 @@ google-api-python-client
 google-auth
 google-auth-httplib2
 requests
-firebase-admin
+supabase
+boto3
