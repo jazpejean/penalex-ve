@@ -1,57 +1,54 @@
-name: Procesar TSJ
+name: Arreglar Imágenes en R2
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # Ejecutar manualmente desde GitHub Actions
     inputs:
-      modo:
-        description: 'full | pdf | limpiar'
-        required: true
-        default: 'full'
+      max_workers:
+        description: 'Número de workers paralelos (1-20)'
+        required: false
+        default: '10'
         type: choice
         options:
-          - full
-          - pdf
-          - limpiar
-      limite:
-        description: 'Archivos a procesar (0 = todos)'
-        required: false
-        default: '0'
+          - '5'
+          - '10'
+          - '15'
+          - '20'
 
 jobs:
-  procesar:
+  arreglar:
     runs-on: ubuntu-latest
-    timeout-minutes: 350
+    timeout-minutes: 180  # 3 horas máximo
+    
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v4
+      - name: Checkout código
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Instalar wkhtmltopdf
+          cache: 'pip'
+      
+      - name: Instalar dependencias
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq wkhtmltopdf
-
-      - name: Instalar dependencias Python
-        run: pip install -r requirements.txt
-
-      - name: Configurar credenciales de Google
-        run: |
-          cat > /tmp/creds.json << 'JSONEOF'
-          ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
-          JSONEOF
-          sed -i 's/^[[:space:]]*//' /tmp/creds.json
-          echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/creds.json" >> $GITHUB_ENV
-
-      - name: Ejecutar pipeline
+          pip install --upgrade pip
+          pip install boto3 urllib3
+      
+      - name: Ejecutar script de corrección
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          R2_PUBLIC_URL: ${{ secrets.R2_PUBLIC_URL }}
-          MODO: ${{ github.event.inputs.modo }}
-          LIMITE: ${{ github.event.inputs.limite || '0' }}
-        run: python -u script.py
+          R2_BUCKET_NAME: 'penalex-assets'
+          R2_PUBLIC_URL: 'https://pub-a6e0bfa2e9174e91b031ae28c0667009.r2.dev'
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          MAX_WORKERS: ${{ inputs.max_workers || '10' }}
+        run: |
+          python arreglar_imagenes_github.py
+      
+      - name: Resumen del proceso
+        if: always()
+        run: |
+          echo "✅ Workflow completado"
+          echo "Revisa los logs arriba para ver estadísticas"
