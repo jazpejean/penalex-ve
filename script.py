@@ -307,8 +307,18 @@ def main():
                 if done%50==0:
                     el=(time.time()-t0)/60
                     print(f"   ⚙️ {done}/{len(pend)} ok={stats['ok']} fail={stats['fail']} url={stats['url']} pdf={stats['pdf']} | {done/el:.0f}/min")
-    fs_flush()
-    print(f"\n✅ FIN en {(time.time()-t0)/60:.1f} min | ok={stats['ok']} fail={stats['fail']} url={stats['url']} pdf={stats['pdf']}")
+    def _clean(v):
+    if isinstance(v,str):
+        return re.sub(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]','',v).replace('\ufffd','')
+    return v
+
+def _flush_sb():
+    global _sb_buf
+    if not _sb_buf: return
+    rows=[{k:_clean(v) for k,v in r.items()} for r in _sb_buf]
+    _sb_buf=[]
+    try: get_sb().table('documentos').upsert(rows,on_conflict='id').execute()
+    except Exception as e: print(f"⚠️ upsert: {e}")
 
 if __name__=='__main__':
     main()
