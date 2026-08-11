@@ -1,18 +1,14 @@
-name: Procesar y Publicar TSJ
+name: Procesar TSJ
 
 on:
   workflow_dispatch:
     inputs:
+      modo:
+        description: 'full (indexar+html+txt) o pdf (generar PDFs)'
+        required: false
+        default: 'full'
       limite:
         description: 'Archivos a procesar (0 = todos)'
-        required: false
-        default: '0'
-      lote:
-        description: 'Publicar cada N archivos'
-        required: false
-        default: '5000'
-      wipe:
-        description: 'Borrar Firestore y empezar de cero (1 = sí)'
         required: false
         default: '0'
 
@@ -20,46 +16,29 @@ jobs:
   procesar:
     runs-on: ubuntu-latest
     timeout-minutes: 350
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Instalar wkhtmltopdf y firebase-tools
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with: { python-version: '3.11' }
+      - name: Instalar wkhtmltopdf
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq wkhtmltopdf
-          npm install -g firebase-tools
-
-      - name: Instalar dependencias Python
-        run: pip install -r requirements.txt
-
-      - name: Configurar credenciales de Google
+      - run: pip install -r requirements.txt
+      - name: Credenciales Google
         run: |
           cat > /tmp/creds.json << 'JSONEOF'
           ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
           JSONEOF
           sed -i 's/^[[:space:]]*//' /tmp/creds.json
-          echo "Primer caracter: '$(head -c 1 /tmp/creds.json)'"
-          python3 -c "
-          import json,sys
-          try:
-              d=json.load(open('/tmp/creds.json'))
-              print('✅ JSON válido | proyecto:', d.get('project_id'))
-          except Exception as e:
-              print('❌ JSON inválido:', e); sys.exit(1)
-          "
           echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/creds.json" >> $GITHUB_ENV
-
       - name: Ejecutar pipeline
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          MODO: ${{ github.event.inputs.modo || 'full' }}
           LIMITE: ${{ github.event.inputs.limite || '0' }}
-          LOTE: ${{ github.event.inputs.lote || '5000' }}
-          WIPE: ${{ github.event.inputs.wipe || '0' }}
         run: python -u script.py
