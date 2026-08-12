@@ -68,17 +68,22 @@ print(f"\n✅ TXTs: {len(txts):,}\n")
 # Crear diccionario de R2
 r2_docs = {}
 for k in htmls:
-    doc_id = k.replace('html/', '').replace('.html', '').replace('.HTML', '')
+   # Crear diccionario de R2
+r2_docs = {}
+for k in htmls:
+    # Extraer SOLO el nombre del archivo, sin carpetas
+    filename = k.split('/')[-1]  # Última parte del path
+    doc_id = filename.replace('.html', '').replace('.HTML', '')
     r2_docs[doc_id] = {'html': f"{R2_PUBLIC_URL}/{k}", 'txt': None}
 
 for k in txts:
-    doc_id = k.replace('txt/', '').replace('.txt', '').replace('.TXT', '')
+    # Extraer SOLO el nombre del archivo, sin carpetas
+    filename = k.split('/')[-1]  # Última parte del path
+    doc_id = filename.replace('.txt', '').replace('.TXT', '')
     if doc_id in r2_docs:
         r2_docs[doc_id]['txt'] = f"{R2_PUBLIC_URL}/{k}"
     else:
         r2_docs[doc_id] = {'html': None, 'txt': f"{R2_PUBLIC_URL}/{k}"}
-
-print(f"📊 R2 tiene {len(r2_docs):,} documentos únicos\n")
 
 # 2. OBTENER DOCUMENTOS DE SUPABASE
 print("📂 Paso 2/5: Obteniendo documentos de Supabase...")
