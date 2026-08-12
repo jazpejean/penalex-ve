@@ -34,6 +34,12 @@ jobs:
             exit 1
           fi
 
+      - name: Debug secrets
+        run: |
+          echo "Verificando secrets..."
+          echo "SUPABASE_URL: ${{ secrets.SUPABASE_URL != '' && 'presente' || 'VACÍO' }}"
+          echo "SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY != '' && 'presente' || 'VACÍO' }}"
+
       - name: Actualizar URLs en Supabase (Chunk ${{ matrix.chunk }})
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
@@ -50,13 +56,18 @@ jobs:
           import time
           from concurrent.futures import ThreadPoolExecutor, as_completed
           
-          SUPABASE_URL = os.environ.get('SUPABASE_URL')
-          SUPABASE_KEY = os.environ.get('SUPABASE_ANON_KEY')
+          SUPABASE_URL = os.environ.get('SUPABASE_URL', '').strip()
+          SUPABASE_KEY = os.environ.get('SUPABASE_ANON_KEY', '').strip()
           CHUNK_ID = int(os.environ.get('CHUNK_ID', 0))
           TOTAL_CHUNKS = int(os.environ.get('TOTAL_CHUNKS', 15))
           
-          if not SUPABASE_URL or not SUPABASE_KEY:
+          print(f"DEBUG: SUPABASE_URL = {SUPABASE_URL[:30]}..." if SUPABASE_URL else "DEBUG: SUPABASE_URL vacía")
+          print(f"DEBUG: SUPABASE_KEY = {SUPABASE_KEY[:30]}..." if SUPABASE_KEY else "DEBUG: SUPABASE_KEY vacía")
+          
+          if not SUPABASE_URL or not SUPABASE_KEY or SUPABASE_URL == '' or SUPABASE_KEY == '':
               print("❌ Faltan variables de entorno")
+              print(f"   SUPABASE_URL presente: {bool(SUPABASE_URL)}")
+              print(f"   SUPABASE_KEY presente: {bool(SUPABASE_KEY)}")
               sys.exit(1)
           
           print("=" * 80)
