@@ -122,13 +122,16 @@ if __name__ == '__main__':
     print(f"   Bucket: {R2_BUCKET}")
     print(f"   Logo: {LOGO_CORRECTO}")
     
-    # Listar archivos
-    print("\n📂 Listando archivos HTML en R2...", flush=True)
+    # Listar archivos (sin límite, procesar TODO)
+    print("\n📂 Listando TODOS los archivos HTML en R2...", flush=True)
     s3 = get_s3()
     
     html_keys = []
+    seen_ids = set()  # Para detectar duplicados
+    duplicados_detectados = []  # Para eliminar después
     continuation_token = None
     pages = 0
+    duplicados = 0
     
     try:
         while True:
@@ -136,7 +139,6 @@ if __name__ == '__main__':
             if continuation_token:
                 kwargs['ContinuationToken'] = continuation_token
             
-            print(f"   Página {pages + 1}...", end=' ', flush=True)
             response = s3.list_objects_v2(**kwargs)
             pages += 1
             
@@ -144,9 +146,20 @@ if __name__ == '__main__':
                 for obj in response['Contents']:
                     k = obj['Key']
                     if k.lower().endswith('.html'):
-                        html_keys.append(k)
+                        # Extraer ID del archivo (sin carpeta ni extensión)
+                        doc_id = k.replace('html/', '').replace('.html', '').replace('.HTML', '')
+                        
+                        # Solo agregar si no es duplicado
+                        if doc_id not in seen_ids:
+                            html_keys.append(k)
+                            seen_ids.add(doc_id)
+                        else:
+                            duplicados += 1
+                            duplicados_detectados.append(k)  # Marcar para eliminar
             
-            print(f"({len(html_keys):,} archivos acumulados)", flush=True)
+            # Mostrar progreso cada 5 páginas
+            if pages % 5 == 0:
+                print(f"   Página {pages}: {len(html_keys):,} únicos, {duplicados} dup", flush=True)
             
             if not response.get('IsTruncated'):
                 break
@@ -157,7 +170,30 @@ if __name__ == '__main__':
         sys.exit(1)
     
     total = len(html_keys)
-    print(f"\n✅ Total archivos HTML: {total:,}")
+    print(f"\n✅ Total archivos HTML únicos: {total:,}")
+    if duplicados > 0:
+        print(f"⚠️  Duplicados detectados: {duplicados}")
+        print(f"🗑️  Eliminando duplicados de R2...")
+        
+        # Eliminar duplicados en paralelo
+        eliminados = 0
+        with ThreadPoolExecutor(max_workers=20) as executor:
+            def eliminar_duplicado(key):
+                try:
+                    s3 = get_s3()
+                    s3.delete_object(Bucket=R2_BUCKET, Key=key)
+                    return True
+                except:
+                    return False
+            
+            futures = {executor.submit(eliminar_duplicado, key): key for key in duplicados_detectados}
+            for future in as_completed(futures):
+                if future.result():
+                    eliminados += 1
+                if eliminados % 100 == 0:
+                    print(f"   Eliminados: {eliminados}/{duplicados}", end='\r', flush=True)
+        
+        print(f"\n✅ Duplicados eliminados: {eliminados}/{duplicados}")
     
     if total == 0:
         print("⚠️  No se encontraron archivos para procesar")
