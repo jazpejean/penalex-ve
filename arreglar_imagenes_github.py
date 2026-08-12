@@ -42,12 +42,12 @@ PATRONES_ROTOS = [
 PATRONES_COMPILADOS = [re.compile(p, re.IGNORECASE) for p in PATRONES_ROTOS]
 PATRON_VML = re.compile(r'<!--\[if gte vml 1\]>.*?<!\[endif\]-->', re.DOTALL | re.IGNORECASE)
 
-# Config agresivo para velocidad
+# Config con retry más agresivo
 BOTO3_CONFIG = Config(
     signature_version='s3v4',
-    connect_timeout=3,
-    read_timeout=10,
-    retries={'max_attempts': 1}
+    connect_timeout=10,
+    read_timeout=30,
+    retries={'max_attempts': 5, 'mode': 'adaptive'}
 )
 
 def get_s3():
@@ -139,7 +139,19 @@ if __name__ == '__main__':
             if continuation_token:
                 kwargs['ContinuationToken'] = continuation_token
             
-            response = s3.list_objects_v2(**kwargs)
+            # Retry con backoff si falla
+            intentos = 0
+            while intentos < 3:
+                try:
+                    response = s3.list_objects_v2(**kwargs)
+                    break
+                except Exception as e:
+                    intentos += 1
+                    if intentos >= 3:
+                        raise
+                    print(f"\n⚠️  Error en página {pages+1}, reintentando ({intentos}/3)...", flush=True)
+                    time.sleep(2 ** intentos)  # Backoff exponencial
+            
             pages += 1
             
             if 'Contents' in response:
