@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 """
-Sincronizar URLs entre R2 y Supabase con análisis de diferencias
+Sincronizar URLs entre R2 y Supabase
 """
 import os
 import sys
-import csv
-import time
 import requests
 
 try:
@@ -31,7 +29,7 @@ if not all([R2_ACCOUNT_ID, R2_ACCESS_KEY, R2_SECRET_KEY, SUPABASE_URL, SUPABASE_
     sys.exit(1)
 
 print("=" * 80)
-print("🔄 SINCRONIZAR URLs R2 ↔ SUPABASE")
+print("🔄 SINCRONIZAR URLs R2 → SUPABASE")
 print("=" * 80 + "\n")
 
 # 1. LISTAR ARCHIVOS EN R2
@@ -84,12 +82,12 @@ print(f"📊 R2 tiene {len(r2_docs):,} documentos únicos\n")
 
 # 2. OBTENER DOCUMENTOS DE SUPABASE
 print("📂 Paso 2/5: Obteniendo documentos de Supabase...")
-supabase_docs = {}
+supabase_docs = set()
 offset = 0
 batch_size = 1000
 
 while True:
-    url = f"{SUPABASE_URL}/rest/v1/documentos?select=id,numero&limit={batch_size}&offset={offset}"
+    url = f"{SUPABASE_URL}/rest/v1/documentos?select=id&limit={batch_size}&offset={offset}"
     headers = {
         'apikey': SUPABASE_KEY,
         'Authorization': f'Bearer {SUPABASE_KEY}'
@@ -105,7 +103,7 @@ while True:
         break
 
     for doc in batch:
-        supabase_docs[doc['id']] = doc.get('numero', '')
+        supabase_docs.add(doc['id'])
 
     offset += batch_size
     print(f"  Documentos: {len(supabase_docs):,}", end='\r', flush=True)
@@ -115,9 +113,9 @@ print(f"\n✅ Supabase tiene {len(supabase_docs):,} documentos\n")
 # 3. ANÁLISIS DE DIFERENCIAS
 print("📊 Paso 3/5: Analizando diferencias...")
 
-en_r2_no_supabase = set(r2_docs.keys()) - set(supabase_docs.keys())
-en_supabase_no_r2 = set(supabase_docs.keys()) - set(r2_docs.keys())
-en_ambos = set(r2_docs.keys()) & set(supabase_docs.keys())
+en_r2_no_supabase = set(r2_docs.keys()) - supabase_docs
+en_supabase_no_r2 = supabase_docs - set(r2_docs.keys())
+en_ambos = set(r2_docs.keys()) & supabase_docs
 
 print(f"✅ En ambos:             {len(en_ambos):,}")
 print(f"⚠️  Solo en R2:           {len(en_r2_no_supabase):,}")
@@ -171,10 +169,9 @@ with open('indice_completo.csv', 'w', encoding='utf-8') as f:
 
 # Faltantes en R2
 with open('faltantes_en_r2.csv', 'w', encoding='utf-8') as f:
-    f.write("id,numero\n")
+    f.write("id\n")
     for doc_id in sorted(en_supabase_no_r2):
-        numero = supabase_docs.get(doc_id, '')
-        f.write(f"{doc_id},{numero}\n")
+        f.write(f"{doc_id}\n")
 
 # Faltantes en Supabase
 with open('faltantes_en_supabase.csv', 'w', encoding='utf-8') as f:
