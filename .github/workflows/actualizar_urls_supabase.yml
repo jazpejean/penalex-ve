@@ -1,0 +1,143 @@
+name: Actualizar URLs en Supabase (Paralelo y Rápido)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  actualizar-urls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      max-parallel: 10  # 10 jobs en paralelo
+      fail-fast: false
+      matrix:
+        chunk: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]  # 15 chunks en paralelo
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: |
+          pip install python-dotenv
+
+      - name: Descargar indice_completo.csv
+        run: |
+          if [ ! -f indice_completo.csv ]; then
+            echo "❌ indice_completo.csv no existe"
+            echo "   Debes subirlo primero al repositorio o descargarlo de artifacts"
+            exit 1
+          fi
+
+      - name: Actualizar URLs en Supabase (Chunk ${{ matrix.chunk }})
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          CHUNK_ID: ${{ matrix.chunk }}
+          TOTAL_CHUNKS: 15
+        run: |
+          python3 - <<'EOF'
+          import os
+          import csv
+          import json
+          import urllib.request
+          import sys
+          import time
+          from concurrent.futures import ThreadPoolExecutor, as_completed
+          
+          SUPABASE_URL = os.environ.get('SUPABASE_URL')
+          SUPABASE_KEY = os.environ.get('SUPABASE_ANON_KEY')
+          CHUNK_ID = int(os.environ.get('CHUNK_ID', 0))
+          TOTAL_CHUNKS = int(os.environ.get('TOTAL_CHUNKS', 15))
+          
+          if not SUPABASE_URL or not SUPABASE_KEY:
+              print("❌ Faltan variables de entorno")
+              sys.exit(1)
+          
+          print("=" * 80)
+          print(f"📊 CHUNK {CHUNK_ID + 1}/{TOTAL_CHUNKS}")
+          print("=" * 80)
+          
+          # Leer índice
+          docs = []
+          with open('indice_completo.csv', 'r', encoding='utf-8') as f:
+              reader = csv.DictReader(f)
+              for row in reader:
+                  docs.append(row)
+          
+          total = len(docs)
+          chunk_size = (total + TOTAL_CHUNKS - 1) // TOTAL_CHUNKS  # Redondear hacia arriba
+          
+          inicio = CHUNK_ID * chunk_size
+          fin = min(inicio + chunk_size, total)
+          chunk = docs[inicio:fin]
+          
+          print(f"✅ Total documentos: {total:,}")
+          print(f"🔄 Este chunk: {inicio:,} a {fin:,} ({len(chunk):,} docs)")
+          
+          def actualizar_doc(doc):
+              doc_id = doc['id']
+              url_html = doc['url_html']
+              url_txt = doc['url_txt']
+              
+              for intento in range(3):  # 3 reintentos
+                  try:
+                      url = f"{SUPABASE_URL}/rest/v1/documentos?id=eq.{doc_id}"
+                      headers = {
+                          'apikey': SUPABASE_KEY,
+                          'Authorization': f'Bearer {SUPABASE_KEY}',
+                          'Content-Type': 'application/json',
+                          'Prefer': 'return=minimal'
+                      }
+                      
+                      data = json.dumps({
+                          'url_html': url_html if url_html else None,
+                          'url_txt': url_txt if url_txt else None
+                      }).encode('utf-8')
+                      
+                      req = urllib.request.Request(url, data=data, headers=headers, method='PATCH')
+                      with urllib.request.urlopen(req, timeout=10) as response:
+                          return response.status in [200, 204]
+                  except Exception as e:
+                      if intento == 2:  # Último intento
+                          return False
+                      time.sleep(0.5)
+              return False
+          
+          # Procesar con threads (50 en paralelo)
+          actualizados = 0
+          errores = 0
+          start_time = time.time()
+          
+          with ThreadPoolExecutor(max_workers=50) as executor:
+              futures = {executor.submit(actualizar_doc, doc): i for i, doc in enumerate(chunk)}
+              
+              for future in as_completed(futures):
+                  if future.result():
+                      actualizados += 1
+                  else:
+                      errores += 1
+                  
+                  if (actualizados + errores) % 500 == 0:
+                      elapsed = time.time() - start_time
+                      rate = (actualizados + errores) / elapsed
+                      print(f"   {actualizados + errores:,}/{len(chunk):,} | "
+                            f"✅ {actualizados:,} | ❌ {errores} | {rate:.1f}/s")
+          
+          elapsed = time.time() - start_time
+          print(f"\n✅ Chunk {CHUNK_ID + 1} completado en {elapsed:.1f}s")
+          print(f"   Actualizados: {actualizados:,}")
+          print(f"   Errores: {errores}")
+          print(f"   Velocidad: {(actualizados + errores)/elapsed:.1f} docs/s")
+          print("=" * 80)
+          EOF
+
+      - name: Resumen
+        if: always()
+        run: |
+          echo "✅ Chunk ${{ matrix.chunk }} procesado"
