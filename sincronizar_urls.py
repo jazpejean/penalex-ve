@@ -65,25 +65,22 @@ for page in paginator.paginate(Bucket=R2_BUCKET, Prefix='txt/', PaginationConfig
         print(f"  TXTs: Página {pg}, Total: {len(txts):,}", end='\r', flush=True)
 print(f"\n✅ TXTs: {len(txts):,}\n")
 
-# Crear diccionario de R2
+# Crear diccionario de R2 - SOLO nombre de archivo, SIN carpetas
 r2_docs = {}
 for k in htmls:
-   # Crear diccionario de R2
-r2_docs = {}
-for k in htmls:
-    # Extraer SOLO el nombre del archivo, sin carpetas
-    filename = k.split('/')[-1]  # Última parte del path
+    filename = k.split('/')[-1]
     doc_id = filename.replace('.html', '').replace('.HTML', '')
     r2_docs[doc_id] = {'html': f"{R2_PUBLIC_URL}/{k}", 'txt': None}
 
 for k in txts:
-    # Extraer SOLO el nombre del archivo, sin carpetas
-    filename = k.split('/')[-1]  # Última parte del path
+    filename = k.split('/')[-1]
     doc_id = filename.replace('.txt', '').replace('.TXT', '')
     if doc_id in r2_docs:
         r2_docs[doc_id]['txt'] = f"{R2_PUBLIC_URL}/{k}"
     else:
         r2_docs[doc_id] = {'html': None, 'txt': f"{R2_PUBLIC_URL}/{k}"}
+
+print(f"📊 R2 tiene {len(r2_docs):,} documentos únicos\n")
 
 # 2. OBTENER DOCUMENTOS DE SUPABASE
 print("📂 Paso 2/5: Obteniendo documentos de Supabase...")
