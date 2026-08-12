@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Arreglar SOLO logos en HTMLs de R2 - SIN Supabase
+Arreglar SOLO el logo del encabezado TSJ y generar índice completo
 """
 import os
 import sys
@@ -10,11 +10,9 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import threading
 
-# Instalar dependencias
 try:
     import boto3
 except ImportError:
-    print("📦 Instalando boto3...")
     os.system("pip install -q boto3")
     import boto3
 
@@ -32,29 +30,25 @@ R2_ACCOUNT_ID = os.environ.get('R2_ACCOUNT_ID') or os.environ.get('CLOUDFLARE_AC
 R2_ACCESS_KEY = os.environ.get('R2_ACCESS_KEY_ID')
 R2_SECRET_KEY = os.environ.get('R2_SECRET_ACCESS_KEY')
 R2_BUCKET = os.environ.get('R2_BUCKET_NAME', 'penalex-ve')
-R2_PUBLIC_URL = os.environ.get('R2_PUBLIC_URL', 'https://pub-a6e0bfa2e9174e91b031ae28c0667009.r2.dev')
-LOGO_CORRECTO = f'{R2_PUBLIC_URL}/assets/logo.jpg'
+R2_PUBLIC_URL = 'https://pub-a6e0bfa2e9174e91b031ae28c0667009.r2.dev'
 
-# Validar
+# LOGO CORRECTO
+LOGO_URL = f'{R2_PUBLIC_URL}/assets/logo.jpg'
+
+# Validar credenciales
 if not all([R2_ACCOUNT_ID, R2_ACCESS_KEY, R2_SECRET_KEY]):
-    print("❌ Faltan variables de entorno:")
-    print(f"   R2_ACCOUNT_ID: {'✅' if R2_ACCOUNT_ID else '❌'}")
-    print(f"   R2_ACCESS_KEY_ID: {'✅' if R2_ACCESS_KEY else '❌'}")
-    print(f"   R2_SECRET_ACCESS_KEY: {'✅' if R2_SECRET_KEY else '❌'}")
+    print("❌ Faltan credenciales R2")
     sys.exit(1)
 
-# Patrones de imágenes rotas
-PATRONES_ROTOS = [
-    r'https://pub-a6e0bfa2e9174e91b031ae28c0667009\.r2\.dev/html/[^"\'<>\s]+_archivos/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
+# SOLO estos patrones (logo del encabezado TSJ)
+PATRONES = [
     r'https://historico\.tsj\.gob\.ve/graficos/encabezadotsj\.jpg',
     r'http://historico\.tsj\.gob\.ve/graficos/encabezadotsj\.jpg',
-    r'\./[^"\'<>\s]+_archivos/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
-    r'(?<![:/])[^/"\s]+_archivos/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
     r'/graficos/encabezadotsj\.jpg',
-    r'/imagenes/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
+    r'graficos/encabezadotsj\.jpg',
 ]
 
-# Cliente S3 thread-local
+# Cliente thread-safe
 _local = threading.local()
 
 def get_s3():
@@ -65,230 +59,165 @@ def get_s3():
             aws_access_key_id=R2_ACCESS_KEY,
             aws_secret_access_key=R2_SECRET_KEY,
             region_name='auto',
-            config=Config(signature_version='s3v4')
+            config=Config(signature_version='s3v4', retries={'max_attempts': 3})
         )
     return _local.s3
 
-def arreglar_html(key):
-    """Descarga HTML, corrige imágenes, re-sube"""
+def procesar_html(key):
+    """Arregla logo en un HTML"""
     try:
         s3 = get_s3()
-        
-        # Descargar
-        response = s3.get_object(Bucket=R2_BUCKET, Key=key)
-        content_encoding = response.get('ContentEncoding', '')
-        raw_data = response['Body'].read()
+        resp = s3.get_object(Bucket=R2_BUCKET, Key=key)
+        raw = resp['Body'].read()
         
         # Decodificar
-        if 'gzip' in content_encoding:
-            html = gzip.decompress(raw_data).decode('utf-8')
+        if 'gzip' in resp.get('ContentEncoding', ''):
+            html = gzip.decompress(raw).decode('utf-8', errors='ignore')
         else:
-            try:
-                html = raw_data.decode('utf-8')
-            except UnicodeDecodeError:
-                html = raw_data.decode('latin-1')
+            html = raw.decode('utf-8', errors='ignore')
         
-        html_original = html
+        original = html
         
-        # Eliminar bloques VML de Word
-        html = re.sub(r'<!--\[if gte vml 1\]>.*?<!\[endif\]-->', '', html, flags=re.DOTALL | re.IGNORECASE)
+        # Reemplazar SOLO logo TSJ
+        for patron in PATRONES:
+            html = re.sub(patron, LOGO_URL, html, flags=re.IGNORECASE)
         
-        # Reemplazar imágenes rotas
-        for patron in PATRONES_ROTOS:
-            html = re.sub(patron, LOGO_CORRECTO, html, flags=re.IGNORECASE)
+        # Si no cambió, no subir
+        if html == original:
+            return (False, None)
         
-        # Solo re-subir si cambió
-        if html_original == html:
-            return (key, False, None)
-        
-        # Re-subir comprimido
-        data_corregida = gzip.compress(html.encode('utf-8'), 6)
+        # Re-subir
+        compressed = gzip.compress(html.encode('utf-8'), 6)
         s3.put_object(
             Bucket=R2_BUCKET,
             Key=key,
-            Body=data_corregida,
+            Body=compressed,
             ContentType='text/html; charset=utf-8',
             ContentEncoding='gzip'
         )
-        
-        return (key, True, None)
+        return (True, None)
         
     except Exception as e:
-        return (key, False, str(e))
+        return (False, str(e))
 
-# MAIN
-print("=" * 80)
-print("🔧 ARREGLAR LOGOS EN R2")
-print("=" * 80)
-print(f"\n✅ Bucket: {R2_BUCKET}")
-print(f"✅ Logo: {LOGO_CORRECTO}")
+print("=" * 70)
+print("🔧 ARREGLAR LOGOS TSJ EN R2")
+print("=" * 70)
+print(f"\nLogo: {LOGO_URL}\n")
 
 # Listar HTMLs
-print("\n📂 Listando HTMLs en R2...")
+print("📂 Listando HTMLs...")
 s3 = get_s3()
-html_keys = []
-continuation_token = None
+htmls = []
+pg = 0
 
 try:
-    while True:
-        if continuation_token:
-            response = s3.list_objects_v2(
-                Bucket=R2_BUCKET,
-                Prefix='html/',
-                ContinuationToken=continuation_token
-            )
-        else:
-            response = s3.list_objects_v2(Bucket=R2_BUCKET, Prefix='html/')
-        
-        if 'Contents' in response:
-            for obj in response['Contents']:
-                key = obj['Key']
-                if key.endswith('.html') or key.endswith('.HTML'):
-                    html_keys.append(key)
-        
-        print(f"   HTMLs: {len(html_keys):,}", end='\r')
-        
-        if not response.get('IsTruncated'):
-            break
-        
-        continuation_token = response.get('NextContinuationToken')
-
+    paginator = s3.get_paginator('list_objects_v2')
+    for page in paginator.paginate(Bucket=R2_BUCKET, Prefix='html/', PaginationConfig={'PageSize': 1000}):
+        pg += 1
+        if 'Contents' in page:
+            htmls.extend([o['Key'] for o in page['Contents'] if o['Key'].lower().endswith('.html')])
+            print(f"  Página {pg}: {len(htmls):,} HTMLs", end='\r', flush=True)
+    
+    print(f"\n✅ Total: {len(htmls):,} HTMLs\n")
 except Exception as e:
-    print(f"\n❌ Error listando: {e}")
+    print(f"\n❌ Error: {e}")
     sys.exit(1)
 
-print(f"\n✅ Total: {len(html_keys):,}")
-
-if not html_keys:
-    print("⚠️  No hay HTMLs")
+if not htmls:
+    print("⚠️ No hay HTMLs")
     sys.exit(0)
 
 # Procesar
-print(f"\n🔧 Procesando {len(html_keys):,} HTMLs...")
+print("🔧 Procesando...\n")
+modificados = errores = procesados = 0
+lock = threading.Lock()
+workers = int(os.environ.get('MAX_WORKERS', '20'))
+inicio = time.time()
 
-stats = {'modificados': 0, 'sin_cambios': 0, 'errores': 0}
-stats_lock = threading.Lock()
-
-MAX_WORKERS = int(os.environ.get('MAX_WORKERS', '10'))
-start_time = time.time()
-
-with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-    futures = {executor.submit(arreglar_html, key): key for key in html_keys}
+with ThreadPoolExecutor(max_workers=workers) as exe:
+    futures = {exe.submit(procesar_html, k): k for k in htmls}
     
-    procesados = 0
-    
-    for future in as_completed(futures):
-        key, modificado, error = future.result()
-        procesados += 1
+    for fut in as_completed(futures):
+        cambio, err = fut.result()
         
-        with stats_lock:
-            if error:
-                stats['errores'] += 1
-            elif modificado:
-                stats['modificados'] += 1
-            else:
-                stats['sin_cambios'] += 1
+        with lock:
+            procesados += 1
+            if err:
+                errores += 1
+            elif cambio:
+                modificados += 1
         
-        if procesados % 100 == 0 or procesados == len(html_keys):
-            elapsed = time.time() - start_time
-            rate = procesados / elapsed if elapsed > 0 else 0
-            eta = (len(html_keys) - procesados) / rate if rate > 0 else 0
-            
-            print(f"   📊 {procesados:,}/{len(html_keys):,} | "
-                  f"Modificados: {stats['modificados']:,} | "
-                  f"Errores: {stats['errores']} | "
-                  f"{rate:.1f}/s | ETA: {eta/60:.1f}min")
+        if procesados % 500 == 0 or procesados == len(htmls):
+            t = time.time() - inicio
+            rate = procesados / t if t > 0 else 0
+            eta = (len(htmls) - procesados) / rate / 60 if rate > 0 else 0
+            print(f"📊 {procesados:,}/{len(htmls):,} | Mod: {modificados:,} | Err: {errores} | {rate:.1f}/s | ETA: {eta:.1f}min")
 
-elapsed = time.time() - start_time
+t_total = time.time() - inicio
 
-print("\n" + "=" * 80)
-print("✅ COMPLETADO")
-print("=" * 80)
-print(f"\n📊 RESUMEN:")
-print(f"   Total:       {procesados:,}")
-print(f"   Modificados: {stats['modificados']:,}")
-print(f"   Sin cambios: {stats['sin_cambios']:,}")
-print(f"   Errores:     {stats['errores']}")
-print(f"   Tiempo:      {elapsed/60:.1f} min")
-print(f"   Velocidad:   {procesados/elapsed:.1f} arch/s")
+print("\n" + "=" * 70)
+print("✅ LOGOS COMPLETADO")
+print("=" * 70)
+print(f"\nTotal:       {procesados:,}")
+print(f"Modificados: {modificados:,}")
+print(f"Errores:     {errores}")
+print(f"Tiempo:      {t_total/60:.1f} min\n")
 
-# Generar índices
-print("\n" + "=" * 80)
-print("📋 GENERANDO ÍNDICES")
-print("=" * 80)
+# GENERAR ÍNDICE
+print("=" * 70)
+print("📋 GENERANDO ÍNDICE")
+print("=" * 70 + "\n")
 
 try:
-    print("\n📂 Listando TXTs...")
-    txt_keys = []
-    continuation_token = None
+    print("📂 Listando TXTs...")
+    txts = []
+    pg = 0
     
-    while True:
-        if continuation_token:
-            response = s3.list_objects_v2(
-                Bucket=R2_BUCKET,
-                Prefix='txt/',
-                ContinuationToken=continuation_token
-            )
-        else:
-            response = s3.list_objects_v2(Bucket=R2_BUCKET, Prefix='txt/')
-        
-        if 'Contents' in response:
-            for obj in response['Contents']:
-                k = obj['Key']
-                if k.lower().endswith('.txt'):
-                    txt_keys.append(k)
-        
-        print(f"   TXTs: {len(txt_keys):,}", end='\r')
-        
-        if not response.get('IsTruncated'):
-            break
-        continuation_token = response.get('NextContinuationToken')
+    for page in paginator.paginate(Bucket=R2_BUCKET, Prefix='txt/', PaginationConfig={'PageSize': 1000}):
+        pg += 1
+        if 'Contents' in page:
+            txts.extend([o['Key'] for o in page['Contents'] if o['Key'].lower().endswith('.txt')])
+            print(f"  Página {pg}: {len(txts):,} TXTs", end='\r', flush=True)
     
-    print(f"\n✅ Total TXTs: {len(txt_keys):,}")
+    print(f"\n✅ Total: {len(txts):,} TXTs\n")
     
     # Crear diccionarios
-    html_dict = {}
-    for key in html_keys:
-        doc_id = key.replace('html/', '').replace('.html', '').replace('.HTML', '')
-        html_dict[doc_id] = f"{R2_PUBLIC_URL}/{key}"
+    html_map = {}
+    for k in htmls:
+        doc_id = k.replace('html/', '').replace('.html', '').replace('.HTML', '')
+        html_map[doc_id] = f"{R2_PUBLIC_URL}/{k}"
     
-    txt_dict = {}
-    for key in txt_keys:
-        doc_id = key.replace('txt/', '').replace('.txt', '').replace('.TXT', '')
-        txt_dict[doc_id] = f"{R2_PUBLIC_URL}/{key}"
+    txt_map = {}
+    for k in txts:
+        doc_id = k.replace('txt/', '').replace('.txt', '').replace('.TXT', '')
+        txt_map[doc_id] = f"{R2_PUBLIC_URL}/{k}"
     
-    all_ids = sorted(set(html_dict.keys()) | set(txt_dict.keys()))
+    all_ids = sorted(set(html_map.keys()) | set(txt_map.keys()))
     
-    # Guardar índices
-    with open('indice_html.txt', 'w', encoding='utf-8') as f:
-        for doc_id in sorted(html_dict.keys()):
-            f.write(f"{doc_id}\t{html_dict[doc_id]}\n")
-    
-    with open('indice_txt.txt', 'w', encoding='utf-8') as f:
-        for doc_id in sorted(txt_dict.keys()):
-            f.write(f"{doc_id}\t{txt_dict[doc_id]}\n")
-    
+    # Guardar índice completo
     with open('indice_completo.csv', 'w', encoding='utf-8') as f:
         f.write("id,url_html,url_txt\n")
         for doc_id in all_ids:
-            f.write(f"{doc_id},{html_dict.get(doc_id,'')},{txt_dict.get(doc_id,'')}\n")
+            h = html_map.get(doc_id, '')
+            t = txt_map.get(doc_id, '')
+            f.write(f"{doc_id},{h},{t}\n")
     
-    print(f"\n💾 indice_html.txt: {len(html_dict):,} archivos")
-    print(f"💾 indice_txt.txt: {len(txt_dict):,} archivos")
-    print(f"💾 indice_completo.csv: {len(all_ids):,} documentos")
+    print(f"💾 indice_completo.csv: {len(all_ids):,} documentos\n")
     
-    solo_html = len([i for i in all_ids if i in html_dict and i not in txt_dict])
-    solo_txt = len([i for i in all_ids if i in txt_dict and i not in html_dict])
-    ambos = len([i for i in all_ids if i in html_dict and i in txt_dict])
+    ambos = sum(1 for i in all_ids if i in html_map and i in txt_map)
+    solo_h = sum(1 for i in all_ids if i in html_map and i not in txt_map)
+    solo_t = sum(1 for i in all_ids if i in txt_map and i not in html_map)
     
-    print(f"\n📊 ESTADÍSTICAS:")
-    print(f"   Con HTML y TXT: {ambos:,}")
-    print(f"   Solo HTML:      {solo_html:,}")
-    print(f"   Solo TXT:       {solo_txt:,}")
+    print(f"📊 Ambos:     {ambos:,}")
+    print(f"   Solo HTML: {solo_h:,}")
+    print(f"   Solo TXT:  {solo_t:,}\n")
 
 except Exception as e:
-    print(f"\n❌ Error generando índices: {e}")
+    print(f"\n❌ Error generando índice: {e}\n")
 
-print("\n" + "=" * 80 + "\n")
+print("=" * 70)
+print("✅ PROCESO COMPLETO")
+print("=" * 70 + "\n")
 
-sys.exit(0 if stats['errores'] < len(html_keys) * 0.05 else 1)
+sys.exit(0)
