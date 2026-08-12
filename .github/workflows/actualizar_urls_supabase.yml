@@ -6,12 +6,12 @@ on:
 jobs:
   actualizar-urls:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 20
     strategy:
-      max-parallel: 10  # 10 jobs en paralelo
+      max-parallel: 20  # 20 jobs en paralelo
       fail-fast: false
       matrix:
-        chunk: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]  # 15 chunks en paralelo
+        chunk: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]  # 30 chunks
     
     steps:
       - name: Checkout
@@ -39,7 +39,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           CHUNK_ID: ${{ matrix.chunk }}
-          TOTAL_CHUNKS: 15
+          TOTAL_CHUNKS: 30
         run: |
           python3 - <<'EOF'
           import os
@@ -53,7 +53,7 @@ jobs:
           SUPABASE_URL = os.environ.get('SUPABASE_URL', '').strip()
           SUPABASE_KEY = os.environ.get('SUPABASE_ANON_KEY', '').strip()
           CHUNK_ID = int(os.environ.get('CHUNK_ID', 0))
-          TOTAL_CHUNKS = int(os.environ.get('TOTAL_CHUNKS', 15))
+          TOTAL_CHUNKS = int(os.environ.get('TOTAL_CHUNKS', 30))
           
           if not SUPABASE_URL or not SUPABASE_KEY:
               print("❌ Faltan variables de entorno")
@@ -109,12 +109,12 @@ jobs:
                       time.sleep(0.5)
               return False
           
-          # Procesar con threads (50 en paralelo)
+          # Procesar con threads (20 en paralelo - más estable en GitHub Actions)
           actualizados = 0
           errores = 0
           start_time = time.time()
           
-          with ThreadPoolExecutor(max_workers=50) as executor:
+          with ThreadPoolExecutor(max_workers=20) as executor:
               futures = {executor.submit(actualizar_doc, doc): i for i, doc in enumerate(chunk)}
               
               for future in as_completed(futures):
