@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Arreglar SOLO el logo del encabezado TSJ y generar índice completo
+Arreglar SOLO las resoluciones en html/resolucioness/plena/
 """
 import os
 import sys
@@ -35,17 +35,22 @@ R2_PUBLIC_URL = 'https://pub-a6e0bfa2e9174e91b031ae28c0667009.r2.dev'
 # LOGO CORRECTO
 LOGO_URL = f'{R2_PUBLIC_URL}/assets/logo.jpg'
 
-# Validar credenciales
 if not all([R2_ACCOUNT_ID, R2_ACCESS_KEY, R2_SECRET_KEY]):
     print("❌ Faltan credenciales R2")
     sys.exit(1)
 
-# SOLO estos patrones (logo del encabezado TSJ)
+# Patrones SOLO para resoluciones plena
 PATRONES = [
+    # Portal admin (el patrón específico de las resoluciones)
+    r'https://historico\.tsj\.gov\.ve/portal/admin/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
+    r'http://historico\.tsj\.gov\.ve/portal/admin/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
+    r'/portal/admin/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
+    r'portal/admin/[^"\'<>\s]+\.(jpg|png|gif|jpeg)',
+    
+    # Otros patrones comunes en resoluciones
     r'https://historico\.tsj\.gob\.ve/graficos/encabezadotsj\.jpg',
     r'http://historico\.tsj\.gob\.ve/graficos/encabezadotsj\.jpg',
     r'/graficos/encabezadotsj\.jpg',
-    r'graficos/encabezadotsj\.jpg',
 ]
 
 # Cliente thread-safe
@@ -64,7 +69,7 @@ def get_s3():
     return _local.s3
 
 def procesar_html(key):
-    """Arregla logo en un HTML"""
+    """Arregla imágenes en un HTML de resoluciones"""
     try:
         s3 = get_s3()
         resp = s3.get_object(Bucket=R2_BUCKET, Key=key)
@@ -78,7 +83,10 @@ def procesar_html(key):
         
         original = html
         
-        # Reemplazar SOLO logo TSJ
+        # Eliminar bloques VML
+        html = re.sub(r'<!--\[if gte vml 1\]>.*?<!\[endif\]-->', '', html, flags=re.DOTALL | re.IGNORECASE)
+        
+        # Reemplazar imágenes rotas
         for patron in PATRONES:
             html = re.sub(patron, LOGO_URL, html, flags=re.IGNORECASE)
         
@@ -101,19 +109,20 @@ def procesar_html(key):
         return (False, str(e))
 
 print("=" * 70)
-print("🔧 ARREGLAR LOGOS TSJ EN R2")
+print("🔧 ARREGLAR RESOLUCIONES PLENA")
 print("=" * 70)
-print(f"\nLogo: {LOGO_URL}\n")
+print(f"\nCarpeta: html/resolucioness/plena/")
+print(f"Logo:    {LOGO_URL}\n")
 
-# Listar HTMLs
-print("📂 Listando HTMLs...")
+# Listar SOLO HTMLs en resolucioness/plena
+print("📂 Listando HTMLs en resolucioness/plena...")
 s3 = get_s3()
 htmls = []
 pg = 0
 
 try:
     paginator = s3.get_paginator('list_objects_v2')
-    for page in paginator.paginate(Bucket=R2_BUCKET, Prefix='html/', PaginationConfig={'PageSize': 1000}):
+    for page in paginator.paginate(Bucket=R2_BUCKET, Prefix='html/resolucioness/plena/', PaginationConfig={'PageSize': 1000}):
         pg += 1
         if 'Contents' in page:
             htmls.extend([o['Key'] for o in page['Contents'] if o['Key'].lower().endswith('.html')])
@@ -125,7 +134,7 @@ except Exception as e:
     sys.exit(1)
 
 if not htmls:
-    print("⚠️ No hay HTMLs")
+    print("⚠️ No hay HTMLs en esa carpeta")
     sys.exit(0)
 
 # Procesar
@@ -148,7 +157,7 @@ with ThreadPoolExecutor(max_workers=workers) as exe:
             elif cambio:
                 modificados += 1
         
-        if procesados % 500 == 0 or procesados == len(htmls):
+        if procesados % 100 == 0 or procesados == len(htmls):
             t = time.time() - inicio
             rate = procesados / t if t > 0 else 0
             eta = (len(htmls) - procesados) / rate / 60 if rate > 0 else 0
@@ -157,67 +166,11 @@ with ThreadPoolExecutor(max_workers=workers) as exe:
 t_total = time.time() - inicio
 
 print("\n" + "=" * 70)
-print("✅ LOGOS COMPLETADO")
+print("✅ COMPLETADO")
 print("=" * 70)
 print(f"\nTotal:       {procesados:,}")
 print(f"Modificados: {modificados:,}")
 print(f"Errores:     {errores}")
 print(f"Tiempo:      {t_total/60:.1f} min\n")
 
-# GENERAR ÍNDICE
-print("=" * 70)
-print("📋 GENERANDO ÍNDICE")
 print("=" * 70 + "\n")
-
-try:
-    print("📂 Listando TXTs...")
-    txts = []
-    pg = 0
-    
-    for page in paginator.paginate(Bucket=R2_BUCKET, Prefix='txt/', PaginationConfig={'PageSize': 1000}):
-        pg += 1
-        if 'Contents' in page:
-            txts.extend([o['Key'] for o in page['Contents'] if o['Key'].lower().endswith('.txt')])
-            print(f"  Página {pg}: {len(txts):,} TXTs", end='\r', flush=True)
-    
-    print(f"\n✅ Total: {len(txts):,} TXTs\n")
-    
-    # Crear diccionarios
-    html_map = {}
-    for k in htmls:
-        doc_id = k.replace('html/', '').replace('.html', '').replace('.HTML', '')
-        html_map[doc_id] = f"{R2_PUBLIC_URL}/{k}"
-    
-    txt_map = {}
-    for k in txts:
-        doc_id = k.replace('txt/', '').replace('.txt', '').replace('.TXT', '')
-        txt_map[doc_id] = f"{R2_PUBLIC_URL}/{k}"
-    
-    all_ids = sorted(set(html_map.keys()) | set(txt_map.keys()))
-    
-    # Guardar índice completo
-    with open('indice_completo.csv', 'w', encoding='utf-8') as f:
-        f.write("id,url_html,url_txt\n")
-        for doc_id in all_ids:
-            h = html_map.get(doc_id, '')
-            t = txt_map.get(doc_id, '')
-            f.write(f"{doc_id},{h},{t}\n")
-    
-    print(f"💾 indice_completo.csv: {len(all_ids):,} documentos\n")
-    
-    ambos = sum(1 for i in all_ids if i in html_map and i in txt_map)
-    solo_h = sum(1 for i in all_ids if i in html_map and i not in txt_map)
-    solo_t = sum(1 for i in all_ids if i in txt_map and i not in html_map)
-    
-    print(f"📊 Ambos:     {ambos:,}")
-    print(f"   Solo HTML: {solo_h:,}")
-    print(f"   Solo TXT:  {solo_t:,}\n")
-
-except Exception as e:
-    print(f"\n❌ Error generando índice: {e}\n")
-
-print("=" * 70)
-print("✅ PROCESO COMPLETO")
-print("=" * 70 + "\n")
-
-sys.exit(0)
