@@ -6,7 +6,6 @@ import os
 import sys
 import csv
 import time
-import threading
 import requests
 
 try:
@@ -90,7 +89,7 @@ offset = 0
 batch_size = 1000
 
 while True:
-    url = f"{SUPABASE_URL}/rest/v1/jurisprudencia?select=id,numero&limit={batch_size}&offset={offset}"
+    url = f"{SUPABASE_URL}/rest/v1/documentos?select=id,numero&limit={batch_size}&offset={offset}"
     headers = {
         'apikey': SUPABASE_KEY,
         'Authorization': f'Bearer {SUPABASE_KEY}'
@@ -98,7 +97,7 @@ while True:
 
     response = requests.get(url, headers=headers, timeout=30)
     if response.status_code != 200:
-        print(f"❌ Error: {response.status_code}")
+        print(f"❌ Error: {response.status_code} - {response.text}")
         break
 
     batch = response.json()
@@ -133,7 +132,7 @@ for doc_id in en_ambos:
     r2_data = r2_docs[doc_id]
 
     try:
-        url = f"{SUPABASE_URL}/rest/v1/jurisprudencia?id=eq.{doc_id}"
+        url = f"{SUPABASE_URL}/rest/v1/documentos?id=eq.{doc_id}"
         headers = {
             'apikey': SUPABASE_KEY,
             'Authorization': f'Bearer {SUPABASE_KEY}',
