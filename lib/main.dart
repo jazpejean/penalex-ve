@@ -1,144 +1,178 @@
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:nested/nested.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'config/app_colors.dart';
-import 'firebase_options.dart';
+import 'models/delito.dart';
 import 'pages/agenda_screen.dart';
+import 'pages/admin_glosario_screen.dart';
+import 'pages/admin_ia_config_screen.dart';
+import 'pages/admin_users_screen.dart';
+import 'pages/ai_analytics_screen.dart';
+import 'pages/asistente_legal_screen.dart';
+import 'pages/asistente_legal_hub_screen.dart';
+import 'pages/redactor_documentos_screen.dart';
+import 'pages/busqueda_semantica_screen.dart';
+import 'pages/calculos_guardados_page.dart';
+import 'pages/chat_legal_screen.dart';
+import 'pages/computo_page.dart';
 import 'pages/dashboard_screen.dart';
 import 'pages/dosimetria_page.dart';
-import 'pages/login_page.dart';
+import 'pages/glosario_screen.dart';
+import 'pages/leyes_screen.dart';
+import 'pages/main_screen.dart';
+import 'pages/login_page.dart'; // FIREBASE LOGIN
 import 'pages/quiz_lobby_screen.dart';
+import 'pages/repositorio_jurisprudencia_screen.dart';
+import 'pages/reportes_guardados_page.dart';
+import 'pages/reset_password_page.dart';
 import 'pages/splash_screen.dart';
 import 'pages/verify_email_page.dart';
-import 'providers/auth_provider.dart';
 import 'providers/game_provider.dart';
 import 'providers/user_provider.dart';
-import 'services/auth_service.dart';
-import 'services/notification_service.dart';
+import 'services/auth_service.dart'; // FIREBASE AUTH SERVICE
+import 'firebase_options.dart'; // Asegúrate de tener este archivo
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // Cargar variables de entorno con manejo de errores
-  try {
-    await dotenv.load();
-  } on Exception catch (e) {
-    debugPrint("Error cargando .env: $e. La aplicación continuará con valores por defecto.");
-  }
-
+  
+  // Cargar variables de entorno
+  await dotenv.load(fileName: ".env");
+  
+  // Inicializar datos de localización para español
+  await initializeDateFormatting('es_ES', null);
+  
+  // Inicializar Firebase (para autenticación)
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  final NotificationService notificationService = NotificationService();
-  await notificationService.initialize();
-
-  runApp(const PenalexApp());
+  
+  // Inicializar Supabase (para datos: jurisprudencias, documentos, etc.)
+  await Supabase.initialize(
+    url: dotenv.env['SUPABASE_URL']!,
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
+  );
+  
+  runApp(const DosimetriaPenalApp());
 }
 
-class PenalexApp extends StatelessWidget {
-  const PenalexApp({super.key});
+class DosimetriaPenalApp extends StatelessWidget {
+  const DosimetriaPenalApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Crear una única instancia de AuthService para toda la app
-    final authService = AuthService();
-
     return MultiProvider(
-      providers: <SingleChildWidget>[
+      providers: [
+        // Firebase Auth Service (para login/registro)
+        Provider<AuthService>(create: (_) => AuthService()),
+        
+        // Providers de estado
         ChangeNotifierProvider<GameState>(create: (_) => GameState()),
         ChangeNotifierProvider<UserState>(create: (_) => UserState()),
-        Provider<AuthService>.value(value: authService),
-        ChangeNotifierProvider<AppAuthProvider>(
-          create: (_) => AppAuthProvider(authService: authService),
-        ),
       ],
       child: MaterialApp(
-        title: "Penalex VE",
-        locale: const Locale("es", "VE"),
-        supportedLocales: const <Locale>[Locale("es", "VE"), Locale("es")],
-        localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+        title: 'Dosimetría Penal Venezolana',
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
+        supportedLocales: const [
+          Locale('es', 'ES'),
+        ],
+        locale: const Locale('es', 'ES'),
         theme: ThemeData(
-          primaryColor: AppColors.primary,
+          useMaterial3: true,
+          primaryColor: const Color(0xFF0F172A),
+          scaffoldBackgroundColor: Colors.white,
           colorScheme: ColorScheme.fromSeed(
-            seedColor: AppColors.primary,
-            secondary: AppColors.secondary,
-            error: AppColors.error,
+            seedColor: const Color(0xFF0F172A),
+            primary: const Color(0xFF0F172A),
+            secondary: const Color(0xFFF59E0B),
           ),
-          scaffoldBackgroundColor: AppColors.background,
           appBarTheme: const AppBarTheme(
-            backgroundColor: AppColors.primary,
-            foregroundColor: AppColors.secondary,
-            elevation: 0,
+            backgroundColor: Color(0xFF0F172A),
+            foregroundColor: Colors.white,
             centerTitle: true,
-            iconTheme: IconThemeData(color: AppColors.secondary),
+            titleTextStyle: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primary,
-              foregroundColor: AppColors.secondary,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(14),
-              ),
+                  borderRadius: BorderRadius.circular(12)),
             ),
-          ),
-          inputDecorationTheme: InputDecorationTheme(
-            filled: true,
-            fillColor: AppColors.surface,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: Colors.black.withValues(alpha: 0.3),
-              ),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: AppColors.primary.withValues(alpha: 0.2),
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(
-                color: AppColors.secondary,
-                width: 1.5,
-              ),
-            ),
-            labelStyle: const TextStyle(color: AppColors.primary),
-            prefixIconColor: AppColors.primary,
           ),
         ),
-        routes: <String, WidgetBuilder>{
-          "/": (BuildContext context) => const AuthWrapper(),
-          "/login": (BuildContext context) => const LoginPage(),
-          "/verify-email": (BuildContext context) => const VerifyEmailPage(),
-          "/dashboard": (BuildContext context) => const DashboardScreen(),
-          "/agenda": (BuildContext context) => const AgendaScreen(),
-          "/calculadora": (BuildContext context) => const DosimetriaPage(),
-          "/quiz": (BuildContext context) => const QuizLobbyScreen(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const AuthWrapper(),
+          '/login': (context) => const LoginPage(), // FIREBASE
+          '/main': (context) => const MainScreen(),
+          '/dashboard': (context) => const DashboardScreen(),
+          '/asistente_legal': (context) => const AsistenteLegalHubScreen(),
+          '/asistente_legal_chat': (context) => const AsistenteLegalScreen(),
+          '/redactor_documentos': (context) => const RedactorDocumentosScreen(),
+          '/chat_legal': (context) => const ChatLegalScreen(),
+          '/busqueda_semantica': (context) => const BusquedaSemanticaScreen(),
+          '/admin_ia_config': (context) => const AdminIAConfigScreen(),
+          '/admin_glosario': (context) => const AdminGlosarioScreen(),
+          '/admin_users': (context) => const AdminUsersScreen(),
+          '/calculadora': (context) => const DosimetriaPage(),
+          '/calculos': (context) => const CalculosGuardadosPage(),
+          '/agenda': (context) => const AgendaScreen(),
+          '/reportes': (context) => const ReportesGuardadosPage(),
+          '/leyes': (context) => const LeyesScreen(),
+          '/glosario': (context) => const GlosarioScreen(),
+          '/repositorio_jurisprudencia': (context) => const RepositorioJurisprudenciaScreen(),
+          '/ai_analytics': (context) => const AIAnalyticsScreen(),
+          '/quiz': (context) => const QuizLobbyScreen(),
+          '/quiz_lobby': (context) => const QuizLobbyScreen(),
+          '/lapsos': (context) => const AgendaScreen(), // Lapsos integrados en Agenda
+          '/verify-email': (context) => const VerifyEmailPage(),
+          '/reset-password': (context) => const ResetPasswordPage(),
+        },
+        onGenerateRoute: (settings) {
+          if (settings.name == '/computo' && settings.arguments != null) {
+            final args = settings.arguments as Map<String, dynamic>;
+            final delitos = (args['delitos'] as List)
+                .map((e) => Delito.fromMap(e as Map<String, dynamic>))
+                .toList();
+            final concurso = args['concurso'] as TipoConcurso;
+            final admisionHechos = args['admisionHechos'] as bool;
+            final fraccionAdmision = args['fraccionAdmision'] as double;
+            final penaTotal = args['penaTotal'] as double;
+            return MaterialPageRoute(
+              builder: (context) => ComputoPage(
+                delitos: delitos,
+                concurso: concurso,
+                admisionHechos: admisionHechos,
+                fraccionAdmision: fraccionAdmision,
+                penaTotal: penaTotal,
+              ),
+            );
+          }
+          return null;
         },
       ),
     );
   }
 }
 
-/// Widget que decide qué pantalla mostrar según el estado de autenticación
 class AuthWrapper extends StatelessWidget {
   const AuthWrapper({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<AuthService>(context);
-    final authProvider = Provider.of<AppAuthProvider>(context);
+    final authService = Provider.of<AuthService>(context, listen: false);
 
     return StreamBuilder<firebase_auth.User?>(
       stream: authService.authStateChanges,
@@ -146,33 +180,19 @@ class AuthWrapper extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const SplashScreen();
         }
-
+        
         final user = snapshot.data;
-
-        // No hay usuario autenticado
+        
+        // Si no hay usuario, mostrar login
         if (user == null) return const LoginPage();
 
-        // Dispositivo no válido (cuenta abierta en otro lado)
-        if (!authProvider.isDeviceValid) {
-          WidgetsBinding.instance.addPostFrameCallback((_) async {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Tu cuenta se ha abierto en otro dispositivo. Se cerró esta sesión.'),
-                backgroundColor: Colors.orange,
-              ),
-            );
-            await authService.signOut();
-          });
-          return const LoginPage();
-        }
-
-        // Email no verificado
+        // Si el email no está verificado, mostrar pantalla de verificación
         if (!user.emailVerified) {
           return const VerifyEmailPage();
         }
 
-        // todo correcto: ir al dashboard
-        return const DashboardScreen();
+        // Usuario autenticado y verificado, ir a MainScreen
+        return const MainScreen();
       },
     );
   }

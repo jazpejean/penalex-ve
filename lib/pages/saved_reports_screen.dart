@@ -42,9 +42,13 @@ class _SavedReportsScreenState extends State<SavedReportsScreen> {
       context: context,
       builder: (_) => AlertDialog(
         title: Text(reporte.nombre),
-        content: SingleChildScrollView(child: SelectableText(reporte.contenido, style: const TextStyle(fontFamily: 'monospace'))),
+        content: SingleChildScrollView(
+            child: SelectableText(reporte.contenido,
+                style: const TextStyle(fontFamily: 'monospace'))),
         actions: <Widget>[
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cerrar')),
+          TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cerrar')),
         ],
       ),
     );
@@ -57,8 +61,13 @@ class _SavedReportsScreenState extends State<SavedReportsScreen> {
         title: const Text('Eliminar reporte'),
         content: Text('¿Estás seguro de eliminar "${reporte.nombre}"?'),
         actions: <Widget>[
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancelar')),
-          TextButton(onPressed: () => Navigator.pop(context, true), child: const Text('Eliminar', style: TextStyle(color: AppColors.error))),
+          TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Cancelar')),
+          TextButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: const Text('Eliminar',
+                  style: TextStyle(color: AppColors.error))),
         ],
       ),
     );
@@ -68,13 +77,19 @@ class _SavedReportsScreenState extends State<SavedReportsScreen> {
         await ReportService.deleteReport(reporte.id);
         await _cargarReportes();
         if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('✅ Reporte eliminado'), backgroundColor: AppColors.success),
+        final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
+        messenger.showSnackBar(
+          const SnackBar(
+              content: Text('✅ Reporte eliminado'),
+              backgroundColor: AppColors.success),
         );
       } on Exception catch (_) {
         if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('❌ No se pudo eliminar el reporte'), backgroundColor: AppColors.error),
+        final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
+        messenger.showSnackBar(
+          const SnackBar(
+              content: Text('❌ No se pudo eliminar el reporte'),
+              backgroundColor: AppColors.error),
         );
       }
     }
@@ -89,10 +104,10 @@ class _SavedReportsScreenState extends State<SavedReportsScreen> {
             IconButton(
               icon: const Icon(Icons.logout),
               onPressed: () async {
+                final NavigatorState navigator = Navigator.of(context);
                 await AuthService().logout();
-                if (mounted) {
-                  Navigator.pushNamedAndRemoveUntil(context, "/", (Route<dynamic> route) => false);
-                }
+                unawaited(navigator.pushNamedAndRemoveUntil(
+                    "/", (Route<dynamic> route) => false));
               },
             ),
           ],
@@ -109,14 +124,22 @@ class _SavedReportsScreenState extends State<SavedReportsScreen> {
                       final DateTime f = rep.fecha;
                       return Card(
                         margin: const EdgeInsets.only(bottom: 12),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16)),
                         child: ListTile(
-                          leading: const Icon(Icons.description, color: AppColors.textSecondary),
-                          title: Text(rep.nombre, style: const TextStyle(fontWeight: FontWeight.bold)),
-                          subtitle: Text("Guardado el: ${f.day}/${f.month}/${f.year}"),
+                          leading: const Icon(Icons.description,
+                              color: AppColors.textSecondary),
+                          title: Text(rep.nombre,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text(
+                              "Guardado el: ${f.day}/${f.month}/${f.year}"),
                           trailing: IconButton(
-                            icon: const Icon(Icons.delete_outline, color: AppColors.error),
-                            onPressed: () => unawaited(_eliminarReporte(rep)),
+                            icon: const Icon(Icons.delete_outline,
+                                color: AppColors.error),
+                            onPressed: () async {
+                              await _eliminarReporte(rep);
+                            },
                           ),
                           onTap: () => _mostrarContenido(rep),
                         ),

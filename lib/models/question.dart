@@ -9,16 +9,23 @@ class Question {
     required this.fundamentacion,
   });
 
-    factory Question.fromDocument(Map<String, dynamic> doc, String id) => 
-      Question(
+    factory Question.fromDocument(Map<String, dynamic> doc, String id) {
+    // Manejo flexible de campos para compatibilidad
+    final dynamic opcionesData = doc['opciones'] ?? <dynamic>[];
+    final List<String> opcionesList = opcionesData is List
+        ? opcionesData.map((item) => item.toString()).toList()
+        : <String>[];
+    
+    return Question(
       id: id,
-      nivel: (doc['nivel'] as int?) ?? 0,
-      pregunta: (doc['pregunta'] as String?) ?? '',
-      opciones: List<String>.from(
-          (doc['opciones'] as List<dynamic>?) ?? <dynamic>[],),
-      respuestaCorrecta: (doc['respuesta_correcta'] as int?) ?? 0,
+      nivel: (doc['nivel'] as num?)?.toInt() ?? 0,
+      pregunta: (doc['pregunta'] as String?) ?? 'Pregunta no disponible',
+      opciones: opcionesList,
+      respuestaCorrecta: (doc['respuesta_correcta'] as num?)?.toInt() ?? 0,
       fundamentacion: (doc['fundamentacion'] as String?) ?? '',
     );
+  }
+  
   final String id;
   final int nivel;
   final String pregunta;

@@ -1,0 +1,119 @@
+{
+  "total_leyes": 16,
+  "total_articulos": 2891,
+  "total_secciones": 480,
+  "leyes": [
+    {
+      "codigo": "CEA",
+      "nombre": "Código de Ética Profesional del Abogado Venezolano",
+      "num_articulos": 62,
+      "num_secciones": 9,
+      "caracteres": 25980
+    },
+    {
+      "codigo": "COP",
+      "nombre": "Código Orgánico Penitenciario",
+      "num_articulos": 170,
+      "num_secciones": 42,
+      "caracteres": 138511
+    },
+    {
+      "codigo": "COPP",
+      "nombre": "Código Orgánico Procesal Penal",
+      "num_articulos": 504,
+      "num_secciones": 88,
+      "caracteres": 356882
+    },
+    {
+      "codigo": "CP",
+      "nombre": "Código Penal",
+      "num_articulos": 546,
+      "num_secciones": 121,
+      "caracteres": 283982
+    },
+    {
+      "codigo": "CRBV",
+      "nombre": "Constitución de la República Bolivariana de Venezuela",
+      "num_articulos": 350,
+      "num_secciones": 64,
+      "caracteres": 261347
+    },
+    {
+      "codigo": "LCDOFT",
+      "nombre": "Ley Orgánica contra la Delincuencia Organizada y Financiamiento al Terrorismo",
+      "num_articulos": 85,
+      "num_secciones": 24,
+      "caracteres": 96574
+    },
+    {
+      "codigo": "LCSE",
+      "nombre": "Ley Contra el Secuestro y la Extorsión",
+      "num_articulos": 29,
+      "num_secciones": 9,
+      "caracteres": 22676
+    },
+    {
+      "codigo": "LDCAM",
+      "nombre": "Ley de Armas y Explosivos",
+      "num_articulos": 32,
+      "num_secciones": 0,
+      "caracteres": 15890
+    },
+    {
+      "codigo": "LECDI",
+      "nombre": "Ley Especial contra los Delitos Informáticos",
+      "num_articulos": 9,
+      "num_secciones": 9,
+      "caracteres": 22059
+    },
+    {
+      "codigo": "LHRVA",
+      "nombre": "Ley sobre Hurto y Robo de Vehículos Automotores",
+      "num_articulos": 16,
+      "num_secciones": 0,
+      "caracteres": 12736
+    },
+    {
+      "codigo": "LOA",
+      "nombre": "Ley Orgánica de Amparo sobre Derechos y Garantías Constitucionales",
+      "num_articulos": 49,
+      "num_secciones": 5,
+      "caracteres": 23373
+    },
+    {
+      "codigo": "LOCC",
+      "nombre": "Ley Orgánica contra la Corrupción",
+      "num_articulos": 108,
+      "num_secciones": 3,
+      "caracteres": 103928
+    },
+    {
+      "codigo": "LOD",
+      "nombre": "Ley Orgánica de Drogas",
+      "num_articulos": 107,
+      "num_secciones": 17,
+      "caracteres": 105568
+    },
+    {
+      "codigo": "LOPNNA",
+      "nombre": "Ley Orgánica para la Protección de Niños, Niñas y Adolescentes",
+      "num_articulos": 648,
+      "num_secciones": 70,
+      "caracteres": 690365
+    },
+    {
+      "codigo": "LOSDMVLV",
+      "nombre": "Ley Orgánica sobre el Derecho de las Mujeres a una Vida Libre de Violencia",
+      "num_articulos": 131,
+      "num_secciones": 13,
+      "caracteres": 207390
+    },
+    {
+      "codigo": "LPVT",
+      "nombre": "Ley de Protección de Víctimas, Testigos y demás Sujetos Procesales",
+      "num_articulos": 45,
+      "num_secciones": 6,
+      "caracteres": 48554
+    }
+  ]
+}

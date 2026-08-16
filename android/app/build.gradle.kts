@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.penalex_ve"
+    namespace = "com.penalex.ve"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,17 +20,32 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.penalex_ve"
+        applicationId = "com.penalex.ve"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
+    // Configuración de signing para release
+    signingConfigs {
+        create("release") {
+            // TODO: Para producción, configurar con keystore real
+            // Descomentar y configurar las siguientes líneas:
+            // storeFile = file("path/to/keystore.jks")
+            // storePassword = System.getenv("KEYSTORE_PASSWORD")
+            // keyAlias = System.getenv("KEY_ALIAS")
+            // keyPassword = System.getenv("KEY_PASSWORD")
+        }
+    }
+
     buildTypes {
         getByName("release") {
-            signingConfig = signingConfigs.getByName("debug")
-            // 🔥 Optimizaciones clave para acelerar la compilación
+            // Comentado temporalmente - usar debug signing para desarrollo
+            // Para producción, descomentar y configurar signing release:
+            // signingConfig = signingConfigs.getByName("release")
+            
+            // Optimizaciones para release
             isMinifyEnabled = false
             isShrinkResources = false
         }

@@ -1,0 +1,335 @@
+═══════════════════════════════════════════════════════════════
+                    📱 EJEMPLOS VISUALES DEL QUIZ
+            Sistema de Casos Hipotéticos - Penalex VE
+═══════════════════════════════════════════════════════════════
+
+PANTALLA 1: PREGUNTA (Estado Inicial)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                     Quiz Penal                ← Volver    ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃                                                           ┃
+┃   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┃
+┃   ┃  NIVEL          │          APELACIONES          ┃  ┃
+┃   ┃   ▄▄▄                         ▄▄▄▄▄            ┃  ┃
+┃   ┃  ▐ 1 ▌                       ▐  5  ▌           ┃  ┃
+┃   ┃   ▀▀▀                         ▀▀▀▀▀            ┃  ┃
+┃   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ┃
+┃                                                           ┃
+┃   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┃  [TENTATIVA DE HURTO]                            ┃  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┃  CASO HIPOTÉTICO:                                ┃  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┃  José intenta robar un celular de una mesa      ┃  ┃
+┃   ┃  en un café, pero el dueño lo ve y lo detiene   ┃  ┃
+┃   ┃  antes de que pueda salir del local.            ┃  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┃  ¿Cuál es la calificación jurídica correcta?    ┃  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ┃
+┃                                                           ┃
+┃   ┌─────────────────────────────────────────────────┐   ┃
+┃   │  ⭘  A  Hurto consumado                          │   ┃
+┃   └─────────────────────────────────────────────────┘   ┃
+┃                                                           ┃
+┃   ┌─────────────────────────────────────────────────┐   ┃
+┃   │  ⦿  B  Tentativa de hurto    [SELECCIONADA]     │   ┃
+┃   └─────────────────────────────────────────────────┘   ┃
+┃                                                           ┃
+┃   ┌─────────────────────────────────────────────────┐   ┃
+┃   │  ⭘  C  Apropiación indebida                     │   ┃
+┃   └─────────────────────────────────────────────────┘   ┃
+┃                                                           ┃
+┃   ┌─────────────────────────────────────────────────┐   ┃
+┃   │  ⭘  D  Acto preparatorio impune                 │   ┃
+┃   └─────────────────────────────────────────────────┘   ┃
+┃                                                           ┃
+┃   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┃
+┃   ┃         🔎  VERIFICAR RESPUESTA                  ┃  ┃
+┃   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ┃
+┃                                                           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+PANTALLA 2: RESULTADO CORRECTO ✅
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                     Quiz Penal                ← Volver    ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃                                                           ┃
+┃                       ▄▄▄▄▄▄                             ┃
+┃                      █  ✓  █                             ┃
+┃                       ▀▀▀▀▀▀                             ┃
+┃                    ¡CORRECTO!                            ┃
+┃                                                           ┃
+┃             ¡Perfecto! Respuesta correcta                ┃
+┃                al primer intento 🎯                      ┃
+┃                                                           ┃
+┃   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┃
+┃   ┃  ⚖️  FUNDAMENTACIÓN LEGAL                        ┃  ┃
+┃   ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┃  La tentativa se configura cuando el autor       ┃  ┃
+┃   ┃  inicia la ejecución del delito pero no lo       ┃  ┃
+┃   ┃  consuma por causas ajenas a su voluntad.        ┃  ┃
+┃   ┃  En este caso, José realizó actos de             ┃  ┃
+┃   ┃  apoderamiento pero fue interrumpido.            ┃  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┃  📚 ARTÍCULOS APLICABLES:                        ┃  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┃  • Art. 80 CP: Tentativa: quien con el fin      ┃  ┃
+┃   ┃    de cometer un delito comienza su ejecución   ┃  ┃
+┃   ┃    pero no lo consuma por causas                 ┃  ┃
+┃   ┃    independientes de su voluntad                 ┃  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┃  • Art. 453 CP: Hurto: quien se apodere de      ┃  ┃
+┃   ┃    cosa mueble ajena para aprovecharse de ella  ┃  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┃  📋 PRECEDENTES:                                 ┃  ┃
+┃   ┃  • TSJ-SCP-2015-0234                            ┃  ┃
+┃   ┃  • TSJ-SCP-2018-0567                            ┃  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ┃
+┃                                                           ┃
+┃   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┃
+┃   ┃            ▶  CONTINUAR AL NIVEL 2               ┃  ┃
+┃   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ┃
+┃                                                           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+PANTALLA 3: RESULTADO INCORRECTO ❌
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                     Quiz Penal                ← Volver    ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃                                                           ┃
+┃                       ▄▄▄▄▄▄                             ┃
+┃                      █  ✗  █                             ┃
+┃                       ▀▀▀▀▀▀                             ┃
+┃                   INCORRECTO                             ┃
+┃                                                           ┃
+┃           Respuesta incorrecta. Analiza los              ┃
+┃             elementos del caso.                          ┃
+┃                                                           ┃
+┃   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┃
+┃   ┃  💡  PISTA                                       ┃  ┃
+┃   ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┃  Analiza si el delito se consumó o quedó         ┃  ┃
+┃   ┃  en fase de ejecución.                           ┃  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┃  Considera el momento en que fue interrumpida    ┃  ┃
+┃   ┃  la acción.                                      ┃  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┃  🔍 Búsqueda sugerida:                           ┃  ┃
+┃   ┃  Revisa: Tentativa de Hurto en Código Penal     ┃  ┃
+┃   ┃  Venezolano                                      ┃  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ┃
+┃                                                           ┃
+┃   ⚠️ Intentos restantes: 2                               ┃
+┃                                                           ┃
+┃   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┃
+┃   ┃            🔄  INTENTAR DE NUEVO                 ┃  ┃
+┃   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ┃
+┃                                                           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+PANTALLA 4: CASO BLOQUEADO 🔒
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                     Quiz Penal                ← Volver    ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃                                                           ┃
+┃                       ▄▄▄▄▄▄                             ┃
+┃                      █  🔒 █                             ┃
+┃                       ▀▀▀▀▀▀                             ┃
+┃                 CASO BLOQUEADO                           ┃
+┃                                                           ┃
+┃         Has agotado los 3 intentos permitidos            ┃
+┃                                                           ┃
+┃   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┃
+┃   ┃  ⚠️  OPCIONES DISPONIBLES                        ┃  ┃
+┃   ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┃  1. 📜 USAR APELACIÓN (Tienes 5 disponibles)    ┃  ┃
+┃   ┃     • Desbloquea este caso inmediatamente       ┃  ┃
+┃   ┃     • Se regenera 1 cada 30 minutos             ┃  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┃  2. ⏰ ESPERAR 24 HORAS                          ┃  ┃
+┃   ┃     • El caso se desbloqueará automáticamente   ┃  ┃
+┃   ┃     • Puedes avanzar otros niveles mientras     ┃  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┃  3. 📚 ESTUDIAR EN REPOSITORIO                   ┃  ┃
+┃   ┃     • Revisa jurisprudencias relacionadas       ┃  ┃
+┃   ┃     • Busca: "Tentativa", "Hurto"               ┃  ┃
+┃   ┃                                                   ┃  ┃
+┃   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ┃
+┃                                                           ┃
+┃   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┃
+┃   ┃        📜  USAR 1 APELACIÓN (5 disponibles)      ┃  ┃
+┃   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ┃
+┃                                                           ┃
+┃   ┌─────────────────────────────────────────────────┐   ┃
+┃   │        📚  IR AL REPOSITORIO                     │   ┃
+┃   └─────────────────────────────────────────────────┘   ┃
+┃                                                           ┃
+┃   ┌─────────────────────────────────────────────────┐   ┃
+┃   │        ← VOLVER AL LOBBY                         │   ┃
+┃   └─────────────────────────────────────────────────┘   ┃
+┃                                                           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+═══════════════════════════════════════════════════════════════
+                        PALETTE DE COLORES
+═══════════════════════════════════════════════════════════════
+
+🎨 COLORES INSTITUCIONALES VENEZOLANOS:
+
+• Background principal:    #0A0E1A  (Azul marino muy oscuro)
+• Background secundario:   #1A1F2E  (Azul gris oscuro)
+• Background cards:        #0F1623  (Azul oscuro)
+• Borders:                 #2A3142  (Gris azulado)
+
+• Dorado principal:        #D4AF37  (Oro institucional)
+• Dorado brillante:        #FFD700  (Oro supremo)
+
+• Texto principal:         #FFFFFF  (Blanco)
+• Texto secundario:        #FFFFFF70 (Blanco 70%)
+• Texto terciario:         #999999  (Gris claro)
+
+• Success (correcto):      #22C55E  (Verde)
+• Error (incorrecto):      #EF4444  (Rojo)
+• Warning (bloqueado):     #F59E0B  (Naranja)
+• Info (pista):            #F97316  (Naranja oscuro)
+
+═══════════════════════════════════════════════════════════════
+                        TIPOGRAFÍA
+═══════════════════════════════════════════════════════════════
+
+• Headers grandes:     32-40px, Bold, Gold
+• Headers medianos:    20-24px, Bold, White
+• Texto normal:        14-16px, Regular, White 70%
+• Texto pequeño:       11-12px, Regular, Gray
+• Etiquetas:           11-13px, Bold, Gold/White
+
+• Font family:         System default / Roboto / SF Pro
+
+═══════════════════════════════════════════════════════════════
+                    ANIMACIONES Y EFECTOS
+═══════════════════════════════════════════════════════════════
+
+✨ Al seleccionar opción:
+   • Borde cambia a dorado (#D4AF37)
+   • Background cambia a dorado translúcido
+   • Transición suave 200ms
+
+✨ Al verificar respuesta:
+   • Fade out de opciones (300ms)
+   • Fade in de resultado (400ms)
+   • Ícono aparece con scale animation
+
+✨ Al mostrar fundamentación/pista:
+   • Slide up desde abajo (500ms)
+   • Bounce ligero al final
+   • Border glow effect
+
+✨ Botones:
+   • Hover: brightness 110%
+   • Active: scale 0.95
+   • Ripple effect en tap
+
+═══════════════════════════════════════════════════════════════
+                    ICONOGRAFÍA
+═══════════════════════════════════════════════════════════════
+
+✓  Correcto
+✗  Incorrecto
+🔒 Bloqueado
+⚖️  Fundamentación legal
+💡 Pista
+📜 Apelación
+📚 Repositorio
+🔍 Búsqueda
+🎯 Primer intento
+⏰ Esperar
+⚠️  Advertencia
+▶  Continuar
+🔄 Reintentar
+←  Volver
+
+═══════════════════════════════════════════════════════════════
+               FLUJO DE NAVEGACIÓN COMPLETO
+═══════════════════════════════════════════════════════════════
+
+    START
+      │
+      ▼
+[LOBBY FLAME]
+(Monumentos Venezolanos)
+      │
+      │ tap "INICIAR QUIZ"
+      ▼
+[QUIZ GAME SCREEN]
+(Caso Hipotético)
+      │
+      │ seleccionar opción
+      │ tap "VERIFICAR"
+      ▼
+  ¿Correcto?
+      │
+  ┌───┴───┐
+  │       │
+  ▼       ▼
+[SÍ]    [NO]
+  │       │
+  │       │ intentos < 3
+  │       ▼
+  │   [PISTA]
+  │       │
+  │       │ tap "REINTENTAR"
+  │       ▼
+  │   [QUIZ GAME]
+  │       
+  │   intentos >= 3
+  │       ▼
+  │   [BLOQUEADO]
+  │       │
+  │       ├─► usar apelación ──┐
+  │       ├─► esperar 24h       │
+  │       └─► ir a repositorio  │
+  │                              │
+  │ [FUNDAMENTACIÓN]             │
+  │       │                      │
+  │       │ tap "CONTINUAR"      │
+  │       ▼                      │
+  └──►  nivel++  ◄───────────────┘
+          │
+          │ tap "CONTINUAR"
+          ▼
+   [SIGUIENTE CASO]
+
+═══════════════════════════════════════════════════════════════
+                    RESPONSIVE BREAKPOINTS
+═══════════════════════════════════════════════════════════════
+
+📱 Mobile (Portrait):    < 600px  → 1 columna, padding 20px
+📱 Mobile (Landscape):   < 800px  → 1 columna, padding 16px
+🖥️  Tablet:              < 1024px → 1 columna, padding 24px
+🖥️  Desktop:             > 1024px → max-width 600px centrado
+
+═══════════════════════════════════════════════════════════════
+                         ACCESIBILIDAD
+═══════════════════════════════════════════════════════════════
+
+• Contraste mínimo:     4.5:1 (WCAG AA)
+• Touch targets:        48x48 px mínimo
+• Texto legible:        14px mínimo
+• Focus indicators:     Border dorado 2px
+• Screen reader:        Semantic labels en botones
+
+═══════════════════════════════════════════════════════════════
+                    FIN DE EJEMPLOS VISUALES
+       Implementa estos diseños en quiz_game_screen.dart
+═══════════════════════════════════════════════════════════════

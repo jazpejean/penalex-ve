@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #060911;
+    color: #f1f5f9;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, .font-judicial {
+    font-family: 'Cinzel', serif, system-ui;
+    letter-spacing: 0.04em;
+  }
+}
+
+/* Custom Scrollbar for Judicial Theme */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080c16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #24324f;
+  border-radius: 4px;
+  border: 1px solid #d9770640;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d97706;
+}
+
+/* Dark Courtroom Vignette & Atmospheric Shadows */
+.courtroom-vignette {
+  background: radial-gradient(circle at 50% 30%, rgba(20, 30, 55, 0.4) 0%, rgba(6, 9, 17, 0.95) 75%, #030509 100%);
+}
+
+.dramatic-spotlight {
+  background: radial-gradient(ellipse at top center, rgba(245, 158, 11, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+}
+
+/* Marble Textures with Gold Veins */
+.bg-marble-dark {
+  background-color: #0d1424;
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(217, 119, 6, 0.08) 0px, transparent 50%),
+    radial-gradient(at 90% 80%, rgba(180, 83, 9, 0.06) 0px, transparent 50%),
+    linear-gradient(135deg, #090e1a 0%, #111a2e 50%, #080d18 100%);
+}
+
+.bg-marble-column {
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 40%, #090d16 100%);
+  box-shadow: inset 0 2px 4px rgba(251, 191, 36, 0.2), inset 0 -2px 4px rgba(0, 0, 0, 0.8), 0 8px 20px rgba(0,0,0,0.6);
+}
+
+.bg-pergamino-ancient {
+  background: #fbf7ee;
+  background-image: 
+    radial-gradient(#e2d5b8 1px, transparent 0),
+    linear-gradient(180deg, #fbf7ee 0%, #f4ebd4 60%, #ebdcb8 100%);
+  background-size: 24px 24px, 100% 100%;
+}
+
+/* Velvet Burgundy Accents */
+.bg-velvet-dark {
+  background: linear-gradient(135deg, #450a0a 0%, #2b0505 50%, #150202 100%);
+  box-shadow: inset 0 0 15px rgba(239, 68, 68, 0.15);
+}
+
+/* Shimmer and Glow Animations */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes floatDust {
+  0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.3; }
+  50% { transform: translateY(-20px) translateX(10px) scale(1.15); opacity: 0.8; }
+}
+
+@keyframes pulseGold {
+  0%, 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.3), inset 0 0 10px rgba(245, 158, 11, 0.2); }
+  50% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.7), inset 0 0 20px rgba(245, 158, 11, 0.5); }
+}
+
+@keyframes fireBurn {
+  0% { filter: drop-shadow(0 0 4px #ef4444) saturate(2); transform: scale(1); opacity: 1; }
+  50% { filter: drop-shadow(0 0 15px #f97316) saturate(3); transform: scale(0.95); }
+  100% { filter: grayscale(100%) brightness(0.4); transform: scale(0.9); opacity: 0.4; }
+}
+
+@keyframes scrollUnfurl {
+  0% { transform: scaleX(0.2) scaleY(0.8); opacity: 0; }
+  60% { transform: scaleX(1.08) scaleY(1.02); opacity: 1; }
+  100% { transform: scaleX(1) scaleY(1); opacity: 1; }
+}
+
+@keyframes crackFlash {
+  0% { transform: scale(1); }
+  20% { transform: scale(0.96) translateX(-4px); }
+  40% { transform: scale(0.98) translateX(4px); }
+  60% { transform: scale(0.96) translateX(-2px); }
+  100% { transform: scale(1); }
+}
+
+.anim-fire-burn {
+  animation: fireBurn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.anim-scroll-unfurl {
+  animation: scrollUnfurl 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.anim-crack-shake {
+  animation: crackFlash 0.5s ease-in-out;
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg, #d97706 0%, #fde68a 35%, #fbbf24 50%, #fde68a 65%, #d97706 100%);
+  background-size: 200% auto;
+  animation: shimmer 3.5s linear infinite;
+}
+
+.gold-glow {
+  box-shadow: 0 0 25px -4px rgba(245, 158, 11, 0.5);
+}
+
+.gold-pulse-effect {
+  animation: pulseGold 2.5s infinite ease-in-out;
+}
+
+.pergamino-shadow {
+  box-shadow: inset 0 0 30px rgba(180, 83, 9, 0.25), 0 12px 35px rgba(0, 0, 0, 0.7);
+}
+
+/* Isometric 3D Transforms */
+.perspective-judicial {
+  perspective: 1200px;
+}
+
+.isometric-staircase {
+  transform: rotateX(55deg) rotateZ(-35deg);
+  transform-style: preserve-3d;
+}
+

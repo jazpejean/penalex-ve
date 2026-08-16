@@ -1,22 +1,24 @@
 class UserProgress {
 
   UserProgress({
-    required this.vidas,
+    required this.apelaciones,
     required this.ultimaRegeneracion,
   });
 
   // ✅ Para leer desde Firestore
   factory UserProgress.fromMap(Map<String, dynamic> map) => UserProgress(
-      vidas: (map['vidas'] as num?)?.toInt() ?? 5,
+      apelaciones: (map['apelaciones'] as num?)?.toInt() ?? 
+                   (map['vidas'] as num?)?.toInt() ?? 5, // Fallback para compatibilidad
       ultimaRegeneracion: DateTime.tryParse(
           (map['ultimaRegeneracion'] as String?) ?? '',) ?? DateTime.now(),
     );
-  final int vidas;
+  final int apelaciones;
   final DateTime ultimaRegeneracion;
 
   // ✅ Para guardar en Firestore
   Map<String, dynamic> toMap() => <String, dynamic>{
-      "vidas": vidas,
+      "apelaciones": apelaciones,
+      "vidas": apelaciones, // Mantener compatibilidad con versión anterior
       "ultimaRegeneracion": ultimaRegeneracion.toIso8601String(),
     };
 }

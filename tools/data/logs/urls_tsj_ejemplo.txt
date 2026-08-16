@@ -1,0 +1,19 @@
+# URLs de ejemplo del TSJ Venezuela
+# Formato: http://historico.tsj.gob.ve/decisiones/[sala]/[mes]/[archivo].HTM
+# Sala Casación Penal (scp)
+
+http://historico.tsj.gob.ve/decisiones/scp/marzo/128-200302-020028.HTM
+http://historico.tsj.gob.ve/decisiones/scp/enero/001-010123-01-0001.HTM
+http://historico.tsj.gob.ve/decisiones/scp/febrero/002-020223-02-0002.HTM
+http://historico.tsj.gob.ve/decisiones/scp/marzo/003-030323-03-0003.HTM
+http://historico.tsj.gob.ve/decisiones/scp/abril/004-040423-04-0004.HTM
+http://historico.tsj.gob.ve/decisiones/scp/mayo/005-050523-05-0005.HTM
+
+# Más patrones comunes
+http://historico.tsj.gob.ve/decisiones/scp/junio/001.HTM
+http://historico.tsj.gob.ve/decisiones/scp/julio/002.HTM
+http://historico.tsj.gob.ve/decisiones/scp/agosto/003.HTM
+
+# Sala Constitucional (scon)
+http://historico.tsj.gob.ve/decisiones/scon/enero/001-010123-01-0001.HTM
+http://historico.tsj.gob.ve/decisiones/scon/febrero/002-020223-02-0002.HTM

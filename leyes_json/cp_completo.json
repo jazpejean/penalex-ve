@@ -1,0 +1,277 @@
+{
+  "documento": "Código Penal de Venezuela",
+  "fecha_scraping": "2026-08-14",
+  "total_articulos": 0,
+  "estructura_jerarquica": {
+    "LIBRO_I": {
+      "nombre": "Disposiciones Generales sobre los Delitos y las Faltas",
+      "titulos": [
+        {
+          "numero": "I",
+          "nombre": "De la Aplicación de la Ley Penal",
+          "articulos": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "numero": "II",
+          "nombre": "De las Penas",
+          "articulos": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27
+          ]
+        },
+        {
+          "numero": "III",
+          "nombre": "De la Aplicación de las Penas",
+          "articulos": [
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47
+          ]
+        },
+        {
+          "numero": "IV",
+          "nombre": "De la Conservación y Conmutación de Penas",
+          "articulos": [
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ]
+        },
+        {
+          "numero": "V",
+          "nombre": "De la Responsabilidad Penal y de las Circunstancias que la Excluyen, Atenúan o Agravan",
+          "articulos": [
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79
+          ]
+        },
+        {
+          "numero": "VI",
+          "nombre": "De la Tentativa y del Delito Frustrado",
+          "articulos": [
+            80,
+            81,
+            82
+          ]
+        },
+        {
+          "numero": "VII",
+          "nombre": "De la Concurrencia de Varias Personas en un Mismo Hecho Punible",
+          "articulos": [
+            83,
+            84,
+            85
+          ]
+        },
+        {
+          "numero": "VIII",
+          "nombre": "De la Concurrencia de Hechos Punibles y de las Penas Aplicables",
+          "articulos": [
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99
+          ]
+        },
+        {
+          "numero": "IX",
+          "nombre": "De la Reincidencia",
+          "articulos": [
+            100,
+            101,
+            102
+          ]
+        },
+        {
+          "numero": "X",
+          "nombre": "De la Extinción de la Acción Penal y de la Pena",
+          "articulos": [
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112
+          ]
+        },
+        {
+          "numero": "XI",
+          "nombre": "De la Responsabilidad Civil, su Extensión y Efectos",
+          "articulos": [
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125,
+            126,
+            127
+          ]
+        }
+      ]
+    },
+    "LIBRO_II": {
+      "nombre": "De las Diversas Especies de Delito",
+      "titulos": [
+        {
+          "numero": "I",
+          "nombre": "De los Delitos Contra la Independencia y la Seguridad de la Nación",
+          "articulos": []
+        },
+        {
+          "numero": "II",
+          "nombre": "Delitos Contra la Libertad",
+          "articulos": []
+        },
+        {
+          "numero": "III",
+          "nombre": "De los Delitos contra la Cosa Pública",
+          "articulos": []
+        },
+        {
+          "numero": "IV",
+          "nombre": "De los Delitos contra la Administración de Justicia",
+          "articulos": []
+        },
+        {
+          "numero": "V",
+          "nombre": "De los Delitos contra el Orden Público",
+          "articulos": []
+        },
+        {
+          "numero": "VI",
+          "nombre": "De los Delitos contra la Fe Pública",
+          "articulos": []
+        },
+        {
+          "numero": "VII",
+          "nombre": "De los Delitos contra la Conservación de los Intereses Públicos y Privados",
+          "articulos": []
+        },
+        {
+          "numero": "VIII",
+          "nombre": "De los Delitos contra las Buenas Costumbres y Buen Orden de las Familias",
+          "articulos": []
+        },
+        {
+          "numero": "IX",
+          "nombre": "De los Delitos contra las Personas",
+          "articulos": []
+        },
+        {
+          "numero": "X",
+          "nombre": "De los Delitos contra la Propiedad",
+          "articulos": []
+        }
+      ]
+    },
+    "LIBRO_III": {
+      "nombre": "De las Faltas en General",
+      "titulos": [
+        {
+          "numero": "I",
+          "nombre": "De las Faltas contra el Orden Público",
+          "articulos": []
+        },
+        {
+          "numero": "II",
+          "nombre": "De las Faltas Relativas a la Seguridad Pública",
+          "articulos": []
+        },
+        {
+          "numero": "III",
+          "nombre": "De las Faltas Concernientes a la Moralidad Pública",
+          "articulos": []
+        },
+        {
+          "numero": "IV",
+          "nombre": "De las Faltas Relativas a la Protección Pública de la Propiedad",
+          "articulos": []
+        }
+      ]
+    }
+  },
+  "articulos": []
+}

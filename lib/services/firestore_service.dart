@@ -50,6 +50,7 @@ class FirestoreService {
   // ==================== QUIZ QUESTIONS ====================
   static Future<Question?> loadQuestionByLevel(int level) async {
     if (level <= 1600) {
+      // Primero intentar buscar por documento directo nivel_X
       final DocumentSnapshot<Map<String, dynamic>> doc = await _db.collection('preguntas').doc('nivel_$level').get();
       if (doc.exists) {
         final Map<String, dynamic>? data = doc.data();
@@ -57,6 +58,19 @@ class FirestoreService {
           return Question.fromDocument(data, doc.id);
         }
       }
+      
+      // Si no existe, buscar por campo nivel (formato nivel_X_pregunta_Y)
+      final QuerySnapshot<Map<String, dynamic>> querySnapshot = await _db
+          .collection('preguntas')
+          .where('nivel', isEqualTo: level)
+          .limit(1)
+          .get();
+      
+      if (querySnapshot.docs.isNotEmpty) {
+        final Map<String, dynamic> data = querySnapshot.docs.first.data();
+        return Question.fromDocument(data, querySnapshot.docs.first.id);
+      }
+      
       return null;
     } else {
       final Random random = Random();

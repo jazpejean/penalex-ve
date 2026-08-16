@@ -145,12 +145,24 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       const SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.pushNamed(context, '/reset-password');
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           foregroundColor: azulMarino,
                           side: const BorderSide(color: dorado),
+                          minimumSize: const Size(double.infinity, 52),
+                        ),
+                        child: const Text("TENGO EL ENLACE / CÓDIGO"),
+                      ),
+                      const SizedBox(height: 12),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: azulMarino,
+                          foregroundColor: dorado,
                           minimumSize: const Size(double.infinity, 52),
                         ),
                         child: const Text("YA CAMBIÉ MI CONTRASEÑA"),
@@ -159,6 +171,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   ],
                 ),
               const SizedBox(height: 12),
+              TextButton(
+                onPressed: () =>
+                    Navigator.pushNamed(context, '/reset-password'),
+                child: const Text("Ya tengo el código de restablecimiento",
+                    style: TextStyle(color: dorado)),
+              ),
               TextButton(
                 onPressed: () => Navigator.pop(context),
                 child: const Text("Volver al login", style: TextStyle(color: azulMarino)),

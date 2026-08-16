@@ -2,26 +2,35 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final firebase_auth.FirebaseAuth _auth = firebase_auth.FirebaseAuth.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final SupabaseClient _supabase = Supabase.instance.client;
   final DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  Stream<User?> get authStateChanges => _auth.authStateChanges();
-  User? get currentUser => _auth.currentUser;
+  Stream<firebase_auth.User?> get authStateChanges => _auth.authStateChanges();
+  firebase_auth.User? get currentUser => _auth.currentUser;
 
   Future<String?> _getDeviceId() async {
     try {
+      // Soporte para web
+      if (kIsWeb) {
+        final webInfo = await _deviceInfo.webBrowserInfo;
+        // Usar una combinación de propiedades del navegador como ID
+        return '${webInfo.vendor}_${webInfo.userAgent}_${webInfo.browserName}'.hashCode.toString();
+      }
+      
       if (Platform.isAndroid) {
-        final AndroidDeviceInfo build = await _deviceInfo.androidInfo;
+        final build = await _deviceInfo.androidInfo;
         return build.id;
       } else if (Platform.isIOS) {
-        final IosDeviceInfo data = await _deviceInfo.iosInfo;
+        final data = await _deviceInfo.iosInfo;
         return data.identifierForVendor;
       }
     } on Exception catch (e) {
@@ -30,88 +39,114 @@ class AuthService {
     return null;
   }
 
-  Future<void> _ensureUserDocument(User user) async {
-    await _db.collection('users').doc(user.uid).set(<String, dynamic>{
-      'email': user.email,
-      'displayName': user.displayName,
-      'photoUrl': user.photoURL,
-      'nivel_actual': 1,
-      'xp_total': 0,
-      'lastLogin': FieldValue.serverTimestamp(),
-    }, SetOptions(merge: true));
-  }
-
   Future<void> registerCurrentDevice() async {
-    final User? user = _auth.currentUser;
-    final String? deviceId = await _getDeviceId();
-    if (user != null) {
-      if (deviceId != null) {
-        await _db.collection('users').doc(user.uid).set(<String, dynamic>{
-          'lastDeviceId': deviceId,
-          'lastLogin': FieldValue.serverTimestamp(),
-        }, SetOptions(merge: true));
-      }
-      await _ensureUserDocument(user);
+    final user = _auth.currentUser;
+    final deviceId = await _getDeviceId();
+    if (user != null && deviceId != null) {
+      await _db.collection('users').doc(user.uid).set({
+        'lastDeviceId': deviceId,
+        'lastLogin': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
     }
   }
 
   Future<bool> validateCurrentSession() async {
-    final User? user = _auth.currentUser;
-    final String? deviceId = await _getDeviceId();
-    if (user == null) return false;
+    final user = _auth.currentUser;
+    final deviceId = await _getDeviceId();
+    if (user == null || deviceId == null) return false;
 
-    // Si no se puede obtener el ID, permitimos acceso (web o error)
-    if (deviceId == null) return true;
-
-    final DocumentSnapshot<Map<String, dynamic>> doc =
-        await _db.collection('users').doc(user.uid).get();
+    final doc = await _db.collection('users').doc(user.uid).get();
     if (!doc.exists) return true;
 
     final savedId = doc.data()?['lastDeviceId'];
     return savedId == deviceId;
   }
 
-  Future<UserCredential> signInAnonymously() async {
-    final UserCredential cred = await _auth.signInAnonymously();
-    await registerCurrentDevice();
-    return cred;
-  }
-
-  Future<UserCredential> signInWithEmailAndPassword(
-      String email, String password) async {
-    final UserCredential cred = await _auth.signInWithEmailAndPassword(
-        email: email, password: password);
-    await registerCurrentDevice();
-    return cred;
-  }
-
-  Future<UserCredential?> signInWithGoogle() async {
+  /// Sincronizar usuario de Firebase a Supabase (crear o actualizar)
+  Future<void> _syncUserToSupabase(firebase_auth.User? user) async {
+    if (user == null) return;
+    
     try {
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      if (googleUser == null) return null;
-
-      final googleAuth = await googleUser.authentication;
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        idToken: googleAuth.idToken,
-      );
-      final UserCredential cred = await _auth.signInWithCredential(credential);
-      await registerCurrentDevice();
-      return cred;
-    } on FirebaseAuthException {
-      rethrow;
-    } on Exception catch (e) {
-      debugPrint('Error during Google Sign-In: $e');
-      rethrow;
+      // Verificar si el usuario ya existe en Supabase
+      final existing = await _supabase
+          .from('user_profiles')
+          .select('id')
+          .eq('id', user.uid)
+          .maybeSingle();
+      
+      if (existing == null) {
+        // No existe, crear nuevo perfil con el UID de Firebase
+        await _supabase.from('user_profiles').insert({
+          'id': user.uid, // ⭐ MISMO UID de Firebase
+          'name': user.displayName ?? 'Usuario',
+          'email': user.email ?? '',
+          'role': 'user',
+          'email_verified': user.emailVerified,
+          'created_at': DateTime.now().toIso8601String(),
+        });
+        debugPrint('✅ Usuario creado en Supabase con UID: ${user.uid}');
+      } else {
+        // Ya existe, actualizar datos
+        await _supabase.from('user_profiles').update({
+          'name': user.displayName ?? 'Usuario',
+          'email_verified': user.emailVerified,
+          'last_login': DateTime.now().toIso8601String(),
+        }).eq('id', user.uid);
+        debugPrint('✅ Usuario actualizado en Supabase: ${user.uid}');
+      }
+    } catch (e) {
+      debugPrint('⚠️ Error sincronizando con Supabase: $e');
+      // No lanzar error, el usuario ya está en Firebase
     }
   }
 
-  Future<UserCredential> registerWithEmailAndPassword(
+  Future<firebase_auth.UserCredential> signInWithEmailAndPassword(
+      String email, String password) async {
+    final cred = await _auth.signInWithEmailAndPassword(
+        email: email, password: password);
+    await registerCurrentDevice();
+    await _syncUserToSupabase(cred.user); // Sincronizar en cada login
+    return cred;
+  }
+
+  Future<firebase_auth.UserCredential?> signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+    if (googleUser == null) return null;
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+
+    final firebase_auth.AuthCredential credential = firebase_auth.GoogleAuthProvider.credential(
+      idToken: googleAuth.idToken,
+      accessToken: googleAuth.accessToken,
+    );
+    final cred = await _auth.signInWithCredential(credential);
+    await registerCurrentDevice();
+    await _syncUserToSupabase(cred.user); // Sincronizar en cada login con Google
+    return cred;
+  }
+
+  Future<firebase_auth.UserCredential> registerWithEmailAndPassword(
       String email, String password, String name) async {
-    final UserCredential res = await _auth.createUserWithEmailAndPassword(
+    final firebase_auth.UserCredential res = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
     await res.user?.updateDisplayName(name);
+    
+    // Guardar en Firebase Firestore
+    if (res.user != null) {
+      await _db.collection('users').doc(res.user!.uid).set({
+        'name': name,
+        'email': email,
+        'role': 'user',
+        'createdAt': FieldValue.serverTimestamp(),
+        'emailVerified': false,
+      });
+      
+      // TAMBIÉN guardar en Supabase con el MISMO UID de Firebase
+      await _syncUserToSupabase(res.user);
+    }
+    
     await res.user?.reload();
-    final User? user = _auth.currentUser;
+    final user = _auth.currentUser;
     if (user != null && !user.emailVerified) {
       await user.sendEmailVerification();
     }
@@ -131,7 +166,7 @@ class AuthService {
   }
 
   Future<bool> refreshUser() async {
-    final User? user = _auth.currentUser;
+    final user = _auth.currentUser;
     if (user != null) {
       await user.reload();
       return _auth.currentUser!.emailVerified;
@@ -146,5 +181,12 @@ class AuthService {
 
   Future<void> logout() async {
     await signOut();
+  }
+
+  Future<firebase_auth.UserCredential> signInAnonymously() async {
+    final firebase_auth.UserCredential cred = await _auth.signInAnonymously();
+    await registerCurrentDevice();
+    await _syncUserToSupabase(cred.user);
+    return cred;
   }
 }

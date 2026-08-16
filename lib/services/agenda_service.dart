@@ -68,10 +68,9 @@ class AgendaService {
     if (userId == null) return false;
 
     try {
+      // Usar solo 'userId' según las reglas de Firestore
       await _firestore.collection('audiencias').add(<String, dynamic>{
-        'usuarioId': userId,
         'userId': userId,
-        'user_id': userId,
         'expediente': audiencia.expediente,
         'tribunal': audiencia.tribunal,
         'imputado': audiencia.imputado,
@@ -100,7 +99,8 @@ class AgendaService {
 
     try {
       final DocumentSnapshot<Map<String, dynamic>> doc = await _firestore.collection('audiencias').doc(documentId).get();
-      if (doc.exists && doc.data()?['usuarioId'] == userId) {
+      // Verificar userId según las reglas de Firestore
+      if (doc.exists && doc.data()?['userId'] == userId) {
         await doc.reference.delete();
         return true;
       }

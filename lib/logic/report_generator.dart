@@ -1,7 +1,10 @@
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+
 import '../models/delito.dart';
 import '../utils/pena_utils.dart';
-
-// ignore_for_file: avoid_classes_with_only_static_members, cascade_invocations, lines_longer_than_80_chars
+import 'dosimetria_engine.dart';
 
 class ComputoData {
   ComputoData({
@@ -20,10 +23,16 @@ class ComputoData {
 }
 
 class ReportGenerator {
+  // Paleta Institucional
+  static final PdfColor navyBlue = PdfColor.fromHex('#0F172A');
+  static final PdfColor goldAccent = PdfColor.fromHex('#C5A059');
+  static final PdfColor lightGray = PdfColor.fromHex('#F2F2F2');
+  static final PdfColor footerGray = PdfColor.fromHex('#F9F9F9');
+
   static String _getNombreConcurso(TipoConcurso c) {
     switch (c) {
       case TipoConcurso.real:
-        return 'REAL (Art. 88 CP)';
+        return 'REAL (Arts. 86-87 CP)';
       case TipoConcurso.ideal:
         return 'IDEAL (Art. 98 CP)';
     }
@@ -31,24 +40,12 @@ class ReportGenerator {
 
   static String _fraccionTexto(double valor) {
     const double epsilon = 0.001;
-    if ((valor - 1 / 6).abs() < epsilon) {
-      return '1/6';
-    }
-    if ((valor - 1 / 4).abs() < epsilon) {
-      return '1/4';
-    }
-    if ((valor - 1 / 3).abs() < epsilon) {
-      return '1/3';
-    }
-    if ((valor - 0.5).abs() < epsilon) {
-      return '1/2';
-    }
-    if ((valor - 2 / 3).abs() < epsilon) {
-      return '2/3';
-    }
-    if ((valor - 0.75).abs() < epsilon) {
-      return '3/4';
-    }
+    if ((valor - 1 / 6).abs() < epsilon) return '1/6';
+    if ((valor - 1 / 4).abs() < epsilon) return '1/4';
+    if ((valor - 1 / 3).abs() < epsilon) return '1/3';
+    if ((valor - 0.5).abs() < epsilon) return '1/2';
+    if ((valor - 2 / 3).abs() < epsilon) return '2/3';
+    if ((valor - 0.75).abs() < epsilon) return '3/4';
     return valor.toStringAsFixed(2);
   }
 
@@ -58,7 +55,67 @@ class ReportGenerator {
     return '$dia/$mes/${fecha.year}';
   }
 
-  static String generarReporteCompleto({
+  /// Cargar logo desde assets
+  static Future<pw.MemoryImage?> _cargarLogo() async {
+    try {
+      final imageBytes = await rootBundle.load('assets/images/logo.png');
+      final imageData = imageBytes.buffer.asUint8List();
+      return pw.MemoryImage(imageData);
+    } catch (e) {
+      // Si falla, retornar null y usar el logo dibujado como fallback
+      return null;
+    }
+  }
+
+  /// Logo de mazo - Dibujado con formas básicas para garantizar renderizado
+  static pw.Widget _buildLogoGavel({double size = 50}) {
+    return pw.Container(
+      width: size,
+      height: size,
+      decoration: pw.BoxDecoration(
+        color: navyBlue,
+        shape: pw.BoxShape.circle,
+      ),
+      child: pw.Center(
+        child: pw.Container(
+          width: size * 0.55,
+          height: size * 0.55,
+          child: pw.Stack(
+            children: [
+              // Mango del mazo (horizontal)
+              pw.Positioned(
+                left: size * 0.05,
+                top: size * 0.24,
+                child: pw.Container(
+                  width: size * 0.35,
+                  height: size * 0.08,
+                  decoration: pw.BoxDecoration(
+                    color: goldAccent,
+                    borderRadius: pw.BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+              // Cabeza del mazo (cuadrado)
+              pw.Positioned(
+                right: size * 0.05,
+                top: size * 0.15,
+                child: pw.Container(
+                  width: size * 0.18,
+                  height: size * 0.25,
+                  decoration: pw.BoxDecoration(
+                    color: goldAccent,
+                    borderRadius: pw.BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  static Future<pw.Document> generarReportePDF({
     required List<Delito> delitos,
     required TipoConcurso concurso,
     required bool admisionHechos,
@@ -66,236 +123,474 @@ class ReportGenerator {
     ComputoData? computo,
     String expediente = 'S/N',
     String acusado = 'No especificado',
-  }) {
-    final StringBuffer buffer = StringBuffer();
+    String articuloConcurso = '', // Artículo aplicado desde ConcursoPage
+  }) async {
+    final pdf = pw.Document();
     final DateTime fecha = DateTime.now();
-
-    // ENCABEZADO
-    buffer.write('# INFORME TÉCNICO DE DOSIMETRÍA JURÍDICA\n\n');
-    buffer.write('| | |\n');
-    buffer.write('|---|---|\n');
-    buffer.write('| **[LOGO PENALEX VE]** | **N° de Expediente:** ');
-    buffer.write('$expediente |\n');
-    buffer.write('| **Fecha:** ${fecha.day}/${fecha.month}/${fecha.year} |\n');
-    buffer.write('| **Acusado:** $acusado |\n\n');
-    buffer.write('---\n\n');
-
-    // 1. DELITOS Y MARCOS PENALES
-    buffer.write('## 1. DELITOS PROCESADOS\n\n');
-    buffer.write('| # | Delito | Pena mínima | Pena máxima |\n');
-    buffer.write('|   |        | Término medio (Art. 37 CP) |\n');
-    buffer.write('|---|--------|-------------|-------------|\n');
     
-    for (int i = 0; i < delitos.length; i++) {
-      final Delito d = delitos[i];
-      final String termino = PenaUtils.formatPena(d.terminoMedio);
-      final String nombreDelito = d.nombre.isEmpty 
-          ? 'SIN ESPECIFICAR' 
-          : d.nombre;
-      buffer.write('| ${i + 1} | $nombreDelito | ');
-      buffer.write('${PenaUtils.formatPena(d.penaMin)} |\n');
-      buffer.write('|   | | ${PenaUtils.formatPena(d.penaMax)} |\n');
-      buffer.write('|   | | $termino |\n');
-    }
-    buffer.write('\n');
-
-    // 2. DESGLOSE POR DELITO
-    buffer.write('## 2. DESGLOSE INDIVIDUAL DE LA PENA\n\n');
-
-    for (int i = 0; i < delitos.length; i++) {
-      final Delito d = delitos[i];
-      final String tituloDelito = d.nombre.isEmpty 
-          ? 'DELITO SIN ESPECIFICAR' 
-          : d.nombre.toUpperCase();
-      
-      buffer.write('### ${i + 1}. $tituloDelito\n\n');
-      buffer.write('**Marco penal:** ');
-      buffer.write('${PenaUtils.formatPena(d.penaMin)} – ');
-      buffer.write('${PenaUtils.formatPena(d.penaMax)}\n\n');
-      buffer.write('**Cálculo del término medio (Art. 37 CP):**\n');
-      buffer.write('```\n');
-      buffer.write('Término medio = (Pena máxima - Pena mínima) / 2 + Pena mínima\n');
-      buffer.write('              = (${d.penaMax} - ${d.penaMin}) / 2 + ${d.penaMin}\n');
-      buffer.write('              = ${d.terminoMedio} años\n');
-      buffer.write('              → ${PenaUtils.formatPena(d.terminoMedio)}\n');
-      buffer.write('```\n\n');
-      buffer.write('**Modificadores aplicados:**\n\n');
-      buffer.write('| Concepto | Fundamento legal |\n');
-      buffer.write('| Fracción / Valor | Efecto |\n');
-      buffer.write('|----------|------------------|\n');
-
-      // Ajustes adicionales
-      for (final AjusteAdicional ajuste in d.ajustesAdicionales) {
-        final String fraccion = _fraccionTexto(ajuste.fraccion);
-        final String efecto = ajuste.esAgravante 
-            ? 'Aumento (+)' 
-            : 'Reducción (-)';
-        buffer.write('| Ajuste adicional | ${ajuste.nombre} |\n');
-        buffer.write('| $fraccion | $efecto |\n');
-      }
-
-      // Grado de ejecución
-      if (d.gradoEjecucion != GradoEjecucion.consumado) {
-        final String fundamento = d.gradoEjecucion == GradoEjecucion.frustrado
-            ? 'Art. 80 CP (Frustrado)'
-            : 'Art. 82 CP (Tentativa)';
-        final String fraccion = d.gradoEjecucion == GradoEjecucion.frustrado
-            ? '1/3'
-            : _fraccionTexto(d.fraccionEjecucion);
-        buffer.write('| Grado de ejecución | $fundamento |\n');
-        buffer.write('| $fraccion | Reducción (-) |\n');
-      }
-
-      // Participación
-      if (d.participacionEspecifica == 'Cómplice No Necesario') {
-        buffer.write('| Participación | Art. 84 CP (Cómplice no necesario) |\n');
-        buffer.write('| 1/2 | Reducción (-) |\n');
-      }
-
-      // Delito continuado
-      if (d.delitoContinuado) {
-        buffer.write('| Delito continuado | Art. 99 CP |\n');
-        buffer.write('| ${_fraccionTexto(d.fraccionContinuidad)} | Aumento (+) |\n');
-      }
-
-      // Modificador manual
-      if (d.modificadorManual != 0) {
-        final double valorAbs = d.modificadorManual.abs();
-        final String unidad = d.modificadorUnidad;
-        final String articulo = d.modificadorManual > 0 
-            ? 'Art. 77 CP (Agravante)' 
-            : 'Art. 74 CP (Atenuante)';
-        final String valorTexto = '$valorAbs $unidad';
-        final String efecto = d.modificadorManual > 0 
-            ? 'Aumento (+)' 
-            : 'Reducción (-)';
-        buffer.write('| Modificador genérico | $articulo |\n');
-        buffer.write('| $valorTexto | $efecto |\n');
-      }
-
-      buffer.write('\n');
-
-      // Pena individualizada final
-      final double penaInd = d.calcularPenaIndividualizada();
-      buffer.write('**▶ PENA INDIVIDUALIZADA:** ');
-      buffer.write('${PenaUtils.formatPena(penaInd)}\n\n');
-      buffer.write('---\n\n');
+    // Cargar logo
+    final logo = await _cargarLogo();
+    
+    // Determinar la fracción de concurso según el artículo
+    double fraccionConcurso = 0.5; // Por defecto mitad
+    
+    if (articuloConcurso.contains('Art. 86')) {
+      // Solo presidios -> mitad
+      fraccionConcurso = 0.5;
+    } else if (articuloConcurso.contains('Art. 87')) {
+      // Presidio + Prisión (con conversión) -> mitad
+      fraccionConcurso = 0.5;
+    } else if (articuloConcurso.contains('Art. 88')) {
+      // Solo prisiones -> mitad
+      fraccionConcurso = 0.5;
     }
 
-    // 3. CONCURSO DE DELITOS
-    buffer.write('## 3. CONCURSO DE DELITOS\n\n');
-    
+    // Calcular penas individualizadas
     final List<double> penas = delitos
-        .map((Delito d) => d.calcularPenaIndividualizada())
+        .map((d) => d.calcularPenaIndividualizada())
         .toList();
-    penas.sort((double a, double b) => b.compareTo(a));
+    penas.sort((a, b) => b.compareTo(a));
     
-    double penaConcurso = penas[0];
+    // Usar el motor de dosimetría para calcular correctamente
+    final double penaConcurso = DosimetriaEngine.calcularConcurso(
+      delitos: delitos,
+      concurso: concurso,
+      admisionHechos: admisionHechos,
+      fraccionAdmision: fraccionAdmision,
+    );
 
-    buffer.write('**Tipo de concurso:** ${_getNombreConcurso(concurso)}\n\n');
-    
-    if (concurso == TipoConcurso.real && delitos.length > 1) {
-      buffer.write('**Cálculo según Art. 88 CP (Concurso real):**\n');
-      buffer.write('```\n');
-      buffer.write('Pena base (delito más grave):\n');
-      buffer.write('${PenaUtils.formatPena(penas[0])}\n');
-      
-      for (int i = 1; i < penas.length; i++) {
-        final double inc = penas[i] * 0.5;
-        buffer.write('+ 1/2 de ${PenaUtils.formatPena(penas[i])} =\n');
-        buffer.write('${PenaUtils.formatPena(inc)}\n');
-        penaConcurso += inc;
-      }
-      
-      buffer.write('────────────────────────────────\n');
-      buffer.write('= SUBTOTAL: ${PenaUtils.formatPena(penaConcurso)}\n');
-      buffer.write('```\n');
-    } else if (concurso == TipoConcurso.ideal) {
-      buffer.write('**Según Art. 98 CP (Concurso ideal):**\n');
-      buffer.write('se aplica la pena más grave.\n');
-      buffer.write('```\n');
-      buffer.write('Pena aplicada: ${PenaUtils.formatPena(penas[0])}\n');
-      buffer.write('```\n');
-      penaConcurso = penas[0];
-    } else {
-      buffer.write('No aplica concurso (único delito).\n');
-    }
-    
-    buffer.write('\n');
+    pdf.addPage(
+      pw.MultiPage(
+        margin: const pw.EdgeInsets.all(30),
+        build: (context) => [
+          // HEADER
+          pw.Row(
+            mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+            children: [
+              // Logo + Nombre
+              pw.Row(
+                children: [
+                  // Usar logo real si está disponible, sino usar el dibujado
+                  logo != null
+                      ? pw.Container(
+                          width: 50,
+                          height: 50,
+                          decoration: pw.BoxDecoration(
+                            borderRadius: pw.BorderRadius.circular(8),
+                          ),
+                          child: pw.Image(logo, fit: pw.BoxFit.contain),
+                        )
+                      : _buildLogoGavel(size: 50),
+                  pw.SizedBox(width: 12),
+                  pw.Column(
+                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                    children: [
+                      pw.Text(
+                        'PENALEX VE',
+                        style: pw.TextStyle(
+                          color: navyBlue,
+                          fontSize: 24,
+                          fontWeight: pw.FontWeight.bold,
+                          letterSpacing: 2.5,
+                        ),
+                      ),
+                      pw.SizedBox(height: 2),
+                      pw.Container(
+                        width: 140,
+                        height: 2,
+                        color: goldAccent,
+                      ),
+                      pw.SizedBox(height: 2),
+                      pw.Text(
+                        'DOSIMETRÍA PENAL',
+                        style: pw.TextStyle(
+                          color: goldAccent,
+                          fontSize: 8,
+                          letterSpacing: 3,
+                          fontWeight: pw.FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              pw.Column(
+                crossAxisAlignment: pw.CrossAxisAlignment.end,
+                children: [
+                  pw.Text('N° Expediente: $expediente',
+                      style: pw.TextStyle(
+                          fontSize: 10, fontWeight: pw.FontWeight.bold)),
+                  pw.Text('Fecha: ${fecha.day}/${fecha.month}/${fecha.year}',
+                      style: const pw.TextStyle(fontSize: 9)),
+                  pw.Text('Acusado: $acusado',
+                      style: const pw.TextStyle(fontSize: 9)),
+                ],
+              ),
+            ],
+          ),
+          pw.Divider(color: navyBlue, thickness: 2),
+          pw.SizedBox(height: 10),
 
-    // Límite constitucional de 30 años
-    if (penaConcurso > 30) {
-      buffer.write('**Límite máximo (Art. 44 CRBV y Art. 94 CP):** 30 años\n');
-      buffer.write('```\n');
-      buffer.write('Pena ajustada: ${PenaUtils.formatPena(30)}\n');
-      buffer.write('```\n');
-      penaConcurso = 30;
-      buffer.write('\n');
-    }
+          // TÍTULO
+          pw.Container(
+            padding: const pw.EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+            decoration: pw.BoxDecoration(
+              border: pw.Border(
+                top: pw.BorderSide(color: goldAccent, width: 2),
+                bottom: pw.BorderSide(color: goldAccent, width: 2),
+              ),
+            ),
+            child: pw.Center(
+              child: pw.Text(
+                'INFORME TÉCNICO DE DOSIMETRÍA JURÍDICA',
+                style: pw.TextStyle(
+                    color: navyBlue,
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.bold,
+                    letterSpacing: 1.5),
+              ),
+            ),
+          ),
+          pw.SizedBox(height: 20),
 
-    // 4. ADMISIÓN DE HECHOS
-    if (admisionHechos) {
-      buffer.write('## 4. ADMISIÓN DE HECHOS (Art. 375 COPP)\n\n');
-      
-      final double descuento = penaConcurso * fraccionAdmision;
-      final double penaFinal = penaConcurso - descuento;
-      
-      buffer.write('| Concepto | Valor |\n');
-      buffer.write('|----------|-------|\n');
-      buffer.write('| Pena base | ${PenaUtils.formatPena(penaConcurso)} |\n');
-      buffer.write('| Rebaja aplicada | ${_fraccionTexto(fraccionAdmision)} =\n');
-      buffer.write('${PenaUtils.formatPena(descuento)} |\n');
-      buffer.write('| **Pena con admisión** | **${PenaUtils.formatPena(penaFinal)}** |\n\n');
-      
-      penaConcurso = penaFinal;
-    }
+          // 1. DELITOS PROCESADOS
+          pw.Text('1. DELITOS PROCESADOS',
+              style: pw.TextStyle(
+                  fontWeight: pw.FontWeight.bold,
+                  color: navyBlue,
+                  fontSize: 12)),
+          pw.SizedBox(height: 10),
+          pw.TableHelper.fromTextArray(
+            headerDecoration: pw.BoxDecoration(color: navyBlue),
+            headerStyle: pw.TextStyle(
+                color: PdfColors.white, fontWeight: pw.FontWeight.bold),
+            headers: ['#', 'Delito', 'Pena mín', 'Pena máx', 'Término medio'],
+            data: delitos.asMap().entries.map((entry) {
+              final i = entry.key + 1;
+              final d = entry.value;
+              return [
+                i.toString(),
+                d.nombre.isEmpty ? 'SIN ESPECIFICAR' : d.nombre,
+                PenaUtils.formatPena(d.penaMin),
+                PenaUtils.formatPena(d.penaMax),
+                PenaUtils.formatPena(d.terminoMedio),
+              ];
+            }).toList(),
+          ),
+          pw.SizedBox(height: 20),
 
-    // 5. PENA DEFINITIVA
-    buffer.write('## 5. PENA DEFINITIVA A IMPONER\n\n');
-    buffer.write('> **${PenaUtils.formatPena(penaConcurso)}**\n\n');
+          // 2. DESGLOSE INDIVIDUAL
+          pw.Text('2. DESGLOSE INDIVIDUAL DE LA PENA',
+              style: pw.TextStyle(
+                  fontWeight: pw.FontWeight.bold,
+                  color: navyBlue,
+                  fontSize: 12)),
+          pw.SizedBox(height: 10),
 
-    // 6. CÓMPUTO (si existe)
-    if (computo != null) {
-      buffer.write('## 6. CÓMPUTO DE PENA\n\n');
-      buffer.write('| Concepto | Fecha / Duración |\n');
-      buffer.write('|----------|------------------|\n');
-      buffer.write('| Fecha de detención | ');
-      buffer.write('${_formatearFecha(computo.fechaDetencion)} |\n');
-      
-      if (computo.fechaCondena != null) {
-        buffer.write('| Fecha de condena | ');
-        buffer.write('${_formatearFecha(computo.fechaCondena!)} |\n');
-      }
-      
-      buffer.write('| Tiempo detenido | ');
-      buffer.write('${computo.tiempoDetenidoTexto} |\n');
-      buffer.write('| Tiempo restante por cumplir | ');
-      buffer.write('${computo.tiempoRestanteTexto} |\n');
-      buffer.write('| Fecha de cumplimiento estimada |\n');
-      buffer.write('${_formatearFecha(computo.fechaCumplimiento)} |\n\n');
-    }
+          // Desglose por cada delito
+          ...delitos.asMap().entries.map((entry) {
+            final i = entry.key + 1;
+            final d = entry.value;
+            final penaInd = d.calcularPenaIndividualizada();
 
-    // 7. FUNDAMENTACIÓN JURÍDICA
-    buffer.write('## 7. FUNDAMENTACIÓN JURÍDICA\n\n');
-    buffer.write('La individualización judicial de la pena constituye una fase\n');
-    buffer.write('esencial del proceso penal, donde el juez debe ajustar la sanción\n');
-    buffer.write('al hecho concreto y a las circunstancias personales del acusado,\n');
-    buffer.write('respetando los límites legales y los principios de proporcionalidad\n');
-    buffer.write('y necesidad. En tal sentido, la jurisprudencia patria (Véase\n');
-    buffer.write('Sentencia Nº 056 de la Sala de Casación Penal del TSJ, expediente\n');
-    buffer.write('2023-0012) ha reiterado que la dosimetría penal debe ser **expresa,\n');
-    buffer.write('motivada y matemáticamente verificable**, utilizando el término\n');
-    buffer.write('medio del Art. 37 CP como punto de partida y aplicando de manera\n');
-    buffer.write('acumulativa las atenuantes (Art. 74 CP) y agravantes (Art. 77 CP),\n');
-    buffer.write('así como los modificadores por concurso real de delitos (Art. 88 CP)\n');
-    buffer.write('o admisión de hechos (Art. 375 COPP). El presente informe refleja\n');
-    buffer.write('dicha metodología, garantizando la transparencia del cómputo.\n\n');
-    buffer.write('---\n\n');
-    buffer.write('**Penalex VE** – Herramienta profesional de apoyo a la decisión\n');
-    buffer.write('judicial\n');
-    buffer.write('*Dosimetría Penal Venezolana | Conforme al Código Penal y Leyes\n');
-    buffer.write('Especiales*\n');
+            return pw.Column(
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: [
+                pw.Text('$i. ${d.nombre.isEmpty ? "SIN ESPECIFICAR" : d.nombre.toUpperCase()}',
+                    style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+                pw.SizedBox(height: 5),
+                pw.Text('Marco penal: ${PenaUtils.formatPena(d.penaMin)} - ${PenaUtils.formatPena(d.penaMax)}',
+                    style: const pw.TextStyle(fontSize: 9)),
+                pw.Text(
+                    'Término medio (Art. 37 CP): ${PenaUtils.formatPena(d.terminoMedio)}',
+                    style: const pw.TextStyle(fontSize: 9)),
+                pw.SizedBox(height: 5),
 
-    return buffer.toString();
+                // Modificadores
+                pw.Text('Modificadores aplicados:',
+                    style: pw.TextStyle(
+                        fontSize: 9, fontWeight: pw.FontWeight.bold)),
+
+                // Grado de ejecución
+                if (d.gradoEjecucion != GradoEjecucion.consumado)
+                  pw.Text(
+                      '- Grado de ejecución: ${d.gradoEjecucion == GradoEjecucion.frustrado ? "Frustrado (Art. 80 CP) - 1/3" : "Tentativa (Art. 82 CP) - ${_fraccionTexto(d.fraccionEjecucion)}"}',
+                      style: const pw.TextStyle(fontSize: 8)),
+
+                // Participación
+                if (d.participacionEspecifica == 'Cómplice No Necesario')
+                  pw.Text(
+                      '- Participación: Cómplice no necesario (Art. 84 CP) - 1/2',
+                      style: const pw.TextStyle(fontSize: 8)),
+
+                // Delito continuado
+                if (d.delitoContinuado)
+                  pw.Text(
+                      '- Delito continuado (Art. 99 CP): +${_fraccionTexto(d.fraccionContinuidad)}',
+                      style: const pw.TextStyle(fontSize: 8)),
+
+                // Modificador manual (formato AA/MM/DD)
+                if (d.modificadorManual != 0)
+                  pw.Text(
+                      '- ${d.modificadorManual > 0 ? "Agravante (Art. 77 CP)" : "Atenuante (Art. 74 CP)"}: ${d.modificadorManual > 0 ? "+" : ""}${DosimetriaEngine.formatYMD(d.modificadorManual.abs())}',
+                      style: const pw.TextStyle(fontSize: 8)),
+
+                pw.SizedBox(height: 8),
+                pw.Container(
+                  padding: const pw.EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  decoration: pw.BoxDecoration(
+                    color: PdfColors.white,
+                    border: pw.Border.all(color: goldAccent, width: 1.5),
+                    borderRadius: pw.BorderRadius.circular(4),
+                  ),
+                  child: pw.Row(
+                    mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                    children: [
+                      pw.Text('PENA INDIVIDUALIZADA:',
+                          style: pw.TextStyle(
+                              fontWeight: pw.FontWeight.bold, 
+                              fontSize: 9,
+                              color: navyBlue)),
+                      pw.Text(PenaUtils.formatPena(penaInd),
+                          style: pw.TextStyle(
+                              fontWeight: pw.FontWeight.bold, 
+                              fontSize: 10,
+                              color: goldAccent)),
+                    ],
+                  ),
+                ),
+                pw.SizedBox(height: 15),
+              ],
+            );
+          }),
+
+          // 3. CONCURSO DE DELITOS
+          pw.Text('3. CONCURSO DE DELITOS',
+              style: pw.TextStyle(
+                  fontWeight: pw.FontWeight.bold,
+                  color: navyBlue,
+                  fontSize: 12)),
+          pw.SizedBox(height: 10),
+          
+          // Mostrar el artículo aplicado
+          if (articuloConcurso.isNotEmpty) ...[
+            pw.Text('Artículo aplicable: $articuloConcurso',
+                style: pw.TextStyle(
+                    fontSize: 9,
+                    fontWeight: pw.FontWeight.bold,
+                    color: navyBlue)),
+            pw.SizedBox(height: 5),
+          ] else ...[
+            pw.Text('Tipo de concurso: ${_getNombreConcurso(concurso)}',
+                style: const pw.TextStyle(fontSize: 9)),
+            pw.SizedBox(height: 5),
+          ],
+
+          if (concurso == TipoConcurso.real && delitos.length > 1) ...[
+            // Nota sobre conversión si aplica Art. 87
+            if (articuloConcurso.contains('Art. 87')) ...[
+              pw.Container(
+                padding: const pw.EdgeInsets.all(8),
+                margin: const pw.EdgeInsets.only(bottom: 8),
+                decoration: pw.BoxDecoration(
+                  color: PdfColor.fromHex('#FEF3C7'),
+                  border: pw.Border.all(color: goldAccent, width: 1),
+                  borderRadius: pw.BorderRadius.circular(4),
+                ),
+                child: pw.Text(
+                  'NOTA: En aplicación del Art. 87 CP, las penas de prisión se convierten a presidio (1 año presidio = 2 años prisión) antes de aplicar la fórmula de concurso.',
+                  style: pw.TextStyle(
+                    fontSize: 8,
+                    color: navyBlue,
+                    fontStyle: pw.FontStyle.italic,
+                  ),
+                ),
+              ),
+            ],
+            
+            // Mostrar el cálculo
+            pw.Text('Cálculo aplicado:',
+                style: pw.TextStyle(fontSize: 9, fontWeight: pw.FontWeight.bold)),
+            pw.SizedBox(height: 3),
+            
+            pw.Text('Pena base (delito más grave): ${PenaUtils.formatPena(penas[0])}',
+                style: const pw.TextStyle(fontSize: 8)),
+            ...List.generate(penas.length - 1, (i) {
+              final inc = penas[i + 1] * fraccionConcurso;
+              final fraccionStr = fraccionConcurso == 2/3 ? '2/3' : '1/2';
+              return pw.Text(
+                  '+ $fraccionStr de ${PenaUtils.formatPena(penas[i + 1])} = ${PenaUtils.formatPena(inc)}',
+                  style: const pw.TextStyle(fontSize: 8));
+            }),
+          ] else if (concurso == TipoConcurso.ideal) ...[
+            pw.Text('Se aplica únicamente la pena más grave (Art. 98 CP)',
+                style: const pw.TextStyle(fontSize: 8)),
+          ],
+          pw.SizedBox(height: 15),
+
+          // 4. ADMISIÓN DE HECHOS
+          if (admisionHechos) ...[
+            pw.Text('4. ADMISIÓN DE HECHOS (Art. 375 COPP)',
+                style: pw.TextStyle(
+                    fontWeight: pw.FontWeight.bold,
+                    color: navyBlue,
+                    fontSize: 12)),
+            pw.SizedBox(height: 10),
+            pw.Text('Rebaja aplicada: ${_fraccionTexto(fraccionAdmision)}',
+                style: const pw.TextStyle(fontSize: 9)),
+            pw.SizedBox(height: 15),
+          ],
+
+          // 5. PENA DEFINITIVA
+          pw.Text('${admisionHechos ? "5" : "4"}. PENA DEFINITIVA A IMPONER',
+              style: pw.TextStyle(
+                  fontWeight: pw.FontWeight.bold,
+                  color: navyBlue,
+                  fontSize: 12)),
+          pw.SizedBox(height: 10),
+          pw.Container(
+            width: double.infinity,
+            padding: const pw.EdgeInsets.all(20),
+            decoration: pw.BoxDecoration(
+              color: navyBlue,
+              border: pw.Border.all(color: goldAccent, width: 3),
+              borderRadius: pw.BorderRadius.circular(8),
+            ),
+            child: pw.Column(
+              children: [
+                pw.Text(
+                  'PENA IMPUESTA',
+                  style: pw.TextStyle(
+                      fontSize: 12,
+                      fontWeight: pw.FontWeight.bold,
+                      color: goldAccent,
+                      letterSpacing: 2),
+                ),
+                pw.SizedBox(height: 8),
+                pw.Text(
+                  PenaUtils.formatPena(penaConcurso),
+                  style: pw.TextStyle(
+                      fontSize: 22,
+                      fontWeight: pw.FontWeight.bold,
+                      color: PdfColors.white,
+                      letterSpacing: 1),
+                ),
+              ],
+            ),
+          ),
+          pw.SizedBox(height: 20),
+
+          // 6. CÓMPUTO (si existe)
+          if (computo != null) ...[
+            pw.Text('${admisionHechos ? "6" : "5"}. CÓMPUTO DE PENA',
+                style: pw.TextStyle(
+                    fontWeight: pw.FontWeight.bold,
+                    color: navyBlue,
+                    fontSize: 12)),
+            pw.SizedBox(height: 10),
+            pw.Table(
+              border: pw.TableBorder.all(color: navyBlue),
+              children: [
+                pw.TableRow(children: [
+                  pw.Padding(
+                      padding: const pw.EdgeInsets.all(5),
+                      child: pw.Text('Fecha de detención',
+                          style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                  pw.Padding(
+                      padding: const pw.EdgeInsets.all(5),
+                      child: pw.Text(_formatearFecha(computo.fechaDetencion),
+                          style: const pw.TextStyle(fontSize: 9))),
+                ]),
+                if (computo.fechaCondena != null)
+                  pw.TableRow(children: [
+                    pw.Padding(
+                        padding: const pw.EdgeInsets.all(5),
+                        child: pw.Text('Fecha de condena',
+                            style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                    pw.Padding(
+                        padding: const pw.EdgeInsets.all(5),
+                        child: pw.Text(_formatearFecha(computo.fechaCondena!),
+                            style: const pw.TextStyle(fontSize: 9))),
+                  ]),
+                pw.TableRow(children: [
+                  pw.Padding(
+                      padding: const pw.EdgeInsets.all(5),
+                      child: pw.Text('Tiempo detenido',
+                          style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                  pw.Padding(
+                      padding: const pw.EdgeInsets.all(5),
+                      child: pw.Text(computo.tiempoDetenidoTexto,
+                          style: const pw.TextStyle(fontSize: 9))),
+                ]),
+                pw.TableRow(children: [
+                  pw.Padding(
+                      padding: const pw.EdgeInsets.all(5),
+                      child: pw.Text('Tiempo restante',
+                          style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                  pw.Padding(
+                      padding: const pw.EdgeInsets.all(5),
+                      child: pw.Text(computo.tiempoRestanteTexto,
+                          style: const pw.TextStyle(fontSize: 9))),
+                ]),
+                pw.TableRow(children: [
+                  pw.Padding(
+                      padding: const pw.EdgeInsets.all(5),
+                      child: pw.Text('Fecha de cumplimiento estimada',
+                          style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                  pw.Padding(
+                      padding: const pw.EdgeInsets.all(5),
+                      child: pw.Text(_formatearFecha(computo.fechaCumplimiento),
+                          style: const pw.TextStyle(fontSize: 9))),
+                ]),
+              ],
+            ),
+            pw.SizedBox(height: 20),
+          ],
+
+          // DISCLAIMER
+          pw.Container(
+            padding: const pw.EdgeInsets.all(12),
+            decoration: pw.BoxDecoration(
+              color: lightGray,
+              border: pw.Border.all(color: navyBlue, width: 1.5),
+            ),
+            child: pw.Column(
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: [
+                pw.Text('AVISO LEGAL',
+                    style: pw.TextStyle(
+                        fontWeight: pw.FontWeight.bold,
+                        color: navyBlue,
+                        fontSize: 10)),
+                pw.SizedBox(height: 5),
+                pw.Text(
+                  'Este informe es una herramienta de asistencia técnica generada automáticamente. '
+                  'El resultado aquí expresado constituye una estimación basada en los parámetros introducidos '
+                  'y no sustituye el criterio jurídico, la interpretación de la norma ni la valoración del juez de la causa. '
+                  'La individualización judicial de la pena debe ser expresa, motivada y matemáticamente verificable (Véase sentencia N° 268, de fecha 28-05-2025, Sala de Casación Penal del TSJ). '
+                  'El uso de esta herramienta es responsabilidad exclusiva del profesional del derecho.',
+                  style: pw.TextStyle(fontSize: 8, color: navyBlue),
+                  textAlign: pw.TextAlign.justify,
+                ),
+                pw.SizedBox(height: 8),
+                pw.Center(
+                  child: pw.Text('Penalex VE - Dosimetría Penal Venezolana',
+                      style: pw.TextStyle(
+                          fontSize: 9,
+                          fontWeight: pw.FontWeight.bold,
+                          color: navyBlue)),
+                ),
+                pw.Center(
+                  child: pw.Text('Conforme al Código Penal y Leyes Especiales',
+                      style: pw.TextStyle(fontSize: 8, color: navyBlue)),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+
+    return pdf;
   }
 }

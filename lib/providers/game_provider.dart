@@ -1,10 +1,10 @@
-import 'dart:async';
 import 'package:flutter/foundation.dart';
 import '../models/question.dart';
 import '../models/user.dart';
 import '../models/user_progress.dart';
 import '../services/firestore_service.dart';
 import '../services/notification_service.dart';
+import '../data/venezuela_regions.dart';
 
 class GameState extends ChangeNotifier {
   int _currentLevel = 1;
@@ -63,7 +63,7 @@ class GameState extends ChangeNotifier {
       _score = user.puntosTotales;
     }
     if (progress != null) {
-      _apelaciones = progress.vidas;
+      _apelaciones = progress.apelaciones;
       _lastApelacionRegeneration = progress.ultimaRegeneracion;
     }
     setLoading(loading: false);
@@ -77,7 +77,7 @@ class GameState extends ChangeNotifier {
     _streak = 0;
     _lastApelacionRegeneration = null;
     notifyListeners();
-    unawaited(NotificationService().cancelLivesReminder());
+    NotificationService().cancelLivesReminder();
   }
 
   void answerCorrect() {
@@ -94,7 +94,7 @@ class GameState extends ChangeNotifier {
     _apelaciones--;
     _streak = 0;
     notifyListeners();
-    unawaited(_scheduleApelacionesNotificationIfNeeded());
+    _scheduleApelacionesNotificationIfNeeded();
   }
 
   void timeUp() => answerWrong();
@@ -104,9 +104,9 @@ class GameState extends ChangeNotifier {
       _apelaciones++;
       _lastApelacionRegeneration = DateTime.now();
       notifyListeners();
-      unawaited(_scheduleApelacionesNotificationIfNeeded());
+      _scheduleApelacionesNotificationIfNeeded();
     } else {
-      unawaited(NotificationService().cancelLivesReminder());
+      NotificationService().cancelLivesReminder();
     }
   }
 
@@ -120,7 +120,10 @@ class GameState extends ChangeNotifier {
       fechaRegistro: DateTime.now(),
     );
     await FirestoreService.saveUser(user);
-    final UserProgress progress = UserProgress(vidas: _apelaciones, ultimaRegeneracion: _lastApelacionRegeneration ?? DateTime.now());
+    final UserProgress progress = UserProgress(
+      apelaciones: _apelaciones, 
+      ultimaRegeneracion: _lastApelacionRegeneration ?? DateTime.now(),
+    );
     await FirestoreService.saveUserProgress(progress);
   }
 
@@ -150,5 +153,10 @@ class GameState extends ChangeNotifier {
     if (level >= 4) return 'Escribiente';
     if (level >= 2) return 'Asistente Jurídico';
     return 'Alguacil de Sala';
+  }
+
+  /// Obtener la región actual de Venezuela según el nivel
+  RegionVenezuela? getCurrentRegion() {
+    return getRegionForLevel(_currentLevel);
   }
 }

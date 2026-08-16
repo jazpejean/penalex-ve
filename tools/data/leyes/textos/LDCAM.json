@@ -1,0 +1,10 @@
+{
+  "codigo": "LDCAM",
+  "nombre": "Ley de Armas y Explosivos",
+  "url": "https://iajuriss.com/docs/leyes/ley-de-armas-y-explosivos.pdf",
+  "pdf_path": "tools/data/leyes/pdfs/LDCAM.pdf",
+  "txt_path": "tools/data/leyes/textos/LDCAM.txt",
+  "tamaño_bytes": 22690,
+  "caracteres": 15890,
+  "procesado": true
+}

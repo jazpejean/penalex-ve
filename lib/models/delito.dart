@@ -1,10 +1,18 @@
 import '../logic/dosimetria_engine.dart';
 
 enum GradoEjecucion { consumado, frustrado, tentativa }
+
 enum TipoConcurso { real, ideal }
 
+// Tipos de pena según Código Penal Venezolano (Arts. 86-87)
+enum TipoPena {
+  presidio,      // Pena base con trabajos forzados
+  prision,       // Sin trabajos forzados (1 presidio = 2 prisión)
+}
+
 // ==================== AJUSTE ADICIONAL (fracción) ====================
-class AjusteAdicional {   // valor entre 0 y 1 (ej. 0.3333 para 1/3)
+class AjusteAdicional {
+  // valor entre 0 y 1 (ej. 0.3333 para 1/3)
 
   AjusteAdicional({
     required this.nombre,
@@ -13,10 +21,10 @@ class AjusteAdicional {   // valor entre 0 y 1 (ej. 0.3333 para 1/3)
   });
 
   factory AjusteAdicional.fromMap(Map<String, dynamic> map) => AjusteAdicional(
-      nombre: (map['nombre'] as String?) ?? '',
-      esAgravante: (map['esAgravante'] as bool?) ?? false,
-      fraccion: (map['fraccion'] as num?)?.toDouble() ?? 0.0,
-    );
+        nombre: (map['nombre'] as String?) ?? '',
+        esAgravante: (map['esAgravante'] as bool?) ?? false,
+        fraccion: (map['fraccion'] as num?)?.toDouble() ?? 0.0,
+      );
   String nombre;
   bool esAgravante; // true = agravante (+), false = atenuante (-)
   double fraccion;
@@ -30,7 +38,6 @@ class AjusteAdicional {   // valor entre 0 y 1 (ej. 0.3333 para 1/3)
 
 // ==================== DELITO ====================
 class Delito {
-
   Delito({
     required this.id,
     this.nombre = "",
@@ -43,39 +50,44 @@ class Delito {
     this.fraccionContinuidad = 1 / 6,
     this.modificadorManual = 0,
     this.modificadorUnidad = "años",
+    this.tipoPena = TipoPena.prision,
+    this.montoMulta = 0,
     List<AjusteAdicional>? ajustesAdicionales,
   })  : _penaMin = penaMin,
         _penaMax = penaMax {
-        _actualizarCamposDesdePena();
+    _actualizarCamposDesdePena();
     if (ajustesAdicionales != null) {
       this.ajustesAdicionales = ajustesAdicionales;
     }
   }
 
   factory Delito.fromMap(Map<String, dynamic> map) {
-        final List<AjusteAdicional> ajustesList = 
+    final List<AjusteAdicional> ajustesList =
         (map["ajustesAdicionales"] as List<dynamic>?)
-            ?.map((e) => 
-                AjusteAdicional.fromMap(e as Map<String, dynamic>),)
-            .toList() ??
-        <AjusteAdicional>[];
+                ?.map(
+                  (e) => AjusteAdicional.fromMap(e as Map<String, dynamic>),
+                )
+                .toList() ??
+            <AjusteAdicional>[];
 
     return Delito(
       id: map["id"] as String,
       nombre: (map["nombre"] as String?) ?? "",
       penaMin: (map["penaMin"] as num?)?.toDouble() ?? 0,
       penaMax: (map["penaMax"] as num?)?.toDouble() ?? 0,
-      gradoEjecucion: GradoEjecucion.values[
-          (map["gradoEjecucion"] as int?) ?? 0],
+      gradoEjecucion:
+          GradoEjecucion.values[(map["gradoEjecucion"] as int?) ?? 0],
       fraccionEjecucion: (map["fraccionEjecucion"] as num?)?.toDouble() ?? 0,
-      participacionEspecifica: 
+      participacionEspecifica:
           (map["participacionEspecifica"] as String?) ?? "Autor",
       delitoContinuado: (map["delitoContinuado"] as bool?) ?? false,
-      fraccionContinuidad: 
+      fraccionContinuidad:
           (map["fraccionContinuidad"] as num?)?.toDouble() ?? 1 / 6,
       modificadorManual: (map["modificadorManual"] as num?)?.toDouble() ?? 0,
       modificadorUnidad:
           _normalizeUnidad((map["modificadorUnidad"] as String?) ?? "años"),
+      tipoPena: TipoPena.values[(map["tipoPena"] as int?) ?? 0],
+      montoMulta: (map["montoMulta"] as num?)?.toDouble() ?? 0,
       ajustesAdicionales: ajustesList,
     );
   }
@@ -97,6 +109,10 @@ class Delito {
   double fraccionContinuidad;
   double modificadorManual;
   String modificadorUnidad;
+  
+  // Nuevos campos para tipos de pena (Arts. 86-87 CP)
+  TipoPena tipoPena;
+  double montoMulta; // En Unidades Tributarias (solo para multas)
 
   // NUEVA LISTA DE AJUSTES ADICIONALES
   List<AjusteAdicional> ajustesAdicionales = <AjusteAdicional>[];
@@ -123,7 +139,7 @@ class Delito {
         .replaceAll('é', 'e')
         .replaceAll('ó', 'o')
         .replaceAll('ú', 'u');
-        if (unidad == 'anos' || unidad == 'años') {
+    if (unidad == 'anos' || unidad == 'años') {
       return 'años';
     }
     if (unidad == 'meses') {
@@ -136,29 +152,19 @@ class Delito {
   }
 
   void _actualizarCamposDesdePena() {
-    final Map<String, int> minYMD = DosimetriaEngine.convertToYMD(_penaMin);
-    if (minYMD['anos']! > 0) {
-      minValorNumerico = minYMD['anos']!.toDouble();
-      minUnidad = 'años';
-    } else if (minYMD['meses']! > 0) {
-      minValorNumerico = minYMD['meses']!.toDouble();
-      minUnidad = 'meses';
-    } else {
-      minValorNumerico = minYMD['dias']!.toDouble();
-      minUnidad = 'días';
-    }
+    // Convertir el valor en años a una representación YMD y usar años como
+    // unidad principal, preservando la fracción de año de forma precisa.
+    // Así, 1.5 años se mostrará como 1 año 6 meses, y al guardar/modificar
+    // no se pierde precisión porque siempre se usa 'años' como unidad base.
+    final double minAnios = _penaMin;
+    final double maxAnios = _penaMax;
 
-    final Map<String, int> maxYMD = DosimetriaEngine.convertToYMD(_penaMax);
-    if (maxYMD['anos']! > 0) {
-      maxValorNumerico = maxYMD['anos']!.toDouble();
-      maxUnidad = 'años';
-    } else if (maxYMD['meses']! > 0) {
-      maxValorNumerico = maxYMD['meses']!.toDouble();
-      maxUnidad = 'meses';
-    } else {
-      maxValorNumerico = maxYMD['dias']!.toDouble();
-      maxUnidad = 'días';
-    }
+    // Redondear a 6 decimales para evitar errores de punto flotante
+    // Usamos años como unidad universal para máxima precisión
+    minValorNumerico = double.parse(minAnios.toStringAsFixed(6));
+    minUnidad = 'años';
+    maxValorNumerico = double.parse(maxAnios.toStringAsFixed(6));
+    maxUnidad = 'años';
   }
 
   void actualizarPenaDesdeCampos() {
@@ -187,6 +193,33 @@ class Delito {
   }
 
   double get terminoMedio => (penaMin + penaMax) / 2;
+
+  // Método de conversión según Art. 87 CP
+  // Convierte cualquier tipo de pena a su equivalente en presidio
+  double convertirAPresidio() {
+    final double penaIndividualizada = calcularPenaIndividualizada();
+    
+    switch (tipoPena) {
+      case TipoPena.presidio:
+        // Ya es presidio, retornar tal cual
+        return penaIndividualizada;
+        
+      case TipoPena.prision:
+        // 1 día presidio = 2 días prisión
+        // Por tanto: prisión / 2 = presidio
+        return penaIndividualizada / 2;
+    }
+  }
+  
+  // Método auxiliar para obtener el nombre del tipo de pena
+  String get nombreTipoPena {
+    switch (tipoPena) {
+      case TipoPena.presidio:
+        return 'Presidio';
+      case TipoPena.prision:
+        return 'Prisión';
+    }
+  }
 
   double calcularPenaIndividualizada() {
     pasosCalculo.clear();
@@ -217,10 +250,10 @@ class Delito {
       }
     }
 
-    // 2. Grado de ejecución
+    // 2. Grado de ejecución (NO se aplica límite mínimo aquí)
     if (gradoEjecucion != GradoEjecucion.consumado) {
-      final String tipo = gradoEjecucion == GradoEjecucion.frustrado 
-          ? 'FRUSTRADO' 
+      final String tipo = gradoEjecucion == GradoEjecucion.frustrado
+          ? 'FRUSTRADO'
           : 'TENTATIVA';
       final double rebaja = pena * fraccionEjecucion;
       pena = pena * (1 - fraccionEjecucion);
@@ -259,7 +292,7 @@ class Delito {
       final double nuevaPena = pena + modificadorManual;
       pasosCalculo.add(<String, dynamic>{
         'descripcion': 'Modificador $tipo',
-                'resultado':
+        'resultado':
             '${modificadorManual > 0 ? '+' : '-'}${DosimetriaEngine.formatNumero(modificadorManual.abs())} años',
         'pena_actual': nuevaPena,
       });
@@ -267,14 +300,21 @@ class Delito {
     }
 
     // 6. Límites mínimo y máximo
-    if (pena < penaMin) {
-      pena = penaMin;
-      pasosCalculo.add(<String, dynamic>{
-        'descripcion': 'Ajuste a pena mínima legal',
-        'resultado': DosimetriaEngine.formatNumero(pena),
-        'pena_actual': pena,
-      });
+    // IMPORTANTE: Solo aplicar límites si NO hay rebaja por ejecución imperfecta
+    // La jurisprudencia venezolana establece que la rebaja por frustrado/tentativa
+    // puede llevar la pena por debajo del mínimo legal
+    if (gradoEjecucion == GradoEjecucion.consumado) {
+      if (pena < penaMin) {
+        pena = penaMin;
+        pasosCalculo.add(<String, dynamic>{
+          'descripcion': 'Ajuste a pena mínima legal',
+          'resultado': DosimetriaEngine.formatNumero(pena),
+          'pena_actual': pena,
+        });
+      }
     }
+    
+    // El límite máximo siempre se aplica
     if (pena > penaMax) {
       pena = penaMax;
       pasosCalculo.add(<String, dynamic>{
@@ -304,8 +344,9 @@ class Delito {
         'fraccionContinuidad': fraccionContinuidad,
         'modificadorManual': modificadorManual,
         'modificadorUnidad': modificadorUnidad,
-        'ajustesAdicionales': ajustesAdicionales
-            .map((AjusteAdicional a) => a.toMap())
-            .toList(),
+        'tipoPena': tipoPena.index,
+        'montoMulta': montoMulta,
+        'ajustesAdicionales':
+            ajustesAdicionales.map((AjusteAdicional a) => a.toMap()).toList(),
       };
 }

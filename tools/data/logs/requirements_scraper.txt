@@ -1,0 +1,15 @@
+# Dependencias para Scraper IaJuriss
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+tqdm>=4.66.0
+lxml>=4.9.0
+
+# Opcional: para scraping avanzado con JavaScript
+selenium>=4.15.0
+
+# Para procesamiento de PDFs (si se necesita)
+PyPDF2>=3.0.0
+pdfplumber>=0.10.0
+
+# Para subir a Firestore
+firebase-admin>=6.2.0

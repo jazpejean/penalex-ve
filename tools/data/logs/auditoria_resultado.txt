@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/jeanjazpe/Desktop/Penalex_VE/auditoria_completa_local.py", line 9, in <module>
+    from dotenv import load_dotenv
+ModuleNotFoundError: No module named 'dotenv'

@@ -13,10 +13,10 @@ class NotificationService {
   final FlutterLocalNotificationsPlugin _localNotifications =
       FlutterLocalNotificationsPlugin();
 
-  static const String _livesChannelId = 'lives_reminder';
-  static const String _livesChannelName = 'Recordatorios de Vidas';
+  static const String _livesChannelId = 'apelaciones_reminder';
+  static const String _livesChannelName = 'Recordatorios de Apelaciones';
   static const String _livesChannelDesc =
-      'Notificaciones cuando tus vidas se han regenerado';
+      'Notificaciones cuando tus apelaciones se han regenerado';
 
   Future<void> initialize() async {
     await _firebaseMessaging.requestPermission();
@@ -110,14 +110,14 @@ class NotificationService {
     await _localNotifications.cancel(audienceId.hashCode);
   }
 
-  // -------------------- NUEVO: Vidas --------------------
+  // -------------------- NUEVO: Apelaciones --------------------
   Future<void> scheduleLivesFullReminder({
     required DateTime scheduledTime,
   }) async {
     await _localNotifications.zonedSchedule(
       0,
-      '⚡ Vidas recargadas',
-      'Ya tienes 5 vidas disponibles. ¡Vuelve a jugar en el Desafío Penal!',
+      '⚖️ Apelaciones recargadas',
+      'Ya tienes 5 apelaciones disponibles. ¡Vuelve a jugar en el Desafío Penal!',
       tz.TZDateTime.from(scheduledTime, tz.local),
       const NotificationDetails(
         android: AndroidNotificationDetails(

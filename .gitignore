@@ -10,6 +10,11 @@ build/
 .env.local
 .env.*.local
 
+# Secrets / service accounts
+secrets/
+*.service-account.json
+firebase-service-account.json
+
 # IDE
 .idea/
 .vscode/

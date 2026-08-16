@@ -1,0 +1,6 @@
+{
+  "name": "PENALEX VE - Derecho Penal Venezolano",
+  "description": "Juego de preguntas y respuestas épico y cinematográfico sobre Derecho Penal Venezolano estilo Candy Crush y drama judicial con Supabase, Escalera 3D, apelaciones en pergamino y diplomas PDF.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

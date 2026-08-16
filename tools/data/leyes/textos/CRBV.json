@@ -1,0 +1,12 @@
+{
+  "nombre": "Constitución de la República Bolivariana de Venezuela",
+  "codigo": "CRBV",
+  "url": "https://iajuriss.com/docs/leyes/constitucion_venezuela.pdf",
+  "prioridad": 1,
+  "pdf_path": "tools/data/leyes/pdfs/CRBV.pdf",
+  "txt_path": "tools/data/leyes/textos/CRBV.txt",
+  "tamaño_pdf_bytes": 273389,
+  "caracteres_texto": 261347,
+  "tiene_texto": true,
+  "procesado": true
+}

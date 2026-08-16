@@ -1,0 +1,96 @@
+{
+  "id": "recurso_apelacion_control",
+  "name": "Recurso de Apelación (Fase Control)",
+  "category": "control",
+  "description": "Recurso de apelación contra decisión de Juez de Control",
+  "fields": [
+    {
+      "key": "JUEZ_SUPERIOR",
+      "label": "Juez Superior del Circuito",
+      "type": "text",
+      "required": true,
+      "hint": "Ej: CIRCUITO JUDICIAL PENAL DEL ÁREA METROPOLITANA DE CARACAS"
+    },
+    {
+      "key": "NOMBRE_ABOGADO",
+      "label": "Nombre del Abogado Defensor",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "INPREABOGADO",
+      "label": "Número INPREABOGADO",
+      "type": "number",
+      "required": true,
+      "hint": "Solo números"
+    },
+    {
+      "key": "NOMBRE_CLIENTE",
+      "label": "Nombre del Imputado",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "CEDULA_CLIENTE",
+      "label": "Cédula del Imputado",
+      "type": "cedula",
+      "required": true,
+      "hint": "Ej: V-12.345.678"
+    },
+    {
+      "key": "EXPEDIENTE",
+      "label": "Número de Expediente",
+      "type": "expediente",
+      "required": true,
+      "hint": "Ej: SP01-P-2024-000123"
+    },
+    {
+      "key": "DELITO",
+      "label": "Delito Imputado",
+      "type": "text",
+      "required": true,
+      "hint": "Ej: HOMICIDIO INTENCIONAL"
+    },
+    {
+      "key": "FECHA_DECISION",
+      "label": "Fecha de la Decisión Apelada",
+      "type": "date",
+      "required": true
+    },
+    {
+      "key": "TIPO_DECISION",
+      "label": "Tipo de Decisión Apelada",
+      "type": "select",
+      "required": true,
+      "options": [
+        "Auto de imposición de medida cautelar privativa de libertad",
+        "Auto de admisión de acusación",
+        "Auto de inadmisión de solicitud",
+        "Sentencia absolutoria",
+        "Sentencia condenatoria"
+      ]
+    },
+    {
+      "key": "HECHOS",
+      "label": "Síntesis de los Hechos",
+      "type": "multiline",
+      "required": true,
+      "hint": "Describa brevemente los hechos del caso"
+    },
+    {
+      "key": "FUNDAMENTOS",
+      "label": "Fundamentos de Derecho",
+      "type": "multiline",
+      "required": true,
+      "hint": "Cite artículos del COPP, CP y jurisprudencia aplicable"
+    },
+    {
+      "key": "PETITORIO_PRINCIPAL",
+      "label": "Petitorio Principal",
+      "type": "multiline",
+      "required": true,
+      "hint": "¿Qué solicita al tribunal superior?"
+    }
+  ],
+  "content": "CIUDADANO JUEZ SUPERIOR DEL [JUEZ_SUPERIOR]\nSu Despacho.-\n\n[NOMBRE_ABOGADO], abogado en ejercicio, inscrito en el Instituto de Previsión Social del Abogado bajo el Nº [INPREABOGADO], actuando en mi carácter de defensor del ciudadano [NOMBRE_CLIENTE], titular de la cédula de identidad Nº [CEDULA_CLIENTE], en el expediente Nº [EXPEDIENTE], seguido por la presunta comisión del delito de [DELITO], ante usted respetuosamente comparezco y expongo:\n\nCAPITULO I\nDE LOS HECHOS\n\nEn fecha [FECHA_DECISION], el Tribunal de Control dictó [TIPO_DECISION], decisión contra la cual interpongo formal RECURSO DE APELACIÓN, con fundamento en lo dispuesto en los artículos 439 y siguientes del Código Orgánico Procesal Penal.\n\n[HECHOS]\n\nCAPITULO II\nFUNDAMENTOS DE DERECHO\n\n[FUNDAMENTOS]\n\nCAPITULO III\nPETITORIO\n\nPor las razones de hecho y de derecho anteriormente expuestas, solicito respetuosamente:\n\nPRIMERO: Se admita el presente recurso de apelación por haber sido interpuesto dentro del lapso legal establecido en el artículo 440 del Código Orgánico Procesal Penal.\n\nSEGUNDO: [PETITORIO_PRINCIPAL]\n\nTERCERO: Se notifique del presente recurso a la representación fiscal y a la víctima, de conformidad con lo establecido en el artículo 441 del Código Orgánico Procesal Penal.\n\nEs justicia que espero alcanzar de su reconocida rectitud.\n\nCaracas, [FECHA_ACTUAL_LARGA]\n\nAtentamente,\n\n_____________________________\n[NOMBRE_ABOGADO]\nINPREABOGADO Nº [INPREABOGADO]\nDefensor del [SUJETO_PROCESAL] [NOMBRE_CLIENTE]"
+}

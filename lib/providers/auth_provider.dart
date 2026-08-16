@@ -7,12 +7,9 @@ import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
 
 class AppAuthProvider extends ChangeNotifier {
-  AppAuthProvider({required AuthService authService})
-      : _authService = authService {
-    _setupAuthListeners();
-  }
+  AppAuthProvider();
 
-  final AuthService _authService;
+  AuthService? _authService;
   StreamSubscription<User?>? _authSub;
   StreamSubscription<User?>? _idTokenSub;
   User? _user;
@@ -32,8 +29,15 @@ class AppAuthProvider extends ChangeNotifier {
 
   bool get isEmailVerified => _user?.emailVerified ?? false;
 
+  void setAuthService(AuthService authService) {
+    if (_authService != null) return;
+    _authService = authService;
+    _setupAuthListeners();
+  }
+
   void _setupAuthListeners() {
-    _authSub = _authService.authStateChanges.listen((User? user) async {
+    if (_authService == null) return;
+    _authSub = _authService!.authStateChanges.listen((User? user) async {
       _user = user;
       if (user != null) {
         await revalidateDeviceSession();
@@ -50,7 +54,7 @@ class AppAuthProvider extends ChangeNotifier {
     _stopIdTokenListener();
     _idTokenSub = FirebaseAuth.instance.idTokenChanges().listen((User? user) {
       if (user != null) {
-        unawaited(revalidateDeviceSession());
+        revalidateDeviceSession();
       }
     });
   }
@@ -61,6 +65,7 @@ class AppAuthProvider extends ChangeNotifier {
   }
 
   Future<void> revalidateDeviceSession() async {
+    if (_authService == null) return;
     final User? user = _user;
     if (user == null) {
       _isDeviceValid = true;
@@ -68,7 +73,7 @@ class AppAuthProvider extends ChangeNotifier {
       return;
     }
     try {
-      final bool ok = await _authService.validateCurrentSession();
+      final bool ok = await _authService!.validateCurrentSession();
       if (_isDeviceValid != ok) {
         _isDeviceValid = ok;
         notifyListeners();
@@ -83,10 +88,11 @@ class AppAuthProvider extends ChangeNotifier {
   }
 
   Future<bool> resendVerificationEmail() async {
+    if (_authService == null) return false;
     _setLoading(true);
     _clearError();
     try {
-      await _authService.sendVerificationEmail();
+      await _authService!.sendVerificationEmail();
       return true;
     } on Exception catch (e) {
       _error = e.toString();
@@ -97,24 +103,49 @@ class AppAuthProvider extends ChangeNotifier {
   }
 
   Future<bool> resetPassword(String oobCode, String newPassword) async {
+    if (_authService == null) return false;
     _setLoading(true);
     _clearError();
     try {
-      await _authService.confirmPasswordReset(oobCode, newPassword);
+      await _authService!.confirmPasswordReset(oobCode, newPassword);
       return true;
+    } on FirebaseAuthException catch (e) {
+      _error = _mapFirebaseError(e);
+      return false;
     } on Exception catch (e) {
-      _error = e.toString();
+      _error = 'No se pudo actualizar la contraseña. Intenta de nuevo.';
+      debugPrint('resetPassword error: $e');
       return false;
     } finally {
       _setLoading(false);
     }
   }
 
+  String _mapFirebaseError(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'expired-action-code':
+        return 'El enlace expiró. Solicita uno nuevo.';
+      case 'invalid-action-code':
+        return 'El enlace o código es inválido. Solicita uno nuevo.';
+      case 'user-disabled':
+        return 'Esta cuenta ha sido deshabilitada.';
+      case 'user-not-found':
+        return 'No existe una cuenta asociada a este enlace.';
+      case 'weak-password':
+        return 'La contraseña es muy débil. Usa al menos 6 caracteres.';
+      case 'network-request-failed':
+        return 'Error de conexión. Revisa tu internet.';
+      default:
+        return 'No se pudo actualizar la contraseña. Intenta de nuevo.';
+    }
+  }
+
   Future<bool> refreshUser() async {
+    if (_authService == null) return false;
     _setLoading(true);
     _clearError();
     try {
-      final bool verified = await _authService.refreshUser();
+      final bool verified = await _authService!.refreshUser();
       notifyListeners();
       return verified;
     } on Exception catch (e) {
@@ -126,7 +157,8 @@ class AppAuthProvider extends ChangeNotifier {
   }
 
   Future<void> logout() async {
-    await _authService.signOut();
+    if (_authService == null) return;
+    await _authService!.signOut();
   }
 
   void _setLoading(bool value) {

@@ -13,7 +13,7 @@ class GlosarioScreen extends StatefulWidget {
 class _GlosarioScreenState extends State<GlosarioScreen> {
   final TextEditingController _searchController = TextEditingController();
   
-  // Glosario ampliado con más de 150 términos
+  // Glosario ampliado con más de 150 términos (RESPALDO)
   final List<Map<String, String>> _glossary = const <Map<String, String>>[
     // A
     <String, String>{'term': 'Abogado', 'definition': 'Profesional del derecho que asesora, representa y defiende a las partes en un proceso judicial.'},
@@ -198,6 +198,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
   @override
   void initState() {
     super.initState();
+    // Usar glosario local directamente
     _filteredGlossary = List.from(_glossary);
   }
 
@@ -240,8 +241,40 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
       appBar: AppBar(
         title: const Text("Glosario Jurídico"),
         backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
+        actions: [
+          // Contador de términos
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: Center(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: AppColors.secondary,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.secondary.withValues(alpha: 0.3),
+                      blurRadius: 4,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Text(
+                  '${_glossary.length} términos',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primary,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       backgroundColor: AppColors.background,
       body: Padding(
@@ -401,19 +434,42 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                         return Card(
                           color: Colors.white,
                           elevation: 2,
-                          shadowColor: Colors.black.withValues(alpha: 0.1),
+                          shadowColor: AppColors.secondary.withValues(alpha: 0.1),
                           margin: const EdgeInsets.only(bottom: 12),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
+                            side: BorderSide(
+                              color: AppColors.secondary.withValues(alpha: 0.3),
+                              width: 1,
+                            ),
                           ),
                           child: ListTile(
                             contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                            leading: Container(
+                              width: 48,
+                              height: 48,
+                              decoration: BoxDecoration(
+                                color: AppColors.secondary.withValues(alpha: 0.15),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  term.isNotEmpty ? term[0].toUpperCase() : '',
+                                  style: const TextStyle(
+                                    color: AppColors.primary,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 24,
+                                  ),
+                                ),
+                              ),
+                            ),
                             title: Text(
                               term,
                               style: const TextStyle(
                                 color: AppColors.primary,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
+                                letterSpacing: 0.3,
                               ),
                             ),
                             subtitle: Padding(

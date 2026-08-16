@@ -1,0 +1,80 @@
+{
+  "id": "solicitud_libertad_plena",
+  "name": "Solicitud de Libertad Plena",
+  "category": "control",
+  "description": "Solicitud de revisión de medida cautelar privativa de libertad",
+  "fields": [
+    {
+      "key": "TRIBUNAL",
+      "label": "Tribunal de Conocimiento",
+      "type": "text",
+      "required": true,
+      "hint": "Ej: JUZGADO DÉCIMO DE PRIMERA INSTANCIA EN FUNCIONES DE CONTROL"
+    },
+    {
+      "key": "NOMBRE_ABOGADO",
+      "label": "Nombre del Abogado Defensor",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "INPREABOGADO",
+      "label": "Número INPREABOGADO",
+      "type": "number",
+      "required": true
+    },
+    {
+      "key": "NOMBRE_CLIENTE",
+      "label": "Nombre del Imputado",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "CEDULA_CLIENTE",
+      "label": "Cédula del Imputado",
+      "type": "cedula",
+      "required": true
+    },
+    {
+      "key": "EXPEDIENTE",
+      "label": "Número de Expediente",
+      "type": "expediente",
+      "required": true
+    },
+    {
+      "key": "DELITO",
+      "label": "Delito Imputado",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "LUGAR_RECLUSION",
+      "label": "Centro de Reclusión",
+      "type": "text",
+      "required": true,
+      "hint": "Ej: Centro de Arrestos y Detenciones Preventivas El Rodeo"
+    },
+    {
+      "key": "TIEMPO_DETENCION",
+      "label": "Tiempo de Detención",
+      "type": "text",
+      "required": true,
+      "hint": "Ej: más de 18 meses"
+    },
+    {
+      "key": "FUNDAMENTOS_LIBERTAD",
+      "label": "Fundamentos para Solicitar la Libertad",
+      "type": "multiline",
+      "required": true,
+      "hint": "Argumente por qué procede la libertad (arraigo, colaboración, tiempo transcurrido, etc.)"
+    },
+    {
+      "key": "ARRAIGO",
+      "label": "Arraigo Social/Familiar",
+      "type": "multiline",
+      "required": true,
+      "hint": "Describa domicilio fijo, familia, trabajo, etc."
+    }
+  ],
+  "content": "CIUDADANO JUEZ DEL [TRIBUNAL]\nDEL CIRCUITO JUDICIAL PENAL DEL ÁREA METROPOLITANA DE CARACAS\nSu Despacho.-\n\n[NOMBRE_ABOGADO], abogado en ejercicio, inscrito en el Instituto de Previsión Social del Abogado bajo el Nº [INPREABOGADO], actuando en representación del ciudadano [NOMBRE_CLIENTE], titular de la cédula de identidad Nº [CEDULA_CLIENTE], en la causa signada con el Nº [EXPEDIENTE], seguida por la presunta comisión del delito de [DELITO], ante su competente autoridad, respetuosamente comparezco y expongo:\n\nCAPITULO I\nDE LA SOLICITUD\n\nEn ejercicio del derecho constitucional a la libertad y al debido proceso consagrados en los artículos 44 y 49 de la Constitución de la República Bolivariana de Venezuela, así como en el derecho a la revisión de las medidas cautelares establecido en el artículo 264 del Código Orgánico Procesal Penal, solicito formalmente la REVISIÓN DE LA MEDIDA CAUTELAR PRIVATIVA DE LIBERTAD impuesta a mi defendido, a los fines de que sea sustituida por una medida cautelar menos gravosa, o en su defecto, se decrete la LIBERTAD PLENA.\n\nCAPITULO II\nDE LOS HECHOS\n\nMi representado se encuentra privado de su libertad en [LUGAR_RECLUSION] desde hace [TIEMPO_DETENCION], cumpliendo medida de privación judicial preventiva de libertad decretada en la audiencia de presentación.\n\nDurante este período, mi defendido ha demostrado:\n\n1. Colaboración permanente con la administración de justicia\n2. Comparecencia a todas las actuaciones judiciales\n3. [ARRAIGO]\n\nCAPITULO III\nFUNDAMENTOS DE DERECHO\n\n[FUNDAMENTOS_LIBERTAD]\n\nEl artículo 243 del Código Orgánico Procesal Penal establece que toda medida cautelar debe ser excepcional, proporcional y temporal. En el presente caso, han cesado los motivos que justificaron la medida privativa de libertad, por lo que resulta procedente su revisión.\n\nAsimismo, el artículo 44 de la Constitución consagra el principio de presunción de inocencia, debiendo garantizarse que toda persona se presuma inocente hasta que se demuestre lo contrario.\n\nCAPITULO IV\nPETITORIO\n\nPor las razones expuestas, solicito respetuosamente:\n\nPRIMERO: Se admita la presente solicitud de revisión de medida cautelar.\n\nSEGUNDO: Se fije audiencia oral conforme al artículo 264 del Código Orgánico Procesal Penal, con citación de las partes.\n\nTERCERO: Se decrete la LIBERTAD PLENA de mi defendido [NOMBRE_CLIENTE], o en su defecto, se sustituya la medida cautelar privativa de libertad por una menos gravosa, conforme a las alternativas previstas en el artículo 242 del Código Orgánico Procesal Penal.\n\nCUARTO: Se notifique a la Representación Fiscal y a la víctima del presente escrito.\n\nEs justicia que espero alcanzar.\n\nCaracas, [FECHA_ACTUAL_LARGA]\n\nAtentamente,\n\n_____________________________\n[NOMBRE_ABOGADO]\nINPREABOGADO Nº [INPREABOGADO]\nDefensor del [SUJETO_PROCESAL] [NOMBRE_CLIENTE]"
+}

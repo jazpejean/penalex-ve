@@ -12,7 +12,8 @@ class SavedCalculationsScreen extends StatefulWidget {
   const SavedCalculationsScreen({super.key});
 
   @override
-  State<SavedCalculationsScreen> createState() => _SavedCalculationsScreenState();
+  State<SavedCalculationsScreen> createState() =>
+      _SavedCalculationsScreenState();
 }
 
 class _SavedCalculationsScreenState extends State<SavedCalculationsScreen> {
@@ -27,7 +28,8 @@ class _SavedCalculationsScreenState extends State<SavedCalculationsScreen> {
 
   Future<void> _loadCalculations() async {
     setState(() => _isLoading = true);
-    final List<CalculationModel> list = await CalculationService.getSavedCalculations();
+    final List<CalculationModel> list =
+        await CalculationService.getSavedCalculations();
     setState(() {
       _calculations = list;
       _isLoading = false;
@@ -36,16 +38,23 @@ class _SavedCalculationsScreenState extends State<SavedCalculationsScreen> {
 
   Future<void> _deleteCalculation(String id) async {
     final bool deleted = await CalculationService.deleteCalculation(id);
+    if (!mounted) return;
     if (deleted) {
       await _loadCalculations();
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Cálculo eliminado'), backgroundColor: AppColors.error),
+      final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
+      messenger.showSnackBar(
+        const SnackBar(
+            content: Text('Cálculo eliminado'),
+            backgroundColor: AppColors.error),
       );
     } else {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No se pudo eliminar el cálculo.'), backgroundColor: Colors.red),
+      final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
+      messenger.showSnackBar(
+        const SnackBar(
+            content: Text('No se pudo eliminar el cálculo.'),
+            backgroundColor: Colors.red),
       );
     }
   }
@@ -63,14 +72,18 @@ class _SavedCalculationsScreenState extends State<SavedCalculationsScreen> {
         drawer: const AppDrawer(currentRoute: "/calculos"),
         appBar: AppBar(
           title: const Text("Cálculos Guardados"),
+          backgroundColor: AppColors.primary,
+          foregroundColor: AppColors.secondary,
+          elevation: 0,
+          centerTitle: true,
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.logout),
               onPressed: () async {
+                final NavigatorState navigator = Navigator.of(context);
                 await AuthService().logout();
-                if (mounted) {
-                  Navigator.pushNamedAndRemoveUntil(context, "/", (Route<dynamic> route) => false);
-                }
+                unawaited(navigator.pushNamedAndRemoveUntil(
+                    "/", (Route<dynamic> route) => false));
               },
             ),
           ],
@@ -87,16 +100,19 @@ class _SavedCalculationsScreenState extends State<SavedCalculationsScreen> {
                       return Card(
                         margin: const EdgeInsets.only(bottom: 12),
                         elevation: 3,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16)),
                         child: ListTile(
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
                           leading: Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               color: AppColors.primary.withValues(alpha: 0.1),
                               shape: BoxShape.circle,
                             ),
-                            child: const Icon(Icons.calculate, color: AppColors.primary),
+                            child: const Icon(Icons.calculate,
+                                color: AppColors.primary),
                           ),
                           title: Text(
                             calc.nombre.isEmpty ? "Sin Nombre" : calc.nombre,
@@ -106,8 +122,11 @@ class _SavedCalculationsScreenState extends State<SavedCalculationsScreen> {
                             "${calc.delitos.length} delito(s) • ${calc.fecha.day}/${calc.fecha.month}/${calc.fecha.year}",
                           ),
                           trailing: IconButton(
-                            icon: const Icon(Icons.delete_sweep, color: AppColors.error),
-                            onPressed: () => unawaited(_deleteCalculation(calc.id)),
+                            icon: const Icon(Icons.delete_sweep,
+                                color: AppColors.error),
+                            onPressed: () async {
+                              await _deleteCalculation(calc.id);
+                            },
                           ),
                           onTap: () => _loadCalculation(calc),
                         ),

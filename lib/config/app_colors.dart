@@ -6,6 +6,10 @@ class AppColors {
   static const Color secondary = Color(0xFFC5A059); // Dorado clásico
   static const Color accent = Color(0xFFF4D03F); // Amarillo dorado
 
+  // Nombres institucionales
+  static const Color azulMarino = Color(0xFF0F172A); // Alias para primary
+  static const Color dorado = Color(0xFFC5A059); // Alias para secondary
+
   // Fondos
   static const Color splashBackground = Color(0xFF0F172A); // Azul splash
   static const Color background = Color(0xFFF1F5F9); // Gris claro para la app

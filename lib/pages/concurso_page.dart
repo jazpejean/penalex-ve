@@ -27,6 +27,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
   double _fraccionAdmision = 1 / 3;
   double _penaTotal = 0;
   bool _topeAplicado = false;
+  String _articuloConcursoAplicado = '';
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
@@ -49,17 +50,39 @@ class _ConcursoPageState extends State<ConcursoPage> {
       setState(() {
         _penaTotal = 0.0;
         _topeAplicado = false;
+        _articuloConcursoAplicado = '';
       });
       return;
     }
+    
     final List<double> penas = seleccionados.map((Delito d) => d.calcularPenaIndividualizada()).toList();
     penas.sort((double a, double b) => b.compareTo(a));
     double total = penas.first;
+    
     if (_concursoReal) {
+      // Determinar artículo aplicable según tipos de pena
+      bool hayPresidio = seleccionados.any((Delito d) => d.tipoPena == TipoPena.presidio);
+      bool hayPrision = seleccionados.any((Delito d) => d.tipoPena == TipoPena.prision);
+      
+      if (hayPresidio && !hayPrision) {
+        // Solo presidio → Art. 86
+        _articuloConcursoAplicado = 'Art. 86 CP (Presidio + Presidio)';
+      } else if (hayPresidio && hayPrision) {
+        // Presidio + Prisión → Art. 87 (convertir prisión a presidio)
+        _articuloConcursoAplicado = 'Art. 87 CP (Presidio + Prisión)';
+      } else {
+        // Solo prisión → Art. 88
+        _articuloConcursoAplicado = 'Art. 88 CP (Prisión + Prisión)';
+      }
+      
+      // Aplicar fórmula de concurso real: pena mayor + mitad de las demás
       for (int i = 1; i < penas.length; i++) {
         total += penas[i] / 2;
       }
+    } else {
+      _articuloConcursoAplicado = 'Art. 98 CP (Concurso Ideal)';
     }
+    
     if (_admisionHechos) total *= 1 - _fraccionAdmision;
     bool tope = false;
     if (total > 30.0) {
@@ -179,6 +202,70 @@ class _ConcursoPageState extends State<ConcursoPage> {
                     ),
                   ),
                   const SizedBox(height: 20),
+                  // Banner informativo con el artículo aplicado
+                  if (_concursoReal && _articuloConcursoAplicado.isNotEmpty) ...<Widget>[
+                    Container(
+                      padding: const EdgeInsets.all(14),
+                      decoration: BoxDecoration(
+                        color: dorado.withValues(alpha: 0.12),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(color: dorado.withValues(alpha: 0.35), width: 1.5),
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.gavel, color: azulMarino.withValues(alpha: 0.75), size: 22),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                const Text(
+                                  'ARTÍCULO APLICABLE',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 11,
+                                    letterSpacing: 0.6,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  _articuloConcursoAplicado,
+                                  style: TextStyle(
+                                    color: azulMarino.withValues(alpha: 0.90),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              String titulo = '';
+                              String mensaje = '';
+                              
+                              if (_articuloConcursoAplicado.contains('Art. 86')) {
+                                titulo = 'Art. 86 CP - Concurso de Presidios';
+                                mensaje = 'Cuando concurren varios delitos castigados con presidio, se aplicará la pena correspondiente a la infracción más grave, aumentada con la mitad de las otras penas.';
+                              } else if (_articuloConcursoAplicado.contains('Art. 87')) {
+                                titulo = 'Art. 87 CP - Concurso de Presidio y Prisión';
+                                mensaje = 'Cuando concurran delitos castigados con presidio y prisión, se convertirá la pena de prisión en su equivalente de presidio (1 año presidio = 2 años prisión), y se aplicará el Art. 86: pena más grave aumentada con la mitad de las demás.';
+                              } else if (_articuloConcursoAplicado.contains('Art. 88')) {
+                                titulo = 'Art. 88 CP - Concurso de Prisiones';
+                                mensaje = 'Cuando concurran varios delitos castigados con prisión, se aplicará la pena correspondiente a la infracción más grave, aumentada con la mitad de las otras penas.';
+                              }
+                              
+                              if (titulo.isNotEmpty) {
+                                _mostrarInfo(titulo, mensaje);
+                              }
+                            },
+                            child: Icon(Icons.info_outline, color: azulMarino.withValues(alpha: 0.65), size: 20),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                  ],
                   Card(
                     elevation: 0,
                     color: Colors.white,
@@ -328,11 +415,12 @@ class _ConcursoPageState extends State<ConcursoPage> {
                       side: const BorderSide(color: dorado, width: 1.5),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               const Text(
                                 "PENA TOTAL ACUMULADA",
@@ -352,13 +440,11 @@ class _ConcursoPageState extends State<ConcursoPage> {
                               ],
                             ],
                           ),
-                          Flexible(
-                            child: Text(
-                              DosimetriaEngine.formatYMD(_penaTotal),
-                              style: const TextStyle(color: dorado, fontWeight: FontWeight.w800, fontSize: 18),
-                              textAlign: TextAlign.right,
-                              softWrap: true,
-                            ),
+                          const SizedBox(height: 12),
+                          Text(
+                            DosimetriaEngine.formatYMD(_penaTotal),
+                            style: const TextStyle(color: dorado, fontWeight: FontWeight.w800, fontSize: 20),
+                            textAlign: TextAlign.center,
                           ),
                         ],
                       ),
@@ -397,6 +483,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                   admisionHechos: _admisionHechos,
                                   fraccionAdmision: _fraccionAdmision,
                                   penaTotal: _penaTotal,
+                                  articuloConcurso: _articuloConcursoAplicado,
                                 ),
                               ),
                             );

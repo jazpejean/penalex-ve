@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/auth_provider.dart'; // ← AppAuthProvider
+import '../services/auth_service.dart';
 
 class DeviceLockScreen extends StatelessWidget {
   const DeviceLockScreen({super.key});
@@ -15,7 +15,10 @@ class DeviceLockScreen extends StatelessWidget {
             const Icon(Icons.lock_person, size: 80, color: Colors.red),
             const Text("DISPOSITIVO NO AUTORIZADO", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
             TextButton(
-              onPressed: () => context.read<AppAuthProvider>().logout(),
+              onPressed: () async {
+                final authService = context.read<AuthService>();
+                await authService.signOut();
+              },
               child: const Text("SALIR", style: TextStyle(color: Color(0xFFC5A059))),
             ),
           ],

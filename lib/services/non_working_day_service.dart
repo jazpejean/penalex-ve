@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+
 import '../utils/non_working_days.dart';
 
 class NonWorkingDayService {
@@ -14,9 +15,12 @@ class NonWorkingDayService {
     if (userId == null) return false;
 
     try {
-      await _firestore.collection('userNonWorkingDays').add(<String, dynamic>{
-        'userId': userId,
-        'usuarioId': userId,
+      // Estructura correcta: /userNonWorkingDays/{userId}/days/{dayId}
+      await _firestore
+          .collection('userNonWorkingDays')
+          .doc(userId)
+          .collection('days')
+          .add(<String, dynamic>{
         'date': Timestamp.fromDate(nonWorkingDay.date),
         'reason': nonWorkingDay.reason,
         'createdAt': FieldValue.serverTimestamp(),
@@ -36,22 +40,15 @@ class NonWorkingDayService {
     if (userId == null) return <NonWorkingDay>[];
 
     try {
-      final Future<QuerySnapshot<Map<String, dynamic>>> queryByUserId = _firestore
+      // Estructura correcta: /userNonWorkingDays/{userId}/days/{dayId}
+      final snapshot = await _firestore
           .collection('userNonWorkingDays')
-          .where('userId', isEqualTo: userId)
-          .orderBy('date')
-          .get();
-      final Future<QuerySnapshot<Map<String, dynamic>>> queryByUsuarioId = _firestore
-          .collection('userNonWorkingDays')
-          .where('usuarioId', isEqualTo: userId)
+          .doc(userId)
+          .collection('days')
           .orderBy('date')
           .get();
 
-      final List<QuerySnapshot<Map<String, dynamic>>> results = await Future.wait(<Future<QuerySnapshot<Map<String, dynamic>>>>[queryByUserId, queryByUsuarioId]);
-      final QuerySnapshot<Map<String, dynamic>> querySnapshot = results.firstWhere((QuerySnapshot<Map<String, dynamic>> snapshot) => snapshot.docs.isNotEmpty,
-          orElse: () => results.first);
-
-      return querySnapshot.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
+      return snapshot.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
         final Map<String, dynamic> data = doc.data();
         return NonWorkingDay(
           date: (data['date'] as Timestamp).toDate(),

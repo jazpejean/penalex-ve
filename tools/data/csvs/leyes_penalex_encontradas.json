@@ -1,0 +1,132 @@
+[
+  {
+    "codigo_penalex": "CP",
+    "id_iajuriss": 21196,
+    "titulo": "Código Penal",
+    "acronimo": null,
+    "nombre_archivo": "codigo-penal-2005",
+    "url_pdf": "https://iajuriss.com/docs/leyes/codigo-penal-2005.pdf",
+    "numero_articulos": 546,
+    "esta_vigente": true
+  },
+  {
+    "codigo_penalex": "COPP",
+    "id_iajuriss": 21214,
+    "titulo": "Código Orgánico Procesal Penal",
+    "acronimo": "COPP",
+    "nombre_archivo": "copp_2021",
+    "url_pdf": "https://iajuriss.com/docs/leyes/copp_2021.pdf",
+    "numero_articulos": 518,
+    "esta_vigente": true
+  },
+  {
+    "codigo_penalex": "LOSDMVLV",
+    "id_iajuriss": 8822,
+    "titulo": "Declaración sobre la Violencia Contra la Mujer",
+    "acronimo": null,
+    "nombre_archivo": "instrumentos-internacionales-de-proteccion-de-los-derechos-de-la-mujer-declaracion-sobre-la-eliminacion-de-la-violencia-contra-la-mujer",
+    "url_pdf": "https://iajuriss.com/docs/leyes/instrumentos-internacionales-de-proteccion-de-los-derechos-de-la-mujer-declaracion-sobre-la-eliminacion-de-la-violencia-contra-la-mujer.pdf",
+    "numero_articulos": 6,
+    "esta_vigente": true
+  },
+  {
+    "codigo_penalex": "LOD",
+    "id_iajuriss": 21206,
+    "titulo": "Ley Orgánica de Drogas",
+    "acronimo": null,
+    "nombre_archivo": "drogas_2010",
+    "url_pdf": "https://iajuriss.com/docs/leyes/drogas_2010.pdf",
+    "numero_articulos": 120,
+    "esta_vigente": true
+  },
+  {
+    "codigo_penalex": "LCDOFT",
+    "id_iajuriss": 8840,
+    "titulo": "Ley Aprobatoria del Convenio de Financiación del Terrorismo",
+    "acronimo": null,
+    "nombre_archivo": "ley-aprobatoria-del-convenio-internacional-para-la-represion-de-la-financiacion-del-terrorismo",
+    "url_pdf": "https://iajuriss.com/docs/leyes/ley-aprobatoria-del-convenio-internacional-para-la-represion-de-la-financiacion-del-terrorismo.pdf",
+    "numero_articulos": 28,
+    "esta_vigente": true
+  },
+  {
+    "codigo_penalex": "LCSE",
+    "id_iajuriss": 21330,
+    "titulo": "Ley Contra el Secuestro y la Extorsión",
+    "acronimo": null,
+    "nombre_archivo": "secuestro_extorsion_2009",
+    "url_pdf": "https://iajuriss.com/docs/leyes/secuestro_extorsion_2009.pdf",
+    "numero_articulos": 30,
+    "esta_vigente": true
+  },
+  {
+    "codigo_penalex": "LHRVA",
+    "id_iajuriss": 8757,
+    "titulo": "Decreto de Exoneración del Impuesto Al Valor Agregado para la Venta e Importación de los Vehículos y Componentes que Formen Parte del Programa del Vehículo Familiar 2000",
+    "acronimo": null,
+    "nombre_archivo": "decreto-n-548",
+    "url_pdf": "https://iajuriss.com/docs/leyes/decreto-n-548.pdf",
+    "numero_articulos": 64,
+    "esta_vigente": true
+  },
+  {
+    "codigo_penalex": "LDCAM",
+    "id_iajuriss": 8861,
+    "titulo": "Ley de Bandera, Himno y Escudo",
+    "acronimo": null,
+    "nombre_archivo": "ley-de-bandera-nacional-himno-nacional-y-escudo-de-armas-de-la-republica-bolivariana-de-venezuela",
+    "url_pdf": "https://iajuriss.com/docs/leyes/ley-de-bandera-nacional-himno-nacional-y-escudo-de-armas-de-la-republica-bolivariana-de-venezuela.pdf",
+    "numero_articulos": 17,
+    "esta_vigente": true
+  },
+  {
+    "codigo_penalex": "LPVT",
+    "id_iajuriss": 66,
+    "titulo": "Convenio IV de Ginebra",
+    "acronimo": null,
+    "nombre_archivo": "convenio-de-ginebra-relativo-a-la-proteccion-debida-a-las-personas-civiles-en-tiempo-de-guerra-convenio-iv",
+    "url_pdf": "https://iajuriss.com/docs/leyes/convenio-de-ginebra-relativo-a-la-proteccion-debida-a-las-personas-civiles-en-tiempo-de-guerra-convenio-iv.pdf",
+    "numero_articulos": 159,
+    "esta_vigente": true
+  },
+  {
+    "codigo_penalex": "LECDI",
+    "id_iajuriss": 9073,
+    "titulo": "Ley contra Delitos Informáticos",
+    "acronimo": null,
+    "nombre_archivo": "ley-especial-contra-los-delitos-informaticos",
+    "url_pdf": "https://iajuriss.com/docs/leyes/ley-especial-contra-los-delitos-informaticos.pdf",
+    "numero_articulos": 33,
+    "esta_vigente": true
+  },
+  {
+    "codigo_penalex": "LORPA",
+    "id_iajuriss": 21200,
+    "titulo": "Ley Orgánica para la Protección de Niños, Niñas y Adolescentes",
+    "acronimo": "LOPNNA",
+    "nombre_archivo": "lopnna_2015",
+    "url_pdf": "https://iajuriss.com/docs/leyes/lopnna_2015.pdf",
+    "numero_articulos": 685,
+    "esta_vigente": true
+  },
+  {
+    "codigo_penalex": "LOPNNA",
+    "id_iajuriss": 21200,
+    "titulo": "Ley Orgánica para la Protección de Niños, Niñas y Adolescentes",
+    "acronimo": "LOPNNA",
+    "nombre_archivo": "lopnna_2015",
+    "url_pdf": "https://iajuriss.com/docs/leyes/lopnna_2015.pdf",
+    "numero_articulos": 685,
+    "esta_vigente": true
+  },
+  {
+    "codigo_penalex": "LOCC",
+    "id_iajuriss": 21242,
+    "titulo": "Ley Contra la Corrupción",
+    "acronimo": null,
+    "nombre_archivo": "corrupcion_2022",
+    "url_pdf": "https://iajuriss.com/docs/leyes/corrupcion_2022.pdf",
+    "numero_articulos": 340,
+    "esta_vigente": true
+  }
+]

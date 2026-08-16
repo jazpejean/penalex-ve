@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/auth_provider.dart';
+import '../services/auth_service.dart';
+import '../services/local_auth_service.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({super.key});
@@ -67,29 +68,34 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       _canResend = false;
     });
 
-    final AppAuthProvider auth = context.read<AppAuthProvider>();
-    final bool success = await auth.resendVerificationEmail();
-
-    if (success) {
+    final AuthService auth = context.read<AuthService>();
+    
+    try {
+      await auth.sendVerificationEmail();
       _showSnackBar('Correo de verificación reenviado. Revisa tu bandeja de entrada.');
       _startCooldownTimer();
-    } else {
+    } catch (e) {
       _showSnackBar('Error al reenviar el correo. Intenta de nuevo.', isError: true);
       setState(() => _canResend = true);
+    } finally {
+      setState(() => _isLoading = false);
     }
-
-    setState(() => _isLoading = false);
   }
 
   Future<void> _checkVerification() async {
     setState(() => _isLoading = true);
 
-    final AppAuthProvider auth = context.read<AppAuthProvider>();
+    final AuthService auth = context.read<AuthService>();
     final bool verified = await auth.refreshUser();
 
     if (verified) {
+      await LocalAuthService.updateEmailVerified(verified: true);
       if (mounted) {
-        unawaited(Navigator.pushReplacementNamed(context, '/dashboard'));
+        unawaited(Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/dashboard',
+          (Route<dynamic> route) => false,
+        ));
       }
     } else {
       _showSnackBar('Tu correo aún no está verificado. Revisa tu bandeja de entrada.', isError: true);
@@ -99,7 +105,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
   }
 
   Future<void> _logout() async {
-    final AppAuthProvider auth = context.read<AppAuthProvider>();
+    final AuthService auth = context.read<AuthService>();
     await auth.logout();
     if (mounted) {
       unawaited(Navigator.pushReplacementNamed(context, '/login'));

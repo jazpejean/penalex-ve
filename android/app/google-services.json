@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "653489758174-vkja9crgi8b5h63k9g11g97fourhkmja.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.penalex.ve",
+            "certificate_hash": "4ad24383361b092765f5d3dcafd13ad91c5583eb"
+          }
+        },
+        {
           "client_id": "653489758174-ruq2tjfs6fdhq3pafut36cfqmi5hthmo.apps.googleusercontent.com",
           "client_type": 3
         }

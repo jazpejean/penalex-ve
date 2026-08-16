@@ -1,14 +1,14 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../config/app_colors.dart';
-import '../providers/auth_provider.dart';
 import '../services/auth_service.dart';
 import '../services/user_profile_service.dart';
 
@@ -16,7 +16,12 @@ class AppDrawer extends StatelessWidget {
   const AppDrawer({required this.currentRoute, super.key});
   final String currentRoute;
 
-  // Rutas que existen en main.dart (y que no causarán error)
+  // Colores consistentes
+  static const Color azulMarino = Color(0xFF0F172A);
+  static const Color dorado = Color(0xFFC5A059);
+  static const Color grisClaro = Color(0xFFF1F5F9);
+
+  // Rutas que existen en main.dart
   static const Set<String> validRoutes = <String>{
     '/dashboard',
     '/calculadora',
@@ -24,19 +29,26 @@ class AppDrawer extends StatelessWidget {
     '/quiz',
     '/login',
     '/',
+    '/asistente_legal',
+    '/glosario',
+    '/jurisprudencia',
+    '/repositorio_jurisprudencia',
+    '/chat_legal',
+    '/busqueda_semantica',
+    '/admin_ia_config',
+    '/admin_glosario',
+    '/calculos',
   };
 
   void _navigate(BuildContext context, String route, {Object? arguments}) {
-    // Cerrar el drawer
     Navigator.pop(context);
 
-    // Si es la ruta del dashboard, usar pushNamedAndRemoveUntil para limpiar pila
     if (route == '/dashboard') {
-      Navigator.pushNamedAndRemoveUntil(context, '/dashboard', (Route<dynamic> route) => false);
+      Navigator.pushNamedAndRemoveUntil(
+          context, '/dashboard', (Route<dynamic> route) => false);
       return;
     }
 
-    // Evitar navegar a la misma ruta
     if (currentRoute == route && arguments == null) return;
 
     // Verificar si la ruta es válida antes de navegar
@@ -66,8 +78,10 @@ class AppDrawer extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ListTile(
-              leading: const Icon(Icons.photo_library, color: AppColors.secondary),
-              title: const Text("Seleccionar de la galería", style: TextStyle(color: Colors.white)),
+              leading:
+                  const Icon(Icons.photo_library, color: AppColors.secondary),
+              title: const Text("Seleccionar de la galería",
+                  style: TextStyle(color: Colors.white)),
               onTap: () async {
                 Navigator.pop(context);
                 await _uploadProfileImage(context, ImageSource.gallery);
@@ -75,7 +89,8 @@ class AppDrawer extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.camera_alt, color: AppColors.secondary),
-              title: const Text("Tomar foto con cámara", style: TextStyle(color: Colors.white)),
+              title: const Text("Tomar foto con cámara",
+                  style: TextStyle(color: Colors.white)),
               onTap: () async {
                 Navigator.pop(context);
                 await _uploadProfileImage(context, ImageSource.camera);
@@ -87,10 +102,13 @@ class AppDrawer extends StatelessWidget {
     ));
   }
 
-  Future<void> _uploadProfileImage(BuildContext context, ImageSource source) async {
+  Future<void> _uploadProfileImage(
+      BuildContext context, ImageSource source) async {
     final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
     messenger.showSnackBar(
-      const SnackBar(content: Text('Subiendo foto de perfil...'), duration: Duration(seconds: 2)),
+      const SnackBar(
+          content: Text('Subiendo foto de perfil...'),
+          duration: Duration(seconds: 2)),
     );
     try {
       final String? url = await UserProfileService.uploadProfileImage(source);
@@ -111,18 +129,21 @@ class AppDrawer extends StatelessWidget {
       }
     } on Exception catch (e) {
       messenger.showSnackBar(
-        SnackBar(content: Text('Error al subir la imagen: $e'), backgroundColor: Colors.red),
+        SnackBar(
+            content: Text('Error al subir la imagen: $e'),
+            backgroundColor: Colors.red),
       );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final AppAuthProvider authProvider = Provider.of<AppAuthProvider>(context, listen: false);
-    final User? user = authProvider.user;
-    final String nombreUsuario = authProvider.userName ?? 'Usuario';
+    final authService = context.read<AuthService>();
+    final user = authService.currentUser;
+    final String nombreUsuario = user?.displayName ?? 'Usuario';
     final String email = user?.email ?? 'Sin correo';
-    final String inicial = nombreUsuario.isNotEmpty ? nombreUsuario[0].toUpperCase() : 'U';
+    final String inicial =
+        nombreUsuario.isNotEmpty ? nombreUsuario[0].toUpperCase() : 'U';
 
     return Drawer(
       child: Container(
@@ -131,9 +152,16 @@ class AppDrawer extends StatelessWidget {
           children: <Widget>[
             StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
               stream: UserProfileService.userDocStream(),
-              builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
-                final Map<String, dynamic> data = snapshot.data?.data() ?? <String, dynamic>{};
+              builder: (BuildContext context,
+                  AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>>
+                      snapshot) {
+                final Map<String, dynamic> data =
+                    snapshot.data?.data() ?? <String, dynamic>{};
+                
+                // Leer photoBase64 (nuevo) o photoUrl (legacy)
+                final String? photoBase64 = data['photoBase64'] as String?;
                 final String? photoUrl = data['photoUrl'] as String? ?? user?.photoURL;
+                
                 final int nivel = (data['nivel_actual'] as int?) ?? 1;
                 final String rango = UserProfileService.rankLabel(nivel);
 
@@ -142,22 +170,37 @@ class AppDrawer extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
                   decoration: const BoxDecoration(
                     color: Color(0xFF111827),
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(24), bottomRight: Radius.circular(24)),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(24),
+                        bottomRight: Radius.circular(24)),
                   ),
                   child: Row(
                     children: <Widget>[
                       GestureDetector(
-                        onTap: () => unawaited(_showProfilePicker(context)),
+                        onTap: () async {
+                          await _showProfilePicker(context);
+                        },
                         child: Stack(
                           alignment: Alignment.bottomRight,
                           children: <Widget>[
                             CircleAvatar(
                               radius: 36,
                               backgroundColor: const Color(0xFFC5A059),
-                              backgroundImage: photoUrl != null ? NetworkImage(photoUrl) : null,
-                              child: photoUrl == null
+                              backgroundImage: photoBase64 != null
+                                  ? MemoryImage(base64Decode(photoBase64))
+                                  : (photoUrl != null ? NetworkImage(photoUrl) : null) as ImageProvider?,
+                              onBackgroundImageError: (exception, stackTrace) {
+                                // Silenciosamente ignorar errores de carga de imagen
+                                if (kDebugMode) {
+                                  debugPrint('⚠️ Error cargando imagen de perfil: $exception');
+                                }
+                              },
+                              child: (photoBase64 == null && photoUrl == null)
                                   ? Text(inicial,
-                                      style: const TextStyle(color: Color(0xFF0F172A), fontSize: 28, fontWeight: FontWeight.bold))
+                                      style: const TextStyle(
+                                          color: Color(0xFF0F172A),
+                                          fontSize: 28,
+                                          fontWeight: FontWeight.bold))
                                   : null,
                             ),
                             Container(
@@ -166,9 +209,11 @@ class AppDrawer extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color: const Color(0xFFC5A059),
                                 shape: BoxShape.circle,
-                                border: Border.all(color: const Color(0xFF0F172A), width: 2),
+                                border: Border.all(
+                                    color: const Color(0xFF0F172A), width: 2),
                               ),
-                              child: const Icon(Icons.camera_alt, size: 16, color: Color(0xFF0F172A)),
+                              child: const Icon(Icons.camera_alt,
+                                  size: 16, color: Color(0xFF0F172A)),
                             ),
                           ],
                         ),
@@ -179,18 +224,30 @@ class AppDrawer extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(nombreUsuario,
-                                style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold)),
                             const SizedBox(height: 4),
-                            Text(email, style: TextStyle(color: const Color(0xFFFFFFFF).withValues(alpha: 0.72), fontSize: 13)),
+                            Text(email,
+                                style: TextStyle(
+                                    color: const Color(0xFFFFFFFF)
+                                        .withValues(alpha: 0.72),
+                                    fontSize: 13)),
                             const SizedBox(height: 12),
                             Container(
-                              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 6, horizontal: 12),
                               decoration: BoxDecoration(
-                                color: const Color(0xFFC5A059).withValues(alpha: 0.12),
+                                color: const Color(0xFFC5A059)
+                                    .withValues(alpha: 0.12),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Text(rango,
-                                  style: const TextStyle(color: Color(0xFFC5A059), fontSize: 12, fontWeight: FontWeight.w600)),
+                                  style: const TextStyle(
+                                      color: Color(0xFFC5A059),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600)),
                             ),
                           ],
                         ),
@@ -205,60 +262,189 @@ class AppDrawer extends StatelessWidget {
               child: ListView(
                 padding: EdgeInsets.zero,
                 children: <Widget>[
+                  // 🏠 INICIO
+                  _buildSectionHeader('INICIO'),
+                  _buildMenuItem(
+                    context,
+                    icon: Icons.dashboard_outlined,
+                    title: 'Dashboard',
+                    route: '/dashboard',
+                  ),
+                  
+                  const SizedBox(height: 8),
+                  
+                  // 🤖 ASISTENTE IA
+                  _buildSectionHeader('ASISTENTE IA'),
+                  _buildMenuItem(
+                    context,
+                    icon: Icons.chat_bubble_outline,
+                    title: 'Chat Legal',
+                    route: '/chat_legal',
+                  ),
+                  _buildMenuItem(
+                    context,
+                    icon: Icons.auto_awesome,
+                    title: 'Hub de Herramientas IA',
+                    route: '/asistente_legal',
+                  ),
+                  
+                  const SizedBox(height: 8),
+                  
+                  // 🧮 CALCULADORA PENAL
+                  _buildSectionHeader('CALCULADORA PENAL'),
                   _buildExpansionTile(
                     context,
                     icon: Icons.calculate_outlined,
-                    title: 'Calculadora de Penas',
+                    title: 'Dosimetría de Penas',
                     children: <Widget>[
-                      _buildSubMenuItem(context, icon: Icons.calculate, title: 'Ir a Calculadora', route: '/calculadora'),
-                      _buildSubMenuItem(context, icon: Icons.folder_open, title: 'Cálculos Guardados', route: '/calculos', showSnackbar: true),
-                      _buildSubMenuItem(context, icon: Icons.picture_as_pdf, title: 'Reportes Guardados', route: '/reportes', showSnackbar: true),
+                      _buildSubMenuItem(context,
+                          icon: Icons.add_circle_outline,
+                          title: 'Nueva Dosimetría',
+                          route: '/calculadora'),
+                      _buildSubMenuItem(context,
+                          icon: Icons.folder_open,
+                          title: 'Cálculos Guardados',
+                          route: '/calculos'),
                     ],
                   ),
-                  _buildMenuItem(context, icon: Icons.timer, title: 'Lapsos Procesales', route: '/lapsos', showSnackbar: true),
-                  _buildMenuItem(context, icon: Icons.calendar_month_outlined, title: 'Agenda Judicial', route: '/agenda'),
+                  
+                  const SizedBox(height: 8),
+                  
+                  // 📚 RECURSOS LEGALES
+                  _buildSectionHeader('RECURSOS LEGALES'),
+                  _buildMenuItem(context,
+                      icon: Icons.balance,
+                      title: 'Jurisprudencias TSJ',
+                      route: '/repositorio_jurisprudencia'),
+                  _buildMenuItem(context,
+                      icon: Icons.search,
+                      title: 'Búsqueda Semántica IA',
+                      route: '/busqueda_semantica'),
+                  _buildMenuItem(context,
+                      icon: Icons.book,
+                      title: 'Glosario Jurídico',
+                      route: '/glosario'),
                   _buildExpansionTile(
                     context,
                     icon: Icons.menu_book,
-                    title: 'Biblioteca Legal',
+                    title: 'Leyes y Códigos',
                     children: <Widget>[
-                      _buildSubMenuItem(context, icon: Icons.description, title: 'Constitución de la República Bolivariana de Venezuela', route: '/leyes', showSnackbar: true),
-                      _buildSubMenuItem(context, icon: Icons.gavel, title: 'Código Penal Venezolano', route: '/leyes', showSnackbar: true),
-                      _buildSubMenuItem(context, icon: Icons.account_balance, title: 'Código Orgánico Procesal Penal', route: '/leyes', showSnackbar: true),
-                      _buildSubMenuItem(context, icon: Icons.woman, title: 'Ley Orgánica sobre el Derecho de las Mujeres a una Vida Libre de Violencia', route: '/leyes', showSnackbar: true),
-                      _buildSubMenuItem(context, icon: Icons.medical_services, title: 'Ley Orgánica de Drogas', route: '/leyes', showSnackbar: true),
-                      _buildSubMenuItem(context, icon: Icons.security, title: 'Ley Orgánica contra la Delincuencia Organizada y Financiamiento al Terrorismo', route: '/leyes', showSnackbar: true),
-                      _buildSubMenuItem(context, icon: Icons.money_off, title: 'Ley contra el Secuestro y la Extorsión', route: '/leyes', showSnackbar: true),
-                      _buildSubMenuItem(context, icon: Icons.directions_car, title: 'Ley sobre el Hurto y Robo de Vehículos Automotores', route: '/leyes', showSnackbar: true),
-                      _buildSubMenuItem(context, icon: Icons.shield, title: 'Ley para el Desarme y Control de Armas y Municiones', route: '/leyes', showSnackbar: true),
+                      _buildSubMenuItem(context,
+                          icon: Icons.description,
+                          title: 'Constitución de Venezuela',
+                          route: '/leyes',
+                          showSnackbar: true),
+                      _buildSubMenuItem(context,
+                          icon: Icons.gavel,
+                          title: 'Código Penal',
+                          route: '/leyes',
+                          showSnackbar: true),
+                      _buildSubMenuItem(context,
+                          icon: Icons.account_balance,
+                          title: 'COPP',
+                          route: '/leyes',
+                          showSnackbar: true),
+                      _buildSubMenuItem(context,
+                          icon: Icons.woman,
+                          title: 'Ley de Violencia contra la Mujer',
+                          route: '/leyes',
+                          showSnackbar: true),
+                      _buildSubMenuItem(context,
+                          icon: Icons.medical_services,
+                          title: 'Ley Orgánica de Drogas',
+                          route: '/leyes',
+                          showSnackbar: true),
+                      _buildSubMenuItem(context,
+                          icon: Icons.security,
+                          title: 'Ley contra Delincuencia Organizada',
+                          route: '/leyes',
+                          showSnackbar: true),
                     ],
                   ),
-                  _buildMenuItem(context, icon: Icons.balance, title: 'Jurisprudencia', route: '/jurisprudencia', showSnackbar: true),
-                  _buildMenuItem(context, icon: Icons.book, title: 'Glosario Jurídico', route: '/glosario', showSnackbar: true),
+                  
+                  const SizedBox(height: 8),
+                  
+                  // 📆 AGENDA & GESTIÓN
+                  _buildSectionHeader('AGENDA & GESTIÓN'),
+                  _buildMenuItem(context,
+                      icon: Icons.calendar_month_outlined,
+                      title: 'Agenda Judicial',
+                      subtitle: 'Con calculadora de lapsos',
+                      route: '/agenda'),
+                  _buildMenuItem(context,
+                      icon: Icons.folder_outlined,
+                      title: 'Mis Documentos',
+                      route: '/mis_documentos',
+                      showSnackbar: true),
+                  
+                  const SizedBox(height: 8),
+                  
+                  // 🎮 FORMACIÓN
+                  _buildSectionHeader('FORMACIÓN'),
                   _buildExpansionTile(
                     context,
                     icon: Icons.quiz_outlined,
-                    title: 'Desafío Penal',
+                    title: 'Quiz Legal',
                     children: <Widget>[
-                      _buildSubMenuItem(context, icon: Icons.play_arrow, title: 'Iniciar Quiz / Niveles', route: '/quiz'),
-                      _buildSubMenuItem(context, icon: Icons.emoji_events, title: 'Mis Logros', route: '/achievements', showSnackbar: true),
-                      _buildSubMenuItem(context, icon: Icons.leaderboard, title: 'Ranking Global', route: '/ranking', showSnackbar: true),
+                      _buildSubMenuItem(context,
+                          icon: Icons.play_arrow,
+                          title: 'Iniciar / Continuar',
+                          route: '/quiz'),
+                      _buildSubMenuItem(context,
+                          icon: Icons.emoji_events,
+                          title: 'Mis Logros',
+                          route: '/achievements',
+                          showSnackbar: true),
+                      _buildSubMenuItem(context,
+                          icon: Icons.leaderboard,
+                          title: 'Ranking Global',
+                          route: '/ranking',
+                          showSnackbar: true),
                     ],
                   ),
+                  
+                  const SizedBox(height: 8),
                   const Divider(color: Colors.white12, height: 1),
-                  _buildMenuItem(context, icon: Icons.privacy_tip, title: 'Política de Privacidad', route: '/privacidad', showSnackbar: true),
-                  _buildMenuItem(context, icon: Icons.description, title: 'Términos de Servicio', route: '/terminos', showSnackbar: true),
+                  const SizedBox(height: 8),
+                  
+                  // ⚙️ CONFIGURACIÓN
+                  // Configuración de IA (solo para administradores)
+                  if (UserProfileService.isAdmin()) ...[
+                    _buildSectionHeader('ADMINISTRACIÓN'),
+                    _buildMenuItem(context,
+                        icon: Icons.settings,
+                        title: 'Configuración de IA',
+                        route: '/admin_ia_config'),
+                    _buildMenuItem(context,
+                        icon: Icons.book_outlined,
+                        title: 'Gestionar Glosario',
+                        route: '/admin_glosario'),
+                    const Divider(color: Colors.white12, height: 1),
+                  ],
+                  _buildMenuItem(context,
+                      icon: Icons.privacy_tip,
+                      title: 'Política de Privacidad',
+                      route: '/privacidad',
+                      showSnackbar: true),
+                  _buildMenuItem(context,
+                      icon: Icons.description,
+                      title: 'Términos de Servicio',
+                      route: '/terminos',
+                      showSnackbar: true),
                   const Divider(color: Colors.white12, height: 1),
                   ListTile(
                     leading: const Icon(Icons.logout, color: Color(0xFFEF4444)),
-                    title: const Text('Cerrar sesión', style: TextStyle(color: Color(0xFFEF4444))),
+                    title: const Text('Cerrar sesión',
+                        style: TextStyle(color: Color(0xFFEF4444))),
                     onTap: () async {
-                      await AuthService().logout();
+                      final authService = context.read<AuthService>();
+                      await authService.signOut();
                       if (context.mounted) {
-                        Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false);
+                        Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
                       }
                     },
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                     contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                   ),
                 ],
@@ -270,12 +456,15 @@ class AppDrawer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const Divider(color: Colors.white12),
-                  const Text('Penalex VE v1.0', style: TextStyle(fontSize: 12, color: Colors.white54)),
+                  const Text('Penalex VE v1.0',
+                      style: TextStyle(fontSize: 12, color: Colors.white54)),
                   const SizedBox(height: 4),
                   GestureDetector(
                     onLongPress: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Función deshabilitada'), duration: Duration(seconds: 1)),
+                        const SnackBar(
+                            content: Text('Función deshabilitada'),
+                            duration: Duration(seconds: 1)),
                       );
                     },
                     child: const Text('Desarrollado por Jean Jazpe Lizcano',
@@ -290,30 +479,62 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
+  /// Header de sección con estilo moderno
+  Widget _buildSectionHeader(String title) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 12, 20, 8),
+      child: Text(
+        title,
+        style: const TextStyle(
+          color: Color(0xFFC5A059),
+          fontSize: 11,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 1.2,
+        ),
+      ),
+    );
+  }
+
   Widget _buildMenuItem(
     BuildContext context, {
     required IconData icon,
     required String title,
     required String route,
+    String? subtitle, // ✅ Nuevo parámetro
     bool showSnackbar = false,
     Object? arguments,
   }) {
     final bool isSelected = currentRoute == route;
     return ListTile(
-      leading: Icon(icon, color: isSelected ? const Color(0xFFC5A059) : const Color(0xFF94A3B8), size: 24),
+      leading: Icon(icon,
+          color: isSelected ? const Color(0xFFC5A059) : const Color(0xFF94A3B8),
+          size: 24),
       title: Text(
         title,
         style: TextStyle(
+          color: isSelected ? const Color(0xFFC5A059) : Colors.white,
           fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-          color: isSelected ? Colors.white : const Color(0xFFCBD5E1),
+          fontSize: 14,
         ),
       ),
+      // ✅ Mostrar subtítulo si existe
+      subtitle: subtitle != null
+          ? Text(
+              subtitle,
+              style: TextStyle(
+                color: Colors.white.withValues(alpha: 0.5),
+                fontSize: 11,
+              ),
+            )
+          : null,
       selected: isSelected,
       selectedTileColor: const Color(0xFFC5A059).withValues(alpha: 0.18),
       onTap: () {
         if (showSnackbar) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Próximamente disponible'), duration: Duration(seconds: 2)),
+            const SnackBar(
+                content: Text('Próximamente disponible'),
+                duration: Duration(seconds: 2)),
           );
         } else {
           _navigate(context, route, arguments: arguments);
@@ -334,7 +555,9 @@ class AppDrawer extends StatelessWidget {
   }) {
     final bool isSelected = currentRoute == route;
     return ListTile(
-      leading: Icon(icon, color: isSelected ? const Color(0xFFC5A059) : const Color(0xFF94A3B8), size: 20),
+      leading: Icon(icon,
+          color: isSelected ? const Color(0xFFC5A059) : const Color(0xFF94A3B8),
+          size: 20),
       title: Text(
         title,
         style: TextStyle(
@@ -346,7 +569,9 @@ class AppDrawer extends StatelessWidget {
       onTap: () {
         if (showSnackbar) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Próximamente disponible'), duration: Duration(seconds: 2)),
+            const SnackBar(
+                content: Text('Próximamente disponible'),
+                duration: Duration(seconds: 2)),
           );
         } else {
           _navigate(context, route, arguments: arguments);
@@ -366,7 +591,8 @@ class AppDrawer extends StatelessWidget {
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
           leading: Icon(icon, color: const Color(0xFF94A3B8), size: 24),
-          title: Text(title, style: const TextStyle(fontSize: 15, color: Colors.white70)),
+          title: Text(title,
+              style: const TextStyle(fontSize: 15, color: Colors.white70)),
           collapsedIconColor: const Color(0xFFC5A059),
           childrenPadding: EdgeInsets.zero,
           tilePadding: const EdgeInsets.symmetric(horizontal: 20),

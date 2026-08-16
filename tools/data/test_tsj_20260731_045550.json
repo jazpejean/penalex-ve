@@ -1,0 +1,11 @@
+{
+  "timestamp": "20260731_045550",
+  "resultados": {
+    "TSJ P\u00e1gina Principal": true,
+    "TSJ Hist\u00f3rico": true,
+    "Sala Casaci\u00f3n Penal": false,
+    "SCP Marzo": false,
+    "Sentencia Ejemplo 1": true
+  },
+  "tasa_exito": "3/5"
+}

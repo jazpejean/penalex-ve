@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/auth_provider.dart';
+import '../config/app_colors.dart';
+import '../services/auth_service.dart';
 import '../widgets/app_drawer.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -11,19 +12,20 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppAuthProvider authProvider = context.watch<AppAuthProvider>();
-    final String nombreUsuario = authProvider.userName ?? 'Usuario';
+    final authService = context.read<AuthService>();
+    final user = authService.currentUser;
+    final String nombreUsuario = user?.displayName ?? 'Usuario';
 
     return Scaffold(
       appBar: AppBar(
         title: const Row(
           children: <Widget>[
-            Icon(Icons.gavel, color: Color(0xFFC5A059), size: 28),
+            Icon(Icons.gavel, color: AppColors.secondary, size: 28),
             SizedBox(width: 8),
             Text(
               'PENALEX VE',
               style: TextStyle(
-                color: Color(0xFFC5A059),
+                color: AppColors.secondary,
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
                 letterSpacing: 1.5,
@@ -32,14 +34,15 @@ class DashboardScreen extends StatelessWidget {
             ),
           ],
         ),
-        backgroundColor: const Color(0xFF0F172A),
-        iconTheme: const IconThemeData(color: Color(0xFFC5A059)),
+        backgroundColor: AppColors.primary,
+        iconTheme: const IconThemeData(color: AppColors.secondary),
         elevation: 0,
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {
-              unawaited(context.read<AppAuthProvider>().logout());
+              final authService = context.read<AuthService>();
+              await authService.signOut();
               if (context.mounted) {
                 Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false);
               }
@@ -48,20 +51,26 @@ class DashboardScreen extends StatelessWidget {
         ],
       ),
       drawer: const AppDrawer(currentRoute: '/dashboard'),
+      backgroundColor: const Color(0xFFF1F5F9), // Fondo gris muy claro
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
+            // Header institucional
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
               decoration: BoxDecoration(
-                color: const Color(0xFF0F172A),
-                borderRadius: BorderRadius.circular(20),
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF0F172A), Color(0xFF1E293B)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(16),
                 boxShadow: <BoxShadow>[
                   BoxShadow(
                     color: const Color(0xFF0F172A).withValues(alpha: 0.3),
-                    blurRadius: 10,
+                    blurRadius: 12,
                     offset: const Offset(0, 4),
                   ),
                 ],
@@ -69,15 +78,70 @@ class DashboardScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('¡Hola, $nombreUsuario!',
-                      style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFFC5A059))),
-                  const SizedBox(height: 8),
-                  const Text('¿Qué herramienta legal usaremos hoy?',
-                      style: TextStyle(fontSize: 16, color: Colors.white70)),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFC5A059).withValues(alpha: 0.15),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: const Color(0xFFC5A059).withValues(alpha: 0.3),
+                            width: 1,
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.account_balance,
+                          color: Color(0xFFC5A059),
+                          size: 28,
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              '¡Bienvenido, $nombreUsuario!',
+                              style: const TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFC5A059),
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            const Text(
+                              'Herramientas Jurídicas Profesionales',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white70,
+                                letterSpacing: 0.3,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 28),
+            
+            // ASISTENTE LEGAL - Feature destacada
+            _buildStarCard(
+              context,
+              title: '🤖 Asistente Legal con IA',
+              subtitle: 'Tu equipo de estrategas legales',
+              description: 'Chat, Redactor, Escáner y Comparador de Estrategias. Todo en un solo lugar.',
+              icon: Icons.auto_awesome,
+              route: '/asistente_legal',
+              actionText: 'Acceder al asistente',
+              badge: '⭐ NUEVO',
+            ),
+            
+            // HERRAMIENTAS PRINCIPALES
             _buildCard(
               context,
               title: '⚖️ Dosimetría Penal',
@@ -86,15 +150,6 @@ class DashboardScreen extends StatelessWidget {
               icon: Icons.calculate,
               route: '/calculadora',
               actionText: 'Iniciar cálculo',
-            ),
-            _buildCard(
-              context,
-              title: '⏱️ Cómputo de Lapsos',
-              subtitle: 'Plazos procesales al instante',
-              description: 'Calcula fechas, términos y vencimientos judiciales.',
-              icon: Icons.timer,
-              route: '/lapsos',
-              actionText: 'Calcular plazos',
             ),
             _buildCard(
               context,
@@ -147,6 +202,171 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildStarCard(
+    BuildContext context, {
+    required String title,
+    required String subtitle,
+    required String description,
+    required IconData icon,
+    required String route,
+    required String actionText,
+    required String badge,
+  }) =>
+      GestureDetector(
+        onTap: () => Navigator.pushNamed(context, route),
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 20),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xFF1E293B), Color(0xFF0F172A)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: const Color(0xFFC5A059),
+              width: 2,
+            ),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: const Color(0xFFC5A059).withValues(alpha: 0.3),
+                blurRadius: 20,
+                offset: const Offset(0, 8),
+              ),
+            ],
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () => Navigator.pushNamed(context, route),
+              borderRadius: BorderRadius.circular(20),
+              splashColor: const Color(0xFFC5A059).withValues(alpha: 0.2),
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          padding: const EdgeInsets.all(14),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFC5A059).withValues(alpha: 0.2),
+                            borderRadius: BorderRadius.circular(14),
+                            border: Border.all(
+                              color: const Color(0xFFC5A059).withValues(alpha: 0.5),
+                              width: 1.5,
+                            ),
+                          ),
+                          child: Icon(icon, size: 32, color: const Color(0xFFC5A059)),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 4,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFFBBF24),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Text(
+                                  badge,
+                                  style: const TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF0F172A),
+                                    letterSpacing: 0.5,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                title,
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  letterSpacing: 0.3,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                subtitle,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color(0xFFC5A059).withValues(alpha: 0.9),
+                                  letterSpacing: 0.2,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 18,
+                          color: const Color(0xFFC5A059),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      description,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white.withValues(alpha: 0.85),
+                        height: 1.5,
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFC5A059),
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: <BoxShadow>[
+                          BoxShadow(
+                            color: const Color(0xFFC5A059).withValues(alpha: 0.3),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const Icon(
+                            Icons.auto_awesome,
+                            color: Color(0xFF0F172A),
+                            size: 20,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            actionText,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF0F172A),
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+
   Widget _buildCard(
     BuildContext context, {
     required String title,
@@ -158,36 +378,125 @@ class DashboardScreen extends StatelessWidget {
   }) =>
       GestureDetector(
         onTap: () => Navigator.pushNamed(context, route),
-        child: Card(
-          elevation: 4,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          color: Colors.white,
-          margin: const EdgeInsets.only(bottom: 16),
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 14),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xFF1E293B), Color(0xFF0F172A)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: const Color(0xFFC5A059).withValues(alpha: 0.2),
+              width: 1,
+            ),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.15),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () => Navigator.pushNamed(context, route),
+              borderRadius: BorderRadius.circular(16),
+              splashColor: const Color(0xFFC5A059).withValues(alpha: 0.1),
+              child: Padding(
+                padding: const EdgeInsets.all(18),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Icon(icon, size: 32, color: const Color(0xFFC5A059)),
-                    const SizedBox(width: 12),
-                    Expanded(
-                        child: Text(title,
-                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)))),
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFC5A059).withValues(alpha: 0.15),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: const Color(0xFFC5A059).withValues(alpha: 0.3),
+                              width: 1,
+                            ),
+                          ),
+                          child: Icon(icon, size: 28, color: const Color(0xFFC5A059)),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                title,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  letterSpacing: 0.3,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                subtitle,
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color(0xFFC5A059).withValues(alpha: 0.8),
+                                  letterSpacing: 0.2,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                          color: const Color(0xFFC5A059).withValues(alpha: 0.6),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 60),
+                      child: Text(
+                        description,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.white.withValues(alpha: 0.7),
+                          height: 1.4,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 60),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFC5A059).withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(6),
+                          border: Border.all(
+                            color: const Color(0xFFC5A059).withValues(alpha: 0.3),
+                            width: 1,
+                          ),
+                        ),
+                        child: Text(
+                          actionText,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFFC5A059),
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-                const SizedBox(height: 8),
-                Text(subtitle, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFF475569))),
-                const SizedBox(height: 4),
-                Text(description, style: const TextStyle(fontSize: 13, color: Color(0xFF64748B))),
-                const SizedBox(height: 16),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(actionText,
-                      style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: Color(0xFFC5A059))),
-                ),
-              ],
+              ),
             ),
           ),
         ),

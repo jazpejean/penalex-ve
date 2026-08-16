@@ -1,0 +1,152 @@
+===========================================
+PROMPTS PARA GENERAR IMÁGENES CON GEMINI/DALL-E
+LOBBY DEL QUIZ - REGIONES DE VENEZUELA
+===========================================
+
+INSTRUCCIONES:
+Copia y pega cada prompt en Gemini o DALL-E para generar las imágenes.
+Cada región tiene su estilo único basado en:
+- Monumentos coloniales e históricos
+- Tribunales y edificios de justicia
+- Colores distintivos
+- Arquitectura característica
+
+===========================================
+
+REGIÓN 1: DISTRITO CAPITAL - CARACAS (Niveles 1-125)
+Color: Rojo #CF142B
+
+PROMPT:
+"Create a vertical mobile game lobby background for Venezuelan legal education app. Style: colonial architecture meets judicial authority. Setting: Caracas historic center. Visual elements: Tribunal Supremo de Justicia building (neoclassical), Federal Legislative Palace with golden dome, colonial Caracas Cathedral, Plaza Bolívar with statue, Simón Bolívar's birthplace (colonial house), National Pantheon building. Color scheme: dominant red (#CF142B) with golden accents, white marble textures. Atmosphere: prestigious, historical, governmental. Vertical orientation 1080x1920px. Include cobblestone path in center, Venezuelan flags, legal symbols (scales of justice, gavels). Art style: realistic with slight game illustration enhancement, professional legal aesthetic, not childish."
+
+===========================================
+
+REGIÓN 2: MIRANDA - LOS TEQUES (Niveles 126-250)
+Color: Azul #003893
+
+PROMPT:
+"Vertical mobile game background for Venezuelan state of Miranda. Setting: Los Teques city center. Main elements: Miranda Judicial Circuit courthouse, Plaza Bolívar Los Teques with colonial architecture, San Felipe Neri Church (18th century colonial), Court of Appeals building. Color scheme: dominant blue (#003893) with white and golden accents. Style: mix of colonial and modern judicial buildings, mountain backdrop (near Caracas). Vertical path in center, Venezuelan blue color prominence, legal authority symbols. 1080x1920px, realistic game art style, professional legal app aesthetic."
+
+===========================================
+
+REGIÓN 3: VARGAS - LA GUAIRA (Niveles 251-350)
+Color: Amarillo #FCDD09
+
+PROMPT:
+"Vertical game background for Vargas state, Venezuela. Setting: La Guaira historic port. Key elements: Fort San Carlos (18th century Spanish fortress), Port Tribunal building, Casa Guipuzcoana (colonial trading company building), Caribbean sea in background. Color scheme: dominant yellow (#FCDD09) with turquoise ocean, sandy tones. Include colonial fortification walls, maritime law symbols, anchors, coastal architecture. Vertical orientation 1080x1920px. Style: colonial coastal fortress meets legal authority, realistic game art, Venezuelan port history."
+
+===========================================
+
+REGIÓN 4: ARAGUA - MARACAY (Niveles 351-475)
+Color: Verde #228B22
+
+PROMPT:
+"Mobile game background for Aragua state, Venezuela. Setting: Maracay garden city. Elements: Plaza Bolívar Maracay with lush vegetation, State Government Palace, Aragua Judicial Circuit building, Maracay Cathedral. Color scheme: dominant green (#228B22), garden city aesthetic with tropical plants, white colonial buildings. Include araguaney trees with yellow flowers, palm trees, well-maintained gardens. Vertical 1080x1920px. Style: tropical garden meets judicial elegance, realistic game art, Venezuelan green city."
+
+===========================================
+
+REGIÓN 5: CARABOBO - VALENCIA (Niveles 476-600)
+Color: Dorado #D4AF37
+
+PROMPT:
+"Vertical background for Carabobo state, Venezuela. Setting: Valencia city and Carabobo battlefield. Main elements: Campo de Carabobo historic battlefield monument, Valencia Capitol building, colonial Valencia Cathedral (16th century), Carabobo Palace of Justice. Color scheme: dominant gold (#D4AF37), patriotic monument tones, historic battlefield aesthetic. Include independence war memorial, Venezuelan flags, military-legal symbolism. 1080x1920px. Style: historic independence glory meets legal authority, heroic patriotic tone, realistic game art."
+
+===========================================
+
+REGIÓN 6: ZULIA - MARACAIBO (Niveles 601-750)
+Color: Azul Rey #4169E1
+
+PROMPT:
+"Mobile game background for Zulia state, Venezuela. Setting: Maracaibo city, 'beloved sun city'. Key elements: Basilica of Our Lady of Chiquinquirá (patron saint), Casa Morales (colonial Zulian architecture with bright colors), Zulia State Government Palace, Zulia Judicial Circuit courthouse, Maracaibo Cathedral. Color scheme: dominant royal blue (#4169E1) with vibrant Zulian house colors (yellows, pinks, greens). Include Lake Maracaibo shimmer, oil industry subtle reference, colonial colorful houses. Vertical 1080x1920px. Style: vibrant Zulian colonial meets petroleum capital prestige, realistic game art with Caribbean color."
+
+===========================================
+
+REGIÓN 7: LARA - BARQUISIMETO (Niveles 751-875)
+Color: Rojo Tomate #FF6347
+
+PROMPT:
+"Vertical game background for Lara state, Venezuela. Setting: Barquisimeto, 'musical and twilight city'. Elements: modern Barquisimeto Cathedral (unique architectural design), Lara Legislative Palace, Barquisimeto Tribunals building, Plaza Bolívar Barquisimeto. Color scheme: dominant tomato red (#FF6347) with sunset tones (oranges, purples), modern architectural lines. Include musical instruments symbols (Barquisimeto is Venezuela's musical capital), twilight sky atmosphere. 1080x1920px. Style: modern architecture meets legal tradition, sunset aesthetic, realistic game art."
+
+===========================================
+
+REGIÓN 8: TÁCHIRA - SAN CRISTÓBAL (Niveles 876-1000)
+Color: Marrón Andino #8B4513
+
+PROMPT:
+"Mobile background for Táchira state, Venezuela (Andes region). Setting: San Cristóbal mountain city. Main elements: San Cristóbal Cathedral (Andean colonial style), Palacio de los Leones (government palace with lion statues), Táchira Judicial Circuit, Tachiran Plaza Bolívar. Color scheme: dominant Andean brown (#8B4513) with mountain stone gray, green mountain vegetation. Include Andes mountain backdrop, coffee plantations subtle reference, cool mountain mist, traditional Andean architecture. Vertical 1080x1920px. Style: Andean colonial dignity meets border state legal authority, mountain city aesthetic, realistic game art."
+
+===========================================
+
+REGIÓN 9: MÉRIDA - MÉRIDA (Niveles 1001-1125)
+Color: Verde Oscuro #006400
+
+PROMPT:
+"Vertical game background for Mérida state, Venezuela (highest Andes). Setting: Mérida city, 'city of gentlemen'. Key elements: Universidad de Los Andes (ULA) main building (prestigious university), Mérida Metropolitan Cathedral (Andean basilica), Mérida Tribunals, Plaza Bolívar with Andes mountain view. Color scheme: dominant dark green (#006400) with snow-capped peaks (Pico Bolívar), academic atmosphere. Include cable car reference, university architecture, highest Venezuelan mountains backdrop, intellectual legal environment. 1080x1920px. Style: academic prestige meets Andean majesty and legal authority, snowy peaks, realistic game art."
+
+===========================================
+
+REGIÓN 10: BOLÍVAR - CIUDAD BOLÍVAR (Niveles 1126-1250)
+Color: Marrón Dorado #CD853F
+
+PROMPT:
+"Mobile background for Bolívar state, Venezuela (gateway to Gran Sabana). Setting: Ciudad Bolívar colonial historic center. Main elements: Ciudad Bolívar Cathedral (colonial Guayana style), Casa del Congreso de Angostura (where independence congress met - historic site), Bolívar Palace of Justice, colonial Plaza Bolívar. Color scheme: golden brown (#CD853F) with Orinoco River tones, colonial ochre buildings. Include Orinoco River view, independence history symbolism, colonial Venezuelan architecture, tepui mountains distant backdrop. 1080x1920px. Style: colonial historic prestige meets legal authority, Orinoco region aesthetic, realistic game art with independence history weight."
+
+===========================================
+
+REGIÓN 11: ANZOÁTEGUI - BARCELONA (Niveles 1251-1400)
+Color: Azul Dodger #1E90FF
+
+PROMPT:
+"Vertical game background for Anzoátegui state, Venezuela (eastern region). Setting: Barcelona city historic center. Key elements: Casa Fuerte de Barcelona (independence martyrdom site - fortress ruins), colonial Barcelona Cathedral, Anzoátegui Judicial Circuit, Plaza Bolívar Barcelona. Color scheme: dominant dodger blue (#1E90FF) with Caribbean coast influence, independence struggle symbolism. Include independence war memorial, martyrdom historical weight, eastern Venezuelan colonial architecture, Caribbean Sea subtle reference. 1080x1920px. Style: independence sacrifice meets legal justice authority, patriotic solemn tone, realistic game art."
+
+===========================================
+
+REGIÓN 12: DISTRITO CAPITAL RETORNO - CARACAS (Niveles 2801-3000)
+Color: Dorado Supremo #FFD700
+
+PROMPT:
+"Vertical mobile game background for Venezuela Supreme Magistrate level (final stage). Setting: Supreme Court of Justice, Caracas - interior and exterior. Main elements: TSJ Constitutional Chamber (solemn courtroom), Penal Cassation Chamber, TSJ Presidency building (supreme judicial authority), Supreme Magistrate throne/bench. Color scheme: supreme gold (#FFD700) with white marble, prestigious wood panels, Venezuelan flags. Include scales of justice in gold, supreme court architecture, gavels, legal books, constitutional symbolism, presidential seal of Supreme Court. Atmosphere: absolute legal authority, judicial pinnacle, democratic justice crown. 1080x1920px. Style: supreme prestige and judicial majesty, not ostentatious but dignified authority, realistic game art with gold accents for final achievement."
+
+===========================================
+
+NOTAS IMPORTANTES PARA TODOS LOS PROMPTS:
+
+1. ESTILO CONSISTENTE: "realistic game illustration art, professional legal education app, not childish, dignified and authoritative"
+
+2. ELEMENTOS COMUNES A TODAS:
+   - Vertical cobblestone or marble path in center
+   - Venezuelan flag subtle presence
+   - Legal symbols (scales, gavels) integrated tastefully
+   - Colonial architecture + judicial buildings blend
+   - Professional color scheme (not cartoonish)
+
+3. ORIENTACIÓN: Always vertical 1080x1920px (mobile game format)
+
+4. TONO: Professional legal education, historic Venezuelan pride, governmental authority, NOT childish game aesthetic
+
+5. PARA MEJOR RESULTADO: Puedes agregar al final de cada prompt:
+   "High quality, detailed architectural rendering, Venezuelan colonial style authentic, legal profession dignity, mobile game background optimized."
+
+===========================================
+
+CÓMO USAR:
+
+1. Copia un prompt completo
+2. Pégalo en Gemini (con Imagen) o DALL-E 3
+3. Genera la imagen
+4. Guarda como: 
+   - caracas_background.jpg (Región 1)
+   - miranda_background.jpg (Región 2)
+   - etc.
+
+5. Coloca en: assets/images/regions/
+
+===========================================
+
+Si necesitas ajustar algún prompt, los elementos clave son:
+- Color dominante
+- Monumentos principales
+- Estilo arquitectónico
+- Atmósfera/tono
+
+¡Suerte generando las imágenes! 🎨⚖️🇻🇪

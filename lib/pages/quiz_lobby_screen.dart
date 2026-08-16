@@ -1,10 +1,11 @@
-import 'dart:math';
-
+import 'dart:math' as math;
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/game_provider.dart';
-import '../widgets/animated_path_painter.dart';
+import '../providers/user_provider.dart';
+import '../data/venezuela_regions.dart';
 import 'global_ranking_screen.dart';
 import 'quiz_game_screen.dart';
 
@@ -18,430 +19,719 @@ class QuizLobbyScreen extends StatefulWidget {
 class _QuizLobbyScreenState extends State<QuizLobbyScreen>
     with TickerProviderStateMixin {
   late ScrollController _scrollController;
-  late AnimationController _pathController;
-  late Animation<double> _pathAnimation;
-  late AnimationController _xpController;
-  late Animation<double> _xpAnimation;
-  late AnimationController _breathingController;
-  late Animation<double> _breathingAnimation;
-  late AnimationController _medallionController;
-  late Animation<double> _medallionRotation;
-  late AnimationController _glowController;
-  late Animation<double> _glowAnimation;
+  late AnimationController _pulseController;
+  late Animation<double> _pulseAnimation;
+  
+  double scrollOffset = 0.0;
+  int totalNiveles = 3000;
+  ui.Image? rioDoradoTexture;
 
   @override
   void initState() {
     super.initState();
-    _scrollController = ScrollController();
+    _scrollController = ScrollController()
+      ..addListener(() {
+        setState(() {
+          scrollOffset = _scrollController.offset;
+        });
+      });
 
-    _pathController = AnimationController(
+    _pulseController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
-    );
-    _pathAnimation = CurvedAnimation(parent: _pathController, curve: Curves.easeOut);
-    _pathController.forward();
-
-    _xpController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1500),
-    );
-    _xpAnimation = CurvedAnimation(parent: _xpController, curve: Curves.easeOutCubic);
-
-    _breathingController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1000),
     )..repeat(reverse: true);
-    _breathingAnimation = Tween<double>(begin: 1, end: 1.05).animate(
-      CurvedAnimation(parent: _breathingController, curve: Curves.easeInOut),
+    _pulseAnimation = Tween<double>(begin: 0.95, end: 1.05).animate(
+      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
 
-    _medallionController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 20),
-    )..repeat();
-    _medallionRotation = Tween<double>(begin: 0, end: 2 * pi).animate(
-      CurvedAnimation(parent: _medallionController, curve: Curves.linear),
-    );
+    _loadTextures();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToCurrentLevel());
+  }
 
-    _glowController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 800),
-    )..repeat(reverse: true);
-    _glowAnimation = Tween<double>(begin: 0.3, end: 0.8).animate(
-      CurvedAnimation(parent: _glowController, curve: Curves.easeInOut),
-    );
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _scrollToCurrentLevel();
-    });
+  Future<void> _loadTextures() async {
+    try {
+      final data = await rootBundle.load('assets/images/rio_dorado_texture.png');
+      final codec = await ui.instantiateImageCodec(data.buffer.asUint8List());
+      final frame = await codec.getNextFrame();
+      setState(() {
+        rioDoradoTexture = frame.image;
+      });
+    } catch (e) {
+      // Textura opcional
+    }
   }
 
   @override
   void dispose() {
     _scrollController.dispose();
-    _pathController.dispose();
-    _xpController.dispose();
-    _breathingController.dispose();
-    _medallionController.dispose();
-    _glowController.dispose();
+    _pulseController.dispose();
     super.dispose();
   }
 
   void _scrollToCurrentLevel() {
-    final GameState gameState = Provider.of<GameState>(context, listen: false);
-    final int currentLevel = gameState.currentLevel;
-    if (_scrollController.hasClients) {
-      final double posicion = _calcularPosicionScroll(currentLevel);
+    final gameState = Provider.of<GameState>(context, listen: false);
+    final currentLevel = gameState.currentLevel;
+    if (_scrollController.hasClients && currentLevel > 1) {
+      final offset = (currentLevel - 1) * 100.0;
       _scrollController.animateTo(
-        posicion,
+        offset,
         duration: const Duration(milliseconds: 800),
         curve: Curves.easeOutCubic,
       );
     }
   }
 
-  double _calcularPosicionScroll(int nivel) {
-    const int altoNodo = 90;
-    final int offsetNodos = nivel - 10;
-    return (offsetNodos * altoNodo).toDouble();
-  }
-
   @override
   Widget build(BuildContext context) {
-    final GameState gameState = Provider.of<GameState>(context);
-    final int currentLevel = gameState.currentLevel;
-    final String rangoActual = gameState.getRankForLevel(currentLevel);
-    final double progresoXP = currentLevel / 1600;
-    final int porcentaje = (progresoXP * 100).toInt();
-
-    if (!_xpController.isAnimating && _xpController.value != progresoXP) {
-      _xpController.animateTo(progresoXP, duration: const Duration(milliseconds: 1500));
-    }
+    final gameState = Provider.of<GameState>(context);
+    final userState = Provider.of<UserState>(context, listen: false);
+    
+    final userName = userState.user?.nombre ?? 'Usuario';
+    final currentLevel = gameState.currentLevel;
+    final score = gameState.score;
+    final apelaciones = gameState.apelaciones;
+    
+    // Obtener región actual
+    final RegionVenezuela? regionActual = gameState.getCurrentRegion();
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0F172A),
       body: Stack(
-        children: <Widget>[
-          Container(
-            decoration: const BoxDecoration(
-              gradient: RadialGradient(
-                center: Alignment(0, -0.3),
-                radius: 1.2,
-                colors: <Color>[Color(0xFF1E293B), Color(0xFF0F172A)],
-                stops: <double>[0, 0.8],
+        children: [
+          // Fondo gradiente con colores de región
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: regionActual != null 
+                    ? [
+                        regionActual.colorPrincipal.withValues(alpha: 0.3),
+                        const Color(0xFF1a1a2e),
+                        const Color(0xFF16213e),
+                      ]
+                    : const [
+                        Color(0xFF0B101B),
+                        Color(0xFF1a1a2e),
+                        Color(0xFF16213e),
+                      ],
+                ),
               ),
             ),
           ),
-          const Positioned(
-            left: 10,
-            top: 100,
-            child: Opacity(opacity: 0.15, child: Icon(Icons.account_balance, size: 80, color: Colors.white)),
+          
+          // Camino dorado con decoraciones
+          Positioned.fill(
+            child: CustomPaint(
+              painter: CaminoDoradoPainter(
+                scrollOffset: scrollOffset,
+                currentLevel: currentLevel,
+                totalNiveles: totalNiveles,
+                rioTexture: rioDoradoTexture,
+              ),
+            ),
           ),
-          const Positioned(
-            right: 10,
-            bottom: 150,
-            child: Opacity(opacity: 0.15, child: Icon(Icons.account_balance, size: 80, color: Colors.white)),
-          ),
+          
+          // UI
           SafeArea(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                children: <Widget>[
-                  const SizedBox(height: 16),
-                  _buildPergaminoHeader(rangoActual, currentLevel, gameState, porcentaje),
-                  const SizedBox(height: 20),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 16),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: const Color(0xFFC5A059), width: 1.5),
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                    child: _buildProgressionMap(gameState),
-                  ),
-                  const SizedBox(height: 24),
-                  _buildPlayButton(gameState),
-                  const SizedBox(height: 20),
-                  _buildCredits(),
-                  const SizedBox(height: 30),
-                ],
-              ),
+            child: Column(
+              children: [
+                _buildTopBanner(userName, currentLevel, score, apelaciones),
+                if (regionActual != null) _buildRegionCard(regionActual, currentLevel),
+                const Spacer(),
+                _buildPlayButton(),
+                const SizedBox(height: 16),
+              ],
             ),
           ),
+          
+          // Botón de ranking
           _buildRankingButton(),
         ],
       ),
     );
   }
 
-  Widget _buildPergaminoHeader(String rangoActual, int currentLevel, GameState gameState, int porcentaje) => TweenAnimationBuilder(
-      tween: Tween<double>(begin: -50, end: 0),
-      duration: const Duration(milliseconds: 600),
-      curve: Curves.easeOutCubic,
-      builder: (BuildContext context, double value, Widget? child) => Transform.translate(offset: Offset(0, value), child: child),
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20),
-        padding: const EdgeInsets.all(18),
-        decoration: BoxDecoration(
-          color: const Color(0xFF0F172A),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: const Color(0xFFC5A059), width: 2),
-          boxShadow: <BoxShadow>[BoxShadow(color: const Color(0xFFC5A059).withValues(alpha: 0.3), blurRadius: 12, offset: const Offset(0, 4))],
-        ),
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                _buildLogo(),
+  Widget _buildTopBanner(String userName, int level, int score, int apelaciones) {
+    final inicial = userName.isNotEmpty ? userName[0].toUpperCase() : 'U';
+    
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      child: Stack(
+        children: [
+          // Pergamino de fondo
+          Image.asset(
+            'assets/images/pergamino.png',
+            width: double.infinity,
+            fit: BoxFit.contain,
+            errorBuilder: (_, __, ___) => Container(
+              height: 120,
+              decoration: BoxDecoration(
+                color: const Color(0xFFE6D5B8),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: const Color(0xFF8B7355), width: 2),
+              ),
+            ),
+          ),
+          
+          // Contenido del banner
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // Avatar
+                Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFFC5A059), Color(0xFFE6B800)],
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      inicial,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                
                 const SizedBox(width: 12),
+                
+                // Rango y barra XP
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(rangoActual.toUpperCase(),
-                          style: const TextStyle(fontFamily: "PlayfairDisplay", fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFFC5A059), letterSpacing: 1)),
-                      const SizedBox(height: 4),
-                      Text("Nivel $currentLevel", style: const TextStyle(fontSize: 12, color: Colors.white70)),
+                    children: [
+                      Text(
+                        'Nivel $level',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF3E2723),
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      
+                      // Barra de XP
+                      Stack(
+                        children: [
+                          // Background de la barra
+                          Image.asset(
+                            'assets/images/xp_bar_background.png',
+                            width: double.infinity,
+                            height: 20,
+                            fit: BoxFit.fill,
+                            errorBuilder: (_, __, ___) => Container(
+                              height: 20,
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade400,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                          
+                          // Progreso
+                          FractionallySizedBox(
+                            widthFactor: (score % 1000) / 1000,
+                            child: Container(
+                              height: 20,
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [Color(0xFFFFD700), Color(0xFFC5A059)],
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                          
+                          // Texto XP
+                          Positioned.fill(
+                            child: Center(
+                              child: Text(
+                                '$score XP',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  shadows: [
+                                    Shadow(
+                                      color: Colors.black54,
+                                      blurRadius: 2,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
-                _buildApelaciones(gameState),
-              ],
-            ),
-            const SizedBox(height: 16),
-            _buildXPBar(gameState),
-          ],
-        ),
-      ),
-    );
-
-  Widget _buildLogo() => TweenAnimationBuilder(
-      tween: Tween<double>(begin: 0, end: 1),
-      duration: const Duration(milliseconds: 800),
-      curve: Curves.elasticOut,
-      builder: (BuildContext context, double scale, Widget? child) => Transform.scale(scale: scale, child: child),
-      child: Container(
-        width: 50,
-        height: 50,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: const LinearGradient(colors: <Color>[Color(0xFFC5A059), Color(0xFFE6B800)], begin: Alignment.topLeft, end: Alignment.bottomRight),
-          boxShadow: <BoxShadow>[BoxShadow(color: const Color(0xFFC5A059).withValues(alpha: 0.5), blurRadius: 6)],
-        ),
-        child: const Center(child: Text("JG", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)))),
-      ),
-    );
-
-  Widget _buildApelaciones(GameState gameState) => Row(
-      children: List.generate(5, (int index) => TweenAnimationBuilder(
-          tween: Tween<double>(begin: 0, end: 1),
-          duration: Duration(milliseconds: 300 + (index * 100)),
-          curve: Curves.elasticOut,
-          builder: (BuildContext context, double scale, Widget? child) => Transform.scale(scale: scale, child: child),
-          child: Padding(
-            padding: const EdgeInsets.only(right: 4),
-            child: Icon(
-              index < gameState.apelaciones ? Icons.description_rounded : Icons.description_outlined,
-              color: index < gameState.apelaciones ? Colors.red : Colors.grey,
-              size: 24,
-            ),
-          ),
-        )),
-    );
-
-  Widget _buildXPBar(GameState gameState) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            const Text('XP', style: TextStyle(color: Color(0xFFC5A059), fontSize: 12)),
-            TweenAnimationBuilder(
-              tween: IntTween(begin: 0, end: gameState.score),
-              duration: const Duration(milliseconds: 1500),
-              builder: (BuildContext context, int value, Widget? child) => Text('$value XP', style: const TextStyle(color: Colors.white70, fontSize: 12)),
-            ),
-          ],
-        ),
-        const SizedBox(height: 6),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: LinearProgressIndicator(
-            value: _xpAnimation.value,
-            backgroundColor: Colors.white24,
-            valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFFC5A059)),
-            minHeight: 10,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildProgressionMap(GameState gameState) {
-    final int currentLevel = gameState.currentLevel;
-    final int startLevel = currentLevel > 20 ? currentLevel - 20 : 1;
-    final int endLevel = currentLevel + 20;
-    final List<int> niveles = List<int>.generate(endLevel - startLevel + 1, (int i) => startLevel + i);
-
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.6,
-      child: Stack(
-        children: <Widget>[
-          Positioned.fill(
-            child: AnimatedBuilder(
-              animation: _pathAnimation,
-              builder: (BuildContext context, Widget? child) => CustomPaint(
-                painter: AnimatedPathPainter(itemCount: niveles.length, progress: _pathAnimation.value),
-              ),
-            ),
-          ),
-          ..._buildLevelNodes(niveles, currentLevel),
-        ],
-      ),
-    );
-  }
-
-  List<Widget> _buildLevelNodes(List<int> niveles, int currentLevel) {
-    final List<Widget> nodes = <Widget>[];
-    const int startY = 80;
-    const int stepY = 75;
-    final double screenWidth = MediaQuery.of(context).size.width;
-
-    for (int i = 0; i < niveles.length; i++) {
-      final int nivel = niveles[i];
-      final bool isCurrent = nivel == currentLevel;
-      final bool isCompleted = nivel < currentLevel;
-      final String rango = Provider.of<GameState>(context, listen: false).getRankForLevel(nivel);
-      final double leftOffset = (i % 2 == 0) ? 40.0 : -20.0;
-
-      nodes.add(
-        Positioned(
-          top: (startY + (i * stepY)).toDouble(),
-          left: screenWidth / 2 - 30 + leftOffset,
-          child: _buildLevelNode(nivel, rango, isCurrent, isCompleted, i),
-        ),
-      );
-    }
-    return nodes;
-  }
-
-  Widget _buildLevelNode(int nivel, String rango, bool isCurrent, bool isCompleted, int index) => TweenAnimationBuilder(
-      tween: Tween<double>(begin: 0, end: 1),
-      duration: Duration(milliseconds: 400 + (index * 50)),
-      curve: Curves.elasticOut,
-      builder: (BuildContext context, double scale, Widget? child) => Transform.scale(scale: scale, child: child),
-      child: Column(
-        children: <Widget>[
-          AnimatedBuilder(
-            animation: _glowAnimation,
-            builder: (BuildContext context, Widget? child) {
-              final double glowOpacity = isCurrent ? _glowAnimation.value : 0.0;
-              return Container(
-                width: isCurrent ? 70 : 52,
-                height: isCurrent ? 70 : 52,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: isCurrent ? Colors.white : (isCompleted ? const Color(0xFFC5A059) : Colors.grey.shade600),
-                  boxShadow: isCurrent
-                      ? <BoxShadow>[BoxShadow(color: const Color(0xFFC5A059).withValues(alpha: 0.5 + glowOpacity * 0.5), blurRadius: 20 + glowOpacity * 10, spreadRadius: 6 + glowOpacity * 4)]
-                      : null,
-                  border: isCurrent ? Border.all(color: const Color(0xFFC5A059), width: 3) : null,
-                ),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: <Widget>[
-                    if (isCurrent)
-                      Positioned(
-                        top: -22,
-                        child: Row(children: List.generate(3, (int i) => const Icon(Icons.star, color: Color(0xFFC5A059), size: 16))),
+                
+                const SizedBox(width: 12),
+                
+                // Apelaciones
+                Column(
+                  children: [
+                    const Text(
+                      'Apelaciones',
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF3E2723),
                       ),
-                    if (isCompleted) const Icon(Icons.scale, color: Colors.white, size: 24),
-                    if (isCompleted)
-                      Positioned(
-                        top: -18,
-                        child: Row(children: List.generate(3, (int i) => const Icon(Icons.star, color: Colors.white70, size: 12))),
-                      ),
-                    if (!isCurrent && !isCompleted) const Icon(Icons.lock, color: Colors.white70, size: 20),
-                    if (isCurrent) Text("$nivel", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF0F172A))),
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: List.generate(5, (index) {
+                        final disponible = index < apelaciones;
+                        return Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 2),
+                          child: Image.asset(
+                            disponible
+                                ? 'assets/images/mini_pergamino_activo.png'
+                                : 'assets/images/mini_pergamino_gris.png',
+                            width: 20,
+                            height: 20,
+                            errorBuilder: (_, __, ___) => Icon(
+                              Icons.description,
+                              color: disponible ? const Color(0xFFC5A059) : Colors.grey,
+                              size: 20,
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
                   ],
                 ),
-              );
-            },
-          ),
-          const SizedBox(height: 8),
-          TweenAnimationBuilder(
-            tween: Tween<double>(begin: 0, end: 1),
-            duration: Duration(milliseconds: 500 + (index * 50)),
-            builder: (BuildContext context, double opacity, Widget? child) => Opacity(opacity: opacity, child: child),
-            child: SizedBox(
-              width: 100,
-              child: Text(
-                rango,
-                style: TextStyle(
-                  fontSize: 10,
-                  color: isCurrent ? const Color(0xFFC5A059) : Colors.white70,
-                  fontWeight: isCurrent ? FontWeight.bold : FontWeight.normal,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              ],
             ),
           ),
         ],
       ),
     );
+  }
 
-  Widget _buildPlayButton(GameState gameState) => Center(
-      child: AnimatedBuilder(
-        animation: _breathingAnimation,
-        builder: (BuildContext context, Widget? child) => Transform.scale(scale: _breathingAnimation.value, child: child),
+  Widget _buildRegionCard(RegionVenezuela region, int currentLevel) {
+    final progresoEnRegion = currentLevel - region.nivelInicio;
+    final totalNivelesRegion = region.nivelFin - region.nivelInicio + 1;
+    final porcentajeProgreso = (progresoEnRegion / totalNivelesRegion).clamp(0.0, 1.0);
+    
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            region.colorPrincipal.withValues(alpha: 0.8),
+            region.colorPrincipal.withValues(alpha: 0.5),
+          ],
+        ),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: region.colorPrincipal,
+          width: 2,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: region.colorPrincipal.withValues(alpha: 0.3),
+            blurRadius: 15,
+            spreadRadius: 2,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.location_on, color: Colors.white, size: 24),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      region.estado,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'Capital: ${region.capital}',
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.white.withValues(alpha: 0.9),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Text(
+            region.descripcion,
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.white.withValues(alpha: 0.85),
+            ),
+          ),
+          const SizedBox(height: 12),
+          // Barra de progreso en la región
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Progreso: Nivel $currentLevel de ${region.nivelFin}',
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 6),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: LinearProgressIndicator(
+                  value: porcentajeProgreso,
+                  minHeight: 8,
+                  backgroundColor: Colors.white.withValues(alpha: 0.3),
+                  valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPlayButton() {
+    return AnimatedBuilder(
+      animation: _pulseAnimation,
+      builder: (_, child) => Transform.scale(
+        scale: _pulseAnimation.value,
+        child: child,
+      ),
+      child: GestureDetector(
+        onTap: () {
+          HapticFeedback.heavyImpact();
+          Navigator.push(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (_, animation, __) => FadeTransition(
+                opacity: animation,
+                child: const QuizGameScreen(),
+              ),
+              transitionDuration: const Duration(milliseconds: 500),
+            ),
+          );
+        },
         child: Container(
           width: 220,
           height: 60,
           decoration: BoxDecoration(
-            gradient: const LinearGradient(colors: <Color>[Color(0xFFC5A059), Color(0xFFE6B800)], begin: Alignment.topLeft, end: Alignment.bottomRight),
+            gradient: const LinearGradient(
+              colors: [Color(0xFFC5A059), Color(0xFFFFD700)],
+            ),
             borderRadius: BorderRadius.circular(30),
-            boxShadow: <BoxShadow>[BoxShadow(color: const Color(0xFFC5A059).withValues(alpha: 0.5), blurRadius: 12, offset: const Offset(0, 6))],
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFFFFD700).withValues(alpha: 0.5),
+                blurRadius: 20,
+                spreadRadius: 2,
+              ),
+            ],
           ),
-          child: ElevatedButton(
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const QuizGameScreen())),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              shadowColor: Colors.transparent,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          child: const Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.play_circle_fill, color: Colors.white, size: 28),
+                SizedBox(width: 10),
+                Text(
+                  'JUGAR',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    letterSpacing: 1.5,
+                  ),
+                ),
+              ],
             ),
-            child: const Text("JUGAR", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Color(0xFF0F172A), letterSpacing: 2)),
           ),
         ),
       ),
     );
+  }
 
-  Widget _buildCredits() => const Column(
-      children: <Widget>[
-        Text("Ubicación: Carrizal, Miranda, VE", style: TextStyle(fontSize: 12, color: Colors.white54)),
-        SizedBox(height: 4),
-        Text("Juego creado por Jean Jazpe Lizcano", style: TextStyle(fontSize: 12, color: Colors.white54)),
-      ],
-    );
-
-  Widget _buildRankingButton() => Positioned(
-      top: 20,
+  Widget _buildRankingButton() {
+    return Positioned(
+      top: 16,
       right: 16,
-      child: AnimatedBuilder(
-        animation: _medallionRotation,
-        builder: (BuildContext context, Widget? child) => Transform.rotate(angle: _medallionRotation.value, child: child),
-        child: GestureDetector(
-          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const GlobalRankingScreen())),
-          child: Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(colors: <Color>[Color(0xFFC5A059), Color(0xFFE6B800)], begin: Alignment.topLeft, end: Alignment.bottomRight),
-              shape: BoxShape.circle,
-              boxShadow: <BoxShadow>[BoxShadow(color: const Color(0xFFC5A059).withValues(alpha: 0.5), blurRadius: 8)],
+      child: GestureDetector(
+        onTap: () {
+          HapticFeedback.lightImpact();
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const GlobalRankingScreen()),
+          );
+        },
+        child: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xFFC5A059), Color(0xFFE6B800)],
             ),
-            child: const Icon(Icons.emoji_events, color: Color(0xFF0F172A), size: 28),
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFFC5A059).withValues(alpha: 0.4),
+                blurRadius: 10,
+              ),
+            ],
+          ),
+          child: const Icon(
+            Icons.emoji_events,
+            color: Colors.white,
+            size: 26,
           ),
         ),
       ),
     );
+  }
+}
+
+// Painter del camino dorado con decoraciones laterales
+class CaminoDoradoPainter extends CustomPainter {
+  final double scrollOffset;
+  final int currentLevel;
+  final int totalNiveles;
+  final ui.Image? rioTexture;
+
+  CaminoDoradoPainter({
+    required this.scrollOffset,
+    required this.currentLevel,
+    required this.totalNiveles,
+    this.rioTexture,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final centerX = size.width / 2;
+    final amplitude = 130.0;
+    final frequency = 0.015;
+    
+    // Camino dorado con textura
+    final pathPaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 55
+      ..strokeCap = StrokeCap.round;
+
+    if (rioTexture != null) {
+      pathPaint.shader = ImageShader(
+        rioTexture!,
+        TileMode.repeated,
+        TileMode.repeated,
+        Matrix4.identity().storage,
+      );
+    } else {
+      pathPaint.color = const Color(0xFFFFD700);
+    }
+    
+    final path = Path();
+    
+    for (int i = 0; i <= totalNiveles; i++) {
+      final y = (i * 100.0) - scrollOffset;
+      if (y < -200) continue;
+      if (y > size.height + 200) break;
+      
+      final x = centerX + (math.sin(i * frequency) * amplitude);
+      
+      if (i == 0 || y <= -200) {
+        path.moveTo(x, y);
+      } else {
+        path.lineTo(x, y);
+      }
+      
+      // Líneas divisorias cada 30 píxeles
+      if (i % 3 == 0) {
+        final divPaint = Paint()
+          ..color = const Color(0xFF8B6914)
+          ..strokeWidth = 3;
+        
+        canvas.drawLine(
+          Offset(x - 25, y),
+          Offset(x + 25, y),
+          divPaint,
+        );
+      }
+    }
+    
+    canvas.drawPath(path, pathPaint);
+    
+    // Dibujar medallones y decoraciones
+    for (int nivel = math.max(1, (scrollOffset / 100).floor() - 5); 
+         nivel <= math.min(totalNiveles, (scrollOffset / 100).ceil() + 15); 
+         nivel++) {
+      final y = (nivel * 100.0) - scrollOffset;
+      final x = centerX + (math.sin(nivel * frequency) * amplitude);
+      
+      // Decoraciones laterales con VARIACIÓN
+      _dibujarDecoracionesLaterales(canvas, nivel, x, y);
+      
+      // Medallones
+      _dibujarMedallon(canvas, nivel, x, y);
+    }
+  }
+
+  void _dibujarDecoracionesLaterales(Canvas canvas, int nivel, double x, double y) {
+    // ROTACIÓN: Alterna las decoraciones entre izquierda y derecha cada ciertos niveles
+    
+    // Cada 5 niveles: Alterna columnas entre izquierda y derecha
+    if (nivel % 5 == 0) {
+      if (nivel % 10 == 0) {
+        // Niveles 10, 20, 30... → Columnas a la DERECHA
+        _dibujarImagen(canvas, 'assets/images/columna_griega.png', x + 180, y, 60, 80);
+      } else {
+        // Niveles 5, 15, 25... → Columnas a la IZQUIERDA
+        _dibujarImagen(canvas, 'assets/images/columna_griega.png', x - 180, y, 60, 80);
+      }
+    }
+    
+    // Cada 7 niveles: Alterna templos entre izquierda y derecha
+    if (nivel % 7 == 0) {
+      if (nivel % 14 == 0) {
+        // Niveles 14, 28, 42... → Templos a la IZQUIERDA
+        _dibujarImagen(canvas, 'assets/images/templo_derecho.png', x - 180, y, 70, 70);
+      } else {
+        // Niveles 7, 21, 35... → Templos a la DERECHA
+        _dibujarImagen(canvas, 'assets/images/templo_derecho.png', x + 180, y, 70, 70);
+      }
+    }
+    
+    // Elementos vectoriales ligeros cada 10 niveles, también alternados
+    if (nivel % 10 == 0 && nivel % 5 != 0) {
+      // Balanza - alterna lado
+      if (nivel % 20 == 0) {
+        _dibujarBalanza(canvas, x + 180, y - 50);
+      } else {
+        _dibujarBalanza(canvas, x - 180, y - 50);
+      }
+    } else if (nivel % 15 == 0 && nivel % 5 != 0) {
+      // Martillo - alterna lado
+      if (nivel % 30 == 0) {
+        _dibujarMartillo(canvas, x - 180, y - 50);
+      } else {
+        _dibujarMartillo(canvas, x + 180, y - 50);
+      }
+    }
+  }
+
+  void _dibujarImagen(Canvas canvas, String path, double x, double y, double w, double h) {
+    // Nota: Las imágenes deben ser pre-cargadas y pasadas como ui.Image
+    // Por simplicidad, dibujamos un placeholder
+    final paint = Paint()..color = Colors.grey.withValues(alpha: 0.3);
+    canvas.drawRect(
+      Rect.fromCenter(center: Offset(x, y), width: w, height: h),
+      paint,
+    );
+  }
+
+  void _dibujarMartillo(Canvas canvas, double x, double y) {
+    final paint = Paint()
+      ..color = const Color(0xFF8B7355)
+      ..style = PaintingStyle.fill;
+    
+    // Mango
+    canvas.drawRect(
+      Rect.fromCenter(center: Offset(x, y + 10), width: 4, height: 30),
+      paint,
+    );
+    
+    // Cabeza
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(
+        Rect.fromCenter(center: Offset(x, y - 8), width: 20, height: 12),
+        const Radius.circular(2),
+      ),
+      paint,
+    );
+  }
+
+  void _dibujarBalanza(Canvas canvas, double x, double y) {
+    final paint = Paint()
+      ..color = const Color(0xFFFFD700)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2;
+    
+    // Poste
+    canvas.drawLine(Offset(x, y - 15), Offset(x, y + 15), paint);
+    
+    // Platos
+    canvas.drawCircle(Offset(x - 12, y - 5), 8, paint);
+    canvas.drawCircle(Offset(x + 12, y - 5), 8, paint);
+    
+    // Barra
+    canvas.drawLine(Offset(x - 12, y - 5), Offset(x + 12, y - 5), paint);
+  }
+
+  void _dibujarMedallon(Canvas canvas, int nivel, double x, double y) {
+    bool esActual = nivel == currentLevel;
+    
+    // Placeholder circular
+    final paint = Paint()
+      ..color = esActual 
+          ? const Color(0xFFFFD700) 
+          : (nivel < currentLevel ? const Color(0xFF27AE60) : const Color(0xFF2C3E50))
+      ..style = PaintingStyle.fill;
+    
+    final radius = esActual ? 35.0 : 28.0;
+    canvas.drawCircle(Offset(x, y), radius, paint);
+    
+    // Borde
+    final bordePaint = Paint()
+      ..color = Colors.white.withValues(alpha: 0.5)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2;
+    canvas.drawCircle(Offset(x, y), radius, bordePaint);
+    
+    // Número del nivel
+    final textPainter = TextPainter(
+      text: TextSpan(
+        text: '$nivel',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: esActual ? 18 : 15,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    );
+    
+    textPainter.layout();
+    textPainter.paint(
+      canvas,
+      Offset(x - textPainter.width / 2, y - textPainter.height / 2),
+    );
+  }
+
+  @override
+  bool shouldRepaint(CaminoDoradoPainter oldDelegate) {
+    return scrollOffset != oldDelegate.scrollOffset ||
+        currentLevel != oldDelegate.currentLevel;
+  }
 }

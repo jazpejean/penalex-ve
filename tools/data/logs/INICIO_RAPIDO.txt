@@ -1,0 +1,169 @@
+╔═══════════════════════════════════════════════════════════════════════╗
+║                                                                       ║
+║   PENALEX VE - INICIO RÁPIDO DESPUÉS DE LOS CAMBIOS                 ║
+║                                                                       ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+✅ CAMBIOS COMPLETADOS:
+   • Splash screen nativo configurado
+   • Diseño de login restaurado (más simple)
+   • Mejor manejo de errores de autenticación
+   • Documentación completa creada
+
+📦 APK DEBUG COMPILADO:
+   Ubicación: build/app/outputs/flutter-apk/app-debug.apk
+   Tamaño: 171 MB
+   ✅ Listo para instalar
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 OPCIÓN 1: PROBAR INMEDIATAMENTE (sin Google Sign-In)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   1. Instalar el APK:
+      flutter install
+
+   2. Abrir la app en el dispositivo
+
+   3. FUNCIONA:
+      ✅ Splash screen personalizado
+      ✅ Diseño de login restaurado
+      ✅ Registro con email/password
+      ✅ Login con email/password
+
+   4. NO FUNCIONA (todavía):
+      ❌ Botón "Continuar con Google"
+      
+      Verás este error:
+      "PlatformException(sign_in_failed, ...ApiException: 10:..."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔧 OPCIÓN 2: HABILITAR GOOGLE SIGN-IN (15 minutos)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   PASO 1: Obtener SHA-1
+   ──────────────────────────────────────────────────────────────
+   Ejecuta UNO de estos comandos:
+
+   Opción A (recomendado):
+      ./get_sha1.sh
+
+   Opción B (manual):
+      cd android
+      ./gradlew signingReport | grep SHA1
+
+   Copia el valor SHA1 que aparece (algo como):
+   SHA1: AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD
+
+
+   PASO 2: Firebase Console
+   ──────────────────────────────────────────────────────────────
+   1. Abre: https://console.firebase.google.com/
+
+   2. Selecciona tu proyecto "Penalex VE"
+
+   3. Clic en ⚙️ (rueda dentada) → "Configuración del proyecto"
+
+   4. En la pestaña "General", busca "Tus apps"
+
+   5. Encuentra: com.penalex.ve (Android)
+
+   6. Scroll down hasta "Huellas digitales de certificados SHA"
+
+   7. Clic en "+ Agregar huella digital"
+
+   8. PEGA el SHA1 que copiaste
+
+   9. Clic en "Guardar"
+
+
+   PASO 3: Descargar google-services.json
+   ──────────────────────────────────────────────────────────────
+   1. En la misma página de Firebase
+
+   2. En tu app Android (com.penalex.ve)
+
+   3. Clic en el botón "google-services.json"
+
+   4. DESCARGA el archivo
+
+   5. REEMPLAZA el archivo:
+      android/app/google-services.json
+
+
+   PASO 4: Recompilar
+   ──────────────────────────────────────────────────────────────
+   flutter clean
+   flutter pub get
+   flutter build apk --debug
+
+
+   PASO 5: Instalar y Probar
+   ──────────────────────────────────────────────────────────────
+   flutter install
+
+   Ahora el botón "Continuar con Google" funcionará ✅
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📖 DOCUMENTACIÓN DISPONIBLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   RESUMEN_CAMBIOS.md              ← Resumen completo de cambios
+   SOLUCION_GOOGLE_SIGNIN.md       ← Guía detallada Google Sign-In
+   INSTRUCCIONES_FIREBASE.txt      ← Guía rápida paso a paso
+   get_sha1.sh                     ← Script automático SHA-1
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 CONSEJOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   ✓ Si solo quieres probar la app, usa email/password
+   
+   ✓ Google Sign-In es opcional pero recomendado para usuarios
+   
+   ✓ El proceso de configuración SHA-1 es de una sola vez
+   
+   ✓ Para ver logs detallados: flutter logs
+   
+   ✓ Si tienes dudas, lee RESUMEN_CAMBIOS.md primero
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+¿PROBLEMAS?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   ❌ "gradlew: permission denied"
+      → chmod +x android/gradlew
+
+   ❌ Google Sign-In sigue sin funcionar
+      → Espera 5-10 minutos después de agregar SHA-1
+      → Verifica que descargaste el NUEVO google-services.json
+      → Ejecuta: flutter clean && flutter build apk --debug
+
+   ❌ Splash screen no aparece
+      → Cierra la app completamente
+      → Desinstálala e instálala de nuevo
+      → flutter install
+
+   ❌ Login email/password no funciona
+      → Revisa los logs: flutter logs
+      → Ahora verás el código de error específico
+      → Busca el emoji ❌ en los logs para ver el problema
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 SIGUIENTE ACCIÓN SUGERIDA:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   1. Instala el APK: flutter install
+   2. Prueba el nuevo diseño de login
+   3. Verifica el splash screen
+   4. Crea una cuenta o inicia sesión con email/password
+   5. Luego, configura Google Sign-In siguiendo OPCIÓN 2
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║  ✅ TODO LISTO PARA PROBAR                                            ║
+╚═══════════════════════════════════════════════════════════════════════╝

@@ -25,6 +25,9 @@ class DosimetriaPage extends StatefulWidget {
 class _DosimetriaPageState extends State<DosimetriaPage> {
   List<Delito> delitos = <Delito>[];
   List<CalculationModel> savedCalculations = <CalculationModel>[];
+  
+  // Mapa para rastrear el tipo seleccionado de atenuante/agravante por delito
+  Map<String, String> tipoModificadorSeleccionado = <String, String>{};
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
@@ -60,6 +63,19 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
     );
   }
 
+  void _resetCalculation() {
+    setState(() {
+      delitos = [Delito(id: '1')];
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Cálculo restablecido'),
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.green,
+      ),
+    );
+  }
+
   void _showSavedCalculations() {
     showModalBottomSheet(
       context: context,
@@ -89,9 +105,18 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                         fontSize: 16,
                         letterSpacing: 0.6),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.close, color: dorado),
-                    onPressed: () => Navigator.pop(context),
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.refresh_rounded, color: dorado),
+                        onPressed: _loadCalculations,
+                        tooltip: 'Recargar',
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.close, color: dorado),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -336,6 +361,26 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
     }
   }
 
+  String _displayTipoPena(TipoPena tipo) {
+    switch (tipo) {
+      case TipoPena.presidio:
+        return 'Presidio';
+      case TipoPena.prision:
+        return 'Prisión';
+    }
+  }
+
+  TipoPena _parseTipoPena(String display) {
+    switch (display) {
+      case 'Presidio':
+        return TipoPena.presidio;
+      case 'Prisión':
+        return TipoPena.prision;
+      default:
+        return TipoPena.presidio;
+    }
+  }
+
   Widget _buildAjusteTile(int delitoIndex, AjusteAdicional ajuste) => Card(
       margin: const EdgeInsets.symmetric(vertical: 4),
       shape: RoundedRectangleBorder(
@@ -522,6 +567,11 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
         centerTitle: false,
         actions: <Widget>[
           IconButton(
+            icon: const Icon(Icons.refresh_rounded, color: dorado),
+            onPressed: _resetCalculation,
+            tooltip: "Restablecer",
+          ),
+          IconButton(
             icon: const Icon(Icons.folder_open_rounded, color: dorado),
             onPressed: _showSavedCalculations,
             tooltip: "Cargar cálculo",
@@ -707,6 +757,34 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                         const Icon(Icons.info_outline, color: dorado, size: 20),
                   ),
                 ],
+              ),
+              const SizedBox(height: 16),
+
+              // Selector de tipo de pena: Presidio o Prisión
+              _buildDropdownRow(
+                label: 'Tipo de pena',
+                value: _displayTipoPena(delito.tipoPena),
+                items: const <String>['Presidio', 'Prisión'],
+                onChanged: (String? val) {
+                  if (val != null) {
+                    delito.tipoPena = _parseTipoPena(val);
+                    _actualizarDelito(index, delito);
+                  }
+                },
+                onInfo: () {
+                  // Mostrar información contextual según el tipo seleccionado
+                  if (delito.tipoPena == TipoPena.presidio) {
+                    _showInfoDialog(
+                      'Presidio',
+                      'Pena privativa de libertad con trabajos forzados. Se caracteriza por imponer al condenado la obligación de realizar labores durante el cumplimiento de la condena.\n\nUtilizado para delitos graves en el Código Penal Venezolano.',
+                    );
+                  } else {
+                    _showInfoDialog(
+                      'Prisión',
+                      'Pena privativa de libertad sin trabajos forzados. El condenado cumple la pena sin obligación de realizar labores específicas.\n\nEn caso de concurso real con presidio, esta pena será convertida conforme al Art. 87 CP (1 año de presidio equivale a 2 años de prisión).',
+                    );
+                  }
+                },
               ),
               const SizedBox(height: 20),
 
@@ -919,10 +997,12 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                   max: 0.5,
                   currentValue: delito.fraccionContinuidad,
                   onChanged: (double val) {
-                    const List<double> targets = <double>[1/6, 1/4, 1/3, 0.5];
-                    final double newVal = targets.reduce((double a, double b) => (a - val).abs() < (b - val).abs() ? a : b);
-                    delito.fraccionContinuidad = newVal;
-                    _actualizarDelito(index, delito);
+                    setState(() {
+                      const List<double> targets = <double>[1/6, 1/4, 1/3, 0.5];
+                      final double newVal = targets.reduce((double a, double b) => (a - val).abs() < (b - val).abs() ? a : b);
+                      delito.fraccionContinuidad = newVal;
+                      _actualizarDelito(index, delito);
+                    });
                   },
                   divisions: 3,
                 ),
@@ -943,14 +1023,24 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                             value: 'agravante', label: Text('Agravante')),
                       ],
                       selected: <String>{
-                        if (delito.modificadorManual >= 0) "agravante" else "atenuante",
+                        // Usar el tipo guardado en el mapa, o inferir del valor
+                        tipoModificadorSeleccionado[delito.id] ??
+                            (delito.modificadorManual < 0 ? "atenuante" : "agravante"),
                       },
                       onSelectionChanged: (Set<String> newSelection) {
-                        final String tipo = newSelection.first;
-                        final double valorAbs = delito.modificadorManual.abs();
-                        delito.modificadorManual =
-                            tipo == 'agravante' ? valorAbs : -valorAbs;
-                        _actualizarDelito(index, delito);
+                        setState(() {
+                          final String tipo = newSelection.first;
+                          // Guardar el tipo seleccionado
+                          tipoModificadorSeleccionado[delito.id] = tipo;
+                          
+                          // Si ya hay un valor diferente de 0, aplicar el signo
+                          final double valorAbs = delito.modificadorManual.abs();
+                          if (valorAbs > 0) {
+                            delito.modificadorManual =
+                                tipo == 'agravante' ? valorAbs : -valorAbs;
+                            _actualizarDelito(index, delito);
+                          }
+                        });
                       },
                       style: ButtonStyle(
                         backgroundColor:
@@ -1002,7 +1092,10 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     default:
                       break;
                   }
-                  final int signo = delito.modificadorManual >= 0 ? 1 : -1;
+                  // Usar el tipo seleccionado del mapa, o inferir del valor actual
+                  final String tipo = tipoModificadorSeleccionado[delito.id] ?? 
+                      (delito.modificadorManual < 0 ? 'atenuante' : 'agravante');
+                  final int signo = tipo == 'atenuante' ? -1 : 1;
                   delito.modificadorManual = signo * valorEnAnios;
                   delito.modificadorUnidad = _unidadNombre(unidad);
                   _actualizarDelito(index, delito);
@@ -1120,6 +1213,7 @@ class _PenaInputRowState extends State<_PenaInputRow> {
   late TextEditingController _anosController;
   late TextEditingController _mesesController;
   late TextEditingController _diasController;
+  bool _isUpdatingFromUser = false;
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
@@ -1137,8 +1231,10 @@ class _PenaInputRowState extends State<_PenaInputRow> {
   @override
   void didUpdateWidget(covariant _PenaInputRow oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.valorNumerico != widget.valorNumerico ||
-        oldWidget.unidad != widget.unidad) {
+    // Solo actualizar si no estamos en medio de una edición del usuario
+    if (!_isUpdatingFromUser && 
+        (oldWidget.valorNumerico != widget.valorNumerico ||
+        oldWidget.unidad != widget.unidad)) {
       _updateControllers();
     }
   }
@@ -1225,6 +1321,7 @@ class _PenaInputRowState extends State<_PenaInputRow> {
                     controller: _anosController,
                     label: "Años",
                     onChanged: (String value) {
+                      _isUpdatingFromUser = true;
                       final Map<String, int> newYMD = _parseYMD(
                         _anosController.text,
                         _mesesController.text,
@@ -1232,6 +1329,9 @@ class _PenaInputRowState extends State<_PenaInputRow> {
                       );
                       widget.onChanged(
                           newYMD["totalDias"]! / 360.0, UnidadTiempo.anos);
+                      Future.delayed(const Duration(milliseconds: 100), () {
+                        _isUpdatingFromUser = false;
+                      });
                     },
                   ),
                 ),
@@ -1241,13 +1341,17 @@ class _PenaInputRowState extends State<_PenaInputRow> {
                     controller: _mesesController,
                     label: "Meses",
                     onChanged: (String value) {
+                      _isUpdatingFromUser = true;
                       final Map<String, int> newYMD = _parseYMD(
                         _anosController.text,
                         _mesesController.text,
                         _diasController.text,
                       );
                       widget.onChanged(
-                          newYMD["totalDias"]! / 30.0, UnidadTiempo.meses);
+                          newYMD["totalDias"]! / 360.0, UnidadTiempo.meses);
+                      Future.delayed(const Duration(milliseconds: 100), () {
+                        _isUpdatingFromUser = false;
+                      });
                     },
                   ),
                 ),
@@ -1257,13 +1361,17 @@ class _PenaInputRowState extends State<_PenaInputRow> {
                     controller: _diasController,
                     label: "Días",
                     onChanged: (String value) {
+                      _isUpdatingFromUser = true;
                       final Map<String, int> newYMD = _parseYMD(
                         _anosController.text,
                         _mesesController.text,
                         _diasController.text,
                       );
                       widget.onChanged(
-                          newYMD["totalDias"]! * 1.0, UnidadTiempo.dias);
+                          newYMD["totalDias"]! / 360.0, UnidadTiempo.dias);
+                      Future.delayed(const Duration(milliseconds: 100), () {
+                        _isUpdatingFromUser = false;
+                      });
                     },
                   ),
                 ),

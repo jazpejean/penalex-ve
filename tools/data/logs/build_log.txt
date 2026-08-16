@@ -1,0 +1,13 @@
+Running Gradle task 'assembleDebug'...                          
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /home/jeanjazpe/.pub-cache/hosted/pub.dev/firebase_messaging-14.7.10/android/src/main/java/io/flutter/plugins/firebase/messaging/FlutterFirebaseMessagingPlugin.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: /home/jeanjazpe/.pub-cache/hosted/pub.dev/google_mlkit_commons-0.6.1/android/src/main/java/com/google_mlkit_commons/InputImageConverter.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: /home/jeanjazpe/.pub-cache/hosted/pub.dev/google_mlkit_text_recognition-0.11.0/android/src/main/java/com/google_mlkit_text_recognition/TextRecognizer.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Running Gradle task 'assembleDebug'...                           3788,5s
+✓ Built build/app/outputs/flutter-apk/app-debug.apk

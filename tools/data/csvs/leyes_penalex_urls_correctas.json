@@ -1,0 +1,142 @@
+[
+  {
+    "codigo_penalex": "CRBV",
+    "nombre": "Constitución de Venezuela",
+    "nombre_archivo": "constitucion_venezuela",
+    "url": "https://iajuriss.com/docs/leyes/constitucion_venezuela.pdf",
+    "id_iajuriss": 51,
+    "encontrada": true
+  },
+  {
+    "codigo_penalex": "CP",
+    "nombre": "Código Penal",
+    "nombre_archivo": "codigo-penal-2005",
+    "url": "https://iajuriss.com/docs/leyes/codigo-penal-2005.pdf",
+    "id_iajuriss": 21196,
+    "encontrada": true
+  },
+  {
+    "codigo_penalex": "COPP",
+    "nombre": "Código Orgánico Procesal Penal",
+    "nombre_archivo": "copp_2021",
+    "url": "https://iajuriss.com/docs/leyes/copp_2021.pdf",
+    "id_iajuriss": null,
+    "encontrada": true
+  },
+  {
+    "codigo_penalex": "LOA",
+    "nombre": "Ley de Amparo",
+    "nombre_archivo": "ley-organica-de-amparo-sobre-derechos-y-garantias-constitucionales",
+    "url": "https://iajuriss.com/docs/leyes/ley-organica-de-amparo-sobre-derechos-y-garantias-constitucionales.pdf",
+    "id_iajuriss": 9098,
+    "encontrada": true
+  },
+  {
+    "codigo_penalex": "LOSDMVLV",
+    "nombre": "Ley sobre el Derecho de las Mujeres a una Vida Libre de Violencia",
+    "nombre_archivo": "mujer_vida_libre_violencia",
+    "url": "https://iajuriss.com/docs/leyes/mujer_vida_libre_violencia.pdf",
+    "id_iajuriss": null,
+    "encontrada": false,
+    "nota": "Buscar con 'mujer' o 'violencia' en rama Derecho Civil o Derechos Humanos"
+  },
+  {
+    "codigo_penalex": "LOD",
+    "nombre": "Ley Orgánica de Drogas",
+    "nombre_archivo": "drogas_2010",
+    "url": "https://iajuriss.com/docs/leyes/drogas_2010.pdf",
+    "id_iajuriss": null,
+    "encontrada": true
+  },
+  {
+    "codigo_penalex": "LCDOFT",
+    "nombre": "Ley Orgánica Contra la Delincuencia Organizada y Financiamiento al Terrorismo",
+    "nombre_archivo": "ley-organica-contra-la-delincuencia-organizada-y-financiamiento-al-terrorismo",
+    "url": "https://iajuriss.com/docs/leyes/ley-organica-contra-la-delincuencia-organizada-y-financiamiento-al-terrorismo.pdf",
+    "id_iajuriss": 21331,
+    "encontrada": true
+  },
+  {
+    "codigo_penalex": "LCSE",
+    "nombre": "Ley Contra el Secuestro y la Extorsión",
+    "nombre_archivo": "secuestro_extorsion_2009",
+    "url": "https://iajuriss.com/docs/leyes/secuestro_extorsion_2009.pdf",
+    "id_iajuriss": 21330,
+    "encontrada": true
+  },
+  {
+    "codigo_penalex": "LHRVA",
+    "nombre": "Ley sobre Hurto y Robo de Vehículos",
+    "nombre_archivo": "ley-sobre-el-hurto-y-robo-de-vehiculos-automotores",
+    "url": "https://iajuriss.com/docs/leyes/ley-sobre-el-hurto-y-robo-de-vehiculos-automotores.pdf",
+    "id_iajuriss": 9219,
+    "encontrada": true
+  },
+  {
+    "codigo_penalex": "LDCAM",
+    "nombre": "Ley sobre Armas y Explosivos",
+    "nombre_archivo": "ley-de-armas-y-explosivos",
+    "url": "https://iajuriss.com/docs/leyes/ley-de-armas-y-explosivos.pdf",
+    "id_iajuriss": 8858,
+    "encontrada": true
+  },
+  {
+    "codigo_penalex": "LPVT",
+    "nombre": "Ley de Protección de Víctimas, Testigos y demás Sujetos Procesales",
+    "nombre_archivo": "g6645",
+    "url": "https://iajuriss.com/docs/leyes/g6645.pdf",
+    "id_iajuriss": 21318,
+    "encontrada": true
+  },
+  {
+    "codigo_penalex": "LECDI",
+    "nombre": "Ley Especial contra los Delitos Informáticos",
+    "nombre_archivo": "ley-especial-contra-los-delitos-informaticos",
+    "url": "https://iajuriss.com/docs/leyes/ley-especial-contra-los-delitos-informaticos.pdf",
+    "id_iajuriss": 9073,
+    "encontrada": true
+  },
+  {
+    "codigo_penalex": "LCTPTIM",
+    "nombre": "Ley contra la Trata de Personas y Tráfico Ilícito de Migrantes",
+    "nombre_archivo": "trata_personas",
+    "url": "https://iajuriss.com/docs/leyes/trata_personas.pdf",
+    "id_iajuriss": null,
+    "encontrada": false,
+    "nota": "Buscar en leyes penales especiales o derechos humanos"
+  },
+  {
+    "codigo_penalex": "LORPA",
+    "nombre": "Ley de Responsabilidad Penal del Adolescente",
+    "nombre_archivo": "responsabilidad_penal_adolescente",
+    "url": "https://iajuriss.com/docs/leyes/responsabilidad_penal_adolescente.pdf",
+    "id_iajuriss": null,
+    "encontrada": false,
+    "nota": "Puede estar dentro de LOPNNA o como ley separada"
+  },
+  {
+    "codigo_penalex": "LOPNNA",
+    "nombre": "Ley Orgánica para la Protección de Niños, Niñas y Adolescentes",
+    "nombre_archivo": "lopnna_2015",
+    "url": "https://iajuriss.com/docs/leyes/lopnna_2015.pdf",
+    "id_iajuriss": null,
+    "encontrada": true
+  },
+  {
+    "codigo_penalex": "LOCC",
+    "nombre": "Ley Contra la Corrupción",
+    "nombre_archivo": "corrupcion_2022",
+    "url": "https://iajuriss.com/docs/leyes/corrupcion_2022.pdf",
+    "id_iajuriss": null,
+    "encontrada": true
+  },
+  {
+    "codigo_penalex": "MUCC",
+    "nombre": "Manual Único de Cadena de Custodia",
+    "nombre_archivo": "manual_cadena_custodia",
+    "url": "https://iajuriss.com/docs/leyes/manual_cadena_custodia.pdf",
+    "id_iajuriss": null,
+    "encontrada": false,
+    "nota": "Puede no estar en IAJuriss, es documento técnico del Ministerio Público"
+  }
+]
