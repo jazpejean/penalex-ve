@@ -1,7 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../config/app_colors.dart';
 import '../models/user.dart';
+import '../providers/game_provider.dart';
+import '../providers/user_provider.dart';
 import '../widgets/app_drawer.dart';
 
 class GlobalRankingScreen extends StatelessWidget {
@@ -15,7 +17,7 @@ class GlobalRankingScreen extends StatelessWidget {
         backgroundColor: AppColors.primary,
       ),
       body: FutureBuilder<List<UserModel>>(
-        future: _loadRanking(),
+        future: _loadRanking(context),
         builder: (BuildContext context, AsyncSnapshot<List<UserModel>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -47,28 +49,64 @@ class GlobalRankingScreen extends StatelessWidget {
       ),
     );
 
-  Future<List<UserModel>> _loadRanking() async {
-    final QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
-        .collection('users')
-        .orderBy('puntuacionMaxima', descending: true)
-        .limit(100)
-        .get();
-    return snapshot.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
-      final Map<String, dynamic> data = doc.data();
+  Future<List<UserModel>> _loadRanking(BuildContext context) async {
+    // Obtener usuario actual
+    final userState = Provider.of<UserState>(context, listen: false);
+    final gameState = Provider.of<GameState>(context, listen: false);
+    
+    // Por ahora, crear ranking simulado con usuario actual
+    // TODO: Integrar con Supabase cuando esté listo
+    final ranking = <UserModel>[];
+    
+    // Agregar usuario actual si existe
+    if (userState.user != null) {
+      ranking.add(userState.user!.copyWith(
+        nivelActual: gameState.currentLevel,
+        puntosTotales: gameState.score,
+        puntuacionMaxima: gameState.score,
+      ));
+    }
+    
+    // Agregar usuarios simulados para demostración
+    ranking.addAll(_getUsersSimulados());
+    
+    // Ordenar por puntuación
+    ranking.sort((a, b) => b.puntuacionMaxima.compareTo(a.puntuacionMaxima));
+    
+    return ranking.take(100).toList();
+  }
+
+  List<UserModel> _getUsersSimulados() {
+    final nombres = [
+      'María González', 'Carlos Pérez', 'Ana Rodríguez', 'Luis Martínez',
+      'Carmen Silva', 'José Hernández', 'Laura Díaz', 'Pedro Ramírez',
+      'Isabel Torres', 'Miguel Flores', 'Sofía Castro', 'Andrés Morales',
+      'Valentina Ruiz', 'Diego Ortiz', 'Camila Gómez', 'Javier Vargas',
+      'Paula Sánchez', 'Roberto Mendoza', 'Daniela Rojas', 'Fernando López',
+    ];
+    
+    final rangos = [
+      'Magistrado Supremo', 'Juez Superior', 'Fiscal', 'Defensor',
+      'Abogado Senior', 'Abogado Junior', 'Pasante', 'Alguacil',
+    ];
+    
+    return List.generate(20, (i) {
+      final baseScore = 5000 - (i * 200);
+      final nivel = 50 - (i * 2);
       return UserModel(
-        uid: doc.id,
-        nombre: data['nombre'] ?? 'Anónimo',
-        nivelActual: (data['nivelActual'] as num?)?.toInt() ?? 1,
-        puntosTotales: (data['puntosTotales'] as num?)?.toInt() ?? 0,
-        rangoActual: data['rangoActual'] ?? 'Alguacil',
-        fechaRegistro: (data['fechaRegistro'] as Timestamp?)?.toDate() ?? DateTime.now(),
-        puntuacionMaxima: (data['puntuacionMaxima'] as num?)?.toInt() ?? 0,
-        rachaMaxima: (data['rachaMaxima'] as num?)?.toInt() ?? 0,
-        preguntasRespondidas: (data['preguntasRespondidas'] as num?)?.toInt() ?? 0,
-        preguntasCorrectas: (data['preguntasCorrectas'] as num?)?.toInt() ?? 0,
-        tiempoPromedioRespuesta: (data['tiempoPromedioRespuesta'] as num?)?.toDouble() ?? 0.0,
+        uid: 'sim_$i',
+        nombre: nombres[i % nombres.length],
+        nivelActual: nivel.clamp(1, 3000),
+        puntosTotales: baseScore,
+        rangoActual: rangos[i ~/ 3 % rangos.length],
+        fechaRegistro: DateTime.now().subtract(Duration(days: i * 7)),
+        puntuacionMaxima: baseScore,
+        rachaMaxima: 10 - (i ~/ 2),
+        preguntasRespondidas: (nivel * 5),
+        preguntasCorrectas: (nivel * 4),
+        tiempoPromedioRespuesta: 15.0 + (i * 0.5),
       );
-    }).toList();
+    });
   }
 
   Widget _buildRankingList(List<UserModel> ranking) {

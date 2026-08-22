@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -129,6 +127,10 @@ class DashboardScreen extends StatelessWidget {
             ),
             const SizedBox(height: 28),
             
+            // BARRA DE ACCESOS DIRECTOS
+            _buildQuickActionsBar(context),
+            const SizedBox(height: 28),
+            
             // ASISTENTE LEGAL - Feature destacada
             _buildStarCard(
               context,
@@ -197,6 +199,147 @@ class DashboardScreen extends StatelessWidget {
               actionText: 'Comenzar desafío',
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildQuickActionsBar(BuildContext context) {
+    return Container(
+      height: 100,
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFF1E293B), Color(0xFF0F172A)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: const Color(0xFFC5A059).withValues(alpha: 0.3),
+          width: 1,
+        ),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.2),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          // Agenda
+          _buildQuickActionItem(
+            context,
+            icon: Icons.calendar_month,
+            label: 'Agenda',
+            route: '/agenda',
+            isCenter: false,
+          ),
+          // Dosimetría
+          _buildQuickActionItem(
+            context,
+            icon: Icons.calculate,
+            label: 'Dosimetría',
+            route: '/calculadora',
+            isCenter: false,
+          ),
+          // CENTRO: Asistente IA (destacado)
+          _buildQuickActionItem(
+            context,
+            icon: Icons.auto_awesome,
+            label: 'Asistente IA',
+            route: '/asistente_legal',
+            isCenter: true,
+          ),
+          // Leyes
+          _buildQuickActionItem(
+            context,
+            icon: Icons.gavel,
+            label: 'Leyes',
+            route: '/leyes',
+            isCenter: false,
+          ),
+          // Jurisprudencia
+          _buildQuickActionItem(
+            context,
+            icon: Icons.account_balance,
+            label: 'Sentencias',
+            route: '/jurisprudencia',
+            isCenter: false,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildQuickActionItem(
+    BuildContext context, {
+    required IconData icon,
+    required String label,
+    required String route,
+    required bool isCenter,
+  }) {
+    final bool isHighlighted = isCenter;
+    
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => Navigator.pushNamed(context, route),
+        child: Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: isCenter ? 4 : 2,
+            vertical: isCenter ? 8 : 16,
+          ),
+          decoration: BoxDecoration(
+            gradient: isCenter
+                ? const LinearGradient(
+                    colors: [Color(0xFFC5A059), Color(0xFFD4AF6A)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  )
+                : null,
+            color: isCenter ? null : const Color(0xFF1E293B).withValues(alpha: 0.5),
+            borderRadius: BorderRadius.circular(isCenter ? 16 : 12),
+            border: Border.all(
+              color: isCenter
+                  ? const Color(0xFFFBBF24)
+                  : const Color(0xFFC5A059).withValues(alpha: 0.2),
+              width: isCenter ? 2 : 1,
+            ),
+            boxShadow: isCenter
+                ? <BoxShadow>[
+                    BoxShadow(
+                      color: const Color(0xFFC5A059).withValues(alpha: 0.4),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ]
+                : null,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(
+                icon,
+                size: isCenter ? 32 : 26,
+                color: isCenter ? const Color(0xFF0F172A) : const Color(0xFFC5A059),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                label,
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: isCenter ? 12 : 11,
+                  fontWeight: isCenter ? FontWeight.bold : FontWeight.w600,
+                  color: isCenter ? const Color(0xFF0F172A) : Colors.white,
+                  letterSpacing: 0.3,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

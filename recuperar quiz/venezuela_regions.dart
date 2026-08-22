@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 /// Región de Venezuela con sus monumentos y tribunales
@@ -542,10 +543,476 @@ final List<RegionVenezuela> regionesVenezuela = [
       ),
     ],
   ),
+  // SUCRE - Niveles 1401-1525
+  RegionVenezuela(
+    estado: 'Sucre',
+    capital: 'Cumaná',
+    descripcion: 'Primogénita del continente americano',
+    nivelInicio: 1401,
+    nivelFin: 1525,
+    colorPrincipal: const Color(0xFFFF4500), // Naranja rojizo
+    imagenFondo: 'regions/sucre_background.jpg',
+    monumentos: [
+      MonumentoRegional(
+        nombre: 'Castillo de San Antonio',
+        tipo: 'colonial',
+        descripcion: 'Fortificación colonial de Cumaná',
+        icono: Icons.castle,
+        nivel: 1425,
+        esHistorico: true,
+      ),
+      MonumentoRegional(
+        nombre: 'Catedral de Cumaná',
+        tipo: 'iglesia',
+        descripcion: 'Primera catedral de Tierra Firme',
+        icono: Icons.church,
+        nivel: 1450,
+        esHistorico: true,
+      ),
+      MonumentoRegional(
+        nombre: 'Tribunales de Sucre',
+        tipo: 'tribunal',
+        descripcion: 'Circuito judicial oriental',
+        icono: Icons.gavel,
+        nivel: 1475,
+      ),
+      MonumentoRegional(
+        nombre: 'Plaza Bolívar de Cumaná',
+        tipo: 'plaza',
+        descripcion: 'Centro histórico primogénito',
+        icono: Icons.park,
+        nivel: 1500,
+        esHistorico: true,
+      ),
+    ],
+  ),
 
-  // ESTADOS ADICIONALES continúan hasta nivel 3000...
-  // (Por brevedad, agrego solo algunos más representativos)
+  // MONAGAS - Niveles 1526-1650
+  RegionVenezuela(
+    estado: 'Monagas',
+    capital: 'Maturín',
+    descripcion: 'Tierra de José Tadeo y José Gregorio Monagas',
+    nivelInicio: 1526,
+    nivelFin: 1650,
+    colorPrincipal: const Color(0xFF32CD32), // Verde lima
+    imagenFondo: 'regions/monagas_background.jpg',
+    monumentos: [
+      MonumentoRegional(
+        nombre: 'Catedral de Maturín',
+        tipo: 'iglesia',
+        descripcion: 'Templo principal monaguense',
+        icono: Icons.church,
+        nivel: 1550,
+      ),
+      MonumentoRegional(
+        nombre: 'Palacio de Gobierno Monagas',
+        tipo: 'institucion',
+        descripcion: 'Sede ejecutiva regional',
+        icono: Icons.domain,
+        nivel: 1575,
+      ),
+      MonumentoRegional(
+        nombre: 'Circuito Judicial Monagas',
+        tipo: 'tribunal',
+        descripcion: 'Tribunales del estado',
+        icono: Icons.account_balance,
+        nivel: 1600,
+      ),
+      MonumentoRegional(
+        nombre: 'Museo Histórico Monagas',
+        tipo: 'institucion',
+        descripcion: 'Patrimonio histórico',
+        icono: Icons.museum,
+        nivel: 1625,
+      ),
+    ],
+  ),
 
+  // DELTA AMACURO - Niveles 1651-1775
+  RegionVenezuela(
+    estado: 'Delta Amacuro',
+    capital: 'Tucupita',
+    descripcion: 'Delta del Orinoco y tierra Warao',
+    nivelInicio: 1651,
+    nivelFin: 1775,
+    colorPrincipal: const Color(0xFF20B2AA), // Verde azulado
+    imagenFondo: 'regions/delta_background.jpg',
+    monumentos: [
+      MonumentoRegional(
+        nombre: 'Catedral de Tucupita',
+        tipo: 'iglesia',
+        descripcion: 'Templo del delta',
+        icono: Icons.church,
+        nivel: 1675,
+      ),
+      MonumentoRegional(
+        nombre: 'Tribunales Delta Amacuro',
+        tipo: 'tribunal',
+        descripcion: 'Justicia en el delta',
+        icono: Icons.gavel,
+        nivel: 1700,
+      ),
+      MonumentoRegional(
+        nombre: 'Casa de la Cultura Warao',
+        tipo: 'institucion',
+        descripcion: 'Patrimonio indígena',
+        icono: Icons.account_balance,
+        nivel: 1725,
+      ),
+      MonumentoRegional(
+        nombre: 'Plaza Bolívar de Tucupita',
+        tipo: 'plaza',
+        descripcion: 'Centro cívico deltano',
+        icono: Icons.park,
+        nivel: 1750,
+      ),
+    ],
+  ),
+
+  // AMAZONAS - Niveles 1776-1900
+  RegionVenezuela(
+    estado: 'Amazonas',
+    capital: 'Puerto Ayacucho',
+    descripcion: 'Pulmón vegetal de Venezuela',
+    nivelInicio: 1776,
+    nivelFin: 1900,
+    colorPrincipal: const Color(0xFF228B22), // Verde bosque
+    imagenFondo: 'regions/amazonas_background.jpg',
+    monumentos: [
+      MonumentoRegional(
+        nombre: 'Catedral de Puerto Ayacucho',
+        tipo: 'iglesia',
+        descripcion: 'Templo amazónico',
+        icono: Icons.church,
+        nivel: 1800,
+      ),
+      MonumentoRegional(
+        nombre: 'Tribunales de Amazonas',
+        tipo: 'tribunal',
+        descripcion: 'Justicia en la selva',
+        icono: Icons.gavel,
+        nivel: 1825,
+      ),
+      MonumentoRegional(
+        nombre: 'Museo Etnológico',
+        tipo: 'institucion',
+        descripcion: 'Culturas indígenas amazónicas',
+        icono: Icons.museum,
+        nivel: 1850,
+      ),
+      MonumentoRegional(
+        nombre: 'Gobernación de Amazonas',
+        tipo: 'institucion',
+        descripcion: 'Sede del ejecutivo',
+        icono: Icons.domain,
+        nivel: 1875,
+      ),
+    ],
+  ),
+
+  // APURE - Niveles 1901-2025
+  RegionVenezuela(
+    estado: 'Apure',
+    capital: 'San Fernando de Apure',
+    descripcion: 'Llanos venezolanos y tierra de José Antonio Páez',
+    nivelInicio: 1901,
+    nivelFin: 2025,
+    colorPrincipal: const Color(0xFFDEB887), // Marrón llanero
+    imagenFondo: 'regions/apure_background.jpg',
+    monumentos: [
+      MonumentoRegional(
+        nombre: 'Catedral de San Fernando',
+        tipo: 'iglesia',
+        descripcion: 'Templo llanero',
+        icono: Icons.church,
+        nivel: 1925,
+      ),
+      MonumentoRegional(
+        nombre: 'Plaza Páez',
+        tipo: 'plaza',
+        descripcion: 'Homenaje al Centauro',
+        icono: Icons.park,
+        nivel: 1950,
+        esHistorico: true,
+      ),
+      MonumentoRegional(
+        nombre: 'Circuito Judicial Apure',
+        tipo: 'tribunal',
+        descripcion: 'Tribunales llaneros',
+        icono: Icons.account_balance,
+        nivel: 1975,
+      ),
+      MonumentoRegional(
+        nombre: 'Palacio de Gobierno Apure',
+        tipo: 'institucion',
+        descripcion: 'Sede gubernamental',
+        icono: Icons.domain,
+        nivel: 2000,
+      ),
+    ],
+  ),
+
+  // BARINAS - Niveles 2026-2150
+  RegionVenezuela(
+    estado: 'Barinas',
+    capital: 'Barinas',
+    descripcion: 'Tierra de los llanos altos',
+    nivelInicio: 2026,
+    nivelFin: 2150,
+    colorPrincipal: const Color(0xFFFF8C00), // Naranja oscuro
+    imagenFondo: 'regions/barinas_background.jpg',
+    monumentos: [
+      MonumentoRegional(
+        nombre: 'Catedral Nuestra Señora del Pilar',
+        tipo: 'iglesia',
+        descripcion: 'Templo principal barinés',
+        icono: Icons.church,
+        nivel: 2050,
+      ),
+      MonumentoRegional(
+        nombre: 'Casa de la Cultura',
+        tipo: 'institucion',
+        descripcion: 'Centro cultural de Barinas',
+        icono: Icons.museum,
+        nivel: 2075,
+      ),
+      MonumentoRegional(
+        nombre: 'Tribunales de Barinas',
+        tipo: 'tribunal',
+        descripcion: 'Circuito judicial',
+        icono: Icons.gavel,
+        nivel: 2100,
+      ),
+      MonumentoRegional(
+        nombre: 'Plaza Bolívar de Barinas',
+        tipo: 'plaza',
+        descripcion: 'Centro histórico',
+        icono: Icons.park,
+        nivel: 2125,
+      ),
+    ],
+  ),
+
+  // PORTUGUESA - Niveles 2151-2275
+  RegionVenezuela(
+    estado: 'Portuguesa',
+    capital: 'Guanare',
+    descripcion: 'Granero de Venezuela',
+    nivelInicio: 2151,
+    nivelFin: 2275,
+    colorPrincipal: const Color(0xFFFFD700), // Dorado agrícola
+    imagenFondo: 'regions/portuguesa_background.jpg',
+    monumentos: [
+      MonumentoRegional(
+        nombre: 'Santuario de Coromoto',
+        tipo: 'iglesia',
+        descripcion: 'Basílica patronal de Venezuela',
+        icono: Icons.church,
+        nivel: 2175,
+        esHistorico: true,
+      ),
+      MonumentoRegional(
+        nombre: 'Plaza Bolívar de Guanare',
+        tipo: 'plaza',
+        descripcion: 'Centro cívico',
+        icono: Icons.park,
+        nivel: 2200,
+      ),
+      MonumentoRegional(
+        nombre: 'Circuito Judicial Portuguesa',
+        tipo: 'tribunal',
+        descripcion: 'Tribunales del granero',
+        icono: Icons.account_balance,
+        nivel: 2225,
+      ),
+      MonumentoRegional(
+        nombre: 'Palacio Episcopal',
+        tipo: 'institucion',
+        descripcion: 'Sede eclesiástica',
+        icono: Icons.domain,
+        nivel: 2250,
+      ),
+    ],
+  ),
+
+  // COJEDES - Niveles 2276-2400
+  RegionVenezuela(
+    estado: 'Cojedes',
+    capital: 'San Carlos',
+    descripcion: 'Estado central de Venezuela',
+    nivelInicio: 2276,
+    nivelFin: 2400,
+    colorPrincipal: const Color(0xFF9370DB), // Púrpura medio
+    imagenFondo: 'regions/cojedes_background.jpg',
+    monumentos: [
+      MonumentoRegional(
+        nombre: 'Catedral de San Carlos',
+        tipo: 'iglesia',
+        descripcion: 'Templo principal',
+        icono: Icons.church,
+        nivel: 2300,
+      ),
+      MonumentoRegional(
+        nombre: 'Tribunales de Cojedes',
+        tipo: 'tribunal',
+        descripcion: 'Circuito judicial',
+        icono: Icons.gavel,
+        nivel: 2325,
+      ),
+      MonumentoRegional(
+        nombre: 'Plaza Bolívar de San Carlos',
+        tipo: 'plaza',
+        descripcion: 'Centro histórico',
+        icono: Icons.park,
+        nivel: 2350,
+      ),
+      MonumentoRegional(
+        nombre: 'Palacio de Gobierno',
+        tipo: 'institucion',
+        descripcion: 'Sede ejecutiva',
+        icono: Icons.domain,
+        nivel: 2375,
+      ),
+    ],
+  ),
+
+  // GUÁRICO - Niveles 2401-2525
+  RegionVenezuela(
+    estado: 'Guárico',
+    capital: 'San Juan de los Morros',
+    descripcion: 'Corazón de los llanos centrales',
+    nivelInicio: 2401,
+    nivelFin: 2525,
+    colorPrincipal: const Color(0xFF8B4513), // Marrón silla
+    imagenFondo: 'regions/guarico_background.jpg',
+    monumentos: [
+      MonumentoRegional(
+        nombre: 'Morros de San Juan',
+        tipo: 'colonial',
+        descripcion: 'Formación geológica emblemática',
+        icono: Icons.landscape,
+        nivel: 2425,
+        esHistorico: true,
+      ),
+      MonumentoRegional(
+        nombre: 'Catedral de San Juan',
+        tipo: 'iglesia',
+        descripcion: 'Templo principal',
+        icono: Icons.church,
+        nivel: 2450,
+      ),
+      MonumentoRegional(
+        nombre: 'Circuito Judicial Guárico',
+        tipo: 'tribunal',
+        descripcion: 'Tribunales llaneros',
+        icono: Icons.account_balance,
+        nivel: 2475,
+      ),
+      MonumentoRegional(
+        nombre: 'Plaza Bolívar Guarica',
+        tipo: 'plaza',
+        descripcion: 'Centro cívico',
+        icono: Icons.park,
+        nivel: 2500,
+      ),
+    ],
+  ),
+
+  // YARACUY - Niveles 2526-2650
+  RegionVenezuela(
+    estado: 'Yaracuy',
+    capital: 'San Felipe',
+    descripcion: 'Tierra de María Lionza',
+    nivelInicio: 2526,
+    nivelFin: 2650,
+    colorPrincipal: const Color(0xFF9932CC), // Orquídea oscuro
+    imagenFondo: 'regions/yaracuy_background.jpg',
+    monumentos: [
+      MonumentoRegional(
+        nombre: 'Catedral de San Felipe',
+        tipo: 'iglesia',
+        descripcion: 'Templo yaracuyano',
+        icono: Icons.church,
+        nivel: 2550,
+      ),
+      MonumentoRegional(
+        nombre: 'Santuario de María Lionza',
+        tipo: 'colonial',
+        descripcion: 'Monumento místico',
+        icono: Icons.self_improvement,
+        nivel: 2575,
+        esHistorico: true,
+      ),
+      MonumentoRegional(
+        nombre: 'Tribunales de Yaracuy',
+        tipo: 'tribunal',
+        descripcion: 'Circuito judicial',
+        icono: Icons.gavel,
+        nivel: 2600,
+      ),
+      MonumentoRegional(
+        nombre: 'Palacio Municipal',
+        tipo: 'institucion',
+        descripcion: 'Sede gubernamental',
+        icono: Icons.domain,
+        nivel: 2625,
+      ),
+    ],
+  ),
+
+  // FALCÓN - Niveles 2651-2800
+  RegionVenezuela(
+    estado: 'Falcón',
+    capital: 'Coro',
+    descripcion: 'Patrimonio histórico de la humanidad',
+    nivelInicio: 2651,
+    nivelFin: 2800,
+    colorPrincipal: const Color(0xFFE9967A), // Salmón oscuro
+    imagenFondo: 'regions/falcon_background.jpg',
+    monumentos: [
+      MonumentoRegional(
+        nombre: 'Catedral de Coro',
+        tipo: 'iglesia',
+        descripcion: 'Primera catedral continental',
+        icono: Icons.church,
+        nivel: 2675,
+        esHistorico: true,
+      ),
+      MonumentoRegional(
+        nombre: 'Cruz de San Clemente',
+        tipo: 'colonial',
+        descripcion: 'Monumento fundacional',
+        icono: Icons.add_circle,
+        nivel: 2700,
+        esHistorico: true,
+      ),
+      MonumentoRegional(
+        nombre: 'Casa de las Ventanas de Hierro',
+        tipo: 'colonial',
+        descripcion: 'Arquitectura colonial',
+        icono: Icons.home,
+        nivel: 2725,
+        esHistorico: true,
+      ),
+      MonumentoRegional(
+        nombre: 'Tribunales de Falcón',
+        tipo: 'tribunal',
+        descripcion: 'Circuito judicial patrimonial',
+        icono: Icons.account_balance,
+        nivel: 2750,
+      ),
+      MonumentoRegional(
+        nombre: 'Cementerio Judío de Coro',
+        tipo: 'colonial',
+        descripcion: 'Patrimonio de la humanidad',
+        icono: Icons.museum,
+        nivel: 2775,
+        esHistorico: true,
+      ),
+    ],
+  ),
+
+  // DISTRITO CAPITAL (RETORNO) - Niveles 2801-3000
   // DISTRITO CAPITAL (RETORNO) - Niveles 2801-3000
   RegionVenezuela(
     estado: 'Distrito Capital',

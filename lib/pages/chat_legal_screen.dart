@@ -338,7 +338,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
         // Agregar mensaje de bienvenida
         _messages.add(ChatMessage(
           id: 'welcome',
-          conversationId: _currentConversationId!,
+          role: MessageRole.assistant,
           content: '¡Hola! Soy tu asistente legal especializado en derecho penal venezolano.\n\n'
                    '¿En qué puedo ayudarte hoy?\n\n'
                    '📝 Ejemplos:\n'
@@ -346,9 +346,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                    '• Calcular penas y atenuantes\n'
                    '• Interpretar artículos del código penal\n'
                    '• Analizar estrategias de defensa',
-          isUser: false,
           timestamp: DateTime.now(),
-          attachmentUrls: [],
         ));
       }
     } catch (e) {
@@ -480,11 +478,9 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
     // Agregar mensaje del usuario localmente
     final userMessage = ChatMessage(
       id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
-      conversationId: _currentConversationId!,
+      role: MessageRole.user,
       content: contenido,
-      isUser: true,
       timestamp: DateTime.now(),
-      attachmentUrls: [],
     );
 
     setState(() {
@@ -504,11 +500,9 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
 
       final assistantMessage = ChatMessage(
         id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
-        conversationId: _currentConversationId!,
+        role: MessageRole.assistant,
         content: respuesta,
-        isUser: false,
         timestamp: DateTime.now(),
-        attachmentUrls: [],
       );
 
       setState(() {

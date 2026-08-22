@@ -15,6 +15,7 @@ class JurisprudenciaScreen extends StatefulWidget {
 
 class _JurisprudenciaScreenState extends State<JurisprudenciaScreen> {
   final TextEditingController _searchController = TextEditingController();
+  final JurisprudenciaService _service = JurisprudenciaService();
   
   bool _isLoading = true;
   bool _isUsingFirebase = false;
@@ -48,7 +49,11 @@ class _JurisprudenciaScreenState extends State<JurisprudenciaScreen> {
     });
 
     try {
-      final List<dynamic> jurisprudencias = await JurisprudenciaService.getAll();
+      // Buscar todas las jurisprudencias (tipo = 'jurisprudencia')
+      final List<dynamic> jurisprudencias = await _service.buscarDocumentos(
+        tipo: 'jurisprudencia',
+        limit: 100,
+      );
       
       setState(() {
         // Convertir dynamic a Sentencia para compatibilidad
@@ -73,10 +78,10 @@ class _JurisprudenciaScreenState extends State<JurisprudenciaScreen> {
             // Si es SentenciaModel de Firebase
             return Sentencia(
               id: j.id ?? '',
-              numero: j.numeroSentencia ?? '',
+              numero: j.numeroSentencia ?? 'S/N',
               fecha: DateTime.now(),
-              tribunal: j.sala ?? '',
-              sala: j.sala ?? '',
+              tribunal: j.sala ?? 'Desconocida',
+              sala: j.sala ?? 'Desconocida',
               magistradoPonente: j.ponente ?? '',
               delito: j.delito ?? '',
               resumen: j.resumen ?? '',

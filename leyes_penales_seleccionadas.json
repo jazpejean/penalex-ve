@@ -1,0 +1,176 @@
+[
+  {
+    "id": "CRBV",
+    "categoria": "Marco Constitucional",
+    "titulo": "Constitución de la República Bolivariana de Venezuela",
+    "url": "https://pandectasdigital.blogspot.com/2016/08/constitucion-de-la-republica.html"
+  },
+  {
+    "id": "CP",
+    "categoria": "Código Sustantivo",
+    "titulo": "Código Penal de Venezuela [Vigente Parcialmente]",
+    "url": "https://pandectasdigital.blogspot.com/2016/08/codigo-penal.html"
+  },
+  {
+    "id": "COPP",
+    "categoria": "Código Procesal",
+    "titulo": "Código Orgánico Procesal Penal [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2021/09/codigo-organico-procesal-penal.html"
+  },
+  {
+    "id": "COJM",
+    "categoria": "Justicia Militar",
+    "titulo": "Código Orgánico de Justicia Militar [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2021/09/codigo-organico-de-justicia-militar.html"
+  },
+  {
+    "id": "COPEN",
+    "categoria": "Sistema Penitenciario",
+    "titulo": "Código Orgánico Penitenciario [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2021/09/codigo-organico-penitenciario.html"
+  },
+  {
+    "id": "LOCDOFT",
+    "categoria": "Delincuencia Organizada",
+    "titulo": "Ley Orgánica Contra la Delincuencia Organizada y Financiamiento al Terrorismo [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2016/08/ley-organica-contra-la-delincuencia.html"
+  },
+  {
+    "id": "LOD",
+    "categoria": "Drogas",
+    "titulo": "Ley Orgánica de Drogas [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2016/08/ley-organica-de-drogas.html"
+  },
+  {
+    "id": "LCSE",
+    "categoria": "Secuestro y Extorsión",
+    "titulo": "Ley Contra el Secuestro y la Extorsión [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2016/08/ley-contra-el-secuestro-y-la-extorsion.html"
+  },
+  {
+    "id": "LCC",
+    "categoria": "Corrupción",
+    "titulo": "Ley Contra la Corrupción [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2022/05/ley-contra-la-corrupcion.html"
+  },
+  {
+    "id": "LOED",
+    "categoria": "Extinción de Dominio",
+    "titulo": "Ley Orgánica de Extinción de Dominio [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2023/05/ley-organica-de-extincion-de-dominio.html"
+  },
+  {
+    "id": "LCCO",
+    "categoria": "Delitos de Odio",
+    "titulo": "Ley Constitucional Contra el Odio, por la Convivencia Pacífica y la Tolerancia [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2017/11/ley-constitucional-contra-el-odio-por.html"
+  },
+  {
+    "id": "LHRVA",
+    "categoria": "Vehículos",
+    "titulo": "Ley sobre el Hurto y Robo de Vehículos Automotores [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2016/08/ley-sobre-el-hurto-y-robo-de-vehiculos.html"
+  },
+  {
+    "id": "LECDI",
+    "categoria": "Delitos Informáticos",
+    "titulo": "Ley Especial Contra los Delitos Informáticos [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2016/08/ley-especial-contra-los-delitos.html"
+  },
+  {
+    "id": "LDCAM",
+    "categoria": "Armas y Desarme",
+    "titulo": "Ley para el Desarme y Control de Armas y Municiones [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2016/08/ley-para-el-desarme-y-control-de-armas.html"
+  },
+  {
+    "id": "LOSDMVLV",
+    "categoria": "Violencia de Género",
+    "titulo": "Ley Orgánica sobre el Derecho de las Mujeres a una Vida Libre de Violencia [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2021/12/ley-organica-sobre-el-derecho-de-las.html"
+  },
+  {
+    "id": "LOPNNA",
+    "categoria": "Responsabilidad Penal de Adolescentes",
+    "titulo": "Ley Orgánica para la Protección de Niños, Niñas y Adolescentes [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2016/08/ley-organica-para-la-proteccion-de.html"
+  },
+  {
+    "id": "LPVTSP",
+    "categoria": "Protección a Sujetos Procesales",
+    "titulo": "Ley de Protección de Victimas, Testigos y Demás Sujetos Procesales [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2021/09/ley-de-proteccion-de-victimas-testigos.html"
+  },
+  {
+    "id": "LPST",
+    "categoria": "Derechos Humanos / Tortura",
+    "titulo": "Ley Especial para Prevenir y Sancionar la Tortura y otros Tratos Crueles, Inhumanos o Degradantes [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2016/08/ley-especial-para-prevenir-y-sancionar.html"
+  },
+  {
+    "id": "LCTP",
+    "categoria": "Trata de Personas",
+    "titulo": "Ley Contra la Trata de Personas [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2021/04/ley-contra-la-trata-de-personas.html"
+  },
+  {
+    "id": "LOCDR",
+    "categoria": "Discriminación",
+    "titulo": "Ley Orgánica contra la Discriminación Racial [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2021/10/ley-organica-contra-la-discriminacion.html"
+  },
+  {
+    "id": "LPA",
+    "categoria": "Penal Ambiental",
+    "titulo": "Ley Penal del Ambiente [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2016/08/ley-penal-del-ambiente.html"
+  },
+  {
+    "id": "LPPAG",
+    "categoria": "Actividad Ganadera",
+    "titulo": "Ley Penal de Protección a la Actividad Ganadera [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2021/10/ley-penal-de-proteccion-la-actividad.html"
+  },
+  {
+    "id": "LOI",
+    "categoria": "Identificación",
+    "titulo": "Ley Orgánica de Identificación [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2021/10/ley-organica-de-identificacion.html"
+  },
+  {
+    "id": "LEFPI",
+    "categoria": "Policía de Investigación",
+    "titulo": "Ley del Estatuto de la Función de la Policía de Investigación [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2026/02/ley-del-estatuto-de-la-funcion-de-la.html"
+  },
+  {
+    "id": "LSDC",
+    "categoria": "Contrabando",
+    "titulo": "Ley sobre el Delito de Contrabando [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2016/08/ley-sobre-el-delito-de-contrabando.html"
+  },
+  {
+    "id": "LOTSJ",
+    "categoria": "Órganos Judiciales (TSJ)",
+    "titulo": "Ley Orgánica del Tribunal Supremo de Justicia [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2026/05/ley-organica-del-tribunal-supremo-de.html"
+  },
+  {
+    "id": "LOPJ",
+    "categoria": "Órganos Judiciales (Poder Judicial)",
+    "titulo": "Ley Orgánica del Poder Judicial [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2016/08/ley-organica-del-poder-judicial.html"
+  },
+  {
+    "id": "LOMP",
+    "categoria": "Ministerio Público",
+    "titulo": "Ley Orgánica del Ministerio Público [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2016/08/ley-organica-del-ministerio-publico.html"
+  },
+  {
+    "id": "LODP",
+    "categoria": "Defensa Pública",
+    "titulo": "Ley Orgánica de La Defensa Pública [Vigente]",
+    "url": "https://pandectasdigital.blogspot.com/2022/05/ley-organica-de-la-defensa-publica.html"
+  }
+]

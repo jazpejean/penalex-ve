@@ -52,3 +52,12 @@ yarn-error.log*
 .metadata
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# Puter
+echo "" >> .gitignore
+echo "# Penalex VE - Archivos sensibles" >> .gitignore
+echo ".env" >> .gitignore
+echo "output/" >> .gitignore
+echo "*.log" >> .gitignore
+echo ".DS_Store" >> .gitignore
+node_modules/

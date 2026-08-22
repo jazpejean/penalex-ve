@@ -24,9 +24,9 @@ class _RepositorioJurisprudenciaScreenState
   bool _cargando = false;
   
   // ✅ Filtros nuevos
-  String _tipoSeleccionado = 'sentencia'; // 'sentencia' o 'jurisprudencia'
-  String? _salaSeleccionada; // null = todas
-  List<String> _salasDisponibles = [];
+  String _tipoSeleccionado = 'Sentencias';
+  String? _salaSeleccionada;
+  int? _anioSeleccionado;
   
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -47,7 +47,6 @@ class _RepositorioJurisprudenciaScreenState
       parent: _animationController,
       curve: Curves.easeInOut,
     );
-    _cargarSalasDisponibles();
     _buscar(); // ✅ Cargar sentencias al inicio
   }
 
@@ -62,9 +61,19 @@ class _RepositorioJurisprudenciaScreenState
     setState(() => _cargando = true);
     _animationController.forward();
 
-    // ✅ Búsqueda semántica con IA (DeepSeek Query Expansion)
-    final resultados = await _service.buscarSentenciasSemantica(
+    String tipoParam = 'sentencia';
+    if (_tipoSeleccionado == 'Jurisprudencias') {
+      tipoParam = 'jurisprudencia';
+    } else if (_tipoSeleccionado == 'Resoluciones') {
+      tipoParam = 'resoluciones';
+    }
+
+    // ✅ Búsqueda con filtros
+    final resultados = await _service.buscarDocumentos(
       textoBusqueda: _searchController.text.trim(),
+      tipo: tipoParam,
+      sala: _salaSeleccionada,
+      anio: _anioSeleccionado,
       limit: 50,
     );
 
@@ -89,6 +98,7 @@ class _RepositorioJurisprudenciaScreenState
     return [
       SentenciaModel(
         id: 'ejemplo_1',
+        tipo: 'sentencia',
         numeroSentencia: '234-2023',
         sala: 'Sala Penal',
         fechaSentencia: '15/08/2023',
@@ -96,16 +106,22 @@ class _RepositorioJurisprudenciaScreenState
         ponente: 'Magistrado Juan Pérez',
         partes: 'Ministerio Público vs. Acusado',
         resumen: 'Recurso de apelación contra sentencia condenatoria por homicidio calificado. Se reduce pena de 25 a 18 años por falta de pruebas de premeditación.',
+        extracto: 'Extracto de ejemplo de la sentencia...',
         decision: 'REVOCA PARCIALMENTE',
         contenidoCompleto: 'Sentencia de ejemplo...',
         tipoSentencia: 'Definitiva',
         materia: 'Penal',
         urlFichaPenalex: 'https://www.tsj.gob.ve',
         urlTSJ: 'https://www.tsj.gob.ve',
+        urlHTML: '',
+        urlTXT: '',
+        esJurisprudencia: false,
+        tienePDF: false,
         timestamp: DateTime.now(),
       ),
       SentenciaModel(
         id: 'ejemplo_2',
+        tipo: 'sentencia',
         numeroSentencia: '156-2023',
         sala: 'Sala Penal',
         fechaSentencia: '22/07/2023',
@@ -113,16 +129,22 @@ class _RepositorioJurisprudenciaScreenState
         ponente: 'Magistrada María González',
         partes: 'Ministerio Público vs. Imputado',
         resumen: 'Recurso de casación por violación de garantías constitucionales. Tribunal anula proceso por violación del derecho a la defensa.',
+        extracto: 'Extracto de ejemplo de la sentencia...',
         decision: 'DECLARA CON LUGAR',
         contenidoCompleto: 'Sentencia de ejemplo...',
         tipoSentencia: 'Definitiva',
         materia: 'Penal',
         urlFichaPenalex: 'https://www.tsj.gob.ve',
         urlTSJ: 'https://www.tsj.gob.ve',
+        urlHTML: '',
+        urlTXT: '',
+        esJurisprudencia: true,
+        tienePDF: false,
         timestamp: DateTime.now(),
       ),
       SentenciaModel(
         id: 'ejemplo_3',
+        tipo: 'sentencia',
         numeroSentencia: '089-2023',
         sala: 'Sala de Casación Penal',
         fechaSentencia: '10/06/2023',
@@ -130,16 +152,22 @@ class _RepositorioJurisprudenciaScreenState
         ponente: 'Magistrado Carlos Ramírez',
         partes: 'Víctima vs. Agresor',
         resumen: 'Medida de protección a víctima de violencia de género. Se ordena alejamiento del agresor y custodia de menores.',
+        extracto: 'Extracto de ejemplo de la sentencia...',
         decision: 'DECLARA CON LUGAR',
         contenidoCompleto: 'Sentencia de ejemplo...',
         tipoSentencia: 'Medida Cautelar',
         materia: 'Penal',
         urlFichaPenalex: 'https://www.tsj.gob.ve',
         urlTSJ: 'https://www.tsj.gob.ve',
+        urlHTML: '',
+        urlTXT: '',
+        esJurisprudencia: false,
+        tienePDF: false,
         timestamp: DateTime.now(),
       ),
       SentenciaModel(
         id: 'ejemplo_4',
+        tipo: 'sentencia',
         numeroSentencia: '312-2023',
         sala: 'Sala Penal',
         fechaSentencia: '03/09/2023',
@@ -147,16 +175,22 @@ class _RepositorioJurisprudenciaScreenState
         ponente: 'Magistrado Luis Fernández',
         partes: 'Víctima vs. Estafador',
         resumen: 'Condena por estafa calificada mediante engaño digital. Víctima perdió 50.000 USD en esquema piramidal. Pena de 8 años de prisión.',
+        extracto: 'Extracto de ejemplo de la sentencia...',
         decision: 'CONDENA',
         contenidoCompleto: 'Sentencia de ejemplo...',
         tipoSentencia: 'Definitiva',
         materia: 'Penal',
         urlFichaPenalex: 'https://www.tsj.gob.ve',
         urlTSJ: 'https://www.tsj.gob.ve',
+        urlHTML: '',
+        urlTXT: '',
+        esJurisprudencia: false,
+        tienePDF: false,
         timestamp: DateTime.now(),
       ),
       SentenciaModel(
         id: 'ejemplo_5',
+        tipo: 'sentencia',
         numeroSentencia: '445-2023',
         sala: 'Sala de Casación Penal',
         fechaSentencia: '18/10/2023',
@@ -164,12 +198,17 @@ class _RepositorioJurisprudenciaScreenState
         ponente: 'Magistrada Ana López',
         partes: 'Ministerio Público vs. Acusado',
         resumen: 'Apelación por lesiones graves en riña callejera. Se confirma sentencia de 5 años por uso de arma blanca.',
+        extracto: 'Extracto de ejemplo de la sentencia...',
         decision: 'CONFIRMA',
         contenidoCompleto: 'Sentencia de ejemplo...',
         tipoSentencia: 'Definitiva',
         materia: 'Penal',
         urlFichaPenalex: 'https://www.tsj.gob.ve',
         urlTSJ: 'https://www.tsj.gob.ve',
+        urlHTML: '',
+        urlTXT: '',
+        esJurisprudencia: false,
+        tienePDF: false,
         timestamp: DateTime.now(),
       ),
     ];
@@ -226,8 +265,147 @@ class _RepositorioJurisprudenciaScreenState
   void _limpiarBusqueda() {
     setState(() {
       _searchController.clear();
+      _tipoSeleccionado = 'Sentencias';
+      _salaSeleccionada = null;
+      _anioSeleccionado = null;
     });
     _buscar();
+  }
+
+  Widget _buildFiltros() {
+    final int currentYear = DateTime.now().year;
+    final List<int> years = List.generate(currentYear - 2000 + 1, (index) => currentYear - index);
+    final List<String> salas = ['Todas', 'Sala de Casación Penal', 'Sala Constitucional'];
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          // Tipo
+          ...['Sentencias', 'Jurisprudencias', 'Resoluciones'].map((tipo) {
+            final isSelected = _tipoSeleccionado == tipo;
+            return Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: ChoiceChip(
+                label: Text(tipo),
+                selected: isSelected,
+                onSelected: (selected) {
+                  if (selected) {
+                    setState(() {
+                      _tipoSeleccionado = tipo;
+                      if (tipo != 'Sentencias' && tipo != 'Jurisprudencias') {
+                        _salaSeleccionada = null;
+                      }
+                    });
+                    _buscar();
+                  }
+                },
+                selectedColor: dorado,
+                backgroundColor: Colors.transparent,
+                labelStyle: TextStyle(
+                  color: isSelected ? azulMarino : Colors.white,
+                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  side: BorderSide(
+                    color: isSelected ? dorado : Colors.white,
+                  ),
+                ),
+                visualDensity: VisualDensity.compact,
+                showCheckmark: false,
+              ),
+            );
+          }),
+          const SizedBox(width: 8),
+          
+          // Sala
+          if (_tipoSeleccionado == 'Sentencias' || _tipoSeleccionado == 'Jurisprudencias')
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: PopupMenuButton<String>(
+                initialValue: _salaSeleccionada ?? 'Todas',
+                onSelected: (String value) {
+                  setState(() {
+                    _salaSeleccionada = value == 'Todas' ? null : value;
+                  });
+                  _buscar();
+                },
+                itemBuilder: (BuildContext context) {
+                  return salas.map((String sala) {
+                    return PopupMenuItem<String>(
+                      value: sala,
+                      child: Text(sala),
+                    );
+                  }).toList();
+                },
+                child: Chip(
+                  label: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(_salaSeleccionada ?? 'Sala (Todas)'),
+                      const SizedBox(width: 4),
+                      const Icon(Icons.arrow_drop_down, size: 16, color: Colors.white),
+                    ],
+                  ),
+                  backgroundColor: Colors.transparent,
+                  labelStyle: const TextStyle(color: Colors.white),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: const BorderSide(color: Colors.white),
+                  ),
+                  visualDensity: VisualDensity.compact,
+                ),
+              ),
+            ),
+            
+          // Año
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: PopupMenuButton<int?>(
+              initialValue: _anioSeleccionado,
+              onSelected: (int? value) {
+                setState(() {
+                  _anioSeleccionado = value;
+                });
+                _buscar();
+              },
+              itemBuilder: (BuildContext context) {
+                return [
+                  const PopupMenuItem<int?>(
+                    value: null,
+                    child: Text('Todos los años'),
+                  ),
+                  ...years.map((int year) {
+                    return PopupMenuItem<int?>(
+                      value: year,
+                      child: Text(year.toString()),
+                    );
+                  }),
+                ];
+              },
+              child: Chip(
+                label: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(_anioSeleccionado?.toString() ?? 'Año (Todos)'),
+                    const SizedBox(width: 4),
+                    const Icon(Icons.arrow_drop_down, size: 16, color: Colors.white),
+                  ],
+                ),
+                backgroundColor: Colors.transparent,
+                labelStyle: const TextStyle(color: Colors.white),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  side: const BorderSide(color: Colors.white),
+                ),
+                visualDensity: VisualDensity.compact,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -323,14 +501,22 @@ class _RepositorioJurisprudenciaScreenState
                   },
                 ),
                 const SizedBox(height: 8),
-                // ✅ Ayuda sutil
-                Text(
-                  'Ejemplos: "homicidio", "sala penal", "recurso de casación"',
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.4),
-                    fontSize: 12,
-                  ),
+                // ✅ Ayuda sutil con indicador de búsqueda semántica
+                Row(
+                  children: [
+                    Icon(Icons.auto_awesome, size: 12, color: dorado.withOpacity(0.6)),
+                    const SizedBox(width: 4),
+                    Text(
+                      'Búsqueda inteligente: prueba "matar", "robar", "drogas"...',
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.4),
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
                 ),
+                const SizedBox(height: 12),
+                _buildFiltros(),
               ],
             ),
           ),
@@ -376,8 +562,6 @@ class _RepositorioJurisprudenciaScreenState
   }
 
   Widget _buildEmptyState() {
-    final query = _searchController.text.trim();
-    
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
@@ -475,6 +659,34 @@ class _RepositorioJurisprudenciaScreenState
                       ),
                     ),
                     const SizedBox(width: 8),
+                    // ✅ Badge Vinculante
+                    if (_tipoSeleccionado == 'Sentencias' && sentencia.esJurisprudencia) ...[
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFFD4A843), Color(0xFFE8C547)],
+                          ),
+                          borderRadius: BorderRadius.circular(4),
+                          boxShadow: [
+                            BoxShadow(
+                              color: dorado.withOpacity(0.3),
+                              blurRadius: 4,
+                              offset: const Offset(0, 2),
+                            )
+                          ],
+                        ),
+                        child: const Text(
+                          '⚖️ Vinculante',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                    ],
                     Expanded(
                       child: Text(
                         'Nº ${sentencia.numeroSentencia}',
@@ -922,30 +1134,6 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
     );
   }
 
-  Widget _buildSeccionAnalisis(String titulo, String contenido) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          titulo,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: azulMarino,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          contenido,
-          style: const TextStyle(
-            fontSize: 13,
-            height: 1.5,
-            color: Colors.black87,
-          ),
-        ),
-      ],
-    );
-  }
   Widget _buildSeccionAnalisis(String titulo, String contenido) {
     if (contenido.isEmpty || contenido == 'No disponible') {
       return const SizedBox.shrink();

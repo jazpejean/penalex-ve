@@ -2,10 +2,8 @@ import '../models/caso_hipotetico_model.dart';
 import '../data/quiz_questions_data.dart';
 
 /// Servicio para gestionar casos hipotéticos y sus respuestas
-/// Sistema anti-trampa: fundamentación solo si correcta, pistas vagas si incorrecta
 class CasosService {
-  
-  /// Obtiene un caso aleatorio para un nivel
+  /// Obtiene un caso para el nivel
   static CasoHipotetico getCasoParaNivel(int nivel) {
     return QuizQuestionsData.getCasoForLevel(nivel);
   }
@@ -19,14 +17,12 @@ class CasosService {
     final correcto = respuestaUsuario == caso.respuestaCorrecta;
 
     if (correcto) {
-      // ✅ CORRECTO: Devolver fundamentación completa
       return ResultadoRespuesta(
         correcto: true,
         fundamentacion: _getFundamentacion(caso),
         mensaje: _getMensajeExito(vecesIntentadas),
       );
     } else {
-      // ❌ INCORRECTO: Devolver pista vaga
       return ResultadoRespuesta(
         correcto: false,
         pista: _getPistaVaga(caso, vecesIntentadas),
@@ -36,10 +32,10 @@ class CasosService {
     }
   }
 
-  /// Genera fundamentación legal (solo si respuesta correcta)
   static Fundamentacion _getFundamentacion(CasoHipotetico caso) {
-    final fundamentaciones = _fundamentacionesMap[caso.delitoBase] ?? _fundamentacionDefault;
-    
+    final fundamentaciones = _fundamentacionesMap[caso.delitoBase] ??
+        _fundamentacionDefault;
+
     return Fundamentacion(
       id: 'fund_${caso.id}',
       casoId: caso.id,
@@ -52,22 +48,21 @@ class CasosService {
               ))
           .toList(),
       sentenciasIds: List<String>.from(fundamentaciones['sentencias'] as List),
-      jurisprudenciasIds: List<String>.from(fundamentaciones['jurisprudencias'] as List),
+      jurisprudenciasIds:
+          List<String>.from(fundamentaciones['jurisprudencias'] as List),
     );
   }
 
-  /// Genera pista vaga (NO revela respuesta)
   static Pista _getPistaVaga(CasoHipotetico caso, int nivel) {
     final pistas = _pistasMap[caso.delitoBase] ?? _pistasDefault;
-    final textoNivel = nivel <= 3 ? pistas[nivel - 1] : pistas.last;
-    
+    final textoNivel = nivel <= pistas.length ? pistas[nivel - 1] : pistas.last;
+
     return Pista(
       id: 'pista_${caso.id}_$nivel',
       casoId: caso.id,
       nivelPista: nivel,
-      textoPista: textoNivel as String,
-      articulosSugeridos: null, // NO dar artículos específicos
-      busquedaSugerida: _getBusquedaSugerida(caso),
+      textoPista: textoNivel,
+      busquedaSugerida: 'Revisa: ${caso.delitoBase} en Código Penal',
     );
   }
 
@@ -79,64 +74,98 @@ class CasosService {
 
   static String _getMensajeError(int intentos) {
     if (intentos == 1) return 'Respuesta incorrecta. Analiza los elementos del caso.';
-    if (intentos == 2) return 'Incorrecto nuevamente. Última oportunidad antes de usar apelación.';
-    return 'Caso bloqueado. Usa una apelación para desbloquearlo o espera.';
+    if (intentos == 2) return 'Incorrecto nuevamente. Última oportunidad.';
+    return 'Caso bloqueado. Usa una apelación para desbloquearlo.';
   }
 
-  static String? _getBusquedaSugerida(CasoHipotetico caso) {
-    return 'Revisa: ${caso.delitoBase} en Código Penal Venezolano';
-  }
-
-  // ========== MAPA DE FUNDAMENTACIONES ==========
-  
   static final Map<String, Map<String, dynamic>> _fundamentacionesMap = {
     'Tentativa de Hurto': {
-      'explicacion': 'La tentativa se configura cuando el autor inicia la ejecución del delito pero no lo consuma por causas ajenas a su voluntad. En este caso, José realizó actos de apoderamiento pero fue interrumpido.',
+      'explicacion':
+          'La tentativa se configura cuando el autor inicia la ejecución del delito pero no lo consuma por causas ajenas a su voluntad.',
       'articulos': [
-        {'codigo': 'CP', 'articulo': 'Art. 80', 'texto': 'Tentativa: quien con el fin de cometer un delito comienza su ejecución pero no lo consuma por causas independientes de su voluntad'},
-        {'codigo': 'CP', 'articulo': 'Art. 453', 'texto': 'Hurto: quien se apodere de cosa mueble ajena para aprovecharse de ella'},
+        {'codigo': 'CP', 'articulo': 'Art. 80', 'texto': 'Tentativa: quien con el fin de cometer un delito comienza su ejecución pero no lo consuma'},
+        {'codigo': 'CP', 'articulo': 'Art. 453', 'texto': 'Hurto: quien se apodere de cosa mueble ajena'},
       ],
-      'sentencias': ['TSJ-SCP-2015-0234', 'TSJ-SCP-2018-0567'],
+      'sentencias': ['TSJ-SCP-2015-0234'],
       'jurisprudencias': [],
     },
     'Legítima Defensa': {
-      'explicacion': 'La legítima defensa exime de responsabilidad cuando hay agresión ilegítima, necesidad racional del medio empleado y falta de provocación. María cumple estos requisitos.',
+      'explicacion':
+          'La legítima defensa exime de responsabilidad cuando hay agresión ilegítima, necesidad racional del medio empleado y falta de provocación.',
       'articulos': [
-        {'codigo': 'CP', 'articulo': 'Art. 65.3', 'texto': 'No es punible: el que obra en defensa de su propia persona o derecho'},
-        {'codigo': 'CP', 'articulo': 'Art. 425', 'texto': 'Lesiones en legítima defensa: quedan exentas de pena'},
+        {'codigo': 'CP', 'articulo': 'Art. 65.3', 'texto': 'No es punible: el que obra en defensa de su propia persona'},
       ],
-      'sentencias': ['TSJ-SCP-2016-0889', 'TSJ-SCP-2019-1234'],
+      'sentencias': ['TSJ-SCP-2016-0889'],
       'jurisprudencias': [],
     },
-    'Complicidad': {
-      'explicacion': 'El cómplice es quien coopera a la ejecución del hecho con actos anteriores o simultáneos. Pedro facilitó el transporte conscientemente.',
+    'Homicidio Calificado': {
+      'explicacion':
+          'El homicidio calificado por premeditación implica reflexión y tiempo entre la decisión y la ejecución.',
       'articulos': [
-        {'codigo': 'CP', 'articulo': 'Art. 84', 'texto': 'Cómplice: quien haya cooperado a la ejecución del hecho con actos anteriores o simultáneos'},
+        {'codigo': 'CP', 'articulo': 'Art. 406.1', 'texto': 'Homicidio calificado por premeditación'},
       ],
       'sentencias': ['TSJ-SCP-2017-0445'],
       'jurisprudencias': [],
     },
-    'Error de Tipo': {
-      'explicacion': 'El error de tipo esencial excluye el dolo cuando el autor desconoce un elemento del tipo penal. Carlos creía disparar a un animal.',
+    'Femicidio': {
+      'explicacion':
+          'El femicidio es la muerte de una mujer por razones de género, con antecedentes de violencia.',
       'articulos': [
-        {'codigo': 'CP', 'articulo': 'Art. 61', 'texto': 'Error de hecho esencial e invencible: excluye la responsabilidad'},
-        {'codigo': 'CP', 'articulo': 'Art. 409', 'texto': 'Homicidio culposo: si el error es vencible'},
-      ],
-      'sentencias': ['TSJ-SCP-2014-0778'],
-      'jurisprudencias': [],
-    },
-    'Autoría Mediata': {
-      'explicacion': 'El autor mediato comete el delito utilizando a otro como instrumento. El jefe usa la subordinación del menor para ejecutar el robo.',
-      'articulos': [
-        {'codigo': 'CP', 'articulo': 'Art. 83', 'texto': 'Autor: quien ejecuta el hecho por sí o valiéndose de otro'},
+        {'codigo': 'LODMVLV', 'articulo': 'Art. 15', 'texto': 'Femicidio: quien cause la muerte de una mujer'},
       ],
       'sentencias': ['TSJ-SCP-2018-0991'],
+      'jurisprudencias': [],
+    },
+    'Robo Agravado': {
+      'explicacion':
+          'El robo agravado se configura por el uso de armas, nocturnidad, o pluralidad de agentes.',
+      'articulos': [
+        {'codigo': 'CP', 'articulo': 'Art. 458', 'texto': 'Robo agravado por armas y nocturnidad'},
+      ],
+      'sentencias': ['TSJ-SCP-2016-0556'],
+      'jurisprudencias': [],
+    },
+    'Estafa': {
+      'explicacion':
+          'La estafa requiere engaño, inducción a error y perjuicio patrimonial.',
+      'articulos': [
+        {'codigo': 'CP', 'articulo': 'Art. 462', 'texto': 'Estafa: quien con artificios o medios engañosos induzca en error'},
+      ],
+      'sentencias': ['TSJ-SCP-2015-0778'],
+      'jurisprudencias': [],
+    },
+    'Tráfico de Drogas': {
+      'explicacion':
+          'El tráfico internacional de drogas tiene penas agravadas por la cantidad y cruce de fronteras.',
+      'articulos': [
+        {'codigo': 'LOD', 'articulo': 'Art. 149', 'texto': 'Tráfico ilícito de sustancias estupefacientes'},
+      ],
+      'sentencias': ['TSJ-SCP-2019-0234'],
+      'jurisprudencias': [],
+    },
+    'Corrupción': {
+      'explicacion':
+          'La concusión es el abuso del cargo público para exigir beneficios indebidos.',
+      'articulos': [
+        {'codigo': 'LAC', 'articulo': 'Art. 54', 'texto': 'Concusión: funcionario que exija beneficio indebido'},
+      ],
+      'sentencias': ['TSJ-SCP-2017-0889'],
+      'jurisprudencias': [],
+    },
+    'Flagrancia': {
+      'explicacion':
+          'La cuasi-flagrancia permite detención sin orden cuando hay persecución inmediata tras el delito.',
+      'articulos': [
+        {'codigo': 'COPP', 'articulo': 'Art. 234', 'texto': 'Flagrancia: comisión actual o inmediatamente después del delito'},
+      ],
+      'sentencias': ['TSJ-SCP-2016-0445'],
       'jurisprudencias': [],
     },
   };
 
   static final Map<String, dynamic> _fundamentacionDefault = {
-    'explicacion': 'La fundamentación se basa en la correcta interpretación de los elementos del tipo penal y las circunstancias del caso concreto.',
+    'explicacion':
+        'La fundamentación se basa en la correcta interpretación de los elementos del tipo penal.',
     'articulos': [
       {'codigo': 'CP', 'articulo': 'Art. 1', 'texto': 'Principio de legalidad'},
     ],
@@ -144,8 +173,6 @@ class CasosService {
     'jurisprudencias': [],
   };
 
-  // ========== MAPA DE PISTAS VAGAS (NO revelan respuesta) ==========
-  
   static final Map<String, List<String>> _pistasMap = {
     'Tentativa de Hurto': [
       'Analiza si el delito se consumó o quedó en fase de ejecución.',
@@ -156,21 +183,6 @@ class CasosService {
       'Evalúa si hubo agresión ilegítima previa.',
       'Analiza la proporcionalidad del medio empleado.',
       'Considera las circunstancias de necesidad de defensa.',
-    ],
-    'Complicidad': [
-      'Diferencia entre autor, cómplice y encubridor.',
-      'Analiza el momento y tipo de cooperación.',
-      'Considera el grado de conocimiento del plan.',
-    ],
-    'Error de Tipo': [
-      'Evalúa si hubo intención o error sobre los hechos.',
-      'Analiza el conocimiento del autor al actuar.',
-      'Diferencia entre error de tipo y error de prohibición.',
-    ],
-    'Autoría Mediata': [
-      'Considera quién tiene el dominio del hecho.',
-      'Analiza el uso de terceros como instrumentos.',
-      'Evalúa la relación de subordinación.',
     ],
   };
 

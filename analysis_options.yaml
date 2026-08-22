@@ -61,3 +61,6 @@ analyzer:
     - "**/document_scanner_service_pro.dart"  # Problemas con paquete edge_detection
     - "**/image_filter_service.dart"  # Problemas con paquete image
     - "**/crop_adjust_screen.dart"  # Problemas con paquete image
+    - "backup_quiz_*/**"  # Carpetas de backup
+    - "recuperar quiz/**"  # Carpeta de recuperación
+    - "para el quiz/**"  # Carpeta temporal

@@ -1,0 +1,9 @@
+{
+  "name": "penalex-antigravity-cli",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "antigravity-cli.js",
+  "dependencies": {
+    "@heyputer/puter.js": "^2.6.1"
+  }
+}

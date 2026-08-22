@@ -17,7 +17,10 @@ class GameState extends ChangeNotifier {
 
   int get currentLevel => _currentLevel;
   int get apelaciones => _apelaciones;
+  int get apelacionesDisponibles => _apelaciones; // Alias para compatibilidad
   int get score => _score;
+  int get xp => _score; // Alias para compatibilidad
+  int get xpToNextLevel => 100; // XP necesario para siguiente nivel
   int get streak => _streak;
   bool get isLoading => _isLoading;
   DateTime? get lastApelacionRegeneration => _lastApelacionRegeneration;
@@ -87,6 +90,14 @@ class GameState extends ChangeNotifier {
     _streak = newStreak;
     final int newLevel = 1 + (_score ~/ 10);
     if (newLevel > _currentLevel) _currentLevel = newLevel;
+    notifyListeners();
+  }
+
+  /// Completa el nivel actual y avanza al siguiente
+  void completeLevel() {
+    _currentLevel++;
+    _score += 100;
+    _streak++;
     notifyListeners();
   }
 

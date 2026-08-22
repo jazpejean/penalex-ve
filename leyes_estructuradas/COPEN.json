@@ -1,0 +1,959 @@
+{
+  "id": "COPEN",
+  "categoria": "Sistema Penitenciario",
+  "titulo": "Código Orgánico Penitenciario [Vigente]",
+  "url": "https://pandectasdigital.blogspot.com/2021/09/codigo-organico-penitenciario.html",
+  "total_articulos": 190,
+  "articulos": [
+    {
+      "numero": "1",
+      "epigrafe": "Se reforma el artículo 37, quedando la redacción de la forma siguiente:",
+      "contenido": "Requisitos del egreso"
+    },
+    {
+      "numero": "37",
+      "epigrafe": "El egreso de las personas privadas de libertad estará precedido de un acto emanado de la autoridad competente que ordene la libertad personal del interno o interna, en virtud de la extinción de la acción penal o de la pena, o cualquier otra circunstancia prevista en la ley. En el caso de una decisión judicial se requiere el auto que acuerde:",
+      "contenido": "1. Medida cautelar sustitutiva de la privativa de libertad. 2. Suspensión condicional del proceso, suspensión de la ejecución de la pena, trabajo fuera del establecimiento, régimen abierto y libertad condicional. 3. Otorgamiento de una medida humanitaria. 4. Extradición del privado o privada de libertad. 5. Cumplimiento total de la pena que sustenta la privación de la libertad. 6. Sentencia absolutoria. 7. Sobreseimiento de la Causa. 8. Archivo fiscal del expediente. Esta documentación deberá insertarse de forma inmediata en el expediente de la privada o privado de libertad que debe egresar del establecimiento."
+    },
+    {
+      "numero": "2",
+      "epigrafe": "Se reforma el artículo 85, quedando la redacción de la forma siguiente:",
+      "contenido": "Cuerpo de seguridad y custodia"
+    },
+    {
+      "numero": "85",
+      "epigrafe": "Se crea un cuerpo de seguridad y custodia, de naturaleza civil, adscrito al Ministerio del Poder Popular con competencia en materia penitenciaria que tendrá a su cargo la vigilancia, custodia y seguridad interna de las personas privadas de libertad, familiares, visitantes y funcionarias públicas o funcionarios públicos durante su permanencia en los recintos del sistema penitenciario.",
+      "contenido": "(adsbygoogle = window.adsbygoogle || []).push({});"
+    },
+    {
+      "numero": "3",
+      "epigrafe": "Se reforma el artículo 87, quedando la redacción de la forma siguiente:",
+      "contenido": ""
+    },
+    {
+      "numero": "87",
+      "epigrafe": "El Cuerpo de Policía Nacional Bolivariana es el encargado de la seguridad externa de los recintos penitenciarios y asumirá las siguientes obligaciones:",
+      "contenido": "1. Vigilar y custodiar las áreas perimetrales del establecimiento penitenciario. 2. Evitar la fuga o evasión de las personas privadas de libertad. 3. Evitar el ingreso al establecimiento penitenciario de sustancias y objetos de tenencia prohibida o no autorizadas en las áreas que estén bajo su control. 4. Realizar la requisa de todas las personas y vehículos que ingresan y egresan del establecimiento penitenciario para evitar el tráfico de sustancias y objetos de tenencia prohibida o no autorizada. 5. Asistir en el control de las alteraciones masivas del orden dentro de los establecimientos, siguiendo las normas para el ingreso y uso de armas de fuego contenidas en este Código, a solicitud del Ministerio del Popular con competencia en materia penitenciaria. 6. Vigilar y custodiar los traslados transitorios e interestablecimientos penitenciarios, ejecutados por el Ministerio del Poder Popular con competencia en materia penitenciaria. 7. Las demás que le señalen las leyes y reglamentos."
+    },
+    {
+      "numero": "4",
+      "epigrafe": "Se reforma el artículo 122, quedando la redacción de la forma siguiente:",
+      "contenido": "Traslados a otros establecimientos penitenciarios"
+    },
+    {
+      "numero": "122",
+      "epigrafe": "Las privadas y privados de libertad podrán ser trasladadas o trasladados a otros establecimientos penitenciarios de reclusión, previa autorización del juez o jueza de ejecución correspondiente.",
+      "contenido": "También podrán ser trasladados por la autoridad penitenciaria, para la participación en actividades deportivas, educativas o culturales, debiendo retornar una vez culminadas dichas actividades al centro de cumplimiento de pena. Cuando el traslado sea por motivos de salud, deberá notificarse de manera inmediata al juez o jueza de ejecución, a los fines que se adopten las decisiones jurisdiccionales que correspondan. Excepcionalmente, cuando sea necesario proceder al traslado del privado o privada de libertad por razones de orden, seguridad, necesidad o urgencia, deberá notificarse de inmediato al juez o jueza de ejecución, a los fines de la remisión del expediente correspondiente al juez o jueza competente. Las privadas y los privados de libertad, tanto a la salida como al ingreso, deberán ser requisados individualmente."
+    },
+    {
+      "numero": "5",
+      "epigrafe": "Se reforma el artículo 125, quedando la redacción de la forma siguiente:",
+      "contenido": "Autorización de los traslados Interestablecimientos penitenciarios"
+    },
+    {
+      "numero": "125",
+      "epigrafe": "Los traslados serán autorizados por:",
+      "contenido": "1. En los casos de las imputadas o los imputados, por la jueza o juez de la causa, salvo que exista una situación de fuerza mayor de acuerdo a lo previsto en el Código Orgánico Procesal Penal y este Código. 2. En los casos de las penadas o los penados, por la jueza o juez de ejecución correspondiente, salvo que exista una situación de fuerza mayor, de acuerdo con lo previsto en el Código Orgánico Procesal Penal, y en este Código. (adsbygoogle = window.adsbygoogle || []).push({});"
+    },
+    {
+      "numero": "6",
+      "epigrafe": "Se reforma el artículo 138, quedando la redacción de la forma siguiente:",
+      "contenido": "Competencia para sancionar"
+    },
+    {
+      "numero": "138",
+      "epigrafe": "Las infracciones disciplinarias serán sancionadas por las autoridades penitenciarias de conformidad con lo previsto en este Código, sin perjuicio del procedimiento penal al que hubiere lugar.",
+      "contenido": "Dichas decisiones pueden ser revisadas a solicitud de la sancionada o sancionado, por la jueza o el juez de ejecución con competencia en el centro penitenciario."
+    },
+    {
+      "numero": "7",
+      "epigrafe": "Se reforma el artículo 154, quedando la redacción de la forma siguiente:",
+      "contenido": "Revisión judicial"
+    },
+    {
+      "numero": "154",
+      "epigrafe": "La privada o privado de libertad podrá solicitar a la Jueza o Juez de Ejecución con competencia en el establecimiento penitenciario, la revisión de la decisión adoptada por la Junta Disciplinaria dentro de las cuarenta y ocho horas siguientes a su notificación. La jueza o juez escuchará a las partes y adoptará su decisión en la misma audiencia. La solicitud de revisión suspende la ejecución de la decisión.",
+      "contenido": ""
+    },
+    {
+      "numero": "8",
+      "epigrafe": "Se reforma el artículo 161, quedando la redacción en de la forma siguiente:",
+      "contenido": "Régimen de Confianza Tutelado"
+    },
+    {
+      "numero": "161",
+      "epigrafe": "El régimen de confianza tutelado consiste en la ubicación de la penada o el penado en un centro de producción o un área especial del régimen penitenciario, donde continuará con el cumplimiento de la pena, el cual será acordado por la jueza o el juez de ejecución, mientras le sea otorgado alguna fórmula alternativa a cumplimiento de la pena.",
+      "contenido": ""
+    },
+    {
+      "numero": "9",
+      "epigrafe": "Se reforma la disposición transitoria segunda, quedando la redacción de la forma siguiente:",
+      "contenido": "El Cuerpo de Policía Nacional Bolivariana asumirá el ejercicio de las funciones de custodia externa de los establecimientos penitenciarios, de conformidad con lo previsto en el artículo 87 de este Código, en el plazo de dos años contado a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela."
+    },
+    {
+      "numero": "8",
+      "epigrafe": "La presente Ley entrará en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.",
+      "contenido": ""
+    },
+    {
+      "numero": "9",
+      "epigrafe": "Imprímase esta Ley con las reformas aprobadas y en un texto único, corríjase la numeración de artículos y capítulos donde corresponda, con los datos de sanción y promulgación, de conformidad con lo establecido en el artículo 5 de la  Ley de Publicaciones Oficiales .",
+      "contenido": "LA ASAMBLEA NACIONAL DE LA REPÚBLICA BOLIVARIANA DE VENEZUELA, Decreta la siguiente: Código Orgánico Penitenciario TÍTULO I Disposiciones generales (adsbygoogle = window.adsbygoogle || []).push({}); Objeto"
+    },
+    {
+      "numero": "1",
+      "epigrafe": "El presente Código Orgánico tiene por objeto impulsar, promover regular y desarrollar la organización, administración, funcionamiento y control del sistema penitenciario, de conformidad con las normas, principios y valores consagrados en la Constitución, así como en los tratados, pactos y convenios internacionales suscritos y ratificados por la República en materia de derechos humanos, a los fines de garantizar a las personas privadas de libertad su rehabilitación integral, progresiva y el respeto a sus derechos humanos, posibilitando su transformación y su reinserción social.",
+      "contenido": "Ámbito de aplicación"
+    },
+    {
+      "numero": "2",
+      "epigrafe": "Quedan sujetos a las normas contenidas en el presente Código:",
+      "contenido": "1. El órgano con competencia en materia penitenciaria y sus entes adscritos. 2. Las personas privadas de libertad o sujetas a alguna medida restrictiva de la libertad, que se encuentren bajo la custodia del servicio penitenciario. 3. Cualquier otra persona, órgano u ente del Poder Público Nacional, regional, municipal o comunal que intervenga en forma interrelacionada con el servicio penitenciario, en cuanto le fuere aplicable. Definiciones"
+    },
+    {
+      "numero": "3",
+      "epigrafe": "A los efectos del presente Código se entiende por:",
+      "contenido": "1.  Administración penitenciaria : Acción de planificar, organizar, formular directrices, lineamientos y políticas para la ejecución y seguimiento de las actividades destinadas a dar cumplimiento al servicio penitenciario. 2.  Agrupación : Acción de reunir un conjunto de personas privadas de libertad, en condición de procesadas y procesados, atendiendo a perfiles conductuales, culturales y jurídicos similares, a fin de determinar el lugar más adecuado para su ubicación y dar cumplimiento a los requerimientos de atención integral y resguardo. 3.  Atención integral : Conjunto de planes, programas y proyectos aplicados a los privados y privadas de libertad, por un equipo multidisciplinario integrado por profesionales que deben garantizar la satisfacción de las necesidades educativas, de capacitación laboral, de trabajo productivo, de asistencia psicológica, médica, odontológica, social, deportiva, cultural y recreativa, desde su ingreso en el sistema penitenciario para garantizar las posibilidades de la transformación del interno o interna. 4.  Atención integral médica : Consiste en implementar, controlar, evaluar y aplicar actividades de enfermería, programas de medicina, suministros e insumos de salud y programas especiales de prevención de enfermedades endémicas o pandémicas atendiendo los lineamientos del órgano rector en materia de salud, procurando el bienestar físico y mental de los privados y privadas de libertad o personas sujetas a alguna medida restrictiva de libertad. 5.  Apoyo canino : Utilización de canes entrenados especialmente para contribuir en las labores de prevención y de seguridad, por parte del servicio penitenciario. 6.  Centros de producción:  Instalaciones destinadas a la producción de bienes y servicios, en los cuales participarán los privados y privadas de libertad, con la finalidad de facilitar su transformación a través del trabajo. 7.  Clasificación:  Conjunto de procedimientos técnicos aplicados por la junta de clasificación a las penadas y penados, con el objetivo de alcanzar una individualización de los mismos, en atención al grado de peligrosidad demostrado, asignándoles un nivel de seguridad que podrá ser máximo, medio o mínimo. 8.  Control de acceso:  Consiste en el registro, identificación y revisión obligatoria de todas las personas, vehículos y objetos que ingresen o egresen del establecimiento penitenciario. 9.  Custodia:  Procedimiento destinado a resguardar, proteger, vigilar y asistir a las personas privadas de libertad durante su permanencia en el sistema penitenciario. 10.  Equipo de atención integral:  Conjunto de profesionales y técnicos que trabajan de manera múltiple e interdisciplinaria, responsables de evaluar, agrupar, aplicar tratamiento, supervisar y darle seguimiento al plan individual y colectivo en aplicación de los planes, programas y proyectos de atención integral, creados para las personas privadas de libertad que se encuentran bajo la custodia del servicio penitenciario. 11.  Establecimiento penitenciario:  Instalación con las adecuadas condiciones de infraestructura en la cual el órgano con competencia en materia penitenciaria presta la custodia, el seguimiento y atención integral a las personas privadas de libertad, en el mismo se garantizan el respeto de sus derechos y de los mecanismos necesarios para lograr su transformación. 12.  Evaluación progresiva:  Conjunto de procedimientos que aplicará el equipo de atención integral sobre las personas sometidas a una pena privativa de libertad, de forma individual, a los efectos de observar y valorar la modificación de su conducta, la cual podrá derivar en un incremento de la confianza depositada en el mismo, que permitirá la atribución de un mayor margen de libertad. 13.  Junta de clasificación:  Cuerpo colegiado encargado de tomar las decisiones relativas a la clasificación de las penadas y penados. 14.  Junta disciplinaria:  Órgano colegiado encargado de la aplicación e imposición de las sanciones del régimen disciplinario de las personas privadas de libertad. 15.  Junta de trabajo:  Equipo conformado por el órgano encargado del trabajo penitenciario y el equipo de atención integral, que tiene como finalidad la organización y supervisión del trabajo de los privados y privadas de libertad. 16.  Pase de lista:  Verificación individual diaria, con nombre y apellido, de las personas privadas de libertad que se encuentran en los establecimientos penitenciarios de régimen cerrado, realizado por la autoridad penitenciaria. 17.  Pase de número:  Conteo diario de verificación física de las personas privadas de libertad que se encuentran en los establecimientos penitenciarios de régimen cerrado, hecho a viva voz por los privados y privadas de libertad en presencia de la autoridad penitenciaria. 18.  Plan individual de atención integral:  Conjunto de actividades dirigidas a la transformación de la penada o penado, establecido conjuntamente con su participación y el equipo de atención integral. 19.  Privada o privado o de libertad:  Persona procesada o penada recluida por orden judicial en el establecimiento que señale el órgano competente, o sujeta a alguna medida restrictiva de la libertad que se encuentre bajo la custodia del servicio penitenciario. 20.  Redención de la pena:  Reducción de la pena a través del trabajo o el estudio realizado dentro del régimen penitenciario. 21.  Régimen abierto:  Fórmula alternativa del cumplimiento de pena otorgada al penado o penada. 22.  Régimen disciplinario:  Es el conjunto de normas contentivas de las infracciones, procedimientos y sanciones aplicables a las personas privadas de libertad, con el fin de mantener el buen orden en los establecimientos penitenciarios. 23.  Régimen penitenciario:  Normas y procedimientos que rigen la convivencia, el buen orden y las actividades propias de las personas privadas de libertad. 24.  Requisa:  Revisión exhaustiva de personas privadas de libertad, de funcionarias públicas o funcionarios públicos, de visitantes, vehículos, objetos y áreas del establecimiento penitenciario, con la finalidad de detectar y decomisar objetos de tenencia prohibida con estricta observancia del respeto a los derechos humanos. 25.  Seguimiento jurídico:  Supervisión, control y actualización de la situación legal de la persona privada de libertad. 26.  Servicio penitenciario:  Conjunto de actividades ejecutadas por el órgano con competencia en materia penitenciaria, destinadas a garantizar la custodia, atención integral, asistencia jurídica, supervisión de las personas privadas de libertad, apoyo postpenitenciario, así como la atención a sus familias, con el objeto de proporcionarle las condiciones y herramientas necesarias para mejorar sus posibilidades de transformación social. 27.  Sujeto de clasificación:  Toda persona privada de libertad que haya recibido una sentencia definitivamente firme y ejecutoriada. 28.  Transformación:  Cambio observable de conducta que se espera que experimente la persona privada de libertad durante su permanencia en el sistema penitenciario, a través de la aplicación de las políticas de atención integral, con el fin de facilitar su adecuado desenvolvimiento y convivencia en la sociedad. 29.  Traslado:  Movimiento de una o varias privadas o privados de libertad fuera del establecimiento penitenciario de acuerdo a las previsiones de este Código y del Código Orgánico Procesal Penal. 30.  Uso progresivo de la fuerza:  La adopción de escalas progresivas y proporcionales de los medios coercitivos y del uso de la fuerza física. CAPÍTULO I Principios rectores del sistema penitenciario y del servicio penitenciario (adsbygoogle = window.adsbygoogle || []).push({}); Respeto a los derechos humanos"
+    },
+    {
+      "numero": "4",
+      "epigrafe": "El Estado, a través del Ministerio del Poder Popular con competencia en materia penitenciaria, garantiza a las personas privadas de libertad el ejercicio y goce de los derechos humanos consagrados en la Constitución, así como en los tratados y convenios internacionales sobre derechos humanos, suscritos y ratificados por la República, excepto aquellos cuyo ejercicio esté restringido por la pena impuesta o por la medida de privación judicial preventiva de libertad, y por las establecidas en el presente Código.",
+      "contenido": "Progresividad"
+    },
+    {
+      "numero": "5",
+      "epigrafe": "Los principios y derechos enunciados en el presente Código son de carácter progresivo y en consecuencia, no podrán ser desmejorados ni disminuidos.",
+      "contenido": "Eficiencia"
+    },
+    {
+      "numero": "6",
+      "epigrafe": "El Estado garantiza la construcción, adecuación, mantenimiento y dotación de sedes penitenciarias, aptas en cantidad y calidad, que cuenten con espacios apropiados para el alojamiento y la convivencia de las personas privadas de libertad, así como para la recreación, educación, formación, expresión artística, práctica deportiva, el trabajo, la atención médica y sanitaria, aplicando los avances científicos y tecnológicos existentes en cada una de estas áreas.",
+      "contenido": "Igualdad"
+    },
+    {
+      "numero": "7",
+      "epigrafe": "Todas las personas privadas de libertad son iguales ante la ley y, en razón de ello, quedan prohibidas todas las formas de discriminación por motivos de edad, origen étnico, nacionalidad, religión, credo, sexo u orientación sexual, opinión política o de cualquier otra índole, condición económica, social u otra condición.",
+      "contenido": "Eficacia"
+    },
+    {
+      "numero": "8",
+      "epigrafe": "El Ministerio del Poder Popular con competencia en materia penitenciaria, debe garantizar a las personas privadas de libertad condiciones de vida que coadyuven a minimizar los efectos negativos de la privación de libertad y a incrementar las posibilidades de transformación, a través de la creación de programas y actividades tendientes a la inclusión educativa, laboral, deportiva, artística, cultural y recreativa, entre otras.",
+      "contenido": "(adsbygoogle = window.adsbygoogle || []).push({}); Transparencia"
+    },
+    {
+      "numero": "9",
+      "epigrafe": "El acceso a los servicios penitenciarios es público y gratuito, sin más limitaciones que las establecidas en la Constitución y las leyes de la República.",
+      "contenido": "Participación"
+    },
+    {
+      "numero": "10",
+      "epigrafe": "El Ministerio del Poder Popular con competencia en materia penitenciaria, debe promover la participación de las ciudadanas y ciudadanos, organizaciones sociales y comunitarias en la implementación y ejecución de planes sociales, de acuerdo con los principios de democracia participativa, corresponsable y protagónica consagrados en la Constitución de la República.",
+      "contenido": "Confidencialidad"
+    },
+    {
+      "numero": "11",
+      "epigrafe": "El Estado garantiza la confidencialidad de los datos de tipo personal y administrativo de las personas privadas de libertad, a fin de salvaguardar la intimidad y evitar la injerencia externa o el conocimiento público que pudiera conllevar a tratos discriminatorios o lesivos a su titular, salvo las excepciones establecidas en el ordenamiento jurídico.",
+      "contenido": "Colaboración"
+    },
+    {
+      "numero": "12",
+      "epigrafe": "Los órganos del Poder Público, dentro del marco de sus atribuciones, y de conformidad con lo previsto en la Constitución de la República, deben establecer la coordinación de políticas públicas que permitan alcanzar la atención integral de las personas privadas de libertad.",
+      "contenido": "Objetividad y proporcionalidad"
+    },
+    {
+      "numero": "13",
+      "epigrafe": "Los actos administrativos que fueren dictados por la autoridad penitenciaria se fundamentarán en la objetividad y en la proporcionalidad.",
+      "contenido": "Nuevas tecnologías"
+    },
+    {
+      "numero": "14",
+      "epigrafe": "El Estado utilizará las nuevas tecnologías de comunicación e información, en la organización, administración, funcionamiento y control del sistema penitenciario, teniendo como base la actualización permanente, la eficiencia y el respeto a los derechos humanos consagrados en la Constitución.",
+      "contenido": "CAPÍTULO II Derechos, deberes, obligaciones y prohibiciones de las personas privadas de libertad (adsbygoogle = window.adsbygoogle || []).push({}); Derechos"
+    },
+    {
+      "numero": "15",
+      "epigrafe": "A los efectos del presente Código, y sin perjuicio de los derechos establecidos en la Constitución y en los tratados, pactos y convenios internacionales suscritos y ratificados por la República, en materia de derechos humanos, la persona privada de libertad goza de los siguientes derechos:",
+      "contenido": "1. A un trato humano digno, entendiéndose por ello el respeto a su integridad física, psicológica y moral por parte de todas las autoridades que conforman el sistema penitenciario. 2. A estar informada sobre el régimen interno del establecimiento penitenciario, las normas disciplinarias, sus derechos, deberes, medios para formular peticiones, quejas o recursos, así como a la información personal y actualizada de su expediente, de su situación procesal y penitenciaria. 3. A comunicarse en forma oral o escrita con otras personas, con las restricciones impuestas por razones de seguridad y el buen orden del establecimiento. Asimismo, a que la administración penitenciaria le comunique a sus familiares el establecimiento penitenciario donde se encuentra recluida. 4. A recibir visitas periódicas. 5. A que se preserve su vida privada e intimidad, con las limitaciones propias del régimen penitenciario. 6. A participar en igualdad de condiciones en actividades educativas, deportivas, culturales y laborales, atendiendo a su aptitud física y mental. 7. A que su salud sea preservada bajo medidas sanitarias y sociales relativas a la alimentación, residencia, régimen satisfactorio de higiene, asistencia sanitaria, psicológica y atención médica integral oportuna y gratuita. 8. A recibir de manera ininterrumpida el tratamiento médico necesario durante su permanencia en el sistema penitenciario, cuando padezca alguna enfermedad infecto-contagiosa, aguda o crónica. 9. A cumplir la reclusión en establecimientos adaptados a su condición especial cuando padezcan alguna discapacidad. 10. A recibir atención médica especializada durante el período de gestación, parto y lactancia, así como toda madre privada de libertad a permanecer con sus hijos o hijas hasta que alcancen los tres años de edad, si así lo decidiere, y a que los infantes reciban la atención médica necesaria. 11. A una alimentación suficiente, balanceada, variada, consistente en tres comidas diarias, preparada de acuerdo a lo establecido por el órgano rector en materia de nutrición y respetando los regímenes dietéticos. 12. Al servicio de agua potable en cantidad suficiente, permanente y cónsona con sus necesidades. 13. A profesar y practicar la religión y culto de su preferencia, a manifestar sus creencias mediante la enseñanza u otras prácticas, siempre que éstas no se opongan a la moral, las buenas costumbres y al orden interno. 14. A disponer diariamente de al menos una hora diurna para realizar ejercicios o cualquier otra actividad al aire libre, salvo que se encuentre en cumplimiento de una medida disciplinaria. 15. A realizar actividades laborales acordes con sus aptitudes físicas y mentales, en ambientes que cumplan con las normas de salubridad y seguridad establecidas por las leyes, con las limitaciones propias de los establecimientos penitenciarios y a percibir un aporte social ajustado a la labor desempeñada a través de una cuenta de ahorro, que le aperturará el Ministerio del Poder Popular con competencia en materia penitenciaria, en la banca pública. Bajo ninguna circunstancia el trabajo tendrá carácter sancionatorio ni obligatorio. 16. A formular peticiones ante la autoridad competente y recibir respuesta adecuada y oportuna, a formular quejas o denuncias por vulneración a sus derechos, a denunciar excesos cometidos por las funcionarias públicas o funcionarios públicos, en el ejercicio de sus funciones, y que hubieren afectado en algún modo su integridad física o moral. 17. A ser dotadas de artículos para el aseo personal periódicamente, así como de uniformes y calzados. 18. A ser trasladada o autorizada, según corresponda, a hospital, funeraria o domicilio, en casos de enfermedad grave o muerte de familiares hasta el tercer grado de consanguinidad y segundo de afinidad, de conformidad con las normas propias del régimen penitenciario. (adsbygoogle = window.adsbygoogle || []).push({}); Deberes"
+    },
+    {
+      "numero": "16",
+      "epigrafe": "La persona privada de libertad tiene los siguientes deberes:",
+      "contenido": "1. Mantener una actitud respetuosa frente a las funcionarias o funcionarios del servicio penitenciario, colaboradores, colaboradoras, personal voluntario, autoridades judiciales, familiares y visitantes que acudan a los establecimientos penitenciarios. 2. Cumplir con las medidas higiénicas necesarias establecidas en las normas del régimen interno penitenciario, así como mantener un adecuado aseo personal. 3. Desempeñarse laboralmente en los centros de producción de acuerdo a sus capacidades. 4. Cumplir con el régimen de estudio y de capacitación laboral del establecimiento penitenciario. 5. Acudir al llamado de la autoridad para participar en los operativos especiales organizados por las autoridades penitenciarias. Obligaciones"
+    },
+    {
+      "numero": "17",
+      "epigrafe": "Toda persona privada de libertad tiene las siguientes obligaciones:",
+      "contenido": "1. Cuidar, conservar y mantener las instalaciones, bienes y servicios del establecimiento penitenciario donde se encuentre recluido. 2. Integrarse a los programas de educación que conlleven a la obtención del título o certificado del último año de educación media. 3. Integrarse en forma efectiva a las actividades de educación ambiental, lengua castellana, historia y geografía de Venezuela y los principios del ideario bolivariano. 4. Cumplir y observar las normas del régimen interno penitenciario, toque de silencio, seguridad y buen orden del establecimiento donde se encuentre recluido, respetar las normas de convivencia y las relaciones interpersonales, así como las órdenes que, dentro del marco legal, sean dictadas por las funcionarias públicas o funcionarios públicos competentes, en el ejercicio de sus funciones. 5. Respetar de manera irrestricta la vida, la dignidad, integridad física y psicológica, la privacidad, relaciones personales, correspondencia, objetos y pertenencias de las demás personas privadas de libertad que se encuentren en el establecimiento penitenciario, así como la de las funcionarias públicas y funcionarios públicos, familiares y visitantes. 6. Acudir al llamado de la autoridad para el pase de lista y número, con la regularidad prevista en el reglamento interno. 7. Acudir al llamado de la autoridad para el traslado que corresponda. 8. Cumplir con el tratamiento médico prescrito por el personal de atención integral, según corresponda. 9. Portar adecuadamente el uniforme del establecimiento penitenciario. (adsbygoogle = window.adsbygoogle || []).push({}); Prohibiciones"
+    },
+    {
+      "numero": "18",
+      "epigrafe": "Queda prohibido a las personas privadas de libertad dentro del establecimiento penitenciario, la tenencia de lo siguiente:",
+      "contenido": "1. Armas de fuego, artefactos y sustancias explosivas, objetos punzantes o cortantes. 2. Bebidas alcohólicas. 3. Drogas de cualquier tipo. 4. Medicamentos no autorizados por el personal médico del establecimiento penitenciario. 5. Moneda de curso legal, objetos de uso personal valiosos como joyas o similares. 6. Todo tipo de aparatos de telecomunicación electrónicos, eléctricos o de batería, tales como, teléfonos móviles, chips para teléfonos, tarjetas telefónicas u otros similares para el mismo uso. 7. Materiales o sustancias inflamables que faciliten la producción de fuego. 8. Prendas similares a los uniformes militares o policiales. 9. Animales. 10. Cualquier objeto o sustancia que, a juicio de la administración penitenciaria, puedan causar o presumir un riesgo para la seguridad, disciplina y el buen orden del establecimiento penitenciario, o para la salud e integridad física de las personas privadas de libertad, del personal del establecimiento y visitantes. Parágrafo único:  Queda prohibida la conformación de organizaciones de los privados y privadas de libertad que atenten contra la disciplina interna de los establecimientos penitenciarios. Está igualmente prohibida la tenencia de cocinas, equipos de sonido, ventiladores, equipos de aire acondicionado de uso personal, salvo cuando se considere como un elemento de motivación para quienes muestren avances positivos en su conducta y en la aplicación del régimen de confianza tutelado previsto en el presente Código. TÍTULO II Organización del servicio penitenciario CAPÍTULO I Sistema penitenciario (adsbygoogle = window.adsbygoogle || []).push({}); Sistema penitenciario"
+    },
+    {
+      "numero": "19",
+      "epigrafe": "El sistema penitenciario es el conjunto de instituciones, normas y procedimientos estratégicos, técnicos y operativos, interrelacionados entre sí, que tienen como objeto garantizar la eficiente y eficaz prestación del servicio penitenciario, a fin de dar cumplimiento a la ejecución de penas y medidas preventivas privativas de libertad, impuestas por la autoridad judicial.",
+      "contenido": "Órgano rector"
+    },
+    {
+      "numero": "20",
+      "epigrafe": "El Ministerio del Poder Popular con competencia en materia penitenciaria es el órgano rector del sistema penitenciario y tendrá competencia en todo el territorio nacional, a través de los distintos establecimientos y unidades estratégicas y operativas que disponga para la ejecución del servicio, sin perjuicio que, atendiendo a razones de eficiencia y eficacia en la consecución de los fines de este Código, se decida por una administración descentralizada.",
+      "contenido": "Funciones"
+    },
+    {
+      "numero": "21",
+      "epigrafe": "El órgano rector formulará directrices, políticas y programas para la ejecución de los procesos de registro y control, clasificación, evaluación, seguimiento, atención integral, apoyo postpenitenciario, seguridad y custodia que se desarrollan en el sistema penitenciario.",
+      "contenido": "Competencia"
+    },
+    {
+      "numero": "22",
+      "epigrafe": "Las competencias del órgano rector del sistema penitenciario, a los efectos del presente Código, son las siguientes:",
+      "contenido": "1. Diseñar y formular planes y programas para el eficaz y eficiente funcionamiento del servicio, así como la ejecución de éstos en los establecimientos penitenciarios. 2. Garantizar el cumplimiento de las normas y directrices en lo relativo al registro y control penal, agrupación y clasificación, atención integral y régimen penitenciario de las personas privadas de libertad. 3. La organización, administración y funcionamiento de los establecimientos penitenciarios. 4. Dictar los lineamientos a las máximas autoridades de las unidades administrativas que conforman el nivel regional y supervisar su funcionamiento. 5. Las demás que se señalen en las leyes, reglamentos u otros actos normativos. (adsbygoogle = window.adsbygoogle || []).push({}); Establecimientos penitenciarios"
+    },
+    {
+      "numero": "23",
+      "epigrafe": "Los establecimientos del sistema penitenciario se clasifican en establecimientos penitenciarios de régimen cerrado y de régimen abierto. Los establecimientos penitenciarios de régimen cerrado se clasifican en centros para procesadas y procesados judiciales y centros de penados y penadas, en los cuales se crearán espacios para las privadas y privados de libertad que, de acuerdo a determinadas características, requieren de un tratamiento específico y diferenciado del resto, tales como:",
+      "contenido": "1. Género. 2. Áreas de observación a los efectos de la agrupación y la clasificación. 3. Penados, penadas, procesadas y procesados con trastornos extremos de conducta, que hagan incompatible su convivencia en colectivo. 4. Para la rehabilitación de penadas, penados, procesadas y procesados con afectaciones severas por el consumo de sustancias ilícitas o enfermedades psiquiátricas, crónicas o infectocontagiosas. 5. Para las funcionarias y funcionarios de los cuerpos de seguridad y operadores de justicia. 6. Para los pueblos indígenas. 7. Para los adolescentes en conflicto con la ley penal, que alcancen la mayoría de edad antes de cumplir el tiempo de la sanción impuesta. Los establecimientos de régimen abierto, son aquéllos donde las personas privadas de libertad disfrutan de las fórmulas alternativas de ejecución de la pena. Dirección"
+    },
+    {
+      "numero": "24",
+      "epigrafe": "Los establecimientos penitenciarios estarán a cargo de una directora o director, con grado universitario en carrera penitenciaria o afín.",
+      "contenido": "CAPÍTULO II Funcionarias y funcionarios del servicio penitenciario (adsbygoogle = window.adsbygoogle || []).push({}); Funcionarias y funcionarios"
+    },
+    {
+      "numero": "25",
+      "epigrafe": "Las funcionarias y funcionarios del servicio penitenciario, tienen el carácter de funcionarias y funcionarios públicas y se regirán por la Ley del Estatuto de la Función Pública y las normas especiales que establezca el órgano rector con competencia en materia penitenciaria, en su régimen de administración de personal, los cargos pueden ser de carrera o de libre nombramiento y remoción.",
+      "contenido": "Las obreras y obreros del servicio penitenciario se regirán por las leyes vigentes en materia laboral. Deberes de las funcionarias y funcionarios"
+    },
+    {
+      "numero": "26",
+      "epigrafe": "Además de los deberes que impongan las leyes y los reglamentos, las funcionarias y funcionarios del servicio penitenciario están obligadas y obligados a:",
+      "contenido": "1. Actuar en todo momento con estricta observancia de los principios, derechos y garantías establecidos en la Constitución, demás leyes, así como en los tratados, pactos y convenios internacionales suscritos y ratificados por la República. 2. Respetar y proteger la dignidad humana sin discriminación, así como defender y promover los derechos humanos de las personas privadas de libertad. 3. Ejercer las funciones propias de su cargo teniendo en cuenta los principios de ética, objetividad, proporcionalidad, eficiencia, transparencia, respeto y humanidad. 4. Portar de manera adecuada el uniforme de la institución que será suministrado por el Ministerio del Poder Popular con competencia en materia penitenciaria. 5. Valorar e incentivar la honestidad y, en consecuencia, denunciar cualquier acto de corrupción que conozca en la prestación del servicio penitenciario. 6. Respetar la integridad física de todas las personas privadas de libertad y bajo ninguna circunstancia infligir, instigar o tolerar actos arbitrarios, ilegales, discriminatorios, de torturas u otros tratos o penas crueles, inhumanos o degradantes, que entrañen violencia física, psicológica y moral. 7. Abstenerse de ejecutar órdenes que comporten la práctica de acciones u omisiones que menoscaben los derechos humanos garantizados en la Constitución, así como en los tratados y convenios internacionales sobre la materia, suscritos y ratificados por la República, y oponerse a toda violación de derechos humanos. 8. Denunciar violaciones a los derechos humanos que conozcan o frente a las cuales hayan fundados indicios de que se van a producir, así como cualquier hecho punible o ilícito del cual tenga conocimiento en el ejercicio de sus funciones. 9. Garantizar la debida confidencialidad de los datos de tipo personal y administrativo de las personas privadas de libertad, así como cualquier otra información de carácter personal que se encuentre en su conocimiento en razón de las funciones propias de su cargo. 10. Procurar y mantener el carácter profesional en las relaciones con las personas privadas de libertad, evitando establecer vínculos de naturaleza íntima y personal que atenten contra la objetividad que debe caracterizar el desempeño de sus funciones. A las autoridades, funcionarias y funcionarios del sistema penitenciario, que en el ejercicio de sus funciones quebranten las garantías y límites establecidos en el presente Código, tendrán la responsabilidad administrativa correspondiente, sin perjuicio de la responsabilidad penal y civil a que haya lugar de acuerdo a la ley. (adsbygoogle = window.adsbygoogle || []).push({}); Requisitos de ingreso"
+    },
+    {
+      "numero": "27",
+      "epigrafe": "El personal de carrera del servicio penitenciario ingresa por concurso público y debe contar con credenciales profesionales adecuadas para el desempeño de las funciones propias de su cargo. La administración penitenciaria garantizará la aplicación de protocolos de selección de personal, a fin de llenar los estándares éticos, técnicos, físicos y psicológicos necesarios para asegurar un servicio penitenciario eficaz y eficiente, guiado por valores de responsabilidad y observancia de los derechos humanos.",
+      "contenido": "Formación continua"
+    },
+    {
+      "numero": "28",
+      "epigrafe": "El Ministerio del Poder Popular con competencia en materia penitenciaria, garantizará la atención educativa a todo su personal, a fin de facilitar la actualización y formación continua del mismo, en las áreas propias de su desempeño laboral, lo cual será requisito indispensable para el ascenso y reclasificación dentro del servicio penitenciario.",
+      "contenido": "Prohibición de interrupción del servicio penitenciario"
+    },
+    {
+      "numero": "29",
+      "epigrafe": "Las funcionarias y funcionarios y del servicio penitenciario se abstendrán de cualquier práctica que, por acción u omisión, implique la interrupción, alteración o discontinuidad en la prestación del servicio penitenciario.",
+      "contenido": "TÍTULO III Ingreso y del egreso en los establecimientos penitenciarios de los privados y privadas de libertad CAPÍTULO I Ingreso (adsbygoogle = window.adsbygoogle || []).push({}); Ingreso"
+    },
+    {
+      "numero": "30",
+      "epigrafe": "Todo ingreso de una persona a un establecimiento penitenciario en condición de privado o privada de libertad debe estar precedido de una decisión judicial que:",
+      "contenido": "1. Ordene la privación judicial preventiva de libertad. 2. Revoque la medida de suspensión condicional del proceso y se ordene la privación de libertad. 3. Revoque la medida cautelar sustitutiva y ordene la privación de libertad. 4. Acuerde la privación de libertad con ocasión del procedimiento de extradición pasiva. 5. Revoque la medida alternativa al cumplimiento de la pena impuesta y ordene la privación de libertad. 6. Imponga una sentencia condenatoria privativa de la libertad personal. En los casos de traslados se requiere la boleta emanada de la autoridad competente de acuerdo a lo previsto en este Código y en el Código Orgánico Procesal Penal. Cuando la documentación mencionada presente alguna irregularidad o deficiencia, la máxima autoridad de la unidad local dedicada al registro y control penal del establecimiento penitenciario, debe notificarlo inmediatamente al órgano emisor a los fines de subsanar la misma. Registro de datos"
+    },
+    {
+      "numero": "31",
+      "epigrafe": "La unidad local dedicada al registro y control penal debe realizar un asiento integral de los datos personales y aspectos característicos de las personas privadas de libertad que ingresan al establecimiento penitenciario. En ese registro deberá constar:",
+      "contenido": "1. Identificación, domicilio, número de teléfono, dirección de correo electrónico y cualquier otro dato de individualización, incluyendo datos de contacto de los familiares o personas más allegadas al privado o privada de libertad, atendiendo al principio de confidencialidad. 2. Condiciones visibles de la salud física de la persona privada de libertad. 3. Datos legales del caso y los motivos de la detención. 4. Fecha y hora del ingreso. 5. Decisión judicial o boleta de encarcelamiento del respectivo tribunal. Para el ingreso de una persona privada de libertad al establecimiento penitenciario, es obligatorio que se encuentre plenamente identificada por parte del Ministerio Público, de conformidad con lo previsto en el Código Orgánico Procesal Penal. Las autoridades del establecimiento penitenciario velarán porque la identificación del privado de libertad esté certificada por el servicio de identificación nacional, incluyendo sus huellas decadactilares. Expediente penitenciario"
+    },
+    {
+      "numero": "32",
+      "epigrafe": "Toda persona privada de libertad debe contar con un expediente penitenciario, el cual se iniciará o continuará, según sea el caso, al momento de su ingreso al establecimiento penitenciario.",
+      "contenido": "La administración penitenciaria determinará el formato y contenido de dicho expediente a fin de garantizar la uniformidad de la información. (adsbygoogle = window.adsbygoogle || []).push({}); Notificación de ingreso"
+    },
+    {
+      "numero": "33",
+      "epigrafe": "Las directoras y directores de los establecimientos penitenciarios deberán notificar el ingreso de la privada o privado de libertad al tribunal de la causa, y al Ministro o Ministra del Poder Popular con competencia en materia penitenciaria.",
+      "contenido": "En los casos de las personas privadas de libertad, extranjeras o extranjeros, se notificará al Ministerio del Poder Popular con competencia en materia de relaciones exteriores, a los fines de informar al consulado correspondiente. Asimismo, remitirán trimestralmente al Registro Nacional de Extranjeras y Extranjeros una lista actualizada de las personas que se encuentren privadas de libertad, de conformidad con la ley orgánica que regula la materia de identificación y su reglamento. CAPÍTULO II Seguimiento jurídico (adsbygoogle = window.adsbygoogle || []).push({}); Información y asesoría"
+    },
+    {
+      "numero": "34",
+      "epigrafe": "La unidad local dedicada al registro y control penal en el establecimiento penitenciario, realizará el seguimiento oportuno al tiempo establecido en el cómputo de la pena impuesta al privado o privada de libertad, con la finalidad de agilizar los trámites relativos al cumplimiento del mismo y fomentar la progresividad del penado o penada dentro del régimen penitenciario.",
+      "contenido": "En el caso de las procesadas y procesados, asegurará su asistencia a los distintos actos judiciales dentro de los plazos establecidos por la ley, con el objeto de coadyuvar a la tutela judicial efectiva. La unidad local de registro y control penal debe mantener informada a la persona privada de libertad sobre su situación jurídica, ofreciéndole asesoría sobre los requisitos y aspectos legales acerca del ejercicio de los derechos que le asisten. Gestión de trámites"
+    },
+    {
+      "numero": "35",
+      "epigrafe": "La unidad local de registro y control penal del establecimiento penitenciario gestionará los trámites y solicitudes legales realizados por la persona privada de libertad, de forma expedita, ante los órganos y entes competentes.",
+      "contenido": "Suministro de información al sistema penitenciario"
+    },
+    {
+      "numero": "36",
+      "epigrafe": "Las unidades de registro y control penal, deben proporcionar a las demás unidades del sistema penitenciario la información que requieran vinculadas con las personas privadas de libertad, con el fin de procurar una efectiva atención integral.",
+      "contenido": "CAPÍTULO III Egreso (adsbygoogle = window.adsbygoogle || []).push({}); Requisitos del egreso"
+    },
+    {
+      "numero": "37",
+      "epigrafe": "El egreso de las personas privadas de libertad estará precedido de un acto emanado de la autoridad competente que ordene la libertad personal del interno o interna, en virtud de la extinción de la acción penal o de la pena, o cualquier otra circunstancia prevista en la ley. En el caso de una decisión judicial se requiere el auto que acuerde:",
+      "contenido": "1. Medida cautelar sustitutiva de la privativa de libertad. 2. Suspensión condicional del proceso, suspensión de la ejecución de la pena, trabajo fuera del establecimiento, régimen abierto y libertad condicional. 3. Otorgamiento de una medida humanitaria. 4. Extradición de la privada o privado de libertad. 5. Cumplimiento total de la pena que sustenta la privación de la libertad. 6. Sentencia absolutoria. 7. Sobreseimiento de la Causa. 8. Archivo fiscal del expediente. Esta documentación deberá insertarse de forma inmediata en el expediente de la privada o privado de libertad que debe egresar del establecimiento. Archivo"
+    },
+    {
+      "numero": "38",
+      "epigrafe": "Todo egreso de una persona privada de libertad debe generar un registro en los archivos correspondientes, con el objeto de mantener actualizada la data del establecimiento penitenciario. En los casos de traslado interestablecimientos penitenciarios, el expediente penitenciario se remitirá junto a la persona privada de libertad. Si el egreso es definitivo el expediente se cerrará.",
+      "contenido": "En el centro penitenciario de origen será archivada, igualmente, copia certificada de la totalidad del expediente remitido, el cual habrá de ser conservado digitalmente. Cuando el egreso se produzca por el otorgamiento de una fórmula alternativa del cumplimiento de la pena, el archivo deberá ser remitido a la unidad de apoyo postpenitenciario que corresponda. Fuga"
+    },
+    {
+      "numero": "39",
+      "epigrafe": "En caso de fuga o evasión de la privada o privado de libertad del establecimiento penitenciario, se debe notificar al tribunal de la causa y a los cuerpos de seguridad.",
+      "contenido": "Traslados de las extranjeras o extranjeros"
+    },
+    {
+      "numero": "40",
+      "epigrafe": "El traslado de las personas privadas de libertad, extranjeras o extranjeros, para el cumplimiento de condena en su país de origen, estará sujeto a los procedimientos establecidos en los convenios internacionales sobre la materia, suscritos y ratificados por la República.",
+      "contenido": "El traslado de los extranjeros se realizará siempre que exista previa manifestación formal de voluntad de la condenada o condenado. CAPÍTULO IV Agrupación de las privadas y privados de libertad (adsbygoogle = window.adsbygoogle || []).push({}); Área de observación"
+    },
+    {
+      "numero": "41",
+      "epigrafe": "El Ministerio del Poder Popular con competencia en materia penitenciaria, con el fin de realizar la agrupación contemplada en este Código, dispondrá secciones diferenciadas en cada uno de los establecimientos penitenciarios destinadas a la observación, donde las personas privadas de libertad permanecerán por un periodo no mayor de treinta días, dentro de los cuales se les practicarán los exámenes psicológicos, físicos y clínicos.",
+      "contenido": "Criterios de agrupación"
+    },
+    {
+      "numero": "42",
+      "epigrafe": "Las personas privadas de libertad, en condición de procesadas y procesados, serán agrupados y agrupadas atendiendo a:",
+      "contenido": "1. Género. 2. Maternidad: Se crearán áreas materno-infantiles para el tratamiento a las privadas de libertad embarazadas o que tengan bajo su cuidado a sus hijos o hijas menores de tres años. 3. Edad. 4. Perfil conductual. 5. Naturaleza del delito imputado. 6. Salud mental y física. 7. Conducta predelictual. 8. Pertenencia a un pueblo indígena. 9. La aptitud o capacitación laboral. 10. Su condición de discapacidad. Todos los elementos anteriormente descritos son concomitantes y deberán ser evaluados por el equipo de atención integral, atendiendo siempre al bien colectivo de la población penitenciaria. CAPÍTULO V Procedimiento de clasificación (adsbygoogle = window.adsbygoogle || []).push({}); Criterios para la clasificación"
+    },
+    {
+      "numero": "43",
+      "epigrafe": "A los efectos de la clasificación prevista en este Código, se establece un período de evaluación inicial de un máximo de treinta días continuos, durante el cual se tomará en cuenta la capacidad de convivencia social, los niveles de adecuación al régimen penitenciario y el riesgo que la conducta del penado o penada implique para otros, para asignar el nivel de seguridad correspondiente.",
+      "contenido": "Niveles de clasificación"
+    },
+    {
+      "numero": "44",
+      "epigrafe": "Son niveles de clasificación los siguientes:",
+      "contenido": "1. Máxima seguridad: es la asignada a toda penada o penado que, durante el período de observación y evaluación inicial, presenta mínima disposición al cumplimiento de las normas y al régimen de vida establecido por la institución, así como manifestaciones de agresividad, representando un alto riesgo para sí mismo o para otros. 2. Media seguridad: es la asignada a toda penada o penado que, durante el período de observación y evaluación inicial, presenta menor disposición al cumplimiento de las normas y al régimen de vida establecido por la institución, respecto a los clasificados en mínima seguridad. 3. Mínima seguridad: es la asignada a toda penada o penado que, durante el período de observación y evaluación inicial, presenta alta disposición al cumplimiento de las normas y al régimen de vida establecido por la institución. (adsbygoogle = window.adsbygoogle || []).push({}); Junta de clasificación"
+    },
+    {
+      "numero": "45",
+      "epigrafe": "En cada establecimiento penitenciario de régimen cerrado debe funcionar una junta de clasificación, que se integrará de acuerdo a lo previsto en el Código Orgánico Procesal Penal.",
+      "contenido": "Competencia para la clasificación"
+    },
+    {
+      "numero": "46",
+      "epigrafe": "Visto el informe que presenta el equipo de atención integral, la junta de clasificación del establecimiento penitenciario asignará el nivel de clasificación dentro de los tres días siguientes a la recepción del informe correspondiente, dejándose registro escrito en el expediente de cada uno de los penadas y penados.",
+      "contenido": "La junta de clasificación deberá informar mensualmente al superior jerárquico de las clasificaciones realizadas, quien se encargará de ejercer las sanciones disciplinarias en caso de incumplimiento del lapso establecido en el presente artículo. Obligatoriedad de la clasificación y la atención integral"
+    },
+    {
+      "numero": "47",
+      "epigrafe": "La clasificación y la atención integral tienen carácter obligatorio, en consecuencia, el órgano rector con competencia en materia penitenciaria garantizará la infraestructura y el talento humano necesario en cada uno de los establecimientos penitenciarios para su ejecución. En los casos de las personas sometidas a una pena privativa de libertad, que se encuentren en establecimientos ajenos al servicio penitenciario, el órgano rector dispondrá de una junta de clasificación y un equipo de atención integral que las evaluará y clasificará a los fines correspondientes.",
+      "contenido": "TÍTULO IV Atención a las privadas y privados de libertad CAPÍTULO I Atención integral (adsbygoogle = window.adsbygoogle || []).push({}); Integración del equipo"
+    },
+    {
+      "numero": "48",
+      "epigrafe": "El equipo de atención integral encargado de implementar los planes, programas y proyectos contemplados en este Código, a los internos e internas, estará constituido por:",
+      "contenido": "1. Una supervisora o supervisor de la unidad local de atención integral del establecimiento penitenciario, profesional del área social, quien coordinará, dirigirá, supervisará y evaluará al grupo y los programas de atención integral. 2. Dos profesionales de la psicología que se encargarán de la asistencia terapéutica, tanto individual como grupal, de las penadas o penados, así como de la evaluación de los avances o retrocesos del individuo en el área que les compete, reportando al supervisor o supervisora. 3. Dos profesionales del área social encargados de la asistencia a las penadas o penados en las relaciones que mantienen con su entorno, tanto dentro como fuera del establecimiento penitenciario, reportando al supervisor o supervisora. 4. Dos profesionales del área social encargados de evaluar el desempeño de las penadas o penados en las actividades de su plan individual de atención integral. 5. Una instructora o instructor, de preferencia profesional o experto en las disciplinas de la educación formal e informal y de capacitación laboral. 6. Dos profesionales del área médica, encargados de evaluar la salud de las privadas y privados de libertad, según su plan individual de atención médica. Programas de atención integral"
+    },
+    {
+      "numero": "49",
+      "epigrafe": "La atención integral tendrá los siguientes componentes:",
+      "contenido": "1. Un componente psicológico: Comprende la aplicación de programas terapéuticos individuales y colectivos. 2. Un componente social: Comprende la aplicación de programas dirigidos a la transformación, tanto dentro como fuera del establecimiento penitenciario. 3. Un componente educativo y de capacitación: Comprende la aplicación de programas de enseñanza formal e informal, así como programas de capacitación laboral. 4. Un componente laboral: Comprende la aplicación de programas de motivación hacia el trabajo, con el propósito de fomentar la capacitación, el entrenamiento laboral y la producción. 5. Un componente recreacional: Comprende la aplicación de programas de desarrollo cultural, artístico y de actividades deportivas. Podrán conformarse todos los demás componentes que resulten necesarios para la transformación de la privada y privado de libertad. (adsbygoogle = window.adsbygoogle || []).push({}); Supervisión"
+    },
+    {
+      "numero": "50",
+      "epigrafe": "Cada área estará dirigida por una supervisora o supervisor, quien planificará, organizará, dirigirá, supervisará y evaluará la aplicación de los programas bajo su responsabilidad, reportando mensualmente al superior jerárquico correspondiente.",
+      "contenido": "Conformación de grupos"
+    },
+    {
+      "numero": "51",
+      "epigrafe": "El número de personas atendidas por cada grupo será determinado en el reglamento respectivo y dependerá, en todo caso, de la complejidad de las actividades, de la clasificación que tengan las privadas y privados de libertad y de los programas de atención integral a aplicarse.",
+      "contenido": "Plan individual"
+    },
+    {
+      "numero": "52",
+      "epigrafe": "El plan individual tiene como finalidad satisfacer las carencias, necesidades y deficiencias psico-sociales que presente la penada o penado al momento de su evaluación inicial.",
+      "contenido": "Grupos de trabajo"
+    },
+    {
+      "numero": "53",
+      "epigrafe": "Los grupos de trabajo requeridos en un establecimiento penitenciario se crearán en atención al número de penadas o penados por afinidad de sus necesidades y carencias.",
+      "contenido": "Seguimiento"
+    },
+    {
+      "numero": "54",
+      "epigrafe": "El plan individual de atención integral de la penada o penado involucrará las siguientes actividades:",
+      "contenido": "1. La observación directa de su conducta y el desempeño en las actividades asignadas en las áreas educativas, recreativas y de capacitación laboral. 2. Durante los primeros sesenta días transcurridos después de haberse iniciado las actividades previstas en el plan individual de atención integral, los grupos de profesionales mencionados en los numerales 2, 3 y 4 del artículo 48 de este Código, profundizarán en el diagnóstico inicial presentado por la junta de clasificación, ampliando la información criminológica, psicológica y social de la penada penado. 3. Cada sesenta días, el profesional encargado de evaluar el desempeño del penado o penada en las actividades de su plan individual de atención integral, deberá rendir un informe del seguimiento a la supervisora o supervisor del equipo de atención integral. Evaluación"
+    },
+    {
+      "numero": "55",
+      "epigrafe": "La necesidad y la eficacia de los programas de atención integral deberán ser evaluados anualmente por el supervisor o supervisora de atención integral, siguiendo la dinámica de cada establecimiento penitenciario, con el objeto de crear, mantener, modificar o eliminar aquellos programas que, por el perfil de la población del establecimiento penitenciario, sean requeridos o hayan perdido vigencia, según sea el caso.",
+      "contenido": "CAPÍTULO II Educación y capacitación de las y penadas penados (adsbygoogle = window.adsbygoogle || []).push({}); Educación"
+    },
+    {
+      "numero": "56",
+      "epigrafe": "La educación tiene carácter formativo y orientador, con el objetivo de fijar sanos criterios para la convivencia social y la transformación integral de las penadas y penados.",
+      "contenido": "Tendrá carácter obligatorio para aquellas penadas y penados que no estén alfabetizadas o alfabetizados y no hayan alcanzado el último año de la educación media, manteniéndose la obligatoriedad hasta la consecución del título o certificado que acredite este nivel en cualquiera de sus modalidades. Para el logro de los objetivos, y sin perjuicio de la calidad en los programas de educación y capacitación, se podrá hacer uso de las nuevas tecnologías en los procesos de enseñanza. Locales y personal especializado"
+    },
+    {
+      "numero": "57",
+      "epigrafe": "Las escuelas o centros de capacitación funcionarán en locales especialmente destinados para ello y las enseñanzas serán impartidas por personal calificado.",
+      "contenido": "Programas educativos"
+    },
+    {
+      "numero": "58",
+      "epigrafe": "Los programas correspondientes a la educación básica, media y universitaria, se adaptarán a los programas oficiales vigentes y darán derecho a la obtención de los títulos o certificados que se otorgan a través de los ministerios del Poder Popular con competencia en materia de educación y educación universitaria.",
+      "contenido": "En todo caso, en dichos certificados no se hará mención alguna del establecimiento penitenciario donde se obtuvo el título o certificado, ni a las circunstancias relacionadas con el mismo. Programas de capacitación"
+    },
+    {
+      "numero": "59",
+      "epigrafe": "El Ministerio del Poder Popular con competencia en materia penitenciaria, conjuntamente con los órganos con competencia en materia de educación y capacitación, organizará cursos, talleres, charlas y conferencias con la finalidad de capacitar a las privadas y privados de libertad en áreas productivas para las que posean aptitudes y manifiesten interés.",
+      "contenido": "CAPÍTULO III Trabajo de los penados y penadas (adsbygoogle = window.adsbygoogle || []).push({}); Trabajo de los penadas y penados"
+    },
+    {
+      "numero": "60",
+      "epigrafe": "El trabajo de las penadas y penados dentro de los establecimientos penitenciarios constituye un componente de los planes de atención integral para la transformación.",
+      "contenido": "Actividad laboral"
+    },
+    {
+      "numero": "61",
+      "epigrafe": "El trabajo de las privadas y privados de libertad será realizado en condiciones de seguridad, salud y bienestar que permitan un ambiente adecuado para el pleno ejercicio de sus capacidades físicas y mentales y se minimice el riesgo de accidentes de trabajo. Será organizado y supervisado por el órgano rector con competencia en materia de servicio penitenciario, a través de la junta de trabajo que funcionará en cada establecimiento penitenciario.",
+      "contenido": "Junta de trabajo"
+    },
+    {
+      "numero": "62",
+      "epigrafe": "La junta de trabajo estará integrada de la forma siguiente:",
+      "contenido": "1. La directora o director del establecimiento, o la funcionaria o funcionario del servicio penitenciario que éste o ésta designe. 2. La funcionaria o funcionario del servicio penitenciario designado o designada por el órgano encargado del trabajo dentro del sistema penitenciario. 3. Tres representantes del equipo de atención integral. Requisito para la redención"
+    },
+    {
+      "numero": "63",
+      "epigrafe": "El trabajo de las penadas y penados en los establecimientos penitenciarios es un requisito obligatorio para optar a los beneficios de redención y reducir el tiempo para obtener las fórmulas alternativas de cumplimiento de la pena. Constituye un medio para la transformación y reinserción social, y en consecuencia no se considerará sanción accesoria.",
+      "contenido": "(adsbygoogle = window.adsbygoogle || []).push({}); Sanción por incumplimiento"
+    },
+    {
+      "numero": "64",
+      "epigrafe": "La penada o penado que se negare a trabajar o voluntariamente lo ejecute en forma inapropiada, estará incurso en una falta gravísima y será sancionada o sancionado de acuerdo a lo que establece el presente Código para dicha falta.",
+      "contenido": "Quedan excluidos de la sanción prevista en este artículo aquellas personas privadas de libertad que se encuentren impedidas por razones de salud física o mental para el desempeño de la actividad laboral. Aporte social"
+    },
+    {
+      "numero": "65",
+      "epigrafe": "El Estado proporcionará trabajo acorde con las capacidades de los penadas y penados, a fin de procurarles un aporte social que les permita atender las necesidades de su familia, costear sus pertenencias personales dentro del establecimiento y formar un fondo de reserva.",
+      "contenido": "Utilización del talento humano de la población penitenciaria"
+    },
+    {
+      "numero": "66",
+      "epigrafe": "El Ministerio del Poder Popular con competencia en materia penitenciaria, a los efectos de realizar las labores de reparación, mantenimiento, aseo, servicio de comedor, bibliotecas, guarderías, actividades docentes y asistenciales, utilizará los servicios de las privadas y privados de libertad que se encuentren capacitados para la realización de tales actividades, cuando la condena no haya producido inhabilitación para el ejercicio de las mismas.",
+      "contenido": "En todos los casos, se considerarán estas actividades como trabajo para efectos de la redención de la pena y para el aporte social previsto en el artículo anterior. Distribución del ingreso"
+    },
+    {
+      "numero": "67",
+      "epigrafe": "El ingreso que perciban las penadas y penados, se distribuirá de la siguiente manera:",
+      "contenido": "1. Un cincuenta y cinco por ciento (55%) para la manutención de sus familiares. 2. Un treinta por ciento (30%) para la formación de un fondo de reserva que se les entregará en la oportunidad del egreso que se produzca en los casos de libertad plena o libertad condicional. 3. Un quince por ciento (15%) para el uso personal de los penados y penadas, que se entregará en bonos u otro medio de libre circulación en el establecimiento penitenciario, diferente a la moneda de curso legal. En todo caso, cuando no hubiere familiares a quienes se deba manutención de acuerdo a la ley, el porcentaje destinado para este fin pasará al fondo de reserva. Anticipo del fondo de reserva"
+    },
+    {
+      "numero": "68",
+      "epigrafe": "Durante su permanencia en el establecimiento penitenciario, las penadas y penados podrán disponer hasta de un treinta por ciento (30%) del fondo de reserva mencionado en el artículo anterior, por razones debidamente comprobadas y certificadas de salud, estudio y adquisición, o reparación de vivienda de las personas que integren su grupo familiar.",
+      "contenido": "Inembargabilidad de los fondos"
+    },
+    {
+      "numero": "69",
+      "epigrafe": "Los valores destinados al fondo de reserva deberán ser depositados en cuentas de ahorro en un banco del Estado.",
+      "contenido": "El fondo de reserva será inembargable y constituirá, para todos los efectos legales, patrimonio de la penada y penado, del cual solo podrá disponer cuando esté en libertad plena o libertad condicional, sin perjuicio de lo señalado en el artículo anterior. Centros de producción"
+    },
+    {
+      "numero": "70",
+      "epigrafe": "El Ministerio del Poder Popular con competencia en materia penitenciaria, en coordinación y cooperación con los ministerios del poder popular con competencia en las actividades productivas, establecerán los centros de producción que se requieran para la incorporación de las penadas y penados al trabajo socialmente útil.",
+      "contenido": "CAPÍTULO IV Asistencia médica (adsbygoogle = window.adsbygoogle || []).push({}); Asistencia médica integral"
+    },
+    {
+      "numero": "71",
+      "epigrafe": "Todas las privadas y privados de libertad recibirán un servicio de salud integral inmediato, oportuno, eficiente y gratuito desde su ingreso, a través de programas de medicina preventiva y curativa de primer nivel, que incluyan planes odontológicos, de control del embarazo, servicio de psiquiatría, programas de prevención de enfermedades, dotación de proveeduría médica y alimentación balanceada.",
+      "contenido": "Estará dirigido por un profesional de la medicina, quien supervisará las actividades médico-asistenciales y sanitarias del establecimiento penitenciario. El servicio médico penitenciario se organizará de conformidad con las normas y políticas que al efecto dicte el Ministerio del Poder Popular con competencia en materia de salud. Servicio médico"
+    },
+    {
+      "numero": "72",
+      "epigrafe": "En cada establecimiento penitenciario funcionará un servicio médico dotado con el personal y los insumos necesarios para dar atención primaria inmediata. Se prestará las veinticuatro horas del día, de acuerdo a lo que se establezca en el reglamento que a tales efectos se dicte.",
+      "contenido": "En los establecimientos penitenciarios femeninos existirá una unidad dotada del equipo y material gineco-obstétrico necesario para el tratamiento de las privadas de libertad. Unidades del servicio médico"
+    },
+    {
+      "numero": "73",
+      "epigrafe": "El servicio médico de los establecimientos penitenciarios contará con las siguientes unidades de atención:",
+      "contenido": "1. Una unidad de atención primaria con capacidad proporcional al número de personas privadas de libertad y provista del material clínico e instrumental adecuado, productos farmacéuticos básicos para curas de urgencia e intervenciones dentales. 2. Una unidad destinada a la observación psiquiátrica y a la atención de los afectados en la salud por la adicción al consumo de sustancias psicotrópicas y estupefacientes. 3. Una unidad de aislamiento sanitario. Traslado a centro asistencial"
+    },
+    {
+      "numero": "74",
+      "epigrafe": "Cuando la privada o privado o de libertad requiera de un servicio médico asistencial especializado, que no pueda llevarse a cabo dentro del establecimiento penitenciario, el director o directora del servicio médico notificará a la directora o director del establecimiento penitenciario, la necesidad del traslado al centro asistencial, quien efectuará los trámites correspondientes para la realización del mismo.",
+      "contenido": "En caso de ser urgente el traslado de la privada o privado de libertad, según el diagnóstico médico, la directora o director del establecimiento penitenciario lo ejecutará de inmediato con las debidas medidas de seguridad y lo participará seguidamente al tribunal de la causa y a la Ministra o Ministro del Poder Popular con competencia en materia penitenciaria. En todo caso, se hará acompañar el traslado con el informe de la médica o médico donde se especifique la situación de salud del interno. Tratamiento de enfermedades crónicas y terminales"
+    },
+    {
+      "numero": "75",
+      "epigrafe": "Durante su permanencia en el sistema penitenciario, las privadas y privados de libertad que padezcan alguna enfermedad infectocontagiosa, crónica o cualquiera que requiera un tratamiento especial, el Estado le suministrará de manera ininterrumpida, o durante el lapso estipulado, el tratamiento médico requerido.",
+      "contenido": "Cuando se tratare de enfermedades terminales o graves, de difícil manejo dentro del establecimiento, las autoridades del Ministerio del Poder Popular con competencia en materia penitenciaria procurarán ante los tribunales competentes el otorgamiento de una medida humanitaria. CAPÍTULO V Establecimientos penitenciarios (adsbygoogle = window.adsbygoogle || []).push({}); Módulos"
+    },
+    {
+      "numero": "76",
+      "epigrafe": "Los establecimientos penitenciarios tendrán forma modular, donde puedan recluirse las privadas y privados de libertad de acuerdo a la agrupación y clasificación aplicada a los mismos, separando las áreas de visita, las cuales se subdividirán en familiares, íntimas y de niños, niñas y adolescentes.",
+      "contenido": "Módulo de máxima seguridad"
+    },
+    {
+      "numero": "77",
+      "epigrafe": "En aquellos casos de privadas o privados de libertad cuyo comportamiento haga incompatible su convivencia con el colectivo, se ubicarán en áreas o establecimientos penitenciarios de mayor seguridad, donde se pueda ejercer un mayor control, vigilancia y seguridad, así como una atención que impida su influencia negativa sobre el resto de los privados de libertad. El equipo de atención integral evaluará el cambio de comportamiento del privado o privada de libertad a objeto de modificar las condiciones de reclusión.",
+      "contenido": "Módulo de salud y rehabilitación"
+    },
+    {
+      "numero": "78",
+      "epigrafe": "Los centros de salud y rehabilitación atenderán a las privadas o privados de libertad con severas afectaciones en la salud por la adicción al consumo de drogas, así como aquéllos o aquéllas portadores de enfermedades infecto-contagiosas que requieran de una atención médica en condiciones de aislamiento.",
+      "contenido": "Centros para adolescentes en conflicto con la ley penal"
+    },
+    {
+      "numero": "79",
+      "epigrafe": "El órgano rector con competencia en materia de servicio penitenciario tendrá a su cargo los centros de formación integral orientados a la atención de adolescentes en conflicto con la ley penal, así como los establecimientos adecuados para el seguimiento de las medidas de pre libertad. Estos centros contarán con la asistencia integral, seguridad y demás condiciones adecuadas al tipo de sanción penal aplicada a los adolescentes, según la ley especial que regula la materia y el reglamento que se dicte al efecto.",
+      "contenido": "Módulos femeninos"
+    },
+    {
+      "numero": "80",
+      "epigrafe": "El órgano rector con competencia en materia de servicio penitenciario, creará las estructuras modulares necesarias a objeto de recluir a las privadas de libertad.",
+      "contenido": "Maternidad"
+    },
+    {
+      "numero": "81",
+      "epigrafe": "Las privadas de libertad embarazadas serán ubicadas en espacios habilitados para estos fines dentro de los módulos femeninos, donde recibirán atención médica especializada y disfrutarán del reposo pre y post natal de conformidad con lo establecido en la ley.",
+      "contenido": "Guarderías"
+    },
+    {
+      "numero": "82",
+      "epigrafe": "El órgano rector con competencia en materia de servicio penitenciario, creará y mantendrá guarderías infantiles para las hijas e hijos que estén bajo la guarda de las privadas de libertad. Dichas guarderías contarán con el personal calificado necesario y con asistencia pediátrica y psicológica permanente.",
+      "contenido": "Bibliotecas"
+    },
+    {
+      "numero": "83",
+      "epigrafe": "En cada establecimiento penitenciario funcionará una biblioteca principal y las adicionales que se requieran, las cuales serán atendidas por un bibliotecólogo, bibliotecóloga o profesional de las ciencias sociales en general, pudiendo ser alguna privada o privado de libertad con formación afín, quien será responsable por el buen uso y conservación de los libros, material educativo, mobiliario y equipos de los que disponga la biblioteca.",
+      "contenido": "TÍTULO V Seguridad CAPÍTULO I Disposiciones generales (adsbygoogle = window.adsbygoogle || []).push({}); Cuerpo de seguridad y custodia"
+    },
+    {
+      "numero": "84",
+      "epigrafe": "Se crea un cuerpo de seguridad y custodia adscrito al Ministerio del Poder Popular con competencia en materia penitenciaria, que funcionará como un cuerpo armado, profesionalizado, uniformado y de naturaleza civil. Tendrá a su cargo el resguardo del perímetro externo de los establecimientos penitenciarios, así como la vigilancia, custodia y seguridad interna de las personas privadas de libertad, familiares, visitantes y funcionarias públicas o funcionarios públicos durante su permanencia en los recintos del sistema penitenciario.",
+      "contenido": "Requisitos"
+    },
+    {
+      "numero": "85",
+      "epigrafe": "Se crea un cuerpo de seguridad y custodia, de naturaleza civil, adscrito al Ministerio del Poder Popular con competencia en materia penitenciaria que tendrá a su cargo la vigilancia, custodia y seguridad interna de las personas privadas de libertad, familiares, visitantes y funcionarias públicas o funcionarios públicos durante su permanencia en los recintos del sistema penitenciario.",
+      "contenido": "Régimen funcionarial"
+    },
+    {
+      "numero": "86",
+      "epigrafe": "El personal adscrito al cuerpo de seguridad y custodia se regirá por las normas generales aplicables a la función pública y a la ley especial que rige su funcionamiento.",
+      "contenido": "CAPÍTULO II Seguridad externa (adsbygoogle = window.adsbygoogle || []).push({}); Seguridad externa"
+    },
+    {
+      "numero": "87",
+      "epigrafe": "El Cuerpo de Policía Nacional Bolivariana es el encargado de la seguridad externa de los recintos penitenciarios y asumirá las siguientes obligaciones:",
+      "contenido": "1. Vigilar y custodiar las áreas perimetrales del establecimiento penitenciario. 2. Evitar la fuga o evasión de las personas privadas de libertad. 3. Evitar el ingreso al establecimiento penitenciario de sustancias y objetos de tenencia prohibida o no autorizadas en las áreas que estén bajo su control. 4. Realizar la requisa de todas las personas y vehículos que ingresan y egresan del establecimiento penitenciario para evitar el tráfico de sustancias y objetos de tenencia prohibida o no autorizada. 5. Asistir en el control de las alteraciones masivas del orden dentro de los establecimientos, siguiendo las normas para el ingreso y uso de armas de fuego contenidas en este Código, a solicitud del Ministerio del Popular con competencia en materia penitenciaria. 6. Vigilar y custodiar los traslados transitorios e interestablecimientos penitenciarios, ejecutados por el Ministerio del Poder Popular con competencia en materia penitenciaria. 7. Las demás que le señalen las leyes y reglamentos. Apoyo canino"
+    },
+    {
+      "numero": "88",
+      "epigrafe": "El Ministerio del Poder Popular con competencia en materia penitenciaria, podrá hacer uso de apoyo canino con la finalidad de realizar la detección de sustancias ilícitas, colaborar con el control de las alteraciones del orden interno, evitar las fugas de las personas privadas de libertad y apoyar la seguridad externa de los establecimientos penitenciarios.",
+      "contenido": "Actualización tecnológica"
+    },
+    {
+      "numero": "89",
+      "epigrafe": "La seguridad de los establecimientos penitenciarios se llevará a cabo aplicando, con carácter preferencial, los avances científicos y tecnológicos existentes en la materia, tales como: equipos y accesorios de control y seguimiento electrónico, captadores de huellas, arcos detectores de metales, detectores de metales manuales, máquinas de rayos X para personas, bultos, carteras y paquetes, sistemas de información para el ingreso, egreso y control de personas, circuitos cerrados y abiertos de televisión y, en general, todos aquellos medios que contribuyan a una prestación eficaz y eficiente del servicio de seguridad, garantizando el respeto de la dignidad de las personas.",
+      "contenido": "Uso de armas de fuego"
+    },
+    {
+      "numero": "90",
+      "epigrafe": "Las funcionarias encargadas o funcionarios encargados de la seguridad y custodia en los establecimientos penitenciarios, en uso de sus competencias y en el ejercicio de sus funciones, solo emplearán armas de fuego contra las personas en los siguientes supuestos:",
+      "contenido": "1. En defensa propia o de otra personas. 2. En caso de peligro inminente a la vida o de lesiones graves. 3. Con el propósito de evitar la comisión de un delito particularmente grave que entrañe una seria amenaza para la vida. 4. Con el objeto de detener a una persona que represente peligro y que oponga resistencia. 5. Para impedir la fuga y, sólo en caso de que resulte insuficiente los medios de persuasión y coerción, para lograr dichos objetivos, de conformidad con las leyes, los tratados y convenios internacionales suscritos por la República. En cualquier caso, sólo se podrá hacer uso intencional de armas de fuego cuando sea estrictamente inevitable y para proteger la vida. (adsbygoogle = window.adsbygoogle || []).push({}); Reglas para el uso de las armas de fuego"
+    },
+    {
+      "numero": "91",
+      "epigrafe": "Cuando resulte necesario el empleo de las armas de fuego, se aplicará el procedimiento siguiente:",
+      "contenido": "1. Realizar al menos tres disparos de advertencia con la finalidad de detener la acción de la privada o privado de libertad. 2. Dirigir la acción a las extremidades inferiores, procurando minimizar las lesiones, intentando en lo posible proteger la vida humana. 3. Proceder de forma diligente, de modo que se preste lo antes posible asistencia y servicios médicos a las personas heridas o afectadas. 4. Las autoridades penitenciarias, una vez constatadas las lesiones sufridas por la privada o privado de libertad, notificará a los familiares o amigos registrados en el sistema de información del establecimiento penitenciario, a los cuerpos de investigación penal, al Ministerio Público y remitirá la información necesaria al tribunal de la causa. Prohibición de Ingreso con armas de fuego"
+    },
+    {
+      "numero": "92",
+      "epigrafe": "Ninguna autoridad civil o militar podrá ingresar al establecimiento penitenciario portando armas de fuego. Las excepciones a esta norma serán autorizadas por la Ministra o Ministro, o en su defecto, por una Viceministra o Viceministro del Poder Popular con competencia en materia penitenciaria, en caso que se presenten situaciones de fuerza mayor que así lo justifiquen.",
+      "contenido": "CAPÍTULO III Seguridad interna (adsbygoogle = window.adsbygoogle || []).push({}); Régimen de seguridad interna"
+    },
+    {
+      "numero": "93",
+      "epigrafe": "Para el cumplimiento del régimen penitenciario y mantener el orden y la disciplina, las funcionarias y funcionarios del cuerpo de seguridad y custodia realizarán las siguientes actividades:",
+      "contenido": "1. Servicio de seguridad. 2. Control de acceso. 3. Requisa y cacheo. 4. Pase de número y lista. 5. Traslados, asistencia y seguimiento de actividades. Requisa de las instalaciones"
+    },
+    {
+      "numero": "94",
+      "epigrafe": "Las requisas a las instalaciones del establecimiento penitenciario serán generales o parciales, extraordinarias y ordinarias.",
+      "contenido": "Las requisas generales y parciales ordinarias serán autorizadas por la directora o director de régimen penitenciario, acompañado de la directora o director de la región penitenciaria y la realizarán las funcionarias o funcionarios públicos del servicio penitenciario de la unidad local de régimen penitenciario. Las requisas generales y parciales extraordinarias serán ordenadas, autorizadas y supervisadas por la máxima autoridad del Ministerio del Poder Popular con competencia en materia penitenciaria. Serán ejecutadas por las funcionarias y funcionarios del servicio penitenciario de la unidad especializada a tal efecto. En caso de presentarse una situación de fuerza, alteración del régimen interno, motín o fuga, la máxima autoridad del Ministerio del Poder Popular con competencia en materia penitenciaria solicitará a los demás órganos del Poder Público su colaboración, a los fines de garantizar la legalidad y transparencia del procedimiento que se ejecute para superar la contingencia y restablecer el orden. Oportunidad de las requisas Artículo 95. La requisa general se realizará al menos una vez por trimestre, salvo que por circunstancias excepcionales se ordene una requisa general extraordinaria. La requisa parcial se realizará de forma periódica y obedecerá a una planificación mensual de la unidad local de régimen penitenciario. Las directoras o directores de cada establecimiento penitenciario están obligados a solicitar la realización de requisas periódicas a la Directora o Director General de Seguridad y Custodia del Ministerio del Poder Popular con competencia en materia penitenciaria, por lo menos una vez cada quince días y éste o ésta velará por el fiel cumplimiento de la planificación. Requisa personal"
+    },
+    {
+      "numero": "96",
+      "epigrafe": "La requisa personal, o cacheo, es obligatoria para todos las ciudadanas y ciudadanos que ingresen en un recinto penitenciario, sin excepción para funcionarias y funcionarios civiles y militares que presten su servicio. Se llevará a cabo preferiblemente aplicando las nuevas tecnologías que contribuyan a una prestación más eficaz y eficiente del servicio de seguridad, con un mínimo de invasión sobre personas y cosas.",
+      "contenido": "En cualquier caso, y a todo evento, la requisa se aplicará con respeto a la dignidad y a los derechos humanos. Pase de número y lista"
+    },
+    {
+      "numero": "97",
+      "epigrafe": "Una vez realizado el pase de número y lista, se levantará un acta donde se deje constancia del número total de personas privadas de libertad que se encuentren en el establecimiento penitenciario, así como cualquier incidente ocurrido durante el procedimiento, en cuyo caso se notificará inmediatamente a la autoridad competente. Esta acta será suscrita por las funcionarias y funcionarios del servicio penitenciario actuantes en el mismo.",
+      "contenido": "Para este procedimiento, el sistema penitenciario deberá hacer uso progresivo de las nuevas tecnologías que permitan la sistematización de las actas y creación de un registro de información digital de control y observación en tiempo real a nivel nacional. (adsbygoogle = window.adsbygoogle || []).push({}); Asistencia y seguimiento de actividades"
+    },
+    {
+      "numero": "98",
+      "epigrafe": "Las funcionarias y funcionarios del cuerpo de seguridad y custodia prestarán asistencia y garantizarán el orden y la disciplina de los privados y privadas de libertad, durante el desarrollo de las actividades ordinarias y extraordinarias, dentro o fuera de las instalaciones del establecimiento, de conformidad con los principios establecidos en este Código. Cuando existan motivos suficientes para presumir que peligra la integridad física de las personas privadas de libertad, los visitantes o el personal del establecimiento penitenciario, la dirección del mismo suspenderá o cancelará la actividad planificada o en ejecución.",
+      "contenido": "Medidas de seguridad"
+    },
+    {
+      "numero": "99",
+      "epigrafe": "Las funcionarias y funcionarios del cuerpo de seguridad y custodia realizarán la planificación periódica de las actividades que formen parte de la atención integral, adoptando las medidas de seguridad correspondientes para procurar la efectiva asistencia de las personas privadas de libertad a las mismas.",
+      "contenido": "Medios de persuasión y coerción"
+    },
+    {
+      "numero": "100",
+      "epigrafe": "Las funcionarias y funcionarios de la seguridad interna utilizarán medios de persuasión y de coerción en forma progresiva para la restitución del orden y la disciplina en los establecimientos penitenciarios, cuando los niveles de alteración e indisciplina interna así lo ameriten, con estricto apego a los derechos humanos y garantías consagrados en la Constitución de la República, así como en los tratados, acuerdos y convenios internacionales sobre derechos humanos suscritos por la República.",
+      "contenido": "CAPÍTULO IV Uso progresivo de la fuerza (adsbygoogle = window.adsbygoogle || []).push({}); Aplicación"
+    },
+    {
+      "numero": "101",
+      "epigrafe": "En función del nivel de resistencia y posición adoptada por las personas privadas de libertad durante situaciones y eventos que comprometan el buen orden y la seguridad interna del establecimiento penitenciario, se podrá aplicar el uso progresivo de la fuerza, con estricta observancia de los derechos humanos.",
+      "contenido": "Legitimidad del uso de la fuerza"
+    },
+    {
+      "numero": "102",
+      "epigrafe": "El uso de la fuerza en cualquiera de sus niveles es competencia exclusiva de las funcionarias y funcionarios del cuerpo de seguridad y custodia, quienes la ejercerán en nombre del Estado. Ninguna persona privada de libertad podrá ostentar ni ejercer esta competencia.",
+      "contenido": "La fuerza física y las armas no letales serán usadas sólo por las funcionarias y funcionarios de la seguridad interna, quedando reservado a las funcionarias y funcionarios de seguridad externa el uso de las armas letales a los fines de control y restablecimiento del orden interno del establecimiento penitenciario. Escala"
+    },
+    {
+      "numero": "103",
+      "epigrafe": "La aplicación de la escala del uso progresivo y diferenciado de la fuerza, se realizará conforme al protocolo de procedimientos, ejecución, seguimiento y supervisión, los cuales se establecerán en el Reglamento de este Código.",
+      "contenido": "Equipamiento y capacitación"
+    },
+    {
+      "numero": "104",
+      "epigrafe": "A los fines de cumplir con lo establecido en el presente capítulo, la administración penitenciaria garantizará el equipamiento y la capacitación permanente de las funcionarias y funcionarios del cuerpo de seguridad y custodia en los establecimientos penitenciarios.",
+      "contenido": "Criterio para el uso progresivo de la fuerza"
+    },
+    {
+      "numero": "105",
+      "epigrafe": "El uso progresivo de la fuerza en los establecimientos penitenciarios debe ejercerse orientado por los siguientes criterios:",
+      "contenido": "1. Las funcionarias y funcionarios de seguridad interna utilizarán, en la medida de lo posible, la disuasión y el convencimiento, así como los medios no violentos antes de recurrir al empleo de la fuerza y armas no letales, cuya utilización estará siempre orientada hacia la minimización de las lesiones y daños. 2. Las funcionarias y funcionarios que presten el servicio de seguridad externa ejecutarán su función con moderación y actuarán en proporción a la gravedad de la situación y al objetivo legítimo que se persiga, empleando, preferentemente, métodos disuasivos conforme a los niveles de resistencia y confrontación de las personas privadas de libertad que actúen en el hecho concreto. De manera extraordinaria utilizarán armas de fuego, solo cuando peligre su vida, su integridad física o de otras personas que se encuentren dentro del establecimiento penitenciario, o para impedir la fuga de una persona privada de libertad. CAPÍTULO V Régimen de comunicación (adsbygoogle = window.adsbygoogle || []).push({}); Existencia y operatividad de los medios de comunicaciones"
+    },
+    {
+      "numero": "106",
+      "epigrafe": "La administración penitenciaria garantizará la existencia y operatividad de los mecanismos idóneos de comunicación, bajo el control y supervisión del Estado.",
+      "contenido": "Comunicaciones telefónicas"
+    },
+    {
+      "numero": "107",
+      "epigrafe": "Está prohibido cualquier tipo de equipo, artefacto o sistema de comunicación telefónica dentro de las instalaciones penitenciarias distintas a las previstas en este Código. A los fines de garantizar el derecho a la comunicación, la administración penitenciaria gestionará, ante el ente con competencia en materia de telecomunicaciones, la instalación de telefonía pública para satisfacer las necesidades comunicacionales de la población privada de libertad y las necesidades de comunicación propias del recinto penitenciario.",
+      "contenido": "Uso de comunicaciones informáticas"
+    },
+    {
+      "numero": "108",
+      "epigrafe": "La administración penitenciaria gestionará ante el órgano con competencia en materia tecnológica, los equipos necesarios para los establecimientos penitenciarios que permitan la formación educativa y capacitación para el trabajo de los privados y privadas de libertad.",
+      "contenido": "El uso de estos equipos para las comunicaciones externas estará controlado y supervisado por las autoridades penitenciarias. CAPÍTULO VI Las visitas (adsbygoogle = window.adsbygoogle || []).push({}); Visitas a las privadas o privados de libertad"
+    },
+    {
+      "numero": "109",
+      "epigrafe": "Las personas privadas de libertad podrán ser visitadas por los familiares, de su círculo de relacionados, amistades, defensoras públicas o defensores públicos o privadas o privados, que los asistan y cualquier otro funcionaria o funcionario del Estado que, en razón del ejercicio de sus funciones, lo amerite, quienes deberán estar previamente registrados. Cuando la persona privada de libertad sea extranjera, tendrá derecho a recibir visitas de los representantes diplomáticos y consulares de su país de origen, de conformidad con los convenios y tratados internacionales.",
+      "contenido": "El Ministerio del Poder Popular con competencia en materia de servicio penitenciario, en casos excepcionales, podrá autorizar las visitas de otras personas, según lo establecido en el reglamento respectivo. Parágrafo único:  Se prohíbe a todos los visitantes la tenencia e introducción en los establecimientos penitenciarios de los objetos y sustancias señalados en el artículo 18 de este Código. Registro de visitas"
+    },
+    {
+      "numero": "110",
+      "epigrafe": "La administración penitenciaria diseñará y pondrá en práctica el sistema para el registro de visitantes de cada uno de las privadas y privados de libertad. Los requisitos serán establecidos en el reglamento del presente Código.",
+      "contenido": "Visitas ordinarias"
+    },
+    {
+      "numero": "111",
+      "epigrafe": "La frecuencia de las visitas se determinará en el reglamento, de acuerdo a la clasificación del nivel de seguridad.",
+      "contenido": "Toda persona privada de libertad tiene el derecho de negarse a recibir las visitas de los familiares autorizados, previa participación a la autoridad penitenciaria. Espacios de visita"
+    },
+    {
+      "numero": "112",
+      "epigrafe": "La administración penitenciaria garantizará, dentro del horario establecido, la existencia de espacios adecuados y destinados para el desarrollo de la visita.",
+      "contenido": "Las privadas o privados de libertad que se encuentren hospitalizados en las áreas de salud, e imposibilitados para asistir al área destinada para las visitas, podrán recibir las mismas en estos locales. (adsbygoogle = window.adsbygoogle || []).push({}); Visita de abogadas o abogados"
+    },
+    {
+      "numero": "113",
+      "epigrafe": "La comunicación de las personas privadas de libertad con su abogada defensora o abogado defensor, debidamente acreditada o acreditado ante el órgano jurisdiccional, se efectuará las veces que fueren necesarias, con el propósito de ejercer su derecho a la defensa, en espacios acondicionados para estas visitas y dentro del horario establecido por el reglamento del presente Código.",
+      "contenido": "Horario de visitas"
+    },
+    {
+      "numero": "114",
+      "epigrafe": "Los visitantes podrán ingresar a los establecimientos penitenciarios exclusivamente dentro del horario establecido por el reglamento respectivo para las visitas, siendo necesarias la autorización del Ministerio del Poder Popular con competencia en materia penitenciaria, cuando razones excepcionales, debidamente razonadas, le impidan al visitante asistir a la visita ordinaria.",
+      "contenido": "Bajo ninguna circunstancia se permitirá la pernocta de visitantes en los establecimientos penitenciarios. La contravención de esta disposición dará lugar a las sanciones administrativas, civiles y penales, si fuere el caso. Visita conyugal"
+    },
+    {
+      "numero": "115",
+      "epigrafe": "Toda persona privada de libertad tendrá derecho a la visita conyugal, con la frecuencia y requisitos establecidos en el Reglamento del presente Código y las normas previstas en los reglamentos respectivos.",
+      "contenido": "Área de visita conyugal"
+    },
+    {
+      "numero": "116",
+      "epigrafe": "Las visitas conyugales a las personas privadas de libertad, se realizarán en las áreas destinadas a tal fin, las cuales estarán separadas y diferenciadas de las áreas de reclusión y contarán con condiciones adecuadas de privacidad, higiene, habitabilidad y mobiliario.",
+      "contenido": "Visita de niñas, niños y adolescentes"
+    },
+    {
+      "numero": "117",
+      "epigrafe": "Las visitas de las niñas, niños y adolescentes serán autorizadas por los tribunales con competencia en la materia, previa solicitud del padre, madre o representante legal ante el órgano rector con competencia en materia de protección de niñas, niños y adolescentes. El tribunal deberá constatar fehacientemente que el establecimiento penitenciario ofrece las condiciones adecuadas de seguridad e higiene necesarias para garantizar la protección y el interés superior de la niña, niño y adolescente.",
+      "contenido": "Área de visita de niñas, niños y adolescentes"
+    },
+    {
+      "numero": "118",
+      "epigrafe": "La administración penitenciaria garantizará que las visitas, autorizadas conforme a lo dispuesto en el artículo anterior, que realicen las niñas, niños y adolescentes en el establecimiento penitenciario, se desarrollen en un área con condiciones mínimas de higiene y protección, que garanticen la integridad física y psicológica de los mismos.",
+      "contenido": "A tal efecto, el órgano rector con competencia en materia de protección de niñas, niños y adolescentes, verificará periódicamente las condiciones de infraestructura, control y seguridad de las áreas de visitas. Queda terminantemente prohibido el acceso y permanencia de las niñas, niños y adolescentes en áreas del establecimiento penitenciario distintas a las señaladas en este artículo. (adsbygoogle = window.adsbygoogle || []).push({}); Requisitos para la visita de niñas, niños y adolescentes"
+    },
+    {
+      "numero": "119",
+      "epigrafe": "Las visitas de niñas, niños y adolescentes debidamente autorizadas conforme a lo dispuesto en el artículo 117 de este Código, contemplarán los siguientes requisitos para su ingreso:",
+      "contenido": "1. Partida de nacimiento. 2. Copia de la cédula de identidad de los progenitores o del representante legal. 3. En caso de las y los adolescentes emancipados, deberán consignar a la dirección del establecimiento penitenciario copia certificada del acta de matrimonio o de la decisión judicial, de la manifestación de voluntad ante la autoridad civil o del documento público que así lo declare. No se permitirá la visita de niñas, niños y adolescentes sin la compañía del padre, madre o el representante legal, salvo que se trate de adolescentes emancipados. Suspensión de visitas niñas, niños y adolescentes"
+    },
+    {
+      "numero": "120",
+      "epigrafe": "La administración penitenciaria podrá suspender las visitas de niñas, niños y adolescentes en los casos siguientes:",
+      "contenido": "1. Cuando el padre, madre, representante legal o persona privada de libertad, valiéndose de un niño, niña o adolescente visitante cometiere un hecho punible o de violencia que afecte la integridad física o psicológica de los mismos. 2. Cuando el visitante facilite o intente facilitar el ingreso de alguno de los objetos o sustancias prohibidas enumeradas en el artículo 18 del presente Código. 3. Cuando el visitante hubiere falsificado u omitido alguna información referente a su identificación. Las visitas generales podrán suspenderse en consideración a las circunstancias que afecten el régimen interno, la seguridad del establecimiento penitenciario y la integridad física de las personas privadas de libertad, funcionarios públicos, funcionarias públicas, trabajadores, trabajadoras o visitantes que se encuentren en el establecimiento penitenciario, y deberán restablecerse cuando se haya logrado recuperar el régimen interno. Notificación a la autoridad competente"
+    },
+    {
+      "numero": "121",
+      "epigrafe": "En caso de que alguna de las acciones establecidas en el artículo anterior implique la presunta comisión de un hecho punible, será inmediatamente informado a las autoridades competentes.",
+      "contenido": "CAPÍTULO VII Los traslados (adsbygoogle = window.adsbygoogle || []).push({}); Traslados a otros establecimientos penitenciarios"
+    },
+    {
+      "numero": "122",
+      "epigrafe": "Las privadas y privados de libertad podrán ser trasladadas o trasladados a otros establecimientos penitenciarios de reclusión, previa autorización del juez o jueza de ejecución correspondiente.",
+      "contenido": "También podrán ser trasladados por la autoridad penitenciaria, para la participación en actividades deportivas, educativas o culturales, debiendo retornar una vez culminadas dichas actividades al centro de cumplimiento de pena. Cuando el traslado sea por motivos de salud, deberá notificarse de manera inmediata al juez o jueza de ejecución, a los fines que se adopten las decisiones jurisdiccionales que correspondan. Excepcionalmente, cuando sea necesario proceder al traslado del privado o privada de libertad por razones de orden, seguridad, necesidad o urgencia, deberá notificarse de inmediato al juez o jueza de ejecución, a los fines de la remisión del expediente correspondiente al juez o jueza competente. Las privadas y los privados de libertad, tanto a la salida como al ingreso, deberán ser requisados individualmente. Personal para los traslados"
+    },
+    {
+      "numero": "123",
+      "epigrafe": "Los traslados serán realizados por el personal encargado de la seguridad interna conjuntamente con las funcionarias encargadas y funcionarios encargados de la seguridad externa de los establecimientos penitenciarios. Dichos funcionarias y funcionarios garantizarán la integridad física y psicológica de las personas privadas de libertad, así como el respeto absoluto de los derechos humanos. Del mismo modo, las privadas y privados de libertad deberán respetar los bienes utilizados para su traslado, de lo contrario, se generarán las responsabilidades disciplinarias, civiles y penales correspondientes.",
+      "contenido": "Parque automotor"
+    },
+    {
+      "numero": "124",
+      "epigrafe": "A los fines de cumplir con lo establecido en el artículo anterior, la administración penitenciaria deberá proveer vehículos automotores o cualquier otro medio de transporte para atender las necesidades de traslado de la población privada de libertad. Los mismos deberán estar acondicionados con las medidas de seguridad necesarias, ventilación y espacios adecuados que permitan su aislamiento del personal de custodia.",
+      "contenido": "Bajo ningún concepto se realizarán traslados en medios de transporte que no cuenten con las condiciones mínimas de seguridad señaladas en este artículo. Autorización de los traslados interestablecimientos penitenciarios"
+    },
+    {
+      "numero": "125",
+      "epigrafe": "Los traslados serán autorizados por:",
+      "contenido": "1. En los casos de las imputadas o los imputados, por la jueza o juez de la causa, salvo que exista una situación de fuerza mayor de acuerdo a lo previsto en el Código Orgánico Procesal Penal y este Código. 2. En los casos de las penadas o los penados, por la jueza o juez de ejecución correspondiente, salvo que exista una situación de fuerza mayor, de acuerdo con lo previsto en el Código Orgánico Procesal Penal, y en este Código. (adsbygoogle = window.adsbygoogle || []).push({}); Planificación de los traslados"
+    },
+    {
+      "numero": "126",
+      "epigrafe": "Los traslados serán planificados y organizados conjuntamente por la dirección regional de régimen y la directora o director del penal, quienes coordinarán con el personal de registro y control la ejecución de las actividades programadas con la finalidad de evitar retrasos o violaciones al debido proceso.",
+      "contenido": "Registro de traslado"
+    },
+    {
+      "numero": "127",
+      "epigrafe": "De todo traslado se dejará constancia en un registro donde se indiquen los datos de identificación de la persona privada de libertad, el motivo del traslado, el órgano o institución que lo autoriza, las funcionarias y funcionarios de custodia que asisten y, de ser el caso, la documentación que lo acompañe.",
+      "contenido": "Evaluación médica"
+    },
+    {
+      "numero": "128",
+      "epigrafe": "Toda persona privada de libertad, previo traslado interestablecimientos penitenciarios, será sometida a una evaluación médica a fin de constatar su estado de salud.",
+      "contenido": "Traslados definitivos"
+    },
+    {
+      "numero": "129",
+      "epigrafe": "Cuando una persona privada de libertad sea trasladada a otro establecimiento penitenciario con el propósito de continuar su reclusión, se trasladarán igualmente su expediente penitenciario y se asentará en el sistema de información de dicho traslado, el informe de la evaluación médica y sus objetos personales, los cuales serán entregados al personal de seguridad que asistirá el traslado.",
+      "contenido": "Traslado a centros de salud"
+    },
+    {
+      "numero": "130",
+      "epigrafe": "El traslado de una privada o privado de libertad hacia un centro hospitalario se realizará en compañía del personal tanto de la seguridad interna como de la externa. Asimismo, el traslado estará acompañado de personal médico o paramédico, y se efectuará en ambulancia o cualquier medio de transporte disponible, según lo amerite la situación. Cuando la persona privada de libertad deba permanecer hospitalizada en el centro de salud, la encargada o encargado del traslado debe informarlo a la mayor brevedad posible a la dirección del establecimiento penitenciario, asimismo, debe ser notificada la situación al tribunal de la causa en un lapso no mayor de cuarenta y ocho horas.",
+      "contenido": "Custodia en el centro de salud"
+    },
+    {
+      "numero": "131",
+      "epigrafe": "La custodia de la persona privada de libertad, durante su permanencia en el centro hospitalario, estará a cargo al menos un custodio de la seguridad interna y de una funcionaria o funcionario de la seguridad externa del establecimiento penitenciario.",
+      "contenido": "Traslados transitorios"
+    },
+    {
+      "numero": "132",
+      "epigrafe": "Los traslados transitorios en los casos de enfermedad grave o muerte del cónyuge, padres, madres, hijos o hijas, o gestiones personales no delegables, serán realizados con la autorización de la máxima autoridad del establecimiento penitenciario.",
+      "contenido": "En todos los casos, la persona privada de libertad estará acompañada por funcionarias y funcionarios del cuerpo de seguridad y custodia. TÍTULO VI Régimen disciplinario CAPÍTULO I Disposiciones comunes (adsbygoogle = window.adsbygoogle || []).push({}); Ámbito de aplicación"
+    },
+    {
+      "numero": "133",
+      "epigrafe": "El régimen disciplinario será aplicado a toda persona privada de libertad que incurra en las fallas aquí previstas dentro del establecimiento penitenciario de régimen cerrado o en los centros de cumplimiento del régimen abierto. Ninguna infracción puede ser sancionada dos veces, ni imponerse dos medidas simultáneas o consecutivas por la comisión de una misma infracción.",
+      "contenido": "Junta disciplinaria"
+    },
+    {
+      "numero": "134",
+      "epigrafe": "La Junta disciplinaria estará conformada por un número impar de miembros y la presidirá la máxima autoridad del establecimiento penitenciario. Su funcionamiento se definirá en el reglamento respectivo.",
+      "contenido": "Conformación de la junta disciplinaria"
+    },
+    {
+      "numero": "135",
+      "epigrafe": "La junta disciplinaria estará conformada por los siguientes funcionarias o funcionarios del servicio penitenciario:",
+      "contenido": "1. La directora o director del establecimiento penitenciario, quien la presidirá. 2. Una funcionaria o funcionario del área social. 3. Una funcionaria o funcionario del área legal. 4. Una funcionaria o funcionario del área de régimen interno. 5. Una funcionaria o funcionario del área de régimen externo. En los de régimen abierto se incorporará a la junta disciplinaria las delegadas o delegados de prueba de ese establecimiento. En todo caso, la junta disciplinaria estará conformada por un mínimo de cinco funcionarias o funcionarios y un máximo de siete integrantes, siempre en números impares. Disciplina"
+    },
+    {
+      "numero": "136",
+      "epigrafe": "Ninguna corrección disciplinaria podrá consistir en tratos crueles, inhumanos o degradantes que afecten la dignidad humana. No se considerará maltrato el empleo de la fuerza estrictamente necesaria para someter a la privada o privado de libertad, cuando intente agredir a una funcionaria pública o funcionario público, a su propia persona o a un tercero, así como la fuerza empleada para evitar actos colectivos de violencia que amenacen seriamente la estabilidad, el control, la vigilancia o la seguridad del establecimiento penitenciario.",
+      "contenido": "Prohibición de sanciones arbitrarias"
+    },
+    {
+      "numero": "137",
+      "epigrafe": "Ningún funcionaria o funcionario público del servicio penitenciario podrá imponer a título personal sanciones disciplinarias.",
+      "contenido": "Competencia para sancionar"
+    },
+    {
+      "numero": "138",
+      "epigrafe": "Las infracciones disciplinarias serán sancionadas por las autoridades penitenciarias de conformidad con lo previsto en este Código, sin perjuicio del procedimiento penal al que hubiere lugar.",
+      "contenido": "Dichas decisiones pueden ser revisadas a solicitud de la sancionada o sancionado, por la jueza o el juez de ejecución con competencia en el centro penitenciario. CAPÍTULO II Faltas de las privadas y privados de libertad (adsbygoogle = window.adsbygoogle || []).push({}); Clasificación de las faltas"
+    },
+    {
+      "numero": "139",
+      "epigrafe": "Las infracciones disciplinarias se clasifican en fallas leves, graves y gravísimas.",
+      "contenido": "Faltas leves"
+    },
+    {
+      "numero": "140",
+      "epigrafe": "Se consideran fallas leves las siguientes:",
+      "contenido": "1. Incumplimiento de los deberes de aseo e higiene personal establecidos en el reglamento respectivo. 2. Incumplimiento de los deberes de limpieza, aseo y orden de los espacios comunes del establecimiento penitenciario. 3. Incumplimiento de las medidas de higiene y salud colectiva dictadas por el servicio médico, siempre que ese incumplimiento no genere riesgo para la salud. 4. Utilización inadecuada de las instalaciones y recursos del establecimiento penitenciario, siempre que no se produzcan daños o deterioros. 5. Retardos injustificados en el cumplimiento de las actividades regulares del establecimiento penitenciario. 6. Abandono injustificado de las actividades regulares del establecimiento penitenciario. Faltas graves"
+    },
+    {
+      "numero": "141",
+      "epigrafe": "Se consideran faltas graves las siguientes:",
+      "contenido": "1. Desobediencia o resistencia a las órdenes recibidas de las funcionarias o funcionarios del servicio penitenciario emanadas en el legítimo ejercicio de sus funciones y que no impliquen alteración del orden. 2. Dirigir insultos verbales o escritos. Acciones ofensivas a una funcionaria pública o funcionario público u otras personas que se encuentren en el establecimiento penitenciario. 3. Ejercer acciones, o causar daños o deterioros a las instalaciones o recursos del establecimiento penitenciario. 4. Enfrentamiento cuerpo a cuerpo con otras personas privadas de libertad. 5. Fabricar, introducir u ocultar objetos que la administración penitenciaria y este Código declare no permitidos. 6. Tenencia y distribución de medicamentos no prescritos por un médico o médica. 7. Cocinar fuera de las áreas destinadas o autorizadas al efecto. 8. Retardo injustificado en la hora pautada para el ingreso al establecimiento penitenciario de régimen abierto, en los casos de los traslados transitorios regulados en este Código. 9. Incumplir cualquiera de las condiciones impuestas para el disfrute de los traslados transitorios regulados en este Código. 10. Alterar el normal desenvolvimiento de una actividad laboral, educativa, recreacional, deportiva o de cualquier otra índole que se esté realizando en el establecimiento. 11. Acumular un mínimo de tres faltas leves en un período de dos meses consecutivos. (adsbygoogle = window.adsbygoogle || []).push({}); Faltas gravísimas"
+    },
+    {
+      "numero": "142",
+      "epigrafe": "Se consideran faltas gravísimas:",
+      "contenido": "1. Amenazar o atentar contra su integridad física, la de funcionarias públicas o funcionarios públicos, de una privada o privado de libertad, sus familiares o cualquier otra persona. 2. Desobedecer u oponer resistencia a las órdenes recibidas de los funcionarias o funcionarios del servicio penitenciario, emanadas en el legítimo ejercicio de sus funciones, cuando produzcan alteraciones del orden interno del establecimiento penitenciario. 3. Amenazar o agredir verbalmente a funcionarias públicas o funcionarios públicos u otras personas que se encuentren en el establecimiento penitenciario. 4. Organizar, participar o instigar en motines o acciones delictuales dentro o fuera del establecimiento penitenciario. 5. Coaccionar o amenazar por cualquier vía o medio de comunicación, a cualquier persona que se encuentre fuera del establecimiento penitenciario. 6. Causar maltratos físicos o psicológicos a las niñas, niños y adolescentes que se encuentren en el establecimiento penitenciario. 7. Retener a funcionarias públicas o funcionarios públicos u otras personas que se encuentren en el establecimiento penitenciario. 8. Ofrecer sumas de dinero, regalos o dádivas a funcionarias públicas o funcionarios públicos. 9. Elaborar o detentar objetos de tenencia prohibida. 10. Consumir, detentar o distribuir sustancias estupefacientes y psicotrópicas. 11. Elaborar, detentar o consumir bebidas embriagantes o alcohólicas. 12. No acudir al llamado de la autoridad para el pase de lista y número, con la regularidad prevista en el reglamento. 13. Oponer resistencia al momento de realizarse las requisas. 14. Intento de fuga o evasión. (adsbygoogle = window.adsbygoogle || []).push({}); Sanción a faltas leves"
+    },
+    {
+      "numero": "143",
+      "epigrafe": "La sanción aplicable a las faltas leves consistirá en la imposición de un llamado de atención por escrito, que se incorporará al expediente del privada o privado de libertad.",
+      "contenido": "Sanciones a faltas graves"
+    },
+    {
+      "numero": "144",
+      "epigrafe": "Las sanciones aplicables a las faltas graves son la privación de una visita familiar, conyugal o el aislamiento en celda por un lapso no mayor a siete días, en los casos de régimen cerrado y para las privadas o privados de libertad de régimen abierto se aplicará como sanción la suspensión de las pernoctas en su domicilio.",
+      "contenido": "Sanciones a faltas gravísimas"
+    },
+    {
+      "numero": "145",
+      "epigrafe": "Las sanciones aplicables a las faltas gravísimas a las personas privadas de libertad que se encuentran en régimen cerrado, son la privación de dos visitas ordinarias o conyugales o el aislamiento en celda de ocho a quince días máximo.",
+      "contenido": "Las sanciones aplicables a las faltas gravísimas de las personas privadas de libertad que se encuentren en régimen abierto, serán sancionadas con la revocatoria del régimen abierto por parte del tribunal de ejecución, a solicitud de la junta disciplinaria. CAPÍTULO III Procedimiento para la aplicación de las sanciones (adsbygoogle = window.adsbygoogle || []).push({}); Procedimiento para faltas leves"
+    },
+    {
+      "numero": "146",
+      "epigrafe": "La funcionaria o funcionario del establecimiento penitenciario que detecte la presunta comisión de una falta realizará un informe con las circunstancias de tiempo, modo y lugar en que ocurrieron los hechos. Este informe lo remitirá a la junta disciplinaria a los efectos de iniciar el procedimiento disciplinario.",
+      "contenido": "Notificación"
+    },
+    {
+      "numero": "147",
+      "epigrafe": "Recibido el informe respectivo, la máxima autoridad del establecimiento penitenciario, en su carácter de Presidenta o Presidente de la junta disciplinaria, notificará por escrito al presunto infractora o infractor de la falta que se le imputa, la sanción aplicable y las normas que las contemplan, para que éste o ésta ejerza su defensa dentro de los cinco días siguientes a su notificación.",
+      "contenido": "Derecho a la defensa"
+    },
+    {
+      "numero": "148",
+      "epigrafe": "Recibido el escrito o realizado los alegatos de forma oral por la privada o privado de libertad, se verificarán los argumentos por él o ella presentados, fijándose el segundo día hábil siguiente a la consignación del escrito o alegatos para la realización de la sesión de la junta disciplinaria, en la que se calificará la falta y se tomará una decisión, la cual se notificará por escrito al infractor o infractora a los tres días hábiles.",
+      "contenido": "Procedimiento para faltas graves y gravísimas"
+    },
+    {
+      "numero": "149",
+      "epigrafe": "El procedimiento aplicable a la presunta comisión de las faltas graves y gravísimas será el siguiente:",
+      "contenido": ". La máxima autoridad del establecimiento penitenciario en su carácter de Presidenta o Presidente de la junta disciplinaria, previo conocimiento de los hechos, acordará el inicio de la investigación y designará a las funcionarias o funcionarios necesarios, quienes realizarán las averiguaciones del caso en un lapso no mayor de tres días hábiles, y presentarán un informe que recoja el resultado de las diligencias practicadas, así como la determinación de las faltas imputables al presunto infractor o infractora. 2. Recibido el informe, la máxima autoridad del establecimiento penitenciario notificará por escrito al día hábil siguiente, al presunto infractor o infractora de la falta que se le imputa y la sanción aplicable, señalando el plazo que tiene para presentar sus descargos y defensas. Asimismo, remitirá este informe a los miembros de la junta disciplinaria convocándola para sesionar al tercer día hábil siguiente. 3. La junta disciplinaria, en la sesión convocada al efecto, oirá al presunto infractor o infractora, quien en ese acto ejercerá su defensa, alegando lo que considere pertinente. 4. Recibidos los alegatos y cotejados con el informe, la junta disciplinaria decidirá, en la misma sesión, sobre la responsabilidad del presunto infractora o infractor, y de ser procedente, la imposición de la sanción correspondiente. 5. Bajo ninguna circunstancia las funcionarias afectadas o funcionarios afectados por la conducta desplegada por la privada o privado de libertad participarán en las deliberaciones de la junta disciplinaria. 6. En el caso que se acuerde la aplicación de la sanción correspondiente a la falta cometida, se le notificará por escrito a la infractora o infractor a los tres días hábiles. El equipo responsable de la asistencia integral del infractor o infractora deberá reunirse con éste o ésta y orientarlo sobre la conducta sancionada y el reconocimiento de su responsabilidad. Actas sancionatorias"
+    },
+    {
+      "numero": "150",
+      "epigrafe": "Toda acta sancionatoria deberá contener:",
+      "contenido": "1. Identificación de la infractora o infractor. 2. Lugar y fecha de la decisión y número del expediente penitenciario. 3. Relación sucinta de los hechos imputados. 4. Las argumentaciones dadas por la infractora o infractor. 5. Disposiciones legales que contemplen la falta y la sanción que corresponda. 6. Decisión de la junta disciplinaria. 7. Voto salvado, si fuera el caso. (adsbygoogle = window.adsbygoogle || []).push({}); Concurrencia de faltas"
+    },
+    {
+      "numero": "151",
+      "epigrafe": "Cuando la persona privada de libertad incurra simultáneamente en dos o más faltas, de diferente índole, se sancionará la falta más grave.",
+      "contenido": "En caso de incurrir en faltas en momentos diferentes, las mismas serán valoradas en forma individual. Acumulación de sanciones"
+    },
+    {
+      "numero": "152",
+      "epigrafe": "Si durante el cumplimiento de una sanción, la infractora o infractor cometiere una nueva falta, se le sumará a la anterior la sanción a que diere lugar.",
+      "contenido": "Criterios para la decisión"
+    },
+    {
+      "numero": "153",
+      "epigrafe": "Para decidir, la junta disciplinaria tendrá presente los siguientes criterios:",
+      "contenido": "1. La gravedad del hecho. 2. El grado de participación de la privada o privado de libertad en la comisión del hecho. 3. Las circunstancias que rodearon la comisión del hecho. 4. La conducta de la privada o privado de libertad desde el comienzo de su reclusión o del régimen abierto. 5. El carácter reincidente de la falta. 6. Los argumentos presentados por la privada o privado de libertad. (Sic) 1. La gravedad del hecho. (Sic) 2. El grado de participación de la privada o privado de libertad en la comisión del hecho. (Sic) 3. Las circunstancias que rodearon la comisión del hecho. (Sic) 4. La conducta de la privada o privado de libertad desde el comienzo de su reclusión o del régimen abierto. (Sic) 5. El carácter reincidente de la falta. (Sic) 6. Los argumentos presentados por la privada o privado de libertad. Ejecución de la sanción"
+    },
+    {
+      "numero": "154",
+      "epigrafe": "La privada o privado de libertad podrá solicitar a la Jueza o Juez de Ejecución con competencia en el establecimiento penitenciario, la revisión de la decisión adoptada por la Junta Disciplinaria dentro de las 48 horas siguientes a su notificación. La jueza o juez escuchará a las partes y adoptará su decisión en la misma audiencia. La solicitud de revisión suspende la ejecución de la decisión.",
+      "contenido": "TÍTULO VII Redención judicial de la pena por el trabajo y el estudio CAPÍTULO I Procedimiento para la redención (adsbygoogle = window.adsbygoogle || []).push({}); Norma rectora"
+    },
+    {
+      "numero": "155",
+      "epigrafe": "Toda persona privada de libertad puede redimir su pena a través del trabajo y el estudio, según sus capacidades y aptitudes, a razón de un día de reclusión por cada dos días de trabajo u horas de estudio de acuerdo a lo previsto en este Código.",
+      "contenido": "En el caso de las procesadas y procesados que se incorporen voluntariamente al trabajo o al estudio, se les computará como tiempo redimido de ser aplicada la sentencia definitiva y ejecutoriada. Actividades reconocidas"
+    },
+    {
+      "numero": "156",
+      "epigrafe": "Las actividades que se reconocerán, a los efectos de la redención de la pena, serán las siguientes:",
+      "contenido": "1. Las de educación, en cualquiera de sus niveles y modalidades, siempre que se desarrolle de acuerdo con los programas educativos aprobados por el Ministerio del Poder Popular con competencia en la materia o por instituciones del Estado. 2. El trabajo en cualquier rama de la actividad económica de utilidad social o en cualquier culto y religión, siempre que haya sido organizado y supervisado por la junta de trabajo del establecimiento penitenciario. 3. La de servicios para desempeñar los puestos auxiliares que requieran las necesidades de los establecimientos penitenciarios, siempre que la asignación de la privada o privado de libertad a esta actividad haya sido realizada u organizada por la junta de trabajo. 4. Las culturales, artísticas o deportivas, dirigidas y avaladas por instituciones oficiales dedicadas al área específica, las cuales serán reconocidas a todo efecto como educativas o laborales, según el propósito específico del programa y la misión de la institución respectiva. Parágrafo único:  Se contará como un día de trabajo o estudio la dedicación a cualquiera de estas actividades, durante un lapso de ocho horas continuas o discontinuas, y en los casos que actúen como instructores de acuerdo a lo previsto en el artículo 66 de este Código, se contará como un día de trabajo la dedicación de seis horas continuas o discontinuas. Registro de actividades"
+    },
+    {
+      "numero": "157",
+      "epigrafe": "A los efectos de la supervisión y verificación de las actividades laborales y educativas de la penada o penado, la junta de trabajo o el personal que designe el órgano con competencia en materia penitenciaria llevará un registro detallado donde consten los días y horas de las actividades laborales y educativas realizadas, así como de su rendimiento.",
+      "contenido": "(adsbygoogle = window.adsbygoogle || []).push({}); Funciones del órgano penitenciario"
+    },
+    {
+      "numero": "158",
+      "epigrafe": "La función principal de la junta designada por el Ministerio del Poder Popular con competencia en materia penitenciaria para la redención de la pena por el trabajo y el estudio, será la de verificar con estricta objetividad, el tiempo de trabajo o de estudio efectivamente cumplido por cada recluso, a los fines de la redención de la pena y, con tal propósito, ejercerá las siguientes atribuciones:",
+      "contenido": "1. Tramitar el ingreso de las privadas o privados de libertad a todo tipo de actividades educativas, laborales, culturales, deportivas, artísticas y cualesquiera otras actividades que implique la utilización productiva del tiempo de reclusión del privado o privada de libertad. 2. Seleccionar con base en criterios técnicos y objetivos, las privadas o privados de libertad que se encargarán de desempeñar los puestos auxiliares que requieran las necesidades del establecimiento o de otras instituciones. 3. Organizar, llevar al día y controlar el expediente personal de cada privada o privado de libertad en régimen de trabajo o de estudio, con el objeto de reflejar semanalmente su asistencia y actividad laboral o educativa. 4. Solicitar los informes y practicar las verificaciones que estime necesarias, de oficio o a instancia de los interesados, a los fines del reconocimiento del tiempo de trabajo o de estudio efectivamente cumplido por cada privada o privado de libertad. 5. Establecer y poner en funcionamiento los mecanismos de control que fueren convenientes para verificar diariamente el tiempo de trabajo o de estudio efectivamente cumplido por cada privada o privado de libertad. 6. Practicar visitas de inspección en los sitios de trabajo o de estudio, con el objeto de cerciorarse de la asistencia y actividad laboral de las privadas o privados de libertad, pudiendo interrogar al efecto, a solas o ante testigos, a cualquier funcionaria pública o funcionario público, particular. 7. Solicitar y tramitar ante la jueza o juez de ejecución, de oficio o a instancia de los interesados, la redención judicial de la pena de los privados o privadas de libertad en régimen de trabajo o de estudio. 8. Llevar un registro detallado, digital y por escrito de las privadas o privados de libertad en régimen de trabajo o de estudio, de las correspondientes decisiones judiciales de redención de la pena. 9. Oír a las privadas o privados de libertad en régimen de trabajo, o de estudio cada vez que la junta lo considere conveniente para el mejor desempeño de sus funciones. 10. Las demás que le asignen las leyes. Competencia para el otorgamiento"
+    },
+    {
+      "numero": "159",
+      "epigrafe": "Serán competentes para conocer y decidir sobre las solicitudes de obtención de la redención de la pena las juezas o jueces de primera instancia en funciones de ejecución.",
+      "contenido": "Procedimiento"
+    },
+    {
+      "numero": "160",
+      "epigrafe": "La solicitud será introducida personalmente, de oficio o a solicitud del privado o privada de libertad, por un miembro de la junta, expresamente autorizado al efecto, y la jueza o juez resolverá dentro de los quince días hábiles siguientes, con vista de la documentación que haya servido de base para el reconocimiento del tiempo efectivamente cumplido y copia certificada de las actas de la junta, relativas al reconocimiento y a la solicitud de redención. Si considerase insuficiente la información requerirá a la junta que la complete, sin perjuicio de ordenar y practicar por su parte las actuaciones que juzgue necesarias; en este caso, el lapso para la decisión comenzará a contarse desde la última actuación practicada.",
+      "contenido": "TÍTULO VIII Régimen de confianza tutelado CAPÍTULO I Procedimiento (adsbygoogle = window.adsbygoogle || []).push({}); Régimen de confianza tutelado"
+    },
+    {
+      "numero": "161",
+      "epigrafe": "El régimen de confianza tutelado consiste en la ubicación de la penada o el penado en un centro de producción o un área especial del régimen penitenciario, donde continuará con el cumplimiento de la pena, el cual será acordado por la jueza o el juez de ejecución, mientras le sea otorgado alguna fórmula alternativa a cumplimiento de la pena.",
+      "contenido": "Requisitos"
+    },
+    {
+      "numero": "162",
+      "epigrafe": "El Ministerio del Poder Popular con competencia en materia penitenciaria podrá otorgar un régimen de confianza tutelado a una penada o penado, siempre y cuando reúna todos los requisitos establecidos en el Código Orgánico Procesal Penal, para optar a una de las fórmulas alternativas del cumplimiento de la pena.",
+      "contenido": "Procedimiento"
+    },
+    {
+      "numero": "163",
+      "epigrafe": "La privada o privado de libertad solicitará ante la dirección del establecimiento penitenciario donde se encuentre cumpliendo condena, ser incorporado al régimen de confianza tutelado.",
+      "contenido": "Recibida la solicitud, la directora o director deberá remitirla de inmediato a la unidad con competencia en registro y control penal del establecimiento, donde se procederá a revisar el expediente administrativo de la interna o interno y se preparará un informe donde se indicará detalladamente si el solicitante cumple con los requisitos para optar al régimen de confianza tutelado. Dicho informe deberá ser remitido a la máxima autoridad del Ministerio del Poder Popular con competencia en materia penitenciaria, quien, de encontrar procedente la solicitud, la autorizará, participándolo por escrito al tribunal de ejecución de la jurisdicción penal correspondiente. Parágrafo único:  La máxima autoridad del Ministerio del Poder Popular con competencia en materia penitenciaria podrá, previo informe y evaluación del expediente jurídico de una interna o interno, considerar el otorgamiento del régimen de confianza tutelado para una privada o privado de libertad, sometida o sometido a proceso judicial, que registre un tiempo de reclusión ininterrumpido superior al que se requiere para optar al destacamento de trabajo establecido en el Código Orgánico Procesal Penal, en caso de resultar condenado en sentencia definitivamente firme. Cese del régimen"
+    },
+    {
+      "numero": "164",
+      "epigrafe": "El régimen de confianza tutelado cesará inmediatamente cuando la privada o privado de libertad incorporada o incorporado, al mismo obtenga una fórmula alternativa de cumplimiento de la pena o incurra en una falta disciplinaria.",
+      "contenido": "TÍTULO IX Apoyo postpenitenciario CAPÍTULO I Apoyo postpenitenciario (adsbygoogle = window.adsbygoogle || []).push({}); Unidad de apoyo postpenitenciario"
+    },
+    {
+      "numero": "165",
+      "epigrafe": "El Ministerio del Poder Popular con competencia en materia penitenciaria dispondrá la creación de una unidad del más alto nivel encargada del apoyo postpenitenciario, cuya estructura y funciones se determinarán en el reglamento respectivo, que tendrá como finalidad prestar el apoyo social necesario a la población penitenciaria sometida a cualquier fórmula de régimen abierto, suspensión condicional de la pena, libertad condicional o plena y a sus familiares.",
+      "contenido": "Apoyo postpenitenciario"
+    },
+    {
+      "numero": "166",
+      "epigrafe": "La penada o penado que haya cumplido su pena y el que de algún otro modo haya extinguido su responsabilidad penal debe gozar de inmediato del ejercicio pleno de todos sus derechos como ciudadano o ciudadana.",
+      "contenido": "En ningún caso los antecedentes penales podrán ser motivo de discriminación social o jurídica, a tal efecto las unidades de apoyo postpenitenciario del Ministerio del Poder Popular con competencia en materia penitenciaria velarán por que el uso de la información relacionada con dichos antecedentes penales no afecte ilegítimamente los derechos de los ex internos o ex internas. Atención a los adolescentes egresados del sistema penitenciario"
+    },
+    {
+      "numero": "167",
+      "epigrafe": "El Ministerio del Poder Popular con competencia en materia penitenciaria creará las unidades operativas para la atención de los adolescentes en conflicto con la ley penal, que disfruten de medidas de libertad vigilada y semi-libertad.",
+      "contenido": "Unidades de supervisión postpenitenciaria"
+    },
+    {
+      "numero": "168",
+      "epigrafe": "El apoyo postpenitenciario se prestará a nivel nacional en las unidades técnicas de supervisión y orientación, centros de pernocta para trabajo fuera del establecimiento, establecimientos de régimen abierto y cualquier otra unidad operativa que la máxima autoridad del Ministerio del Poder Popular con competencia en materia penitenciaria establezca para una mejor atención. Estos establecimientos estarán distribuidos en los estados y municipios, atendiendo a la ubicación de los establecimientos penitenciarios, siendo obligatoria la creación de por lo menos un establecimiento en la capital de cada estado. Su funcionamiento estará regido por los respectivos reglamentos.",
+      "contenido": "Las unidades técnicas de supervisión y orientación, prestarán el servicio de orientación y supervisión a aquellas procesadas, procesados, penadas y penados a quienes se les haya otorgado una medida de suspensión condicional del proceso, medidas cautelares, suspensión condicional de la ejecución de la pena y libertad condicional. Los centros de pernocta contarán con unidades operativas para albergar a aquellas penadas o penados en ejercicio del régimen de trabajo fuera del establecimiento. Los establecimientos de régimen abierto contarán con unidades operativas para albergar a aquellas penadas o penados que se encuentran en ejercicio del régimen abierto. Las unidades de atención a los adolescentes en conflicto con la ley penal, contarán con unidades operativas para atender a los adolescentes que se encuentren en cumplimiento de una medida de libertad asistida o semi- libertad y a sus padres, madres o representantes. (adsbygoogle = window.adsbygoogle || []).push({}); % Equipo de supervisión postpenitenciaria"
+    },
+    {
+      "numero": "169",
+      "epigrafe": "Cada unidad operativa de atención postpenitenciaria contará con un personal profesional en el área social, capacitados por el órgano respectivo y se denominarán delegadas y delegados de pruebas.",
+      "contenido": "En el caso de los adolescentes, el equipo técnico profesional en el área social, capacitados según lo establecido en la ley especial que rige la materia, se denominarán supervisora y supervisor de medidas de libertad vigilada y semi-libertad. Participación popular postpenitenciaria"
+    },
+    {
+      "numero": "170",
+      "epigrafe": "El Ministerio del Poder Popular con competencia en materia penitenciaria, a través de la unidad operativa encargada de la atención postpenitenciaria, propiciará la participación del pueblo organizado, y las comunidades organizadas en la supervisión y orientación de las ciudadanas y ciudadanos que se encuentren en ejercicio de un beneficio o fórmula alternativa del cumplimiento de pena.",
+      "contenido": "TÍTULO X Participación del pueblo organizado CAPÍTULO I Participación del pueblo organizado (adsbygoogle = window.adsbygoogle || []).push({}); Participación de la sociedad"
+    },
+    {
+      "numero": "171",
+      "epigrafe": "El Poder Popular tiene el derecho y el deber de participar de forma protagónica para lograr la inclusión plena y efectiva, a la sociedad, de las personas que han sido privadas de su libertad, a través de las organizaciones comunitarias y sociales.",
+      "contenido": "Los estudiantes universitarios podrán participar a través de los programas de servicio comunitario y cualquier otro programa que sea debidamente aprobado y autorizado por el Ministerio del Poder Popular con competencia en materia penitenciaria. Las personas, en el ejercicio de este rol, deberán actuar con estricto apego a las normas y reglamentos que rigen el sistema penitenciario. La autoridad penitenciaria se encuentra en la obligación de garantizar la seguridad de estas ciudadanas y estos ciudadanos dentro de los establecimientos penitenciarios durante el desarrollo de sus actividades. Contraloría popular penitenciaria"
+    },
+    {
+      "numero": "172",
+      "epigrafe": "Con la finalidad de asegurar la transparencia y proteger el bien común, en función de la calidad de vida y el respeto de los derechos de las personas privadas de libertad, en el marco del principio constitucional de la corresponsabilidad, los ciudadanos y ciudadanas, a través de las organizaciones del poder popular, conformarán la contraloría popular penitenciaria que se ejercerá a través del consejo popular de contraloría penitenciaria que funcionará en cada circunscripción judicial en los términos que determine el reglamento respectivo y las leyes relativas a la participación protagónica del poder popular.",
+      "contenido": "DISPOSICIÓN DEROGATORIA (adsbygoogle = window.adsbygoogle || []).push({}); (adsbygoogle = window.adsbygoogle || []).push({}); ÚNICA.  Se derogan la Ley de Régimen Penitenciario, publicada en la  Gaceta Oficial de la República Bolivariana de Venezuela N&#176; 36.975  de fecha 19 de junio de 2000, la Ley de Redención Judicial de la Pena por el Trabajo y el Estudio, publicada en la  Gaceta Oficial de la República de Venezuela N&#176; 4.623, Extraordinario , del 3 de septiembre de 1993 y todas las demás disposiciones legales que colidan con el presente Código. DISPOSICIONES TRANSITORIAS (adsbygoogle = window.adsbygoogle || []).push({}); PRIMERA.  El personal adscrito al cuerpo de seguridad y custodia se regirá por las normas generales aplicables a la función pública, hasta tanto se dicte la ley especial que regirá su funcionamiento. SEGUNDA.  El Cuerpo de Policía Nacional Bolivariana asumirá el ejercicio de las funciones de custodia externa de los establecimientos penitenciarios, de conformidad con lo previsto en el artículo 87 de este Código, en el plazo de dos años contados a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela. DISPOSICIÓN FINAL (adsbygoogle = window.adsbygoogle || []).push({}); ÚNICA.  El presente Código entrará en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela. Dada, firmada y sellada en el Palacio Federal Legislativo, sede de la Asamblea Nacional de la República Bolivariana de Venezuela, en Caracas, a los dieciséis días del mes de septiembre de 2021. Años 211&#176; de la Independencia, 162&#176; de la Federación, y 22&#176; de la Revolución Bolivariana. JORGE RODRÍGUEZ GÓMEZ Presidente de la Asamblea Nacional MARÍA IRIS VARELA RANGEL Primera Vicepresidenta DIDALCO ANTONIO BOLÍVAR GRATEROL Segundo Vicepresidente ROSALBA GIL PACHECO Secretaria INTI ALEJANDRA INOJOSA CORONADO Subsecretaria Promulgación de la  LEY DE REFORMA DEL CÓDIGO ORGÁNICO PENITENCIARIO , de conformidad con lo previsto en el artículo 213 de la Constitución de la República Bolivariana de Venezuela. Palacio de Miraflores, en Caracas, a los diecisiete días del mes de septiembre de dos mil veintiuno. Años 211&#176; de la Independencia, 162&#176; de la Federación y 22&#176; de la Revolución Bolivariana. Cúmplase, (LS.) NICOLÁS MADURO MOROS Presidente de la República Bolivariana de Venezuela Refrendado La Vicepresidenta Ejecutiva de la República Bolivariana de Venezuela y Primera Vicepresidenta del Consejo de Ministros, DELCY ELOÍNA RODRÍGUEZ GÓMEZ El Ministro del Poder Popular del Despacho de la Presidencia y Seguimiento de la Gestión de Gobierno, JORGE ELIESER MÁRQUEZ MONSALVE El Ministro del Poder Popular para Relaciones Exteriores, FÉLIX RAMÓN PLASENCIA GONZÁLEZ El Ministro del Poder Popular para Relaciones Interiores, Justicia y Paz, y Vicepresidente Sectorial para la Seguridad Ciudadana y la Paz, REMIGIO CEBALLOS ICHASO El Ministro del Poder Popular para la Defensa y Vicepresidente Sectorial de Soberanía Política, Seguridad y Paz, VLADIMIR PADRINO LÓPEZ El Ministro del Poder Popular para la Comunicación e Información y Vicepresidente Sectorial de Comunicación y Cultura, FREDDY ALFRED NAZARET ÑAÑEZ CONTRERAS La Ministra del Poder Popular de Economía, Finanzas y Comercio Exterior, DELCY ELOÍNA RODRÍGUEZ GÓMEZ El Ministro del Poder Popular de Industrias y Producción Nacional, JORGE ALBERTO ARREAZA MONTSERRAT La Ministra del Poder Popular de Comercio Nacional, ENEIDA RAMONA LAYA LUGO El Ministro del Poder Popular para el Turismo, ALÍ ERNESTO PADRÓN PAREDES El Ministro del Poder Popular para la Agricultura Productiva y Tierras, WILMAR ALFREDO CASTRO SOTELDO La Ministra del Poder Popular de Agricultura Urbana, GREICYS DAYAMNI BARRIOS PRADA El Ministro del Poder Popular de Pesca y Acuicultura, JUAN LUIS LAYA RODRÍGUEZ El Ministro del Poder Popular para la Alimentación, CARLOS AUGUSTO LEAL TELLERÍA El Ministro del Poder Popular de Petróleo y Vicepresidente Sectorial de Economía, TARECK EL AISSAMI El Ministro del Poder Popular de Desarrollo Minero Ecológico, WILLIAM MIGUEL SERANTES PINTO El Ministro del Poder Popular de Planificación y Vicepresidente Sectorial de Planificación, RICARDO JOSÉ MENÉNDEZ PRIETO El Ministro del Poder Popular para la Salud, CARLOS HUMBERTO ALVARADO GONZÁLEZ La Ministra del Poder Popular para los Pueblos Indígenas, ROSIDE VIRGINIA GONZÁLEZ GONZÁLEZ La Ministra del Poder Popular para la Mujer y la Igualdad de Género, MARGAUD MARISELA GODOY PEÑA El Ministro del Poder Popular de Atención de las Aguas, RODOLFO CLEMENTE MARCO TORRES El Ministro del Poder Popular para la Juventud y el Deporte y Vicepresidente Sectorial del Socialismo Social y Territorial, MERVIN ENRIQUE MALDONADO URDANETA La Ministra del Poder Popular para el Servicio Penitenciario, MIRELYS ZULAY CONTRERAS MORENO El Ministro del Poder Popular para el Proceso Social de Trabajo, JOSÉ RAMÓN RIVERO GONZÁLEZ El Ministro del Poder Popular para la Cultura, ERNESTO EMILIO VILLEGAS POLJAK La Ministra del Poder Popular para la Educación, YELITZE DE JESÚS SANTAELLA HERNÁNDEZ La Ministra del Poder Popular para la Ciencia y Tecnología, GABRIELA SERVILIA JIMÉNEZ RAMÍREZ El Ministro del Poder Popular para la Educación Universitaria, CÉSAR GABRIEL TRÓMPIZ CECCONI El Ministro del Poder Popular para el Ecosocialismo, JOSUÉ ALEJANDRO LORCA VEGA El Ministro del Poder Popular para Hábitat y Vivienda, ILDEMARO MOISÉS VILLARROEL ARISMENDI La Ministra del Poder Popular para las Comunas y los Movimientos Sociales, NORIS HERRERA RODRÍGUEZ El Ministro del Poder Popular para el Transporte, HIPÓLITO ANTONIO ABREU PÁEZ El Ministro del Poder Popular de Obras Públicas, RAÚL ALFONZO PAREDES El Ministro del Poder Popular para la Energía Eléctrica y Vicepresidente Sectorial de Obras Públicas, NÉSTOR LUIS REVEROL TORRES El Ministro de Estado para la Nueva Frontera de Paz, GERARDO JOSÉ IZQUIERDO TORRE La anterior es una transcripción de su original.   Pandectas Digital   no se hace responsable por cualquier discrepancia u omisión contenida en ella, ni por los daños o perjuicios que pudieran causarse por su uso, ni por su reproducción total o parcial. Los enlaces que eventualmente contenga este documento, dirigen a las normas e instrumentos normativos vigentes para la fecha de su publicación.    Antes de su aplicación se sugiere verificar su vigencia  . (adsbygoogle = window.adsbygoogle || []).push({}); &#9758;    Visualiza la versión original publicada en la Gaceta Oficial de la República Bolivariana de Venezuela (adsbygoogle = window.adsbygoogle || []).push({}); &#128229; DESCARGAR publicación completa &#128229; DESCARGAR publicación individual &#128229; Transcripciones del Documento Instrucciones para la descarga &#191; Quieres recibir las Publicaciones Oficiales ?       &#128235; El servicio de envío de los archivos de las Publicaciones Oficiales (Gaceta Oficial de la República, Gaceta Judicial, Gaceta Legislativa y Gaceta Electoral), está reservado exclusivamente a los  Mecenas    de    Pandectas Digital   , quienes gracias a su contribución,   permiten que la visualización y consulta que estás haciendo de este documento sea de  acceso público, libre y totalmente gratuita . Te invitamos a que te conviertas tú también en  Mecenas  de este proyecto, y así podrás recibir en tu correo los archivos de las Publicaciones Oficiales que vayamos incorporando a nuestra compilación. Visítanos en  www.patreon.com/pandectasdigital  para obtener toda la información sobre ésta y otras de las ventajas de convertirte en   Mecenas  . (adsbygoogle = window.adsbygoogle || []).push({}); full-width"
+    }
+  ]
+}
