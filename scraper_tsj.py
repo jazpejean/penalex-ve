@@ -13,7 +13,6 @@ HISTORICO = "https://historico.tsj.gob.ve"
 
 PROGRESO = {'enviadas': 0, 'errores': 0}
 
-# LOGO: Reemplazo directo a nivel de bytes
 LOGO_R2 = b"https://pub-a6e0bfa2e9174e91b031ae28c0667009.r2.dev/assets/logo.jpg"
 LOGOS_TSJ = [
     b"http://historico.tsj.gov.ve/portal/admin/image002.jpg",
@@ -24,8 +23,6 @@ LOGOS_TSJ = [
     b"http://historico.tsj.gob.ve/portal/admin/image001.jpg",
     b"http://historico.tsj.gov.ve/graficos/encabezadotsj.jpg",
     b"http://historico.tsj.gob.ve/graficos/encabezadotsj.jpg",
-    b"https://historico.tsj.gov.ve/graficos/encabezadotsj.jpg",
-    b"https://historico.tsj.gob.ve/graficos/encabezadotsj.jpg",
 ]
 
 def reemplazar_logo_en_bytes(body: bytes) -> bytes:
@@ -39,12 +36,8 @@ def log(msg, tipo="INFO"):
 async def enviar_al_worker(url, body_bytes, sala, tipo):
     try:
         html_b64 = base64.b64encode(body_bytes).decode('ascii')
-        r = requests.post(
-            f"{WORKER_URL}/ingest",
-            headers={"x-token": INGEST_TOKEN},
-            json={"url": url, "html_b64": html_b64, "sala": sala, "tipo": tipo},
-            timeout=90
-        )
+        r = requests.post(f"{WORKER_URL}/ingest", headers={"x-token": INGEST_TOKEN},
+            json={"url": url, "html_b64": html_b64, "sala": sala, "tipo": tipo}, timeout=90)
         if r.status_code == 200:
             PROGRESO['enviadas'] += 1
             return True
@@ -54,9 +47,6 @@ async def enviar_al_worker(url, body_bytes, sala, tipo):
         log(f"Error worker: {e}", "ERROR")
     return False
 
-# ============================================================
-# FASE 1: SENTENCIAS (API Liferay con intercepción de red)
-# ============================================================
 async def scrape_sentencias(page, sala_id, anio_start, anio_end):
     nombre = "Sala Penal" if sala_id == "003" else "Sala Constitucional"
     log(f"🏛️  {nombre} ({sala_id}) - SENTENCIAS")
@@ -74,26 +64,83 @@ async def scrape_sentencias(page, sala_id, anio_start, anio_end):
     page.on("response", handle_response)
     total = 0
     
-    await page.goto(BASE_DECISIONES, wait_until="networkidle", timeout=90000)
-    await page.wait_for_timeout(3000)
+    # Navegar y esperar
+    log(f"  Cargando portal...")
+    await page.goto(BASE_DECISIONES, wait_until="networkidle", timeout=120000)
+    await page.wait_for_timeout(5000)
     
+    # Intentar seleccionar sala con múltiples estrategias
     sala_selector = 'li[id="5"]' if sala_id == '003' else 'li[id="1"]'
     try:
-        await page.click(sala_selector, timeout=10000)
-        await page.wait_for_timeout(2000)
+        # Estrategia 1: Click directo
+        await page.wait_for_selector(sala_selector, timeout=10000)
+        await page.click(sala_selector)
+        await page.wait_for_timeout(3000)
+        log(f"  ✅ Sala seleccionada (estrategia 1)")
     except:
-        log(f"  ⚠️ No se pudo seleccionar sala", "WARN")
+        try:
+            # Estrategia 2: Evaluar JavaScript
+            await page.evaluate(f'''() => {{
+                const el = document.querySelector('{sala_selector}');
+                if (el) el.click();
+            }}''')
+            await page.wait_for_timeout(3000)
+            log(f"  ✅ Sala seleccionada (estrategia 2 - JS)")
+        except Exception as e:
+            log(f"  ⚠️ No se pudo seleccionar sala: {e}", "WARN")
+            return 0
     
     for anio in range(anio_start, anio_end + 1):
         log(f"  📅 Año {anio}...")
         dias_data.clear(); sentencias_data.clear()
         
+        # Intentar seleccionar año con múltiples estrategias
         try:
-            await page.select_option("select[id*='anos'], select[id*='year']", str(anio))
+            # Esperar a que el select exista
+            await page.wait_for_selector("select", timeout=10000)
+            
+            # Intentar con diferentes selectores
+            selectores = [
+                f"select option[value='{anio}']",
+                f"select[id*='ano'] option[value='{anio}']",
+                f"select option:has-text('{anio}')"
+            ]
+            
+            seleccionado = False
+            for selector in selectores:
+                try:
+                    await page.wait_for_selector(selector, timeout=5000)
+                    await page.select_option("select", str(anio))
+                    seleccionado = True
+                    log(f"    ✅ Año seleccionado")
+                    break
+                except:
+                    continue
+            
+            if not seleccionado:
+                # Último intento: JavaScript directo
+                await page.evaluate(f'''() => {{
+                    const selects = document.querySelectorAll('select');
+                    for (let sel of selects) {{
+                        for (let opt of sel.options) {{
+                            if (opt.value === '{anio}') {{
+                                sel.value = '{anio}';
+                                sel.dispatchEvent(new Event('change'));
+                                return true;
+                            }}
+                        }}
+                    }}
+                    return false;
+                }}''')
+                log(f"    ✅ Año seleccionado (JS directo)")
+            
             await page.wait_for_timeout(5000)
+            
         except Exception as e:
-            log(f"    ⚠️ Error seleccionando año: {e}", "WARN"); continue
+            log(f"    ⚠️ Error seleccionando año: {e}", "WARN")
+            continue
         
+        # Procesar días capturados
         dias = []
         for d in dias_data:
             col = d.get("coleccion", {}).get("DIA", [])
@@ -101,7 +148,8 @@ async def scrape_sentencias(page, sala_id, anio_start, anio_end):
             dias.extend(col)
         
         if not dias:
-            log(f"    (sin días)"); continue
+            log(f"    (sin días)")
+            continue
         log(f"    {len(dias)} días encontrados")
         
         for dia_info in dias:
@@ -109,13 +157,21 @@ async def scrape_sentencias(page, sala_id, anio_start, anio_end):
             if not fecha: continue
             sentencias_data.clear()
             
+            # Click en el día
             try:
-                dia_elem = await page.query_selector(f'a:has-text("{fecha}")')
-                if dia_elem:
-                    await dia_elem.click()
-                    await page.wait_for_timeout(3000)
+                await page.evaluate(f'''() => {{
+                    const links = document.querySelectorAll('a');
+                    for (let link of links) {{
+                        if (link.textContent && link.textContent.includes("{fecha}")) {{
+                            link.click();
+                            return true;
+                        }}
+                    }}
+                }}''')
+                await page.wait_for_timeout(3000)
             except: pass
             
+            # Si no se capturó, intentar llamada directa
             if not sentencias_data:
                 try:
                     await page.evaluate(f'''() => {{
@@ -149,7 +205,7 @@ async def scrape_sentencias(page, sala_id, anio_start, anio_end):
                                 body_modificado = reemplazar_logo_en_bytes(body_bytes)
                                 if await enviar_al_worker(url, body_modificado, sala_id, 'sentencia'):
                                     total += 1
-                                    if total % 10 == 0: log(f"    ✓ {total} sentencias enviadas")
+                                    if total % 10 == 0: log(f"    ✓ {total} sentencias")
                         else: PROGRESO['errores'] += 1
                     except: PROGRESO['errores'] += 1
                     await asyncio.sleep(0.3)
@@ -158,26 +214,26 @@ async def scrape_sentencias(page, sala_id, anio_start, anio_end):
     log(f"  ✅ {nombre}: {total} sentencias", "SUCCESS")
     return total
 
-# ============================================================
-# FASE 2: JURISPRUDENCIAS
-# ============================================================
 async def scrape_jurisprudencias(page, sala_id, anio_start, anio_end):
     nombre = "Jurisprudencia Penal" if sala_id == "003" else "Jurisprudencia Constitucional"
     log(f"📚 {nombre} ({sala_id})")
-    await page.goto(BASE_JURISPRUDENCIAS, wait_until="networkidle", timeout=90000)
-    await page.wait_for_timeout(3000)
+    await page.goto(BASE_JURISPRUDENCIAS, wait_until="networkidle", timeout=120000)
+    await page.wait_for_timeout(5000)
     
     selector = 'li[id="5"]' if sala_id == '003' else 'li[id="1"]'
     try:
-        await page.click(selector, timeout=10000)
-        await page.wait_for_timeout(2000)
-    except: pass
+        await page.wait_for_selector(selector, timeout=10000)
+        await page.click(selector)
+        await page.wait_for_timeout(3000)
+    except:
+        log(f"  ⚠️ No se pudo seleccionar sala", "WARN")
+        return 0
     
     total = 0
     for anio in range(anio_start, anio_end + 1):
         log(f"  📅 Año {anio}...")
         try:
-            await page.select_option("select[name*='year'], select[id*='year']", str(anio), timeout=5000)
+            await page.select_option("select", str(anio), timeout=10000)
             await page.wait_for_timeout(3000)
         except: pass
         
@@ -208,19 +264,16 @@ async def scrape_jurisprudencias(page, sala_id, anio_start, anio_end):
     log(f"  ✅ {nombre}: {total}", "SUCCESS")
     return total
 
-# ============================================================
-# FASE 3: RESOLUCIONES
-# ============================================================
 async def scrape_resoluciones(page, anio_start, anio_end):
     log(f"📋 RESOLUCIONES - Rango {anio_start}-{anio_end}")
-    await page.goto(BASE_RESOLUCIONES, wait_until="networkidle", timeout=90000)
-    await page.wait_for_timeout(3000)
+    await page.goto(BASE_RESOLUCIONES, wait_until="networkidle", timeout=120000)
+    await page.wait_for_timeout(5000)
     
     total = 0
     for anio in range(anio_start, anio_end + 1):
-        log(f"  📅 Año {anio}...")
+        log(f"   Año {anio}...")
         try:
-            await page.select_option("#select_anos", str(anio))
+            await page.select_option("#select_anos", str(anio), timeout=10000)
             await page.wait_for_timeout(3000)
         except Exception as e:
             log(f"    ⚠️ Error: {e}", "WARN"); continue
@@ -232,7 +285,7 @@ async def scrape_resoluciones(page, anio_start, anio_end):
         
         for mes in meses:
             try:
-                await page.select_option("#select_meses", mes['value'])
+                await page.select_option("#select_meses", mes['value'], timeout=10000)
                 await page.wait_for_timeout(2000)
                 
                 resoluciones = await page.evaluate('''() => {
@@ -267,9 +320,6 @@ async def scrape_resoluciones(page, anio_start, anio_end):
     log(f"  ✅ Total resoluciones: {total}", "SUCCESS")
     return total
 
-# ============================================================
-# MAIN
-# ============================================================
 async def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--tipo', choices=['sentencias', 'jurisprudencias', 'resoluciones', 'todo'], default='todo')
@@ -279,7 +329,7 @@ async def main():
     args = parser.parse_args()
     
     log("="*70)
-    log("🚀 SCRAPER TSJ COMPLETO v3.1 - Reemplazo de logo en bytes")
+    log("🚀 SCRAPER TSJ v3.2 - Selectores robustos + timeouts extendidos")
     log("="*70)
     log(f"Tipo: {args.tipo} | Sala: {args.sala} | Rango: {args.anio_start}-{args.anio_end}")
     
