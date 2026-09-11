@@ -69,7 +69,7 @@ async def enviar_al_worker(url, body_bytes, sala, tipo):
     return False
 
 # ============================================================
-# FASE 1: SENTENCIAS (Lógica de cuadernos: #select_years + a.numero-dia)
+# FASE 1: SENTENCIAS
 # ============================================================
 async def scrape_sentencias(page, sala_id, anio_start, anio_end):
     nombre = "Sala Penal" if sala_id == "003" else "Sala Constitucional"
@@ -94,7 +94,6 @@ async def scrape_sentencias(page, sala_id, anio_start, anio_end):
         dias_data.clear()
         sentencias_data.clear()
         
-        # Navegar y seleccionar sala (lógica de cuadernos: a[href='#5'])
         await page.goto(BASE_DECISIONES, wait_until="domcontentloaded", timeout=60000)
         await page.wait_for_timeout(2000)
         
@@ -106,12 +105,11 @@ async def scrape_sentencias(page, sala_id, anio_start, anio_end):
             log(f"    ⚠️ No se pudo seleccionar sala: {e}", "WARN")
             continue
         
-        # Seleccionar año con #select_years (lógica de cuadernos)
         try:
             await page.select_option("#select_years", str(anio))
             await page.wait_for_timeout(3000)
         except Exception as e:
-            log(f"    ️ Error seleccionando año {anio}: {e}", "WARN")
+            log(f"    ⚠️ Error seleccionando año {anio}: {e}", "WARN")
             continue
         
         if not dias_data:
@@ -138,7 +136,6 @@ async def scrape_sentencias(page, sala_id, anio_start, anio_end):
             if (idx + 1) % 10 == 0:
                 log(f"    Progreso: {idx+1}/{len(dias)} días | {total} nuevas")
             
-            # Clic en el día usando a.numero-dia por índice (lógica de cuadernos)
             try:
                 dia_elements = await page.query_selector_all("a.numero-dia")
                 if idx < len(dia_elements):
