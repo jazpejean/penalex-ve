@@ -1,31 +1,53 @@
-name: Scrape TSJ (Híbrido)
+name: Scrape TSJ Completo
 
 on:
   workflow_dispatch:
     inputs:
-      sala:
-        description: 'Sala'
+      tipo:
+        description: 'Tipo de documentos'
         type: choice
-        options: [ambas, scon, scp]
-        default: ambas
-      anio:
-        description: 'Año (vacío = ventana reciente del año actual)'
+        options: [todo, sentencias, jurisprudencias, resoluciones]
+        default: todo
+      sala:
+        description: 'Sala (o "todas")'
         type: string
-        default: ''
+        default: 'todas'
+      anio_start:
+        description: 'Año inicio'
+        type: string
+        default: '2000'
+      anio_end:
+        description: 'Año fin'
+        type: string
+        default: '2026'
   schedule:
-    - cron: '30 4 * * *'   # diario: mantiene la base actualizada automáticamente
+    - cron: '30 4 * * *'
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    timeout-minutes: 360
     steps:
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install requests
-      - name: Scrapear y enviar al Worker
+      
+      - name: Install dependencies + Playwright
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests playwright
+          playwright install chromium
+          playwright install-deps chromium
+      
+      - name: Scrapear TSJ completo
         env:
           WORKER_URL: https://penalex-scraper.ignaciojazpe47.workers.dev
           INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
-        run: python scraper_tsj.py --sala "${{ inputs.sala || 'ambas' }}" --anio "${{ inputs.anio || '' }}"
+        run: |
+          python scraper_tsj.py \
+            --tipo "${{ inputs.tipo || 'todo' }}" \
+            --sala "${{ inputs.sala || 'todas' }}" \
+            --anio-start "${{ inputs.anio_start || '2000' }}" \
+            --anio-end "${{ inputs.anio_end || '2026' }}"
