@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Scraping TSJ con estructura Liferay correcta"""
 import os
+import sys
 import requests
 import urllib3
 import time
+import argparse
 from datetime import datetime
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -31,6 +33,11 @@ HEADERS = {
     "X-Requested-With": "XMLHttpRequest"
 }
 
+SALAS = {
+    'scon': ('Sala Constitucional', '005', 'scon'),
+    'scp': ('Sala Penal', '003', 'scp')
+}
+
 def obtener_dias(sala_code, anio):
     """Obtiene los días con sentencias usando la estructura Liferay correcta"""
     payload = {
@@ -43,6 +50,7 @@ def obtener_dias(sala_code, anio):
     
     try:
         resp = requests.get(BASE_URL, params=payload, headers=HEADERS, verify=False, timeout=30)
+        print(f"    Endpoint response: {resp.status_code}, length: {len(resp.text)}")
         if resp.status_code == 200:
             data = resp.json()
             dias = data.get("coleccion", {}).get("DIA", [])
@@ -109,6 +117,13 @@ def procesar_sala(sala_nombre, sala_code, sala_dir, anio):
     dias = obtener_dias(sala_code, anio)
     print(f"Días encontrados: {len(dias)}")
     
+    if len(dias) == 0:
+        print("⚠️  No se encontraron días. Posibles causas:")
+        print("   - Endpoint cambió o requiere autenticación")
+        print("   - Sala/año no tiene datos disponibles")
+        print("   - Firewall del TSJ bloqueando IPs de GitHub Actions")
+        return 0
+    
     total_enviadas = 0
     total_errores = 0
     
@@ -156,20 +171,30 @@ def procesar_sala(sala_nombre, sala_code, sala_dir, anio):
     return total_enviadas
 
 def main():
-    sala = os.environ.get('SALA', 'scon')
-    anio = int(os.environ.get('ANIO', datetime.now().year))
+    parser = argparse.ArgumentParser(description='Scraping TSJ con estructura Liferay')
+    parser.add_argument('--sala', type=str, default='scon', 
+                       choices=['scon', 'scp', 'ambas'],
+                       help='Sala a scrapear (scon, scp, o ambas)')
+    parser.add_argument('--anio', type=int, default=datetime.now().year,
+                       help='Año a scrapear')
     
-    SALAS = {
-        'scon': ('Sala Constitucional', '005', 'scon'),
-        'scp': ('Sala Penal', '003', 'scp')
-    }
+    args = parser.parse_args()
     
-    if sala not in SALAS:
-        print(f"Error: Sala '{sala}' no válida. Usa 'scon' o 'scp'")
-        return
+    print(f"🔧 Argumentos recibidos: sala={args.sala}, anio={args.anio}")
     
-    sala_nombre, sala_code, sala_dir = SALAS[sala]
-    procesar_sala(sala_nombre, sala_code, sala_dir, anio)
+    salas_a_procesar = []
+    if args.sala == 'ambas':
+        salas_a_procesar = [('Sala Constitucional', '005', 'scon'), 
+                           ('Sala Penal', '003', 'scp')]
+    else:
+        if args.sala in SALAS:
+            salas_a_procesar = [SALAS[args.sala]]
+        else:
+            print(f"Error: Sala '{args.sala}' no válida")
+            sys.exit(1)
+    
+    for sala_nombre, sala_code, sala_dir in salas_a_procesar:
+        procesar_sala(sala_nombre, sala_code, sala_dir, args.anio)
 
 if __name__ == "__main__":
     main()
