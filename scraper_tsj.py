@@ -12,22 +12,25 @@ BASE_RESOLUCIONES = "https://www.tsj.gob.ve/es/web/tsj/resoluciones"
 HISTORICO = "https://historico.tsj.gob.ve"
 
 PROGRESO_FILE = 'progreso.json'
-PROGRESO = {'enviadas': 0, 'errores': 0, 'urls_enviadas': set()}
+PROGRESO = {'enviadas': 0, 'errores': 0, 'urls_enviadas': []}
 
 if os.path.exists(PROGRESO_FILE):
-    with open(PROGRESO_FILE, 'r') as f:
-        data = json.load(f)
-        PROGRESO['urls_enviadas'] = set(data.get('urls_enviadas', []))
-        PROGRESO['enviadas'] = data.get('enviadas', 0)
-        PROGRESO['errores'] = data.get('errores', 0)
+    try:
+        with open(PROGRESO_FILE, 'r') as f:
+            data = json.load(f)
+            PROGRESO['urls_enviadas'] = data.get('urls_enviadas', [])
+            PROGRESO['enviadas'] = data.get('enviadas', 0)
+            PROGRESO['errores'] = data.get('errores', 0)
+    except:
+        pass
+
+URLS_SET = set(PROGRESO['urls_enviadas'])
 
 def guardar_progreso():
+    global PROGRESO
+    PROGRESO['urls_enviadas'] = list(URLS_SET)
     with open(PROGRESO_FILE, 'w') as f:
-        json.dump({
-            'urls_enviadas': list(PROGRESO['urls_enviadas']),
-            'enviadas': PROGRESO['enviadas'],
-            'errores': PROGRESO['errores']
-        }, f)
+        json.dump(PROGRESO, f)
 
 LOGO_R2 = b"https://pub-a6e0bfa2e9174e91b031ae28c0667009.r2.dev/assets/logo.jpg"
 LOGOS_TSJ = [
@@ -48,7 +51,7 @@ def log(msg, tipo="INFO"):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] [{tipo}] {msg}", flush=True)
 
 async def enviar_al_worker(url, body_bytes, sala, tipo):
-    if url in PROGRESO['urls_enviadas']:
+    if url in URLS_SET:
         return True
     try:
         html_b64 = base64.b64encode(body_bytes).decode('ascii')
@@ -56,7 +59,7 @@ async def enviar_al_worker(url, body_bytes, sala, tipo):
             json={"url": url, "html_b64": html_b64, "sala": sala, "tipo": tipo}, timeout=90)
         if r.status_code == 200:
             PROGRESO['enviadas'] += 1
-            PROGRESO['urls_enviadas'].add(url)
+            URLS_SET.add(url)
             if PROGRESO['enviadas'] % 10 == 0:
                 guardar_progreso()
             return True
@@ -65,64 +68,8 @@ async def enviar_al_worker(url, body_bytes, sala, tipo):
         PROGRESO['errores'] += 1
     return False
 
-async def seleccionar_sala_y_anio(page, sala_id, anio, base_url):
-    """Función centralizada para navegar, seleccionar sala y año de forma robusta"""
-    await page.goto(base_url, wait_until="networkidle", timeout=60000)
-    await page.wait_for_timeout(3000)
-    
-    sala_selector = 'li[id="5"]' if sala_id == '003' else 'li[id="1"]'
-    texto_sala = "Penal" if sala_id == '003' else "Constitucional"
-    
-    # Estrategia 1: Selector por ID
-    try:
-        await page.wait_for_selector(sala_selector, timeout=10000)
-        await page.click(sala_selector)
-        await page.wait_for_timeout(3000)
-    except:
-        # Estrategia 2: Por texto
-        try:
-            await page.wait_for_selector(f"text={texto_sala}", timeout=10000)
-            await page.click(f"text={texto_sala}")
-            await page.wait_for_timeout(3000)
-        except:
-            # Estrategia 3: JavaScript directo
-            await page.evaluate(f'''() => {{
-                const lis = document.querySelectorAll('li[id]');
-                for (let li of lis) {{
-                    if (li.id === "5" || li.id === "1") {{ li.click(); return; }}
-                }}
-                const elementos = document.querySelectorAll('*');
-                for (let el of elementos) {{
-                    if (el.textContent && el.textContent.includes("{'Penal' if sala_id == '003' else 'Constitucional'}")) {{
-                        el.click(); return;
-                    }}
-                }}
-            }}''')
-            await page.wait_for_timeout(3000)
-    
-    # Seleccionar año
-    try:
-        await page.wait_for_selector("select", timeout=10000)
-        await page.evaluate(f'''() => {{
-            const selects = document.querySelectorAll('select');
-            for (let sel of selects) {{
-                for (let opt of sel.options) {{
-                    if (opt.value === '{anio}') {{
-                        sel.value = '{anio}';
-                        sel.dispatchEvent(new Event('change'));
-                        return true;
-                    }}
-                }}
-            }}
-        }}''')
-        await page.wait_for_timeout(5000)
-        return True
-    except Exception as e:
-        log(f"    ⚠️ Error seleccionando año {anio}: {e}", "WARN")
-        return False
-
 # ============================================================
-# FASE 1: SENTENCIAS
+# FASE 1: SENTENCIAS (Lógica de cuadernos: #select_years + a.numero-dia)
 # ============================================================
 async def scrape_sentencias(page, sala_id, anio_start, anio_end):
     nombre = "Sala Penal" if sala_id == "003" else "Sala Constitucional"
@@ -134,7 +81,7 @@ async def scrape_sentencias(page, sala_id, anio_start, anio_end):
             if 'listDayByAnoSala' in response.url:
                 try: dias_data.append(await response.json())
                 except: pass
-            elif 'listDecisionByFechaSala' in response.url:
+            elif 'listDecisionByFechaSala' in response.url or 'listSentenciaByFecha' in response.url:
                 try: sentencias_data.append(await response.json())
                 except: pass
         except: pass
@@ -143,11 +90,32 @@ async def scrape_sentencias(page, sala_id, anio_start, anio_end):
     total = 0
     
     for anio in range(anio_start, anio_end + 1):
-        log(f"  📅 Año {anio}...")
+        log(f"   Año {anio}...")
         dias_data.clear()
         sentencias_data.clear()
         
-        if not await seleccionar_sala_y_anio(page, sala_id, anio, BASE_DECISIONES):
+        # Navegar y seleccionar sala (lógica de cuadernos: a[href='#5'])
+        await page.goto(BASE_DECISIONES, wait_until="domcontentloaded", timeout=60000)
+        await page.wait_for_timeout(2000)
+        
+        sala_selector = 'a[href="#5"]' if sala_id == '003' else 'a[href="#1"]'
+        try:
+            await page.click(sala_selector)
+            await page.wait_for_timeout(2000)
+        except Exception as e:
+            log(f"    ⚠️ No se pudo seleccionar sala: {e}", "WARN")
+            continue
+        
+        # Seleccionar año con #select_years (lógica de cuadernos)
+        try:
+            await page.select_option("#select_years", str(anio))
+            await page.wait_for_timeout(3000)
+        except Exception as e:
+            log(f"    ️ Error seleccionando año {anio}: {e}", "WARN")
+            continue
+        
+        if not dias_data:
+            log(f"    (sin datos)")
             continue
         
         dias = []
@@ -157,57 +125,48 @@ async def scrape_sentencias(page, sala_id, anio_start, anio_end):
             dias.extend(col)
         
         if not dias:
-            log(f"    (sin datos)")
+            log(f"    (sin días)")
             continue
         
-        log(f"    {len(dias)} días encontrados")
+        log(f"    [+] {len(dias)} días con sentencias")
         
-        for idx, dia_info in enumerate(dias, 1):
+        for idx, dia_info in enumerate(dias):
             fecha = dia_info.get("FECHA", "")
             if not fecha: continue
             
             sentencias_data.clear()
-            if idx % 10 == 0:
-                log(f"    Progreso: {idx}/{len(dias)} días | {total} nuevas")
+            if (idx + 1) % 10 == 0:
+                log(f"    Progreso: {idx+1}/{len(dias)} días | {total} nuevas")
             
+            # Clic en el día usando a.numero-dia por índice (lógica de cuadernos)
             try:
-                await page.evaluate(f'''() => {{
-                    const links = document.querySelectorAll('a');
-                    for (let link of links) {{
-                        if (link.textContent && link.textContent.includes("{fecha}")) {{
-                            link.click(); return;
-                        }}
-                    }}
-                }}''')
-                await page.wait_for_timeout(2000)
-            except: pass
+                dia_elements = await page.query_selector_all("a.numero-dia")
+                if idx < len(dia_elements):
+                    await dia_elements[idx].click()
+                    await page.wait_for_timeout(2500)
+                else:
+                    log(f"    [!] Día {idx} no encontrado", "WARN")
+                    continue
+            except Exception as e:
+                log(f"    [!] Error clic en día: {e}", "WARN")
+                continue
             
             if not sentencias_data:
-                try:
-                    await page.evaluate(f'''() => {{
-                        if (typeof getDataFromServer === 'function') {{
-                            getDataFromServer(function(data) {{ window.__captured_data = data; }}, {{
-                                url: "{BASE_DECISIONES}?p_p_id=displayListaDecision_WAR_NoticiasTsjPorlet612&p_p_lifecycle=2&p_p_state=normal&p_p_mode=view&p_p_cacheability=cacheLevelPage",
-                                server: {{ endpoint: "/services/WSDecision.HTTPEndpoint", method: "/listDecisionByFechaSala" }},
-                                params: {{ SALA: "{sala_id}", FECHA: "{fecha}" }}
-                            }});
-                        }}
-                    }}''')
-                    await page.wait_for_timeout(2000)
-                    captured = await page.evaluate('() => window.__captured_data || null')
-                    if captured: sentencias_data.append(captured)
-                except: pass
+                log(f"    [-] No se capturaron decisiones", "WARN")
+                continue
             
             for sd in sentencias_data:
                 sentencias = sd.get("coleccion", {}).get("SENTENCIA", [])
                 if isinstance(sentencias, dict): sentencias = [sentencias]
                 
                 for sent in sentencias:
-                    ssaladir, nombremes, doc_name = sent.get("SSALADIR", ""), sent.get("NOMBREMES", ""), sent.get("SSENTNOMBREDOC", "")
+                    ssaladir = sent.get("SSALADIR", "")
+                    nombremes = sent.get("NOMBREMES", "")
+                    doc_name = sent.get("SSENTNOMBREDOC", "")
                     if not all([ssaladir, nombremes, doc_name]): continue
                     
                     url = f"{HISTORICO}/decisiones/{ssaladir}/{nombremes}/{doc_name}"
-                    if url in PROGRESO['urls_enviadas']: continue
+                    if url in URLS_SET: continue
                     
                     try:
                         resp = await page.context.request.get(url, timeout=60000)
@@ -231,8 +190,22 @@ async def scrape_jurisprudencias(page, sala_id, anio_start, anio_end):
     total = 0
     
     for anio in range(anio_start, anio_end + 1):
-        log(f"  📅 Año {anio}...")
-        if not await seleccionar_sala_y_anio(page, sala_id, anio, BASE_JURISPRUDENCIAS):
+        log(f"   Año {anio}...")
+        
+        await page.goto(BASE_JURISPRUDENCIAS, wait_until="domcontentloaded", timeout=60000)
+        await page.wait_for_timeout(2000)
+        
+        sala_selector = 'a[href="#5"]' if sala_id == '003' else 'a[href="#1"]'
+        try:
+            await page.click(sala_selector)
+            await page.wait_for_timeout(2000)
+        except:
+            continue
+        
+        try:
+            await page.select_option("#select_years", str(anio))
+            await page.wait_for_timeout(3000)
+        except:
             continue
         
         enlaces = await page.evaluate('''() => {
@@ -247,13 +220,13 @@ async def scrape_jurisprudencias(page, sala_id, anio_start, anio_end):
             log(f"    (sin datos)")
             continue
         
-        log(f"    {len(enlaces)} jurisprudencias encontradas")
+        log(f"    [+] {len(enlaces)} jurisprudencias encontradas")
         
         for idx, url in enumerate(enlaces, 1):
             if idx % 20 == 0:
                 log(f"    Progreso: {idx}/{len(enlaces)} | {total} nuevas")
             
-            if url in PROGRESO['urls_enviadas']: continue
+            if url in URLS_SET: continue
             
             try:
                 resp = await page.context.request.get(url, timeout=60000)
@@ -272,8 +245,8 @@ async def scrape_jurisprudencias(page, sala_id, anio_start, anio_end):
 # FASE 3: RESOLUCIONES
 # ============================================================
 async def scrape_resoluciones(page, anio_start, anio_end):
-    log(f"📋 RESOLUCIONES - Rango {anio_start}-{anio_end}")
-    await page.goto(BASE_RESOLUCIONES, wait_until="networkidle", timeout=120000)
+    log(f" RESOLUCIONES - Rango {anio_start}-{anio_end}")
+    await page.goto(BASE_RESOLUCIONES, wait_until="domcontentloaded", timeout=120000)
     await page.wait_for_timeout(5000)
     
     total = 0
@@ -314,7 +287,7 @@ async def scrape_resoluciones(page, anio_start, anio_end):
                         log(f"      Progreso: {idx}/{len(resoluciones)}")
                     
                     if not url.startswith('http'): url = f"https://www.tsj.gob.ve{url}"
-                    if url in PROGRESO['urls_enviadas']: continue
+                    if url in URLS_SET: continue
                     
                     try:
                         resp = await page.context.request.get(url, timeout=60000)
@@ -344,10 +317,10 @@ async def main():
     args = parser.parse_args()
     
     log("="*70)
-    log("🚀 SCRAPER TSJ COMPLETO v3.7 - 3 Fases + Progreso Persistente")
+    log("🚀 SCRAPER TSJ v3.8 - Lógica de Cuadernos + Progreso Persistente")
     log("="*70)
     log(f"Tipo: {args.tipo} | Sala: {args.sala} | Rango: {args.anio_start}-{args.anio_end}")
-    log(f"URLs ya enviadas (se omitirán): {len(PROGRESO['urls_enviadas'])}")
+    log(f"URLs ya enviadas (se omitirán): {len(URLS_SET)}")
     
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
@@ -373,7 +346,7 @@ async def main():
     
     guardar_progreso()
     log("="*70)
-    log(f"🏁 FINALIZADO | Nuevas: {sum(totales.values())} | Total histórico enviado: {len(PROGRESO['urls_enviadas'])}", "SUCCESS")
+    log(f"🏁 FINALIZADO | Nuevas: {sum(totales.values())} | Total histórico enviado: {len(URLS_SET)}", "SUCCESS")
 
 if __name__ == "__main__":
     asyncio.run(main())
