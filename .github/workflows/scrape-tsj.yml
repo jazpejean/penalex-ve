@@ -9,7 +9,7 @@ on:
         options: [todo, sentencias, jurisprudencias, resoluciones]
         default: todo
       sala:
-        description: 'Sala (o "todas")'
+        description: 'Sala (003, 005, o todas)'
         type: string
         default: 'todas'
       anio_start:
@@ -20,13 +20,11 @@ on:
         description: 'Año fin'
         type: string
         default: '2026'
-  schedule:
-    - cron: '30 4 * * *'
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 360
+    timeout-minutes: 2160
     steps:
       - uses: actions/checkout@v4
       
