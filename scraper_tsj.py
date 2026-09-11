@@ -53,20 +53,20 @@ async def scrape_sentencias(page, sala_id, anio_start, anio_end):
     await page.goto(BASE_DECISIONES, wait_until="networkidle", timeout=90000)
     await page.wait_for_timeout(3000)
     
-    sala_selector = '#5' if sala_id == '003' else '#1'
+    # CORREGIDO: Usar selector de atributo [id="X"] en lugar de #X (inválido en CSS si empieza con número)
+    sala_selector = 'li[id="5"]' if sala_id == '003' else 'li[id="1"]'
     try:
-        await page.click(f'li[id="{sala_selector.lstrip("#")}"]', timeout=10000)
-        await page.wait_for_timeout(2000)
-    except:
         await page.click(sala_selector, timeout=10000)
         await page.wait_for_timeout(2000)
+    except:
+        log(f"  ⚠️ No se pudo seleccionar sala", "WARN")
     
     for anio in range(anio_start, anio_end + 1):
         log(f"  📅 Año {anio}...")
         dias_data.clear(); sentencias_data.clear()
         
         try:
-            await page.select_option("#select_anos, select[id*='year'], select[id*='anos']", str(anio))
+            await page.select_option("select[id*='anos'], select[id*='year']", str(anio))
             await page.wait_for_timeout(5000)
         except Exception as e:
             log(f"    ⚠️ Error seleccionando año: {e}", "WARN"); continue
@@ -141,7 +141,8 @@ async def scrape_jurisprudencias(page, sala_id, anio_start, anio_end):
     await page.goto(BASE_JURISPRUDENCIAS, wait_until="networkidle", timeout=90000)
     await page.wait_for_timeout(3000)
     
-    selector = '#5' if sala_id == '003' else '#1'
+    # CORREGIDO: Selector de atributo
+    selector = 'li[id="5"]' if sala_id == '003' else 'li[id="1"]'
     try:
         await page.click(selector, timeout=10000)
         await page.wait_for_timeout(2000)
@@ -151,7 +152,7 @@ async def scrape_jurisprudencias(page, sala_id, anio_start, anio_end):
     for anio in range(anio_start, anio_end + 1):
         log(f"  📅 Año {anio}...")
         try:
-            await page.select_option("select[name*='year'], #select_years_juris", str(anio), timeout=5000)
+            await page.select_option("select[name*='year'], select[id*='year']", str(anio), timeout=5000)
             await page.wait_for_timeout(3000)
         except: pass
         
