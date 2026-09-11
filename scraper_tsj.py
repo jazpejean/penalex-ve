@@ -1,90 +1,175 @@
 #!/usr/bin/env python3
-"""Scraping híbrido TSJ: GitHub Actions descarga el HTML, el Worker penalex-scraper procesa."""
-import os, time, argparse
+"""Scraping TSJ con estructura Liferay correcta"""
+import os
+import requests
+import urllib3
+import time
 from datetime import datetime
-import requests, urllib3
-urllib3.disable_warnings()
 
-BASE   = 'https://historico.tsj.gob.ve/decisiones'
-MESES  = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre']
-WORKER = os.environ['WORKER_URL']
-TOKEN  = os.environ['INGEST_TOKEN']
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-S = requests.Session()
-S.verify = False
-S.headers.update({'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36'})
+WORKER_URL = os.environ['WORKER_URL']
+INGEST_TOKEN = os.environ['INGEST_TOKEN']
 
-def get(url, tries=3):
-    for i in range(tries):
-        try:
-            r = S.get(url, timeout=45)
-            if r.status_code == 200: return r
-            if r.status_code == 404: return None
-        except Exception as e:
-            print(f'   retry {i+1} {url} -> {e}', flush=True)
-            time.sleep(2*(i+1))
-    return None
+BASE_URL = "https://www.tsj.gob.ve/es/decisiones"
 
-def dias_del_anio(sala, anio):
-    r = get(f'{BASE}/listDayByAnoSala?ano={anio}&ssaladir={sala}')
-    if not r: return []
-    try: j = r.json()
-    except Exception: return []
-    return j.get('dias') or (j.get('coleccion') or {}).get('DIA') or []
+PORTLET_PARAMS = {
+    "p_p_id": "displayListaDecision_WAR_NoticiasTsjPorlet612",
+    "p_p_lifecycle": "2",
+    "p_p_state": "normal",
+    "p_p_mode": "view",
+    "p_p_cacheability": "cacheLevelPage",
+    "p_p_col_id": "column-1",
+    "p_p_col_pos": "1",
+    "p_p_col_count": "2"
+}
 
-def decisiones(sala, fecha):
-    for ep in ('listDecisionByFechaSala', 'listSentenciaByFecha'):
-        r = get(f'{BASE}/{ep}?fecha={fecha}&ssaladir={sala}')
-        if not r: continue
-        try: j = r.json()
-        except Exception: continue
-        decs = ((j.get('decisiones') or {}).get('coleccion') or {}).get('SENTENCIA') \
-            or (j.get('coleccion') or {}).get('SENTENCIA') or []
-        if decs: return decs
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "Referer": "https://www.tsj.gob.ve/",
+    "Accept": "application/json, text/javascript, */*; q=0.01",
+    "X-Requested-With": "XMLHttpRequest"
+}
+
+def obtener_dias(sala_code, anio):
+    """Obtiene los días con sentencias usando la estructura Liferay correcta"""
+    payload = {
+        **PORTLET_PARAMS,
+        "endpoint": "/services/WSDecision.HTTPEndpoint",
+        "method": "/listDayByAnoSala",
+        "SALA": sala_code,
+        "ANO": str(anio)
+    }
+    
+    try:
+        resp = requests.get(BASE_URL, params=payload, headers=HEADERS, verify=False, timeout=30)
+        if resp.status_code == 200:
+            data = resp.json()
+            dias = data.get("coleccion", {}).get("DIA", [])
+            if isinstance(dias, dict):
+                dias = [dias]
+            return dias
+    except Exception as e:
+        print(f"  Error obteniendo días {sala_code}/{anio}: {e}")
     return []
 
-def url_de(sala, fecha, d):
-    u = d.get('url') or d.get('SSENTURL')
-    if u: return u if u.startswith('http') else f'https://historico.tsj.gob.ve{u}'
-    doc = d.get('SSENTNOMBREDOC')
-    if not doc: return None
-    try: mes = MESES[int(fecha.split('/')[1]) - 1]
-    except Exception: return None
-    return f'{BASE}/{sala}/{mes}/{doc}'
-
-def enviar(url, html, sala):
+def obtener_decisiones(sala_code, fecha):
+    """Obtiene las decisiones de un día específico"""
+    payload = {
+        **PORTLET_PARAMS,
+        "endpoint": "/services/WSDecision.HTTPEndpoint",
+        "method": "/listDecisionByFechaSala",
+        "SALA": sala_code,
+        "FECHA": fecha
+    }
+    
     try:
-        r = requests.post(f'{WORKER}/ingest', headers={'x-token': TOKEN},
-                          json={'url': url, 'html': html, 'sala': sala}, timeout=90)
-        return r.ok
+        resp = requests.get(BASE_URL, params=payload, headers=HEADERS, verify=False, timeout=30)
+        if resp.status_code == 200:
+            data = resp.json()
+            sentencias = data.get("coleccion", {}).get("SENTENCIA", [])
+            if isinstance(sentencias, dict):
+                sentencias = [sentencias]
+            return sentencias
     except Exception as e:
-        print(f'   ingest fail {url} -> {e}', flush=True)
-        return False
+        print(f"  Error obteniendo decisiones {fecha}: {e}")
+    return []
 
-def procesar(sala, anio, solo_dias=None):
-    dias = dias_del_anio(sala, anio)
-    if solo_dias: dias = dias[-solo_dias:]
-    ok = err = 0
-    print(f'-> {sala}/{anio}: {len(dias)} dias con decisiones', flush=True)
-    for fecha in dias:
-        for d in decisiones(sala, fecha):
-            u = url_de(sala, fecha, d)
-            if not u: err += 1; continue
-            r = get(u)
-            if not r: err += 1; continue
-            if enviar(u, r.text, sala): ok += 1
-            else: err += 1
-            time.sleep(0.7)   # cortesia con el servidor del TSJ
-        print(f'   {fecha}: ok={ok} err={err}', flush=True)
-    print(f'FIN {sala}/{anio}: ok={ok} err={err}', flush=True)
+def descargar_html(ssaladir, nombremes, doc_name):
+    """Descarga el HTML de una sentencia"""
+    url = f"https://historico.tsj.gob.ve/decisiones/{ssaladir}/{nombremes}/{doc_name}"
+    try:
+        resp = requests.get(url, verify=False, timeout=30)
+        if resp.status_code == 200 and len(resp.content) > 500:
+            return resp.text
+    except Exception as e:
+        print(f"  Error descargando {url}: {e}")
+    return None
 
-if __name__ == '__main__':
-    p = argparse.ArgumentParser()
-    p.add_argument('--sala', default='ambas')
-    p.add_argument('--anio', default='')
-    p.add_argument('--dias-recientes', type=int, default=45)
-    a = p.parse_args()
-    salas = ['scon','scp'] if a.sala in ('','ambas') else [a.sala]
-    anio  = int(a.anio) if a.anio else datetime.now().year
-    for sala in salas:
-        procesar(sala, anio, None if a.anio else a.dias_recientes)
+def enviar_al_worker(url, html, sala):
+    """Envía el HTML al Worker de Cloudflare"""
+    try:
+        resp = requests.post(
+            f"{WORKER_URL}/ingest",
+            headers={"x-token": INGEST_TOKEN},
+            json={"url": url, "html": html, "sala": sala},
+            timeout=60
+        )
+        return resp.status_code == 200
+    except Exception as e:
+        print(f"  Error enviando al worker: {e}")
+    return False
+
+def procesar_sala(sala_nombre, sala_code, sala_dir, anio):
+    """Procesa una sala completa para un año"""
+    print(f"\n{'='*60}")
+    print(f"Procesando: {sala_nombre} ({sala_code}) - Año {anio}")
+    print(f"{'='*60}")
+    
+    dias = obtener_dias(sala_code, anio)
+    print(f"Días encontrados: {len(dias)}")
+    
+    total_enviadas = 0
+    total_errores = 0
+    
+    for i, dia_info in enumerate(dias, 1):
+        fecha = dia_info.get("FECHA", "")
+        if not fecha:
+            continue
+        
+        print(f"\n[{i}/{len(dias)}] Fecha: {fecha}")
+        
+        decisiones = obtener_decisiones(sala_code, fecha)
+        print(f"  Decisiones: {len(decisiones)}")
+        
+        for decision in decisiones:
+            ssaladir = decision.get("SSALADIR", "")
+            nombremes = decision.get("NOMBREMES", "")
+            doc_name = decision.get("SSENTNOMBREDOC", "")
+            
+            if not all([ssaladir, nombremes, doc_name]):
+                total_errores += 1
+                continue
+            
+            url = f"https://historico.tsj.gob.ve/decisiones/{ssaladir}/{nombremes}/{doc_name}"
+            html = descargar_html(ssaladir, nombremes, doc_name)
+            
+            if html:
+                if enviar_al_worker(url, html, sala_dir):
+                    total_enviadas += 1
+                    print(f"    ✓ {doc_name}")
+                else:
+                    total_errores += 1
+                    print(f"    ✗ Error enviando {doc_name}")
+            else:
+                total_errores += 1
+                print(f"    ✗ Error descargando {doc_name}")
+            
+            time.sleep(0.5)
+    
+    print(f"\n{'='*60}")
+    print(f"Resumen {sala_nombre} {anio}:")
+    print(f"  Enviadas: {total_enviadas}")
+    print(f"  Errores: {total_errores}")
+    print(f"{'='*60}\n")
+    
+    return total_enviadas
+
+def main():
+    sala = os.environ.get('SALA', 'scon')
+    anio = int(os.environ.get('ANIO', datetime.now().year))
+    
+    SALAS = {
+        'scon': ('Sala Constitucional', '005', 'scon'),
+        'scp': ('Sala Penal', '003', 'scp')
+    }
+    
+    if sala not in SALAS:
+        print(f"Error: Sala '{sala}' no válida. Usa 'scon' o 'scp'")
+        return
+    
+    sala_nombre, sala_code, sala_dir = SALAS[sala]
+    procesar_sala(sala_nombre, sala_code, sala_dir, anio)
+
+if __name__ == "__main__":
+    main()
