@@ -1,44 +1,32 @@
 #!/usr/bin/env python3
 """
-SCRAPER TSJ COMPLETO - Todo en uno
-Scrapea sentencias + jurisprudencias + resoluciones de todas las salas
-Enriquece con IA y guarda en Supabase + R2
+SCRAPER TSJ COMPLETO - Todo en un solo script
+Scrapea: sentencias + jurisprudencias + resoluciones de todas las salas
 """
-import os, sys, json, time, asyncio, argparse, requests, hashlib
+import os, sys, json, time, asyncio, argparse, requests
 from playwright.async_api import async_playwright
 from datetime import datetime
-from typing import Dict, List, Optional
 
 # ============================================================
 # CONFIGURACIÓN
 # ============================================================
-WORKER_URL = os.environ['WORKER_URL']
-INGEST_TOKEN = os.environ['INGEST_TOKEN']
-CF_AI_TOKEN = os.environ.get('CF_AI_TOKEN', '')  # Para enriquecimiento con IA
+WORKER_URL = os.environ.get('WORKER_URL', 'https://penalex-scraper.ignaciojazpe47.workers.dev')
+INGEST_TOKEN = os.environ.get('INGEST_TOKEN', '37c112d5ce886b13f394610f49aed5de')
 
 BASE_DECISIONES = "https://www.tsj.gob.ve/es/decisiones"
 BASE_JURISPRUDENCIAS = "https://www.tsj.gob.ve/es/juriprudencias"
 BASE_RESOLUCIONES = "https://www.tsj.gob.ve/es/web/tsj/resoluciones"
 HISTORICO = "https://historico.tsj.gob.ve"
 
-# Salas para sentencias y jurisprudencias
+# Salas principales (sentencias + jurisprudencias)
 SALAS_PRINCIPALES = {
     '003': {'nombre': 'Sala de Casación Penal', 'liferay': '5', 'dir': 'scp'},
     '005': {'nombre': 'Sala Constitucional', 'liferay': '1', 'dir': 'scon'},
 }
 
-# Salas para resoluciones
-SALAS_RESOLUCIONES = {
-    'tplen': {'nombre': 'Sala Plena', 'selector': '#0', 'dir': 'tplen'},
-    'jscon': {'nombre': 'Sustanciación Constitucional', 'selector': '#14', 'dir': 'jscon'},
-    'scc': {'nombre': 'Sala de Casación Civil', 'selector': '#2', 'dir': 'scc'},
-    'scs': {'nombre': 'Sala de Casación Social', 'selector': '#4', 'dir': 'scs'},
-    'selec': {'nombre': 'Sala Electoral', 'selector': '#3', 'dir': 'selec'},
-    'spa': {'nombre': 'Sala Político-Administrativa', 'selector': '#2', 'dir': 'spa'},
-}
-
-# Estado global para progreso
+# Estado global
 PROGRESO = {'enviadas': 0, 'errores': 0, 'saltadas': 0}
+ARCHIVO_PROGRESO = 'progreso_scraping.json'
 
 # ============================================================
 # UTILIDADES
@@ -46,6 +34,23 @@ PROGRESO = {'enviadas': 0, 'errores': 0, 'saltadas': 0}
 def log(msg: str, tipo: str = "INFO"):
     timestamp = datetime.now().strftime("%H:%M:%S")
     print(f"[{timestamp}] [{tipo}] {msg}", flush=True)
+
+def guardar_progreso():
+    try:
+        with open(ARCHIVO_PROGRESO, 'w') as f:
+            json.dump(PROGRESO, f)
+    except:
+        pass
+
+def cargar_progreso():
+    global PROGRESO
+    try:
+        if os.path.exists(ARCHIVO_PROGRESO):
+            with open(ARCHIVO_PROGRESO, 'r') as f:
+                PROGRESO = json.load(f)
+            log(f"Progreso cargado: {PROGRESO['enviadas']} enviadas")
+    except:
+        PROGRESO = {'enviadas': 0, 'errores': 0, 'saltadas': 0}
 
 async def enviar_al_worker(url: str, html: str, sala: str, tipo: str) -> bool:
     """Envía HTML al Worker para curado y almacenamiento"""
@@ -58,39 +63,62 @@ async def enviar_al_worker(url: str, html: str, sala: str, tipo: str) -> bool:
         )
         if resp.status_code == 200:
             PROGRESO['enviadas'] += 1
+            if PROGRESO['enviadas'] % 10 == 0:
+                guardar_progreso()
             return True
         else:
             PROGRESO['errores'] += 1
-            log(f"Worker error {resp.status_code}: {url}", "ERROR")
+            log(f"Worker error {resp.status_code}", "WARN")
     except Exception as e:
         PROGRESO['errores'] += 1
-        log(f"Error enviando {url}: {e}", "ERROR")
+        log(f"Error worker: {e}", "ERROR")
     return False
 
-async def descargar_html(page, url: str) -> Optional[str]:
-    """Descarga HTML usando la sesión de Playwright"""
+async def fetch_dentro_del_navegador(page, url: str):
+    """Hace fetch() DENTRO del navegador (con cookies JSESSIONID)"""
     try:
-        resp = await page.context.request.get(url, timeout=60000)
-        if resp.ok and len(resp.body()) > 500:
-            return await resp.text()
+        result = await page.evaluate('''async (url) => {
+            try {
+                const resp = await fetch(url, {
+                    credentials: 'include',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json, text/javascript, */*; q=0.01'
+                    }
+                });
+                if (!resp.ok) return { error: resp.status };
+                const text = await resp.text();
+                try {
+                    return { data: JSON.parse(text) };
+                } catch {
+                    return { error: 'no_json', body: text.slice(0, 200) };
+                }
+            } catch (e) {
+                return { error: e.message };
+            }
+        }''', url)
+        return result
     except Exception as e:
-        log(f"Error descargando {url}: {e}", "WARN")
-    return None
+        return {"error": str(e)}
 
 # ============================================================
-# FASE 1: SENTENCIAS (Liferay API con cookies)
+# FASE 1: SENTENCIAS (API Liferay con cookies)
 # ============================================================
-async def scrape_sentencias(page, sala_id: str, config: Dict, anio_start: int, anio_end: int):
-    log(f"🏛️  {config['nombre']} ({sala_id}) - Sentencias")
+async def scrape_sentencias(page, sala_id: str, config: dict, anio_start: int, anio_end: int):
+    log(f"🏛️  {config['nombre']} ({sala_id}) - SENTENCIAS")
     
-    # Inicializar sesión con cookies
+    # Inicializar sesión
     await page.goto(BASE_DECISIONES, wait_until="domcontentloaded", timeout=60000)
-    await page.wait_for_timeout(2000)
+    await page.wait_for_timeout(3000)
     
     # Inicializar portlet Liferay
     init_url = f"{BASE_DECISIONES}?p_p_id=senderSentencias_WAR_NoticiasTsjPorlet612&p_p_lifecycle=2&p_p_state=normal&p_p_mode=view&endpoint=/services/WSDecision.HTTPEndpoint&method=/listSala"
     await page.goto(init_url, timeout=30000)
-    await page.wait_for_timeout(1500)
+    await page.wait_for_timeout(2000)
+    
+    # Volver a la página principal
+    await page.goto(BASE_DECISIONES, wait_until="domcontentloaded", timeout=60000)
+    await page.wait_for_timeout(2000)
     
     total = 0
     
@@ -100,19 +128,16 @@ async def scrape_sentencias(page, sala_id: str, config: Dict, anio_start: int, a
         # Obtener días con sentencias
         dias_url = f"{BASE_DECISIONES}?p_p_id=displaySentencias_WAR_NoticiasTsjPorlet612&p_p_lifecycle=2&p_p_state=normal&p_p_mode=view&endpoint=/services/WSDecision.HTTPEndpoint&method=/listDayByAnoSala&SALA={config['liferay']}&ANO={anio}"
         
-        resp = await page.context.request.get(dias_url, timeout=30000)
-        if not resp.ok:
-            log(f"    ❌ Error {resp.status}", "WARN")
+        result = await fetch_dentro_del_navegador(page, dias_url)
+        
+        if "error" in result:
+            log(f"    ❌ Error: {result['error']}", "WARN")
             continue
         
-        try:
-            data = await resp.json()
-            dias = data.get("coleccion", {}).get("DIA", [])
-            if isinstance(dias, dict):
-                dias = [dias]
-        except:
-            log(f"    ❌ Respuesta no JSON", "WARN")
-            continue
+        data = result.get("data", {})
+        dias = data.get("coleccion", {}).get("DIA", [])
+        if isinstance(dias, dict):
+            dias = [dias]
         
         if not dias:
             log(f"    (sin datos)")
@@ -128,14 +153,11 @@ async def scrape_sentencias(page, sala_id: str, config: Dict, anio_start: int, a
             # Obtener decisiones del día
             dec_url = f"{BASE_DECISIONES}?p_p_id=displayListaDecision_WAR_NoticiasTsjPorlet612&p_p_lifecycle=2&p_p_state=normal&p_p_mode=view&endpoint=/services/WSDecision.HTTPEndpoint&method=/listDecisionByFechaSala&SALA={config['liferay']}&FECHA={fecha}"
             
-            try:
-                resp2 = await page.context.request.get(dec_url, timeout=30000)
-                if not resp2.ok:
-                    continue
-                data2 = await resp2.json()
-            except:
+            result2 = await fetch_dentro_del_navegador(page, dec_url)
+            if "error" in result2:
                 continue
             
+            data2 = result2.get("data", {})
             sentencias = data2.get("coleccion", {}).get("SENTENCIA", [])
             if isinstance(sentencias, dict):
                 sentencias = [sentencias]
@@ -150,10 +172,20 @@ async def scrape_sentencias(page, sala_id: str, config: Dict, anio_start: int, a
                     continue
                 
                 url = f"{HISTORICO}/decisiones/{ssaladir}/{nombremes}/{doc_name}"
-                html = await descargar_html(page, url)
                 
-                if html:
-                    if await enviar_al_worker(url, html, config['dir'], 'sentencia'):
+                # Descargar HTML dentro del navegador
+                html_result = await page.evaluate('''async (url) => {
+                    try {
+                        const resp = await fetch(url, { credentials: 'include' });
+                        if (!resp.ok) return null;
+                        return await resp.text();
+                    } catch {
+                        return null;
+                    }
+                }''', url)
+                
+                if html_result and len(html_result) > 500:
+                    if await enviar_al_worker(url, html_result, config['dir'], 'sentencia'):
                         total += 1
                         if total % 10 == 0:
                             log(f"    ✓ {total} sentencias enviadas")
@@ -166,10 +198,10 @@ async def scrape_sentencias(page, sala_id: str, config: Dict, anio_start: int, a
     return total
 
 # ============================================================
-# FASE 2: JURISPRUDENCIAS (HTML con Playwright)
+# FASE 2: JURISPRUDENCIAS
 # ============================================================
-async def scrape_jurisprudencias(page, sala_id: str, config: Dict, anio_start: int, anio_end: int):
-    log(f"📚 {config['nombre']} ({sala_id}) - Jurisprudencias")
+async def scrape_jurisprudencias(page, sala_id: str, config: dict, anio_start: int, anio_end: int):
+    log(f"📚 {config['nombre']} ({sala_id}) - JURISPRUDENCIAS")
     
     await page.goto(BASE_JURISPRUDENCIAS, wait_until="domcontentloaded", timeout=60000)
     await page.wait_for_timeout(2000)
@@ -187,7 +219,6 @@ async def scrape_jurisprudencias(page, sala_id: str, config: Dict, anio_start: i
     for anio in range(anio_start, anio_end + 1):
         log(f"  📅 Año {anio}...")
         
-        # Intentar seleccionar año
         try:
             await page.select_option("select[name*='year'], #select_years_juris", str(anio), timeout=5000)
             await page.wait_for_timeout(3000)
@@ -212,9 +243,18 @@ async def scrape_jurisprudencias(page, sala_id: str, config: Dict, anio_start: i
         log(f"    {len(enlaces)} jurisprudencias")
         
         for url in enlaces:
-            html = await descargar_html(page, url)
-            if html:
-                if await enviar_al_worker(url, html, config['dir'], 'jurisprudencia'):
+            html_result = await page.evaluate('''async (url) => {
+                try {
+                    const resp = await fetch(url, { credentials: 'include' });
+                    if (!resp.ok) return null;
+                    return await resp.text();
+                } catch {
+                    return null;
+                }
+            }''', url)
+            
+            if html_result and len(html_result) > 500:
+                if await enviar_al_worker(url, html_result, config['dir'], 'jurisprudencia'):
                     total += 1
             else:
                 PROGRESO['errores'] += 1
@@ -225,66 +265,94 @@ async def scrape_jurisprudencias(page, sala_id: str, config: Dict, anio_start: i
     return total
 
 # ============================================================
-# FASE 3: RESOLUCIONES (HTML estático con showPopUpIFrame)
+# FASE 3: RESOLUCIONES (estructura año/mes, no por sala)
 # ============================================================
-async def scrape_resoluciones(page, sala_id: str, config: Dict, anio_start: int, anio_end: int):
-    log(f"📋 {config['nombre']} ({sala_id}) - Resoluciones")
+async def scrape_resoluciones(page, anio_start: int, anio_end: int):
+    log(f"📋 RESOLUCIONES - Rango {anio_start}-{anio_end}")
     
     await page.goto(BASE_RESOLUCIONES, wait_until="domcontentloaded", timeout=60000)
     await page.wait_for_timeout(2000)
-    
-    # Click en pestaña de sala
-    try:
-        await page.click(config['selector'], timeout=10000)
-        await page.wait_for_timeout(2000)
-    except:
-        log(f"  ⚠️ Sala no disponible: {config['selector']}", "WARN")
-        return 0
     
     total = 0
     
     for anio in range(anio_start, anio_end + 1):
         log(f"  📅 Año {anio}...")
         
-        url_anio = f"{BASE_RESOLUCIONES}/{anio}"
         try:
-            await page.goto(url_anio, wait_until="domcontentloaded", timeout=30000)
-            await page.wait_for_timeout(2000)
+            await page.select_option("#select_anos", str(anio))
+            await page.wait_for_timeout(2500)
         except:
-            log(f"    ❌ No existe página", "WARN")
+            log(f"    ❌ Error seleccionando año", "WARN")
             continue
         
-        # Extraer resoluciones
-        resoluciones = await page.evaluate('''() => {
-            const items = [];
-            document.querySelectorAll('.resumen-boleta, [onclick*="showPopUp"]').forEach(el => {
-                const onclick = el.getAttribute('onclick') || '';
-                const match = onclick.match(/showPopUpIFrame\\('([^']+)',/);
-                if (match) items.push(match[1]);
-            });
-            return [...new Set(items)];
+        # Obtener meses disponibles
+        meses = await page.evaluate('''() => {
+            const opciones = Array.from(document.querySelectorAll('#select_meses option'));
+            return opciones.map(o => ({value: o.value, text: o.textContent.trim()}));
         }''')
         
-        if not resoluciones:
-            log(f"    (sin datos)")
+        if not meses:
+            log(f"    (sin meses)")
             continue
         
-        log(f"    {len(resoluciones)} resoluciones")
-        
-        for url in resoluciones:
-            if not url.startswith('http'):
-                url = f"https://www.tsj.gob.ve{url}"
+        for mes in meses:
+            try:
+                await page.select_option("#select_meses", mes['value'])
+                await page.wait_for_timeout(2000)
+                
+                # Extraer resoluciones del mes
+                resoluciones = await page.evaluate('''() => {
+                    const items = [];
+                    document.querySelectorAll('[onclick*="showPopUpIFrame"]').forEach(el => {
+                        const onclick = el.getAttribute('onclick') || '';
+                        const match = onclick.match(/showPopUpIFrame\\('([^']+)',/);
+                        if (match) {
+                            const texto = el.innerText || '';
+                            const numMatch = texto.match(/Resolución N°\\s*:\\s*([^\\n]+)/);
+                            const fechaMatch = texto.match(/Fecha:\\s*([^\\n]+)/);
+                            items.push({
+                                url: match[1],
+                                num: numMatch ? numMatch[1].trim() : '',
+                                fecha: fechaMatch ? fechaMatch[1].trim() : '',
+                                descripcion: texto
+                            });
+                        }
+                    });
+                    return items;
+                }''')
+                
+                if not resoluciones:
+                    continue
+                
+                log(f"    {mes['text']}: {len(resoluciones)} resoluciones")
+                
+                for res in resoluciones:
+                    url = res['url']
+                    if not url.startswith('http'):
+                        url = f"https://www.tsj.gob.ve{url}"
+                    
+                    # Descargar HTML
+                    html_result = await page.evaluate('''async (url) => {
+                        try {
+                            const resp = await fetch(url, { credentials: 'include' });
+                            if (!resp.ok) return null;
+                            return await resp.text();
+                        } catch {
+                            return null;
+                        }
+                    }''', url)
+                    
+                    if html_result and len(html_result) > 500:
+                        if await enviar_al_worker(url, html_result, 'resoluciones', 'resolucion'):
+                            total += 1
+                    
+                    await asyncio.sleep(0.3)
             
-            html = await descargar_html(page, url)
-            if html:
-                if await enviar_al_worker(url, html, config['dir'], 'resolucion'):
-                    total += 1
-            else:
-                PROGRESO['errores'] += 1
-            
-            await asyncio.sleep(0.3)
+            except Exception as e:
+                log(f"    ⚠️ Error en mes {mes['text']}: {e}", "WARN")
+                continue
     
-    log(f"  ✅ {config['nombre']}: {total} resoluciones", "SUCCESS")
+    log(f"  ✅ Total resoluciones: {total}", "SUCCESS")
     return total
 
 # ============================================================
@@ -300,13 +368,15 @@ async def main():
     args = parser.parse_args()
     
     log("="*70)
-    log("🚀 SCRAPER TSJ COMPLETO")
+    log("🚀 SCRAPER TSJ COMPLETO - TODO EN UNO")
     log("="*70)
     log(f"Tipo: {args.tipo}")
     log(f"Sala: {args.sala}")
     log(f"Rango: {args.anio_start} - {args.anio_end}")
     log(f"Worker: {WORKER_URL}")
     log("="*70)
+    
+    cargar_progreso()
     
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
@@ -336,11 +406,8 @@ async def main():
         
         # FASE 3: RESOLUCIONES
         if args.tipo in ('resoluciones', 'todo'):
-            for sala_id, config in SALAS_RESOLUCIONES.items():
-                if args.sala != 'todas' and args.sala != sala_id:
-                    continue
-                n = await scrape_resoluciones(page, sala_id, config, args.anio_start, args.anio_end)
-                totales['resoluciones'] += n
+            n = await scrape_resoluciones(page, args.anio_start, args.anio_end)
+            totales['resoluciones'] += n
         
         await browser.close()
     
@@ -354,6 +421,9 @@ async def main():
     log(f"✅ Enviadas:        {PROGRESO['enviadas']}")
     log(f"❌ Errores:         {PROGRESO['errores']}")
     log("="*70)
+    
+    if os.path.exists(ARCHIVO_PROGRESO):
+        os.remove(ARCHIVO_PROGRESO)
 
 if __name__ == "__main__":
     asyncio.run(main())
