@@ -1,17 +1,8 @@
-name: Scrape TSJ Completo
+name: Scrape TSJ
 
 on:
   workflow_dispatch:
     inputs:
-      tipo:
-        description: 'Tipo de documentos'
-        type: choice
-        options: [todo, sentencias, jurisprudencias, resoluciones]
-        default: todo
-      sala:
-        description: 'Sala (003, 005, o todas)'
-        type: string
-        default: 'todas'
       anio_start:
         description: 'Año inicio'
         type: string
@@ -20,6 +11,8 @@ on:
         description: 'Año fin'
         type: string
         default: '2026'
+  schedule:
+    - cron: '0 4 * * *'
 
 jobs:
   scrape:
@@ -28,24 +21,40 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
+      - name: Restaurar progreso
+        uses: actions/cache/restore@v3
+        with:
+          path: progreso_scraping.json
+          key: tsj-progreso-v1
+          restore-keys: tsj-progreso-
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       
-      - name: Install dependencies + Playwright
+      - name: Instalar dependencias
         run: |
           python -m pip install --upgrade pip
-          pip install requests playwright
+          pip install playwright requests beautifulsoup4
           playwright install chromium
           playwright install-deps chromium
       
-      - name: Scrapear TSJ completo
+      - name: Ejecutar Scraper
         env:
-          WORKER_URL: https://penalex-scraper.ignaciojazpe47.workers.dev
-          INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
+          WORKER_URL: ${{ secrets.WORKER_URL || 'https://penalex-scraper.ignaciojazpe47.workers.dev' }}
+          INGEST_TOKEN: ${{ secrets.INGEST_TOKEN || '37c112d5ce886b13f394610f49aed5de' }}
         run: |
-          python scraper_tsj.py \
-            --tipo "${{ inputs.tipo || 'todo' }}" \
-            --sala "${{ inputs.sala || 'todas' }}" \
-            --anio-start "${{ inputs.anio_start || '2000' }}" \
-            --anio-end "${{ inputs.anio_end || '2026' }}"
+          python scraper_tsj.py ${{ inputs.anio_start || '2000' }} ${{ inputs.anio_end || '2026' }}
+      
+      - name: Guardar progreso
+        uses: actions/cache/save@v3
+        with:
+          path: progreso_scraping.json
+          key: tsj-progreso-v1-${{ github.run_id }}
+      
+      - name: Subir resultados
+        uses: actions/upload-artifact@v4
+        with:
+          name: tsj-scraped-data
+          path: ./scraped_tsJ/
+          retention-days: 90
