@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, sys, json, time, asyncio, argparse, requests
+import os, sys, json, time, asyncio, argparse, requests, base64
 from playwright.async_api import async_playwright
 from datetime import datetime
 
@@ -13,15 +13,36 @@ HISTORICO = "https://historico.tsj.gob.ve"
 
 PROGRESO = {'enviadas': 0, 'errores': 0}
 
+# LOGO: Reemplazo directo a nivel de bytes
+LOGO_R2 = b"https://pub-a6e0bfa2e9174e91b031ae28c0667009.r2.dev/assets/logo.jpg"
+LOGOS_TSJ = [
+    b"http://historico.tsj.gov.ve/portal/admin/image002.jpg",
+    b"https://historico.tsj.gov.ve/portal/admin/image002.jpg",
+    b"http://historico.tsj.gob.ve/portal/admin/image002.jpg",
+    b"https://historico.tsj.gob.ve/portal/admin/image002.jpg",
+    b"http://historico.tsj.gov.ve/portal/admin/image001.jpg",
+    b"http://historico.tsj.gob.ve/portal/admin/image001.jpg",
+    b"http://historico.tsj.gov.ve/graficos/encabezadotsj.jpg",
+    b"http://historico.tsj.gob.ve/graficos/encabezadotsj.jpg",
+    b"https://historico.tsj.gov.ve/graficos/encabezadotsj.jpg",
+    b"https://historico.tsj.gob.ve/graficos/encabezadotsj.jpg",
+]
+
+def reemplazar_logo_en_bytes(body: bytes) -> bytes:
+    for logo_tsj in LOGOS_TSJ:
+        body = body.replace(logo_tsj, LOGO_R2)
+    return body
+
 def log(msg, tipo="INFO"):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] [{tipo}] {msg}", flush=True)
 
-async def enviar_al_worker(url, html, sala, tipo):
+async def enviar_al_worker(url, body_bytes, sala, tipo):
     try:
+        html_b64 = base64.b64encode(body_bytes).decode('ascii')
         r = requests.post(
             f"{WORKER_URL}/ingest",
             headers={"x-token": INGEST_TOKEN},
-            json={"url": url, "html": html, "sala": sala, "tipo": tipo},
+            json={"url": url, "html_b64": html_b64, "sala": sala, "tipo": tipo},
             timeout=90
         )
         if r.status_code == 200:
@@ -33,6 +54,9 @@ async def enviar_al_worker(url, html, sala, tipo):
         log(f"Error worker: {e}", "ERROR")
     return False
 
+# ============================================================
+# FASE 1: SENTENCIAS (API Liferay con intercepción de red)
+# ============================================================
 async def scrape_sentencias(page, sala_id, anio_start, anio_end):
     nombre = "Sala Penal" if sala_id == "003" else "Sala Constitucional"
     log(f"🏛️  {nombre} ({sala_id}) - SENTENCIAS")
@@ -53,7 +77,6 @@ async def scrape_sentencias(page, sala_id, anio_start, anio_end):
     await page.goto(BASE_DECISIONES, wait_until="networkidle", timeout=90000)
     await page.wait_for_timeout(3000)
     
-    # CORREGIDO: Usar selector de atributo [id="X"] en lugar de #X (inválido en CSS si empieza con número)
     sala_selector = 'li[id="5"]' if sala_id == '003' else 'li[id="1"]'
     try:
         await page.click(sala_selector, timeout=10000)
@@ -121,12 +144,12 @@ async def scrape_sentencias(page, sala_id, anio_start, anio_end):
                     try:
                         resp = await page.context.request.get(url, timeout=60000)
                         if resp.ok:
-                            body = await resp.body()
-                            if len(body) > 500:
-                                if await enviar_al_worker(url, body.decode('utf-8', errors='replace'), sala_id, 'sentencia'):
+                            body_bytes = await resp.body()
+                            if len(body_bytes) > 500:
+                                body_modificado = reemplazar_logo_en_bytes(body_bytes)
+                                if await enviar_al_worker(url, body_modificado, sala_id, 'sentencia'):
                                     total += 1
                                     if total % 10 == 0: log(f"    ✓ {total} sentencias enviadas")
-                            else: PROGRESO['errores'] += 1
                         else: PROGRESO['errores'] += 1
                     except: PROGRESO['errores'] += 1
                     await asyncio.sleep(0.3)
@@ -135,13 +158,15 @@ async def scrape_sentencias(page, sala_id, anio_start, anio_end):
     log(f"  ✅ {nombre}: {total} sentencias", "SUCCESS")
     return total
 
+# ============================================================
+# FASE 2: JURISPRUDENCIAS
+# ============================================================
 async def scrape_jurisprudencias(page, sala_id, anio_start, anio_end):
     nombre = "Jurisprudencia Penal" if sala_id == "003" else "Jurisprudencia Constitucional"
     log(f"📚 {nombre} ({sala_id})")
     await page.goto(BASE_JURISPRUDENCIAS, wait_until="networkidle", timeout=90000)
     await page.wait_for_timeout(3000)
     
-    # CORREGIDO: Selector de atributo
     selector = 'li[id="5"]' if sala_id == '003' else 'li[id="1"]'
     try:
         await page.click(selector, timeout=10000)
@@ -171,9 +196,10 @@ async def scrape_jurisprudencias(page, sala_id, anio_start, anio_end):
             try:
                 resp = await page.context.request.get(url, timeout=60000)
                 if resp.ok:
-                    body = await resp.body()
-                    if len(body) > 500:
-                        if await enviar_al_worker(url, body.decode('utf-8', errors='replace'), sala_id, 'jurisprudencia'):
+                    body_bytes = await resp.body()
+                    if len(body_bytes) > 500:
+                        body_modificado = reemplazar_logo_en_bytes(body_bytes)
+                        if await enviar_al_worker(url, body_modificado, sala_id, 'jurisprudencia'):
                             total += 1
                 else: PROGRESO['errores'] += 1
             except: PROGRESO['errores'] += 1
@@ -182,6 +208,9 @@ async def scrape_jurisprudencias(page, sala_id, anio_start, anio_end):
     log(f"  ✅ {nombre}: {total}", "SUCCESS")
     return total
 
+# ============================================================
+# FASE 3: RESOLUCIONES
+# ============================================================
 async def scrape_resoluciones(page, anio_start, anio_end):
     log(f"📋 RESOLUCIONES - Rango {anio_start}-{anio_end}")
     await page.goto(BASE_RESOLUCIONES, wait_until="networkidle", timeout=90000)
@@ -224,9 +253,10 @@ async def scrape_resoluciones(page, anio_start, anio_end):
                     try:
                         resp = await page.context.request.get(url, timeout=60000)
                         if resp.ok:
-                            body = await resp.body()
-                            if len(body) > 500:
-                                if await enviar_al_worker(url, body.decode('utf-8', errors='replace'), 'resoluciones', 'resolucion'):
+                            body_bytes = await resp.body()
+                            if len(body_bytes) > 500:
+                                body_modificado = reemplazar_logo_en_bytes(body_bytes)
+                                if await enviar_al_worker(url, body_modificado, 'resoluciones', 'resolucion'):
                                     total += 1
                         else: PROGRESO['errores'] += 1
                     except: PROGRESO['errores'] += 1
@@ -237,6 +267,9 @@ async def scrape_resoluciones(page, anio_start, anio_end):
     log(f"  ✅ Total resoluciones: {total}", "SUCCESS")
     return total
 
+# ============================================================
+# MAIN
+# ============================================================
 async def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--tipo', choices=['sentencias', 'jurisprudencias', 'resoluciones', 'todo'], default='todo')
@@ -246,7 +279,7 @@ async def main():
     args = parser.parse_args()
     
     log("="*70)
-    log("🚀 SCRAPER TSJ COMPLETO EN LA NUBE")
+    log("🚀 SCRAPER TSJ COMPLETO v3.1 - Reemplazo de logo en bytes")
     log("="*70)
     log(f"Tipo: {args.tipo} | Sala: {args.sala} | Rango: {args.anio_start}-{args.anio_end}")
     
