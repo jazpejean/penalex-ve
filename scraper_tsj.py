@@ -4,8 +4,8 @@ from playwright.async_api import async_playwright
 from bs4 import BeautifulSoup
 
 # Configuración
-WORKER_URL = os.environ.get('WORKER_URL', 'https://penalex-scraper.ignaciojazpe47.workers.dev')
-INGEST_TOKEN = os.environ.get('INGEST_TOKEN', '37c112d5ce886b13f394610f49aed5de')
+WORKER_URL = os.environ['WORKER_URL']
+INGEST_TOKEN = os.environ['INGEST_TOKEN']
 HISTORICO_BASE_URL = "https://historico.tsj.gob.ve/decisiones"
 LOGO_URL = "https://pub-a6e0bfa2e9174e91b031ae28c0667009.r2.dev/assets/logo.jpg"
 PROGRESO_FILE = "progreso_scraping.json"
