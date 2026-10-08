@@ -14,6 +14,7 @@ import '../services/quiz_rules.dart';
 import '../services/quiz_ranking_service.dart';
 import '../services/quiz_storage_service.dart';
 import '../utils/quiz_seed.dart';
+import '../widgets/quiz_pulso_widget.dart';
 
 /// Paleta propia del quiz: "Noche de Juego".
 /// Violeta índigo profundo (distinto al navy de la app), gemas vivas y
@@ -404,7 +405,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
     final media = _racha >= 3;
     final color =
         fuerte ? const Color(0xFFFF6B35) : (media ? _ambar : Colors.white70);
-    return _Pulso(
+    return QuizPulso(
       maxScale: fuerte ? 1.18 : (media ? 1.08 : 1.0),
       periodo: fuerte
           ? const Duration(milliseconds: 700)
@@ -776,7 +777,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
 
     return Column(
       children: [
-        _Pulso(
+        QuizPulso(
           maxScale: habilitado ? 1.04 : 1.0,
           child: habilitado ? boton : Opacity(opacity: 0.45, child: boton),
         ),
@@ -984,42 +985,6 @@ class _FondoQuiz extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-/// Pulso continuo (escala 1 → maxScale → 1) para botones y racha.
-class _Pulso extends StatefulWidget {
-  final Widget child;
-  final double maxScale;
-  final Duration periodo;
-
-  const _Pulso({
-    required this.child,
-    this.maxScale = 1.06,
-    this.periodo = const Duration(milliseconds: 1100),
-  });
-
-  @override
-  State<_Pulso> createState() => _PulsoState();
-}
-
-class _PulsoState extends State<_Pulso> with SingleTickerProviderStateMixin {
-  late final AnimationController _c = AnimationController(
-    vsync: this,
-    duration: widget.periodo,
-  )..repeat(reverse: true);
-  late final Animation<double> _s = Tween(begin: 1.0, end: widget.maxScale)
-      .animate(CurvedAnimation(parent: _c, curve: Curves.easeInOut));
-
-  @override
-  void dispose() {
-    _c.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ScaleTransition(scale: _s, child: widget.child);
   }
 }
 
