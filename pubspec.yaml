@@ -69,5 +69,6 @@ flutter:
     - assets/images/
     - assets/data/
     - assets/templates/
+    - assets/estilos/
     - leyes_json/
     - .env

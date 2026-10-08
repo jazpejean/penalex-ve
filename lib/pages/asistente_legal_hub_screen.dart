@@ -5,6 +5,7 @@ import 'chat_legal_screen.dart';
 import 'redactor_documentos_screen.dart';
 import 'escanear_documento_screen.dart';
 import 'calculadora_prescripcion_screen.dart';
+import 'biblioteca_estilos_screen.dart';
 
 /// Hub principal del Asistente Legal con IA
 /// Agrupa las 4 herramientas principales potenciadas por IA
@@ -179,6 +180,27 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const CalculadoraPrescripcionScreen(),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // MODELOS DE ESCRITOS (biblioteca de estilos)
+            _buildToolCard(
+              context,
+              icon: Icons.library_books,
+              iconColor: const Color(0xFF10B981),
+              title: 'Modelos de Escritos',
+              badge: '📚 124 estilos',
+              description:
+                  'Biblioteca de escritos y sentencias reales por categoría. '
+                  'Cópialos o úsalos como estilo de referencia para redactar '
+                  'con el mismo formato forense.',
+              stats: 'Copiar o redactar con estilo',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BibliotecaEstilosScreen(),
                 ),
               ),
             ),

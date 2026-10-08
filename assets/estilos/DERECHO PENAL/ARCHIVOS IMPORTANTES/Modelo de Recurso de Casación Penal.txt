@@ -1,0 +1,76 @@
+Modelo de Recurso de Casación Penal
+
+[Nombre del abogado]
+Abogado en ejercicio
+C.I. No. [Número de cédula]
+Inscrito en el Instituto de Previsión Social del Abogado (IPSA)
+Telf: [Número de contacto]
+Dirección: [Dirección de despacho]
+
+TRIBUNAL SUPREMO DE JUSTICIA DE LA REPÚBLICA BOLIVARIANA DE VENEZUELA
+SALA DE CASACIÓN PENAL
+
+[Nombre del recurrente], mayor de edad, de nacionalidad venezolana, titular de la cédula de identidad número [Número de cédula], actuando en su calidad de [parte procesal: imputado, defensor del imputado, etc.], domiciliado en [dirección], y con el debido respeto ante este honorable Tribunal, acudimos para interponer el recurso de casación penal en virtud de la sentencia dictada por el [nombre del tribunal de instancia] el día [fecha], la cual ha vulnerado de manera flagrante derechos fundamentales previstos en la Constitución de la República Bolivariana de Venezuela, la Ley Orgánica del Tribunal Supremo de Justicia, la Ley Orgánica Procesal Penal, y las normativas internacionales ratificadas por nuestro país.
+
+1. ACTUACIONES IMPUGNADAS
+
+Hechos procesales:
+En primer lugar, hago constar que la sentencia que se impugna fue dictada por el tribunal [nombre del tribunal de instancia], en el expediente número [número de expediente], en fecha [fecha de la sentencia], en la cual se condenó a [nombre del condenado o imputado] por el delito de [delito condenado], imponiéndole la pena de [detallar la pena impuesta].
+
+El fallo recurrido se fundamenta en la siguiente motivación [hacer un resumen breve de los puntos principales de la sentencia impugnada].
+
+2. BASE LEGAL Y FUNDAMENTOS DEL RECURSO
+
+El presente recurso se basa en las siguientes causales de casación previstas en el artículo 450 de la Ley Orgánica del Código Penal y en el artículo 494 de la Ley Orgánica Procesal Penal, a saber:
+
+a) Causales de nulidad procesal (Art. 450, LOCP)
+
+    1. Violación de la ley sustantiva: En el presente caso, el tribunal incurrió en un error de derecho al interpretar y aplicar de manera incorrecta [mencionar la ley, principio o norma sustantiva que fue mal aplicada]. Esta mala aplicación de la ley resulta en la imposición de una pena desproporcionada y contraria a los principios establecidos en el Código Penal Venezolano.
+
+    2. Inobservancia de las formalidades esenciales del juicio: Durante el juicio, se vulneraron principios fundamentales del debido proceso, especialmente [mencionar algún acto procesal irregular, como la falta de notificación, la violación del derecho de defensa, etc.], lo que acarrea la nulidad del proceso en virtud del artículo [número del artículo relevante] de la Ley Orgánica del Tribunal Supremo de Justicia.
+
+b) Causales de casación (Art. 494, LOPP)
+
+    1. Error de derecho en la aplicación de las normas: El Tribunal de Primera Instancia incurrió en un error manifiesto al no considerar [explicar la norma aplicable que no fue considerada o mal aplicada].
+
+    2. Existencia de pruebas que no fueron valoradas correctamente: El Tribunal no valoró adecuadamente las pruebas que [explicar cuál prueba es relevante y cómo debería haber influido en la sentencia].
+
+c) Jurisprudencia aplicable
+
+El Tribunal Supremo de Justicia en la sentencia N° [número de sentencia] de fecha [fecha de la sentencia], ha establecido el principio de que [citar una jurisprudencia relevante sobre la materia del recurso].
+3. PETITORIO
+
+En virtud de lo expuesto, solicito respetuosamente:
+
+    1. Que este Honorable Tribunal, conforme a lo establecido en el artículo 494 de la Ley Orgánica Procesal Penal, declare con lugar el presente recurso de casación, y en consecuencia, case la sentencia dictada por el Tribunal [nombre del tribunal de instancia] en el expediente N° [número de expediente] del [fecha de sentencia].
+
+    2. Que, en virtud de la casación, se proceda a la restitución de las actuaciones al tribunal de origen para que se dicte un nuevo fallo conforme a derecho, tomando en cuenta los principios y argumentos expuestos en este recurso.
+
+    3. Se reconozca [otras peticiones relacionadas, por ejemplo: la nulidad de un acto procesal, la modificación de la pena, etc.].
+
+4. MEDIOS DE PRUEBA
+
+    1. Se acompañan los siguientes medios de prueba en apoyo de este recurso:
+
+    2. Copia de la sentencia recurrida.
+
+    3. Copia de la transcripción del juicio [si aplica].
+
+    4. Copia de las pruebas que no fueron valoradas correctamente.
+
+    5. Jurisprudencia pertinente que sustenta el recurso.
+
+En virtud de todo lo anterior, y conforme a las disposiciones legales mencionadas, solicito que este recurso sea declarado con lugar y se tomen las medidas correctivas necesarias.
+
+En [ciudad], a [fecha].
+
+Atentamente,
+
+[Firma del abogado]
+[Nombre completo del abogado]
+C.I. No. [Número de cédula]
+Abogado en ejercicio
+Inscrito en el IPSA
+Teléfono: [Número de contacto]
+Dirección: [Dirección de despacho]
+
