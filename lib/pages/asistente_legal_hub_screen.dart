@@ -4,6 +4,7 @@ import '../widgets/app_drawer.dart';
 import 'chat_legal_screen.dart';
 import 'redactor_documentos_screen.dart';
 import 'escanear_documento_screen.dart';
+import 'calculadora_prescripcion_screen.dart';
 
 /// Hub principal del Asistente Legal con IA
 /// Agrupa las 4 herramientas principales potenciadas por IA
@@ -162,6 +163,25 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             ),
             const SizedBox(height: 16),
 
+            // CALCULADORA DE PRESCRIPCIÓN
+            _buildToolCard(
+              context,
+              icon: Icons.hourglass_bottom,
+              iconColor: const Color(0xFFEF4444),
+              title: 'Calculadora de Prescripción',
+              badge: '⚖️ Art. 108 y 112 CP',
+              description:
+                  'Calcula el término de prescripción de la acción penal o '
+                  'de la pena con el texto exacto del Código Penal y la fecha '
+                  'exacta. Cálculo determinístico, sin IA.',
+              stats: 'Término + fecha + días',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CalculadoraPrescripcionScreen(),
+                ),
+              ),
+            ),
             const SizedBox(height: 32),
 
             // Botón de Analytics
