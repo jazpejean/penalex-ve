@@ -44,8 +44,10 @@ class AppDrawer extends StatelessWidget {
     Navigator.pop(context);
 
     if (route == '/dashboard') {
-      Navigator.pushNamedAndRemoveUntil(
-          context, '/dashboard', (Route<dynamic> route) => false);
+      // Se apila sobre la navegación principal: el botón "atrás" del sistema
+      // devuelve a las pestañas. (Antes usaba pushNamedAndRemoveUntil, que
+      // reemplazaba toda la pila y dejaba la app sin la barra inferior.)
+      Navigator.pushNamed(context, '/dashboard');
       return;
     }
 

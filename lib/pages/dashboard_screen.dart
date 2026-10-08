@@ -35,18 +35,6 @@ class DashboardScreen extends StatelessWidget {
         backgroundColor: AppColors.primary,
         iconTheme: const IconThemeData(color: AppColors.secondary),
         elevation: 0,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () async {
-              final authService = context.read<AuthService>();
-              await authService.signOut();
-              if (context.mounted) {
-                Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false);
-              }
-            },
-          ),
-        ],
       ),
       drawer: const AppDrawer(currentRoute: '/dashboard'),
       backgroundColor: const Color(0xFFF1F5F9), // Fondo gris muy claro
