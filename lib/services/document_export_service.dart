@@ -260,8 +260,8 @@ class DocumentExportService {
       'interpretacion_titulo': 'INTERPRETACIÓN',
       'interpretacion': interpretacion.interpretacion,
       
-      'modelo_ia': AIService.getModeloActivo().nombre,
-      'proveedor_ia': AIService.getModeloActivo().proveedor.nombre,
+      'modelo_ia': AIService.marcaIA,
+      'proveedor_ia': AIService.marcaIA,
       
       'timestamp': DateFormat('dd/MM/yyyy HH:mm:ss').format(interpretacion.timestamp),
       
@@ -373,8 +373,8 @@ class DocumentExportService {
       'comparacion_titulo': 'ANÁLISIS COMPARATIVO',
       'comparacion': comparacion.interpretacion,
       
-      'modelo_ia': AIService.getModeloActivo().nombre,
-      'proveedor_ia': AIService.getModeloActivo().proveedor.nombre,
+      'modelo_ia': AIService.marcaIA,
+      'proveedor_ia': AIService.marcaIA,
       
       'fecha_generacion': DateFormat('dd/MM/yyyy HH:mm:ss').format(DateTime.now()),
     };

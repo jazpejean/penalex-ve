@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../services/leyes_repositorio_service.dart';
+import 'tabla_anexo.dart';
 
 /// Muestra un artículo en una ventana flotante (bottom sheet), sin salir de la
 /// pantalla actual. Reutilizable desde la calculadora, el chat, etc.
@@ -140,6 +141,10 @@ class _ArticuloLeySheet extends StatelessWidget {
                             ),
                           ),
                         )),
+                  ],
+                  if (reg.tablas.isNotEmpty) ...[
+                    const SizedBox(height: 4),
+                    ...reg.tablas.map((t) => TablaAnexoView(tabla: t)),
                   ],
                   if (reg.paragrafos.isNotEmpty) ...[
                     const SizedBox(height: 16),

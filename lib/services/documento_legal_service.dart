@@ -75,7 +75,7 @@ Usa lenguaje técnico-jurídico apropiado y mantén un tono formal.''';
         expediente: expediente,
         partes: partes ?? [],
         promptOriginal: prompt,
-        modeloIA: 'DeepSeek Chat',
+        modeloIA: 'Ulpiano',
         generadoPorIA: true,
       );
       
@@ -207,7 +207,7 @@ Mantén toda la información importante del documento original.''';
         imagenesURL: [imageUrl],
         creadoDesdeImagen: true,
         textoOCR: textoOCR,
-        modeloIA: 'DeepSeek Chat',
+        modeloIA: 'Ulpiano',
         generadoPorIA: true,
       );
       
@@ -325,7 +325,7 @@ El texto puede venir de varias páginas separadas por "--- PÁGINA X ---".''';
         imagenesURL: imagenesURL,
         creadoDesdeImagen: true,
         textoOCR: textoFinal,
-        modeloIA: 'DeepSeek Chat',
+        modeloIA: 'Ulpiano',
         generadoPorIA: true,
       );
       

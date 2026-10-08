@@ -412,7 +412,7 @@ Puedo ayudarte a:
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    'IA integrada con DeepSeek • Adjunta documentos para análisis',
+                    'IA integrada con Ulpiano • Adjunta documentos para análisis',
                     style: TextStyle(
                       color: Colors.white.withValues(alpha: 0.8),
                       fontSize: 12,

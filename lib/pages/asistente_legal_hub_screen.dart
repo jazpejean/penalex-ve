@@ -820,7 +820,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  'Tecnología DeepSeek AI',
+                  'Impulsado por Ulpiano',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,

@@ -26,7 +26,7 @@ class LeyesRepositorioService {
 
   static const String _bucket = 'leyes';
   static const String _manifestKey = 'leyes_manifest_cache_v1';
-  static const String _indiceFile = 'penalex_indice_leyes_v2.json';
+  static const String _indiceFile = 'penalex_indice_leyes_v3.json';
 
   /// Caché en memoria (por sesión).
   List<LeyMeta>? _manifest;

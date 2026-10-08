@@ -35,7 +35,7 @@ class EscritosService {
         imputado: datos['imputado'] as String?,
         delitos: (datos['delitos'] as List<dynamic>?)?.cast<String>() ?? [],
         generadoPorIA: true,
-        modeloIA: AIService.getModeloActivo().nombre,
+        modeloIA: AIService.marcaIA,
         prompt: prompt,
       );
 

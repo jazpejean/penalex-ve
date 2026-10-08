@@ -6,6 +6,10 @@ import 'package:http/http.dart' as http;
 /// Servicio de IA para interpretar textos legales
 /// Soporta OpenAI, Google Gemini, Anthropic Claude, y DeepSeek
 class AIService {
+  /// Marca visible del asistente (Ulpiano). El proveedor técnico real
+  /// (DeepSeek u otro) solo aparece en la configuración de administración.
+  static const String marcaIA = 'Ulpiano';
+
   // Configuración (debe estar en .env o Firebase Remote Config)
   static String _openAIKey = '';
   static String _geminiKey = '';
