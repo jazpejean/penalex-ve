@@ -22,7 +22,7 @@ class _BibliotecaEstilosScreenState extends State<BibliotecaEstilosScreen> {
   final EstilosService _service = EstilosService();
   List<String>? _categorias;
   String? _categoriaActiva;
-  List<String> _documentos = [];
+  List<EstiloEntrada> _documentos = [];
   bool _cargando = true;
 
   @override
@@ -52,8 +52,8 @@ class _BibliotecaEstilosScreenState extends State<BibliotecaEstilosScreen> {
     });
   }
 
-  Future<void> _verDocumento(String categoria, String archivo) async {
-    final texto = await _service.cargarTexto(categoria, archivo);
+  Future<void> _verDocumento(String categoria, EstiloEntrada entrada) async {
+    final texto = await _service.cargarTexto(categoria, entrada);
     if (!mounted) return;
     await showModalBottomSheet(
       context: context,
@@ -68,11 +68,11 @@ class _BibliotecaEstilosScreenState extends State<BibliotecaEstilosScreen> {
         maxChildSize: 0.95,
         expand: false,
         builder: (context, scrollController) => _VistaDocumento(
-          titulo: archivo,
+          titulo: entrada.nombre,
           texto: texto,
           categoria: categoria,
           onCopiar: () => _copiarTexto(texto),
-          onRedactar: () => _redactarConEstilo(categoria, archivo, texto),
+          onRedactar: () => _redactarConEstilo(categoria, entrada, texto),
         ),
       ),
     );
@@ -91,10 +91,11 @@ class _BibliotecaEstilosScreenState extends State<BibliotecaEstilosScreen> {
     }
   }
 
-  void _redactarConEstilo(String categoria, String archivo, String texto) {
+  void _redactarConEstilo(
+      String categoria, EstiloEntrada entrada, String texto) {
     final nombreCategoria = EstilosService.nombreLegibleCategoria(categoria);
     final prompt = '''
-Redacta un documento legal siguiendo el ESTILO del modelo de referencia "$archivo" (categoría: $nombreCategoria).
+Redacta un documento legal siguiendo el ESTILO del modelo de referencia "${entrada.nombre}" (categoría: $nombreCategoria).
 
 El usuario puede no tener un modelo para todo: si el escrito solicitado difiere del modelo, adapta la estructura conservando el estilo forense (encabezado, identificación de las partes, fundamentos legales con artículos y jurisprudencia, petitorio).
 
@@ -275,7 +276,7 @@ Escribe el documento completo, con [DATOS DEL CASO] donde falten datos, citando 
                                 const SizedBox(width: 12),
                                 Expanded(
                                   child: Text(
-                                    doc.replaceAll('.txt', ''),
+                                    doc.nombre.replaceAll('.txt', ''),
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 14,
