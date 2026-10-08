@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 /// Servicio de IA para interpretar textos legales
@@ -20,21 +21,81 @@ class AIService {
   /// Inicializa el servicio con la API key de DeepSeek desde .env
   static Future<void> inicializar() async {
     try {
-      // Cargar API key desde variables de entorno
-      const deepseekKey = String.fromEnvironment('DEEPSEEK_API_KEY');
-      if (deepseekKey.isNotEmpty) {
-        _deepseekKey = deepseekKey;
-        debugPrint('✅ DeepSeek API Key cargada');
-      } else {
-        // Fallback: intenta cargar desde constante
-        _deepseekKey = 'sk-0a9f652b7fd549db937ca806959ab6c1';
-        debugPrint('⚠️ Usando DeepSeek API Key de respaldo');
-      }
+      // Cargar API key desde .env (flutter_dotenv)
+      _deepseekKey = dotenv.env['DEEPSEEK_API_KEY'] ??
+          'sk-0a9f652b7fd549db937ca806959ab6c1';
+      debugPrint('✅ DeepSeek API Key cargada desde .env');
     } catch (e) {
       debugPrint('❌ Error inicializando AIService: $e');
     }
   }
   
+  /// Genera el análisis profundo estructurado de una sentencia:
+  /// Problema Jurídico / Tesis de la Sala / Implicación Práctica.
+  static Future<String> generarAnalisisJurisprudencial(
+      String ratioDecidendi, String textoCompleto) async {
+    await inicializar();
+    final ratio = ratioDecidendi.length > 3500
+        ? ratioDecidendi.substring(0, 3500)
+        : ratioDecidendi;
+    final texto =
+        textoCompleto.length > 3500 ? textoCompleto.substring(0, 3500) : textoCompleto;
+    final prompt = 'Eres un analista de jurisprudencia penal venezolana. Analiza '
+        'la sentencia y redacta EXACTAMENTE tres secciones con formato markdown '
+        '(títulos con "##"):\n\n'
+        '## Problema Jurídico\n[plantea la cuestión jurídica que resuelve la sala]\n\n'
+        '## Tesis de la Sala\n[el criterio o ratio decidendi, redactado como máxima]\n\n'
+        '## Implicación Práctica\n[qué significa para los operadores jurídicos]\n\n'
+        'Fundaméntate SOLO en los textos de abajo. No inventes normas ni citas. '
+        'Lenguaje técnico, conciso, en español.\n\n'
+        'RATIO DECIDENDI:\n$ratio\n\n'
+        'TEXTO:\n$texto';
+    try {
+      return await _llamarIA(prompt);
+    } catch (e) {
+      debugPrint('❌ Error generando análisis: $e');
+      return '';
+    }
+  }
+
+  /// Genera un resumen corto de un texto jurídico (sentencias sin resumen).
+  static Future<String> generarResumen(String texto) async {
+    await inicializar();
+    final prompt = 'Resume el siguiente texto jurídico venezolano en 2-3 '
+        'oraciones claras y concisas, en español, mencionando el delito y la '
+        'decisión si aparecen:\n\n$texto';
+    try {
+      return await _llamarIA(prompt);
+    } catch (e) {
+      debugPrint('❌ Error generando resumen: $e');
+      return '';
+    }
+  }
+
+  /// Genera una "Tesis Jurisprudencial" (máxima penal de autoridad, estilo
+  /// Rionero) de 3-5 líneas a partir del ratio decidendi.
+  static Future<String> generarTesisJurisprudencial(String ratioDecidendi) async {
+    await inicializar();
+    final texto = ratioDecidendi.length > 3500
+        ? ratioDecidendi.substring(0, 3500)
+        : ratioDecidendi;
+    final prompt = 'Eres un redactor de fichas jurisprudenciales penales '
+        'venezolanas. A partir del RATIO DECIDENDI, redacta UNA TESIS '
+        'JURISPRUDENCIAL (máxima penal de autoridad) de 3 a 5 líneas, densa y '
+        'contundente, sin relleno ni encabezados. Usa fórmulas imperativas o '
+        'descriptivas de alto nivel técnico penal, por ejemplo: '
+        '"Estaremos en presencia de...", "Las Cortes de Apelaciones deben...", '
+        '"La omisión de pronunciamiento sobre...", "No constituye violación '
+        'del debido proceso...". No uses comillas, no cites número de sentencia. '
+        'Responde SOLO con el párrafo.\n\nRATIO DECIDENDI:\n$texto';
+    try {
+      return await _llamarIA(prompt);
+    } catch (e) {
+      debugPrint('❌ Error generando tesis: $e');
+      return '';
+    }
+  }
+
   /// Método general para consultas de chat/redacción (usado por DocumentChatService)
   static Future<String> procesarConsultaGeneral(String prompt) async {
     try {

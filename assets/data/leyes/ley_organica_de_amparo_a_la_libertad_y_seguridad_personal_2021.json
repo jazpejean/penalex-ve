@@ -1,0 +1,425 @@
+{
+ "id": "ley_organica_de_amparo_a_la_libertad_y_seguridad_personal_2021",
+ "codigo": "LOALSP",
+ "nombre": "Ley Orgánica de Amparo a la Libertad y Seguridad Personal",
+ "rama": "Derecho Constitucional y DDHH",
+ "anio": "2021",
+ "archivo": "17. Ley Orgánica de Amparo a la Libertad y Seguridad Personal (2021).docx",
+ "orden": 27,
+ "num_articulos": 21,
+ "num_secciones": 2,
+ "preambulo": null,
+ "secciones": [
+  {
+   "id": "ley_organica_de_amparo_a_la_libertad_y_seguridad_personal_2021_S1",
+   "tipo": "DISPOSICIONES",
+   "numero": "ÚNICO",
+   "titulo": "Disposiciones",
+   "nivel": 1,
+   "parent_id": null,
+   "orden": 1,
+   "disposicion": true
+  },
+  {
+   "id": "ley_organica_de_amparo_a_la_libertad_y_seguridad_personal_2021_S2",
+   "tipo": "DISPOSICIONES",
+   "numero": "ÚNICO",
+   "titulo": "Disposiciones",
+   "nivel": 1,
+   "parent_id": null,
+   "orden": 2,
+   "disposicion": true
+  }
+ ],
+ "articulos": [
+  {
+   "numero_texto": "1",
+   "numero": 1,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La presente Ley tiene por objeto garantizar a toda persona, sin discriminación alguna, la protección, respeto, goce y ejercicio de los derechos humanos y garantías constitucionales a la libertad y seguridad personal, a través de la acción de amparo constitucional, conforme a los principios de irrenunciabilidad, indivisibilidad, interdependencia y progresividad de los derechos humanos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Derecho al amparo a la libertad y seguridad personal"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "2",
+   "numero": 2,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Toda persona tiene derecho a ser amparada por los Tribunales en el goce y ejercicio de sus derechos a la libertad y seguridad personal ante cualquier hecho, acto u omisión de los órganos y entes del Poder Público Nacional, Estadal, Municipal o de personas naturales y jurídicas, que implique una amenaza grave e inminente o violación a estos derechos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El ejercicio de la acción de amparo a la libertad y seguridad personal no puede ser afectado, en modo alguno, por la declaración del estado de excepción o de la restricción de garantías constitucionales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Principios"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "3",
+   "numero": 3,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El procedimiento de amparo a la libertad y seguridad personal se regirá por los principios de oralidad, publicidad, gratuidad, celeridad y sin formalidad alguna, de conformidad con lo previsto en la Constitución de la República Bolivariana de Venezuela y los tratados internacionales suscritos y ratificados por la República."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Preeminencia"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "4",
+   "numero": 4,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En el trámite del amparo a la libertad y seguridad personal todo tiempo será hábil y el tribunal lo tramitará con preferencia a cualquier otro asunto. En ningún caso, el trámite de la acción de amparo a la libertad y seguridad personal se extenderá más allá de noventa y seis horas, contadas a partir de la presentación de la acción."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Orden Público"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "5",
+   "numero": 5,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El proceso de amparo a la libertad y seguridad personal tanto en lo principal como en lo incidental y en todo lo que de este derive, hasta la ejecución de la decisión respectiva, es de eminente orden público. La jueza o juez deberá impulsar de oficio el procedimiento. En caso de duda en la interpretación de esta Ley, se adoptará la que más favorezca la garantía de los derechos a la libertad y seguridad personal."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Publicidad"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "6",
+   "numero": 6,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El proceso de amparo a la libertad y seguridad personal es público, salvo las excepciones previstas en la Ley o que la jueza o juez así lo establezca por decisión motivada por razones de garantía de los derechos humanos de la persona agraviada o circunstancias de orden público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Gratuidad"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "7",
+   "numero": 7,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los procesos de amparo a la libertad y seguridad personal son gratuitos. En consecuencia, no se podrá exigir pago, emolumento o tributo alguno. Igualmente, el otorgamiento del instrumento poder para ejercer la acción de amparo a la libertad y seguridad personal es gratuito."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Procedencia"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "8",
+   "numero": 8,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La acción de amparo a la libertad y seguridad personal procede cuando la amenaza grave e inminente o la privación o restricción de la libertad y seguridad personal sea arbitraria o contraria al ordenamiento jurídico."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Tribunales Especializados y competencia"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "9",
+   "numero": 9,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se crean los Tribunales Especializados de primera instancia con competencia en amparo sobre la libertad y seguridad personal, los cuales funcionarán en cada circunscripción judicial."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Los Tribunales Especializados de Primera Instancia de la Circunscripción Judicial del lugar donde ocurra el hecho, acto u omisión que motiva la acción de amparo a la libertad y seguridad personal, son los competentes para su conocimiento. Las decisiones que nieguen el amparo a la libertad y seguridad personal tendrán consulta obligatoria, debiendo remitir las actuaciones dentro de las veinticuatro horas siguientes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Las Cortes de Apelaciones con competencia en materia penal conocerán en segunda instancia de la consulta obligatoria y las impugnaciones contra las decisiones de losTribunales Especializados de Primera Instancia. La consulta o apelación no impedirá la ejecución inmediata de la decisión y la Corte de Apelaciones decidirá dentro de las setenta y dos horas después de haber recibido los autos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Competencia en caso de no existir Tribunal Especializado"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "10",
+   "numero": 10,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En aquellos lugares donde no funcionen Tribunales Especializados con competencia en amparo sobre la libertad y seguridad personal o aun existiendo surjan situaciones excepcionales que impidan su funcionamiento, la acción de amparo se podrá interponer ante cualquier jueza o juez de la localidad, quien la decidirá conforme a lo establecido en esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Dentro de las veinticuatro horas siguientes a la decisión, la jueza o juez la remitirá en consulta al Tribunal Especializado de amparo a la libertad y seguridad personal de la jurisdicción más cercana, cuya decisión podrá ser apelada conforme a lo previsto en esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Legitimación"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "11",
+   "numero": 11,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La acción de amparo a la libertad y seguridad personal podrá ser presentada directamente por la agraviada o agraviado o por cualquier persona, sin que sea necesaria la asistencia de abogada o abogado."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "También podrá ser presentada por la Defensoría del Pueblo, el Ministerio Público y organizaciones de defensa de los derechos humanos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Interposición de la acción"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "12",
+   "numero": 12,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La acción de amparo a la libertad y seguridad personal podrá ser presentada de manera oral o escrita, o a través de cualquier medio de tecnología de la información y comunicación. En el caso que la acción sea presentada de manera oral, el Tribunal dejará constancia en un acta que deberá ser suscrita por el o la solicitante."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Trámite inicial"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "13",
+   "numero": 13,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Una vez recibida la acción de amparo a la libertad o seguridad personal, el Tribunal ordenará de manera inmediata al presunto agraviante que informe dentro del plazo de doce horas, sobre los motivos de la privación o restricción de la libertad, pudiendo constituirse directamente en el lugar donde se presuma se encuentra la persona agraviada."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En el mismo acto deberá notificar a la Defensoría del Pueblo de la jurisdicción y podrá decretar las medidas preventivas a que hubiere lugar para proteger la libertad, seguridad e integridad de la persona agraviada, incluyendo la orden del traslado inmediato de la persona agraviada a la sede del Tribunal."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Requerimientos"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "14",
+   "numero": 14,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los funcionarios públicos y las funcionarias públicas, así como los particulares, están en la obligación de cumplir con los requerimientos de la Jueza o Juez de amparo a la libertad y seguridad personal, especialmente para el restablecimiento de la situación jurídica infringida o para hacer cesar las amenazas graves e inminentes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Persona localizada"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "15",
+   "numero": 15,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Ubicada la persona detenida o desaparecida, la Jueza o el Juez de amparo decidirá, en un término no mayor de veinticuatro horas, la inmediata libertad del agraviado o el cese de las restricciones que se le hubiesen impuesto si encontrare que la privación o restricción de la libertad y seguridad personal es arbitraria o contraria al ordenamiento jurídico."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Persona no localizada"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "16",
+   "numero": 16,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando el presunto agraviante niegue la detención o no sea posible ubicar a la persona agraviada, la jueza o juez ordenará una articulación probatoria de cuarenta y ocho horas y se pronunciará dentro de las veinticuatro horas siguientes sobre la procedencia del mandamiento de amparo a la libertad y seguridad personal. La jueza o juez tendrá las más amplias facultades probatorias."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Asimismo, remitirá las actuaciones al Ministerio Público a fin de iniciar la investigación penal correspondiente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Competencia de la Sala Constitucional"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "17",
+   "numero": 17,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Es de la competencia del Tribunal Supremo de Justicia en Sala Constitucional en materia de amparo a la libertad y seguridad personal:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Conocer en única instancia las acciones de amparo a la libertad y seguridad personal que sean interpuestas contra los altos funcionarios o funcionarias nacionales de rango constitucional; así como contra quienes actúen por delegación de atribuciones de estos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Conocer las apelaciones contra las sentencias que recaigan en los procesos de amparo constitucional a la libertad y seguridad personal que sean dictadas por las Cortes de Apelaciones en primera instancia."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Las demás establecidas en la Constitución y la ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Incumplimiento al mandato de amparo"
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "18",
+   "numero": 18,
+   "titulo": null,
+   "seccion_id": null,
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Quien incumpliere el mandamiento de amparo constitucional a la libertad y seguridad personal dictado por la jueza o juez, será sancionado con prisión de uno a tres años."
+    }
+   ],
+   "seccion_label": ""
+  },
+  {
+   "numero_texto": "ÚNICA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_a_la_libertad_y_seguridad_personal_2021_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Con el fin de lograr la más efectiva administración de justicia en materia de amparo a la libertad y seguridad personal, el Tribunal Supremo de Justicia en Sala Plena podrá crear, uno o más cargos de Juezas o Jueces temporales o permanentes de amparo a la libertad o seguridad personal. Dichos cargos deberán ser desempeñados por abogadas o abogados, que quedarán comprendidos, durante el ejercicio de sus funciones, en las mismas incompatibilidades y sujetos a los mismos deberes prescritos por Ley para las Juezas y Jueces."
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Disposiciones"
+  },
+  {
+   "numero_texto": "ÚNICA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_a_la_libertad_y_seguridad_personal_2021_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se deroga el título V de la Ley Orgánica de Amparo sobre Derechos y Garantías Constitucionales, publicada en la Gaceta Oficial de la República de Venezuela número 34.060 del 27 de septiembre de 1988 y todas las disposiciones que contraríen a la presente Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "DISPOSICION FINAL"
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Disposiciones"
+  },
+  {
+   "numero_texto": "ÚNICA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_a_la_libertad_y_seguridad_personal_2021_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Esta Ley entrará en vigencia al momento de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Dada, firmada y sellada en el Palacio Federal Legislativo, sede de la Asamblea Nacional de la República Bolivariana de Venezuela, en Caracas, a los diecisiete días del mes de septiembre de 2021. Años 211 de la 6 Independencia, 162 de la Federación y 22 de la Revolución Bolivariana."
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Disposiciones"
+  }
+ ]
+}

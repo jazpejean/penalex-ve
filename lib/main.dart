@@ -27,7 +27,9 @@ import 'pages/leyes_screen.dart';
 import 'pages/main_screen.dart';
 import 'pages/login_page.dart'; // FIREBASE LOGIN
 import 'pages/quiz_lobby_screen.dart';
+import 'pages/quiz_logros_screen.dart';
 import 'pages/repositorio_jurisprudencia_screen.dart';
+import 'pages/repositorio_leyes_screen.dart';
 import 'pages/reportes_guardados_page.dart';
 import 'pages/reset_password_page.dart';
 import 'pages/splash_screen.dart';
@@ -133,9 +135,11 @@ class DosimetriaPenalApp extends StatelessWidget {
           '/leyes': (context) => const LeyesScreen(),
           '/glosario': (context) => const GlosarioScreen(),
           '/repositorio_jurisprudencia': (context) => const RepositorioJurisprudenciaScreen(),
+          '/repositorio_leyes': (context) => const RepositorioLeyesScreen(),
           '/ai_analytics': (context) => const AIAnalyticsScreen(),
           '/quiz': (context) => const QuizLobbyScreen(),
           '/quiz_lobby': (context) => const QuizLobbyScreen(),
+          '/quiz_logros': (context) => const QuizLogrosScreen(),
           '/lapsos': (context) => const AgendaScreen(), // Lapsos integrados en Agenda
           '/verify-email': (context) => const VerifyEmailPage(),
           '/reset-password': (context) => const ResetPasswordPage(),

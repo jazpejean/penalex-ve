@@ -1,0 +1,935 @@
+{
+ "id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los",
+ "codigo": "SCDTOV",
+ "nombre": "Ley para Sancionar los Crímenes, Desapariciones, Torturas y Otras Violaciones de los",
+ "rama": "Derecho Penal y Criminológico",
+ "anio": null,
+ "archivo": "32. Ley para Sancionar los Crímenes, Desapariciones, Torturas y Otras Violaciones de los .docx",
+ "orden": 24,
+ "num_articulos": 33,
+ "num_secciones": 5,
+ "preambulo": null,
+ "secciones": [
+  {
+   "id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S1",
+   "tipo": "CAPITULO",
+   "numero": "I",
+   "titulo": "Disposiciones Generales",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 1,
+   "disposicion": false
+  },
+  {
+   "id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S2",
+   "tipo": "CAPITULO",
+   "numero": "II",
+   "titulo": "De la Comisión por la Justicia y la Verdad",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 2,
+   "disposicion": false
+  },
+  {
+   "id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S3",
+   "tipo": "CAPITULO",
+   "numero": "III",
+   "titulo": "De la reivindicación al honor y a la dignidad de las víctimas",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 3,
+   "disposicion": false
+  },
+  {
+   "id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S4",
+   "tipo": "CAPITULO",
+   "numero": "IV",
+   "titulo": "De la memoria histórica",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 4,
+   "disposicion": false
+  },
+  {
+   "id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S5",
+   "tipo": "DISPOSICIONES",
+   "numero": "ÚNICO",
+   "titulo": "Disposiciones",
+   "nivel": 1,
+   "parent_id": null,
+   "orden": 5,
+   "disposicion": true
+  }
+ ],
+ "articulos": [
+  {
+   "numero_texto": "1",
+   "numero": 1,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La presente Ley tiene por objeto establecer los mecanismos para garantizar el derecho a la verdad y sancionar a los responsables de los hechos de violaciones de derechos humanos y delitos de lesa humanidad, tales como homicidios, desapariciones forzadas, torturas, violaciones, lesiones físicas, psíquicas y morales, privaciones arbitrarias de libertad, desplazamientos forzados de personas, expulsiones, deportaciones o exilios arbitrarios, violaciones de domicilio, hostigamientos, incomunicaciones, aislamientos, difamaciones e injurias, perjuicio patrimonial, represiones masivas urbanas y rurales, simulación de hechos punibles o procedimientos administrativos fraudulentos, que como consecuencia de la aplicación de políticas de terrorismo de Estado, fueron ejecutados por motivos políticos contra militantes revolucionarios y revolucionarias, luchadores y luchadoras populares víctimas de la represión, quienes perseguían el rescate de la democracia plena, la justicia social y el socialismo, así como la memoria histórica de tales hechos y la reivindicación moral, social y política al honor y a la dignidad de las víctimas de la represión que se generó, por parte del Estado venezolano, durante el periodo transcurrido entre los años 1958 a 1998."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Fundamento constitucional"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "2",
+   "numero": 2,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Esta Ley se fundamenta en la obligación que tiene el Estado de investigar y sancionar los delitos contra los derechos humanos, así como los delitos de lesa humanidad cometidos por sus autoridades, atendiendo al principio de imprescriptibilidad de éstos y a su exclusión de todo beneficio procesal que pueda conllevar a su impunidad, incluyendo el indulto y la amnistía o medidas análogas, no sirviendo como justificación la obediencia debida."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Marco internacional de los derechos humanos"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "3",
+   "numero": 3,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "A los efectos de la presente Ley, será aplicable en primera instancia la Constitución de la República, pudiendo las víctimas, en caso de denegación de justicia, acudir a las normas contenidas en los tratados, pactos y convenciones internacionales en materia de derechos humanos y derecho internacional humanitario suscritos y ratificados por la República Bolivariana de Venezuela."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Finalidad"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "4",
+   "numero": 4,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La presente Ley tiene como finalidad:"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "1.- Crear la Comisión por la Justicia y la Verdad, que tendrá como objeto investigar los hechos, la violación de los derechos humanos y los delitos de lesa humanidad, así como las causas y consecuencias que generó el terrorismo de Estado, durante las décadas comprendidas entre los años 1958 a 1998."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "2.- Identificar y sancionar a los autores intelectuales o materiales, venezolanos o venezolanas, extranjeros o extranjeras, que cometieron violaciones de derechos humanos y delitos de lesa humanidad, como expresión de prácticas de terrorismo de Estado, en el período comprendido en la presente Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "3.- Investigar, ubicar y rescatar los restos de las victimas por desaparición forzada, para proceder a su inhumación, garantizando su honor y dignidad, de acuerdo a la ley, así como a los usos y costumbres de sus familiares."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "4.- Investigar, con el fin de localizar a las víctimas sobrevivientes, para recoger sus testimonios y garantizar la reivindicación de su honor y dignidad, de acuerdo a lo dispuesto en esta Ley y a otras normas legales pertinentes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "5.- Reivindicar las luchas populares por las cuales fueron víctimas de la represión que se generó en el Estado venezolano, durante el período transcurrido entre los años 1958 a 1998, al levantar las banderas de la lucha antiimperialista, por la democracia popular y el socialismo en Venezuela."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "6.- Establecer los mecanismos para la reivindicación moral, social y política de las víctimas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Ámbito de aplicación"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "5",
+   "numero": 5,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La presente Ley se aplicará a todos los casos de violación de los derechos humanos y delitos de lesa humanidad cometidos por el Estado venezolano, por motivos políticos, durante el período transcurrido entre los años 1958 a 1998. Los procesos aplicables en las investigaciones, llevados a cabo por los órganos del Poder Ciudadano y demás instituciones del Estado, que sean pertinentes con el objeto de la presente Ley, serán los legalmente aplicables conforme a la naturaleza jurídica del acto y los que rijan su propia actuación. Los procedimientos propios de la Comisión por la Justicia y la Verdad, se desarrollarán en el Reglamento de la presente Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Personas sujetas a la presente Ley"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "6",
+   "numero": 6,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Están sujetas a la presente Ley:"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "1.- Los funcionarios públicos y funcionarias públicas, así como los agentes ocultos que durante el período comprendido en la presente Ley, y por motivo de sus cargos o por complacencia del Estado, incurrieron o participaron en la planificación o ejecución, por motivos políticos, de homicidios, desapariciones forzadas, torturas, lesiones físicas, psíquicas y morales, privaciones arbitrarias de libertad, desplazamientos forzados de personas, expulsiones, deportaciones o exilios arbitrarios, violaciones de domicilio, hostigamientos, incomunicaciones, aislamientos, difamaciones e injurias, perjuicio patrimonial, represiones masivas urbanas y rurales, simulación de hechos punibles o procedimientos administrativos fraudulentos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "2.- Las víctimas de los delitos como consecuencia de los actos de terrorismo de Estado."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "3.- Las personas venezolanas o extranjeras, que sean autores, intelectuales o materiales, coautores, cómplices, partícipes y encubridores de los actos de terrorismo de Estado."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "De las definiciones"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "7",
+   "numero": 7,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "A los efectos de esta Ley, se entenderá por:"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "1.- Desaparición forzada: De conformidad con lo establecido en el artículo 45 de la Constitución y a efectos de esta Ley, se entiende por desaparición forzada el acto por medio del cual la autoridad pública, sea civil, militar o cualquier persona al servicio del Estado, por motivos políticos, comete el delito de privar arbitrariamente y de forma continuada de su libertad a una persona o grupo de ellas, usando bien los cuerpos policiales o de seguridad de la Nación, agentes ocultos, o terceras personas bajo su instigación o consentimiento, autorización o complacencia, no reconociendo el acto de privación de libertad, o entregando información falsa o incompleta sobre el paradero de la víctima, o no dando respuesta a la solicitud de información que le fuera requerida, con lo cual se impide el ejercicio de los recursos legales y las garantías constitucionales. Este delito se consuma aún cuando haya sido cometido por las autoridades públicas en estado de emergencia, excepción o restricción de garantías."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Víctima directa: Toda persona que, por razones políticas, haya sido individual o colectivamente objeto de: asesinatos, ejecuciones simuladas, desapariciones forzadas, torturas, lesiones, privaciones arbitrarias de libertad, desplazamiento forzado de población y personas, expulsiones, deportaciones o exilios arbitrarios, violaciones de domicilio, hostigamiento, violación y lesiones físicas, psicológicas y morales, incomunicación, aislamiento, difamación e injuria, calumnia, perjuicio patrimonial, represiones masivas urbanas y rurales, simulación de hechos punibles o procedimientos administrativos fraudulentos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Víctimas indirectas: Los sobrevivientes de la víctima directa, específicamente:"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "a. El o la cónyuge sobreviviente, o la persona con quien exista una unión estable de hecho."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "b. Hijos o hijas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "c. Padres o madres, parientes dentro del cuarto grado de consanguinidad o segundo de afinidad, que haya asumido la responsabilidad del hogar familiar."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Tortura, tratos crueles, inhumanos y degradantes: Todo acto violento e intencional de naturaleza política e ideológica dirigido por un funcionario o funcionaria al servicio formal del Estado o al servicio oculto del mismo, o a instigación suya o con su consentimiento, destinado a infligir a una persona dolores o sufrimientos graves, con el fin de obtener de ella o de un tercero información, o una confesión; de castigarla por un acto que haya cometido o se sospeche que haya cometido. Se entenderá también como tortura la aplicación sobre una persona de métodos dirigidos a anular la personalidad de la víctima o a disminuir su capacidad física o mental."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Desplazamiento forzado de personas: Es la salida compulsiva, involuntaria y violenta de personas o grupos de personas de sus asentamientos rurales o del hogar, por motivos políticos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Terrorismo de Estado: Es la sucesión de actos de violencia planificados y ejecutados por el Estado, amparados en la llamada Doctrina de Seguridad Nacional diseñada por los Gobiernos de los Estados Unidos de América para los países latinoamericanos, dirigidos a causar pánico en la población o una parte de ella, mediante el abuso o la desviación de poder, usando un mecanismo de doble faz, bien sea la manipulación del sistema legal formal o prácticas ilegales, o mediante el uso de la represión masiva a los sectores estudiantiles, campesinos, obreros y populares con la finalidad de controlar mediante el miedo a la población."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Juicios simulados y fraudulentos: Son los procedimientos basados en denuncias falsas o hechos inexistentes, por razones políticas, instruidas por los tribunales sustentados en hechos fraudulentos, con la intención de establecer la responsabilidad penal sobre hechos no cometidos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Procedimientos administrativos fraudulentos: Son los realizados por los Poderes del Estado, o de los basados en hechos o denuncias con pruebas falsas o falsificadas, a fin de emanar decisiones en contra de derechos e intereses de ciudadanos venezolanos, ciudadanas venezolanas, extranjeros o extranjeras, por razones políticas; o la tergiversación y manipulación de los hechos y pruebas practicados por los funcionarios o funcionarias con el propósito de lograr la impunidad del Estado."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Ejecución sumaria de personas: Es el acto de homicidio de una o varias personas realizado por el Estado, a través de los cuerpos policiales, militares, de seguridad de la Nación, autoridades civiles, agentes ocultos o terceras personas bajo su instigación, consentimiento, autorización o complacencia, por motivos políticos, incluidos los enfrentamientos Armados simulados y la fuga simulada de detenidos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Reivindicación al honor y a la dignidad: A los efectos de la presente Ley, es la justa asistencia moral, social y política que el Estado otorga a las víctimas de violación de los derechos humanos y delitos de lesa humanidad en el periodo transcurrido entre los años 1958 a 1998, a través de la incorporación en las misiones bolivarianas y demás políticas sociales, así como el reconocimiento público que permita visibilizar nombres y acontecimientos en los que las víctimas participaron."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "11. Contrainsurgencia: Son las políticas represivas estatales fundamentadas en la Doctrina de la Seguridad Nacional diseñada por los Gobiernos de los Estados Unidos de América que, utilizando diversas medidas legales e ilegales tuvieron por objetivo detectar y destruir a personas o grupos políticos de izquierda, sus bases de apoyo y la población civil."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "12. Muerto-desaparecido: A los efectos de la presente Ley, es la persona declarada legalmente fallecida, como consecuencia del ocultamiento físico que de ella hubiese hecho el Estado, por razones políticas, dentro del periodo transcurrido entre los años 1958 a 1998, sin que sus restos pudieran ser ubicados."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "13. Masacre: Actos atroces de terrorismo de Estado, caracterizados por un concurso de delitos con pluralidad de víctimas previamente planificado y ejecutado por los organismos de seguridad del Estado, en combinación con otras fuerzas militares o policiales, o por grupos, cuya actuación se produce por complacencia del Estado y que su objetivo es el exterminio de grupos. o poblaciones, violando leyes, acuerdos, tratados, pactos y convenciones internacionales de los derechos humanos y el derecho internacional humanitario."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "14. Agentes ocultos: De conformidad con la presente Ley, es toda persona venezolana o extranjera que, participando en labores de inteligencia al servicio del Estado, mantiene en secreto su identificación o porta una documentación falsa, con la finalidad de cometer violaciones a los derechos humanos, por motivos políticos, así como los participantes en las bandas armadas al servicio de los partidos políticos de los gobiernos de turno en el período transcurrido entre los años 1958 a 1998;"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "15. Frente Social de Familiares y Amigos de Asesinados, Desaparecidos y Torturados por Motivos Políticos en el período 1958-1998: A los efectos de esta Ley, constituye la organización del Poder Popular que representa ante el Estado venezolano y dentro de la Comisión por la Justicia y la Verdad, a las organizaciones sociales, colectivos e individualidades que han sostenido y sostienen la lucha histórica contra la impunidad, por la justicia, la verdad y la reivindicación de las víctimas de la represión que se generó durante el período comprendido en la presente Ley."
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "8",
+   "numero": 8,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se crea la Comisión por la Justicia y la Verdad, como órgano descentralizado con autonomía funcional, con dependencia administrativa y presupuestaria del Consejo Moral Republicano y cuya duración será de tres años, prorrogables por un año, lapso dentro del cual deberá elaborar el correspondiente informe con el objeto de realizar la investigación del período al cual se refiere la presente Ley, para contribuir al esclarecimiento de la verdad; recomendando los mecanismos de reivindicación del honor y la dignidad de las víctimas y el rescate de la memoria histórica; promoviendo en la sociedad la valoración de la preeminencia de los derechos humanos y el reconocimiento de las luchas históricas del pueblo, a fin de superar la profunda crisis y los traumas generados por la violencia del terrorismo de Estado, así como procurando que nunca más se repitan estos delitos de lesa humanidad y otras violaciones contra los derechos humanos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El derecho a la verdad"
+    }
+   ],
+   "seccion_label": "CAPITULO II: De la Comisión por la Justicia y la Verdad"
+  },
+  {
+   "numero_texto": "9",
+   "numero": 9,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El pueblo tiene derecho a conocer las causas de la violencia e identificar a los elementos en conflicto que existieron en el periodo al que hace referencia la presente Ley, visibilizando las estructuras del terrorismo de Estado, modalidades y sus ramificaciones, impuestas en las diversas instancias de la sociedad como mecanismo de no repetición de estos hechos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Derecho a la justicia"
+    }
+   ],
+   "seccion_label": "CAPITULO II: De la Comisión por la Justicia y la Verdad"
+  },
+  {
+   "numero_texto": "10",
+   "numero": 10,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El pueblo tiene el derecho fundamental, preeminente e inalienable a la justicia, que conduzca a la identificación y sanción de las personas que, investidas de autoridad pública, cometieron violaciones a los derechos humanos, a los fines del cese de la impunidad y a obtener las reivindicaciones al honor y a la dignidad que correspondan a las víctimas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Integración y juramentación"
+    }
+   ],
+   "seccion_label": "CAPITULO II: De la Comisión por la Justicia y la Verdad"
+  },
+  {
+   "numero_texto": "11",
+   "numero": 11,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Comisión por la Justicia y la Verdad, estará integrada por dos representantes del Consejo Moral Republicano, distribuidos de la siguiente manera: uno por el Ministerio Público y uno por la Defensoría del Pueblo; cuatro representantes del Ejecutivo Nacional, representado uno por el Ministerio del Poder Popular del Despacho de la Presidencia, uno por el Ministerio del Poder Popular para Relaciones Interiores y Justicia, uno por el Ministerio del Poder Popular para Relaciones Exteriores, uno por el Ministerio del Poder Popular para Servicios Penitenciarios; tres diputados o diputadas de la Asamblea Nacional y diez representantes del Frente Social de Familiares y Amigos de Asesinados, Desaparecidos y Torturados por Motivos Políticos en el periodo 1958-1998, quienes deben ser personalidades de reconocida trayectoria o miembros de organizaciones destacadas en las luchas referidas a la materia tratada por la presente Ley, las cuales deberán estar registradas en dicho Frente, quien establecerá los mecanismos para seleccionar a sus representantes. La Procuraduría General de la República brindará apoyo jurídico, en todo aquello que le sea requerido por la Comisión."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La Comisión por la Justicia y la Verdad determinará su funcionamiento a través de su reglamento, será juramentada por el Presidente o Presidenta del Consejo Moral Republicano y el Presidente o Presidenta de la Asamblea Nacional."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Los integrantes de la Comisión por la Justicia y la Verdad decidirán, de su seno, quien ejercerá su presidencia y sus miembros realizarán las actividades con carácter ad honorem."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Los gastos de funcionamiento"
+    }
+   ],
+   "seccion_label": "CAPITULO II: De la Comisión por la Justicia y la Verdad"
+  },
+  {
+   "numero_texto": "12",
+   "numero": 12,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los gastos de funcionamiento de la Comisión por la Justicia y la Verdad, dependerán del Consejo Moral Republicano, quien deberá incluir dentro de su presupuesto la correspondiente partida para el funcionamiento de la Comisión, sin perjuicio de otros aportes que le pudieran responder, en raíz de la naturaleza de las actividades que deban ejecutarse en el ejercicio de sus funciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La Comisión por la Justicia y la Verdad, rendirá cuenta en materia presupuestaria, ante el Consejo Moral Republicano."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "De la organización"
+    }
+   ],
+   "seccion_label": "CAPITULO II: De la Comisión por la Justicia y la Verdad"
+  },
+  {
+   "numero_texto": "13",
+   "numero": 13,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Comisión por la Justicia y la Verdad estará constituida, entre otras, por las siguientes sub-comisiones:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Participación del Poder Popular."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Documentación y Testimonio."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Información y Divulgación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Recepción de Denuncias."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Asuntos Jurídicos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Asuntos Sociales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Asuntos Internacionales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Otras que se determinen en el reglamento."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "De las atribuciones"
+    }
+   ],
+   "seccion_label": "CAPITULO II: De la Comisión por la Justicia y la Verdad"
+  },
+  {
+   "numero_texto": "14",
+   "numero": 14,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Comisión por la Justicia y la Verdad, tendrá las siguientes atribuciones:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Investigar los hechos que generaron violaciones de los derechos humanos y delitos de lesa humanidad, por motivos políticos, durante el período transcurrido entre los años 1958 a 1998, previa denuncia de toda persona o colectivo, de sus familiares o representantes legalmente autorizados cuyos derechos o libertades fundamentales hayan sido presuntamente violados; establecer el rescate de la justicia y el cese de la impunidad, la memoria histórica de tales hechos y la reivindicación al honor y a la dignidad de las víctimas del terrorismo de Estado, así como la localización de los restos de los caídos en las luchas referidas en la presente Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Recibir las denuncias o informaciones de las víctimas directas e indirectas, u otras personas o colectivos que sean de interés para la investigación e indagación de la verdad, las cuales se presentarán ante el Ministerio Público, y a tales efectos, se podrá solicitar la designación de fiscales especiales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Realizar entrevistas, revisar y compilar documentos, expedientes, archivos, gacetas y demás publicaciones, así como elaborar informes que contengan recomendaciones a las instituciones del Estado, a los fines previstos en la presente Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Acceder a cualquier archivo o registro de cualquier órgano del Estado donde reposen libros, documentos de contenido confidencial o secreto, documentos reproducidos por medios electrónicos, informáticos, ópticos o telemáticos, expedientes o actas contentivas de información sobre los hechos que se investigan, así como solicitar y obtener copias simples o certificadas de dichos archivos y registros, previo cumplimiento de las formalidades legalmente establecidas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Sustanciar documentalmente la comisión de los hechos, con la finalidad de ubicar y rescatar los restos de las víctimas que no hubieran podido ser localizados. Los resultados de dichas actividades serán progresivamente informados al Ministerio Público."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Coordinar con las instituciones del Estado, todas las actividades tendentes a garantizar el libre y permanente acceso a la información de los expedientes en resguardo en instituciones civiles y militares; asimismo, garantizar la preservación inmediata de toda la información contenida en dichos archivos, en concordancia con lo establecido en el artículo 158 del Decreto N 6217 con Rango, Valor y Fuerza de Ley Orgánica de la Administración Pública."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Exigir a los órganos del Estado, celeridad y efectividad en el cumplimiento de las obligaciones contempladas en la presente Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Recomendar medidas para el cumplimiento de la presente Ley en relación con las reivindicaciones al honor y a la dignidad de las víctimas, así como el rescate de la memoria histórica y la justicia."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Crear un órgano regular para informar, dar publicidad y divulgar los acuerdos, resoluciones, sentencias judiciales, medidas y todos los asuntos relacionados con la materia a que se refiere la presente Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Podrá crear, conforme a las necesidades, comisiones regionales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "11. Elaborar y presentar el informe final correspondiente a las investigaciones y demás funciones que, de conformidad con la presente Ley, le corresponda ejercer."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "12. Elaborar su reglamento."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "De la apertura y preservación de archivos"
+    }
+   ],
+   "seccion_label": "CAPITULO II: De la Comisión por la Justicia y la Verdad"
+  },
+  {
+   "numero_texto": "15",
+   "numero": 15,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Comisión por la Justicia y la Verdad, implementará un sistema de registro de víctimas de violación de los derechos humanos, durante el período comprendido en la presente Ley. Las víctimas podrán contribuir con el aporte de toda la información posible al sistema de registro."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Estado garantizará la implementación, preservación y custodia de los archivos reservados, clasificados, secretos o confidenciales, administrativos, legislativos, judiciales, penitenciarios, policiales y militares; incluyendo los llamados archivos clasificados, que contengan expedientes de las causas o cualquier información sobre los hechos que se investiguen por violación de los derechos humanos en el período establecido en la presente Ley. Todo funcionario administrativo o funcionaria administrativa, sea este civil, policial o militar, está obligado u obligada a permitir el acceso a los expedientes y suministrar la información que se encuentre bajo su resguardo, cuando le sea requerida por el Ministerio Público o la Comisión por la Justicia y la Verdad, pudiendo ser responsable civil, penal o administrativamente de cualquier acción u omisión que pretenda obstaculizar dicha investigación. Cuando los documentos que se requieran para la investigación reposen en archivos extranjeros, el Estado a requerimiento de la Comisión, solicitará a través del Ministerio del Poder Popular para Relaciones Exteriores, acceso a los mismos y copia certificada de documentos de interés en las investigaciones a las que se refiere la presente Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Obligación de colaboración"
+    }
+   ],
+   "seccion_label": "CAPITULO II: De la Comisión por la Justicia y la Verdad"
+  },
+  {
+   "numero_texto": "16",
+   "numero": 16,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Toda autoridad civil, militar, administrativa, ciudadano y ciudadana, está en el deber de colaborar con la Comisión por la Justicia y la Verdad. El incumplimiento de la obligación anteriormente referida acarreará responsabilidad civil, penal o administrativa."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Declaratoria de interés público"
+    }
+   ],
+   "seccion_label": "CAPITULO II: De la Comisión por la Justicia y la Verdad"
+  },
+  {
+   "numero_texto": "17",
+   "numero": 17,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se declararán de interés público, documentos privados que tengan interés para la presente Ley, contenidos en archivos particulares y, en tal caso, pasarán a formar parte del patrimonio documental de la Nación. Las personas, instituciones privadas y organizaciones políticas poseedoras o tenedoras de documentos u objetos declarados de interés público, no podrán trasladarlos fuera del territorio nacional sin previa autorización del Archivo General de la Nación, ni transferir su propiedad, posesión o tenencia a título oneroso o gratuito, sin previa información escrita al mismo, de conformidad con lo establecido en la ley que regula la materia de archivos y desclasificación de documentos."
+    }
+   ],
+   "seccion_label": "CAPITULO II: De la Comisión por la Justicia y la Verdad"
+  },
+  {
+   "numero_texto": "18",
+   "numero": 18,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En ejercicio del principio constitucional que establece como valor superior la preeminencia de los derechos humanos, se reconoce la comisión de graves violaciones a los derechos humanos y de delitos de lesa humanidad que ocasionaron daños a personas y colectividades por causa de prácticas de terrorismo de Estado, durante el período transcurrido entre los años 1958 a 1998. El Estado venezolano, en cumplimiento de la Constitución de la República, asume la obligación de garantizar la no repetición de las violaciones contra los derechos humanos, como las producidas durante el período al que se refiere la presente Ley, para lo cual se compromete a:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Difundir públicamente la verdad, sin poner en peligro la seguridad de las víctimas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Localizar los restos de las personas desaparecidas y proveer la ayuda especializada para su identificación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Garantizar la reivindicación moral, social y política de todas las víctimas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Localizar y entregar los restos de los muertos-desaparecidos a sus deudos para su inhumación, según las leyes, tradiciones familiares y comunitarias, así como sufragar los gastos correspondientes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Pronunciarse oficialmente respecto al reconocimiento público de los hechos, la aceptación de las responsabilidades y el restablecimiento de la dignidad, la reputación y derechos de las víctimas de violaciones a los derechos humanos y de delitos de lesa humanidad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Desarrollar, promover y divulgar las políticas públicas de fortalecimiento institucional y de los derechos humanos, que erradiquen las prácticas arbitrarias del Estado, contrarias a los principios y valores humanistas contenidos en la Constitución de la República."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. El Estado, en correspondencia con el Poder Popular, promoverá diversas formas de dignificación de las víctimas y los hechos históricos señalados, a fin que permanezcan en la memoria colectiva de la presente y las futuras generaciones, como garantía que nunca más se repitan esos hechos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. El Estado podrá reconocer su responsabilidad en la perpetración de cada hecho investigado, continuando las investigaciones correspondientes. También podrá reconocer a las víctimas en cualquier fase de la causa en cuestión."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Recurso extraordinario de revisión constitucional"
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la reivindicación al honor y a la dignidad de las víctimas"
+  },
+  {
+   "numero_texto": "19",
+   "numero": 19,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando de las investigaciones del Ministerio Público o de la Comisión por la Justicia y la Verdad, se evidencie la existencia de pruebas fehacientes que constaten plenamente la materialidad de violaciones graves a los derechos humanos y delitos de lesa humanidad, o la responsabilidad plena en la perpetración de los mismos, por las razones previstas en la presente Ley, las cuales sean pertinentes a causas judiciales o procedimientos administrativos que por cualquier razón procesal se encontrasen firmes, siendo dichas pruebas de tal naturaleza que de haber sido conocidas en su oportunidad la decisión definitiva hubiese sido distinta a La que constase en autos, el Ministerio Público solicitará a la Sala Constitucional del Tribunal Supremo de Justicia la revisión del expediente a los fines de su reapertura. La Sala Constitucional se pronunciará sobre la solicitud y, de considerarla pertinente, ordenará al Ministerio Público la reapertura del caso y su tramitación procesal por vía ordinaria."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Investigación de delitos de lesa humanidad"
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la reivindicación al honor y a la dignidad de las víctimas"
+  },
+  {
+   "numero_texto": "20",
+   "numero": 20,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En los casos en que de las investigaciones del Ministerio Público o la Comisión por la Justicia y la Verdad, se constate fehacientemente la comisión de delitos de lesa humanidad o violaciones graves a los derechos humanos, por las razones previstas en la presente Ley, y que no conste que esos hechos fueron investigados judicialmente en su oportunidad, a pesar de su gravedad o notoriedad, el Ministerio Público de oficio, o a petición de la Comisión por la Justicia y la Verdad, elevará consulta a la Sala Constitucional del Tribunal Supremo de Justicia, quien se pronunciará sobre la procedencia de la investigación procesal de tales hechos. De considerarse procedente, se ordenará la apertura de la averiguación y su tramitación por la vía procesal ordinaria."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Declaración legal de muerte por desaparición forzada"
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la reivindicación al honor y a la dignidad de las víctimas"
+  },
+  {
+   "numero_texto": "21",
+   "numero": 21,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Una vez instalada la Comisión por la Justicia y la Verdad, en un lapso máximo de tres meses presentará nombres de personas consideradas muertas-desaparecidas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Al momento de ser publicada la lista con los nombres de las víctimas en el órgano de difusión de la Comisión, tendrá carácter oficial y legal de muertos-desaparecidos, y a partir de ese momento las víctimas indirectas podrán solicitar la reivindicación de sus derechos, de conformidad con la presente Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Hasta tanto no aparezca viva o muerta la víctima del delito de desaparición forzada, el hecho será considerado un delito de acción continuada."
+    },
+    {
+     "tipo": "apartado",
+     "texto": "Parágrafo único: Cuando de las investigaciones pertinentes a la presente Ley, se descubran nuevas evidencias de personas muertas-desaparecidas que no figuren en la lista en cuestión, se incorporarán en la misma, previo pronunciamiento motivado de la Comisión, quien notificará tal decisión al Ministerio Público para que proceda a la averiguación procesal correspondiente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Sanciones administrativas"
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la reivindicación al honor y a la dignidad de las víctimas"
+  },
+  {
+   "numero_texto": "22",
+   "numero": 22,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando de las investigaciones de la Comisión por la Justicia y la Verdad, se conozca de personas que recibieron ascensos, medallas y reconocimientos u otras prebendas, obtenidas por hechos fundados en graves violaciones de derechos humanos, la Defensoría del Pueblo, a petición de la Comisión, se pronunciará al respecto. Si del dictamen correspondiente se considera que existen méritos para que se establezcan sanciones administrativas, se le solicitará a la Sala Constitucional del Tribunal Supremo de Justicia que se pronuncie sobre la que corresponda y sus efectos en el tiempo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Sanciones morales"
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la reivindicación al honor y a la dignidad de las víctimas"
+  },
+  {
+   "numero_texto": "23",
+   "numero": 23,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "A petición fundada de la Comisión por la Justicia y la Verdad, el Consejo Moral Republicano se pronunciará con respecto a las sanciones morales que recaigan sobre aquellos ciudadanos o ciudadanas, a quienes se les haya comprobado fehacientemente su participación o colaboración en la perpetración de graves violaciones de derechos humanos o delitos de lesa humanidad, de conformidad con lo establecido en la Constitución de la República y lo previsto en la presente Ley. Las sanciones morales serán las siguientes:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Declaración oficial y pública de la participación del sancionado o sancionada en la perpetración del hecho que violó gravemente derechos humanos u ocasionó delitos de lesa humanidad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Retiro de nombres topónimos y epónimos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Ubicar un espacio en el Museo Histórico de la Memoria, para identificar los autores de las violaciones de derechos humanos y delitos de lesa humanidad, con el señalamiento de su participación en los mismos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando la sanción prevista en el numeral 2 no sea posible, se indicará en el topónimo o el epónimo, una leyenda con la mención expresa de las graves violaciones de derechos humanos y de delitos de lesa humanidad, en los cuales el sancionado o sancionada tuviese responsabilidad de algún tipo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Reivindicación de los derechos afectados"
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la reivindicación al honor y a la dignidad de las víctimas"
+  },
+  {
+   "numero_texto": "24",
+   "numero": 24,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Una vez declarada la condición de víctima, por parte de la Comisión por la Justicia y la Verdad, se procederá a la reivindicación de los derechos afectados, de la forma siguiente:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Reivindicar el honor y la dignidad de la víctima directa e indirecta, con respecto a las acusaciones fraudulentas originadas por las prácticas de terrorismo de Estado, dentro del período al que se refiere la presente Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Declarar, oficial y públicamente, la reivindicación del honor, la dignidad y la memoria del muerto desaparecido, muerta desaparecida, asesinados y asesinadas por razones políticas, como mártir por la democracia popular, la liberación nacional y el socialismo."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Exigir a los órganos competentes que declaren la nulidad de todas las medidas administrativas o judiciales que perjudiquen, limiten o nieguen el ejercicio de los derechos civiles y políticos de las víctimas por las razones previstas en esta Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Incorporar a los programas sociales, a aquellas víctimas que así lo requieran, siempre que reúnan los requisitos establecidos en la presente Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Cualquier otra medida que, a criterio de la Comisión por la Justicia y la Verdad, se considere justa y necesaria para resarcir los derechos de las víctimas y la reivindicación del honor, la dignidad y la memoria de los declarados muertos-desaparecidos, asesinados o asesinadas por razones políticas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Reivindicación moral, social y política de las víctimas"
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la reivindicación al honor y a la dignidad de las víctimas"
+  },
+  {
+   "numero_texto": "25",
+   "numero": 25,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las víctimas directas tendrán derecho a la reivindicación moral, social y política, en cualquier caso."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando se trate de víctimas indirectas, la reivindicación se hará atendiendo al siguiente orden:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. El o La cónyuge sobreviviente o la persona con quien exista una unión estable de hecho."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Hijas e hijos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Madres y padres, parientes dentro del cuarto grado de consanguinidad o segundo de afinidad, que haya asumido la responsabilidad del hogar familiar."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Reglamento de la presente Ley establecerá los mecanismos para la reivindicación de las víctimas indirectas, con base a los principios de honorabilidad, solidaridad, dignidad, equidad y necesidad."
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la reivindicación al honor y a la dignidad de las víctimas"
+  },
+  {
+   "numero_texto": "26",
+   "numero": 26,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Estado reivindicará las luchas populares y revolucionarias llevadas a cabo por el pueblo venezolano, durante el periodo histórico de 1958 a 1998, incluyendo las acciones cívico-militares conocidas como \"El Porteñazo\", \"El Carupanazo\", \"El Caracazo\", \"Caracas 4 de Febrero y 27 de noviembre de 1992\", y a sus protagonistas. También reconocerá las acciones realizadas por obreros, obreras, estudiantes, campesinos, campesinas e intelectuales en defensa de la soberanía, la democracia popular, la liberación nacional y el socialismo, así como en contra del terrorismo de Estado y la intervención de gobiernos extranjeros."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Estado reconocerá la labor de los colectivos sociales que hayan demostrado una actividad sostenida en defensa de los derechos humanos ante las graves violaciones ocurridas en el periodo a que hace referencia la presente Ley, en consecuencia estas organizaciones recibirán el apoyo material e institucional para el desarrollo de sus actividades. El reglamento establecerá los mecanismos de articulación y participación de estas organizaciones del Poder Popular."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Del rescate de la memoria histórica"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la memoria histórica"
+  },
+  {
+   "numero_texto": "27",
+   "numero": 27,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Estado, a través del órgano con competencia en materia de documentación, archivo y acervo histórico; rescatará, preservará y divulgará la memoria histórica de las graves violaciones de derechos humanos y los delitos de lesa humanidad, la situación de las víctimas generadas por el terrorismo de Estado y sus consecuencias políticas, éticas y sociales. Para ello, incorporará en la historiografía oficial venezolana el estudio de las luchas populares del período a que se refiere la presente Ley, como precursoras del actual proceso político. Corresponderá a los Ministerios del Poder Popular con competencia en materia de educación llevar a cabo su realización."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Estado erigirá memoriales y recordatorios en aquellos lugares donde acontecieron los hechos a los que se refiere la presente Ley, sean éstos locales o nacionales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Preservación de la memoria histórica"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la memoria histórica"
+  },
+  {
+   "numero_texto": "28",
+   "numero": 28,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "A los efectos de preservar la memoria histórica, corresponderá al órgano con competencia en materia de documentación, archivo y acervo histórico:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Recopilar, sistematizar, conservar y divulgar el material documental y testimonial, correspondiente a los archivos e informaciones vinculados con la violación a los derechos humanos por el terrorismo de Estado, en la época a la que hace referencia la presente Ley, el cual pasará a formar parte de su acervo patrimonial, esto sin menoscabo a las atribuciones de la Comisión."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Identificar y señalizar los lugares donde funcionaron los centros de tortura y asesinatos, en especial los llamados Teatros de Operaciones (TO), la Dirección General de Policía (DIGEPOL), Dirección de Inteligencia de Seguridad y Prevención (DISIP), Servicio de Inteligencia de la Fuerza Armada (SIFA), Policía Técnica Judicial (PTJ), Policía Metropolitana de Caracas (PM), así como los sitios donde fueron encontrados los restos de los revolucionarios desaparecidos, revolucionarias desaparecidas, asesinados y asesinadas por razones políticas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Promover la divulgación de la memoria histórica a través de centros, instituciones públicas y académicas, nacionales e internacionales con identidad de fines a los contemplados en esta Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Realizar, con la participación del Poder Popular, eventos públicos en todo el país, en los cuales se haga conocer la memoria histórica de los hechos a que hace referencia esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Museo de la Memoria Histórica"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la memoria histórica"
+  },
+  {
+   "numero_texto": "29",
+   "numero": 29,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se creará un Museo de la Memoria Histórica de las luchas populares del pueblo venezolano, en el periodo histórico al cual se refiere la presente Ley, el cual tendrá su sede en el Cuartel San Carlos de la Ciudad de Caracas. El mismo formará parte del sistema nacional de museos y será un espacio de paz, de recuerdo y de homenaje a la vida, así como de participación del Poder Popular."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Asimismo, las comisiones regionales, podrán crear museos y espacios para el rescate y preservación de la memoria histórica."
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la memoria histórica"
+  },
+  {
+   "numero_texto": "PRIMERA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Hasta tanto sea creada la Comisión por la Justicia y la Verdad, el Ministerio Público, por intermedio de el o la Fiscal General de la República, y los o las fiscales especiales asignados o asignadas a las investigaciones pertinentes a esta Ley, informará sobre las investigaciones y demás actuaciones al Poder Popular organizado en los colectivos sociales que integran el Frente Social de Familiares y Amigos de Asesinados, Desaparecidos y Torturados por Motivos PolíticOs en el periodo de 1958 a 1998 que; de manera constante han sostenido una lucha histórica por la reivindicación del honor y la dignidad de las víctimas del terrorismo de Estado del periodo referido en la presente Ley."
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Disposiciones"
+  },
+  {
+   "numero_texto": "SEGUNDA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En un plazo no mayor a sesenta días continuos, contados a partir de la entrada en vigencia de la presente Ley, será juramentada la Comisión por la Justicia y la Verdad, por el Presidente o la Presidenta del Consejo Moral Republicano y el Presidente o Presidenta de la Asamblea Nacional."
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Disposiciones"
+  },
+  {
+   "numero_texto": "TERCERA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En un plazo no mayor a sesenta días continuos, contados a partir de la instalación de la Comisión por la justicia y la Verdad, será dictado el reglamento de funcionamiento y procedimientos, para dar cumplimiento a los fines de la presente Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "DISPOSICIÓN FINAL"
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Disposiciones"
+  },
+  {
+   "numero_texto": "ÚNICA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_para_sancionar_los_crimenes_desapariciones_torturas_y_otras_violaciones_de_los_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La presente Ley entrará en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Dada, firmada y sellada en el Palacio Federal Legislativo, sede de la Asamblea Nacional en Caracas, a los dieciocho días del mes de octubre de dos mil once. Año 201 de la Independencia y 152 de la Federación."
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Disposiciones"
+  }
+ ]
+}

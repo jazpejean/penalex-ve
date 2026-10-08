@@ -1,13 +1,29 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
-import '../services/image_filter_service.dart';
 
+import 'package:flutter/material.dart';
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:share_plus/share_plus.dart';
+
+import '../services/documentos_service.dart';
+import '../services/document_scanner_service_pro.dart';
+import '../services/escaneo_service.dart';
+import '../services/image_filter_service.dart';
+import 'crop_adjust_screen.dart';
+
+/// Editor de documento escaneado, estilo CamScanner:
+/// vista previa grande, tira de miniaturas, filtros, recorte manual,
+/// rotar, reordenar, OCR y guardado.
 class DocumentEditorScreen extends StatefulWidget {
-  final String imagePath;
+  final List<String> paginas;
+  final DocumentosService documentosService;
 
   const DocumentEditorScreen({
     super.key,
-    required this.imagePath,
+    required this.paginas,
+    required this.documentosService,
   });
 
   @override
@@ -17,294 +33,318 @@ class DocumentEditorScreen extends StatefulWidget {
 class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
+  static const Color grisOscuro = Color(0xFF1E293B);
 
-  String _currentImagePath = '';
-  bool _isProcessing = false;
-  
-  // Valores de filtros
-  double _brightness = 0;
-  double _contrast = 100;
-  bool _blancoYNegro = false;
+  final EscaneoService _escaneoService = EscaneoService();
+
+  late List<String> _paginas;
+  late List<String> _originales;
+  int _paginaActual = 0;
+
+  final TextEditingController _tituloController = TextEditingController();
+  final PageController _pageController = PageController();
+
+  bool _procesando = false;
+  bool _guardando = false;
+  String? _textoOcr;
 
   @override
   void initState() {
     super.initState();
-    _currentImagePath = widget.imagePath;
+    _paginas = List.from(widget.paginas);
+    _originales = List.from(widget.paginas);
+    final now = DateTime.now();
+    _tituloController.text =
+        'Documento ${now.day.toString().padLeft(2, '0')}/${now.month.toString().padLeft(2, '0')}/${now.year}';
   }
 
-  Future<void> _aplicarFiltros() async {
-    setState(() => _isProcessing = true);
+  @override
+  void dispose() {
+    _tituloController.dispose();
+    _pageController.dispose();
+    super.dispose();
+  }
 
-    final filteredPath = await ImageFilterService.aplicarFiltrosMultiples(
-      imagePath: widget.imagePath,
-      brightness: _brightness.round(),
-      contrast: _contrast.round(),
-      blancoYNegro: _blancoYNegro,
+  // ---------------------------------------------------------------------------
+  // Acciones
+  // ---------------------------------------------------------------------------
+
+  Future<void> _agregarPaginas() async {
+    setState(() => _procesando = true);
+    final nuevas = await _escaneoService.escanear();
+    if (mounted) setState(() => _procesando = false);
+    if (nuevas.isNotEmpty && mounted) {
+      setState(() {
+        _paginas.addAll(nuevas);
+        _originales.addAll(nuevas);
+        _paginaActual = _paginas.length - 1;
+      });
+      _pageController.jumpToPage(_paginaActual);
+    }
+  }
+
+  Future<void> _rotar() async {
+    if (_procesando) return;
+    setState(() => _procesando = true);
+    final nueva =
+        await ImageFilterService.rotarImagen(_paginas[_paginaActual], 90);
+    if (mounted) setState(() => _procesando = false);
+    if (nueva != null && mounted) {
+      setState(() => _paginas[_paginaActual] = nueva);
+    }
+  }
+
+  Future<void> _aplicarFiltro(_Filtro filtro) async {
+    Navigator.pop(context);
+    if (_procesando) return;
+    setState(() => _procesando = true);
+
+    final original = _originales[_paginaActual];
+    String? resultado;
+    switch (filtro) {
+      case _Filtro.original:
+        resultado = original;
+        break;
+      case _Filtro.mejora:
+        resultado = await ImageFilterService.optimizarParaDocumento(original);
+        break;
+      case _Filtro.blancoNegro:
+        resultado = await ImageFilterService.aplicarBlancoYNegro(original);
+        break;
+      case _Filtro.nitidez:
+        resultado = await ImageFilterService.aumentarNitidez(original);
+        break;
+    }
+
+    if (mounted) setState(() => _procesando = false);
+    if (resultado != null && mounted) {
+      final r = resultado;
+      setState(() => _paginas[_paginaActual] = r);
+    }
+  }
+
+  Future<void> _recortar() async {
+    if (_procesando) return;
+    final corners = await DocumentScannerServicePro.detectEdgesManual(
+      _paginas[_paginaActual],
+    );
+    if (corners == null || !mounted) return;
+
+    final file = await Navigator.push<File>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => CropAdjustScreen(
+          imagePath: _paginas[_paginaActual],
+          detectedCorners: corners,
+        ),
+      ),
     );
 
-    if (mounted) {
-      setState(() {
-        _isProcessing = false;
-        if (filteredPath != null) {
-          _currentImagePath = filteredPath;
-        }
-      });
-
-      if (filteredPath == null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('❌ Error aplicando filtros'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
+    if (file != null && mounted) {
+      setState(() => _paginas[_paginaActual] = file.path);
     }
   }
 
-  Future<void> _optimizarDocumento() async {
-    setState(() => _isProcessing = true);
-
-    final optimizedPath = await ImageFilterService.optimizarParaDocumento(widget.imagePath);
-
-    if (mounted) {
-      setState(() {
-        _isProcessing = false;
-        if (optimizedPath != null) {
-          _currentImagePath = optimizedPath;
-          // Reset filtros después de optimizar
-          _brightness = 0;
-          _contrast = 100;
-          _blancoYNegro = false;
-        }
-      });
-
-      if (optimizedPath != null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('✅ Documento optimizado'),
-            backgroundColor: Colors.green,
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('❌ Error optimizando'),
-            backgroundColor: Colors.red,
-          ),
-        );
+  void _eliminarPagina() {
+    if (_paginas.length <= 1) return;
+    setState(() {
+      _paginas.removeAt(_paginaActual);
+      _originales.removeAt(_paginaActual);
+      if (_paginaActual >= _paginas.length) {
+        _paginaActual = _paginas.length - 1;
       }
-    }
+    });
   }
 
-  Future<void> _rotarImagen() async {
-    setState(() => _isProcessing = true);
-
-    final rotatedPath = await ImageFilterService.rotarImagen(_currentImagePath, 90);
-
-    if (mounted) {
-      setState(() {
-        _isProcessing = false;
-        if (rotatedPath != null) {
-          _currentImagePath = rotatedPath;
-        }
-      });
-
-      if (rotatedPath == null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('❌ Error rotando imagen'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    }
-  }
-
-  Future<void> _aplicarBlancoYNegro() async {
-    setState(() => _isProcessing = true);
-
-    final bwPath = await ImageFilterService.aplicarBlancoYNegro(_currentImagePath);
-
-    if (mounted) {
-      setState(() {
-        _isProcessing = false;
-        if (bwPath != null) {
-          _currentImagePath = bwPath;
-          _blancoYNegro = true;
-        }
-      });
-
-      if (bwPath == null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('❌ Error aplicando B&N'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    }
-  }
-
-  void _guardarYSalir() {
-    // Retornar la ruta de la imagen editada
-    Navigator.pop(context, _currentImagePath);
-  }
-
-  void _mostrarPanelFiltros() {
-    showModalBottomSheet(
+  Future<void> _reordenar() async {
+    final reordenadas = await showModalBottomSheet<List<String>>(
       context: context,
-      backgroundColor: azulMarino,
-      isScrollControlled: true,
+      backgroundColor: grisOscuro,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (context) => StatefulBuilder(
-        builder: (context, setModalState) => SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Ajustar Filtros',
+      builder: (_) => _ReordenarPaginasSheet(paginas: _paginas),
+    );
+
+    if (reordenadas != null && mounted) {
+      setState(() => _paginas = reordenadas);
+    }
+  }
+
+  Future<void> _procesarOCR() async {
+    if (_procesando) return;
+    setState(() => _procesando = true);
+
+    final textRecognizer = TextRecognizer();
+    final textoCompleto = StringBuffer();
+    try {
+      for (final imagePath in _paginas) {
+        final inputImage = InputImage.fromFilePath(imagePath);
+        final recognizedText = await textRecognizer.processImage(inputImage);
+        textoCompleto.writeln(recognizedText.text);
+        textoCompleto.writeln('\n---\n');
+      }
+    } catch (e) {
+      debugPrint('❌ Error en OCR: $e');
+    } finally {
+      await textRecognizer.close();
+    }
+
+    if (mounted) {
+      setState(() {
+        _textoOcr = textoCompleto.toString().trim();
+        _procesando = false;
+      });
+      _mostrarTextoExtraido();
+    }
+  }
+
+  void _mostrarTextoExtraido() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: grisOscuro,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.85,
+        builder: (context, scrollController) => Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  const Icon(Icons.text_fields, color: dorado),
+                  const SizedBox(width: 12),
+                  const Expanded(
+                    child: Text(
+                      'Texto extraído (OCR)',
                       style: TextStyle(
-                        color: dorado,
-                        fontSize: 20,
+                        color: Colors.white,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    IconButton(
-                      icon: const Icon(Icons.close, color: Colors.white70),
-                      onPressed: () => Navigator.pop(context),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                
-                // Brillo
-                const Text(
-                  'Brillo',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-                Slider(
-                  value: _brightness,
-                  min: -100,
-                  max: 100,
-                  divisions: 40,
-                  label: _brightness.round().toString(),
-                  activeColor: dorado,
-                  inactiveColor: Colors.white24,
-                  onChanged: (value) {
-                    setState(() => _brightness = value);
-                    setModalState(() => _brightness = value);
-                  },
-                ),
-                
-                const SizedBox(height: 16),
-                
-                // Contraste
-                const Text(
-                  'Contraste',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-                Slider(
-                  value: _contrast,
-                  min: 50,
-                  max: 200,
-                  divisions: 30,
-                  label: _contrast.round().toString(),
-                  activeColor: dorado,
-                  inactiveColor: Colors.white24,
-                  onChanged: (value) {
-                    setState(() => _contrast = value);
-                    setModalState(() => _contrast = value);
-                  },
-                ),
-                
-                const SizedBox(height: 16),
-                
-                // Blanco y Negro
-                SwitchListTile(
-                  title: const Text(
-                    'Blanco y Negro',
-                    style: TextStyle(color: Colors.white),
                   ),
-                  value: _blancoYNegro,
-                  activeColor: dorado,
-                  onChanged: (value) {
-                    setState(() => _blancoYNegro = value);
-                    setModalState(() => _blancoYNegro = value);
-                  },
-                ),
-                
-                const SizedBox(height: 24),
-                
-                // Botones de acción
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _brightness = 0;
-                          _contrast = 100;
-                          _blancoYNegro = false;
-                        });
-                        setModalState(() {
-                          _brightness = 0;
-                          _contrast = 100;
-                          _blancoYNegro = false;
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey[700],
-                        foregroundColor: Colors.white,
-                      ),
-                      child: const Text('Resetear'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        _aplicarFiltros();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: dorado,
-                        foregroundColor: azulMarino,
-                      ),
-                      child: const Text('Aplicar'),
-                    ),
-                  ],
-                ),
-                
-                const SizedBox(height: 16),
-              ],
+                  IconButton(
+                    icon: const Icon(Icons.close, color: Colors.white),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ],
+              ),
             ),
-          ),
+            const Divider(color: Colors.white10, height: 1),
+            Expanded(
+              child: SingleChildScrollView(
+                controller: scrollController,
+                padding: const EdgeInsets.all(16),
+                child: SelectableText(
+                  _textoOcr ?? 'No se extrajo texto',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    height: 1.5,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
+
+  Future<void> _descargarPdf() async {
+    if (_paginas.isEmpty || _procesando) return;
+    setState(() => _procesando = true);
+    try {
+      final pdf = pw.Document();
+      for (final p in _paginas) {
+        final bytes = File(p).readAsBytesSync();
+        pdf.addPage(
+          pw.Page(
+            pageFormat: PdfPageFormat.a4,
+            build: (_) => pw.Image(pw.MemoryImage(bytes), fit: pw.BoxFit.contain),
+          ),
+        );
+      }
+      final dir = await getApplicationDocumentsDirectory();
+      final file = File(
+          '${dir.path}/documento_${DateTime.now().millisecondsSinceEpoch}.pdf');
+      await file.writeAsBytes(await pdf.save());
+      if (mounted) setState(() => _procesando = false);
+      await Share.shareXFiles([XFile(file.path)],
+          text: 'Documento escaneado (PDF)');
+    } catch (e) {
+      debugPrint('❌ Error generando PDF: $e');
+      if (mounted) setState(() => _procesando = false);
+    }
+  }
+
+  Future<void> _descargarImagen() async {
+    if (_paginas.isEmpty) return;
+    final archivos = _paginas.map((p) => XFile(p)).toList();
+    await Share.shareXFiles(archivos, text: 'Imágenes escaneadas');
+  }
+
+  Future<void> _guardar() async {
+    if (_guardando) return;
+    setState(() => _guardando = true);
+
+    final documento = await widget.documentosService.guardarDocumento(
+      titulo: _tituloController.text.trim().isEmpty
+          ? 'Documento'
+          : _tituloController.text.trim(),
+      rutasImagenesLocales: _paginas,
+      textoOcr: _textoOcr,
+    );
+
+    if (!mounted) return;
+    setState(() => _guardando = false);
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          documento != null
+              ? '✅ Documento guardado'
+              : '❌ Error guardando documento',
+        ),
+        backgroundColor: documento != null ? Colors.green : Colors.red,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+
+    if (documento != null) {
+      Navigator.pop(context, {'guardado': true});
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // UI
+  // ---------------------------------------------------------------------------
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: azulMarino,
       appBar: AppBar(
-        title: const Text(
-          'Editar Página',
-          style: TextStyle(color: dorado, fontWeight: FontWeight.bold),
-        ),
         backgroundColor: azulMarino,
         elevation: 0,
         iconTheme: const IconThemeData(color: dorado),
+        title: TextField(
+          controller: _tituloController,
+          style: const TextStyle(color: Colors.white, fontSize: 16),
+          decoration: const InputDecoration(
+            hintText: 'Nombre del documento',
+            hintStyle: TextStyle(color: Colors.white38),
+            border: InputBorder.none,
+          ),
+        ),
         actions: [
-          if (_isProcessing)
+          if (_guardando || _procesando)
             const Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16),
               child: SizedBox(
                 width: 20,
                 height: 20,
@@ -314,100 +354,355 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
                 ),
               ),
             )
-          else
+          else ...[
             IconButton(
-              icon: const Icon(Icons.check),
-              onPressed: _guardarYSalir,
-              tooltip: 'Guardar',
+              icon: const Icon(Icons.picture_as_pdf, color: dorado),
+              tooltip: 'Descargar como PDF',
+              onPressed: _descargarPdf,
             ),
+            IconButton(
+              icon: const Icon(Icons.image, color: dorado),
+              tooltip: 'Descargar como imagen',
+              onPressed: _descargarImagen,
+            ),
+            IconButton(
+              icon: const Icon(Icons.cloud_upload, color: dorado),
+              tooltip: 'Guardar en la nube',
+              onPressed: _guardar,
+            ),
+          ],
         ],
       ),
       body: Column(
         children: [
-          // Vista previa de la imagen
-          Expanded(
-            child: Center(
-              child: _isProcessing
-                  ? const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircularProgressIndicator(color: dorado),
-                        SizedBox(height: 16),
-                        Text(
-                          'Procesando...',
-                          style: TextStyle(color: Colors.white70),
-                        ),
-                      ],
-                    )
-                  : Image.file(
-                      File(_currentImagePath),
-                      fit: BoxFit.contain,
-                    ),
-            ),
-          ),
-          
-          // Barra de herramientas
-          Container(
-            color: Colors.black.withOpacity(0.3),
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildToolButton(
-                    icon: Icons.tune,
-                    label: 'Filtros',
-                    onPressed: _mostrarPanelFiltros,
-                  ),
-                  const SizedBox(width: 8),
-                  _buildToolButton(
-                    icon: Icons.auto_fix_high,
-                    label: 'Optimizar',
-                    onPressed: _optimizarDocumento,
-                  ),
-                  const SizedBox(width: 8),
-                  _buildToolButton(
-                    icon: Icons.rotate_90_degrees_ccw,
-                    label: 'Rotar',
-                    onPressed: _rotarImagen,
-                  ),
-                  const SizedBox(width: 8),
-                  _buildToolButton(
-                    icon: Icons.filter_b_and_w,
-                    label: 'B&N',
-                    onPressed: _aplicarBlancoYNegro,
-                  ),
-                ],
-              ),
-            ),
-          ),
+          Expanded(child: _buildVistaPrevia()),
+          _buildTiraMiniaturas(),
+          _buildBarraAcciones(),
         ],
       ),
     );
   }
 
-  Widget _buildToolButton({
-    required IconData icon,
-    required String label,
-    required VoidCallback onPressed,
-  }) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
+  Widget _buildVistaPrevia() {
+    return Stack(
       children: [
-        IconButton(
-          icon: Icon(icon, color: dorado),
-          onPressed: _isProcessing ? null : onPressed,
-          iconSize: 28,
+        PageView.builder(
+          controller: _pageController,
+          itemCount: _paginas.length,
+          onPageChanged: (i) => setState(() => _paginaActual = i),
+          itemBuilder: (context, index) {
+            return Center(
+              child: InteractiveViewer(
+                maxScale: 5,
+                child: Image.file(
+                  File(_paginas[index]),
+                  fit: BoxFit.contain,
+                  errorBuilder: (_, __, ___) => const Center(
+                    child: Icon(Icons.broken_image, color: dorado, size: 64),
+                  ),
+                ),
+              ),
+            );
+          },
         ),
-        Text(
-          label,
-          style: const TextStyle(
-            color: Colors.white70,
-            fontSize: 12,
+        if (_procesando)
+          Positioned.fill(
+            child: Container(
+              color: Colors.black45,
+              child: const Center(
+                child: CircularProgressIndicator(color: dorado),
+              ),
+            ),
+          ),
+        Positioned(
+          bottom: 12,
+          right: 12,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.7),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Text(
+              '${_paginaActual + 1} / ${_paginas.length}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildTiraMiniaturas() {
+    return Container(
+      height: 96,
+      color: grisOscuro,
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        itemCount: _paginas.length + 1,
+        itemBuilder: (context, index) {
+          if (index == _paginas.length) {
+            return _buildAgregarTile();
+          }
+          return _buildMiniatura(index);
+        },
+      ),
+    );
+  }
+
+  Widget _buildMiniatura(int index) {
+    final seleccionada = index == _paginaActual;
+    return GestureDetector(
+      onTap: () {
+        _pageController.jumpToPage(index);
+        setState(() => _paginaActual = index);
+      },
+      child: Container(
+        width: 64,
+        margin: const EdgeInsets.symmetric(horizontal: 4),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            color: seleccionada ? dorado : Colors.white24,
+            width: seleccionada ? 2 : 1,
+          ),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(6),
+          child: Image.file(
+            File(_paginas[index]),
+            fit: BoxFit.cover,
+            errorBuilder: (_, __, ___) =>
+                const Icon(Icons.description, color: Colors.white54),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAgregarTile() {
+    return GestureDetector(
+      onTap: _agregarPaginas,
+      child: Container(
+        width: 64,
+        margin: const EdgeInsets.symmetric(horizontal: 4),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: dorado.withOpacity(0.6)),
+          color: azulMarino,
+        ),
+        child: const Icon(Icons.add, color: dorado, size: 28),
+      ),
+    );
+  }
+
+  Widget _buildBarraAcciones() {
+    return Container(
+      color: grisOscuro,
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          _accion(Icons.add_photo_alternate_outlined, 'Agregar', _agregarPaginas),
+          _accion(Icons.rotate_right, 'Rotar', _rotar),
+          _accion(Icons.tune, 'Filtros', _mostrarFiltros),
+          _accion(Icons.crop, 'Recortar', _recortar),
+          _accion(Icons.swap_vert, 'Orden', _reordenar),
+          _accion(Icons.text_fields, 'OCR', _procesarOCR),
+          if (_paginas.length > 1)
+            _accion(Icons.delete_outline, 'Quitar', _eliminarPagina),
+        ],
+      ),
+    );
+  }
+
+  Widget _accion(IconData icono, String etiqueta, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icono, color: dorado, size: 24),
+            const SizedBox(height: 2),
+            Text(
+              etiqueta,
+              style: const TextStyle(color: Colors.white70, fontSize: 10),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _mostrarFiltros() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: grisOscuro,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Filtros',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _filtro(Icons.photo, 'Original', _Filtro.original),
+                  _filtro(Icons.auto_fix_high, 'Mejora', _Filtro.mejora),
+                  _filtro(Icons.filter_b_and_w, 'B/N', _Filtro.blancoNegro),
+                  _filtro(Icons.blur_on, 'Nitidez', _Filtro.nitidez),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _filtro(IconData icono, String etiqueta, _Filtro filtro) {
+    return InkWell(
+      onTap: () => _aplicarFiltro(filtro),
+      borderRadius: BorderRadius.circular(12),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icono, color: dorado, size: 32),
+            const SizedBox(height: 8),
+            Text(etiqueta, style: const TextStyle(color: Colors.white70)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+enum _Filtro { original, mejora, blancoNegro, nitidez }
+
+/// Bottom sheet para reordenar páginas arrastrando.
+class _ReordenarPaginasSheet extends StatefulWidget {
+  final List<String> paginas;
+  const _ReordenarPaginasSheet({required this.paginas});
+
+  @override
+  State<_ReordenarPaginasSheet> createState() => _ReordenarPaginasSheetState();
+}
+
+class _ReordenarPaginasSheetState extends State<_ReordenarPaginasSheet> {
+  late List<String> _paginas;
+
+  @override
+  void initState() {
+    super.initState();
+    _paginas = List.from(widget.paginas);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                const Text(
+                  'Reordenar páginas',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Spacer(),
+                TextButton(
+                  onPressed: () => Navigator.pop(context, _paginas),
+                  child: const Text(
+                    'Listo',
+                    style: TextStyle(
+                      color: Color(0xFFC5A059),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Flexible(
+            child: ReorderableListView.builder(
+              shrinkWrap: true,
+              itemCount: _paginas.length,
+              onReorder: (oldIndex, newIndex) {
+                setState(() {
+                  if (newIndex > oldIndex) newIndex--;
+                  final item = _paginas.removeAt(oldIndex);
+                  _paginas.insert(newIndex, item);
+                });
+              },
+              itemBuilder: (context, index) {
+                return Container(
+                  key: ValueKey(_paginas[index]),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF0F172A),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: Image.file(
+                          File(_paginas[index]),
+                          width: 48,
+                          height: 60,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => const Icon(
+                            Icons.description,
+                            color: Colors.white54,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          'Página ${index + 1}',
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      const Icon(Icons.drag_handle, color: Colors.white54),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

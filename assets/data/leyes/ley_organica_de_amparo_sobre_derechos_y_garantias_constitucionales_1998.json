@@ -1,0 +1,879 @@
+{
+ "id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998",
+ "codigo": "LOASDGC",
+ "nombre": "Ley Orgánica de Amparo sobre Derechos y Garantías Constitucionales",
+ "rama": "Derecho Constitucional y DDHH",
+ "anio": "1998",
+ "archivo": "39. Ley Orgánica de Amparo sobre Derechos y Garantías Constitucionales (1998).docx",
+ "orden": 31,
+ "num_articulos": 49,
+ "num_secciones": 5,
+ "preambulo": null,
+ "secciones": [
+  {
+   "id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S1",
+   "tipo": "TITULO",
+   "numero": "I",
+   "titulo": "",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 1,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S2",
+   "tipo": "TITULO",
+   "numero": "II",
+   "titulo": "",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 2,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S3",
+   "tipo": "TITULO",
+   "numero": "III",
+   "titulo": "",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 3,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "tipo": "TITULO",
+   "numero": "IV",
+   "titulo": "",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 4,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S5",
+   "tipo": "TITULO",
+   "numero": "V",
+   "titulo": "",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 5,
+   "disposicion": false
+  }
+ ],
+ "articulos": [
+  {
+   "numero_texto": "1",
+   "numero": 1,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Toda persona natural habitante de la República, o persona jurídica domiciliada en ésta, podrá solicitar ante los Tribunales competentes el amparo previsto en el artículo 49 de la Constitución, para el goce y el ejercicio de los derechos y garantías constitucionales, aun de aquellos derechos fundamentales de la persona humana que no figuren expresamente en la Constitución, con el propósito de que se restablezca inmediatamente la situación jurídica infringida o la situación que más se asemeje a ella."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La garantía de la libertad personal que regula el habeas corpus constitucional, se regirá por esta Ley."
+    }
+   ],
+   "seccion_label": "TITULO I"
+  },
+  {
+   "numero_texto": "2",
+   "numero": 2,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La acción de amparo procede contra cualquier hecho, acto u omisión provenientes de los órganos del Poder Público Nacional, Estadal o Municipal. También procede contra el hecho, acto u omisión originados por ciudadanos, personas jurídicas, grupos u organizaciones privadas que hayan violado, violen o amenacen violar cualquiera de las garantías o derechos amparados por esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Se entenderá como amenaza válida para la procedencia de la acción de amparo aquella que sea inminente."
+    }
+   ],
+   "seccion_label": "TITULO I"
+  },
+  {
+   "numero_texto": "3",
+   "numero": 3,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "También es procedente la acción de amparo, cuando la violación o amenaza de violación deriven de una norma que colida con la Constitución. En este caso, la providencia judicial que resuelva la acción interpuesta deberá apreciar la inaplicación de la norma impugnada y el Juez informará a la Corte Suprema de Justicia acerca de la respectiva decisión."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La acción de amparo también podrá ejercerse conjuntamente con la acción popular de inconstitucionalidad de las leyes y demás actos estatales normativos, en cuyo caso, la Corte Suprema de Justicia, si lo estima procedente para la protección constitucional, podrá suspender la aplicación de la norma respecto de la situación jurídica concreta cuya violación se alega, mientras dure el juicio de nulidad."
+    }
+   ],
+   "seccion_label": "TITULO I"
+  },
+  {
+   "numero_texto": "4",
+   "numero": 4,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Igualmente procede la acción de amparo cuando un Tribunal de la República, actuando fuera de su competencia, dicte una resolución o sentencia u ordene un acto que lesione un derecho constitucional."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En estos casos, la acción de amparo debe interponerse por ante un tribunal superior al que emitió el pronunciamiento, quien decidirá en forma breve, sumaria y efectiva."
+    }
+   ],
+   "seccion_label": "TITULO I"
+  },
+  {
+   "numero_texto": "5",
+   "numero": 5,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La acción de amparo procede contra todo acto administrativo: actuaciones materiales, vías de hecho, abstenciones u omisiones que violen o amenacen violar un derecho o una garantía constitucionales, cuando no exista un medio procesal breve, sumario y eficaz acorde con la protección constitucional."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando la acción de amparo se ejerza contra actos administrativos de efectos particulares o contra abstenciones o negativas de la Administración, podrá formularse ante el Juez Contencioso-Administrativo competente, si lo hubiere en la localidad conjuntamente con el recurso contencioso administrativo de anulación de actos administrativos o contra las conductas omisivas, respectivamente, que se ejerza. En estos casos, el Juez, en forma breve, sumaria, efectiva y conforme a lo establecido en el artículo 22, si lo considera procedente para la protección constitucional, suspenderá los efectos del acto recurrido como garantía de dicho derecho constitucional violado, mientras dure el juicio."
+    },
+    {
+     "tipo": "apartado",
+     "texto": "Parágrafo Único: Cuando se ejerza la acción de amparo contra actos administrativos conjuntamente con el recurso contencioso administrativo que se fundamente en la violación de un derecho constitucional, el ejercicio del recurso procederá en cualquier tiempo, aun después de transcurridos los lapsos de caducidad previstos en la Ley y no será necesario el agotamiento previo de la vía administrativa."
+    }
+   ],
+   "seccion_label": "TITULO I"
+  },
+  {
+   "numero_texto": "6",
+   "numero": 6,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "No se admitirá la acción de amparo:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1) Cuando hayan cesado la violación o amenaza de algún derecho o garantía constitucionales, que hubiesen podido causarla;"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2) Cuando la amenaza contra el derecho o la garantía constitucionales no sea inmediata, posible y realizable por el imputado;"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3) Cuando la violación del derecho o la garantía constitucionales constituya una evidente situación irreparable, no siendo posible el restablecimiento de la situación jurídica infringida."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Se entenderá que son irreparables los actos que, mediante el amparo, no puedan volver las cosas al estado que tenían antes de la violación;"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4) Cuando la acción u omisión, el acto o la resolución que violen el derecho o la garantía constitucionales hayan sido consentidos expresa o tácitamente, por el agraviado, a menos que se trate de violaciones que infrinjan el orden público o las buenas costumbres."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Se entenderá que hay consentimiento expreso, cuando hubieren transcurrido los lapsos de prescripción establecidos en leyes especiales o en su defecto seis (6) meses después de la violación o la amenaza al derecho protegido."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El consentimiento tácito es aquel que entraña signos inequívocos de aceptación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5) Cuando el agraviado haya optado por recurrir a las vías judiciales ordinarias o hecho uso de los medios judiciales preexistentes. En tal caso, al alegarse la violación o amenaza de violación de un derecho o garantía constitucionales, el Juez deberá acogerse al procedimiento y a los lapsos establecidos en los artículos 23, 24 y 26 de la presente Ley, a fin de ordenar la suspensión provisional de los efectos del acto cuestionado;"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6) Cuando se trate de decisiones emanadas de la Corte Suprema de Justicia;"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7) En caso de suspensión de derechos y garantías constitucionales conforme al artículo 241 de la Constitución, salvo que el acto que se impugne no tenga relación con la especificación del decreto de suspensión de los mismos;"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8) Cuando esté pendiente de decisión una acción de amparo ejercida ante un Tribunal en relación con los mismos hechos en que se hubiese fundamentado la acción propuesta"
+    }
+   ],
+   "seccion_label": "TITULO II"
+  },
+  {
+   "numero_texto": "7",
+   "numero": 7,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son competentes para conocer de la acción de amparo, los Tribunales de Primera Instancia que lo sean en la materia afín con la naturaleza del derecho o de la garantía constitucionales violados o amenazados de violación, en la jurisdicción correspondiente al lugar donde ocurrieren el hecho, acto u omisión que motivaren la solicitud de amparo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En caso de duda, se observarán, en lo pertinente, las normas sobre competencia en razón de la materia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Si un Juez se considerare incompetente, remitirá las actuaciones inmediatamente al que tenga competencia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Del amparo de la libertad y seguridad personales conocerán los Tribunales de Primera Instancia en lo Penal, conforme al procedimiento establecido en esta Ley."
+    }
+   ],
+   "seccion_label": "TITULO III"
+  },
+  {
+   "numero_texto": "8",
+   "numero": 8,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Corte Suprema de Justicia conocerá en única instancia y mediante aplicación de los lapsos y formalidades previstos en la ley, en la sala de competencia afín con el derecho o garantía constitucionales violados o amenazados de violación, de las acciones de amparo contra los hechos, actos y omisiones emanados del Presidente de la República, de los Ministros, del Fiscal General de la República, del Procurador General de la República o del Contralor General de la República."
+    }
+   ],
+   "seccion_label": "TITULO III"
+  },
+  {
+   "numero_texto": "9",
+   "numero": 9,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando los hechos, actos u omisiones constitutivos de la violación del derecho o de la garantía constitucionales se produzcan en lugar donde no funcionen Tribunales de Primera Instancia, se interpondrá la acción de amparo ante cualquier Juez de la localidad quien decidirá conforme a lo establecido en esta Ley. Dentro de las veinticuatro (24) horas siguientes a la adopción de la decisión, el Juez la enviará en consulta al Tribunal de Primera Instancia competente."
+    }
+   ],
+   "seccion_label": "TITULO III"
+  },
+  {
+   "numero_texto": "10",
+   "numero": 10,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando un mismo acto, hecho u omisión en perjuicio de algún derecho o garantía constitucionales afectare el interés de varias personas, conocerá de todas estas acciones el Juez que hubiese prevenido, ordenándose, sin dilación procesal alguna y sin incidencias, la acumulación de autos."
+    }
+   ],
+   "seccion_label": "TITULO III"
+  },
+  {
+   "numero_texto": "11",
+   "numero": 11,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando un Juez que conozca de la acción de amparo, advirtiere una causal de inhibición prevista en la Ley, se abstendrá de conocer e inmediatamente levantará un acta y remitirá las actuaciones, en el estado en que se encuentren, al tribunal competente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Si se tratare de un Magistrado de la Corte Suprema de Justicia, el Presidente de la Sala convocará de inmediato al Suplente respectivo, para integrar el tribunal de Amparo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En ningún caso será admisible la recusación."
+    }
+   ],
+   "seccion_label": "TITULO III"
+  },
+  {
+   "numero_texto": "12",
+   "numero": 12,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los conflictos sobre competencia que se susciten en materia de amparo ante Tribunales de Primera Instancia serán decididos por el Superior respectivo. Los trámites serán breves y sin incidencias procesales."
+    }
+   ],
+   "seccion_label": "TITULO III"
+  },
+  {
+   "numero_texto": "13",
+   "numero": 13,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La acción de amparo constitucional puede ser interpuesta ante el Juez competente por cualquier persona natural o jurídica, por representación o directamente, quedando a salvo las atribuciones del Ministerio Público, y de los Procuradores de Menores, Agrarios y del Trabajo, si fuere el caso. Todo el tiempo será hábil y el Tribunal dará preferencia al trámite de amparo sobre cualquier otro asunto."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "14",
+   "numero": 14,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La acción de amparo, tanto en lo principal como en lo incidental y en todo lo que de ella derive, hasta la ejecución de la providencia respectiva, es de eminente orden público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Las atribuciones inherentes al Ministerio Público no menoscaban los derechos y acciones de los particulares. La no intervención del Ministerio Público en la acción de amparo no es causal de reposición ni de acción de nulidad."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "15",
+   "numero": 15,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los Jueces que conozcan de la acción de amparo no podrán demorar el trámite o diferirlo so pretexto de consultas al Ministerio Público. Se entenderá a derecho en el proceso de amparo el representante del Ministerio Público a quien el Juez competente le hubiere participado, por oficio o por telegrama, la apertura del procedimiento."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "16",
+   "numero": 16,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La acción de amparo es gratuita por excelencia. Para su tramitación no se empleará papel sellado ni estampillas y, en caso de urgencia, podrá interponerse por vía telegráfica. De ser así, deberá ser ratificada personalmente o mediante apoderado dentro de los tres (3) días siguientes. También procede su ejercicio en forma verbal y, en tal caso, el Juez deberá recogerla en un acta."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "17",
+   "numero": 17,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Juez que conozca de la acción de amparo podrá ordenar, siempre que no signifique perjuicio irreparable para el actor, la evacuación de las pruebas que juzgue necesarias para el esclarecimiento de los hechos que aparezcan dudosos u oscuros."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Se entenderá que hay perjuicio irreparable cuando exista otro medio de comprobación más acorde con la brevedad del procedimiento o cuando la prueba sea de difícil o improbable evacuación."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "18",
+   "numero": 18,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En la solicitud de amparo se deberá expresar:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1) Los datos concernientes a la identificación de la persona agraviada y de la persona que actúe en su nombre, y en este caso con la suficiente identificación del poder conferido;"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2) Residencia, lugar y domicilio, tanto del agraviado como del agraviante;"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3) Suficiente señalamiento e identificación del agraviante, si fuere posible, e indicación de la circunstancia de localización;"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4) Señalamiento del derecho o de la garantía constitucionales violados o amenazados de violación;"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5) Descripción narrativa del hecho, acto, omisión y demás circunstancias que motiven la solicitud de amparo;"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6) Y, cualquiera explicación complementaria relacionada con la situación jurídica infringida, a fin de ilustrar el criterio jurisdiccional. En caso de instancia verbal, se exigirán, en lo posible, los mismos requisitos."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "19",
+   "numero": 19,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Si la solicitud fuere oscura o no llenare los requisitos exigidos anteriormente especificados, se notificará al solicitante del amparo para que corrija el defecto u omisión dentro del lapso de cuarenta y ocho horas siguientes a la correspondiente notificación. Si no lo hiciere, la acción de amparo será declarada inadmisible."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "20",
+   "numero": 20,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Juez que haya suscitado una cuestión de competencia manifiestamente infundada será sancionado por el Superior con multa no menor de cinco mil bolívares (Bs. 5.000.oo) ni mayor de diez mil bolívares (Bs. 10.000.oo)."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "21",
+   "numero": 21,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En la acción de amparo los Jueces deberán mantener la absoluta igualdad entre las partes y cuando el agraviante sea una autoridad pública quedarán excluidos del procedimiento los privilegios procesales."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "22",
+   "numero": 22,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Tribunal que conozca de la solicitud de amparo tendrá potestad para restablecer la situación jurídica infringida, prescindiendo de consideraciones de mera forma y sin ningún tipo de averiguación sumaria que la preceda."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En este caso, el mandamiento de amparo deberá ser motivado y estar fundamentado en un medio de prueba que constituya presunción grave de la violación o de la amenaza de violación."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "23",
+   "numero": 23,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Si el Juez no optare por restablecer inmediatamente la situación jurídica infringida, conforme al artículo anterior, ordenará a la autoridad, entidad, organización social o a los particulares imputados de violar o amenazar el derecho o la garantía constitucionales, que en el término de cuarenta y ocho (48) horas, contadas a partir de la respectiva notificación, informe sobre la pretendida violación o amenaza que hubiere motivado la solicitud de amparo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La falta de informe correspondiente se entenderá como aceptación de los hechos incriminados."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "24",
+   "numero": 24,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El informe a que se refiere el artículo anterior contendrá una relación sucinta y breve de las pruebas en las cuales el presunto agraviante pretenda fundamentar su defensa, sin perjuicio de la potestad evaluativa que el artículo 17 de la presente Ley confiere al Juez competente."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "25",
+   "numero": 25,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Quedan excluidas del procedimiento constitucional del amparo todas las formas de arreglo entre las partes, sin perjuicio de que el agraviado pueda, en cualquier estado y grado de la causa, desistir de la acción interpuesta, salvo que se trate de un derecho de eminente orden público o que pueda afectar las buenas costumbres."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El desistimiento malicioso o el abandono del trámite por el agraviado será sancionado por el Juez de la causa o por el Superior, según el caso, con multa de Dos Mil Bolívares (Bs. 2.000.oo) a Cinco Mil Bolívares (Bs. 5.000.oo)."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "26",
+   "numero": 26,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Juez que conozca del amparo, fijará dentro de las noventa y seis (96) horas siguientes a la presentación del Informe por el presunto agraviante o de la extinción del término correspondiente, la oportunidad para que las partes o sus representantes legales expresen, en forma oral y pública, los argumentos respectivos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Efectuado dicho acto, el Juez dispondrá de un término improrrogable de veinticuatro (24) horas para decidir la solicitud de amparo constitucional."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "27",
+   "numero": 27,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Tribunal que conozca de la solicitud de amparo remitirá copia certificada de su decisión a la autoridad competente, a fin de que resuelva sobre la procedencia o no de medida disciplinaria contra el funcionario público culpable de la violación o de la amenaza contra el derecho o la garantía constitucionales, sin perjuicio de las responsabilidades civiles o penales que le resulten atribuibles."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "A tal efecto, el Tribunal remitirá también los recaudos pertinentes al Ministerio Público."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "28",
+   "numero": 28,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando fuese negado el amparo, el Tribunal se pronunciará sobre la temeridad de la acción interpuesta y podrá imponer sanción hasta de diez (10) días de arresto al quejoso cuando aquella fuese manifiesta."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "29",
+   "numero": 29,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Juez que acuerde el restablecimiento de la situación jurídica infringida ordenará, en el dispositivo de la sentencia, que el mandamiento sea acatado por todas las autoridades de la República, so pena de incurrir en desobediencia a la autoridad."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "30",
+   "numero": 30,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando la acción de amparo se ejerciere con fundamento en violación de un derecho constitucional, por acto o conducta omisiva, o por falta de cumplimiento de la autoridad respectiva, la sentencia ordenará la ejecución inmediata e incondicional del acto incumplido."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "31",
+   "numero": 31,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Quien incumpliere el mandamiento de amparo constitucional dictado por el Juez, será castigado con prisión de seis (6) a quince (15) meses."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "32",
+   "numero": 32,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La sentencia que acuerde el amparo constitucional deberá cumplir las siguientes exigencias formales:"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "A) Mención concreta de la autoridad, del ente privado o de la persona contra cuya resolución o acto u omisión se conceda el amparo;"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "B) Determinación precisa de la orden a cumplirse, con las especificaciones necesarias para su ejecución;"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "C) Plazo para cumplir lo resuelto."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "33",
+   "numero": 33,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando se trate de quejas contra particulares, se impondrán las costas al vencido, quedando a salvo las acciones a que pudiere haber lugar."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "No habrá imposición de costas cuando los efectos del acto u omisión hubiesen cesado antes de abrirse la averiguación. El Juez podrá exonerar de costas a quien intentare el amparo constitucional por fundado temor de violación o de amenaza, o cuando la solicitud no haya sido temeraria"
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "34",
+   "numero": 34,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Consejo de la Judicatura registrará como falta grave al cumplimiento de sus obligaciones la inobservancia, por parte de los jueces, de los lapsos establecidos en esta Ley para conocer y decidir sobre las solicitudes de amparo."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "35",
+   "numero": 35,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Contra la decisión dictada en primera instancia sobre la solicitud de amparo se oirá apelación en un solo efecto. Si transcurridos tres (3) días de dictado el fallo, las partes, el Ministerio Público o los procuradores no interpusiera apelación, el fallo será consultado con el Tribunal Superior respectivo, al cual se le remitirá inmediatamente copia certificada de lo conducente. Este Tribunal decidirá dentro de un lapso no mayor de treinta (30) días."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "36",
+   "numero": 36,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La sentencia firme de amparo producirá efectos jurídicos respecto al derecho o garantía objetos del proceso, sin perjuicio de las acciones o recursos que legalmente correspondan a las partes."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "37",
+   "numero": 37,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La desestimación del amparo no afecta la responsabilidad civil o penal en que hubiese podido incurrir el autor del agravio, ni prejuzga sobre ninguna otra materia."
+    }
+   ],
+   "seccion_label": "TITULO IV"
+  },
+  {
+   "numero_texto": "38",
+   "numero": 38,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Procede la acción de amparo para proteger la libertad y seguridad personales de acuerdo con las disposiciones del presente título."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "A esta acción le serán aplicables las disposiciones de esta Ley pertinentes al amparo en general."
+    }
+   ],
+   "seccion_label": "TITULO V"
+  },
+  {
+   "numero_texto": "39",
+   "numero": 39,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Toda persona que fuere objeto de privación o restricción de su libertad, o se viere amenazada su seguridad personal, con violación de las garantías constitucionales, tiene derecho a que un Juez competente con jurisdicción en el lugar donde se hubiese ejecutado el acto causante de la solicitud o donde se encontrare la persona agraviada, expida un mandamiento de hábeas corpus."
+    }
+   ],
+   "seccion_label": "TITULO V"
+  },
+  {
+   "numero_texto": "40",
+   "numero": 40,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los Juzgados de Primera Instancia en lo Penal son competentes para conocer y decidir sobre el amparo de la libertad y seguridad personales. Los respectivos Tribunales Superiores conocerán en consulta de las sentencias dictadas por aquellos."
+    }
+   ],
+   "seccion_label": "TITULO V"
+  },
+  {
+   "numero_texto": "41",
+   "numero": 41,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La solicitud podrá ser hecha por el agraviado o por cualquier persona que gestione en favor de aquel, por escrito, verbalmente o por vía telegráfica, sin necesidad de asistencia de abogado, y el Juez, al recibirla, abrirá una averiguación sumaria, ordenando inmediatamente al funcionario bajo cuya custodia se encuentre la persona agraviada que informe dentro del plazo de veinticuatro (24) horas, sobre los motivos de la privación o restricción de la libertad."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Las solicitudes referidas a la seguridad personal se tramitarán, en cuanto les resulten aplicables, conforme a las previsiones de este artículo."
+    }
+   ],
+   "seccion_label": "TITULO V"
+  },
+  {
+   "numero_texto": "42",
+   "numero": 42,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Juez decidirá en un término no mayor de noventa y seis (96) horas después de recibida la solicitud, la inmediata libertad del agraviado o el cese de las restricciones que se le hubiesen impuesto, si encontrare que para la privación o restricción de la libertad no se hubieren cumplido las formalidades legales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Juez, caso de considerarlo necesario, sujetará esta decisión a caución personal o a prohibición de salida del país de la persona agraviada, por un término no mayor de treinta (30) días."
+    }
+   ],
+   "seccion_label": "TITULO V"
+  },
+  {
+   "numero_texto": "43",
+   "numero": 43,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El mandamiento de hábeas corpus o, en su defecto, la decisión que lo niegue, se consultará con el Superior, al que deberán enviarse los recaudos en el mismo día o en el siguiente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La consulta no impedirá la ejecución inmediata de la decisión y el Tribunal Superior decidirá dentro de las setenta y dos (72) horas después de haber recibido los autos."
+    }
+   ],
+   "seccion_label": "TITULO V"
+  },
+  {
+   "numero_texto": "44",
+   "numero": 44,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las detenciones que conforme a la Ley, ordenen y practiquen las autoridades policiales u otras autoridades administrativas, no excederán de ocho (8) días. Las que pasen de cuarenta y ocho (48) horas deberán imponerse mediante resolución motivada. Quedan a salvo las disposiciones legales aplicables al proceso penal."
+    }
+   ],
+   "seccion_label": "TITULO V"
+  },
+  {
+   "numero_texto": "45",
+   "numero": 45,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando se hubiere cometido un hecho punible, las autoridades de policía que, de acuerdo con la Ley, sean auxiliares de la administración de justicia, podrán adoptar, como medidas provisionales de necesidad y de urgencia, la detención del presunto culpable o su presentación periódica, durante la averiguación sumaria, a la autoridad respectiva. En cualquiera de los dos supuestos anteriores, la orden deberá ser motivada y constar por escrito."
+    }
+   ],
+   "seccion_label": "TITULO V"
+  },
+  {
+   "numero_texto": "46",
+   "numero": 46,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En el caso del artículo anterior, el detenido deberá ser puesto a la orden del Juez competente, dentro del término de ocho (8) días."
+    }
+   ],
+   "seccion_label": "TITULO V"
+  },
+  {
+   "numero_texto": "47",
+   "numero": 47,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La autoridad que tuviere bajo su guarda o custodia a cualquier persona detenida, estará en el deber de permitirle, conforme a las normas reglamentarias correspondientes, comunicación con su abogado y con sus parientes más cercanos."
+    }
+   ],
+   "seccion_label": "TITULO V"
+  },
+  {
+   "numero_texto": "48",
+   "numero": 48,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Serán supletorias de las disposiciones anteriores las normas procesales en vigor."
+    }
+   ],
+   "seccion_label": "TITULO V"
+  },
+  {
+   "numero_texto": "49",
+   "numero": 49,
+   "titulo": null,
+   "seccion_id": "ley_organica_de_amparo_sobre_derechos_y_garantias_constitucionales_1998_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Quedan derogadas las disposiciones legales que colidan con la presente Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Dada, firmada y sellada en el Palacio Federal Legislativo, en Caracas a los dieciocho días del mes de diciembre de mil novecientos ochenta y siete. Año 177 de la Independencia y 128 de la Federación."
+    }
+   ],
+   "seccion_label": "TITULO V"
+  }
+ ]
+}

@@ -1,10 +1,9 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'device_id_helper.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthService {
@@ -19,20 +18,8 @@ class AuthService {
 
   Future<String?> _getDeviceId() async {
     try {
-      // Soporte para web
-      if (kIsWeb) {
-        final webInfo = await _deviceInfo.webBrowserInfo;
-        // Usar una combinación de propiedades del navegador como ID
-        return '${webInfo.vendor}_${webInfo.userAgent}_${webInfo.browserName}'.hashCode.toString();
-      }
-      
-      if (Platform.isAndroid) {
-        final build = await _deviceInfo.androidInfo;
-        return build.id;
-      } else if (Platform.isIOS) {
-        final data = await _deviceInfo.iosInfo;
-        return data.identifierForVendor;
-      }
+      // Compatible con Web, Android e iOS (ver device_id_helper.dart)
+      return await obtenerDeviceId(_deviceInfo);
     } on Exception catch (e) {
       debugPrint('Error obteniendo ID de dispositivo: $e');
     }

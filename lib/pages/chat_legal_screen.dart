@@ -1,14 +1,18 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../models/chat_message.dart';
 import '../services/chat_service.dart';
 import '../services/ai_service.dart';
+import '../services/rag_service.dart';
+import '../services/ocr_service.dart';
+import '../services/chat_legal_export_service.dart';
 
 /// Modelo para archivos adjuntos
 class AttachedFile {
@@ -327,31 +331,36 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
     try {
       if (widget.conversationId != null) {
         _currentConversationId = widget.conversationId;
-        // TODO: Cuando Supabase esté configurado, descomentar:
-        // _messages = await ChatService.obtenerMensajes(widget.conversationId!);
-        _messages = []; // Por ahora, iniciar vacío
+        _messages = await ChatService.obtenerMensajes(widget.conversationId!);
       } else {
-        // Generar ID local temporal hasta que Supabase esté configurado
-        _currentConversationId = 'local_${DateTime.now().millisecondsSinceEpoch}';
+        // Crear una conversación real en Supabase (para persistir el historial)
+        ChatConversation? conv;
+        try {
+          conv = await ChatService.crearConversacion();
+        } catch (e) {
+          debugPrint('⚠️ No se pudo crear conversación en Supabase: $e');
+        }
+
+        _currentConversationId = conv?.id ??
+            'local_${DateTime.now().millisecondsSinceEpoch}';
         _messages = [];
-        
-        // Agregar mensaje de bienvenida
+
+        // Mensaje de bienvenida (solo local, no se persiste para no duplicarlo)
         _messages.add(ChatMessage(
           id: 'welcome',
           role: MessageRole.assistant,
           content: '¡Hola! Soy tu asistente legal especializado en derecho penal venezolano.\n\n'
-                   '¿En qué puedo ayudarte hoy?\n\n'
-                   '📝 Ejemplos:\n'
-                   '• Consultar sobre un delito específico\n'
-                   '• Calcular penas y atenuantes\n'
-                   '• Interpretar artículos del código penal\n'
-                   '• Analizar estrategias de defensa',
+              '¿En qué puedo ayudarte hoy?\n\n'
+              '**Ejemplos:**\n'
+              '- Consultar sobre un delito específico\n'
+              '- Calcular penas y atenuantes\n'
+              '- Interpretar artículos del código penal\n'
+              '- Analizar estrategias de defensa',
           timestamp: DateTime.now(),
         ));
       }
     } catch (e) {
       debugPrint('❌ Error inicializando: $e');
-      // En caso de error, inicializar vacío
       _currentConversationId = 'local_${DateTime.now().millisecondsSinceEpoch}';
       _messages = [];
     } finally {
@@ -451,7 +460,8 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
 
   Future<void> _enviarMensaje() async {
     final contenido = _messageController.text.trim();
-    if (contenido.isEmpty || _currentConversationId == null) {
+    if ((contenido.isEmpty && _attachedFiles.isEmpty) ||
+        _currentConversationId == null) {
       debugPrint('⚠️ No se puede enviar: contenido vacío o sin conversación');
       return;
     }
@@ -459,27 +469,46 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
     debugPrint('📤 Enviando mensaje: "$contenido"');
     _messageController.clear();
 
-    // Limpiar adjuntos (por ahora sin soporte de archivos hasta Supabase esté configurado)
+    // Procesar adjuntos con OCR y combinarlos con el mensaje
+    String contenidoFinal = contenido;
     if (_attachedFiles.isNotEmpty) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('⚠️ Adjuntos temporalmente deshabilitados hasta configurar Supabase'),
-            backgroundColor: Colors.orange,
+            content: Text('🔍 Extrayendo texto de los adjuntos con OCR...'),
             duration: Duration(seconds: 2),
           ),
         );
       }
-      setState(() {
-        _attachedFiles.clear();
-      });
+      final buffer = StringBuffer();
+      for (final adj in _attachedFiles) {
+        try {
+          if (adj.isImage) {
+            final texto = await OCRService.extractTextFromImage(adj.file.path);
+            buffer.writeln('=== ${adj.name} ===');
+            buffer.writeln(texto.isEmpty ? '(sin texto detectado)' : texto);
+          } else {
+            buffer.writeln('=== ${adj.name} ===');
+            buffer.writeln('(Documento adjunto)');
+          }
+        } catch (e) {
+          buffer.writeln('=== ${adj.name} === (no se pudo extraer texto)');
+        }
+      }
+      final extraido = buffer.toString().trim();
+      if (extraido.isNotEmpty) {
+        contenidoFinal = contenido.isEmpty
+            ? 'Analiza el siguiente documento adjunto:\n\n$extraido'
+            : '$contenido\n\nDocumento adjunto (texto extraído con OCR):\n$extraido';
+      }
+      setState(() => _attachedFiles.clear());
     }
 
     // Agregar mensaje del usuario localmente
     final userMessage = ChatMessage(
       id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
       role: MessageRole.user,
-      content: contenido,
+      content: contenido.isEmpty ? '📎 Documento adjunto' : contenido,
       timestamp: DateTime.now(),
     );
 
@@ -490,18 +519,33 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
 
     _scrollToBottom();
 
+    // Persistir el mensaje del usuario en Supabase
+    if (_currentConversationId != null &&
+        !_currentConversationId!.startsWith('local_')) {
+      try {
+        await ChatService.enviarMensajeUsuario(
+          conversationId: _currentConversationId!,
+          contenido: contenidoFinal,
+        );
+      } catch (e) {
+        debugPrint('⚠️ No se pudo guardar el mensaje del usuario: $e');
+      }
+    }
+
     // Generar respuesta del asistente con IA
     try {
       debugPrint('🤖 Generando respuesta con IA...');
       
       // TODO: Cuando Supabase esté configurado, usar ChatService.generarRespuestaAsistente()
-      // Por ahora, generar respuesta directamente con AIService
-      final respuesta = await _generarRespuestaConIA(contenido);
+      // Por ahora, generar respuesta directamente con AIService + RAG
+      // (RAG recupera jurisprudencia REAL del TSJ desde Supabase como contexto)
+      final resultado = await _generarRespuestaConIA(contenidoFinal);
 
       final assistantMessage = ChatMessage(
         id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
         role: MessageRole.assistant,
-        content: respuesta,
+        content: resultado.respuesta,
+        sources: resultado.fuentes,
         timestamp: DateTime.now(),
       );
 
@@ -512,6 +556,20 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
 
       debugPrint('✅ Respuesta generada');
       _scrollToBottom();
+
+      // Persistir la respuesta del asistente en Supabase
+      if (_currentConversationId != null &&
+          !_currentConversationId!.startsWith('local_')) {
+        try {
+          await ChatService.enviarMensajeAsistente(
+            conversationId: _currentConversationId!,
+            contenido: resultado.respuesta,
+            sources: resultado.fuentes,
+          );
+        } catch (e) {
+          debugPrint('⚠️ No se pudo guardar la respuesta del asistente: $e');
+        }
+      }
     } catch (e) {
       debugPrint('❌ Error generando respuesta: $e');
       
@@ -529,10 +587,28 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
     }
   }
 
-  // Método temporal para generar respuestas hasta que Supabase esté configurado
-  Future<String> _generarRespuestaConIA(String consulta) async {
+  /// Genera la respuesta con IA + RAG (jurisprudencia real del TSJ).
+  Future<({String respuesta, List<MessageSource> fuentes})> _generarRespuestaConIA(
+      String consulta) async {
     try {
       await AIService.inicializar();
+
+      // 🔍 RAG: recuperar jurisprudencia real del TSJ relevante a la consulta
+      List<MessageSource> fuentes = [];
+      String contextoJurisprudencial = '';
+      try {
+        final rag = await RAGService.obtenerContextoYFuentes(
+          consulta: consulta,
+          limit: 5,
+        );
+        fuentes = rag.fuentes;
+        contextoJurisprudencial = rag.contexto;
+        debugPrint(
+            '⚖️ RAG: ${rag.sentencias.length} sentencias reales usadas como contexto');
+      } catch (e) {
+        debugPrint(
+            '⚠️ RAG no disponible, respondiendo sin jurisprudencia real: $e');
+      }
       
       // Construir contexto con últimos mensajes
       String contexto = '';
@@ -546,20 +622,36 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
         }
       }
       
+      final instruccionesJurisprudencia = contextoJurisprudencial.isNotEmpty
+          ? 'JURISPRUDENCIA REAL DISPONIBLE (recuperada de la base de datos del TSJ):\n$contextoJurisprudencial\n\nINSTRUCCIONES SOBRE LA JURISPRUDENCIA:\n- El usuario pidió un delito o artículo ESPECÍFICO. Cita SOLO las sentencias que traten EXACTAMENTE ese delito/artículo.\n- Si una sentencia recuperada trata de otro delito (ej. hurto en vez de homicidio), DESCÁRTALA y NO la cites.\n- Si ninguna sentencia trata el delito/artículo pedido, dilo claramente: "no encontré jurisprudencia específica sobre ese artículo".\n- Fundamenta tu respuesta en estas sentencias reales cuando sean pertinentes.\n- Cítalas por su número de sentencia, sala, ponente y fecha.\n- NO inventes sentencias que no estén listadas aquí.\n\n'
+          : '';
+
       final prompt = '''Eres un asistente legal especializado en derecho penal venezolano.
 
 Contexto de la conversación:
 $contexto
 
-Nueva consulta del usuario:
+${instruccionesJurisprudencia}Nueva consulta del usuario:
 $consulta
 
-Responde de manera clara, profesional y basándote en el derecho penal venezolano vigente. Si mencionas artículos, cita la ley correspondiente.''';
+Responde de manera clara, profesional y basándote en el derecho penal venezolano vigente. Si mencionas artículos, cita la ley correspondiente.
 
-      return await AIService.procesarConsultaGeneral(prompt);
+FORMATO DE RESPUESTA (Markdown):
+- Usa **negritas** para conceptos clave, artículos y penas (ej. **Artículo 406 del Código Penal**).
+- Usa encabezados (##) para separar secciones cuando la respuesta sea larga.
+- Usa listas con guiones (-) para enumerar puntos, requisitos o ejemplos.
+- Usa líneas en blanco entre párrafos.
+- No uses tablas ni bloques de código a menos que sea estrictamente necesario.''';
+
+      final respuesta = await AIService.procesarConsultaGeneral(prompt);
+      return (respuesta: respuesta, fuentes: fuentes);
     } catch (e) {
       debugPrint('❌ Error llamando a IA: $e');
-      return '❌ Lo siento, ocurrió un error al procesar tu consulta. Por favor, intenta de nuevo.\n\nError: $e';
+      return (
+        respuesta:
+            '❌ Lo siento, ocurrió un error al procesar tu consulta. Por favor, intenta de nuevo.\n\nError: $e',
+        fuentes: <MessageSource>[],
+      );
     }
   }
 
@@ -751,6 +843,15 @@ Responde de manera clara, profesional y basándote en el derecho penal venezolan
             icon: const Icon(Icons.history),
             onPressed: _mostrarHistorial,
             tooltip: 'Ver conversaciones',
+          ),
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.download, color: dorado),
+            tooltip: 'Exportar conversación',
+            onSelected: _exportarConversacion,
+            itemBuilder: (context) => const [
+              PopupMenuItem(value: 'pdf', child: Text('Exportar PDF')),
+              PopupMenuItem(value: 'word', child: Text('Exportar Word')),
+            ],
           ),
           IconButton(
             icon: const Icon(Icons.delete_outline),
@@ -1048,17 +1149,61 @@ Responde de manera clara, profesional y basándote en el derecho penal venezolan
                       ),
                     ),
                   ],
-                  Text(
-                    message.content,
-                    style: TextStyle(
-                      color: isUser ? azulMarino : Colors.white,
-                      fontSize: 15,
-                      height: 1.4,
+                  if (isUser)
+                    Text(
+                      message.content,
+                      style: const TextStyle(
+                        color: azulMarino,
+                        fontSize: 15,
+                        height: 1.4,
+                      ),
+                    )
+                  else
+                    MarkdownBody(
+                      data: message.content,
+                      selectable: true,
+                      styleSheet: MarkdownStyleSheet(
+                        p: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          height: 1.5,
+                        ),
+                        strong: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        em: const TextStyle(
+                          color: Colors.white,
+                          fontStyle: FontStyle.italic,
+                        ),
+                        h1: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                        h2: const TextStyle(
+                          color: dorado,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                        h3: const TextStyle(
+                          color: dorado,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                        listBullet: const TextStyle(color: dorado),
+                        blockquote: TextStyle(
+                          color: Colors.white.withValues(alpha: 0.8),
+                          fontStyle: FontStyle.italic,
+                        ),
+                        code: const TextStyle(
+                          color: Color(0xFFFBBF24),
+                          backgroundColor: Color(0xFF0F172A),
+                        ),
+                      ),
                     ),
-                  ),
                   const SizedBox(height: 8),
                   Row(
-                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
                         DateFormat('HH:mm').format(message.timestamp),
@@ -1077,6 +1222,8 @@ Responde de manera clara, profesional y basándote en el derecho penal venezolan
                           color: Colors.white.withValues(alpha: 0.5),
                         ),
                       ],
+                      const Spacer(),
+                      _buildAccionesMensaje(message),
                     ],
                   ),
                   if (!isUser && message.hasSources) ...[
@@ -1098,6 +1245,76 @@ Responde de manera clara, profesional y basándote en el derecho penal venezolan
         ],
       ),
     );
+  }
+
+  Widget _buildAccionesMensaje(ChatMessage message) {
+    final colorBase = message.isUser
+        ? azulMarino.withValues(alpha: 0.5)
+        : Colors.white.withValues(alpha: 0.5);
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        IconButton(
+          onPressed: () => _copiarMensaje(message),
+          icon: Icon(Icons.copy, size: 16, color: colorBase),
+          tooltip: 'Copiar texto',
+          visualDensity: VisualDensity.compact,
+          constraints: const BoxConstraints(),
+          padding: const EdgeInsets.all(4),
+        ),
+        PopupMenuButton<String>(
+          icon: Icon(Icons.download, size: 16, color: colorBase),
+          tooltip: 'Descargar',
+          padding: const EdgeInsets.all(4),
+          onSelected: (opcion) => _descargarMensaje(message, opcion),
+          itemBuilder: (context) => const [
+            PopupMenuItem(value: 'pdf', child: Text('Descargar PDF')),
+            PopupMenuItem(value: 'word', child: Text('Descargar Word')),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Future<void> _copiarMensaje(ChatMessage message) async {
+    await Clipboard.setData(
+      ClipboardData(
+        text: ChatLegalExportService.markdownAPlano(message.content),
+      ),
+    );
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('✅ Texto copiado'),
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 1),
+        ),
+      );
+    }
+  }
+
+  Future<void> _descargarMensaje(ChatMessage message, String formato) async {
+    String? ruta;
+    if (formato == 'pdf') {
+      ruta = await ChatLegalExportService.exportarAPDF(
+        [message],
+        titulo: 'Mensaje Legal',
+      );
+    } else {
+      ruta = await ChatLegalExportService.exportarAWord(
+        [message],
+        titulo: 'Mensaje Legal',
+      );
+    }
+    final abierto = await ChatLegalExportService.abrir(ruta);
+    if (mounted && !abierto) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('❌ No se pudo generar el archivo'),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    }
   }
 
   Widget _buildSources(List<MessageSource> sources) {
@@ -1200,6 +1417,49 @@ Responde de manera clara, profesional y basándote en el derecho penal venezolan
     );
   }
 
+  Future<void> _exportarConversacion(String formato) async {
+    final mensajes = _messages.where((m) => m.id != 'welcome').toList();
+    if (mensajes.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('No hay mensajes para exportar'),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+      return;
+    }
+
+    String? ruta;
+    if (formato == 'pdf') {
+      ruta = await ChatLegalExportService.exportarAPDF(
+        mensajes,
+        titulo: 'Conversación Legal',
+      );
+    } else {
+      ruta = await ChatLegalExportService.exportarAWord(
+        mensajes,
+        titulo: 'Conversación Legal',
+      );
+    }
+
+    final abierto = await ChatLegalExportService.abrir(ruta);
+    if (mounted && abierto) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('✅ Conversación exportada'),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    } else if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('❌ No se pudo exportar'),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    }
+  }
+
   void _mostrarHistorial() async {
     // ✅ Usar await para recibir el conversationId seleccionado (o marcador para nueva)
     final result = await Navigator.push<String?>(
@@ -1273,12 +1533,29 @@ Responde de manera clara, profesional y basándote en el derecho penal venezolan
 }
 
 /// Pantalla de historial de conversaciones
-class ChatHistoryScreen extends StatelessWidget {
+class ChatHistoryScreen extends StatefulWidget {
   const ChatHistoryScreen({super.key});
 
+  @override
+  State<ChatHistoryScreen> createState() => _ChatHistoryScreenState();
+}
+
+class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
   static const Color grisOscuro = Color(0xFF1E293B);
+
+  late Future<List<ChatConversation>> _future;
+
+  @override
+  void initState() {
+    super.initState();
+    _future = ChatService.obtenerConversaciones();
+  }
+
+  void _recargar() {
+    setState(() => _future = ChatService.obtenerConversaciones());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -1293,8 +1570,8 @@ class ChatHistoryScreen extends StatelessWidget {
         elevation: 0,
         iconTheme: const IconThemeData(color: dorado),
       ),
-      body: StreamBuilder<List<ChatConversation>>(
-        stream: ChatService.streamConversaciones(),
+      body: FutureBuilder<List<ChatConversation>>(
+        future: _future,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -1302,7 +1579,9 @@ class ChatHistoryScreen extends StatelessWidget {
             );
           }
 
-          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          final conversations = snapshot.data ?? [];
+
+          if (conversations.isEmpty) {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -1321,23 +1600,17 @@ class ChatHistoryScreen extends StatelessWidget {
             );
           }
 
-          final conversations = snapshot.data!;
-
           return ListView.builder(
             padding: const EdgeInsets.all(16),
             itemCount: conversations.length,
             itemBuilder: (context, index) {
-              final conv = conversations[index];
-              return _buildConversationCard(context, conv);
+              return _buildConversationCard(context, conversations[index]);
             },
           );
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          // ✅ Retornar marcador especial para nueva conversación
-          Navigator.pop(context, '__NEW_CONVERSATION__');
-        },
+        onPressed: () => Navigator.pop(context, '__NEW_CONVERSATION__'),
         backgroundColor: dorado,
         icon: const Icon(Icons.add, color: azulMarino),
         label: const Text(
@@ -1354,10 +1627,7 @@ class ChatHistoryScreen extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
-        onTap: () {
-          // ✅ Retornar el conversationId seleccionado (no apilar pantallas)
-          Navigator.pop(context, conv.id);
-        },
+        onTap: () => Navigator.pop(context, conv.id),
         leading: CircleAvatar(
           backgroundColor: dorado.withValues(alpha: 0.2),
           child: Icon(
@@ -1386,7 +1656,7 @@ class ChatHistoryScreen extends StatelessWidget {
           color: grisOscuro,
           itemBuilder: (context) => [
             PopupMenuItem(
-              onTap: () => ChatService.togglePin(conv.id, conv.isPinned),
+              onTap: () => _togglePin(conv),
               child: Row(
                 children: [
                   Icon(
@@ -1402,7 +1672,7 @@ class ChatHistoryScreen extends StatelessWidget {
               ),
             ),
             PopupMenuItem(
-              onTap: () => _renombrar(context, conv),
+              onTap: () => _renombrar(conv),
               child: const Row(
                 children: [
                   Icon(Icons.edit, color: dorado),
@@ -1412,7 +1682,7 @@ class ChatHistoryScreen extends StatelessWidget {
               ),
             ),
             PopupMenuItem(
-              onTap: () => _eliminar(context, conv.id),
+              onTap: () => _eliminar(conv.id),
               child: const Row(
                 children: [
                   Icon(Icons.delete, color: Colors.red),
@@ -1442,12 +1712,17 @@ class ChatHistoryScreen extends StatelessWidget {
     }
   }
 
-  Future<void> _renombrar(BuildContext context, ChatConversation conv) async {
+  Future<void> _togglePin(ChatConversation conv) async {
+    await ChatService.togglePin(conv.id, conv.isPinned);
+    _recargar();
+  }
+
+  Future<void> _renombrar(ChatConversation conv) async {
     final controller = TextEditingController(text: conv.title);
 
     await Future.delayed(const Duration(milliseconds: 100));
-    
-    if (!context.mounted) return;
+
+    if (!mounted) return;
 
     await showDialog(
       context: context,
@@ -1456,9 +1731,7 @@ class ChatHistoryScreen extends StatelessWidget {
         content: TextField(
           controller: controller,
           autofocus: true,
-          decoration: const InputDecoration(
-            hintText: 'Nuevo nombre',
-          ),
+          decoration: const InputDecoration(hintText: 'Nuevo nombre'),
         ),
         actions: [
           TextButton(
@@ -1466,9 +1739,13 @@ class ChatHistoryScreen extends StatelessWidget {
             child: const Text('Cancelar'),
           ),
           TextButton(
-            onPressed: () {
-              ChatService.renombrarConversacion(conv.id, controller.text);
+            onPressed: () async {
+              final nuevo = controller.text.trim();
               Navigator.pop(context);
+              if (nuevo.isNotEmpty) {
+                await ChatService.renombrarConversacion(conv.id, nuevo);
+                _recargar();
+              }
             },
             child: const Text('Guardar'),
           ),
@@ -1477,10 +1754,10 @@ class ChatHistoryScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _eliminar(BuildContext context, String convId) async {
+  Future<void> _eliminar(String convId) async {
     await Future.delayed(const Duration(milliseconds: 100));
-    
-    if (!context.mounted) return;
+
+    if (!mounted) return;
 
     final confirmar = await showDialog<bool>(
       context: context,
@@ -1503,6 +1780,7 @@ class ChatHistoryScreen extends StatelessWidget {
 
     if (confirmar == true) {
       await ChatService.eliminarConversacion(convId);
+      _recargar();
     }
   }
 }

@@ -1,0 +1,3577 @@
+{
+ "id": "ley_organica_del_ministerio_publico_2007",
+ "codigo": "LOMP",
+ "nombre": "Ley Orgánica del Ministerio Público",
+ "rama": "Derecho Constitucional y DDHH",
+ "anio": "2007",
+ "archivo": "35. Ley Orgánica del Ministerio Público (2007).docx",
+ "orden": 30,
+ "num_articulos": 127,
+ "num_secciones": 31,
+ "preambulo": null,
+ "secciones": [
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S1",
+   "tipo": "TITULO",
+   "numero": "I",
+   "titulo": "DISPOSICIONES GENERALES",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 1,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S2",
+   "tipo": "CAPITULO",
+   "numero": "I",
+   "titulo": "Objeto de la Ley y Naturaleza Jurídica del Ministerio Público",
+   "nivel": 3,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S1",
+   "orden": 2,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S3",
+   "tipo": "CAPITULO",
+   "numero": "II",
+   "titulo": "Principios Rectores",
+   "nivel": 3,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S1",
+   "orden": 3,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S4",
+   "tipo": "TITULO",
+   "numero": "II",
+   "titulo": "DE LAS COMPETENCIAS DEL MINISTERIO PÚBLICO",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 4,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S5",
+   "tipo": "TITULO",
+   "numero": "III",
+   "titulo": "DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 5,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S6",
+   "tipo": "CAPITULO",
+   "numero": "I",
+   "titulo": "Del Despacho del Fiscal o la Fiscal General",
+   "nivel": 3,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S5",
+   "orden": 6,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S7",
+   "tipo": "CAPITULO",
+   "numero": "II",
+   "titulo": "Del Fiscal o la Fiscal General de la República",
+   "nivel": 3,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S5",
+   "orden": 7,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S8",
+   "tipo": "CAPITULO",
+   "numero": "III",
+   "titulo": "Del Vicefiscal o la Vicefiscal General de la República",
+   "nivel": 3,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S5",
+   "orden": 8,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S9",
+   "tipo": "CAPITULO",
+   "numero": "IV",
+   "titulo": "De los Fiscales o las Fiscales del Ministerio Público",
+   "nivel": 3,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S5",
+   "orden": 9,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S10",
+   "tipo": "SECCION",
+   "numero": "I",
+   "titulo": "De los Fiscales o las Fiscales del Ministerio Público",
+   "nivel": 4,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S9",
+   "orden": 10,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S11",
+   "tipo": "SECCION",
+   "numero": "II",
+   "titulo": "De los o las Fiscales del Ministerio Público de Proceso",
+   "nivel": 4,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S9",
+   "orden": 11,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S12",
+   "tipo": "SECCION",
+   "numero": "III",
+   "titulo": "De los o las Fiscales del Ministerio Público de Ejecución",
+   "nivel": 4,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S9",
+   "orden": 12,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S13",
+   "tipo": "SECCION",
+   "numero": "V",
+   "titulo": "De los o las Fiscales del Ministerio Público en el Sistema",
+   "nivel": 4,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S9",
+   "orden": 13,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S14",
+   "tipo": "SECCION",
+   "numero": "VI",
+   "titulo": "De los o las Fiscales del Ministerio Público en el Sistema",
+   "nivel": 4,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S9",
+   "orden": 14,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S15",
+   "tipo": "SECCION",
+   "numero": "VII",
+   "titulo": "De los o las Fiscales del Ministerio Público",
+   "nivel": 4,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S9",
+   "orden": 15,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S16",
+   "tipo": "SECCION",
+   "numero": "VIII",
+   "titulo": "De los Fiscales o las Fiscales del Ministerio Público",
+   "nivel": 4,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S9",
+   "orden": 16,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S17",
+   "tipo": "SECCION",
+   "numero": "IX",
+   "titulo": "De los Fiscales o las Fiscales Auxiliares",
+   "nivel": 4,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S9",
+   "orden": 17,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S18",
+   "tipo": "CAPITULO",
+   "numero": "V",
+   "titulo": "Abogados Adjuntos o Abogadas Adjuntas",
+   "nivel": 3,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S5",
+   "orden": 18,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S19",
+   "tipo": "CAPITULO",
+   "numero": "VI",
+   "titulo": "De la Organización Municipal del Ministerio Público",
+   "nivel": 3,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S5",
+   "orden": 19,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S20",
+   "tipo": "TITULO",
+   "numero": "IV",
+   "titulo": "DE LAS FALTAS, INHIBICIONES Y RECUSACIONES",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 20,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S21",
+   "tipo": "TITULO",
+   "numero": "V",
+   "titulo": "DE LOS DEBERES, PROHIBICIONES Y DERECHOS",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 21,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S22",
+   "tipo": "CAPITULO",
+   "numero": "I",
+   "titulo": "Ejercicio del cargo",
+   "nivel": 3,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S21",
+   "orden": 22,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S23",
+   "tipo": "TITULO",
+   "numero": "VI",
+   "titulo": "RÉGIMEN DE LA CARRERA Y CONCURSO",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 23,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S24",
+   "tipo": "CAPITULO",
+   "numero": "I",
+   "titulo": "De la Carrera del Funcionario o Funcionaria",
+   "nivel": 3,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S23",
+   "orden": 24,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S25",
+   "tipo": "CAPITULO",
+   "numero": "II",
+   "titulo": "Concursos",
+   "nivel": 3,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S23",
+   "orden": 25,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S26",
+   "tipo": "TITULO",
+   "numero": "VII",
+   "titulo": "RÉGIMEN PRESUPUESTARIO",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 26,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S27",
+   "tipo": "CAPITULO",
+   "numero": "I",
+   "titulo": "Presupuesto",
+   "nivel": 3,
+   "parent_id": "ley_organica_del_ministerio_publico_2007_S26",
+   "orden": 27,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S28",
+   "tipo": "TITULO",
+   "numero": "VIII",
+   "titulo": "DE LAS SANCIONES ADMINISTRATIVAS Y DISCIPLINARIAS",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 28,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S29",
+   "tipo": "TITULO",
+   "numero": "IX",
+   "titulo": "DEL ARCHIVO Y MANEJO DE LA DOCUMENTACIÓN",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 29,
+   "disposicion": false
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S30",
+   "tipo": "DISPOSICIONES",
+   "numero": "ÚNICO",
+   "titulo": "Disposiciones",
+   "nivel": 1,
+   "parent_id": null,
+   "orden": 30,
+   "disposicion": true
+  },
+  {
+   "id": "ley_organica_del_ministerio_publico_2007_S31",
+   "tipo": "DISPOSICIONES",
+   "numero": "ÚNICO",
+   "titulo": "Disposiciones",
+   "nivel": 1,
+   "parent_id": null,
+   "orden": 31,
+   "disposicion": true
+  }
+ ],
+ "articulos": [
+  {
+   "numero_texto": "1",
+   "numero": 1,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La presente Ley tiene por objeto regular la organización administrativa y funcional del Ministerio Público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Naturaleza jurídica del Ministerio Público"
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES · CAPITULO I: Objeto de la Ley y Naturaleza Jurídica del Ministerio Público"
+  },
+  {
+   "numero_texto": "2",
+   "numero": 2,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio Público es un órgano del Poder Ciudadano que tiene por objetivo actuar en representación del interés general y es responsable del respeto a los derechos y garantías constitucionales a fin de preservar el Estado, democrático y social de derecho y de justicia."
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES · CAPITULO I: Objeto de la Ley y Naturaleza Jurídica del Ministerio Público"
+  },
+  {
+   "numero_texto": "3",
+   "numero": 3,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio Público se regirá por lo establecido en la Constitución de la República Bolivariana de Venezuela, las leyes nacionales y sus reglamentos, y tratados internacionales en materia de derechos humanos, suscritos y ratificados por la República."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Independencia y autonomía"
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES · CAPITULO II: Principios Rectores"
+  },
+  {
+   "numero_texto": "4",
+   "numero": 4,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio Público es independiente de todos los Poderes Públicos, y goza de autonomía funcional, organizativa, presupuestaria, financiera y administrativa. En consecuencia, no podrá ser impedido ni coartado en el ejercicio de sus atribuciones por ninguna autoridad."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Deber de colaboración"
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES · CAPITULO II: Principios Rectores"
+  },
+  {
+   "numero_texto": "5",
+   "numero": 5,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los Poderes Públicos, las entidades públicas y privadas y los ciudadanos y ciudadanas deberán colaborar con el Ministerio Público cuando sean requeridos para ello."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Unidad de Criterio y Actuación"
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES · CAPITULO II: Principios Rectores"
+  },
+  {
+   "numero_texto": "6",
+   "numero": 6,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio Público es único e indivisible. Estará a cargo y bajo la conducción del Fiscal o la Fiscal General de la República o del que haga sus veces, quien ejercerá sus atribuciones de manera directa o a través de los funcionarios o funcionarias debidamente facultados o facultadas mediante delegación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Representación judicial"
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES · CAPITULO II: Principios Rectores"
+  },
+  {
+   "numero_texto": "7",
+   "numero": 7,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República, sin perjuicio de las atribuciones de la Procuraduría General de la República, podrá designar representantes ante cualquier tribunal, para sostener los derechos e intereses del Ministerio Público en los juicios, según corresponda."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Órgano jerarquizado"
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES · CAPITULO II: Principios Rectores"
+  },
+  {
+   "numero_texto": "8",
+   "numero": 8,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio Público es un órgano jerarquizado. El Fiscal o la Fiscal General de la República, o quien haga sus veces, ejerce la representación, dirección, control y disciplina; su autoridad se extiende a todos los funcionarios y funcionarias del Ministerio Público. Sin embargo, la representación, dirección y control podrán ser ejercidas por intermedio de los funcionarios o funcionarias que sean nombrados según el diseño organizacional del Ministerio Público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Sin perjuicio de formular las observaciones que consideren convenientes, los o las fiscales estarán obligados a acatar las instrucciones y directrices que imparta el Fiscal o la Fiscal General de la República, o quien haga sus veces, o mediante los funcionarios o funcionarias jerárquicamente correspondientes para la realización de la investigación penal o para el ejercicio de la representación del Ministerio Público ante los tribunales, sean éstos de competencia ordinaria o especial, y deberán informar a éste o ésta, o a los funcionarios o funcionarias designados o designadas según la jerarquía, sobre el estado en que se encuentren todos los procesos cuando sean requeridos. En todo caso, el Ministerio Público dispondrá de un sistema de información para el seguimiento de las causas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Control de gestión"
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES · CAPITULO II: Principios Rectores"
+  },
+  {
+   "numero_texto": "9",
+   "numero": 9,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República, o quien haga sus veces, así como los funcionarios o funcionarias que sean nombrados o nombradas según el diseño organizacional del Ministerio Público para ejercer la representación, dirección y disciplina, dentro del ámbito de las atribuciones que les confieren las leyes, ejercerán el control de gestión de los funcionarios o funcionarias bajo su dependencia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Objetividad"
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES · CAPITULO II: Principios Rectores"
+  },
+  {
+   "numero_texto": "10",
+   "numero": 10,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los fiscales o las fiscales del Ministerio Público adecuarán sus actos a criterios de objetividad, procurando siempre la correcta interpretación de la ley con preeminencia de la justicia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Transparencia"
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES · CAPITULO II: Principios Rectores"
+  },
+  {
+   "numero_texto": "11",
+   "numero": 11,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las atribuciones del Ministerio Público se ejercerán con transparencia, de manera que permitan y promuevan la publicidad y el conocimiento de los procedimientos, contenidos y fundamentos de los actos que se realicen sin perjuicio de la reserva o secreto establecido en la ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Probidad"
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES · CAPITULO II: Principios Rectores"
+  },
+  {
+   "numero_texto": "12",
+   "numero": 12,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los funcionarios y las funcionarias del Ministerio Público están en el deber de actuar con honradez, rectitud e integridad."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Responsabilidad"
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES · CAPITULO II: Principios Rectores"
+  },
+  {
+   "numero_texto": "13",
+   "numero": 13,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los funcionarios y las funcionarias del Ministerio Público están sujetos y sujetas a responsabilidad penal, civil, administrativa o disciplinaria, con motivo del ejercicio de sus funciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Formalidades esenciales y celeridad"
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES · CAPITULO II: Principios Rectores"
+  },
+  {
+   "numero_texto": "14",
+   "numero": 14,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio Público realizará sus atribuciones sin más formalidades que las establecidas en la Constitución de la República Bolivariana de Venezuela y las leyes, garantizando la prevalencia de la justicia mediante métodos que signifiquen simplificación, eficacia y celeridad."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Gratuidad"
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES · CAPITULO II: Principios Rectores"
+  },
+  {
+   "numero_texto": "15",
+   "numero": 15,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Todas las actuaciones del Ministerio Público serán gratuitas y no estarán sujetas a obligaciones tributarias de ninguna naturaleza. Los actos que realice el Ministerio Público se extenderán en papel común y sin estampillas, y estarán exentos del pago de cualquier otra clase de impuesto, tasa o contribución. Los jueces o las juezas, registradores o registradoras, notarios o notarias y demás autoridades y funcionarios o funcionarias de la República, prestarán gratuitamente sus servicios al Ministerio Público."
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES · CAPITULO II: Principios Rectores"
+  },
+  {
+   "numero_texto": "16",
+   "numero": 16,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son competencias del Ministerio Público:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Velar por el efectivo cumplimiento de la Constitución de la República Bolivariana de Venezuela, los tratados, acuerdos y convenios internacionales, válidamente suscritos y ratificados por la República, así como las demás leyes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Garantizar el debido proceso, la celeridad y buena marcha de la administración de justicia, el respeto de los derechos y garantías constitucionales, así como de los tratados, convenios y acuerdos internacionales vigentes en la República, actuando de oficio o a instancia de parte."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Ordenar, dirigir y supervisar todo lo relacionado con la investigación y acción penal; practicar por sí mismo o por el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, o por los órganos con competencia especial y de apoyo en materia de investigaciones penales, las actividades indagatorias para demostrar la perpetración de los actos punibles; hacer constar su comisión con todas las circunstancias que puedan influir en la calificación y establecer la responsabilidad de los autores o las autoras y demás partícipes, así como el aseguramiento de los objetos activos y pasivos relacionados con su perpetración."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Requerir de organismos públicos o privados altamente calificados la práctica de peritajes o experticias pertinentes para el esclarecimiento de los hechos objeto de investigación, sin perjuicio de la actividad que desempeñe el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas o los órganos con competencia especial y de apoyo en materia de investigaciones penales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Autorizar, en aquellos casos previstos por las leyes, las actuaciones de investigación penal a ser ejercidas por el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, así como de los órganos con competencia especial y de apoyo en materia de investigaciones penales, los cuales estarán obligados a informar al Ministerio Público sus resultas en los plazos requeridos o, en su defecto, en los plazos fijados legalmente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Ejercer, en nombre del Estado, la acción penal en los casos en que para intentarla o proseguirla no sea necesario instancia de parte, salvo las excepciones establecidas en el Código Orgánico Procesal Penal y demás leyes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Librar y ejecutar exhortos o cartas rogatorias y solicitudes de asistencia mutua en materia penal, y ejercer las demás funciones inherentes en su condición de autoridad central en la materia."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Intentar las acciones a que hubiere lugar para hacer efectiva la responsabilidad civil, penal y administrativa en que hubieren incurrido los funcionarios o funcionarias del sector público, con motivo del ejercicio de sus atribuciones, así como la penal y civil de los o las particulares."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Fiscalizar la ejecución de las decisiones judiciales en los procesos en los cuales el Ministerio Público haya intervenido o cuando su intervención hubiese sido requerida."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Ejercer los recursos y acciones contra los actos dictados por el Poder Público, viciados de inconstitucionalidad o ilegalidad, sin menoscabo de las atribuciones conferidas a la Defensoría del Pueblo y a la Procuraduría General de la República."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "11. Intervenir en defensa de la constitucionalidad y legalidad en los casos de nulidad de actos públicos, que sean interpuestos por ante los diferentes órganos de la jurisdicción contencioso-administrativa."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "12. Investigar y ejercer ante los tribunales competentes, las acciones a que hubiere lugar con ocasión de la violación de las garantías constitucionales y derechos humanos, por parte de funcionarios públicos o funcionarias públicas o particulares."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "13. Velar por el correcto cumplimiento de las leyes y la garantía de los derechos humanos en las cárceles y demás establecimientos de reclusión."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "14. Velar para que en los retenes policiales, en los establecimientos penitenciarios, en los lugares de reclusión para efectivos militares, en las colonias agrícolas penitenciarias, en los internados judiciales, las comunidades penitenciarias, entidades de atención para niños, niñas y adolescentes, y demás establecimientos de reclusión y de detención, sean respetados los derechos humanos y constitucionales de los internos o internas, de los detenidos preventivamente y de los niños, niñas y adolescentes; tomar en todo momento las medidas legales adecuadas para restituir y mantener la vigencia de los derechos humanos cuando hayan sido menoscabados o violados."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En el ejercicio de esta competencia los o las fiscales del Ministerio Público tendrán acceso a todos los establecimientos mencionados."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Los funcionarios o las funcionarias que impidan el ejercicio de esta competencia serán responsables penal, civil o disciplinariamente, según lo dispuesto en la ley para cada caso. Asimismo, aquellos particulares que entraben de cualquier manera el ejercicio de esta competencia serán responsables penal y civilmente, de conformidad con las leyes según sea el caso."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "15. Solicitar, en el cumplimiento de sus funciones, la colaboración de cualquier ente u organismo público, funcionario o funcionaria del sector público, quienes estarán obligados a prestar la ayuda solicitada sin demora y a suministrar los documentos e informaciones que les sean requeridos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "16. Presentar observaciones y recomendaciones a proyectos de ley y sugerir las reformas legislativas a que hubiere lugar."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "17. Presentar observaciones y recomendaciones en la planificación de la política criminal que realice el Poder Ejecutivo."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "18. Las demás que le señalen la Constitución de la República Bolivariana de Venezuela y las leyes."
+    }
+   ],
+   "seccion_label": "TITULO II: DE LAS COMPETENCIAS DEL MINISTERIO PÚBLICO"
+  },
+  {
+   "numero_texto": "17",
+   "numero": 17,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S6",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Despacho del Fiscal o la Fiscal General de la República tendrá su sede en la capital de la República."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Régimen de personal"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO I: Del Despacho del Fiscal o la Fiscal General"
+  },
+  {
+   "numero_texto": "18",
+   "numero": 18,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S6",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio Público estará integrado por el Fiscal o la Fiscal General de la República, o por el o la que haga sus veces, los o las fiscales y los demás funcionarios o funcionarias del Ministerio Público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República determinará en el Estatuto de Personal del Ministerio Público los cargos cuyos titulares serán de libre nombramiento y remoción, en atención al nivel o naturaleza de sus funciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Estructura organizativa"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO I: Del Despacho del Fiscal o la Fiscal General"
+  },
+  {
+   "numero_texto": "19",
+   "numero": 19,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S6",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República determinará en el Estatuto Orgánico del Ministerio Público la organización de su Despacho."
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO I: Del Despacho del Fiscal o la Fiscal General"
+  },
+  {
+   "numero_texto": "20",
+   "numero": 20,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Dentro de los ciento veinte días previos al vencimiento del período de siete años establecido para el ejercicio del cargo de Fiscal o la Fiscal General de la República, el Consejo Moral Republicano convocará un Comité de Evaluación de Postulaciones del Poder Ciudadano para la designación del titular del Ministerio Público, la cual se efectuará conforme a lo previsto en la Constitución de la República Bolivariana de Venezuela y la Ley Orgánica del Poder Ciudadano."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Juramentación del Fiscal o la"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Fiscal General de la República"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO II: Del Fiscal o la Fiscal General de la República"
+  },
+  {
+   "numero_texto": "21",
+   "numero": 21,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República será juramentado o juramentada por la Asamblea Nacional dentro de los diez días siguientes a su designación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Remoción"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO II: Del Fiscal o la Fiscal General de la República"
+  },
+  {
+   "numero_texto": "22",
+   "numero": 22,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República podrá ser removido o removida por la Asamblea Nacional, con el voto favorable de la mayoría, absoluta de sus integrantes, previo pronunciamiento del Tribunal Supremo de Justicia en Sala Plena, conforme a lo dispuesto en la Ley Orgánica del Poder Ciudadano."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Faltas graves"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO II: Del Fiscal o la Fiscal General de la República"
+  },
+  {
+   "numero_texto": "23",
+   "numero": 23,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Serán consideradas como faltas graves del Fiscal o la Fiscal General de la República, las siguientes:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Atentar, amenazar o lesionar la ética pública y la moral administrativa."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Actuar con grave e inexcusable ignorancia de la Constitución de la República Bolivariana de Venezuela, de la Ley y del derecho."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Violar, amenazar o menoscabar los principios fundamentales establecidos en la Constitución de la República Bolivariana de Venezuela."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Realizar activismo político-partidista, gremial, sindical o de índole semejante, o efectuar actividades privadas lucrativas incompatibles con su función por sí o por interpuesta persona, o ejercer cualquier otra función pública, a excepción de actividades académicas o docentes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Faltas temporales o absolutas"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO II: Del Fiscal o la Fiscal General de la República"
+  },
+  {
+   "numero_texto": "24",
+   "numero": 24,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las faltas temporales del Fiscal o la Fiscal General de la República serán cubiertas por el Vicefiscal o la Vicefiscal General de la República por un máximo de noventa días prorrogables, con el voto favorable de la mayoría absoluta de los integrantes de la Asamblea Nacional."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Las faltas absolutas serán cubiertas por el Vicefiscal o la Vicefiscal hasta tanto la Asamblea Nacional, designe un nuevo Fiscal, de acuerdo con el procedimiento establecido en las leyes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Deberes y atribuciones"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO II: Del Fiscal o la Fiscal General de la República"
+  },
+  {
+   "numero_texto": "25",
+   "numero": 25,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son deberes y atribuciones del Fiscal o la Fiscal General de la República:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Dirigir el Ministerio Público en los términos establecidos en la Constitución de la República Bolivariana de Venezuela, en la presente Ley, en sus reglamentos internos y en las demás leyes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Ejercer la acción penal pública en todos aquellos casos señalados en la Constitución de la República Bolivariana de Venezuela, el Código Orgánico Procesal Penal y las leyes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Designar al Vicefiscal o a la Vicefiscal General de la República, previa autorización de la mayoría absoluta de los integrantes de la Asamblea Nacional; a los directores o a las directoras del Despacho, a los o a las fiscales, sus auxiliares y demás funcionarios o funcionarias del Ministerio Público, según el procedimiento establecido en esta Ley y en el Estatuto de Personal del Ministerio Público. De igual manera determinará los cargos cuyos titulares serán de libre nombramiento y remoción, en atención al nivel o naturaleza de sus funciones."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Organizar y distribuir las competencias del Ministerio Público entre sus fiscales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Ejercer personalmente ante el Tribunal Supremo de Justicia la acción penal en los juicios a que se refiere el artículo 266, numerales 2 y 3 de la Constitución de la República Bolivariana de Venezuela. Cuando el acusado o acusada sea el propio o la propia Fiscal General de la República, la representación del Ministerio Público será ejercida por el Vicefiscal o la Vicefiscal General de la República o, en su defecto, a quien designe la Asamblea Nacional por la mayoría absoluta de sus integrantes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Resolver, de acuerdo al resultado de las averiguaciones realizadas por la Contraloría General de la República, si hay mérito o no para intentar las acciones civiles, penales o administrativas contra funcionarios o funcionarias del sector público, con motivo del ejercicio de sus funciones, de conformidad con la Constitución de la República Bolivariana de Venezuela y las leyes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Ejercer personalmente o a través de los o las fiscales designados o designadas para actuar ante el Tribunal Supremo de Justicia, las acciones de nulidad contra los actos del Poder Público que sean inconstitucionales o ilegales, sin perjuicio de las atribuciones que corresponden al Defensor o Defensora del Pueblo y al Procurador o Procuradora General de la República."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Dictar el Estatuto Orgánico del Ministerio Público y las demás normas de carácter interno que considere necesarias para el ejercicio de las atribuciones que le confieren la Constitución de la República Bolivariana de Venezuela y las leyes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Presentar anualmente a la Asamblea Nacional, en sesión plenaria, dentro de los primeros treinta días siguientes al inicio de las sesiones ordinarias, un informe de su actuación durante el año anterior."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Participar en la reestructuración de la política criminal del Estado y emitir opinión razonada, cuando lo juzgue conveniente o le sea solicitada por la Asamblea Nacional, sobre los proyectos de ley que tengan relación con el Ministerio Público y la administración de justicia, así como de aquellos que a su juicio lo requieran, y sugerir e indicar las reformas legislativas tendentes a mejorarlos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "11. Elaborar cada año el Proyecto de Presupuesto de Gastos del Ministerio Público y enviarlo al ministerio responsable de las finanzas públicas; éste, a su vez y de manera definitiva, lo incorporará sin modificación al presupuesto general del Estado."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "12. Intervenir personalmente, cuando lo juzgue conveniente, en los procesos judiciales de la jurisdicción ordinaria o especial en materias de su competencia, en cualquier lugar del territorio nacional. A tales efectos, también podrá designar a uno de sus funcionarios o funcionarias del Ministerio Público."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "13. Fijar las pautas generales y específicas en cuanto a la dirección funcional del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, así como de los órganos con competencia especial y de apoyo en la investigación penal. En atención a las pautas dictadas y aspectos de la competencia del Ministerio Público, se hará la debida supervisión y consecuencialmente se instrumentarán las acciones legales consiguientes si en el proceso de supervisión o mediante cualquier otra actividad realizada por el Ministerio Público, se detectaren fallas, faltas o cualquier otro tipo de acto que afecten su funcionalidad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "14. Solicitar de las autoridades competentes la imposición de las sanciones disciplinarias, de acuerdo con la ley que los rija, cuando los funcionarios o funcionarias de investigaciones penales, señalados en el numeral anterior, infrinjan disposiciones legales o reglamentarias, omitan o retarden la ejecución de un acto propio de sus funciones o lo cumplan negligentemente. No obstante, el Fiscal o la Fiscal General de la República podrá aplicar directamente cualesquiera de las sanciones disciplinarias legalmente dispuestas, previa audiencia del funcionario o funcionaria, y luego de cumplido el respectivo procedimiento, cuando las autoridades correspondientes, en el término de treinta días continuos a partir de su notificación, no cumplan con su potestad disciplinaria. El órgano de adscripción del funcionario o funcionaria será responsable del efectivo cumplimiento de la sanción impuesta."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "15. Opinar e intervenir, directamente o a través de los o las fiscales ante el Tribunal Supremo de Justicia, en los procedimientos relativos a la ejecución de actos de autoridades extranjeras, en los de extradición y cuando alguna ley especial disponga su intervención. A tal efecto, el Tribunal Supremo de Justicia ordenará la notificación correspondiente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "16. Ejercer la potestad disciplinaria sobre los o las fiscales y demás funcionarios o funcionarias del Ministerio Público."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "17. Conceder licencias y permisos a los funcionarios o funcionarias de su Despacho, de conformidad con lo previsto en esta Ley y en el Estatuto de Personal del Ministerio Público."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "18. Solicitar de los jueces o juezas en materia civil, la notificación inmediata a el o a la Fiscal Superior correspondiente, de todas las causas que se inicien en sus juzgados, en las que estén interesados el orden público y las buenas costumbres, cuando no exista en una determinada circunscripción judicial un representante especial del Ministerio Público para asuntos de familia."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "19. Convocar convenciones, congresos, foros y otros eventos de fiscales y demás funcionarios o funcionarias del Ministerio Público."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "20. Delegar en funcionarios o funcionarias de su Despacho determinadas atribuciones de carácter administrativo, así como la firma de los asuntos rutinarios o de mera tramitación, a los fines del mejor funcionamiento del organismo."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "21. Impartir instrucciones para cumplir con eficacia los deberes a cargo del Ministerio Público, y procurar la unidad de acción de los funcionarios o las funcionarias al servicio del organismo."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "22. Impartir instrucciones a cualquier Fiscal del Ministerio Público para que coopere con otro fiscal u otra fiscal de la misma o de distinta circunscripción o circuito judicial, o lo reemplace, según sea el caso."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "23. Solicitar información a cualquier fiscal y demás funcionarios o funcionarias del Ministerio Público, cuando lo estime pertinente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "24. Contratar profesionales, técnicos o expertos en determinadas materias, quienes estarán excluidos del ámbito de aplicación de la presente Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "25. Las demás que les sean atribuidas por la Constitución de República Bolivariana de Venezuela y las leyes."
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO II: Del Fiscal o la Fiscal General de la República"
+  },
+  {
+   "numero_texto": "26",
+   "numero": 26,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Para ser Vicefiscal se requiere:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Tener nacionalidad venezolana por nacimiento y no poseer ninguna otra."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Ser mayor de treinta años de edad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Ser abogado o abogada y tener título universitario de postgrado en materia jurídica."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Ser de notoria buena conducta y de reconocida solvencia moral."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Estar en pleno goce de sus derechos civiles y políticos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "De los Fiscales o las Fiscales Superiores"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO III: Del Vicefiscal o la Vicefiscal General de la República"
+  },
+  {
+   "numero_texto": "27",
+   "numero": 27,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En cada una de las circunscripciones judiciales, el Fiscal o la Fiscal General de la República designará Fiscales Superiores que representarán al Ministerio Público y ejercerán las atribuciones que les confiere esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El cargo de Fiscal Superior o de la Fiscal Superior es de libre nombramiento y remoción."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Requisitos"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO III: Del Vicefiscal o la Vicefiscal General de la República"
+  },
+  {
+   "numero_texto": "28",
+   "numero": 28,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Para ser Fiscal Superior del Ministerio Público se requiere:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Ser mayor de treinta años de edad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Ser abogado o abogada, preferiblemente con estudios de cuarto nivel en Ciencias Penales o Procesal Penal, expedido por una universidad nacional o extranjera, debidamente revalidado por una universidad pública nacional."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Ser profesor universitario o profesora universitaria en materia jurídica, de reconocida competencia o haber ejercido el cargo de Fiscal del Ministerio Público, o Juez o Jueza o Defensor Público o Defensora Pública Penal durante un período no menor de cinco años o haber ejercido la profesión de abogado o abogada durante un mínimo de ocho años."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Cumplir con los requisitos establecidos en el artículo 30 de esta Ley, con excepción de lo previsto en los numerales 2, 9, 10 y 11."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Atribuciones y Deberes de los Fiscales"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "o las Fiscales Superiores"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO III: Del Vicefiscal o la Vicefiscal General de la República"
+  },
+  {
+   "numero_texto": "29",
+   "numero": 29,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son atribuciones y deberes de los Fiscales o las Fiscales superiores:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Ejercer la representación del Ministerio Público en la circunscripción judicial correspondiente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Dirigir la Unidad de Atención a la Víctima y la Oficina de Atención al Ciudadano."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Coordinar y supervisar, junto con el director de adscripción correspondiente, la actuación de los o las fiscales del Ministerio Público en la respectiva circunscripción judicial."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Tomar las decisiones en relación a los procesos que le son atribuidas por el Código Orgánico Procesal Penal y demás leyes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Elevar consultas al Fiscal General de la República cuando lo juzguen necesario, para el mejor desempeño de sus atribuciones."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Recibir y comunicar de inmediato al Fiscal o a la Fiscal General de la República las recusaciones e inhibiciones relativas a fiscales del Ministerio Público de su circunscripción judicial, conforme a las normas previstas en esta Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Tramitar ante la Dirección competente las denuncias relacionadas con las actuaciones de los o las fiscales del Ministerio Público que se desempeñen en la respectiva circunscripción judicial."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Supervisar y controlar el funcionamiento administrativo de las unidades respectivas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Disponer las medidas que faciliten y aseguren el acceso expedito de las personas a su Despacho y al de los o las demás fiscales, así como su debida atención."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Autorizar y tramitar inmediatamente las solicitudes de consultores técnicos que le formulen los o las fiscales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "11. Solicitar al Fiscal o a la Fiscal General de la República o a la Dirección que corresponda, la creación de fiscalías y de cargos para fiscales auxiliares y demás funcionarios o funcionarias dentro de su respectiva circunscripción judicial, cuando las necesidades de servicio así lo requieran."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "12. Rendir cuenta al Fiscal o a la Fiscal General de la República, por intermedio de su Dirección de adscripción, en el mes de enero de cada año, sobre las actividades desarrolladas por la Fiscalía a su cargo en la respectiva circunscripción. En la Cuenta se reflejarán las estadísticas de las actividades realizadas y de los resultados obtenidos, el uso de los recursos otorgados y las dificultades que se presentaron."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "13. Las demás que les sean atribuidas por las leyes."
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO III: Del Vicefiscal o la Vicefiscal General de la República"
+  },
+  {
+   "numero_texto": "30",
+   "numero": 30,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Para ser Fiscal del Ministerio Público se requiere:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Tener nacionalidad venezolana."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Ser mayor de veinticinco años de edad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Ser abogado o abogada."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Ser de notoria buena conducta y de reconocida solvencia moral."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Estar en pleno goce de sus derechos civiles y políticos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. No estar inhabilitado o inhabilitada para el ejercicio de la función pública."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. No haber sido objeto de sanción penal, por decisión definitivamente firme, por la comisión de un delito."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. No haber sido objeto de sanción disciplinaria de suspensión del ejercicio de las funciones por decisión definitivamente firme, durante los cinco años previos a la celebración del concurso, ni de sanción disciplinaria de destitución del ejercicio de las funciones por decisión definitivamente firme, durante los diez años previos a la celebración del concurso."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Preferiblemente haber cursado estudios de especialización en el área objeto del concurso, en una universidad nacional o extranjera, debidamente acreditada. En caso de no existir cursos de especialización en la referida área, en una que resulte afín a aquella a ser ejercida en el cargo objeto del concurso."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Haber sido Fiscal del Ministerio Público o Juez o Jueza o Defensor Público o Defensora Pública Penal; o haber sido profesor universitario o profesora universitaria por un mínimo de tres años; o haber ejercido la abogacía durante un mínimo de cinco años."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "11. Haber aprobado los concursos de credenciales y de oposición en los términos establecidos en la presente Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Deberes y atribuciones"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público"
+  },
+  {
+   "numero_texto": "31",
+   "numero": 31,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son deberes y atribuciones comunes de los fiscales o las fiscales del Ministerio Público:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Garantizar en los procesos judiciales y administrativos, en todas sus fases, el respeto de los derechos y garantías constitucionales, actuando de oficio o a instancia de parte. Lo anterior no menoscaba el ejercicio de los derechos y acciones que corresponden a los particulares."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Garantizar, en cuanto le compete, el juicio previo y el debido proceso, la recta aplicación de la ley, la celeridad y buena marcha de la administración de justicia."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Proteger el interés público, actuar con objetividad, teniendo en cuenta la situación del imputado o imputada y de la víctima, y prestar atención a todas las circunstancias pertinentes del caso."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Promover la acción de la justicia en todo cuanto concierne al interés público y en los casos establecidos por las leyes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Interponer, desistir o contestar los recursos contra las decisiones judiciales dictadas en cualquier estado y grado del proceso."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Velar por el exacto cumplimiento de los lapsos, plazos y términos legales y, en caso de inobservancia por parte de los jueces o juezas, hacer la correspondiente denuncia ante los organismos competentes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Intentar las acciones a que hubiere lugar para hacer efectiva la responsabilidad civil, militar, penal, administrativa en que incurran los funcionarios o funcionarias del sector público con motivo del ejercicio de sus funciones, así como la responsabilidad penal y civil de los particulares."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Ejercer las acciones que se deriven de la violación de la Constitución de la República Bolivariana de Venezuela o de los tratados internacionales vigentes en la República."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Elevar consultas debidamente motivadas al o a la Fiscal General de la República cuando lo juzguen necesario para el mejor desempeño de sus funciones."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Ordenar al Fiscal Auxiliar respectivo la práctica de las actuaciones que sean pertinentes dentro del marco de sus atribuciones legales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "11. Ordenar, dirigir y supervisar las actividades del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, así como de los órganos con competencia especial y de apoyo en materia de investigaciones penales dentro del curso de la investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "12. Velar por la disciplina y el eficaz desempeño del personal a su cargo y conceder licencias y permisos conforme a lo previsto en el Estatuto de Personal del Ministerio Público."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "13. Las demás que les sean atribuidas por la Constitución y las leyes."
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público"
+  },
+  {
+   "numero_texto": "32",
+   "numero": 32,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S10",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son Fiscales del Ministerio Público ante el Tribunal Supremo de Justicia, aquellos o aquellas a quienes les corresponde ejercer la representación de la institución ante las Salas correspondientes de ese máximo tribunal."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Requisitos"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION I: De los Fiscales o las Fiscales del Ministerio Público"
+  },
+  {
+   "numero_texto": "33",
+   "numero": 33,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S10",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Para ser Fiscal del Ministerio Público ante el Tribunal Supremo de Justicia se requiere:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Ser mayor de treinta años de edad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Haber sido profesor universitario o profesora universitaria de reconocida competencia en ciencia jurídica durante un mínimo de siete años; o haber ejercido el cargo de Fiscal del Ministerio Público, o Juez o Jueza o Defensor Público o Defensora Pública Penal durante un mínimo de siete años; o haber ejercido la abogacía durante un mínimo de diez años."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Cumplir con los requisitos establecidos en el artículo 30 de esta Ley, con excepción de lo previsto en su numeral 2 y 10."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Deberes y atribuciones"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION I: De los Fiscales o las Fiscales del Ministerio Público"
+  },
+  {
+   "numero_texto": "34",
+   "numero": 34,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S10",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son deberes y atribuciones de los o las fiscales del Ministerio Público ante el Tribunal Supremo de Justicia en Sala Plena y en Salas Constitucional y Políticoadministrativa, según corresponda:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Intentar previa delegación del Fiscal o la Fiscal General de la República:"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "a. Recursos o acciones de nulidad por razones de inconstitucionalidad o ilegalidad contra actos, hechos u omisiones emanados de autoridades del Poder Público Nacional, Estadal o Municipal."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "b. Recursos de colisión."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "c. Recursos de interpretación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "d. Recursos de apelación contra las decisiones dictadas por los tribunales de la jurisdicción contencioso-administrativa, que actúen en primera instancia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "e. Acciones o recursos contra la negativa o abstención de las autoridades nacionales, estadales o municipales, a cumplir determinados actos, a que estén obligadas legalmente, cuando sea procedente, de conformidad con las leyes respectivas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "f. Acciones de amparo constitucional.g. Cualquier otro recurso o acción donde sea procedente la intervención del Ministerio Público, de conformidad con las leyes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Intervenir, previa delegación del Fiscal o la Fiscal General de la República, en los juicios de expropiación intentados por la República, los estados o los municipios."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Ejercer, previa designación del Fiscal o la Fiscal General de la República, la representación judicial del Ministerio Público cuando sus actos sean impugnados."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Elevar consultas al Fiscal o la Fiscal General de la República cuando lo juzguen necesario para el mejor desempeño de sus funciones."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Las demás que les sean atribuidas por las leyes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Deberes y atribuciones"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION I: De los Fiscales o las Fiscales del Ministerio Público"
+  },
+  {
+   "numero_texto": "35",
+   "numero": 35,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S10",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son deberes y atribuciones de los Fiscales designados o las Fiscales designadas ante el Tribunal Supremo de Justicia, en Sala Plena, Sala Constitucional y Sala de Casación:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Ejercer la atribución prevista en el numeral 6 del artículo 16 de esta Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Intervenir como representantes del Ministerio Público, aun cuando la acción hubiere sido intentada o proseguida por el Fiscal o la Fiscal General de la República, en las causas penales de acción pública y en las de responsabilidad que se intenten contra los altos funcionarios señalados en la Constitución de la República Bolivariana de Venezuela."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Intervenir y opinar, cuando no lo hiciere personalmente el Fiscal o la Fiscal General de la República, en los procedimientos relativos a la ejecución de actos de autoridad extranjera, procedimiento de extradición y cuando alguna ley especial disponga su intervención, sin perjuicio de que el Tribunal Supremo de Justicia efectúe las notificaciones correspondientes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Las demás que les sean atribuidas por la Constitución de la República Bolivariana de Venezuela y las leyes."
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION I: De los Fiscales o las Fiscales del Ministerio Público"
+  },
+  {
+   "numero_texto": "36",
+   "numero": 36,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S11",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son Fiscales del Ministerio Público de Proceso, aquellos o aquellas que en esta Ley, el Código Orgánico Procesal Penal y demás leyes tengan atribuida participación en procesos judiciales de cualquier naturaleza. En cada Circuito Judicial Penal existirán los Fiscales de Proceso que sean indispensables para el cumplimiento de las funciones del Ministerio Público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Atribuciones y deberes"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION II: De los o las Fiscales del Ministerio Público de Proceso"
+  },
+  {
+   "numero_texto": "37",
+   "numero": 37,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S11",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son atribuciones y deberes de los Fiscales o las Fiscales del Ministerio Público de Proceso:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Ejercer la atribución prevista consagrada en el numeral 6 del artículo 16 de esta Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Solicitar autorización al tribunal de control para prescindir o suspender el ejercicio de la acción penal."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Ejercer la acción civil derivada del delito cuando así lo dispongan el Código Orgánico Procesal Penal y demás leyes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Intentar las acciones a que hubiere lugar para hacer efectiva la responsabilidad civil, penal y administrativa en que hubieren incurrido los funcionarios o funcionarias del sector público, con motivo del ejercicio de sus funciones, así como de los particulares."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Atender las solicitudes de protección a las víctimas, testigos y expertos, y procurar que sean informados acerca de sus derechos, con arreglo al Código Orgánico Procesal Penal y demás leyes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Ordenar el inicio de la investigación cuando tengan conocimiento de la presunta comisión de algún hecho punible."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Garantizar que a todas las partes y personas que intervengan en el proceso les sean respetados sus derechos constitucionales y legales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Ordenar o practicar la citación del imputado o imputada o de cualquiera que se requiera, a los fines de la investigación. En caso de negarse a comparecer, podrán solicitar al tribunal de control el auxilio de la fuerza pública para hacer efectiva su inmediata comparecencia."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Ordenar y dirigir las investigaciones penales y las actuaciones que realicen los órganos de policía de investigaciones penales, supervisar la legalidad de las actividades correspondientes y disponer todo lo referente a la adquisición y conservación de los elementos de convicción."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Promover y realizar, durante la fase preparatoria de la investigación penal, todo cuanto estimen conveniente al mejor esclarecimiento de los hechos. En el ejercicio de esta atribución, podrán requerir de organismos públicos o privados, altamente calificados, la práctica de peritajes o experticias pertinentes para el esclarecimiento de los hechos objeto de investigación, sin perjuicio de la actividad que desempeñen los órganos del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, así como de los órganos con competencia especial y de apoyo en materia de investigaciones penales dentro del curso de la investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "11. Solicitar, previa autorización del Fiscal o de la Fiscal Superior correspondiente, los expertos y consultores técnicos que consideren necesarios para el mejor esclarecimiento de los hechos que se investigan. Proponer la recusación contra los funcionarios o funcionarias judiciales, así como la de los escabinos o las escabinas de conformidad con lo previsto en el Código Orgánico Procesal Penal."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "12. Investigar las detenciones inconstitucionales o ilegales y promover las actuaciones para determinar las responsabilidades a que haya lugar."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "13. Solicitar y ejecutar exhortos o cartas rogatorias, así como instrumentar, solicitar y ejecutar la cooperación internacional con base en los tratados internacionales vigentes para la República Bolivariana de Venezuela."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "14. Solicitar al superior jerárquico de los funcionarios o las funcionarias de investigaciones penales la apertura del correspondiente procedimiento disciplinario, en caso de violación de una disposición legal o reglamentaria u omitan o incumplan, retarden indebidamente o cumplan negligentemente una orden o instrucción comprendida en el marco de sus atribuciones legales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Tanto de la solicitud como de las resultas de la misma, deberá informar al Fiscal o a la Fiscal General de la República a objeto de que se impongan las sanciones, de acuerdo con lo señalado en la presente Ley y los otros instrumentos legales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "15. Ejercer todos los actos conclusivos, de conformidad con el Código Orgánico Procesal Penal."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "16. Las demás que les sean atribuidas por el Código Orgánico Procesal Penal y las leyes."
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION II: De los o las Fiscales del Ministerio Público de Proceso"
+  },
+  {
+   "numero_texto": "38",
+   "numero": 38,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S12",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son Fiscales del Ministerio Público de Ejecución de la Sentencia, aquellos o aquellas a quienes corresponde la supervisión de la correcta aplicación de la pena y la vigilancia del respeto a los derechos y garantías que la Constitución de la República Bolivariana de Venezuela, los tratados, convenios y acuerdos internacionales vigentes en la República y demás leyes le otorgan al penado o penada, o al sometido o a la sometida a medida de seguridad."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Deberes y atribuciones"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION III: De los o las Fiscales del Ministerio Público de Ejecución"
+  },
+  {
+   "numero_texto": "39",
+   "numero": 39,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S12",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son deberes y atribuciones de los Fiscales o de las Fiscales del Ministerio Público de ejecución de la sentencia:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Solicitar al tribunal competente la revisión de condenas penales en los casos señalados en el Código Orgánico Procesal Penal y demás leyes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Revisar las solicitudes de concesión de beneficios durante la fase de ejecución de sentencias, y ejercer la representación del Ministerio Público con ocasión de las mismas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Solicitar la revocatoria de las medidas concedidas cuando el penado o penada incumpla con las obligaciones impuestas por el tribunal o cuando así lo determine la ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Ejercer los recursos contra las decisiones de los tribunales de ejecución de sentencias cuando no se ajusten a la legalidad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Ejercer ante los tribunales competentes las acciones a que hubiere lugar con ocasión de la violación de derechos humanos en las cárceles y demás establecimientos de reclusión."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Comunicar al o a la Fiscal Superior de la circunscripción judicial respectiva la perpetración de hechos punibles o la violación a los derechos humanos, en los establecimientos penitenciarios de los cuales tenga conocimiento por cualquier medio."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Vigilar e inspeccionar para que en los retenes policiales, en los locales carcelarios, en los lugares de reclusión de los comandos militares, en las colonias de trabajo, en las cárceles y penitenciarías, institutos de corrección para niños, niñas y adolescentes, y demás establecimientos de reclusión e internamiento, sean respetados los derechos humanos y constitucionales de los reclusos o reclusas, y de los niños, niñas o adolescentes, vigilar las condiciones en que se encuentren los reclusos o reclusas, internados e internadas, tomar las medidas legales adecuadas para mantener la vigencia de los derechos humanos cuando se compruebe que han sido o son menoscabados o violados. En el ejercicio de esta atribución constitucional, los funcionarios del Ministerio Público tendrán acceso a todos los establecimientos mencionados. Quienes entraben de alguna forma el ejercicio de esa atribución incurrirán en responsabilidad disciplinaria."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Las demás que les sean atribuidas por las leyes. Sección CuartaDe los Fiscales o las Fiscales del Ministerio Público de los Derechos y Garantías ConstitucionalesDefiniciónArtículo 40. Son Fiscales del Ministerio Público de los Derechos y Garantías Constitucionales, aquellos o aquellas a quienes corresponde garantizar en los procesos judiciales y procedimientos administrativos, el respeto a los derechos y garantías establecidos en la Constitución de la República Bolivariana de Venezuela, así como en los tratados, convenios y acuerdos internacionales vigentes en la República, e impugnar, cuando así lo ordene el Fiscal o la Fiscal General de la República, los actos de efectos generales contrarios a la Constitución de la República Bolivariana de Venezuela y las leyes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Deberes y atribuciones"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION III: De los o las Fiscales del Ministerio Público de Ejecución"
+  },
+  {
+   "numero_texto": "41",
+   "numero": 41,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S12",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son deberes y atribuciones de los o las Fiscales del Ministerio Público de los derechos y garantías constitucionales:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Ejercer las acciones por inconstitucionalidad e ilegalidad de los actos del Poder Público de efectos generales, cuando así lo ordene el Fiscal o la Fiscal General de la República."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Ejercer las acciones a que hubiere lugar para hacer efectiva la responsabilidad civil, administrativa, disciplinaria, laboral y militar de los funcionarios públicos o funcionarias públicas por violaciones de derechos humanos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Garantizar la celeridad procesal, el juicio previo y el debido proceso en sede administrativa y judicial."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Comunicar al Fiscal o la Fiscal Superior de la circunscripción judicial respectiva, la perpetración de hechos punibles, de los cuales tenga conocimiento por cualquier medio.5. Ejercer las acciones de amparo constitucional e intervenir en las mismas.6. Las demás que les sean atribuidas por las leyes."
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION III: De los o las Fiscales del Ministerio Público de Ejecución"
+  },
+  {
+   "numero_texto": "42",
+   "numero": 42,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S13",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son Fiscales del Ministerio Público en el Sistema de Protección del Niño, Niña, Adolescente y la Familia, aquellos o aquellas a quienes corresponde garantizar, en los procesos judiciales y administrativos, el respeto de los derechos y garantías de los niños, niñas y adolescentes, e intervenir en aquellos procesos en que esté involucrado el orden público y las buenas costumbres, de conformidad con lo establecido en esta Ley, los tratados internacionales vigentes en la República y las leyes que rigen la materia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Deberes y atribuciones"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION V: De los o las Fiscales del Ministerio Público en el Sistema"
+  },
+  {
+   "numero_texto": "43",
+   "numero": 43,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S13",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son deberes y atribuciones de los Fiscales o las Fiscales del Ministerio Público en el Sistema de Protección del Niño, Niña, Adolescente y la Familia, las siguientes:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Intervenir en resguardo del orden público y las buenas costumbres en los juicios relativos al estado civil de las personas y en materia de emancipación, adopción y otras de cualquier naturaleza, de conformidad con el Código de Procedimiento Civil y otras leyes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Intentar las acciones a que hubiere lugar para hacer efectiva la responsabilidad civil, laboral o administrativa de las personas naturales o jurídicas, según sea el caso, que por acción u omisión violen o amenacen derechos individuales, colectivos o difusos de niños, niñas y adolescentes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Recibir de los Organismos competentes en materia del niño, niña y del adolescente las denuncias sobre infracciones de carácter, civil, laboral o administrativa contra niños, niñas y adolescentes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Defender el interés superior del niño, niña y del adolescente en los procedimientos judiciales y administrativos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Inspeccionar las entidades de atención y las Defensorías del Niño, Niña y del Adolescente e instar a los Consejos Estadales y Municipales de Derechos para que impongan las medidas a que hubiere lugar cuando se comprueben irregularidades en la prestación de los servicios correspondientes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Denunciar ante los Organismos competentes en materia de derechos del Niño, Niña y del Adolescente las irregularidades observadas en el funcionamiento de las entidades de atención, o en las Defensorías del Niño, Niña y del Adolescente, a los fines de que se inicie el procedimiento administrativo establecido en la Ley Orgánica para la Protección del Niño y del Adolescente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Promover la conciliación, la mediación y cualesquiera otros medios alternativos para la solución de conflictos, en interés del niño, niña y el adolescente, en los términos previstos en la ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Solicitar a las autoridades la información, experticias y documentos necesarios para el mejor ejercicio de sus atribuciones."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Solicitar a instituciones privadas o particulares la información que sea necesaria para la mejor defensa de los derechos e intereses de los niños, niñas y adolescentes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Recibir las notificaciones de los órganos jurisdiccionales y emitir opinión o formular las observaciones pertinentes en los procesos en que sean llamados a intervenir."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "11. Interponer, por ante el órgano jurisdiccional competente, los asuntos contenciosos del trabajo de niños, niñas y adolescentes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "12. Interponer la acción de privación de patria potestad, de oficio o a solicitud del hijo o hija, a partir de los doce años de edad, de los ascendientes, de los demás parientes del hijo o la hija dentro del cuarto grado en cualquier línea, de la persona que ejerza la guarda y de los Organismos con competencia en materia del niño, niña y del adolescente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "13. Intervenir en todos los procesos judiciales en los cuales se requiera su actuación de conformidad con la ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "14. Intervenir en los juicios de restitución de patria potestad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "15. Solicitar la revisión y modificación de la guarda y, en todo caso, opinar en relación a la misma."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "16. Solicitar la fijación de la obligación alimentaria y opinar sobre su cumplimiento."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "17. Solicitar la colocación familiar o la revocatoria de la misma."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "18. Emitir opinión, formular las observaciones y hacer las oposiciones que sean necesarias en las solicitudes de adopción en que hayan sido notificados o notificadas y, de ser procedente, solicitar la prórroga del período de prueba."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "19. Intentar la acción de nulidad de la adopción."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "20. Intervenir en las causas relativas a la rectificación de los actos del estado civil y de la filiación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "21. Intervenir en la tacha de instrumentos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "22. Ejercer los recursos ordinarios y extraordinarios a los que haya lugar."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "23. Intentar las acciones a que hubiere lugar para hacer efectiva la responsabilidad penal de las personas que incurran en delitos contra niños, niñas y adolescentes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "24. Solicitar la apertura de los procedimientos de tutela y curatela para aquellos niños, niñas y adolescentes que carezcan de representante legal."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "25. Las demás previstas en la Ley Orgánica para la Protección del Niño, Niña y del Adolescente, el Código de Procedimiento Civil, el Código Civil y las que les atribuyan las demás leyes."
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION V: De los o las Fiscales del Ministerio Público en el Sistema"
+  },
+  {
+   "numero_texto": "44",
+   "numero": 44,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S14",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son Fiscales del Ministerio Público en el Sistema Penal de Responsabilidad del Adolescente, aquellos o aquellas a quienes se les atribuye el ejercicio de las acciones tendentes a establecer la responsabilidad del adolescente por los hechos punibles en que incurra, de acuerdo con lo previsto en la ley especial que rige la materia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Deberes y atribuciones"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION VI: De los o las Fiscales del Ministerio Público en el Sistema"
+  },
+  {
+   "numero_texto": "45",
+   "numero": 45,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S14",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son deberes y atribuciones de los Fiscales o de las Fiscales del Ministerio Público en el Sistema Penal de Responsabilidad del Adolescente:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Realizar u ordenar, dirigir y supervisar la investigación de los hechos punibles con participación de adolescentes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Ejercer la acción penal, en los términos y condiciones establecidos en la ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Solicitar y aportar pruebas conforme a lo previsto en la ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Solicitar la imposición, modificación, sustitución o cesación de las medidas cautelares o sanciones acordadas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Interponer los recursos ordinarios y extraordinarios a que haya lugar."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Asesorar a la víctima durante la mediación, la conciliación y cualesquiera otros medios alternativos para la solución de conflictos cuando ella lo solicite."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Las demás que les sean atribuidas por las leyes."
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION VI: De los o las Fiscales del Ministerio Público en el Sistema"
+  },
+  {
+   "numero_texto": "46",
+   "numero": 46,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S15",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son Fiscales del Ministerio Público en Defensa Ambiental, aquellos o aquellas a quienes corresponde el ejercicio de las acciones penales y civiles derivadas de la comisión de hechos punibles de carácter ambiental, y las demás atribuciones que les confieren las leyes, relacionadas con la materia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Deberes y atribuciones"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION VII: De los o las Fiscales del Ministerio Público"
+  },
+  {
+   "numero_texto": "47",
+   "numero": 47,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S15",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son deberes y atribuciones de los Fiscales o las Fiscales del Ministerio Público en Defensa Ambiental:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Ejercer las atribuciones que esta Ley y el Código Orgánico Procesal Penal establecen para los o las Fiscales del Ministerio Público de Proceso, cuando se esté en presencia de presuntos hechos punibles que afecten el ambiente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Ejercer la acción civil derivada de los delitos ambientales, de conformidad con las leyes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Dirigir o realizar, según el caso, las investigaciones penales ambientales y las diligencias efectuadas por los órganos policiales competentes; supervisar la legalidad de las actividades correspondientes y disponer todo lo referente a la adquisición y conservación de los elementos de convicción."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Solicitar ante el órgano jurisdiccional competente las medidas precautelativas necesarias para eliminar un peligro, interrumpir la producción de daños al ambiente o a las personas, o evitar las consecuencias degradantes del hecho que se investiga."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Realizar, conforme a la ley y reglamentos correspondientes, servicios de guardería ambiental."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Las demás que les sean atribuidas por las leyes."
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION VII: De los o las Fiscales del Ministerio Público"
+  },
+  {
+   "numero_texto": "48",
+   "numero": 48,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S16",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son Fiscales del Ministerio Público con Competencia en Materia Indígena, aquellos o aquellas a quienes corresponda el ejercicio de las respectivas acciones o recursos, con ocasión de la violación de los derechos y garantías constitucionales de los o las integrantes de los pueblos y comunidades indígenas, en el curso de procedimientos administrativos, civiles o laborales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Requisitos"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION VIII: De los Fiscales o las Fiscales del Ministerio Público"
+  },
+  {
+   "numero_texto": "49",
+   "numero": 49,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S16",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Para ser Fiscales del Ministerio Público con Competencia en Materia Indígena se requiere:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Ser indígena y poseer suficientes conocimientos en la materia indígena."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Cumplir con los requisitos establecidos en el artículo 30 de esta Ley, con excepción de lo previsto en los numerales 2 y 9."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Deberes y atribuciones"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION VIII: De los Fiscales o las Fiscales del Ministerio Público"
+  },
+  {
+   "numero_texto": "50",
+   "numero": 50,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S16",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son deberes y atribuciones de los Fiscales o las Fiscales del Ministerio Público con Competencia en Materia Indígena, los siguientes:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Intentar las acciones a que hubiere lugar para hacer efectiva la responsabilidad penal, civil o administrativa de las personas o instituciones, según sea el caso que, por acción u omisión, violen o amenacen los derechos colectivos o individuales de uno o más pueblos y comunidades indígenas o de alguno de sus miembros."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Investigar los hechos punibles cometidos con la participación de indígenas o en contra de éstos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Ejercer la acción penal, en los términos y condiciones establecidos en la Ley que rige la materia y el Código Orgánico Procesal Penal, preservando siempre la integridad cultural y los derechos reconocidos a los pueblos y comunidades indígenas en la Constitución de la República Bolivariana de Venezuela y demás instrumentos legales nacionales e internacionales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Solicitar las medidas cautelares o la cesación, modificación o sustitución de las mismas o de las sanciones acordadas, procurando en caso de medida privativa de libertad, el cumplimiento de esta última dentro del hábitat indígena."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Interponer los recursos pertinentes de acuerdo con la ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Recibir y tramitar las denuncias sobre infracciones de carácter administrativo o civil contra indígenas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Solicitar y aportar pruebas, y participar en su deposición conforme a lo previsto en la ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Velar por el cumplimiento de las funciones de la policía de investigación y demás órganos auxiliares de administración de justicia."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Asesorar a la víctima y a los familiares de ésta durante la conciliación, cuando así le sea solicitado."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Ejercer en general todas aquellas atribuciones que esta Ley y el Código Orgánico Procesal Penal establecen para los Fiscales de Proceso, cuando se esté en presencia de presuntos hechos punibles donde intervenga uno o más indígenas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "11. Las demás que les sean atribuidas por las leyes."
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION VIII: De los Fiscales o las Fiscales del Ministerio Público"
+  },
+  {
+   "numero_texto": "51",
+   "numero": 51,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S17",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son Fiscales Auxiliares del Ministerio Público, aquellos o aquellas a quienes se les atribuye la función de asistir a los fiscales o las fiscales principales del Ministerio Público, a los cuales están subordinados funcionalmente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Requisitos"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION IX: De los Fiscales o las Fiscales Auxiliares"
+  },
+  {
+   "numero_texto": "52",
+   "numero": 52,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S17",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Para ser Fiscal Auxiliar del Ministerio Público se requiere:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Ser mayor de veinticinco años de edad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Poseer suficientes conocimientos en materias jurídicas vinculadas con el ejercicio del cargo al cual va a optar."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Cumplir con los requisitos establecidos en el artículo 30 de esta Ley, con excepción de lo previsto en los numerales 2, 9 y 10."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Deberes y atribuciones"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION IX: De los Fiscales o las Fiscales Auxiliares"
+  },
+  {
+   "numero_texto": "53",
+   "numero": 53,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S17",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son deberes y atribuciones de los Fiscales o las Fiscales Auxiliares del Ministerio Público:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Realizar actuaciones de investigación e intervenir en todos los actos de la fase preparatoria e intermedia del proceso penal."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Intervenir en los procedimientos especiales establecidos en el Código Orgánico Procesal Penal, y demás leyes, salvo en los procedimientos en los juicios contra el Presidente o la Presidenta de la República o altos funcionarios o funcionarias del Estado y en los de extradición. En cuanto a la aplicación del procedimiento abreviado, para la presentación del aprehendido o aprehendida ante el juez o la jueza de control, solo podrá actuar en caso de delitos flagrantes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Elaborar escritos, recursos o acciones judiciales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Revisar el estado de las causas en que esté interviniendo el Ministerio Público, y realizar las actuaciones correspondientes, dentro del ámbito de sus atribuciones."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Rendir cuenta mensual al o la Fiscal Principal y en la oportunidad que este último o esta última la requiera, de todas las actuaciones cumplidas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Intervenir en las acciones de amparo, referidas a la libertad y seguridad personal."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Colaborar con el Fiscal o la Fiscal Principal en la supervisión del desempeño del personal subalterno del despacho de adscripción."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Las demás que les asignen las leyes o las resoluciones que dicte el Fiscal o la Fiscal General de República."
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO IV: De los Fiscales o las Fiscales del Ministerio Público · SECCION IX: De los Fiscales o las Fiscales Auxiliares"
+  },
+  {
+   "numero_texto": "54",
+   "numero": 54,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S18",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio Público tendrá a su servicio abogados adjuntos o abogadas adjuntas, quienes se considerarán funcionarios o funcionarias de carrera, una vez que ingresen al Ministerio Público por concurso. El Fiscal o la Fiscal General de la República o quien haga sus veces, cuando lo estime conveniente, dispondrá la colaboración de los abogados adscritos o las abogadas adscritas a una dependencia con cualquiera de las otras."
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO V: Abogados Adjuntos o Abogadas Adjuntas"
+  },
+  {
+   "numero_texto": "55",
+   "numero": 55,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S19",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las Fiscalías del Ministerio Público a nivel municipal son aquellas cuya competencia territorial esté atribuida a uno o más municipios. Estarán adscritas a la Fiscalía Superior de la circunscripción judicial en donde esté ubicado el o los municipios cuya competencia le corresponda."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Competencia"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO VI: De la Organización Municipal del Ministerio Público"
+  },
+  {
+   "numero_texto": "56",
+   "numero": 56,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S19",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los Fiscales o las Fiscales del Ministerio Público a nivel municipal tendrán alguna de las siguientes atribuciones, según le sean asignadas por el Fiscal o la Fiscal General de la República:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Ejercer la acción penal en los casos de faltas y delitos cuyas penas no excedan de tres años en su límite máximo, cometidos en el municipio dentro del cual puedan ejercer sus atribuciones."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Velar por el debido proceso y la protección de los derechos humanos y garantías constitucionales en todo lo relacionado con el ámbito municipal y la vida local."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Mientras no se le asigne a los Fiscales o las Fiscales con competencia a nivel municipal, la atribución prevista en el numeral 1, la misma será ejercida por el correspondiente Fiscal de Proceso."
+    }
+   ],
+   "seccion_label": "TITULO III: DE LA ORGANIZACIÓN DEL MINISTERIO PÚBLICO · CAPITULO VI: De la Organización Municipal del Ministerio Público"
+  },
+  {
+   "numero_texto": "57",
+   "numero": 57,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las faltas de los funcionarios o funcionarias del Ministerio Público son absolutas, temporales y accidentales:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Constituyen faltas absolutas las que se produzcan por:"
+    },
+    {
+     "tipo": "literal",
+     "texto": "a) Muerte del funcionario o de la funcionaria."
+    },
+    {
+     "tipo": "literal",
+     "texto": "b) Cesación en el ejercicio de sus funciones."
+    },
+    {
+     "tipo": "literal",
+     "texto": "c) Jubilación."
+    },
+    {
+     "tipo": "literal",
+     "texto": "d) Destitución."
+    },
+    {
+     "tipo": "literal",
+     "texto": "e) Renuncia aceptada."
+    },
+    {
+     "tipo": "literal",
+     "texto": "f) Abandono del cargo."
+    },
+    {
+     "tipo": "literal",
+     "texto": "g) Anulación de nombramiento."
+    },
+    {
+     "tipo": "literal",
+     "texto": "h) Enfermedad que lo o la incapacite para el ejercicio del cargo."
+    },
+    {
+     "tipo": "literal",
+     "texto": "i) Cualquier otro motivo que lo o la inhabilite para ejercer el cargo."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Constituyen faltas temporales, la separación del ejercicio del cargo en virtud de:"
+    },
+    {
+     "tipo": "literal",
+     "texto": "a) Licencia concedida."
+    },
+    {
+     "tipo": "literal",
+     "texto": "b) Vacaciones."
+    },
+    {
+     "tipo": "literal",
+     "texto": "c) Suspensión disciplinaria o por investigación."
+    },
+    {
+     "tipo": "literal",
+     "texto": "d) Enfermedad que lo incapacite por un período inferior a dos años."
+    },
+    {
+     "tipo": "literal",
+     "texto": "e) Cualquier otra causa debidamente justificada que impida temporalmente el ejercicio de sus funciones."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Constituye falta accidental, la separación del ejercicio del cargo:"
+    },
+    {
+     "tipo": "literal",
+     "texto": "a) Por inhibición."
+    },
+    {
+     "tipo": "literal",
+     "texto": "b) Por recusación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Fiscales suplentes"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "58",
+   "numero": 58,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las faltas temporales y absolutas de los Fiscales o las Fiscales titulares del Ministerio Público serán cubiertas por sus suplentes, en el orden de su elección. Agotada la lista de suplentes, el Fiscal o la Fiscal General de la República, o quien haga sus veces, procederá a nombrar un o una suplente especial, quien deberá cumplir con los mismos requisitos de elegibilidad previstos para el o la Fiscal titular."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El o la suplente especial no podrá ejercer ese cargo en tal condición por más de treinta días continuos en el período de un año, a menos que la suplencia se haya motivado por enfermedad o reposo prenatal o postnatal."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Las faltas accidentales se suplirán con otro u otra Fiscal cuando en la circunscripción o circuito judicial respectivo hubiese más de un Fiscal o una Fiscal del Ministerio Público. En caso contrario, el Fiscal o la Fiscal General de la República procederá a nombrar un suplente o una suplente especial, quien deberá cumplir con los mismos requisitos de elegibilidad previstos para el o la Fiscal titular."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Convocatoria"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "59",
+   "numero": 59,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En caso de falta absoluta, la convocatoria del suplente la hará el Fiscal o la Fiscal General de la República, o quien haga sus veces; si la falta es temporal, la hará el o la Fiscal titular."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Aceptación"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "60",
+   "numero": 60,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Transcurridos tres días hábiles sin que el primer o la primera suplente convocado o convocada concurra a manifestar expresamente su aceptación, se convocará al segundo o segunda suplente de la lista respectiva, y en caso de que transcurridos tres días hábiles contados a partir de la convocatoria, éste o ésta no se presente o se excuse, el Fiscal o la Fiscal General de la República procederá a nombrar un o una suplente especial."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Se considerará como excusa justificada la circunstancia comprobada de no encontrarse el o la suplente en el lugar donde debe residir el o la Fiscal, de acuerdo con lo previsto en esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Exclusión de suplentes"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "61",
+   "numero": 61,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los o las suplentes que al ser convocados o convocadas en más de dos ocasiones sucesivas no se encuentren en el lugar que sirve de sede a la correspondiente oficina del o la Fiscal, serán excluidos o excluidas de la lista respectiva. En igual forma se procederá después de la tercera excusa, salvo que se funden en causas justificadas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Juramento"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "62",
+   "numero": 62,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los o las suplentes de los fiscales o las fiscales prestarán juramento ante el o la Fiscal General de la República, o ante quien haga sus veces o ante la autoridad del Ministerio Público que éste o ésta designe."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Inhibición o recusación"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "63",
+   "numero": 63,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los fiscales o las fiscales del Ministerio Público deberán inhibirse o podrán ser recusados o recusadas por las causales previstas en el artículo 65 de esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Inhibición"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "64",
+   "numero": 64,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En caso de inhibición de un Fiscal o una Fiscal del Ministerio Público, éste o ésta expondrá por escrito ante el o la Fiscal Superior las razones de hecho y de derecho que la justifican. El o la Fiscal Superior estará obligado u obligada a comunicar por la vía más rápida al Fiscal o la Fiscal General de la República, o a quien haga sus veces, la solicitud y designará de inmediato a otro u otra Fiscal de la circunscripción judicial, conforme a lo previsto en las leyes respectivas. En caso de inhibición del Fiscal o la Fiscal Superior o de los demás funcionarios o funcionarias del Ministerio Público, la misma se planteará por ante el Fiscal o la Fiscal General de la República, o por quien haga sus veces, quien decidirá lo pertinente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El designado o designada sustituirá al inhibido o a la inhibida, a menos que también estuviere incurso en alguna causal de inhibición, caso en el cual se procederá de acuerdo con lo anterior."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "No podrá obligarse al inhibido o a la inhibida a continuar interviniendo en el proceso, a menos que la solicitud sea declarada sin lugar o inadmisible."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Procedencia de la Inhibición o Recusación"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "del o la Fiscal General de la República"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "65",
+   "numero": 65,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República deberá inhibirse o podrá ser recusado o recusada en los procesos judiciales o administrativos, cuando incurra en alguna de las causales siguientes:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Por parentesco de consanguinidad o de afinidad dentro del cuarto o segundo grado, respectivamente, con cualquiera de las partes o con el representante de alguna de ellas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Por parentesco de consanguinidad o de afinidad dentro del cuarto o segundo grado, respectivamente, con el cónyuge de cualquiera de las partes o, en caso de tener hijos, con alguna de las partes aunque se encuentre divorciado o divorciada."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Por ser padre o madre adoptante o, hijo adoptivo o hija adoptiva de alguna de las partes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Por tener amistad íntima o enemistad manifiesta con alguna de las partes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Por tener su cónyuge o alguno de sus parientes consanguíneos o afines dentro de los grados mencionados en el numeral 1 de este artículo, interés directo en los resultados del proceso."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Por haber emitido opinión sobre la causa con conocimiento de ella."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Causal excepcional"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "66",
+   "numero": 66,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República también podrá inhibirse por cualquier otra causa, no contemplada en el artículo anterior, siempre que esté fundada en motivos graves que afecten su imparcialidad."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Inadmisibilidad"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "67",
+   "numero": 67,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Es inadmisible la recusación que se intente sin expresar los motivos en que se funde. Igualmente la que se proponga después de transcurridos cinco días hábiles, contados a partir de la presentación de la querella o de la acusación, según el caso."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Procedimiento"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "68",
+   "numero": 68,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Declarada la admisibilidad de la recusación, el Fiscal o la Fiscal General de la República deberá, dentro de los cinco días hábiles siguientes, informar al Tribunal Supremo de Justicia sobre la pertinencia de la incidencia propuesta."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El funcionario o la funcionaria que conozca de la recusación del Fiscal o la Fiscal General de la República, abrirá una articulación por tres días para promover y evacuar las pruebas aportadas por las partes, sin conceder en ningún caso, el término de la distancia, y resolverá el procedimiento dentro de los cinco días hábiles siguientes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Continuidad"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "69",
+   "numero": 69,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La recusación del Fiscal o la Fiscal General de la República no detendrá el curso del proceso, cuyo conocimiento pasará de manera inmediata al funcionario o funcionaria que deba sustituirle conforme a esta ley, hasta tanto se decida la incidencia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Conclusión del procedimiento"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "70",
+   "numero": 70,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se declarará concluido el procedimiento si el Fiscal o la Fiscal General de la República manifiesta su inhibición después de haber sido recusado o recusada."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Constancia de inhibición"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "71",
+   "numero": 71,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando el Fiscal o la Fiscal General de la República se inhiba de seguir conociendo de una causa determinada, se hará constar en el expediente respectivo su decisión y continuará conociendo el funcionario o funcionaria a quien corresponda actuar."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Límite"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "72",
+   "numero": 72,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las partes no podrán intentar en una misma causa más de dos recusaciones contra el Fiscal o la Fiscal General de la República."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Improcedencia del recurso"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "73",
+   "numero": 73,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Contra las decisiones que se dicten en las incidencias de recusación contra el Fiscal o la Fiscal General de la República no procederá recurso alguno."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Procedimiento"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "74",
+   "numero": 74,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La recusación podrá ser presentada por las personas legitimadas para recusar, en la oportunidad procesal correspondiente, ante el o la Fiscal Superior, por escrito razonado, con indicación de las causales en las cuales se fundamente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal Superior estará obligado u obligada a informar por la vía más rápida al o a la Fiscal General de la República, o por quien haga sus veces, la recusación propuesta y designará a otro u otra Fiscal de la circunscripción judicial, conforme a lo previsto en esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Si el recusado o recusada es el Fiscal o la Fiscal Superior, la recusación será presentada en la misma forma ante el Fiscal o la Fiscal General de República."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Conocimiento"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "75",
+   "numero": 75,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República, o quien haga sus veces, conocerá y decidirá las incidencias de recusación y de inhibición de los o las fiscales y funcionarios o funcionarias del Ministerio Público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Impugnación"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "76",
+   "numero": 76,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El funcionario o la funcionaria del Ministerio Público recusado o recusada expondrá por escrito, dentro de un lapso no mayor de cinco días hábiles, contados a partir del momento de su notificación, ante el o la Fiscal General de la República, o por quien haga sus veces, o ante el Fiscal o la Fiscal Superior, según el caso, las razones de hecho y de derecho que tenga para impugnar la recusación, sin perjuicio de la continuación del procedimiento."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Recibida la impugnación, el Fiscal o la Fiscal General de la República, o quien haga sus veces, decidirá en el lapso de tres días si admite o no la recusación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Tramitación"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "77",
+   "numero": 77,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se declarará inadmisible la recusación y concluido el procedimiento si no está fundada en alguna de las causales de recusación. También se declarará concluido el procedimiento, si el Fiscal o la Fiscal o el funcionario o la funcionaria manifiesta su inhibición después de haber sido recusado o recusada. Declarada la admisibilidad, se abrirá una articulación por cinco días, para promover y evacuar las pruebas. El procedimiento se resolverá al décimo día, sin conceder en ningún caso, el término de la distancia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República, o quien haga sus veces, resolverá sin esperar el vencimiento del término de la articulación probatoria, cuando la incidencia pueda resolverse con las pruebas ya producidas en dicha articulación o cuando las partes renuncien al derecho de promover otras."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Continuidad"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "78",
+   "numero": 78,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El proceso no se paralizará por incidencias de recusaciones ni inhibiciones, y seguirá su curso con la intervención de otro funcionario o funcionaria que al efecto haya designado el Fiscal o la Fiscal General de la República, o quien haga sus veces, o el Fiscal o la Fiscal Superior."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Multa"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "79",
+   "numero": 79,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Si la recusación fuere declarada inadmisible o sin lugar, o si hubiere desistimiento, el recusante o la recusante pagará una multa en bolívares equivalente de veinte unidades tributarias (20 U.T.) a cincuenta unidades tributarias (50 U.T.); si la recusación fuere formulada de mala fe, se le impondrá una multa de cincuenta unidades tributarias (50 U.T.) a cien unidades tributarias (100 U.T.). Si el recusante o la recusante no acredita haber pagado la multa dentro del tercer día hábil siguiente a su notificación, se le impondrá dentro de los diez días hábiles siguientes, hasta dos multas sucesivas, cada una por el doble de la ya impuesta. Si persiste la contumacia, el Ministerio Público podrá acudir a la vía judicial para obtener la cancelación correspondiente. A tales efectos, las multas impuestas se considerarán créditos fiscales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Sanción"
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "80",
+   "numero": 80,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S20",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Declarada con lugar la recusación, el Fiscal o la Fiscal General de la República podrá sancionar al o a la funcionaria que infringió el deber de inhibirse, con suspensión o destitución del ejercicio del cargo, según la gravedad de las circunstancias que dieron motivo a la recusación, previa apertura del procedimiento administrativo correspondiente, cuya sustanciación y decisión no podrá exceder de diez días hábiles."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El o la recusante tiene derecho a solicitar al Fiscal o la Fiscal General de la República, o a quien haga sus veces, la aplicación de la referida sanción disciplinaria."
+    }
+   ],
+   "seccion_label": "TITULO IV: DE LAS FALTAS, INHIBICIONES Y RECUSACIONES"
+  },
+  {
+   "numero_texto": "81",
+   "numero": 81,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S22",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los fiscales o las fiscales y demás funcionarios o funcionarias del Ministerio Público, así como los delegados o delegadas especiales, antes de entrar en el ejercicio de sus funciones, prestarán juramento de cumplir fielmente la Constitución de la República Bolivariana de Venezuela, las leyes y los deberes inherentes al cargo ante el Fiscal o la Fiscal General de la República o la autoridad del Ministerio Público que éste o ésta designe. En este último caso, del acta de juramentación se remitirá copia certificada al Fiscal o la Fiscal General de la República, o quien haga sus veces."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Inventario"
+    }
+   ],
+   "seccion_label": "TITULO V: DE LOS DEBERES, PROHIBICIONES Y DERECHOS · CAPITULO I: Ejercicio del cargo"
+  },
+  {
+   "numero_texto": "82",
+   "numero": 82,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S22",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los fiscales o las fiscales y demás funcionarios o funcionarias que tengan a su cargo una dependencia, al tomar posesión del cargo y al cesar definitivamente en sus funciones, deberán recibir o entregar la oficina, mediante un acta, y elaborar, además, según el caso, un inventario, un estado de las cuentas y un índice del archivo, de los libros, documentos y expedientes que demuestren el estado general de la dependencia. El funcionario o la funcionaria entrante tendrá derecho a formular las observaciones que considere pertinentes al acta de entrega y a los respaldos que la conforman, dentro de los noventa días siguientes a la recepción de la dependencia. De dicha acta se remitirá un ejemplar al órgano auditor interno, otro a la Dirección de Administración y se conservará un tercero en la oficina respectiva."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Residencia"
+    }
+   ],
+   "seccion_label": "TITULO V: DE LOS DEBERES, PROHIBICIONES Y DERECHOS · CAPITULO I: Ejercicio del cargo"
+  },
+  {
+   "numero_texto": "83",
+   "numero": 83,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S22",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los fiscales o las fiscales del Ministerio Público residirán en el lugar del ejercicio de sus atribuciones o en el área suburbana inmediata."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Sólo podrán ausentarse por algunas de las causales constitutivas de faltas temporales, conforme al artículo 57 de esta Ley y por razones de servicio debidamente justificadas y autorizadas por el Fiscal o la Fiscal Superior. Las autorizaciones que al respecto requieran los fiscales o las fiscales superiores serán otorgadas por el director o directora de adscripción. Si se ausentaren sin existir alguna de las circunstancias anteriores, podrán ser sancionados o sancionadas disciplinariamente por el Fiscal o la Fiscal General de la República, o quien haga sus veces, de conformidad con lo dispuesto en el Título IX de esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Asistencia"
+    }
+   ],
+   "seccion_label": "TITULO V: DE LOS DEBERES, PROHIBICIONES Y DERECHOS · CAPITULO I: Ejercicio del cargo"
+  },
+  {
+   "numero_texto": "84",
+   "numero": 84,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S22",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los fiscales o las fiscales o funcionarios o funcionarias del Ministerio Público deberán concurrir a su oficina los días laborables, cuando estén de guardia o sean requeridos por razones de servicio."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Actuaciones"
+    }
+   ],
+   "seccion_label": "TITULO V: DE LOS DEBERES, PROHIBICIONES Y DERECHOS · CAPITULO I: Ejercicio del cargo"
+  },
+  {
+   "numero_texto": "85",
+   "numero": 85,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S22",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los fiscales o las fiscales del Ministerio Público llevarán un registro donde harán constar sus actuaciones diarias, el cual firmarán cada día al finalizar su labor, salvo casos de fuerza mayor."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Informe"
+    }
+   ],
+   "seccion_label": "TITULO V: DE LOS DEBERES, PROHIBICIONES Y DERECHOS · CAPITULO I: Ejercicio del cargo"
+  },
+  {
+   "numero_texto": "86",
+   "numero": 86,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S22",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los fiscales o las fiscales del Ministerio Público presentarán mensualmente al Despacho del Fiscal o la Fiscal General de la República, o por quien haga sus veces, un informe de sus actividades; y en los primeros quince días del mes de enero de cada año, un resumen de las actividades del año anterior y las observaciones y sugerencias que consideren útiles para el mejoramiento del servicio y de la administración de justicia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Los fiscales o las fiscales del Ministerio Público presentarán dichos informes a través de los o las fiscales superiores de la circunscripción judicial respectiva. Cuando se trate de los o las fiscales superiores se presentará ante su dirección de adscripción."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Incompatibilidad"
+    }
+   ],
+   "seccion_label": "TITULO V: DE LOS DEBERES, PROHIBICIONES Y DERECHOS · CAPITULO I: Ejercicio del cargo"
+  },
+  {
+   "numero_texto": "87",
+   "numero": 87,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S22",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los cargos de los funcionarios o funcionarias del Ministerio Público son incompatibles con el desempeño de cualquier otro cargo, profesión o actividad pública o privada, excepto las académicas, accidentales, asistenciales o docentes. Corresponde al Fiscal o a la Fiscal General de la República valorar y apreciar tales circunstancias. La designación en el cargo accidental de Delegado o Delegada Especial, no inhabilita a la persona para el libre ejercicio de la profesión de abogado o abogada."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Abstención"
+    }
+   ],
+   "seccion_label": "TITULO V: DE LOS DEBERES, PROHIBICIONES Y DERECHOS · CAPITULO I: Ejercicio del cargo"
+  },
+  {
+   "numero_texto": "88",
+   "numero": 88,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S22",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los funcionarios o funcionarias del Ministerio Público se abstendrán de adelantar opinión no autorizada respecto de los asuntos que estén llamados a conocer."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Prohibición"
+    }
+   ],
+   "seccion_label": "TITULO V: DE LOS DEBERES, PROHIBICIONES Y DERECHOS · CAPITULO I: Ejercicio del cargo"
+  },
+  {
+   "numero_texto": "89",
+   "numero": 89,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S22",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los funcionarios o funcionarias del Ministerio Público no podrán separarse del ejercicio del cargo, sino por motivos debidamente justificados y mediante licencia. En ningún caso podrán hacerlo antes de que el sustituto tome posesión."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Licencia"
+    }
+   ],
+   "seccion_label": "TITULO V: DE LOS DEBERES, PROHIBICIONES Y DERECHOS · CAPITULO I: Ejercicio del cargo"
+  },
+  {
+   "numero_texto": "90",
+   "numero": 90,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S22",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los funcionarios o funcionarias del Ministerio Público tienen derecho a licencias, cuyo régimen se regirá por lo establecido en el Estatuto de Personal del Ministerio Público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Vacaciones"
+    }
+   ],
+   "seccion_label": "TITULO V: DE LOS DEBERES, PROHIBICIONES Y DERECHOS · CAPITULO I: Ejercicio del cargo"
+  },
+  {
+   "numero_texto": "91",
+   "numero": 91,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S22",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los funcionarios o funcionarias del Ministerio Público tendrán derecho al disfrute de vacaciones anuales remuneradas, en la siguiente proporción: Durante los primeros cinco años de servicios, gozarán de treinta días continuos; de seis a diez años de servicios, gozarán de cuarenta días continuos; y por más de diez años de servicios, gozarán de cuarenta y cinco días continuos. Estos lapsos podrán modificarse en beneficio de los funcionarios o las funcionarias del Ministerio Público cuando así lo decida el Fiscal o la Fiscal General de la República o cuando el Ejecutivo Nacional introduzca modificaciones al régimen de vacaciones de sus funcionarios, siempre que éste sea más favorable que el establecido para el organismo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Jubilación"
+    }
+   ],
+   "seccion_label": "TITULO V: DE LOS DEBERES, PROHIBICIONES Y DERECHOS · CAPITULO I: Ejercicio del cargo"
+  },
+  {
+   "numero_texto": "92",
+   "numero": 92,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S22",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los fiscales o las fiscales y los funcionarios o funcionarias del Ministerio Público tienen derecho a la seguridad social, de acuerdo con los términos y condiciones establecidas en la Ley Orgánica del Sistema de Seguridad Social y demás leyes que regulan la materia."
+    }
+   ],
+   "seccion_label": "TITULO V: DE LOS DEBERES, PROHIBICIONES Y DERECHOS · CAPITULO I: Ejercicio del cargo"
+  },
+  {
+   "numero_texto": "93",
+   "numero": 93,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S24",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se crea la carrera del funcionario o funcionaria del Ministerio Público, cuyas normas sobre el ingreso, ascenso, traslado, suspensión, estabilidad y retiro, se regirán por las disposiciones de la presente Ley y del Estatuto de Personal del Ministerio Público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Del ingreso"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO I: De la Carrera del Funcionario o Funcionaria"
+  },
+  {
+   "numero_texto": "94",
+   "numero": 94,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S24",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Para ingresar a la carrera se requiere aprobar un concurso público de credenciales y de oposición."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República, mediante resolución, establecerá las bases y requisitos del concurso, con arreglo a lo dispuesto en esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Del ascenso"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO I: De la Carrera del Funcionario o Funcionaria"
+  },
+  {
+   "numero_texto": "95",
+   "numero": 95,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S24",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se considerará ascenso la promoción de un funcionario o funcionaria titular de un cargo a otro de nivel superior. Sin perjuicio de lo establecido para el ingreso a los diferentes cargos de Fiscal del Ministerio Público, los funcionarios o las funcionarias de carrera tendrán derecho al ascenso, siempre que haya un cargo vacante, el cual se otorgará de acuerdo con la evaluación de su rendimiento y desempeño, cumplimiento de las normas internas de personal, constancias de actualización profesional y antigüedad."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "De la reclasificación de cargo"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO I: De la Carrera del Funcionario o Funcionaria"
+  },
+  {
+   "numero_texto": "96",
+   "numero": 96,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S24",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los funcionarios o funcionarias de carrera del Ministerio Público tendrán derecho a solicitar, a través de su superior inmediato, una reclasificación del cargo que ocupen, la cual será analizada por la Dirección de Recursos Humanos dentro del lapso de los treinta días siguientes al recibo de la solicitud. La reclasificación procederá, siempre que exista la necesidad institucional, la disponibilidad presupuestaria que se requiera y el solicitante cumpla con los requisitos exigidos para el cargo al cual aspira ser reclasificado; también deberá tomarse en consideración su rendimiento y desempeño, cumplimiento de las normas internas de personal y constancia de actualización profesional."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Si la Dirección de Recursos Humanos no diere respuesta a la solicitud de reclasificación de cargo, dentro del lapso aquí previsto, se entenderá que la misma fue negada."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Del traslado"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO I: De la Carrera del Funcionario o Funcionaria"
+  },
+  {
+   "numero_texto": "97",
+   "numero": 97,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S24",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los funcionarios o funcionarias del Ministerio Público podrán ser trasladados por razones de servicio, mediante resolución motivada del Fiscal o la Fiscal General de la República o por quien haga sus veces, de un cargo a otro cargo de la misma clase y para el cual cumpla con los requisitos exigidos para el mismo, siempre que no se disminuya su sueldo básico y los complementos que les puedan corresponder."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Causa de los traslados"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO I: De la Carrera del Funcionario o Funcionaria"
+  },
+  {
+   "numero_texto": "98",
+   "numero": 98,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S24",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los traslados de los funcionarios o funcionarias del Ministerio Público podrán realizarse:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Por solicitud del funcionario o funcionaria, en el cual indique los motivos de su petición."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Por razones de servicio, debidamente justificadas."
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO I: De la Carrera del Funcionario o Funcionaria"
+  },
+  {
+   "numero_texto": "99",
+   "numero": 99,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República convocará a un concurso público de credenciales y de oposición para la provisión de los cargos de fiscales del Ministerio Público y sus suplentes, mediante resolución que se publicará dos veces en un periódico de circulación nacional, con un intervalo de tres días continuos entre una y otra publicación. Dichas publicaciones deberán indicar el cargo a proveerse mediante concurso, la circunscripción judicial en la cual deberá desempeñarse el mismo, el artículo o artículos de la Ley Orgánica del Ministerio Público contentivos de los requisitos de elegibilidad del cargo objeto de concurso, los documentos que deben adjuntarse a la inscripción, la fecha límite para consignarlos y el lugar donde debe procederse a la inscripción."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Integración del jurado"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "100",
+   "numero": 100,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El jurado de los concursos estará integrado por:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. El Fiscal o la Fiscal General de la República, o quien haga sus veces, o el funcionario o la funcionaria del Ministerio Público que éste o ésta designe al efecto, quien deberá tener como mínimo diez años en el Ministerio Público y especialización en la materia objeto del concurso."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. El Vicefiscal o la Vicefiscal y un Director General del área jurídica."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Dos profesores universitarios en ciencia jurídica con categoría de profesor o profesora titular en la materia objeto del concurso, o dos juristas de reconocida competencia con un mínimo de quince años de graduados y especialización en la materia jurídica."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Los integrantes del jurado deberán ser de notoria buena conducta y de reconocida solvencia moral."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Cada miembro del jurado tendrá dos suplentes, quienes cubrirán sus faltas absolutas, temporales y accidentales, en el orden de su designación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Convocatoria del jurado"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "101",
+   "numero": 101,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La convocatoria del jurado la hará el Fiscal o la Fiscal General de la República, o quien haga sus veces, con diez días hábiles de anticipación a la oportunidad de la recepción de las credenciales de los o las aspirantes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El convocado o convocada manifestará su aceptación o excusa, dentro de los cinco días hábiles siguientes a la fecha de su convocatoria."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Evaluaciones"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "102",
+   "numero": 102,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El concurso para optar al cargo de Fiscal del Ministerio Público estará integrado por tres pruebas de carácter público, eliminatorias y sucesivas, que se desarrollarán de acuerdo con lo establecido en la presente Ley y en la resolución que al efecto dicte el Fiscal o la Fiscal General de la República, o quien haga sus veces. Las referidas pruebas y su orden de aplicación es el siguiente:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Evaluación de credenciales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Prueba escrita."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Prueba oral. La aptitud psicológica se evaluará una vez concluida la prueba de credenciales a aquellos aspirantes preseleccionados y su resultado se expresará en un informe de carácter técnico que se le entregará al jurado para su debida evaluación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Esta prueba tendrá carácter confidencial y será efectuada por un equipo conformado por profesionales de la psiquiatría o la sicología en un número impar no menor de tres, designado por el Fiscal o la Fiscal General de la República."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Comisión para la elaboración del baremo"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "103",
+   "numero": 103,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El baremo de evaluación de los o las aspirantes a ingresar al Ministerio Público será elaborado por una comisión de cinco funcionarios del Ministerio Público, designados por el Fiscal o la Fiscal General de la República, de los cuales tres de ellos deberán ser profesionales del derecho, con un mínimo de ocho años en la institución."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Los o las integrantes de la comisión deberán ser de notoria buena conducta y de reconocida solvencia moral."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La comisión contará con dos asesores en materia de elaboración de baremo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Baremo de credenciales"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "104",
+   "numero": 104,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El baremo de credenciales deberá ajustarse a las normas usuales sobre evaluación de credenciales; contará con todas las especificaciones técnicas y legales exigidas para los cargos sometidos a los concursos correspondientes y será aprobado por el Fiscal o la Fiscal General de la República mediante resolución que se publicará en la Gaceta Oficial de la República Bolivariana de Venezuela."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Una vez efectuada la convocatoria pública del respectivo concurso, el baremo aplicable para ese momento no se podrá variar."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En la convocatoria al concurso se deberán especificar los datos sobre la publicación del baremo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Evaluación de credenciales"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "105",
+   "numero": 105,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Concluida la recepción de credenciales, el jurado procederá a su evaluación, de conformidad con las reglas establecidas en el baremo. Los o las aspirantes que aprueben la evaluación de credenciales con una calificación igual o superior al setenta y cinco por ciento del puntaje establecido mediante resolución, deberán presentar la prueba psicológica y, de resultar elegibles, podrán presentar la prueba escrita."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Prueba escrita"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "106",
+   "numero": 106,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La prueba escrita versará sobre el contenido de los temas del programa de concurso establecidos mediante resolución que dicte el Fiscal o la Fiscal General de la República, y tendrá como propósito apreciar la formación académica del o de la aspirante, su dominio de la materia relacionada con el cargo para el cual opte, lenguaje escrito, capacidad de análisis y de síntesis de problemas relacionados con el desempeño de las funciones inherentes al cargo para el cual opta."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Para aprobar la prueba escrita, los o las aspirantes deberán obtener una calificación igual o superior al setenta y cinco por ciento de la escala de puntuación establecida en la resolución que dicte el Fiscal o la Fiscal General de la República. Los o las aspirantes que aprueben la prueba escrita, quedarán seleccionados o seleccionadas para presentar la prueba oral."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Publicación de los resultados de las pruebas"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "107",
+   "numero": 107,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La lista de los o las aspirantes que hayan aprobado la prueba de credenciales y la escrita se publicará en un periódico de circulación nacional y en la página web del Ministerio Público, indicándose en la misma el día, lugar y hora en que se celebrará la siguiente prueba."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Prueba oral"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "108",
+   "numero": 108,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La prueba oral consistirá en la realización de una evaluación pública a los o a las aspirantes preseleccionados o preseleccionadas, y tendrá como finalidad examinar sus conocimientos jurídicos, su capacidad de oratoria, así como su habilidad para desarrollar un tema seleccionado al azar por el o la aspirante, entre aquellos contemplados en el programa del concurso."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La prueba oral se aprobará con una calificación igual o superior al setenta y cinco por ciento de la puntuación establecida mediante resolución que dicte el Fiscal o la Fiscal General de la República."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Ganador o ganadora del concurso"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "109",
+   "numero": 109,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se designará en el cargo objeto del concurso, al o a la aspirante que hubiere obtenido mayor nota final, como resultado del promedio de las pruebas efectuadas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Serán designados o designadas como primer o primera y segundo o segunda suplente, respectivamente, aquellos o aquellas aspirantes que hayan obtenido la segunda y tercera mejor calificación como resultado final."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Publicación del veredicto"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "110",
+   "numero": 110,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El veredicto del concurso se publicará en un periódico de circulación nacional y en la página web del Ministerio Público dentro de los cinco días siguientes, contados a partir de su emisión por el jurado."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Revocatoria de la designación"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "111",
+   "numero": 111,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República, o quien haga sus veces, revocará la designación de aquel o aquella Fiscal del Ministerio Público ganador o ganadora del concurso, o de los o las suplentes designados o designadas de igual forma, si se demostrare que hubiere forjado documentos o suministrado información falsa para participar en el mismo, sin perjuicio de otras responsabilidades a que haya lugar."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Prohibición"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "112",
+   "numero": 112,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los o las aspirantes que hubieren obtenido una nota final inferior al setenta y cinco por ciento, de acuerdo con la escala de puntuación establecida en la resolución que dicte el Fiscal o la Fiscal General de la República, o quien haga sus veces, no podrán inscribirse en un concurso para la provisión de un cargo de igual jerarquía y con las mismas atribuciones y deberes, hasta que haya transcurrido un lapso de un año."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Impugnación"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "113",
+   "numero": 113,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Quien se postule al cargo de Fiscal del Ministerio Público podrá ser impugnado durante el proceso de oposición antes de la realización de la prueba oral. Quien impugne deberá consignar pruebas fehacientes y argumentos sustanciales de su impugnación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Descargo"
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "114",
+   "numero": 114,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S25",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El postulado o postulada al cargo de Fiscal del Ministerio Público hará el descargo a la impugnación en su contra o durante la presentación de la prueba oral en la que además presentará informe escrito de sus alegatos y pruebas ante la impugnación, las cuales serán evaluadas por el jurado calificador, quien decidirá sobre su procedencia o no, antes de lo previsto en el artículo 109 de esta Ley."
+    }
+   ],
+   "seccion_label": "TITULO VI: RÉGIMEN DE LA CARRERA Y CONCURSO · CAPITULO II: Concursos"
+  },
+  {
+   "numero_texto": "115",
+   "numero": 115,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S27",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio Público estará sujeto a las leyes y reglamentos sobre la elaboración y ejecución del presupuesto, en cuanto le sean aplicables. No obstante, a los efectos de garantizar la autonomía presupuestaria en el ejercicio de sus atribuciones, regirán las siguientes disposiciones especiales para la elaboración y ejecución de su presupuesto:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. El Ministerio Público preparará cada año su proyecto de presupuesto de gastos, el cual será remitido al Ejecutivo Nacional para su incorporación al correspondiente Proyecto de Ley de Presupuesto que se someterá a la consideración de la Asamblea Nacional."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. La ejecución del presupuesto del Ministerio Público está sujeta a los controles previstos en las leyes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Ejecución"
+    }
+   ],
+   "seccion_label": "TITULO VII: RÉGIMEN PRESUPUESTARIO · CAPITULO I: Presupuesto"
+  },
+  {
+   "numero_texto": "116",
+   "numero": 116,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S27",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República celebrará los contratos y será el ordenador u ordenadora de pago, a los fines de la ejecución del presupuesto del Ministerio Público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República podrá delegar estas facultades, de conformidad con lo dispuesto en esta Ley y en la normativa legal que rige la materia."
+    }
+   ],
+   "seccion_label": "TITULO VII: RÉGIMEN PRESUPUESTARIO · CAPITULO I: Presupuesto"
+  },
+  {
+   "numero_texto": "117",
+   "numero": 117,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S28",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los fiscales o las fiscales y demás funcionarios o funcionarias del Ministerio Público, previo el debido proceso, podrán ser sancionados disciplinariamente por el Fiscal o la Fiscal General de la República, sin perjuicio de la responsabilidad por los delitos o faltas en que incurran:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Por ofender de palabra, por escrito o de obra a sus superiores jerárquicos, iguales o subalternos; falta a las consideraciones debidas al personal y traspasar los límites racionales de su autoridad respecto a sus auxiliares y subalternos o a los ciudadanos y ciudadanas que acudan a solicitar los servicios de su ministerio."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Cuando incumplan el horario establecido o se ausenten del lugar donde ejerzan sus funciones en tiempo hábil y en forma injustificada, sin la licencia respectiva."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Cuando contraigan obligaciones que den lugar a reclamaciones judiciales en las que fueren declarados responsables."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Cuando observen una conducta censurable que comprometa la dignidad del cargo o le hagan desmerecer en el concepto público."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Cuando soliciten o reciban dádivas, préstamos, regalos o cualquiera otra clase de lucro de alguna de las partes, apoderados o terceros."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Cuando realicen actos propios del libre ejercicio de la profesión de abogado."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Cuando realicen actividad político-partidista de cualquier naturaleza durante el ejercicio de sus funciones."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Cuando propicien, auspicien u organicen huelgas, paros, suspensión total o parcial de actividades o disminución del ritmo de trabajo o participen en tales actos o los toleren."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Cuando incurran en abuso o exceso de autoridad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Por incumplimiento o negligencia en el ejercicio de sus deberes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "11. Por denuncias de ciudadanos y ciudadanas se aprueba el retardo procesal en juicio bajo su responsabilidad y sea imputable a la conducta del Fiscal o la Fiscal del Ministerio Público."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "12. Cuando se revele expresamente la confidencialidad y reserva de la documentación y los asuntos determinados como tales en los artículos 115 y 121 de esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Sanciones"
+    }
+   ],
+   "seccion_label": "TITULO VIII: DE LAS SANCIONES ADMINISTRATIVAS Y DISCIPLINARIAS"
+  },
+  {
+   "numero_texto": "118",
+   "numero": 118,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S28",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las sanciones disciplinarias aplicables a los fiscales o a las fiscales, y demás funcionarios o funcionarias del Ministerio Público, según la gravedad de las faltas cometidas son:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Apercibimiento."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Amonestación oral."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Amonestación escrita."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Suspensión hasta por tres meses del ejercicio de las funciones y del goce del sueldo correspondiente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Destitución. En el caso de que el o la Fiscal o el funcionario o la funcionaria haya incurrido en la causal número cinco de esta Ley, se le aplicará exclusivamente esta última sanción y no se le permitirá, bajo ninguna circunstancia, su reingreso al Ministerio Público, sin perjuicio del inicio del juicio a que haya lugar."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Asimismo, se le aplicará una multa igual al doble de la cantidad en la que se haya lucrado al incurrir en la mencionada causal o, en caso de no poder precisar con exactitud dicha cifra, la multa oscilará entre quinientas unidades tributarias (500 U.T.) y tres mil unidades tributarias (3.000 U.T.)."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La sanción disciplinaria se impondrá mediante procedimiento que se regirá por lo establecido en el Estatuto de Personal del Ministerio Público. Para su imposición deberán tomarse en cuenta los antecedentes del funcionario o funcionaria, así como la debida proporcionalidad que debe existir entre la falta cometida y la sanción a ser aplicada."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Del procedimiento"
+    }
+   ],
+   "seccion_label": "TITULO VIII: DE LAS SANCIONES ADMINISTRATIVAS Y DISCIPLINARIAS"
+  },
+  {
+   "numero_texto": "119",
+   "numero": 119,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S28",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Para la imposición de la sanción, el Fiscal o la Fiscal Superior de la respectiva circunscripción judicial, a solicitud del Fiscal afectado, deberá iniciar un procedimiento sancionatorio mediante auto de apertura, notificándole al funcionario o la funcionaria o al particular sobre la falta cometida. El investigado o investigada tendrá la posibilidad de presentar un escrito de defensa de la falta que se le imputa, dentro de las cuarenta y ocho horas siguientes a la notificación de inicio del procedimiento sancionatorio, con las pruebas que estime pertinentes. El Fiscal o la Fiscal Superior del Ministerio Público decidirá dentro de las setenta y dos horas siguientes a la presentación del escrito por el investigado o la investigada."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Toda sanción se impondrá por resolución escrita, debidamente motivada y contendrá indicación expresa del recurso que corresponda, en los términos y modalidades previstos en la Ley. El Fiscal o la Fiscal Superior deberá remitir a la Dirección de Adscripción del Fiscal afectado, copia de toda sanción impuesta a los o las particulares o a las funcionarias o funcionarios."
+    }
+   ],
+   "seccion_label": "TITULO VIII: DE LAS SANCIONES ADMINISTRATIVAS Y DISCIPLINARIAS"
+  },
+  {
+   "numero_texto": "120",
+   "numero": 120,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S29",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El archivo del Despacho del Fiscal o la Fiscal General de la República y el de las oficinas de los o las fiscales, así como de cualquier otra dependencia del Ministerio Público, es por su naturaleza privado y reservado para el servicio oficial, sin menoscabo del cumplimiento de los artículos 51 y 143 de la Constitución de la República Bolivariana de Venezuela y del artículo 67 de la Ley Orgánica de la Defensoría del Pueblo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Fiscal o la Fiscal General de la República, mediante resolución, determinará las condiciones de acceso al archivo y el uso de sus documentos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Reserva"
+    }
+   ],
+   "seccion_label": "TITULO IX: DEL ARCHIVO Y MANEJO DE LA DOCUMENTACIÓN"
+  },
+  {
+   "numero_texto": "121",
+   "numero": 121,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S29",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las personas que presten servicio en el Ministerio Público guardarán reserva sobre los asuntos que conozcan en razón de sus funciones. Se les prohíbe conservar para sí o para terceros, tomar, sustraer o publicar copias de papeles, documentos o expedientes de archivo de los despachos respectivos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Certificación"
+    }
+   ],
+   "seccion_label": "TITULO IX: DEL ARCHIVO Y MANEJO DE LA DOCUMENTACIÓN"
+  },
+  {
+   "numero_texto": "122",
+   "numero": 122,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S29",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Una vez calificada la no confidencialidad del archivo fiscal, el Fiscal o la Fiscal autorizado, o el funcionario o funcionaria delegado para tal fin, certificará en el término de 15 días continuos los instrumentos solicitados por autoridades o particulares que así lo requieran."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Devolución de Documentos"
+    }
+   ],
+   "seccion_label": "TITULO IX: DEL ARCHIVO Y MANEJO DE LA DOCUMENTACIÓN"
+  },
+  {
+   "numero_texto": "123",
+   "numero": 123,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S29",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Quienes presenten documentos originales ante el Despacho del Fiscal o la Fiscal General de la República tienen derecho a su devolución, previa certificación en el expediente respectivo, salvo que sea necesaria su presentación en un proceso penal."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La persona que presente una petición o solicitud tendrá derecho a que se le expida copia certificada de ella, de los documentos acompañados y de la providencia recaída; pero no de los informes, opiniones y exposiciones de los funcionarios o funcionarias u organismos intervinientes en la tramitación ni de los documentos agregados por el Despacho del Fiscal o la Fiscal General de la República u otro despacho oficial."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Prohibición"
+    }
+   ],
+   "seccion_label": "TITULO IX: DEL ARCHIVO Y MANEJO DE LA DOCUMENTACIÓN"
+  },
+  {
+   "numero_texto": "124",
+   "numero": 124,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S29",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "No se podrá ordenar la exhibición o inspección general del archivo del Despacho del Fiscal o la Fiscal General de la República o de las oficinas adscritas al Ministerio Público. Podrá acordarse judicialmente la copia, exhibición o inspección de determinado documento, expediente, libro o registro que corresponda al archivo, y se ejecutará la providencia dictada, a menos que la ley disponga la reserva de dicha documentación o así lo determine el Fiscal o la Fiscal General de la República, mediante resolución motivada."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Sello"
+    }
+   ],
+   "seccion_label": "TITULO IX: DEL ARCHIVO Y MANEJO DE LA DOCUMENTACIÓN"
+  },
+  {
+   "numero_texto": "125",
+   "numero": 125,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S29",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El sello del Fiscal o la Fiscal General de la República será de forma elíptica, vertical y tendrá cincuenta milímetros de diámetro mayor y cuarenta de diámetro menor, el Escudo de Armas de la República en el centro, y alrededor una inscripción que diga: en la parte superior República Bolivariana de Venezuela Ministerio Público y en la inferior Fiscal General de la República . El sello de los fiscales o las fiscales del Ministerio Público será circular, de cuarenta milímetros de diámetro, con las siguientes inscripciones: en la parte inferior en forma también circular y superpuestas: República Bolivariana de Venezuela Ministerio Público y en la parte interior alrededor del escudo, Circunscripción de (aquí el nombre de la Circunscripción Judicial) Fiscal (aquí el número)."
+    }
+   ],
+   "seccion_label": "TITULO IX: DEL ARCHIVO Y MANEJO DE LA DOCUMENTACIÓN"
+  },
+  {
+   "numero_texto": "ÚNICA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S30",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se deroga la Ley Orgánica del Ministerio Público, publicada en laGaceta Oficial N 5.262 Extraordinario de la República de Venezuela de fecha 11 de septiembre de 1998 y todas las disposiciones que contraríen esta ley."
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Disposiciones"
+  },
+  {
+   "numero_texto": "ÚNICA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S31",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El concurso para los cargos de Fiscal del Ministerio Público se deberá celebrar en un plazo no mayor de un año, contado a partir de la entrada en vigencia de esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "DISPOSICIÓN FINAL"
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Disposiciones"
+  },
+  {
+   "numero_texto": "ÚNICA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_organica_del_ministerio_publico_2007_S31",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Esta Ley entrará en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Dada, firmada y sellada en el Palacio Federal Legislativo, sede de la Asamblea Nacional, en Caracas, al primer día del mes de marzo de dos mil siete. Año 196 de la Independencia y 148 de la Federación."
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Disposiciones"
+  }
+ ]
+}

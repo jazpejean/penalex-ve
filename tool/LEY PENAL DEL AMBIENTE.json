@@ -1,0 +1,1402 @@
+{
+  "ley_nombre": "LEY PENAL DEL AMBIENTE",
+  "estructura": [
+    {
+      "libro": null,
+      "titulo": "TÍTULO I. DISPOSICIONES GENERALES",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "1",
+          "encabezado": "Objeto",
+          "texto_principal": "La presente Ley tiene por objeto tipificar como delito los hechos atentatorios contra los recursos naturales y el ambiente e imponer las sanciones penales. Asimismo, determinar las medidas precautelativas, de restitución y de reparación a que haya lugar y las disposiciones de carácter procesal derivadas de la especificidad de los asuntos ambientales.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "2",
+          "encabezado": "Extraterritorialidad",
+          "texto_principal": "Las disposiciones de esta Ley son aplicables a las personas naturales y jurídicas por los delitos cometidos tanto en el espacio geográfico de la República como en país extranjero, si los daños o riesgos del hecho se producen en Venezuela. En este caso se requiere que el investigado haya venido al territorio de la República y que se inicie la investigación por el Ministerio Público. Requiérese también que el investigado no haya sido juzgado por tribunales extranjeros, a menos que habiéndolo sido hubiere evadido la condena.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "3",
+          "encabezado": "Responsabilidad penal",
+          "texto_principal": "La responsabilidad penal, a los efectos de los delitos ambientales, cuya ejecución exige la violación de una norma administrativa, es objetiva y para demostrarla basta la comprobación de la violación, no siendo necesario demostrar la culpabilidad.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "4",
+          "encabezado": "Responsabilidad penal de las personas jurídicas",
+          "texto_principal": "Las personas jurídicas serán responsables por sus acciones u omisiones en los casos en que el delito sea cometido con ocasión de la contravención de normas o disposiciones contenidas en leyes, decretos, órdenes, ordenanzas, resoluciones y otros actos administrativos de carácter general o particular de obligatorio cumplimiento.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "5",
+          "encabezado": "Sanciones principales",
+          "texto_principal": "Las sanciones aplicables serán principales y accesorias. Son sanciones principales:\n\n1.- La prisión.\n\n2.- El arresto.\n\n3.- La disolución de la persona jurídica.\n\n4.- La multa.\n\n5.- El desmantelamiento de la instalación, establecimiento o construcción.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "6",
+          "encabezado": "Sanciones accesorias",
+          "texto_principal": "Son sanciones accesorias:",
+          "numerales_literales": [
+            "1. La clausura definitiva de la instalación o establecimiento.",
+            "2. La clausura temporal de la instalación o establecimiento hasta por un año.",
+            "3. La prohibición definitiva de la actividad contaminante o degradante del ambiente.",
+            "4. La reordenación de los sitios alterados.",
+            "5. La suspensión de las actividades de la persona jurídica hasta por seis meses.",
+            "6. La inhabilitación para el ejercicio de funciones o empleos públicos, hasta por dos años después de cumplirse la pena principal, cuando se trate de hechos punibles cometidos por funcionarios públicos o funcionarias públicas.",
+            "7. La inhabilitación para el ejercicio de la profesión, arte o industria, hasta por un año después de cumplida la sanción principal cuando el delito haya sido cometido por el condenado o condenada con abuso de su industria, profesión o arte, o con violación de alguno de los deberes que le sean inherentes o conexos.",
+            "8. La publicación especial de la sentencia, a expensas del condenado o condenada, en un órgano de prensa de circulación nacional y del municipio donde se cometió el delito y con la colocación de dicha publicación a las puertas del establecimiento, dentro de los treinta días siguientes a la decisión.",
+            "9. La obligación de destruir, neutralizar o tratar las sustancias, materiales, instrumentos u objetos fabricados, importados u ofrecidos en venta, en contravención a las normas nacionales sobre la materia y capaces de ocasionar daños al ambiente o a la salud de las personas.",
+            "10. La suspensión del ejercicio de cargos directivos y de representación en personas jurídicas hasta por tres años, después de cumplida la pena principal.",
+            "11. La prohibición hasta por dos años, de contratar con órganos y entes de la Administración Pública Nacional Estadal y Municipal, y recibir beneficios fiscales.",
+            "12. La ejecución de servicios ambientales a la comunidad afectada, que podrán consistir en trabajos ambientales de acuerdo a formación y habilidades; financiamiento de programas, proyectos o publicaciones ambientales, contribución a entidades ambientales bajo la coordinación y supervisión de la Autoridad Nacional Ambiental; ejecución de obras de recuperación en áreas degradadas o mantenimiento de espacios públicos.",
+            "13. La asistencia obligatoria a cursos, talleres o clases de educación y gestión ambiental."],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "7",
+          "encabezado": "Proporcionalidad",
+          "texto_principal": "El tribunal aplicará las penas dentro de los límites establecidos por esta Ley en cada caso, tomando en cuenta el peligro que se produce o el daño ocasionado, el grado de dolo del delito en las personas naturales, o las condiciones en que la persona jurídica cometa el delito, y las circunstancias agravantes o atenuantes que puedan concurrir con el hecho. En este último caso, el tribunal las valorará y decidirá cuáles de ellas prevalecerán según su número, conforme a su naturaleza y magnitud.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "8",
+          "encabezado": "Medidas precautelativas",
+          "texto_principal": "El juez o jueza competente podrá adaptar, de oficio o a solicitud del Ministerio Público, en cualquier estado o fase del proceso, las medidas precautelativas que fuesen necesarias para eliminar un peligro, interrumpir la producción de daños al ambiente o a las personas, impedir la continuación o reaparición del daño o peligro, evitar las consecuencias degradantes del hecho que se investiga o asegurar el restablecimiento del orden. Tales medidas podrán consistir en:\n\n1.- Prohibición de funcionamiento de instalaciones o establecimientos hasta tanto se corrija o elimine la causa de la alteración o se obtengan las autorizaciones correspondientes.\n\n2.- Interrupción de la actividad origen de la contaminación o deterioro ambiental sujeta a control del Ejecutivo.\n\n3.- Ocupación temporal, total o parcial, de las fuentes contaminantes hasta tanto se corrija o elimine la causa degradante o se otorguen las garantías necesarias para evitar la repetición de los hechos.\n\n4.- La ejecución de trabajos a fin de eliminar o impedir el resurgimiento de daños al ambiente, por parte del infractor o infractora, o de oficio, a costa del responsable de los riesgos o daños.\n\n5.- La retención de substancias, materiales, recursos naturales u objetos sospechosos de estar contaminados, causar contaminación o estar en mal estado.\n\n6.- La destrucción o neutralización de substancias, recursos naturales o productos comprobadamente contaminantes o contaminados.\n\n7.- El retiro o retención de vehículos u objetos abandonados en lugares donde su sola presencia alteren el ambiente.\n\n8.- La ocupación o eliminación de obstáculos, aparatos, objetos o elementos cualesquiera que alteren el aspecto o el aprovechamiento racional de los recursos naturales, medio marino o zonas bajo régimen de administración especial.\n\n9.- La ocupación o eliminación de obstáculos, aparatos, objetos u elementos cualesquiera que trastornen el funcionamiento adecuado de vehículos, establecimientos, instalaciones, plantas de tratamientos o fuentes emisoras de contaminantes.\n\n10.- La prohibición de movilización de vehículos terrestres, fluviales, marítimos o aéreos.\n\n11.- La instalación de dispositivos necesarios para evitar la contaminación o degradación de los recursos naturales o el ambiente.\n\n12.- Cualquier otra medida tendiente a conjurar un peligro o evitar la continuación de actos perjudiciales al ambiente.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "9",
+          "encabezado": "Responsabilidad civil",
+          "texto_principal": "Luego de la sentencia condenatoria por delitos en los cuales resulten datos o perjuicios contra el ambiente, el juez o jueza se pronunciará sobre la responsabilidad civil del o los enjuiciados, ordenando en caso de ser necesario una experticia complementaria de valoración de datos e impondrá al o los responsables la obligación de ejecutar las medidas restitutivas correspondientes, reparar los daños causados por el delito e indemnizar los perjuicios. En tal sentido el juez o jueza podrá ordenar, entre otras, las siguientes medidas:\n\n1.- La modificación de construcciones violatorias de disposiciones sobre protección, conservación o defensa del ambiente, y su conformidad con las disposiciones infringidas.\n\n2.- La restauración de los lugares alterados al estado más cercano posible al que se encontraban antes de la agresión al ambiente.\n\n3.- La remisión de elementas al medio natural de donde fueron sustraídos, en caso de ser posible y pertinente.\n\n4.- La restitución al Estado o a su legítimo propietario de los productos forestales, hídricos, faunísticos o de suelos obtenidos ilegalmente.\n\n5.- La reordenación del territorio a fin de tornarlo utilizable ambientalmente con otro uso distinto al original, en aquellos casos en que el daño sea irreparable, al punto de resultar imposible recuperar la vocación inicial del suelo.\n\n6.- La instalación o construcción de los dispositivos necesarios para evitar la contaminación o degradación del ambiente.\n\n7.- La repatriación al país de origen de los residuos o desechos peligrosos importados ilegalmente o prohibidos en su lugar de origen o en la República Bolivariana de Venezuela, por cuenta del infractor.\n\n8.- Efectiva reparación del daño causado.",
+          "numerales_literales": [
+            "9. Cualquier otra medida tendiente al restablecimiento del orden público ambiental."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "10",
+          "encabezado": "Determinación de eliminación de riesgos",
+          "texto_principal": "Conjuntamente con las sanciones y las medidas restitutivas y reparatorias, el juez o jueza podrá acordar en las sentencias la obligación de realizar experticias, a costa del condenado o condenada, cada año y hasta por diez veces, a fin de determinar la efectiva eliminación de los riesgos ambientales, cuando se sospeche su aparición futura o no sea posible su eliminación inmediata.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "11",
+          "encabezado": "Reglas de aplicabilidad de sanciones",
+          "texto_principal": "Salvo disposiciones especiales, para la determinación de las sanciones aplicables en cada caso, se seguirán las siguientes reglas:\n\n1.- Cuando en un mismo artículo aparezcan en forma disyuntiva una pena privativa de libertad y una de multa, en todo caso las primeras serán para las personas naturales y las segundas para las personas jurídicas.\n\n2.- independientemente de la responsabilidad de las personas jurídicas, los propietarios o propietarias, presidentes o presidentas, administradores o administradoras responderán penalmente por su participación culpable en los delitos cometidos por sus empresas.\n\n3.- Sin perjuicio de las reparaciones, restituciones e indemnizaciones a que haya lugar, la aplicación de las penas principales aparejan también, en todo caso:",
+          "numerales_literales": [
+            "a. El comiso de los equipos, instrumentos, substancias u objetos con los cuales se hubiere cometido el hecho punible y los efectos que de él provengan, a no ser que pertenezcan a un tercero ajeno al hecho;",
+            "b. La inhabilitación para obtener nuevos permisos, autorizaciones aprobaciones, licencias, concesiones u otro acto administrativo autorizatorio para aprovechar recursos naturales por un lapso de dos años después de cumplida la sanción principal."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "12",
+          "encabezado": "Normas complementarias",
+          "texto_principal": "Cuando los tipos penales contemplados en esta Ley, requieran de una disposición complementaria para la exacta determinación de la conducta punible o su resultado, deberá constar en una ley o en un decreto del Presidente o Presidenta de la República en Consejo de Ministros, sin que sea admisible un segundo reenvío.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "13",
+          "encabezado": "Atenuantes genéricas",
+          "texto_principal": "Son atenuantes genéricas de la responsabilidad penal a los fines de la presente Ley:\n\n1.- Haber cometido el hecho punible con fines de subsistencia personal o familiar.\n\n2.- Haber reparado de manera espontánea el daño o disminuir significativamente la degradación ambiental.\n\n3.- Haber informado previamente del peligro inminente.\n\n4.- Haber colaborado con los agentes encargados de la vigilancia o control ambiental en la cesación del hecho.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "14",
+          "encabezado": "Agravantes genéricas",
+          "texto_principal": "Constituyen circunstancias agravantes de la responsabilidad penal:\n\n1.- Detentar la condición de funcionario público o funcionaria pública el sujeto activo del hecho punible, en aquellos casos en que el tipo no lo requiera y siempre que actuare en ejercicio de sus funciones.\n\n2.- Constreñir a otro para la realización del hecho.\n\n3.- Poner en peligro la salud pública.\n\n4.- Cometer el hecho en día domingo o feriado.\n\n5.- Cometer el hecho en época de inundación o sequía.\n\n6.- Cometer el hecho mediante abuso de actos autorízatenos.\n\n7.- Cometer el hecho con nocturnidad o en descampado.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "15",
+          "encabezado": "Aumentos de penalidad",
+          "texto_principal": "Las penas se aumentarán hasta la mitad, tomando como base la pena normalmente aplicable, en los siguientes casos:\n\n1.- Cuando con la comisión de algún delito de peligro contemplado en la presente Ley se produzca efectivamente el daño. Si el daño fuese de carácter irreversible el aumento podrá ser de las dos terceras partes.\n\n2.- Cuando el delito se cometiere en lugares, sitios o zonas pobladas o en sus inmediaciones y pusieren en peligro la vida o la salud de las personas.\n\n3.- Cuando el delito se cometiere en áreas sometidas a régimen de administración especial, si no se hubiera previsto sanción especial.\n\n4.- Cuando los agentes degradantes, contaminantes o nocivos fuesen cancerígenos, mutagénicos, teratogénicos o radiactivos.\n\n5.- Cuando el delito se cometiere con fines de lucro o para aumentar los beneficios económicos del culpable o un tercero.\n\n6.- Cuando el delito se hubiere cometido por el ejercicio abusivo de una profesión directamente relacionada con el ambiente o los recursos naturales, conllevará la inhabilitación para el ejercicio de la profesión, arte o industria, hasta por un año después de cumplida la sanción principal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "16",
+          "encabezado": "Responsabilidad solidaria",
+          "texto_principal": "Cuando dos personas jurídicas celebren un acuerdo para que una ejecute un determinado trabajo en beneficio o provecho de la otra, y cuya realización cause riesgos o daños al ambiente o los recursos naturales, ambas responderán solidariamente.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "17",
+          "encabezado": "Responsabilidad por dependientes",
+          "texto_principal": "Quien permita la comisión de alguno de los delitos tipificados en esta Ley por parte de aquellas personas naturales o jurídicas que estén bajo su dirección o dependencia, estando en conocimiento y capacitado para impedirlo, será castigado o castigada con igual pena a la del delito cometido, rebajada en una tercera parte.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "18",
+          "encabezado": "Orden público",
+          "texto_principal": "Se considera de orden público la obligación de restituir, reparar el daño o indemnizar los perjuicios causados al ambiente por quienes resultaren responsables de los delitos previstos en esta Ley. A estos efectos, el tribunal ordenará, aun de oficio, las diligencias conducentes a la determinación de la responsabilidad civil de quienes aparecieran como autores o partícipes en el delito.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "19",
+          "encabezado": "Prescripción",
+          "texto_principal": "Las acciones penales y civiles derivadas de la presente Ley, prescribirán así:\n\n1.- Las penales:\n\na.- A los cinco años, si el delito mereciere pena de prisión de más de tres años.\n\nb.- A los tres años, si el delito mereciere pena de prisión de tres años o menos, o arresto de más de seis meses.\n\nc.- Al año, si el hecho punible sólo acarreare arresto por tiempo de uno a seis meses.\n\n2.- Las civiles:",
+          "numerales_literales": [
+            "a. A los diez años. El término de prescripción comenzará desde la oportunidad en que los efectos ambientales del delito se manifiesten o la autoridad tenga conocimiento de su comisión."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "20",
+          "encabezado": "Reincidencia",
+          "texto_principal": "En caso de reincidencia por parte del agente del delito se aplicarán las siguientes reglas:\n\n1.- Si el agente fuere persona natural, la sanción se aplicará aumentada hasta la mitad, cuando la reincidencia fuese la primera; si fuese la segunda, se aumentará la pena hasta por el doble.\n\n2.- Si el agente fuese una persona jurídica, en caso de primera reincidencia la sanción o sanciones se acompañarán de la suspensión temporal hasta por seis meses; si fuese la segunda, la suspensión será de un año, si fuere la tercera, conjuntamente con las demás sanciones se ordenará la disolución de la persona jurídica.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. DISPOSICIONES PROCESALES",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "21",
+          "encabezado": "Acciones penales y civiles",
+          "texto_principal": "De todo delito contra el ambiente nace acción penal para el castigo del culpable. También nace acción civil para el efecto de las restituciones y reparaciones a que se refiere esta Ley. La acción penal que surja en virtud de la comisión de hechos previstos en la presente Ley como delitos, es pública y procede por denuncia o de oficio.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "22",
+          "encabezado": "Órganos de investigación penal",
+          "texto_principal": "Son competentes para realizar la investigación penal de los delitos ambientales, los funcionarios y funcionarias de investigación que señalan la Ley del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, las leyes especiales y sus reglamentos; y los que se señalan a continuación:\n\n1.- Las y los funcionarios técnico-administrativos que ejerzan funciones de vigilancia y control del Ministerio del Poder Popular con competencia en materia de ambiente, en todos los asuntos ambientales.\n\n2.- Las y los funcionarios técnico-administrativos que ejerzan funciones de vigilancia y control de los ministerios del Poder Popular con competencia en materia de energía, petróleo, minas, salud, agricultura, vivienda, obras públicas, transporte terrestre y transporte acuáticos y aéreos, en el área de su competencia.\n\n3.- Las y los funcionarios técnico-administrativos que ejerzan funciones de vigilancia y control de las áreas bajo régimen de administración especial.\n\n4.- Los funcionarios y funcionarias competentes de las gobernaciones y alcaldías, en el área de su competencia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "23",
+          "encabezado": "Jurisdicción penal",
+          "texto_principal": "La jurisdicción especial penal ambiental tendrá competencias tanto para las acciones penales como las civiles derivadas de aquellas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "24",
+          "encabezado": "Destino de las recaudaciones",
+          "texto_principal": "Las cantidades recaudadas por concepto de ejecución de astreintes, fianzas o de garantías u otras similares ingresarán al Servicio Autónomo del Ministerio del Ambiente, y serán destinadas exclusivamente a la reparación y corrección de daños causados al ambiente en la región donde ocurrieron los hechos, por la instancia administrativa que corresponda al conocimiento o administración del área bajo supervisión de la contraloría social de la comunidad.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "25",
+          "encabezado": "Prelación de las obligaciones ambientales",
+          "texto_principal": "El pago de la reparación de los daños y de la indemnización de los perjuicios a que se hubiere condenado por el hecho punible, tendrá prelación sobre cualquiera obligación que contraiga el responsable después de cometido el hecho, salvo las laborales.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "26",
+          "encabezado": "Medidas para asegurar los resultados de las sentencias",
+          "texto_principal": "El juez o jueza podrá adoptar en cualquier estado o fase del proceso, medidas destinadas a asegurar los resultados de las decisiones jurisdiccionales. Tales medidas podrán consistir en:\n\n1.- La constitución de una fianza o consignación de una suma para garantizar la ejecución de trabajos o el reembolso de los gastos causados por su ejecución de oficio, siempre en unidades tributarias.\n\n2.- La fijación de una astreinte por día de retardo en el cumplimiento de las obligaciones de hacer impuestas por el tribunal El monto de la astreinte podrá ser fijada hasta en diez unidades tributarias (10 U.T.) por día de retardo.\n\n3.- La retención de materiales, maquinarias u objetos y la suspensión de energía con la finalidad de asegurar la interrupción de la actividad.\n\n4.- El embargo preventivo de bienes del investigado hasta por el doble del daño causado al patrimonio natural.\n\n5.- Cualquier otra medida complementaria para garantizar la efectividad y resultado de las medidas que hubiere decretado.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "27",
+          "encabezado": "Plazo para la ejecución de trabajos",
+          "texto_principal": "Cuando el juez o jueza señale un plazo para la ejecución de trabajos y éste venciere sin haberse dado cumplimiento a la obligación impuesta, ordenará la ejecución de la astreinte por día de retardo hasta el cumplimiento íntegro de la obligación, la ejecución de las fianzas y garantías acordadas, la suspensión hasta por seis meses de la actividad de la persona jurídica que cometió el delito y, a juicio de los expertos, podrá ordenar la ejecución de los trabajos por un tercero a costa del infractor, practicándose las medidas necesarias para garantizar el pago de las obras.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "28",
+          "encabezado": "Procedimiento para el comiso",
+          "texto_principal": "Si el comiso es declarado con lugar, se procederá al remate de los efectos sujetos a dicha pena, de conformidad con lo previsto en la normativa aplicable. Cuando no proceda el comiso, los efectos retenidos que la autoridad tenga bajo su custodia, se devolverán al propietario y contra las enajenaciones realizadas en estos casos, el propietario sólo podrá exigir el producto de la misma.\n\nEn los casos de comiso de especies de vegetación serán sujetos a ser remitidos a los jardines botánicos, y en los casos de fauna, a la liberación o reintroducción inmediata en su hábitat natural, previa evaluación sanitaria por parte de especialistas; en caso contrario se limitaría la reintroducción dependiendo de su aptitud física, biológica y psicológica.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "29",
+          "encabezado": "Beneficios procesales",
+          "texto_principal": "Para el otorgamiento de los beneficios previstos en el Código Orgánico Procesal Penal u otras leyes de similar naturaleza, el juez o jueza, además de los requisitos allí establecidos, deberá imponer como condición la realización de las medidas ambientales necesarias para interrumpir el daño, hacer cesar sus consecuencias lesivas y restaurar o reordenar el ambiente; y si el delito fuere de peligro y no se hubiere producido un daño, la ejecución de servicios ambientales a la comunidad, de acuerdo a su formación y. habilidades y la asistencia obligatoria a cursos, talleres o clases de educación y gestión ambiental.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "30",
+          "encabezado": "Contumacia",
+          "texto_principal": "La persona Natural o jurídica será sancionada con arresto de tres a seis meses o multa de tres mil unidades tributarias (3.000 U.T.) a seis mil unidades tributarias (6.000 U.T.) que haga funcionar en violación a una orden de prohibición de funcionamiento, una instalación, planta, fábrica o establecimiento. Se le negará el otorgamiento de nuevos permisos, autorizaciones, contratos o cualquier otro acto administrativo para ejercer la misma actividad que dio origen al delito, hasta por un año después de cumplida la sanción principal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "31",
+          "encabezado": "Nombramiento de expertos",
+          "texto_principal": "A los fines de la determinación de la cuantía de los daños, el tribunal sólo podrá nombrar como expertos a personas naturales especialistas en la materia, o a instituciones oficiales, universitarias, fundaciones u organismos no gubernamentales especializados, siempre que estas instituciones se encuentren debidamente acreditadas y legalmente constituidas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "32",
+          "encabezado": "Régimen de los pueblos y comunidades indígenas",
+          "texto_principal": "Los miembros de los pueblos y comunidades indígenas que cometan hechos tipificados en esta Ley dentro de su hábitat y tierras ancestrales serán juzgados de acuerdo a lo establecido en la Ley Orgánica de Pueblos y Comunidades Indígenas. En ningún caso quedan exentas de la aplicación de las sanciones contempladas en esta Ley, las personas naturales o jurídicas que instiguen o se aprovechen de la buena fe de los indígenas para generar daños al ambiente.\n\nEn caso de ser necesario, el juez o jueza podrá tomar las medidas preventivas adecuadas para garantizar la protección del ambiente y la relación armoniosa de las comunidades indígenas con el mismo. En todo lo referente a los pueblos y comunidades indígenas, el juez o jueza solicitará un informe socio-antropológico del órgano rector de la política indigenista del Estado y tomará en cuenta la opinión de los pueblos o comunidades indígenas afectadas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DE LOS DELITOS CONTRA EL AMBIENTE",
+      "capitulo": "Capítulo I. Delitos contra la administración ambiental",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "33",
+          "encabezado": "Autorización de actividades tipificadas como delitos",
+          "texto_principal": "Los funcionarios públicos o funcionarias públicas que indebida o ilegalmente autoricen la realización de actividades tipificadas como delitos en esta Ley, o como delitos o contravenciones en las leyes especiales, serán sancionados o sancionadas con las penas correspondientes al delito o contravención cometido, aumentadas al doble. La sanción acarreará la inhabilitación para el ejercicio de funciones o empleos públicos hasta por dos años después de cumplida la sanción principal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "34",
+          "encabezado": "Obstrucción de justicia por funcionarios públicos o funcionarias públicas",
+          "texto_principal": "Serán sancionados o sancionadas con prisión de uno a dos años y la inhabilitación para el ejercicio de funciones o empleos públicos hasta por dos años después de cumplida la pena principal los funcionarios públicos o funcionarias públicas que:\n\n1.- Suministren información falsa u omitan o adulteren información científica en los procedimientos autorizatorios.\n\n2.- Obstaculicen la labor del Ministerio Público y de los órganos de investigación en causas ambientales.\n\n3.- Permitan el incumplimiento de obligaciones ambientales relevantes en los procedimientos que le fueren encomendados.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "35",
+          "encabezado": "Presentación de información falsa",
+          "texto_principal": "La persona natural o jurídica que omita información necesaria o produzca o presente información falsa o adulterada para la obtención de actos autorizatorios, será sancionada con prisión de seis meses a un año y la inhabilitación para el ejercicio de la profesión hasta por dos años después de cumplida la pena principal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DE LOS DELITOS CONTRA EL AMBIENTE",
+      "capitulo": "Capítulo II. Delitos contra la ordenación del territorio",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "36",
+          "encabezado": "Otorgamiento de actos autorizatorios para actividades no permitidas",
+          "texto_principal": "El funcionario público o funcionaria pública que otorgue actos autorizatorios para la construcción de obras y desarrollo de actividades no permitidas, de acuerdo a los planes de ordenación del territorio o las normas técnicas, en los lechos, vegas y planicies inundables de los ríos u otros cuerpos de agua, será sancionado o sancionada con prisión de seis meses a un año. La sanción acarreará la inhabilitación para el ejercicio de funciones o empleos públicos hasta por dos años después de cumplida la pena principal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "37",
+          "encabezado": "Ejecución de actividades no permitidas",
+          "texto_principal": "La persona natural o jurídica que construya obras o desarrolle actividades no permitidas de acuerdo a los planes de ordenación del territorio o las normas técnicas, en los lechos, vegas y planicies inundables de los ríos u otros cuerpos de agua, será sancionada con prisión de seis meses a un año o multa de seiscientas unidades tributarias (600 U.T.) a un mil unidades tributarias (1.000 U.T).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "38",
+          "encabezado": "Contravención de planes de ordenación del territorio",
+          "texto_principal": "La persona natural o jurídica que provoque la degradación o alteración nociva de la topografía o el paisaje por actividades mineras, industriales, tecnológicas, forestales, urbanísticas o de cualquier tipo, en contravención de los planes de ordenación del territorio y de las normas técnicas que rigen la materia, será sancionada con arresto de tres a nueve meses o multa de trescientas unidades tributarias (300 U.T.) a novecientas unidades tributarias (900 U.T).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "39",
+          "encabezado": "Contravención de planes de ordenación del territorio en zonas montañosas",
+          "texto_principal": "La persona natural o jurídica que provoque la degradación o alteración nociva de la topografía o el paisaje en zonas montañosas, en sierras o mesetas por actividades mineras, industriales, tecnológicas, forestales, urbanísticas o de cualquier tipo, en contravención de los planes de ordenación del territorio y de las normas técnicas que rigen la materia, será sancionada con prisión de uno a dos años o multa de un mil unidades tributarias (1.000 U.T.) a dos mil unidades tributarias (2.000 U.T).\n\nSe ordenará al infractor la ejecución de medidas a fin de impedir la repetición de los hechos y de corregir la situación alterada y se fijará un plazo para ello. Si vencido el plazo los conectivos no han sido ejecutados, se procederá a la ejecución de la astreinte según lo previsto en la presente Ley, y se ordenará la prohibición definitiva de la actividad origen de la agresión.\n\nSi los correctivos no fuesen posibles por resultar los daños irreparables, se acordará la reordenación de los lugares alterados y la pena será aumentada el doble.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "40",
+          "encabezado": "Ocupación ilícita de áreas naturales protegidas",
+          "texto_principal": "La persona natural o jurídica que ocupare ilícitamente áreas naturales protegidas, o que en dichas áreas se dediquen a actividades comerciales o industriales o efectúe labores de carácter agropecuario, pastoril o forestal o alteración o destrucción de la flora o vegetación, en violación de las normas sobre la materia, será sancionada con prisión de dos meses a un año o multa de doscientas unidades tributarias (200 U.T.) a un mil unidades tributarias (1.000 U.T).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "41",
+          "encabezado": "Modificación o destrucción de bienes protegidos",
+          "texto_principal": "La persona natural o jurídica que degrade, altere o destruya edificaciones o bienes protegidos por su valor paisajístico, turístico, ambiental o ecológico, en violación a las normas sobre la materia será sancionada con prisión de dos meses a un año o multa de doscientas unidades tributarias (200 U.T.) a un mil unidades tributarías (1.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "42",
+          "encabezado": "Edificación en terrenos no edificables",
+          "texto_principal": "La persona natural o jurídica que promueva o construya edificaciones en espacias no destinados a ese fin según los planes de ordenación del territorio o en aquellos declarados zonas de riesgo, será sancionada con prisión de cuatro meses a dos años o multa de cuatrocientas unidades tributarias (400 U.T,) a dos mil unidades tributarias (2.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DE LOS DELITOS CONTRA EL AMBIENTE",
+      "capitulo": "Capítulo III. Omisiones en las evaluaciones ambientales y planes de manejo",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "43",
+          "encabezado": "Otorgamiento de permisos o autorizaciones sin estudios de impacto ambiental",
+          "texto_principal": "El funcionario público o funcionaria pública que otorgue permisos o autorizaciones sin exigir, evaluar y aprobar el estudio de impacto ambiental y sociocultural u otras evaluaciones ambientales en las actividades para las cuales lo exigen las normas sobre la materia, será sancionado o sancionada con arresto de tres meses a un año. La sanción acarreará la inhabilitación para el ejercicio de funciones o empleos públicos hasta por dos años después de cumplida la pena principal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "44",
+          "encabezado": "Otorgamiento de actos administrativos sin plan de manejo sustentable",
+          "texto_principal": "El funcionario público o funcionaria pública que otorgue contratos, concesiones, asignaciones, licencias u otros actos administrativos sin cumplir con el requisito del plan de manejo sustentable, en las actividades para las cuales lo exigen las normas sobre la materia, será sancionado o sancionada con arresto de tres meses a un año. La sanción acarreará la inhabilitación para el ejercicio de funciones o empleos públicos hasta por dos años después de cumplida la pena principal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DE LOS DELITOS CONTRA EL AMBIENTE",
+      "capitulo": "Capítulo IV. Delitos contra la diversidad biológica",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "45",
+          "encabezado": "Transacciones sobre derechos de propiedad reconocidos",
+          "texto_principal": "La persona natural o jurídica que realice transacciones sobre derechos de propiedad intelectual ya reconocidos en materia de diversidad biológica, será sancionada con prisión de uno a dos años o multa de un mil unidades tributarias (1.000 U.T.) a dos mil unidades tributarias (2.000 U.T.). Las transacciones realizadas serán nulas de nulidad absoluta, sin perjuicio de la obligación de indemnizar los daños y perjuicios causados.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "46",
+          "encabezado": "Acceso a los recursos genéticos sin autorización",
+          "texto_principal": "La persona natural o jurídica que realice actividades de acceso a los recursos genéticos sin contar con la correspondiente autorización, en los términos previstos en la ley que rige la materia, será sancionada con prisión de dos a cuatro años o multa de dos mil Unidades tributarias (2.000 U.T.) a cuatro mil unidades tributarias (4.000 U.T.) y la inhabilitación por un año para suscribir contratos de acceso.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "47",
+          "encabezado": "Transacción de material genético en violación a contratos de acceso",
+          "texto_principal": "La persona natural o jurídica que realice transacciones relativas a productos derivados o de síntesis provenientes de los recursos genéticos, o al componente intangible asociado en contravención a los términos de los contratos de acceso exigidos en la ley, será sancionada con prisión de dos a cuatro años o multa de dos mil unidades tributarias (2.000 U.T.) a cuatro mil unidades tributarias (4.000 U.T.). Las transacciones realizadas serán nulas de nulidad absoluta, sin perjuicio de la obligación de indemnizar los daños y perjuicios causados.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "48",
+          "encabezado": "Otorgamiento de patentes sobre seres vivos",
+          "texto_principal": "El funcionario público o funcionaria pública que otorgue patentes sobre seres vivos, será sancionado o sancionada con prisión de dos a cuatro años, así como la suspensión por dos años para el ejercicio de funciones o cargos públicos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "49",
+          "encabezado": "Reconocimiento sobre muestras adquiridas ilegalmente",
+          "texto_principal": "El funcionario público o funcionaria pública que reconozca derechos de propiedad intelectual sobre muestras modificadas o partes de ellas, productos sintetizados y procesos para su obtención cuando las mismas hayan sido adquiridas en forma ilegal, será sancionado o sancionada con prisión de uno a dos años, así como la inhabilitación para el ejercicio de funciones o cargos públicos por igual tiempo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "50",
+          "encabezado": "Omisión del consentimiento informado y fundamentado previo",
+          "texto_principal": "El funcionario público o funcionaria pública que reconozca derechos de propiedad intelectual sobre muestras modificadas o partes de ellas, productos sintetizados y procesos para su obtención cuando las mismas empleen componentes intangibles asociados, sin el consentimiento informado y fundamentado previo de los pueblos y comunidades indígenas o comunidades locales, será sancionado o sancionada con prisión de uno a tres años, así como la suspensión por un año para el ejercicio de funciones o cargos públicos.\n\nIgual sanción se aplicará al investigador o investigadora que realice el acceso sin el consentimiento informado y fundamentado previo.\n\nEn tales casos, el Estado no reconocerá derechos de propiedad intelectual ni patentes sobre el material genético obtenido.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "51",
+          "encabezado": "Introducción o liberación de material genético modificado",
+          "texto_principal": "La persona natural o jurídica que introduzca al país o libere al ambiente material genético modificado sin el acto autorizatorio correspondiente, será sancionada con prisión de dos a cuatro años o multa de dos mil unidades tributarias (2.000 U.T.) a cuatro mil unidades tributarias (4.000 U.T.). Si se causare daño a la salud humana, la sanción será aumentada al doble.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "52",
+          "encabezado": "Daños irreversibles por investigación científica",
+          "texto_principal": "La persona natural o jurídica que en la realización de actividades de investigación científica, innovación o desarrollo tecnológico, causare daños irreversibles a la diversidad biológica o a sus componentes, será sancionada con prisión de uno a dos años o multa de un mil unidades tributarias (1.000 U.T.) a dos mil unidades tributarias (2.000 U.T.). Si se causare daños a la salud humana, la sanción será aumentada al doble.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "53",
+          "encabezado": "Uso de jaulas flotantes, encierros o corrales",
+          "texto_principal": "La persona natural o jurídica que use jaulas flotantes, encierros o corrales para la crianza o cultivo de especies exóticas acuícolas en el país sin los permisos y autorizaciones correspondientes o en violación a sus términos, será sancionada con prisión de uno a dos años o multa de un mil unidades tributarias (1.000 U.T.) a dos mil unidades tributarias (2.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "54",
+          "encabezado": "Uso de la biodiversidad como arma biológica",
+          "texto_principal": "La persona natural o jurídica que use la diversidad biológica para el desarrollo de armas biológicas o prácticas de carácter bélico, será sancionada con prisión de ocho a diez años o multa de ocho mil unidades tributarias (8.000 U.T.) a diez mil unidades tributarias (10.000 U.T.) y la disolución de la persona jurídica.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "55",
+          "encabezado": "Daños por aplicación de la biotecnología",
+          "texto_principal": "La persona natural o jurídica que ocasione daños graves o irreversibles a la diversidad biológica por el manejo, uso, transferencia o utilización indebidos de organismos resultantes de la aplicación de biotecnología moderna, será sancionada con prisión de ocho a diez años o multa de ocho mil unidades tributarias (8.000 U.T.) a diez mil unidades tributarias (10.000 U.T.) y la disolución de la persona jurídica.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DE LOS DELITOS CONTRA EL AMBIENTE",
+      "capitulo": "Capítulo V. Degradación alteración, deterioro y demás acciones. capaces de causar daños a las aguas",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "56",
+          "encabezado": "Cambio, obstrucción o sedimentación",
+          "texto_principal": "La persona natural o jurídica que modifique el sistema de control o las escorrentías de las aguas, obstruya el flujo o el lecho natural de los ríos, o provoque su sedimentación en contravención a las normas técnicas vigentes y sin la autorización correspondiente, será sancionada con prisión de uno a cinco años o multa de un mil unidades tributarias (1.000 U.T.) a cinco mil unidades tributarias (5.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "57",
+          "encabezado": "Interrupción del servicio de agua",
+          "texto_principal": "La persona natural o jurídica que ilegalmente interrumpa el servicio de agua a un centro poblado, será sancionada con prisión de dos a cinco años o multa de dos mil unidades tributarias (2.000 U.T.) a cinco mil unidades tributarias (5.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "58",
+          "encabezado": "Uso ilícito de aguas",
+          "texto_principal": "La persona natural o jurídica que utilice aguas ilícitamente o en cantidades superiores a las que las normas técnicas sobre su uso racional le señalen, será sancionada con arresto de dos a cuatro meses o multa de doscientas unidades tributarias (200 U.T.) a cuatrocientas unidades tributarias (400 U.T.).\n\nSi el uso ilícito en cantidades superiores a las permitidas impide o entorpece a centros poblados el aprovechamiento de las mismas aguas, la sanción será de arresto de cuatro a seis Meses o multa de cuatrocientas unidades tributarias ( 400 U.T.) a seiscientas unidades tributarias (600 U.T.).\n\nSi el uso ilícito o en cantidades superiores a las que hubieren sido autorizadas se realiza con motivo de la ejecución de actividades industriales, agrícolas, pecuarias, mineras, urbanísticas o cualesquiera otras de explotación económica, la sanción será de prisión de Seis meses a un año o multa de seiscientas unidades tributarias (600 U.T.) a un mil unidades tributarias (1.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "59",
+          "encabezado": "Medida accesoria",
+          "texto_principal": "En los casos previstos en los artículos precedentes se ordenará además al infractor realizar lo necesario para que pueda ser restablecido el uso de las aguas y se señalará un plazo para ello.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "60",
+          "encabezado": "Surgimiento de peligro de inundación o desastre",
+          "texto_principal": "La persona natural o jurídica que rompiendo o inutilizando, en todo o en parte, barreras, esclusas, diques u otras obras destinadas a la defensa común de las aguas, a su normal conducción, o a la reparación de algún desastre, haya hecho surgir el peligro de inundación o de cualquier desastre, será sancionada con prisión de seis meses a dos años o multa de quinientas unidades tributarias (500 U.T), a dos mil unidades tributarias (2.000 U.T.).\n\nSi efectivamente se hubiere causado la inundación o desastre, se aplicará la pena de prisión de tres a cinco años o la disolución de la persona jurídica y la multa elevada al doble. En todo caso se ordenará al infractor la restauración de las obras o lugares y la publicación especial de la sentencia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DE LOS DELITOS CONTRA EL AMBIENTE",
+      "capitulo": "Capítulo VI. Degradación, alteración, deterioro y demás acciones. capaces de causar daños a los suelos, la topografía y el paisaje",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "61",
+          "encabezado": "Extracción de minerales no metálicos",
+          "texto_principal": "Será sancionada con prisión de cinco a ocho años o multa de cinco mil unidades tributarias (5.000 U.T.) a ocho mil unidades tributarias (8.000 U.T.) la persona natural o jurídica que extraiga minerales no metálicos sin la debida autorización en los siguientes sitios:\n\n1.- Dentro de la zona protectora de ríos y quebradas.\n\n2.- A menos de tres mil Metros aguas arriba de tomas para acueductos.\n\n3.- En embalses para dotación de agua a comunidades.\n\n4.- En embalses para aprovechamiento hidroeléctrico.\n\n5.- A menos de un mil metros aguas abajo de puentes o de cualquier obra de infraestructura ubicada en el río o sus tributarios.\n\n6.- A menos de doscientos metros aguas arriba de puentes o de cualquier obra de infraestructura ubicada en el río o sus tributarios.\n\n7.- A menos de cien metros en el sentido lateral a ambas márgenes del río o quebrada donde estén establecidas obras de infraestructura.\n\n8.- A menos de quinientos metros aguas arriba y aguas abajo de estaciones hidrométricas.\n\n9.- A menos de mil quinientos metros de una explotación continua.\n\n10.- En la confluencia con tributarios.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "62",
+          "encabezado": "Dificultad de acceso a playas",
+          "texto_principal": "La persona natural o jurídica que impida o dificulte el acceso a las playas con muros, barreras u otros obstáculos, será sancionada con arresto de cuatro a ocho meses o multa de cuatrocientas unidades tributarias (400 U.T.) a ochocientas unidades tributarias (800 U.T.).\n\nSe ordenará además al infractor, realizar lo necesario para que pueda ser restablecido el libre acceso a las playas y se señalará un plazo para ello.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "63",
+          "encabezado": "Degradación de suelos aptos para la producción de alimentos",
+          "texto_principal": "La persona natural o jurídica que provoque la degradación de los suelos o la destrucción de la cobertura vegetal de suelos clasificados como aptos para la producción de alimentos, sin tomar en cuenta sus condiciones agroecológicas específicas, los planes de ordenación del territorio, los planes del ambiente o las normas técnicas o legales que dicte la autoridad competente, será sancionada con prisión de cinco a ocho años o multa de cinco mil unidades tributarias (5.000 U.T.) a ocho mil unidades tributarias (8.000 U.T.).\n\nSe ordenará al responsable la ejecución de medidas a fin de impedir la repetición de los hechos y corregir la situación alterada. Para la ejecución de las medidas se fijará un plazo; si vencido el plazo los correctivos no han sido ejecutados, se procederá a la ejecución de astreintes según lo previsto en la presente Ley y se ordenará la prohibición definitiva de la actividad origen de la agresión.\n\nSi los correctivos no fuesen posibles por resultar los daños irreparables, se ordenará la reordenación de los lugares alterados.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DE LOS DELITOS CONTRA EL AMBIENTE",
+      "capitulo": "Capítulo VII. Destrucción, alteración y demás acciones capaces de causar. daño a la vegetación, la fauna o sus hábitats",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "64",
+          "encabezado": "Incendio de plantaciones o sabanas de cría",
+          "texto_principal": "La persona natural o jurídica que haya incendiado fondos rústicos, plantaciones, dehesas o sabanas de cría será sancionada con prisión de uno a cinco años o multa de un mil unidades tributarias (1.000 U.T.) a cinco mil unidades tributarias (5.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "65",
+          "encabezado": "Incendio de vegetación natural",
+          "texto_principal": "La persona natural o jurídica que provoque un incendio en selvas, bosques, sabanas o cualquier área cubierta de vegetación natural, será sancionada con prisión de uno a seis años o multa de un mil unidades tributarias (1.000 U.T.) a seis mil unidades tributarias (6.000 U.T). Sí las áreas incendiadas colindan con bosques que surtan de agua a las poblaciones, la pena será de dos a siete años o multa de dos mil unidades tributarias (2.000 U.T.) a siete mil unidades tributarias (7.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "66",
+          "encabezado": "Entorpecimiento de labores de control de incendios",
+          "texto_principal": "La persona natural o jurídica que entorpezca las labores que se realicen para tal finalidad, será sancionada con arresto de quince días a tres meses.\n\nSi el entorpecimiento se realiza mediante la sustracción, ocultamiento o inutilización del material destinado a la extinción, la pena será de prisión de seis a treinta meses y el responsable será obligado a reponer los efectos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "67",
+          "encabezado": "Negativa a informar",
+          "texto_principal": "Los medios de comunicación social que no cumplan con la obligación de transmitir con carácter de urgencia las noticias que recibieren sobre incendios forestales serán sancionados con multa de cien unidades tributarias (100 U.T.) a quinientas unidades tributarias (500 U.T.). Cuando la negativa proviniere de un organismo oficial se sancionará a la persona natural que resultare responsable con arresto de uno a seis meses.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "68",
+          "encabezado": "Propagación culposa de fuego",
+          "texto_principal": "Las personas naturales o jurídicas que realicen u ordenen realizar quemas autorizadas y sean responsables de la propagación del fuego por no haber puesto en práctica las precauciones que se ordenen en los permisos y reglamentos vigentes al respecto, serán sancionadas con arresto de uno a cinco meses o multa de cien unidades tributarias (100 U.T.) a seiscientas unidades tributarias (600 U.T.). Se aplicará esta pena en su grado máximo cuando la quema se transforme en incendio.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "69",
+          "encabezado": "Destrucción de vegetación en las vertientes",
+          "texto_principal": "La persona natural o jurídica que ilegalmente deforeste, tale, roce o destruya vegetación donde existan vertientes que provean de agua las poblaciones, aunque pertenezca a particulares, será sancionada con prisión de uno a cinco años o multa de un mil unidades tributarias (1.000 U.T.) a cinco mil unidades tributarias (5000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "70",
+          "encabezado": "Transacción ilícita de guías de circulación",
+          "texto_principal": "La persona natural o jurídica que por cuenta propia o ajena comercie o facilite en préstamo guías de circulación con el fin de amparar de productos vegetales de procedencia o especies distintas será sancionada con arresto de uno a seis meses o multa de cien unidades tributarias (100 U.T) a seiscientas unidades tributarias (600 U.T.). Si la guía fuere para amparar productos con fines comerciales la pena será de prisión de uno a dos años o multa de un mil unidades tributarias (1.000 U.T.) a dos mil unidades tributarias (2.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "71",
+          "encabezado": "Aprovechamiento de especies del patrimonio forestal",
+          "texto_principal": "Quien aproveche ilegalmente especies del patrimonio forestal sujetas a veda será sancionado con prisión de uno a cinco años o multa de un mil unidades tributarias (1.000 U.T.) a cinco mil unidades tributarias (5.000U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "72",
+          "encabezado": "Uso ilegal de licencias de caza o pesca",
+          "texto_principal": "Quien provisto de licencia de caza o pesca, amparase animales que hayan sido capturados en forma ilegal, será sancionado con prisión de seis meses a un año o multa de cien unidades tributarias (100 U.T.) a seiscientas unidades tributarias (600 U.T.). Si la licencia fuere para caza con fines comerciales la pena será de prisión de uno a dos años o multa de un mil unidades tributarias (1.000 U.T.) a dos mil unidades tributarias (2.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "73",
+          "encabezado": "Falsificación de instrumentos identificatorios",
+          "texto_principal": "La persona natural o jurídica que falsifique martillos forestales, guías de circulación y cualesquiera otros instrumentos, marcas, o precintos destinados a establecer la autenticidad de actos administrativos relativos a la vegetación, la fauna o sus hábitats, será sancionada con prisión de seis a diez años o multa de seis mil unidades tributarias (6.000 U.T.) a diez mil unidades tributarias (10.000 U.T.).\n\nA la persona natural o jurídica que hubiere hecho uso de los objetos falsos, aun cuando la falsificación sea obra de un tercero, se le aplicarán las mismas penas.\n\nA la persona natural o jurídica que, sin haber contribuido a la falsificación, ponga en venta, detente o transporte los productos que lleven la impresión o que pretendan ampararse con el objeto falsificado, se le impondrán también las mismas penas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "74",
+          "encabezado": "Falsificación de moldes o matrices",
+          "texto_principal": "La persona natural o jurídica que haya falsificado los moldes o matrices de los objetos indicados en el artículo anterior será sancionada con prisión de seis a diez años o multa de seis mil unidades tributarias (6.000 U.T.) a diez mil unidades tributarias (10.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "75",
+          "encabezado": "Uso indebido de instrumentos identificatorios",
+          "texto_principal": "La persona natural o jurídica que habiéndose procurado los verdaderos martillos forestales, sellos, timbres, precintos y demás instrumentos oficiales destinados a establecer la autenticidad de actos relativos a los recursos naturales, hubiese hecho uso indebido de ellos será sancionada con prisión de tres a cinco años o multa de tres mil unidades tributarias (3.000 U.T.) a cinco mil unidades tributarias (5.000 U.T).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "76",
+          "encabezado": "Medidas accesorias",
+          "texto_principal": "En los casos previstos en los cuatro artículos anteriores procederá igualmente la inhabilitación para gestionar y obtener ese tipo de acto administrativo en todo el territorio nacional hasta por cinco años luego de concluida la pena principal; el comiso de los instrumentos con los que se cometió el delito; y la restitución de los productos explotados indebidamente.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "77",
+          "encabezado": "Pesca y caza ilícita",
+          "texto_principal": "Será sancionado con prisión de tres a cinco años o multa de tres mil unidades tributarias (3.000 U.T.) a cinco mil unidades tributarias (5.000 U.T.):\n\n1.- Quien practique la pesca o la caza de ejemplares de la fauna silvestre, comercialice, destruya o cause daños a los recursos que les sirvan de alimento o abrigo dentro de los parques nacionales, monumentos naturales, refugios o santuarios de fauna.\n\n2.- Quien practique la pesca o la caza de ejemplares de la fauna silvestre, comercialice, destruya o cause daños a los recursos que les sirvan de alimento o abrigo por medio de incendios, sustancias químicas, armas de pesca o caza no permitidas o cualquier otro método o arte que aumente el sufrimiento de las presas.\n\n3.- Quien practique la pesca o la caza de ejemplares de la fauna silvestre o comercialice ejemplares vedados o poblaciones de especies vulnerables, amenazadas o en peligro de extinción, o que sin estarlo, sean puestas en tales condiciones, cualquiera fuere la zona de la perpetración.\n\n4.- Quien practique la caza de ejemplares de la fauna silvestre sin estar provisto de la licencia respectiva o violare sus términos, o destruya o cause daños a los recursos que les sirvan de alimento o abrigo, con fines comerciales o industriales.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "78",
+          "encabezado": "Pesca prohibida",
+          "texto_principal": "El propietario del barco pesquero que ejecute actividades de pesca en zonas o lapsos prohibidos, será sancionado con prisión de dos a cinco años o multa de dos mil unidades tributarias (2.000 U.T.) a cinco mil unidades tributarias (5.000 U.T). El capitán o capitana del barco será sancionado o sancionada con la misma pena disminuida en la mitad.\n\nQuedan exceptuados de la pena corporal y de las multas previstas en este Artículo los pescadores o pescadoras artesanales siempre y cuando utilicen prácticas o técnicas de pesca conservacionistas, de acuerdo con las normas técnicas o reglamento sobre la materia y respetando siempre los lapsos prohibidos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "79",
+          "encabezado": "Alteración de cadenas tróficas",
+          "texto_principal": "La persona natural o jurídica que realice prácticas de manejo o uso de tecnologías que afecten significativamente las cadenas tróficas y los procesos en los ecosistemas, será sancionada con prisión de uno a tres años o multa de un mil unidades tributarias (1.000 U.T.) a tres mil unidades tributarias (3.000 U.T).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "80",
+          "encabezado": "Pesca y caza de poblaciones bajo manejo",
+          "texto_principal": "Quien ejerza la pesca o la caza ilegal en predios donde se encuentran poblaciones objeto de manejo será sancionado con arresto de tres a seis meses.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "81",
+          "encabezado": "Invasión de predios de manejo de fauna silvestre",
+          "texto_principal": "La persona natural o jurídica que invada predios donde se encuentran poblaciones manejadas, o cuyo uso de la tierra sea la conservación o manejo de fauna silvestre, será sancionada con arresto de tres a seis meses o multa de trescientas unidades tributarias (300 U.T.) a seiscientas unidades tributarias (600 U.T.).\n\nEl instigador o instigadora que propicie la invasión será sancionado o sancionada con pena de prisión de uno a tres años o multa de un mil unidades tributarias (1.000 U.T.) a tres mil unidades tributarias (3.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "82",
+          "encabezado": "Propagación de especies",
+          "texto_principal": "La persona natural o jurídica que sin permiso de la autoridad competente o infringiendo las normas sobre la materia, introduzca, utilice o propague en el territorio de la República especies vegetales, animales o agentes biológicos o bioquímicos capaces de alterar significativamente a las poblaciones animales o vegetales o de poner en peligro su existencia, será sancionada con prisión de uno a tres años o multa de un mil unidades tributarias (1.000 U.T.) a tres mil unidades tributarias (3.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DE LOS DELITOS CONTRA EL AMBIENTE",
+      "capitulo": "Capítulo VIII. Delitos contra la calidad ambiental",
+      "seccion": "Sección primera: envenenamiento, contaminación y demás acciones. capaces de alterar la calidad de las aguas",
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "83",
+          "encabezado": "Corrupción y envenenamiento de aguas de uso público",
+          "texto_principal": "La persona natural o jurídica que contamine o envenene las aguas destinadas al uso público o a la alimentación pública, poniendo en peligro la salud de las personas, será sancionada con prisión de dieciocho meses a cinco años o multa de un mil ochocientas unidades tributarias (1.800 U.T.) a cinco mil unidades tributarias (5.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "84",
+          "encabezado": "Vertido de materiales degradantes en cuerpos de agua",
+          "texto_principal": "La persona natural o jurídica que vierta o arroje materiales no biodegradables, sustancias, agentes biológicos o bioquímicos, efluentes o aguas residuales no tratadas según las disposiciones técnicas dictadas por el Ejecutivo Nacional, objetos o desechos de cualquier naturaleza en los cuerpos de aguas, sus riberas, cauces, cuencas, mantos acuíferos, lagos, lagunas o demás depósitos de agua, incluyendo los sistemas de abastecimiento de aguas, capaces de degradarlas, envenenarlas o contaminarlas, será sancionada con prisión de uno a dos años o multa de un mil unidades tributarias (1.000 U.T.) a dos mil unidades tributarias (2.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "85",
+          "encabezado": "Daños a aguas subterráneas",
+          "texto_principal": "La persona natural o jurídica que realice trabajos que puedan ocasionar daños, contaminación o alteración de aguas subterráneas o de las fuentes de aguas minerales, será sancionada con prisión de dos a cuatro años o multa de dos mil unidades tributarias (2.000 U.T.) a cuatro mil unidades tributarias (4.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "86",
+          "encabezado": "Medidas accesorias",
+          "texto_principal": "En los casos previstos en los artículos precedentes, se ordenará además al infractor la instalación de correctivos a fin de impedir la repetición de los hechos y se fijará un plazo o término para ello. Si los correctivos no fuesen posibles o si vencido el plazo los correctivos no han sido instalados, se ordenará la prohibición definitiva de la actividad origen de la degradación, envenenamiento o contaminación y la publicación especial de la sentencia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "87",
+          "encabezado": "Alteración térmica de cuerpos de agua",
+          "texto_principal": "La persona natural o jurídica que provoque la alteración térmica de cuerpos de agua por verter en ellos aguas utilizadas para el enfriamiento de maquinarias o plantas industriales, en contravención a las normas técnicas que rigen la materia, será sancionada con prisión de tres meses a un año o multa de trescientas unidades tributarias (300 U.T.) a un mil unidades tributarias (1.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "88",
+          "encabezado": "Descargas ilícitas al medio marino, fluvial, lacustre o costero",
+          "texto_principal": "La persona natural o jurídica que descargue al medio marino, fluvial, lacustre o costero en contravención a las normas técnicas vigentes, aguas residuales, efluentes, productos, sustancias o materias no biodegradables o desechos de cualquier tipo, que contengan contaminantes o elementos nocivos a la salud de las personas o al medio marino, fluvial, lacustre o costero, será sancionada con prisión de dos a cuatro años o multa de dos mil unidades tributarias (2.000 U.T.) a cuatro mil unidades tributarias (4.000 U.T.). El tribunal deberá ordenar la instalación de los dispositivos necesarios para evitar la contaminación y fijará un plazo para ello.\n\nPara los efectos de esta Ley, el medio marino o costero comprende las playas, mar territorial, suelo y subsuelo del lecho marino y zona económica exclusiva.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "89",
+          "encabezado": "Vertido de hidrocarburos",
+          "texto_principal": "La persona natural o jurídica que vierta hidrocarburos o mezcla de hidrocarburos o sus derivados, directamente en el medio marino, con ocasión de operaciones de transporte, exploración o explotación de la Plataforma Continental y Zona Económica Exclusiva que pueda causar daños a la salud de las personas, a la fauna o flora marina o al desarrollo turístico de las regiones costeras, será sancionada con prisión de uno a tres años o multa de un mil unidades tributarias (1.000 U.T.) a tres mil unidades tributarias (3.000U.T.).\n\nLa pena será rebajada hasta en una tercera parte cuando:\n\n1.- El vertido haya tenido por finalidad evitar una avería grave capaz de poner en peligro la seguridad de las personas o la protección del ambiente o salvar la vida humana en el mar.\n\n2.- El escape de hidrocarburos o mezcla de hidrocarburos provenga de una avería o pérdida imprevisible e imposible de evitar, si después de ocurrir la avería o descubrir la pérdida fueron tomadas todas las medidas para impedir, detener o reducir la pérdida de hidrocarburos o mezclas de hidrocarburos y limitar sus consecuencias nefastas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "90",
+          "encabezado": "Construcción de obras ilícitas",
+          "texto_principal": "La persona natural o jurídica que sin las autorizaciones o en contravención a las normas técnicas que rigen la materia construya obras o utilice instalaciones capaces de causar contaminación grave del medio fluvial, lacustre, marino o costero será sancionada con arresto de tres a seis meses o multa de trescientas unidades tributarias (300 U.T) a seiscientas unidades tributarias (600 U.T).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "91",
+          "encabezado": "Infracciones a convenciones internacionales sobre contaminación por hidrocarburos",
+          "texto_principal": "El capitán o capitana de un buque sometido a las disposiciones de las convenciones internacionales para prevenir la contaminación de las aguas por los buques, sus anexos y sus modificaciones, que sea declarado culpable de infracciones a dichas disposiciones, relativas a las prohibiciones de descargas de hidrocarburos o mezclas de hidrocarburos al mar, será sancionado o sancionada con prisión de tres a cinco años.\n\nCuando se trate de navíos-cisternas, otros navíos cuya potencia instalada exceda la cifra que se fijará por decreto y artefactos portuarios, gabarras y buques-cisternas fluviales autopropulsados o a remolque de otros buques, será sancionado con prisión de uno a dos años.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "92",
+          "encabezado": "Sanción al propietario o explotador del buque",
+          "texto_principal": "Sin perjuicios de las penas previstas para el capitán o capitana del buque, en los casos de los artículos precedentes, si la infracción ha sido cometida bajo la orden del propietario o explotador del buque, estos serán castigados con la pena aumentada al doble.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "93",
+          "encabezado": "Contaminación accidental de aguas territoriales",
+          "texto_principal": "El capitán o capitana del buque, propietario a explotador que por imprudencia, negligencia o inobservancia de leyes y reglamentos haya provocado, o no dominado o evitado un accidente que haya ocasionado una contaminación de las aguas territoriales venezolanas, será sancionado o sancionada con prisión de uno a tres años.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "94",
+          "encabezado": "Omisión de dar aviso",
+          "texto_principal": "El capitán o capitana de buque que no diere aviso de un accidente de mar en que haya participado su navío de aguas interiores de la República o en su medio lacustre, marino o costero capaz de causar contaminación, será sancionado o sancionada con arresto de cuatro a ocho meses.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "95",
+          "encabezado": "Inmovilización de navíos",
+          "texto_principal": "El navío que haya servido para cometer las infracciones señaladas en los artículos anteriores podrá ser inmovilizado por decisión del tribunal. En cualquier momento de inmovilización puede ser suspendida si se otorga una fianza o se deposita una suma para garantizar la reparación de los daños o el pago de las multas, cuantificada mediante estudios de expertos en la materia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DE LOS DELITOS CONTRA EL AMBIENTE",
+      "capitulo": "Capítulo VIII. Delitos contra la calidad ambiental",
+      "seccion": "Sección Segunda: envenenamiento, contaminación. y demás acciones capaces de alterar la atmósfera",
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "96",
+          "encabezado": "Emisión de gases capaces de deteriorar la atmósfera",
+          "texto_principal": "La persona natural o jurídica que emita o permita escape de gases, agentes biológicos o bioquímicos o de cualquier naturaleza, en cantidades capaces de deteriorar o contaminar la atmósfera o el aire, en contravención a las normas técnicas que rigen la materia, será sancionada con prisión de seis meses a dos años o multa de seiscientas unidades tributarias (600 U.T.) a dos mil unidades tributarias (2.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "97",
+          "encabezado": "Instalación de dispositivos",
+          "texto_principal": "En los casos previstos en los artículos precedentes se ordenará la instalación de los dispositivos necesarios para evitar la contaminación atmosférica o molestias sónicas y se fijará un plazo para ello; si los correctivos no fuesen suficientes o si vencido el plazo los dispositivos no han sido instalados, se ordenará la clausura definitiva de la instalación o establecimiento o unidad de transporte y la publicación especial de la sentencia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "98",
+          "encabezado": "Violación a normativa sobre capa de ozono",
+          "texto_principal": "La persona natural o jurídica que viole con motivo de sus actividades económicas las normas nacionales o los convenios, tratados o protocolos internacionales, suscritos por la República para la protección de la capa de ozono del planeta, será sancionada con prisión de uno a dos años o multa de un mil unidades tributarias (1.000 U.T.) a dos mil unidades tributarias (2.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DE LOS DELITOS CONTRA EL AMBIENTE",
+      "capitulo": "Capítulo VIII. Delitos contra la calidad ambiental",
+      "seccion": "Sección tercera: residuos y desechos sólidos",
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "99",
+          "encabezado": "Disposición indebida de residuos o desechos sólidos no peligrosos",
+          "texto_principal": "La persona natural o jurídica que infiltre o entierre en los suelos o subsuelos, sustancias, productos o materiales no biodegradables, agentes biológicos o bioquímicos, agroquímicos, residuos o desechos sólidos o de cualquier naturaleza que no sean peligrosos, en contravención a las normas técnicas que rigen la materia, que sean capaces de degradarlos, esterilizarlos, envenenarlos o alterarlos nocivamente, será sancionada con arresto de uno a tres años o multa de trescientas unidades tributarias (300 U.T.) a un mil unidades tributarias (1000 U.T.).\n\nEl juez o jueza ordenará el retiro de los residuos o desechos y, de no ser suficiente para lograr que los suelos o subsuelos recuperen las características que tenían antes de la agresión, ordenará las medidas de recuperación necesarias.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "100",
+          "encabezado": "Disposición indebida de residuos o desechos sólidos peligrosos",
+          "texto_principal": "Serán sancionados con arresto de uno a tres años o multa de trescientas unidades tributarias (300 U.T.) a un mil unidades tributarias (1.000 U.T.) quienes:\n\n1.- Introduzcan en los servicios de manejo integral de residuos y desechos no peligrosos otras sustancias, materiales y desechos peligrosos.\n\n2.- Mezclen en los servicios de manejo integral de residuos y desechos no peligrosos con desechos peligrosos y los descarguen en rellenos sanitarios o sitios de disposición final no construidos especialmente para tal fin.\n\n3.- Construyan, operen o mantengan lugares para la disposición de desechos peligrosos, sin autorización de las autoridades correspondientes.\n\n4.- Operen, mantengan o descarguen desechos peligrosos en sitios no autorizados.\n\n5.- Exporten desechos peligrosos en contravención con las disposiciones de la Ley.\n\n6.- Incumplan la normativa técnica o los planes de gestión del manejo integral de los desechos peligrosos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "101",
+          "encabezado": "Importación de desechos peligrosos",
+          "texto_principal": "Toda persona natural o Jurídica, pública o privada que introduzca desechos peligrosos al país, será sancionada con prisión de seis a diez años y multa de seis mil unidades tributarias (6.000 U.T.) a diez mil unidades tributarias (10.000 U.T) más el monto correspondiente a la repatriación de los desechos y la reparación total del daño causado al ambiente o a terceros.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DE LOS DELITOS CONTRA EL AMBIENTE",
+      "capitulo": "Capítulo VIII. Delitos contra la calidad ambiental",
+      "seccion": "Sección cuarta: substancias y materiales peligrosos",
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "102",
+          "encabezado": "Manejo indebido de sustancias o materiales peligrosos",
+          "texto_principal": "Serán sancionadas con prisión de cuatro a seis años y multa de cuatro mil unidades tributarias (4.000 U.T) a seis mil unidades tributarias (6.000 U.T.), las personas naturales o jurídicas que en contravención a las disposiciones de la reglamentación técnica sobre la materia:",
+          "numerales_literales": [
+            "1. Desechen o abandonen sustancias o materiales peligrosos, en forma tal, que puedan contaminar la atmósfera, las aguas superficiales o subterráneas, los suelos o el ambiente en general.",
+            "2. Generen o manejen sustancias o materiales peligrosos provocando riesgos a la salud y al ambiente.",
+            "3. Omitan las acciones previstas en los planes para el control de emergencias.",
+            "4. Instalen plantas, fábricas, establecimientos o instalaciones que procesen, almacenen o comercialicen sustancias o materiales peligrosos contra viniendo normas legales expresas sobre la materia.",
+            "5. Incumplan las normas que rigen la materia sobre traslado o manipulación de sustancias o materiales peligrosos.\n\nEl juez o jueza ordenará la adecuación de equipos e instalaciones a las disposiciones de los permisos o autorizaciones, si estos son otorgados por la autoridad correspondiente; o la clausura de tales lugares si los permisos o autorizaciones fueren negados. En los dos últimos casos se impondrá la suspensión de las actividades de la persona jurídica hasta por un año."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "103",
+          "encabezado": "Generación de epidemia",
+          "texto_principal": "La persona natural o jurídica que ocasionare una epidemia mediante la difusión de gérmenes patógenos, será sancionada con prisión de seis a diez años. Si se tratare de una persona jurídica la sanción será de multa de seis mil unidades tributarias (6.000 U.T.) a diez mil unidades tributarias (10.000 U.T.) y su disolución.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "104",
+          "encabezado": "Propagación de enfermedad en animales o en plantas",
+          "texto_principal": "La persona natural o jurídica que difunda una enfermedad en animales o en plantas, será sancionada con prisión de seis meses a dos años o multa de seiscientas unidades tributaria (600 U.T.) a dos mil unidades tributarias (2.000 U.T).\n\nEl propietario o tenedor de vegetales, animales o de sus procesos respectivos, que tenga conocimiento de que uno u otros están atacados de enfermedades contagiosas o plagas y no haya denunciado el hecho ante la autoridad competente en la materia, será sancionado con arresto de cuatro a ocho meses o multa de cuatrocientas unidades tributarias (400 U.T) a ochocientas unidades tributarias (800 U.T).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "105",
+          "encabezado": "Omisión de medidas",
+          "texto_principal": "El funcionario público o funcionaria pública, que no proceda inmediatamente a tomar las medidas pertinentes relativas a la denuncia mencionada en el artículo anterior, será sancionado o sancionada con prisión de seis meses a dos años.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "106",
+          "encabezado": "Medidas de seguridad",
+          "texto_principal": "En los casos previstos en los artículos precedentes se procederá a la destrucción, neutralización o tratamiento de las plantas, animales, agentes o elementos cualesquiera contaminados o contaminantes, aun con el auxilio de la fuerza pública si fuere necesario.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DE LOS DELITOS CONTRA EL AMBIENTE",
+      "capitulo": "Capítulo VIII. Delitos contra la calidad ambiental",
+      "seccion": "Sección quinta: materiales radiactivos",
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "107",
+          "encabezado": "Emisión de radiaciones ionizantes, electromagnéticas o radiactivas",
+          "texto_principal": "La persona natural o jurídica que detente, importe, fabrique, transporte, distribuya, almacene, comercialice, ceda a título oneroso o gratuito, facilite la recepción, trafique o emplee con fines industriales, comerciales, científicos, médicos o cualquier otro, aparatos o sustancias capaces de emitir radiaciones ionizantes, electromagnéticas o radiactivas, que puedan ocasionar daños a la salud humana o al ambiente, con violación de las normas sobre la materia, será sancionada con prisión de uno a tres años o multa de un mil unidades tributarias (1.000 U.T.) a tres mil unidades tributarias (3.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "108",
+          "encabezado": "Liberación de energía nuclear",
+          "texto_principal": "La persona natural o jurídica que libere energía nuclear poniendo en peligro la vida o la salud de las personas o sus bienes, aunque no se produzca explosión, será sancionada con prisión de cuatro a seis años. Si se tratare de una persona jurídica, la sanción será de multa de cuatro mil unidades tributarias (4.000 U.T) a seis mil unidades tributarias (6.000 U.T.) y su disolución.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "109",
+          "encabezado": "Perturbación de instalaciones nucleares",
+          "texto_principal": "La persona natural o jurídica que perturbe el funcionamiento de una instalación nuclear o altere el desarrollo de actividades en las que se empleen sustancias, materiales o equipos capaces de generar radiaciones ionizantes, creando una situación de grave peligro para el ambiente, la vida o salud de las personas, será sancionada con prisión de seis a diez años. Si se tratare de una persona jurídica, la sanción será de multa de seis mil unidades tributarias (6.000 U.T.) a diez mil unidades tributarias (10.000 U.T.) y su disolución.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DE LOS DELITOS CONTRA EL AMBIENTE",
+      "capitulo": "Capítulo VIII. Delitos contra la calidad ambiental",
+      "seccion": "Sección sexta: molestias sónicas. Generación de ruidos",
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "110",
+          "encabezado": null,
+          "texto_principal": "Los propietarios de fuentes fijas o establecimientos que generen ruidos que por su intensidad, frecuencia o duración fuesen capaces de causar daños o molestar a las personas, en contravención a las normas técnicas vigentes sobre la materia, serán sancionados con arresto de tres a seis meses o multa de trescientas unidades tributarias (300 U.T.) a seiscientas unidades tributarias (600 U.T).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "DISPOSICIÓN DEROGATORIA",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Derogatoria",
+          "identificador": "Única",
+          "encabezado": null,
+          "texto_principal": "Se deroga la Ley Penal del Ambiente publicada en la Gaceta Oficial de la República de Venezuela Extraordinario N 4.358 de fecha tres de enero de mil novecientos noventa y dos; y los artículos 78, 79, 80, 81, 82, 83, 84, y 85 de la Ley de Sustancias, Materiales y Desechos Peligrosos publicada en la Gaceta Oficial de la República Bolivariana de Venezuela Extraordinario N 5.554 de fecha trece de noviembre de dos mil uno, los artículos 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128 y 129 del Decreto N 6.070 con Rango, Valor y Fuerza de Ley de Bosques y Gestión Forestal, publicada en la Gaceta Oficial de la República Bolivariana de Venezuela N 39.946(Sic) de fecha cinco de junio de dos mil ocho y los artículos 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142 y 143 de la Ley de Gestión de la Diversidad Biológica, publicada en la Gaceta Oficial de la República Bolivariana de Venezuela N 39.070 de fecha primero de diciembre de dos mil ocho, y cualquier otra disposición contraria a lo establecido en la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Derogatoria",
+          "identificador": "Primera",
+          "encabezado": null,
+          "texto_principal": "Las disposiciones de los Códigos Penal, Civil, Orgánico Procesal Penal y de Procedimiento Civil, se aplicarán supletoriamente en cuanto no colidan con la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Derogatoria",
+          "identificador": "Segunda",
+          "encabezado": null,
+          "texto_principal": "La presente Ley entrará en vigencia a los noventa días contados a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.\n\nDada, firmada y sellada en el Palacio Federal Legislativo, sede de la Asamblea Nacional, en Caracas, a los dieciséis días del mes de diciembre de dos mil once. Años 201 de la Independencia y 152 de la Federación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    }
+  ]
+}

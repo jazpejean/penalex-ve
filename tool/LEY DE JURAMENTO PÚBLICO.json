@@ -1,0 +1,101 @@
+{
+  "ley_nombre": "LEY DE JURAMENTO PÚBLICO",
+  "estructura": [
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "1",
+          "encabezado": "Objeto",
+          "texto_principal": "Esta Ley tiene por objeto regular el juramento que deben prestar las personas para el ejercicio de sus funciones públicas como medio para expresar el compromiso ético de cumplir cabal y fielmente sus responsabilidades y deberes con el Pueblo de la República Bolivariana de Venezuela.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "2",
+          "encabezado": "Juramento",
+          "texto_principal": "Todas las personas antes de ingresar al ejercicio de una función pública o en el Estado deben prestar juramento de: cumplir y hacer cumplir la Constitución de la República Bolivariana de Venezuela y la Ley; fortalecer la democracia participativa y protagónica; honrar y defender a la patria, sus símbolos y valores culturales; resguardar y proteger la soberanía, la nacionalidad, la integridad territorial, la autodeterminación y los intereses de la Nación; y ejercer sus deberes y responsabilidades con honestidad, lealtad, eficacia, eficiencia y transparencia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "3",
+          "encabezado": "Juramento de funciones de alta investidura",
+          "texto_principal": "La candidata elegida o candidato elegido para Presidenta o Presidente de la República tomará posesión de su cargo mediante juramento ante la Asamblea Nacional. Las personas elegidas para ocupar las funciones de diputadas y diputados a la Asamblea Nacional tomarán juramento ante la Junta Directiva del Poder Legislativo Nacional.\n\nLas personas elegidas para ocupar las funciones de Magistradas y Magistrados del Tribunal Supremo de Justicia, Rectoras y Rectores Electorales, la o el Fiscal General de la República, Defensora o Defensor del Pueblo, Contralora o Contralor General de la República y Defensora o Defensor Pública General, tomarán posesión de sus cargos mediante juramento ante la Asamblea Nacional.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "4",
+          "encabezado": "Juramento en el Poder Ejecutivo Nacional",
+          "texto_principal": "La Vicepresidenta Ejecutiva o Vicepresidente Ejecutivo de la República prestará juramento ante la Presidenta o Presidente de la República. Las Ministras y Ministros del Poder Popular y la Procuradora o Procurador General de la República, prestarán Juramento ante la Presidenta o Presidente de la República o por su delegación ante la Vicepresidenta Ejecutiva o Vicepresidente Ejecutivo de la República.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "5",
+          "encabezado": "Juramento en el Poder Judicial, Ministerio Público, Defensoría del Pueblo y Defensa Pública",
+          "texto_principal": "Las Juezas y Jueces de la República prestarán juramento ante una Magistrada o Magistrado del Tribunal Supremo de Justicia designado a tal efecto por su Junta Directiva. Las y los Fiscales Superiores del Ministerio Público prestarán juramento ante la o el Fiscal General de la República o la persona en quien se delegue el ejercicio de esta atribución. Las Defensoras del Pueblo Delegadas y Defensores del Pueblo Delegados prestarán juramento ante la Defensora o Defensor del Pueblo o la persona en quien se delegue el ejercicio de esta atribución. Las Defensoras Públicas y Defensores Públicos prestarán juramento ante la Defensora Pública o Defensor Público General del Pueblo o la persona en quien se delegue el ejercicio de esta atribución.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "6",
+          "encabezado": "Juramento de las servidoras públicas y servidores Públicos del Poder Público Nacional",
+          "texto_principal": "Las servidoras públicas y servidores públicos del Poder Público Nacional no previstos en los artículos anteriores, serán juramentados por su superior jerárquico inmediato.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "7",
+          "encabezado": "Derogatoria",
+          "texto_principal": "Se deroga la Ley de Juramento publicada en la Gaceta Oficial de los Estados Unidos de Venezuela número 21.799, de fecha treinta de agosto de mil novecientos cuarenta y cinco.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "8",
+          "encabezado": "Vigencia",
+          "texto_principal": "Esta Ley entrará en vigencia al momento de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.\n\nDado, firmado y sellado en el Palacio Federal Legislativo, sede de la Asamblea Nacional de la República Bolivariana de Venezuela, en Caracas, a los veintisiete días del mes de octubre de dos mil veintiuno. Años 211o de la Independencia, 162o de la Federación y 22o de la Revolución Bolivariana.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    }
+  ]
+}

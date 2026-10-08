@@ -1,0 +1,1677 @@
+{
+  "ley_nombre": "LEY DEL ESTATUTO DE LA FUNCIÓN PÚBLICA",
+  "estructura": [
+    {
+      "libro": null,
+      "titulo": "TÍTULO I. DISPOSICIONES FUNDAMENTALES",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "1",
+          "encabezado": null,
+          "texto_principal": "La presente Ley regirá las relaciones de empleo público entre los funcionarios y funcionarias públicos y las administraciones públicas nacionales, estadales y municipales, lo que comprende:",
+          "numerales_literales": [
+            "1. El sistema de dirección y de gestión de la función pública y la articulación de las carreras públicas.",
+            "2. El sistema de administración de personal, el cual incluye la planificación de recursos humanos, procesos de reclutamiento, selección, ingreso, inducción, capacitación y desarrollo, planificación de las carreras, evaluación de méritos, ascensos, traslados, transferencias, valorización y clasificación de cargos, escalas de sueldos, permisos y licencias, régimen disciplinario y normas para el retiro."
+          ],
+          "paragrafos": [
+            "Parágrafo Único: Quedarán excluidos de la aplicación de esta Ley:\n1. Los funcionarios y funcionarias públicos al servicio del Poder Legislativo Nacional.\n2. Los funcionarios y funcionarias públicos a que se refiere la Ley del Servicio Exterior.\n3. Los funcionarios y funcionarias públicos al servicio del Poder Judicial.\n4. Los funcionarios y funcionarias públicos al servicio del Poder Ciudadano.\n5. Los funcionarios y funcionarias públicos al servicio del Poder Electoral.\n6. Los obreros y obreras al servicio de la Administración Pública.\n7. Los funcionarios y funcionarias públicos al servicio de la Procuraduría General de la República.\n8. Los funcionarios y funcionarias públicos al Servicio Nacional Integrado de Administración Aduanera y Tributaria (SENIAT).\n9. Los miembros del personal directivo, académico, docente, administrativo y de investigación de las universidades nacionales."  
+          ],
+           
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "2",
+          "encabezado": null,
+          "texto_principal": "Las normas que se refieren en general a la Administración Pública, o expresamente a los estados y municipios, serán de obligatorio cumplimiento por éstos.\n\nSólo por leyes especiales podrán dictarse estatutos para determinadas categorías de funcionarios y funcionarias públicos o para aquéllos que presten servicio en determinados órganos o entes de la Administración Pública.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "3",
+          "encabezado": null,
+          "texto_principal": "Funcionario o funcionaria público será toda persona natural que, en virtud de nombramiento expedido por la autoridad competente, se desempeñe en el ejercicio de una función pública remunerada, con carácter permanente.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. DIRECCIÓN Y GESTIÓN DE LA FUNCIÓN PÚBLICA",
+      "capitulo": "Capítulo I. Disposiciones Generales",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "4",
+          "encabezado": null,
+          "texto_principal": "El Presidente o Presidenta de la República ejercerá la dirección de la función pública en el Poder Ejecutivo Nacional.\n\nLos gobernadores o gobernadoras y alcaldes o alcaldesas ejercerán la dirección de la función pública en los estados y municipio. En los institutos autónomos, sean éstos nacionales, estadales o municipales, la ejercerán sus máximos órganos de dirección.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "5",
+          "encabezado": null,
+          "texto_principal": "La gestión de la función pública corresponderá a:",
+          "numerales_literales": [
+            "1. El Vicepresidente o Vicepresidenta Ejecutivo.",
+            "2. Los ministros o ministras.",
+            "3. Los gobernadores o gobernadoras.",
+            "4. Los alcaldes o alcaldesas.",
+            "5. Las máximas autoridades directivas y administrativas de los institutos autónomos nacionales, estadales y municipales.\n\nEn los órganos o entes de la Administración Pública dirigidos por cuerpos colegiados, la competencia de gestión de la función pública corresponderá a su presidente o presidenta, salvo cuando la ley u ordenanza que regule el funcionamiento del respectivo órgano o ente le otorgue esta competencia al cuerpo colegiado que lo dirige o administra."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "6",
+          "encabezado": null,
+          "texto_principal": "La ejecución de la gestión de la función pública corresponderá a las oficinas de recursos humanos de cada órgano o ente de la Administración Pública, las cuales harán cumplir las directrices, normas y decisiones del órgano de dirección y de los órganos de gestión correspondientes.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. DIRECCIÓN Y GESTIÓN DE LA FUNCIÓN PÚBLICA",
+      "capitulo": "Capítulo II. Órganos de Dirección y de Gestión de la Función Pública Nacional",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "7",
+          "encabezado": null,
+          "texto_principal": "El organismo responsable de la planificación del desarrollo de la función pública en los órganos de la Administración Pública Nacional será el Ministerio de Planificación y Desarrollo. El Reglamento respectivo creará los mecanismos correspondientes de participación ciudadana en la elaboración de esta planificación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "8",
+          "encabezado": null,
+          "texto_principal": "Corresponderá al Ministerio de Planificación y Desarrollo asistir al Presidente o Presidenta de la República en el ejercicio de las competencias que le acuerde esta Ley, así como evaluar, aprobar y controlar la aplicación de las políticas en materia de función pública mediante la aprobación de los planes de personal que ejecuten los órganos y entes de la Administración Pública Nacional. En particular, dicho Ministerio tendrá las atribuciones siguientes:",
+          "numerales_literales": [
+            "1. Organizar el sistema de la función pública y supervisar su aplicación y desarrollo. A tal fin, dictará directrices y procedimientos relativos al reclutamiento, selección, ingreso, clasificación, valorización, remuneración de cargos, evaluación del desempeño, desarrollo, capacitación, ascensos, traslados, transferencias, licencias, permisos, viáticos, registros de personal, régimen disciplinario y egresos, así como cualesquiera otras directrices y procedimientos inherentes al sistema.",
+            "2. Velar por el cumplimiento de las directrices y procedimientos a que se refiere el numeral anterior.",
+            "3. Aprobar los planes de personal de los órganos y entes de la Administración Pública Nacional sujetos a esta Ley, así como sus modificaciones, una vez verificada con el Ministerio de Finanzas la correspondiente disponibilidad presupuestaria para su aplicación.",
+            "4. Realizar auditorías, estudios, análisis e investigaciones para evaluar la ejecución de los respectivos planes.",
+            "5. Solicitar de los órganos y entes de la Administración Pública Nacional la información que se requiera para el cabal desempeño de sus funciones.",
+            "6. Prestar asesoría técnica a los órganos y entes que lo soliciten.",
+            "7. Evaluar las consultas que le formulen los órganos y entes de la Administración Pública Nacional en relación con la administración de personal.",
+            "8. Evaluar el costo de los proyectos y acuerdos de las convenciones colectivas de trabajo en la Administración Pública Nacional.",
+            "9. Aprobar los informes técnicos sobre las clases de cargos y los sistemas de rango propuestos por los órganos y entes de la Administración Pública Nacional.",
+            "10. Presentar para la consideración y aprobación del Presidente o Presidenta de la República, una vez verificada la correspondiente disponibilidad presupuestaria con el Ministerio de Finanzas, los informes técnicos sobre la escala de sueldos que se aplicará en los órganos y entes de la Administración Pública Nacional.",
+            "11. Aprobar las bases y los baremos de los concursos para el ingreso y ascenso de los funcionarios o funcionarias públicos, los cuales deberán incluir los perfiles y requisitos exigidos para cada cargo.",
+            "12. Aprobar los informes técnicos de las reducciones de personal que planteen los órganos y entes de la Administración Pública Nacional de conformidad con esta Ley.",
+            "13. Solicitar al Ejecutivo Nacional, conjuntamente con el Ministerio de Finanzas, los correctivos y ajustes presupuestarios en aquellos órganos y entes de la Administración Pública Nacional que incumplan las metas de los planes de personal en lo relativo a la materia presupuestaria.",
+            "14. Las demás que establezca esta Ley, y sus reglamentos."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. DIRECCIÓN Y GESTIÓN DE LA FUNCIÓN PÚBLICA",
+      "capitulo": "Capítulo III. Registro Nacional de Funcionarios y Funcionarias Públicos",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "9",
+          "encabezado": null,
+          "texto_principal": "El Ministerio de Planificación y Desarrollo deberá llevar y mantener actualizado el registro nacional de funcionarios y funcionarias públicos al servicio de la Administración Pública Nacional, de conformidad con lo que señalen los reglamentos de esta Ley.Al registro nacional de funcionarios y funcionarias públicos quedarán integrados los demás registros de personal que puedan preverse en leyes especiales.",
+          "numerales_literales": [],
+          "paragrafos": [
+            "Parágrafo Único: En los estados y municipios el órgano o ente encargado de la planificación y desarrollo de la correspondiente entidad territorial tendrá las mismas competencias previstas en este artículo en el ámbito de su territorio."
+          ],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. DIRECCIÓN Y GESTIÓN DE LA FUNCIÓN PÚBLICA",
+      "capitulo": "Capítulo IV. Oficinas de Recursos Humanos",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "10",
+          "encabezado": null,
+          "texto_principal": "Serán atribuciones de las oficinas de recursos humanos de los órganos y entes de la Administración Pública Nacional:",
+          "numerales_literales": [
+            "1. Ejecutar las decisiones que dicten los funcionarios o funcionarias encargados de la gestión de la función pública.",
+            "2. Elaborar el plan de personal de conformidad con esta Ley, sus reglamentos y las normas y directrices que emanen del Ministerio de Planificación y Desarrollo, así como dirigir, coordinar, evaluar y controlar su ejecución.",
+            "3. Remitir al Ministerio de Planificación y Desarrollo, en la oportunidad que se establezca en los reglamentos de esta Ley, los informes relacionados con la ejecución del Plan de Personal y cualquier otra información que le fuere solicitada.",
+            "4. Dirigir la aplicación de las normas y de los procedimientos que en materia de administración de personal señale la presente Ley y sus reglamentos.",
+            "5. Dirigir y coordinar los programas de desarrollo y capacitación del personal, de conformidad con las políticas que establezca el Ministerio de Planificación y Desarrollo.",
+            "6. Dirigir y coordinar los procesos para la evaluación del personal.",
+            "7. Organizar y realizar los concursos que se requieran para el ingreso o ascenso de los funcionarios o funcionarias de carrera, según las bases y baremos aprobados por el Ministerio de Planificación y Desarrollo.",
+            "8. Proponer ante el Ministerio de Planificación y Desarrollo los movimientos de personal a que hubiere lugar, a los fines de su aprobación.",
+            "9. Instruir los expedientes en caso de hechos que pudieren dar lugar a la aplicación de las sanciones previstas en esta Ley.",
+            "10. Actuar como enlace entre el órgano o ente respectivo y el Ministerio de Planificación y Desarrollo.1",
+            "1. Las demás que se establezcan en la presente Ley y su Reglamento."
+          ],
+          "paragrafos": [
+            "Parágrafo Único: Las oficinas de recursos humanos de los estados y municipios, tendrán las mismas competencias respecto al órgano o ente encargado de la planificación y desarrollo en su territorio."
+          ],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "11",
+          "encabezado": null,
+          "texto_principal": "La omisión, retardo, negligencia o imprudencia de los titulares de las oficinas de recursos humanos en adoptar las medidas que les hubiere prescrito el Ministerio de Planificación y Desarrollo, o el órgano encargado de la planificación y desarrollo en el respectivo estado o municipio, será causal de remoción de la función pública, sin perjuicio de la aplicación de las sanciones civiles y penales a las que hubiere lugar.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. DIRECCIÓN Y GESTIÓN DE LA FUNCIÓN PÚBLICA",
+      "capitulo": "Capítulo V. Planes de Personal",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "12",
+          "encabezado": null,
+          "texto_principal": "Los planes de personal serán los instrumentos que integran los programas y actividades que desarrollarán los órganos y entes de la Administración Pública para la óptima utilización del recurso humano, tomando en consideración los objetivos institucionales, la disponibilidad presupuestaria y las directrices que emanen de los órganos de gestión de la función pública.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "13",
+          "encabezado": null,
+          "texto_principal": "Los planes de personal deberán contener los objetivos y metas para cada ejercicio fiscal en lo relativo a estructura de cargos, remuneraciones, creación, cambios de clasificación, supresión de cargos, ingresos, ascensos, concursos, traslados, transferencias, egresos, evaluación del desempeño, desarrollo y capacitación, remuneraciones y las demás materias, previsiones y medidas que establezcan los reglamentos de esta Ley.\n\nLos planes de personal estarán orientados al cumplimiento de los programas y metas institucionales.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "14",
+          "encabezado": null,
+          "texto_principal": "Corresponderá a los órganos de gestión de la Administración Pública Nacional, por intermedio de la oficina de recursos humanos, la presentación de los planes de personal ante el Ministerio de Planificación y Desarrollo en la oportunidad que éste señale, de conformidad con la normativa presupuestaria, así como acatar las modificaciones que le sean prescritas por este último órgano.",
+          "numerales_literales": [],
+          "paragrafos": [
+            "Parágrafo Único: En el caso de los estados y municipios, corresponderá al órgano encargado de la planificación la presentación de los planes de personal."
+          ],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "15",
+          "encabezado": null,
+          "texto_principal": "El Ministerio de Planificación y Desarrollo aprobará los planes de personal en la Administración Pública Nacional, los cuales quedarán integrados al proyecto de Ley de Presupuesto que presente el Ejecutivo Nacional ante la Asamblea Nacional.\n\nEn caso de que dichos planes requieran algún tipo de modificación en el transcurso del ejercicio fiscal correspondiente, los órganos o entes de la Administración Pública Nacional, deberán someter dichas modificaciones, debidamente motivadas, a la consideración y aprobación conjunta del Ministerio de Planificación y Desarrollo y del Ministerio de Finanzas.",
+          "numerales_literales": [],
+          "paragrafos": [
+            "Parágrafo Único: Las mismas atribuciones corresponderán a los órganos o entes de planificación y desarrollo en los estados y municipios respecto a las oficinas de personal de los mismos."
+          ],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. FUNCIONARIOS Y FUNCIONARIAS PÚBLICOS",
+      "capitulo": "Capítulo I. Disposiciones Generales",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "16",
+          "encabezado": null,
+          "texto_principal": "Toda persona podrá optar a un cargo en la Administración Pública, sin más limitaciones que las establecidas por la Constitución de la República Bolivariana de Venezuela y las leyes.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "17",
+          "encabezado": null,
+          "texto_principal": "Para ejercer un cargo de los regulados por esta Ley, los aspirantes deberán reunir los siguientes requisitos:",
+          "numerales_literales": [
+            "1. Ser venezolano o venezolana.",
+            "2. Ser mayor de dieciocho años de edad.",
+            "3. Tener título de educación media diversificada.",
+            "4. No estar sujeto o sujeta a interdicción civil o inhabilitación política.",
+            "5. No gozar de jubilación o pensión otorgada por algún organismo del Estado, salvo para ejercer cargos de alto nivel, caso en el cual deberán suspender dicha jubilación o pensión. Se exceptúan de este requisito la jubilación o pensión proveniente del desempeño de cargos compatibles.",
+            "6. Reunir los requisitos correspondientes al cargo.",
+            "7. Cumplir con los procedimientos de ingreso establecidos en esta Ley y su Reglamento, si fuere el caso.",
+            "8. Presentar declaración jurada de bienes.",
+            "9. Los demás requisitos establecidos en las leyes."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "18",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias públicos, antes de tomar posesión de sus cargos, deberán prestar juramento de cumplir la Constitución de la República Bolivariana de Venezuela, las leyes de la República y los deberes inherentes al cargo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "19",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias de la Administración Pública serán de carrera o de libre nombramiento y remoción.\n\nSerán funcionarios o funcionarias de carrera, quienes habiendo ganado el concurso público, superado el período de prueba y en virtud de nombramiento, presten servicios remunerado y con carácter permanente.\n\nSerán funcionarios o funcionarias de libre nombramiento y remoción aquellos que son nombrados y removidos libremente de sus cargos sin otras limitaciones que las establecidas en esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "20",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias públicos de libre nombramiento y remoción podrán ocupar cargos de alto nivel o de confianza. Los cargos de alto nivel son los siguientes:",
+          "numerales_literales": [
+            "1. El Vicepresidente o Vicepresidenta Ejecutivo.",
+            "2. Los ministros o ministras.",
+            "3. Los jefes o jefas de las oficinas nacionales o sus equivalentes.",
+            "4. Los comisionados o comisionadas presidenciales.",
+            "5. Los viceministros o viceministras.",
+            "6. Los directores o directoras generales, directores o directoras y demás funcionarios o funcionarias de similar jerarquía al servicio de la Presidencia de la República, Vicepresidencia Ejecutiva y Ministerios.",
+            "7. Los miembros de las juntas directivas de los institutos autónomos nacionales.",
+            "8. Los directores o directoras generales, directores o directoras y demás funcionarios o funcionarias de similar jerarquía en los institutos autónomos.",
+            "9. Los registradores o registradoras y notarios o notarias públicos.",
+            "10. El Secretario o Secretaria General de Gobierno de los estados.",
+            "11. Los directores generales sectoriales de las gobernaciones, los directores de las alcaldías y otros cargos de la misma jerarquía.",
+            "12. Las máximas autoridades de los institutos autónomos estadales y municipales, así como sus directores o directoras y funcionarios o funcionarias de similar jerarquía."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "21",
+          "encabezado": null,
+          "texto_principal": "Los cargos de confianza serán aquéllos cuyas funciones requieren un alto grado de confidencialidad en los despachos de las máximas autoridades de la Administración Pública, de los viceministros o viceministras, de los directores o directoras generales y de los directores o directoras o sus equivalentes. También se considerarán cargos de confianza aquéllos cuyas funciones comprendan principalmente actividades de seguridad del estado, de fiscalización e inspección, rentas, aduanas, control de extranjeros y fronteras, sin perjuicio de lo establecido en la ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. FUNCIONARIOS Y FUNCIONARIAS PÚBLICOS",
+      "capitulo": "Capítulo II. De los Derechos de los Funcionarios o Funcionarias Públicos",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "22",
+          "encabezado": null,
+          "texto_principal": "Todo funcionario o funcionaria público tendrá derecho, al incorporarse al cargo, a ser informado por su superior inmediato acerca de los fines, organización y funcionamiento de la unidad administrativa correspondiente y de las atribuciones, deberes y responsabilidades que le incumben.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "23",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias públicos tendrán derecho a percibir las remuneraciones correspondientes al cargo que desempeñen, de conformidad con lo establecido en esta Ley y sus reglamentos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "24",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias de la Administración Pública tendrán derecho a disfrutar de una vacación anual de quince días hábiles durante el primer quinquenio de servicios; de dieciocho días hábiles durante el segundo quinquenio; de veintiún días hábiles durante el tercer quinquenio y de veinticinco días hábiles a partir del decimosexto año de servicio. Asimismo, de una bonificación anual de cuarenta días de sueldo.\n\nCuando el funcionario o funcionaria público egrese por cualquier causa antes de cumplir el año de servicio, bien durante el primer año o en los siguientes, tendrá derecho a recibir el bono vacacional proporcional al tiempo de servicio prestado.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "25",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias públicos al servicio de la Administración Pública, tendrán derecho a disfrutar, por cada año calendario de servicio activo, dentro del ejercicio fiscal correspondiente, de una bonificación de fin de año equivalente a un mínimo de noventa días de sueldo integral, sin perjuicio de que pueda aumentarse por negociación colectiva.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "26",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias al servicio de la Administración Pública tendrán derecho a los permisos y licencias que se establezcan en los reglamentos de esta Ley, los cuales pueden ser con goce de sueldo o sin él y de carácter obligatorio o potestativo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "27",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias públicos nacionales, estadales y municipales, tendrán derecho a su protección integral a través del sistema de seguridad social en los términos y condiciones que establezca la ley y los reglamentos que regulan el Sistema de Seguridad Social.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "28",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias públicos gozarán de los mismos beneficios contemplados en la Constitución de la República Bolivariana de Venezuela, en la Ley Orgánica del Trabajo y su Reglamento, en lo atinente a la prestación de antigüedad y condiciones para su percepción.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "29",
+          "encabezado": null,
+          "texto_principal": "Las funcionarias públicas en estado de gravidez gozarán de la protección integral a la maternidad en los términos consagrados en la Constitución de la República Bolivariana de Venezuela y en la Ley Orgánica del Trabajo y su Reglamento. No obstante, las controversias a las cuales pudiera dar lugar la presente disposición serán sustanciadas y decididas por los tribunales con competencia en lo contencioso administrativo funcionarial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. FUNCIONARIOS Y FUNCIONARIAS PÚBLICOS",
+      "capitulo": "Capítulo III. Derechos Exclusivos. de los Funcionarios o Funcionarias Públicos de Carrera",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "30",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias públicos de carrera que ocupen cargos de carrera gozarán de estabilidad en el desempeño de sus cargos. En consecuencia, sólo podrán ser retirados del servicio por las causales contempladas en la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "31",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias públicos de carrera que ocupen cargos de carrera tendrán derecho al ascenso en los términos previstos en esta Ley y sus reglamentos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "32",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias públicos de carrera, que ocupen cargos de carrera, tendrán el derecho a organizarse sindicalmente, a la solución pacífica de los conflictos, a la convención colectiva y a la huelga, de conformidad con lo establecido en la Ley Orgánica del Trabajo y su Reglamento, en cuanto sea compatible con la índole de los servicios que prestan y con las exigencias de la Administración Pública.\n\nTodos los conflictos a los cuales diere lugar la presente disposición serán conocidos por los tribunales competentes en lo contencioso administrativo funcionarial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. FUNCIONARIOS Y FUNCIONARIAS PÚBLICOS",
+      "capitulo": "Capítulo IV. Deberes y Prohibiciones de los Funcionarios o Funcionarias Públicos",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "33",
+          "encabezado": null,
+          "texto_principal": "Además de los deberes que impongan las leyes y los reglamentos, los funcionarios o funcionarias públicos estarán obligados a:",
+          "numerales_literales": [
+            "1. Prestar sus servicios personalmente con la eficiencia requerida.",
+            "2. Acatar las órdenes e instrucciones emanadas de los superiores jerárquicos.",
+            "3. Cumplir con el horario de trabajo establecido.",
+            "4. Prestar la información necesaria a los particulares en los asuntos y expedientes en que éstos tengan algún interés legítimo.",
+            "5. Guardar en todo momento una conducta decorosa y observar en sus relaciones con sus superiores, subordinados y con el público toda la consideración y cortesía debidas.",
+            "6. Guardar la reserva, discreción y secreto que requieran los asuntos relacionados con las funciones que tengan atribuidas, dejando a salvo lo previsto en el numeral 4 de este artículo.",
+            "7. Vigilar, conservar y salvaguardar los documentos y bienes de la Administración Pública confiados a su guarda, uso o administración.",
+            "8. Cumplir las actividades de capacitación y perfeccionamiento destinados a mejorar su desempeño.",
+            "9. Poner en conocimiento de sus superiores las iniciativas que estimen útiles para la conservación del patrimonio nacional, el mejoramiento de los servicios y cualesquiera otras que incidan favorablemente en las actividades a cargo del órgano o ente.",
+            "10. Inhibirse del conocimiento de los asuntos cuya competencia esté legalmente atribuida, en los siguientes casos:",
+            "a. Cuando personalmente, o bien su cónyuge, su concubino o concubina o algún pariente dentro del cuarto grado de consanguinidad o segundo de afinidad, tuvieren interés en un asunto.",
+            "b. Cuando tuvieren amistad o enemistad manifiesta con cualquiera de las personas interesadas que intervengan en un asunto.",
+            "c. Cuando hubieren intervenido como testigos o peritos en el expediente de cuya resolución se trate, o como funcionarios o funcionarias públicos hubieren manifestado previamente su opinión en el mismo, de modo que pudieran prejuzgar la resolución del asunto; o tratándose de un recurso administrativo, que hubieren resuelto o intervenido en la decisión del acto que se impugna.",
+            "d. Cuando tuvieren relación de subordinación con funcionarios o funcionarias públicos directamente interesados en el asunto.\n\nEl funcionario o funcionaria público de mayor jerarquía en la entidad donde curse un asunto podrá ordenar, de oficio o a instancia de los interesados, a los funcionarios o funcionarias públicos incursos en las causales señaladas en este artículo que se abstengan de toda intervención en el procedimiento, designando en el mismo acto al funcionario o funcionaria que deba continuar conociendo del expediente.",
+            "11. Cumplir y hacer cumplir la Constitución de la República Bolivariana de Venezuela, las leyes, los reglamentos, los instructivos y las órdenes que deban ejecutar."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "34",
+          "encabezado": null,
+          "texto_principal": "Sin perjuicio de lo dispuesto en las leyes y los reglamentos, se prohíbe a los funcionarios o funcionarias públicos:",
+          "numerales_literales": [
+            "1. Celebrar contratos por sí, por personas interpuestas o en representación de otro, con la República, los estados, los municipios y demás personas jurídicas de derecho público o de derecho privado estatales, salvo las excepciones que establezcan las leyes.",
+            "2. Realizar propaganda, coacción pública u ostentar distintivos que los acrediten como miembros de un partido político, todo ello en el ejercicio de sus funciones.",
+            "3. Intervenir directa o indirectamente en las gestiones que realicen personas naturales o jurídicas, públicas o privadas, que pretendan celebrar cualquier contrato con la República, los estados, los municipios y demás personas jurídicas de derecho público o de derecho privado estatales.",
+            "4. Aceptar cargos, honores o recompensas de gobiernos extranjeros sin que preceda la correspondiente autorización de la Asamblea Nacional."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. FUNCIONARIOS Y FUNCIONARIAS PÚBLICOS",
+      "capitulo": "Capítulo V. Incompatibilidades",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "35",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias públicos no podrán desempeñar más de un cargo público remunerado, a menos que se trate de cargos académicos, accidentales, asistenciales o docentes que determine la ley.\n\nLa aceptación de un segundo destino, que no sea de los exceptuados en este artículo, implica la renuncia del primero, salvo cuando se trate de suplentes mientras no reemplacen definitivamente al principal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "36",
+          "encabezado": null,
+          "texto_principal": "El ejercicio de los cargos académicos, accidentales, asistenciales y docentes, declarados por la ley compatibles con el ejercicio de un destino público remunerado, se hará sin menoscabo del cumplimiento de los deberes inherentes a éste.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO IV. PERSONAL CONTRATADO",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "37",
+          "encabezado": null,
+          "texto_principal": "Sólo podrá procederse por la vía del contrato en aquellos casos en que se requiera personal altamente calificado para realizar tareas específicas y por tiempo determinado.Se prohibirá la contratación de personal para realizar funciones correspondientes a los cargos previstos en la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "38",
+          "encabezado": null,
+          "texto_principal": "El régimen aplicable al personal contratado será aquél previsto en el respectivo contrato y en la legislación laboral.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "39",
+          "encabezado": null,
+          "texto_principal": "En ningún caso el contrato podrá constituirse en una vía de ingreso a la Administración Pública.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO V. SISTEMA DE ADMINISTRACIÓN DE PERSONAL",
+      "capitulo": "Capítulo I. Selección, Ingreso y Ascenso",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "40",
+          "encabezado": null,
+          "texto_principal": "El proceso de selección de personal tendrá como objeto garantizar el ingreso de los aspirantes a los cargos de carrera en la Administración Pública, con base en las aptitudes, actitudes y competencias, mediante la realización de concursos públicos que permitan la participación, en igualdad de condiciones, de quienes posean los requisitos exigidos para desempeñar los cargos, sin discriminaciones de ninguna índole.\n\nSerán absolutamente nulos los actos de nombramiento de funcionarios o funcionarias públicos de carrera, cuando no se hubiesen realizado los respectivos concursos de ingreso, de conformidad con esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "41",
+          "encabezado": null,
+          "texto_principal": "Corresponderá a las oficinas de recursos humanos de los órganos y entes de la Administración Pública la realización de los concursos públicos para el ingreso de los funcionarios o funcionarias públicos de carrera.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "42",
+          "encabezado": null,
+          "texto_principal": "Las oficinas de recursos humanos de los órganos y entes de la Administración Pública llevarán los registros de elegibles, a los cuales se les dará la mayor publicidad, de conformidad con lo establecido en los reglamentos de la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "43",
+          "encabezado": null,
+          "texto_principal": "La persona seleccionada por concurso será nombrada en período de prueba. Su desempeño será evaluado dentro de un lapso que no exceda de tres meses. Superado el período de prueba, se procederá al ingreso como funcionario o funcionaria público de carrera al cargo para el cual concursó. De no superar el período de prueba, el nombramiento será revocado.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "44",
+          "encabezado": null,
+          "texto_principal": "Una vez adquirida la condición jurídica de funcionario o funcionaria público de carrera, ésta no se extinguirá sino en el único caso en que el funcionario o funcionaria público sea destituido.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "45",
+          "encabezado": null,
+          "texto_principal": "El ascenso se hará con base en el sistema de méritos que contemple la trayectoria y conocimientos del funcionario o funcionaria público. Los reglamentos de la presente Ley desarrollarán las normas relativas a los ascensos.",
+          "numerales_literales": [
+            "1. Con candidatos o candidatas del registro de elegibles para ascensos del organismo respectivo.",
+            "2. Con candidatos o candidatas del registro de elegibles para ascensos de la Administración Pública.",
+            "3. Con candidatos o candidatas del registro de elegibles para ingresos."
+          ],
+          "paragrafos": [
+            "Parágrafo Único: La provisión de cargos vacantes de carrera se realizará atendiendo el siguiente orden de prioridades:"
+          ],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO V. SISTEMA DE ADMINISTRACIÓN DE PERSONAL",
+      "capitulo": "Capítulo II. Clasificación de Cargos",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "46",
+          "encabezado": null,
+          "texto_principal": "A los efectos de la presente Ley, el cargo será la unidad básica que expresa la división del trabajo en cada unidad organizativa. Comprenderá las atribuciones, actividades, funciones, responsabilidades y obligaciones específicas con una interrelación tal, que puedan ser cumplidas por una apersona en una jornada ordinaria de trabajo.\n\nEl Manual Descriptivo de Clases de Cargos será el instrumento básico y obligatorio para la administración del sistema de clasificación de cargos de los órganos y entes de la Administración Pública.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "47",
+          "encabezado": null,
+          "texto_principal": "Los cargos sustancialmente similares en cuanto al objeto de la prestación de servicio a nivel de complejidad, dificultad, deberes y responsabilidades, y cuyo ejercicio exija los mismos requisitos mínimos generales, se agruparán en clases bajo una misma denominación y grado común en la escala general de sueldos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "48",
+          "encabezado": null,
+          "texto_principal": "Las clases de cargos sustancialmente similares en cuanto al objeto de la prestación de servicio, pero diferentes en niveles de complejidad de los deberes y responsabilidades, se agruparán en series en orden ascendente.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "49",
+          "encabezado": null,
+          "texto_principal": "El sistema de clasificación de cargos comprenderá el agrupamiento de éstos en clases definidas. Cada clase deberá ser descrita mediante una especificación oficial que incluirá lo siguiente:",
+          "numerales_literales": [
+            "1. Denominación, código y grado en la escala general de sueldos.",
+            "2. Descripción a título enunciativo de las atribuciones y deberes generales inherentes a la clase de cargo, la cual no eximirá del cumplimiento de las tareas específicas que a cada cargo atribuya la ley o la autoridad competente.",
+            "3. Indicación de los requisitos mínimos generales para el desempeño de la clase de cargo, la cual no eximirá del cumplimiento de otros señalados por la ley o autoridad competente.",
+            "4. Cualesquiera otros que determinen los reglamentos respectivos."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "50",
+          "encabezado": null,
+          "texto_principal": "Las denominaciones de clases de cargos, así como su ordenación y la indicación de aquellos que sean de carrera, serán aprobadas por el Presidente de la República mediante Decreto. Las denominaciones aprobadas serán de uso obligatorio en la Ley de Presupuesto y en los demás actos y documentos oficiales, sin perjuicio del uso de la terminología empleada para designar, en la respectiva jerarquía, los cargos de jefatura o de carácter supervisorio.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "51",
+          "encabezado": null,
+          "texto_principal": "Los órganos o entes de la Administración Pública Nacional podrán proponer al Ministerio de Planificación y Desarrollo los cambios o modificaciones que estimen conveniente introducir en el sistema de clasificación de cargos. Dicho Ministerio deberá comunicar su decisión en el plazo que se fije en el Reglamento de la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "52",
+          "encabezado": null,
+          "texto_principal": "La especificación oficial de las clases de cargos en la Administración Pública Nacional se publicará en la Gaceta Oficial de la República Bolivariana de Venezuela, con la denominación de manual descriptivo de clases de cargos. Igualmente se registrarán y publicarán sus modificaciones.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "53",
+          "encabezado": null,
+          "texto_principal": "Los cargos de alto nivel y de confianza quedarán expresamente indicados en los respectivos reglamentos orgánicos de los órganos o entes de la Administración Pública Nacional.\n\nLos perfiles que se requieran para ocupar los cargos de alto nivel se establecerán en el Reglamento de la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO V. SISTEMA DE ADMINISTRACIÓN DE PERSONAL",
+      "capitulo": "Capítulo III. Remuneraciones",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "54",
+          "encabezado": null,
+          "texto_principal": "El sistema de remuneraciones comprende los sueldos, compensaciones, viáticos, asignaciones y cualesquiera otras prestaciones pecuniarias o de otra índole que reciban los funcionarios y funcionarias públicos por sus servicios. En dicho sistema se establecerá la escala general de sueldos, divididas en grados, con montos mínimos, intermedios y máximos. Cada cargo deberá ser asignado al grado correspondiente, según el sistema de clasificación, y remunerado con una de las tarifas previstas en la escala.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "55",
+          "encabezado": null,
+          "texto_principal": "El sistema de remuneraciones que deberá aprobar mediante decreto el Presidente o Presidenta de la República, previo informe favorable del Ministerio de Planificación y Desarrollo, establecerá las normas para la fijación, administración y pago de sueldos iniciales; aumentos por servicios eficientes y antigüedad dentro de la escala; viáticos y otros beneficios y asignaciones que por razones de servicio deban otorgarse a los funcionarios o funcionarias públicos. El sistema comprenderá también normas relativas al pago de acuerdo con horarios de trabajo, días feriados, vacaciones, licencias con o sin goce de sueldo y trabajo a tiempo parcial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "56",
+          "encabezado": null,
+          "texto_principal": "Las escalas de sueldos de los funcionarios o funcionarias públicos de alto nivel serán aprobadas en la misma oportunidad en que se aprueben las escalas generales, tomando en consideración el nivel jerárquico de los mismos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO V. SISTEMA DE ADMINISTRACIÓN DE PERSONAL",
+      "capitulo": "Capítulo IV. Evaluación del Desempeño",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "57",
+          "encabezado": null,
+          "texto_principal": "La evaluación de los funcionarios y funcionarias públicos en los órganos y entes de la Administración Pública comprenderá el conjunto de normas y procedimientos tendentes a evaluar su desempeño.\n\nLos órganos y entes de la Administración Pública Nacional deberán presentar al Ministerio de Planificación y Desarrollo, para su aprobación, los resultados de sus evaluaciones, como soporte de los movimientos de personal que pretendan realizar en el próximo año fiscal y su incidencia en la nómina del personal activo, conjuntamente con el plan de personal, determinando los objetivos que se estiman cumplir durante el referido ejercicio fiscal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "58",
+          "encabezado": null,
+          "texto_principal": "La evaluación deberá ser realizada dos veces por año sobre la base de los registros continuos de actuación que debe llevar cada supervisor.\n\nEn el proceso de evaluación, el funcionario deberá conocer los objetivos del desempeño a evaluar, los cuales serán acordes con las funciones inherentes al cargo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "59",
+          "encabezado": null,
+          "texto_principal": "Tanto el Ministerio de Planificación y Desarrollo como la oficina de recursos humanos de los diferentes entes y órganos incluidos en el ámbito de aplicación de la presente Ley, establecerán los instrumentos de evaluación en el servicio, los cuales deberán satisfacer los requisitos de objetividad, imparcialidad e integridad de la evaluación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "60",
+          "encabezado": null,
+          "texto_principal": "La evaluación de los funcionarios y funcionarias públicos será obligatoria, y su incumplimiento por parte del supervisor o supervisora será sancionado conforme a las previsiones de esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "61",
+          "encabezado": null,
+          "texto_principal": "Con base en los resultados de la evaluación, la oficina de recursos humanos propondrá los planes de capacitación y desarrollo del funcionario o funcionaria público y los incentivos y licencias del funcionario en el servicio, de conformidad con la presente Ley y sus reglamentos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "62",
+          "encabezado": null,
+          "texto_principal": "Para que los resultados de la evaluación sean válidos, los instrumentos respectivos deberán ser suscritos por el supervisor o supervisora inmediato o funcionario o funcionaria evaluador y por el funcionario o funcionaria evaluado. Este último podrá hacer las observaciones escritas que considere pertinente.\n\nLos resultados de la evaluación deberán ser notificados al funcionario evaluado, quien podrá solicitar por escrito la reconsideración de los mismos dentro de los cinco días hábiles siguientes a su notificación. La decisión sobre el recurso ejercido deberá notificarse por escrito al evaluado. En caso de que esta decisión incida económicamente en el ejercicio fiscal respectivo, el organismo correspondiente deberá notificarlo al Ministerio de Planificación y Desarrollo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO V. SISTEMA DE ADMINISTRACIÓN DE PERSONAL",
+      "capitulo": "Capítulo V. Capacitación y Desarrollo del Personal",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "63",
+          "encabezado": null,
+          "texto_principal": "El desarrollo del personal se logrará mediante su formación y capacitación y comprende el mejoramiento técnico, profesional y moral de los funcionarios o funcionarias públicos; su preparación para el desempeño de funciones más complejas, incorporar nuevas tecnologías y corregir deficiencias detectadas en la evaluación; habilitarlo para que asuma nuevas responsabilidades, se adapte a los cambios culturales y de las organizaciones, y progresar en la carrera como funcionario o funcionaria público.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "64",
+          "encabezado": null,
+          "texto_principal": "El Ministerio de Planificación y Desarrollo diseñará, impulsará, evaluará y efectuará el seguimiento de las políticas de formación, capacitación y desarrollo del personal al servicio de la Administración Pública Nacional y será responsable de la coordinación, vigilancia y control de los programas de los distintos órganos y entes con el fin de garantizar el cumplimiento de dichas políticas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "65",
+          "encabezado": null,
+          "texto_principal": "Los programas de formación, capacitación y desarrollo podrán ser ejecutados directamente por los órganos o entes de la Administración Pública Nacional, o podrá recurrirse a la contratación de profesionales o instituciones acreditas. El Ministerio de Planificación y Desarrollo velará por la calidad de los programas y propondrá los correctivos o mejoras que sean necesarios.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO V. SISTEMA DE ADMINISTRACIÓN DE PERSONAL",
+      "capitulo": "Capítulo VI. Jornada de Servicio",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "66",
+          "encabezado": null,
+          "texto_principal": "El Ministerio de Planificación y Desarrollo mediante Resolución, establecerá el calendario de los días hábiles de la Administración Pública Nacional, la cual será publicada en la Gaceta Oficial de la República Bolivariana de Venezuela.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "67",
+          "encabezado": null,
+          "texto_principal": "La jornada de servicio diurna de los funcionarios y funcionarias públicos no excederá de ocho horas diarias ni de cuarenta y cuatro horas semanales. La jornada de servicio nocturna no excederá de siete horas diarias ni de treinta y cinco semanales.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "68",
+          "encabezado": null,
+          "texto_principal": "El Ministerio de Planificación y Desarrollo, conjuntamente con la organización sindical respectiva y por circunstancias que así lo exijan y que serán señaladas en la resolución correspondiente, podrá modificar los horarios en la Administración Pública Nacional.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "69",
+          "encabezado": null,
+          "texto_principal": "Cuando los funcionarios o funcionarias públicos, previa solicitud de la autoridad correspondiente, presten servicios fuera de los horarios establecidos en los órganos o entes de la Administración Pública, ésta, por intermedio de sus órganos de gestión, establecerá incentivos como compensación por las horas extras trabajadas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO V. SISTEMA DE ADMINISTRACIÓN DE PERSONAL",
+      "capitulo": "Capítulo VII. Situaciones Administrativas. de los Funcionarios y Funcionarias Públicos",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "70",
+          "encabezado": null,
+          "texto_principal": "Se considerará en servicio activo al funcionario o funcionaria público que ejerza el cargo o se encuentre en comisión de servicio, traslado, suspensión con goce de sueldo, permiso o licencia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "71",
+          "encabezado": null,
+          "texto_principal": "La comisión de servicio será la situación administrativa de carácter temporal por la cual se encomienda a un funcionario o funcionaria público el ejercicio de un cargo diferente, de igual o superior nivel del cual es titular. Para ejercer dicha comisión de servicio, el funcionario o funcionaria público deberá reunir los requisitos exigidos para el cargo.\n\nLa comisión de servicio podrá ser realizada en el mismo órgano o ente donde presta servicio o en otro de la Administración Pública dentro de la misma localidad. Si el cargo que se ejerce en comisión de servicio tuviere mayor remuneración, el funcionario o funcionaria público tendrá derecho al cobro de la diferencia, así como a los viáticos y remuneraciones que fueren procedentes.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "72",
+          "encabezado": null,
+          "texto_principal": "Las comisiones de servicio serán de obligatoria aceptación y deberán ser ordenadas por el lapso estrictamente necesario, el cual no podrá exceder de un año a partir del acto de notificación de la misma.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "73",
+          "encabezado": null,
+          "texto_principal": "Por razones de servicio, los funcionarios o funcionarias públicos de carrera podrán ser trasladados dentro de la misma localidad de un cargo a otro de la misma clase, siempre que no se disminuya su sueldo básico y los complementos que le puedan corresponder. Cuando se trate de traslado de una localidad a otra, éste deberá realizarse de mutuo acuerdo, con las excepciones que por necesidades de servicio determinen los reglamentos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "74",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias públicos de carrera podrán ser transferidos cuando tenga lugar la descentralización de las actividades a cargo del órgano o ente donde presten sus servicios, de conformidad con lo establecido en la ley. En tales casos deberá levantarse un acta de transferencia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "75",
+          "encabezado": null,
+          "texto_principal": "El funcionario o funcionaria público que cumpla con los requisitos para el disfrute de la jubilación o de una pensión por invalidez, podrá ser transferido, previo acuerdo entre la Administración Pública y el funcionario o funcionaria público.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "76",
+          "encabezado": null,
+          "texto_principal": "El funcionario o funcionaria público de carrera que sea nombrado para ocupar un cargo de alto nivel, tendrá el derecho a su reincorporación en un cargo de carrera del mismo nivel al que tenía en el momento de separarse del mismo, si el cargo estuviere vacante.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "77",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios y funcionarias públicos tendrán derechos a los permisos y licencias previstos en la presente Ley y sus reglamentos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO V. SISTEMA DE ADMINISTRACIÓN DE PERSONAL",
+      "capitulo": "Capítulo VIII. Retiro y Reingreso",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "78",
+          "encabezado": null,
+          "texto_principal": "El retiro de la Administración Pública procederá en los siguientes casos:",
+          "numerales_literales": [
+            "1. Por renuncia escrita del funcionario o funcionaria público debidamente aceptada.",
+            "2. Por pérdida de la nacionalidad.",
+            "3. Por interdicción civil.",
+            "4. Por jubilación y por invalidez de conformidad con la ley.",
+            "5. Por reducción de personal debido a limitaciones financieras, cambios en la organización administrativa, razones técnicas o la supresión de una dirección, división o unidad administrativa del órgano o ente. La reducción de personal será autorizada por el Presidente o Presidenta de la República en Consejo de Ministros, por los consejos legislativos en los estados, o por los concejos municipales en los municipios.",
+            "6. Por estar incurso en causal de destitución.",
+            "7. Por cual otra causa prevista en la presente Ley.\n\nLos cargos que quedaren vacantes conforme al numeral 5 de este artículo no podrán ser provistos durante el resto del ejercicio fiscal.\n\nLos funcionarios y funcionarias públicos de carrera que sean objeto de alguna medida de reducción de personal, conforme al numeral 5 de este artículo, antes de ser retirados podrán ser reubicados. A tal fin, gozarán de un mes de disponibilidad a los efectos de su reubicación. En caso de no ser ésta posible, el funcionario o funcionaria público será retirado e incorporado al registro de elegibles."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO VI. RESPONSABILIDADES Y RÉGIMEN DISCIPLINARIO",
+      "capitulo": "Capítulo I. Responsabilidades",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "79",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias públicos responderán penal, civil, administrativa y disciplinariamente por los delitos, faltas, hechos ilícitos e irregularidades administrativas cometidas en el ejercicio de sus funciones. Esta responsabilidad no excluirá la que pudiere corresponderles por efecto de otras leyes o de su condición de ciudadanos o ciudadanas.\n\nAquel funcionario o funcionaria público que estando en la obligación de sancionar, no cumpla con su deber, será sancionado por la autoridad correspondiente conforme a lo establecido en la presente Ley, sus reglamentos y demás leyes que rijan la materia. Esta responsabilidad no excluirá la que pudiere corresponderles por efecto de otras leyes o de su condición de ciudadanos o ciudadanas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "80",
+          "encabezado": null,
+          "texto_principal": "Los funcionarios o funcionarias públicos que renuncien, disminuyan o comprometan sus competencias de dirección o de gestión en la función pública, mediante actos unilaterales o bilaterales, serán responsables de los perjuicios causados a la República por responsabilidad administrativa, civil y penal, de conformidad con la ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "81",
+          "encabezado": null,
+          "texto_principal": "Corresponderá al Ministerio Público intentar las acciones a que hubiere lugar para hacer efectiva la responsabilidad civil, penal, administrativa o disciplinaria en que hubieren incurrido los funcionarios o funcionarias públicos con motivo del ejercicio de sus funciones. Sin embargo, ello no menoscabará el ejercicio de los derechos y acciones que correspondan a los particulares o a otros funcionarios o funcionarias públicos, de conformidad con la ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO VI. RESPONSABILIDADES Y RÉGIMEN DISCIPLINARIO",
+      "capitulo": "Capítulo II. Régimen Disciplinario",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "82",
+          "encabezado": null,
+          "texto_principal": "Independientemente de las sanciones previstas en otras leyes aplicables a los funcionarios o funcionarias públicos en razón del desempeño de sus cargos, éstos quedarán sujetos a las siguientes sanciones disciplinarias:",
+          "numerales_literales": [
+            "1. Amonestación escrita.",
+            "2. Destitución."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "83",
+          "encabezado": null,
+          "texto_principal": "Serán causales de amonestación escrita:",
+          "numerales_literales": [
+            "1. Negligencia en el cumplimiento de los deberes inherentes al cargo.",
+            "2. Perjuicio material causado por negligencia manifiesta a los bienes de la República, siempre que la gravedad del perjuicio no amerite su destitución.",
+            "3. Falta de atención debida al público.",
+            "4. Irrespeto a los superiores, subalternos o compañeros.",
+            "5. Inasistencia injustificada al trabajo durante dos días hábiles dentro de un lapso de treinta días continuos.",
+            "6. Realizar campaña o propaganda de tipo político o proselitista, así como solicitar o recibir dinero u otros bienes para los mismos fines, en los lugares de trabajo.",
+            "7. Recomendar a personas determinadas para obtener beneficios o ventajas en la función pública."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "84",
+          "encabezado": null,
+          "texto_principal": "Si se hubiere cometido un hecho que amerite amonestación escrita, el supervisor o supervisora inmediato notificará por escrito el hecho que se le imputa y demás circunstancia del caso al funcionario o funcionaria público para que, dentro de los cinco días hábiles siguientes, formule los alegatos que tenga a bien esgrimir en su defensa.\n\nCumplido el procedimiento anterior, el supervisor o supervisora emitirá un informe que contendrá una relación sucinta de los hechos y de las conclusiones a que haya llegado. Si se comprobare la responsabilidad del funcionario o funcionaria público, el supervisor o supervisora aplicará la sanción de amonestación escrita.\n\nEn el acto administrativo respectivo deberá indicarse el recurso que pudiere intentarse contra dicho acto y la autoridad que deba conocer del mismo. Se remitirá copia de la amonestación a la oficina de recursos humanos respectiva.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "85",
+          "encabezado": null,
+          "texto_principal": "Contra la amonestación escrita el funcionario o funcionaria público podrá interponer, con carácter facultativo, recurso jerárquico, sin necesidad del ejercicio previo del recurso de reconsideración, para ante la máxima autoridad del órgano o ente de la Administración Pública, dentro del plazo de quince días hábiles contados a partir de la fecha de su notificación. La máxima autoridad deberá decidir el recurso dentro del término de treinta días hábiles siguientes a su recepción. El vencimiento del término sin que la máxima autoridad se haya pronunciado sobre el recurso jerárquico interpuesto se considerará como silencio administrativo negativo y el interesado podrá ejercer ante el tribunal competente el recurso contencioso administrativo funcionarial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "86",
+          "encabezado": null,
+          "texto_principal": "Serán causales de destitución:",
+          "numerales_literales": [
+            "1. Haber sido objeto de tres amonestaciones escritas en el transcurso de seis meses.",
+            "2. El incumplimiento reiterado de los deberes inherentes al cargo o funciones encomendadas.",
+            "3. La adopción de resoluciones, acuerdos o decisiones declarados manifiestamente ilegales por el órgano competente, o que causen graves daños al interés público, al patrimonio de la Administración Pública o al de los ciudadanos o ciudadanas. Los funcionarios o funcionarias públicos que hayan coadyuvado en alguna forma a la adopción de tales decisiones estarán igualmente incursos en la presente causal.",
+            "4. La desobediencia a las órdenes e instrucciones del supervisor o supervisora inmediato, emitidas por éste en el ejercicio de sus competencias, referidas a tareas del funcionario o funcionaria público, salvo que constituyan una infracción manifiesta, clara y terminante de un precepto constitucional o legal.",
+            "5. El incumplimiento de la obligación de atender los servicios mínimos acordados que hayan sido establecidos en caso de huelga.",
+            "6. Falta de probidad, vías de hecho, injuria, insubordinación, conducta inmoral en el trabajo o acto lesivo al buen nombre o a los intereses del órgano o ente de la Administración Pública.",
+            "7. La arbitrariedad en el uso de la autoridad que cause perjuicio a los subordinados o al servicio.",
+            "8. Perjuicio material severo causado intencionalmente o por negligencia manifiesta al patrimonio de la República.",
+            "9. Abandono injustificado al trabajo durante tres días hábiles dentro del lapso de treinta días continuos.",
+            "10. Condena penal o auto de responsabilidad administrativa dictado por la Contraloría General de la República.",
+            "11. Solicitar o recibir dinero o cualquier otro beneficio, valiéndose de su condición de funcionario o funcionaria público.",
+            "12. Revelación de asuntos reservados, confidenciales o secretos de los cuales el funcionario o funcionaria público tenga conocimiento por su condición de tal.",
+            "13. Tener participación por sí o por interpuestas personas, en firmas o sociedades que estén relacionadas con el respectivo órgano o ente cuando estas relaciones estén vinculadas directa o indirectamente con el cargo que se desempeña.",
+            "14. Haber recibido tres evaluaciones negativas consecutivas, de conformidad con lo previsto en el artículo 58 de esta Ley."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "87",
+          "encabezado": null,
+          "texto_principal": "Las faltas de los funcionarios o funcionarias públicos sancionadas con amonestación escrita prescribirán a los seis meses a partir del momento en que el supervisor inmediato tuvo conocimiento del hecho y no inició el procedimiento correspondiente.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "88",
+          "encabezado": null,
+          "texto_principal": "Las faltas de los funcionarios y funcionarias públicos sancionadas con la destitución, prescribirán a los ocho meses, a partir del momento en que el funcionario o funcionaria público de mayor jerarquía dentro de la respetiva unidad tuvo conocimiento, y no hubiere solicitado la apertura de la correspondiente averiguación administrativa.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO VI. RESPONSABILIDADES Y RÉGIMEN DISCIPLINARIO",
+      "capitulo": "Capítulo III. Procedimiento Disciplinario de Destitución",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "89",
+          "encabezado": null,
+          "texto_principal": "Cuando el funcionario o funcionaria público estuviere presuntamente incurso en una causal de destitución, se procederá de la siguiente manera:",
+          "numerales_literales": [
+            "1. El funcionario o funcionaria público de mayor jerarquía dentro de la respectiva unidad, solicitará a la oficina de recursos humanos la apertura de la averiguación a que hubiere lugar.",
+            "2. La oficina de recursos humanos instruirá el respectivo expediente y determinará los cargos a ser formulados al funcionario o funcionaria público investigado, si fuere el caso.",
+            "3. Una vez cumplido lo establecido en el numeral precedente, la oficina de recursos humanos notificará al funcionario o funcionaria público investigado para que tenga acceso al expediente y ejerza su derecho a la defensa, dejando constancia de ello en el expediente. Si no pudiere hacerse la notificación personalmente, se entregará la misma en su residencia y se dejará constancia de la persona, día y hora en que la recibió. A tal efecto, cuando el funcionario o funcionaria público ingrese a la Administración Pública deberá indicar una sede o dirección en su domicilio, la cual subsistirá para todos los efectos legales ulteriores y en la que se practicarán todas las notificaciones a que haya lugar. Si resultare impracticable la notificación en la forma señalada, se publicará un cartel en uno de los periódicos de mayor circulación de la localidad y, después de transcurridos cinco días continuos, se dejará constancia del cartel en el expediente y se tendrá por notificado al funcionario o funcionaria público.",
+            "4. En el quinto día hábil después de haber quedado notificado el funcionario o funcionaria público, la oficina de recursos humanos le formulará los cargos a que hubiere lugar. En el lapso de cinco días siguientes, el funcionario o funcionaria público consignará su escrito de descargo.",
+            "5. El funcionario o funcionaria público investigado, durante el lapso previo a la formulación de cargos y dentro del lapso para consignar su escrito de descargo, tendrá acceso al expediente y podrá solicitar que le sean expedidas las copias que fuesen necesarias a los fines de la preparación de su defensa, salvo aquellos documentos que puedan ser considerados como reservados.",
+            "6. Concluido el acto de descargo, se abrirá un lapso de cinco días hábiles para que el investigado o investigada promueva y evacue las pruebas que considere conveniente.",
+            "7. Dentro de los dos días hábiles siguientes al vencimiento del lapso de pruebas concedidas al funcionario o funcionaria público, se remitirá el expediente a la Consultoría Jurídica o la unidad similar del órgano o ente a fin de que opine sobre la procedencia o no de la destitución. A tal fin, la Consultoría Jurídica dispondrá de un lapso de diez días hábiles.",
+            "8. La máxima autoridad del órgano o ente decidirá dentro de los cinco días hábiles siguientes al dictamen de la Consultoría Jurídica y notificará al funcionario o funcionaria público investigado del resultado, indicándole en la misma notificación del acto administrativo el recurso jurisdiccional que procediere contra dicho acto, el tribunal por ante el cual podrá interponerlo y el término para su presentación.",
+            "9. De todo lo actuado se dejará constancia escrita en el expediente.El incumplimiento del procedimiento disciplinario a que se refiere este artículo por parte de los titulares de las oficinas de recursos humanos, será causal de destitución."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO VII. MEDIDAS CAUTELARES ADMINISTRATIVAS",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "90",
+          "encabezado": null,
+          "texto_principal": "Cuando para paralizar una investigación judicial o administrativa fuere conveniente, a los fines de la misma, suspender a un funcionario o funcionaria público, la suspensión será con goce de sueldo y tendrá una duración hasta de sesenta días continuos, lapso que podrá ser prorrogado por una sola vez.\n\nLa suspensión con goce de sueldo terminará por revocatoria de la medida, por decisión de sobreseimiento, por absolución en la averiguación o por imposición de una sanción.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "91",
+          "encabezado": null,
+          "texto_principal": "Si a un funcionario le ha sido dictada medida preventiva de privación de libertad, se le suspenderá del ejercicio del cargo sin goce de sueldo. Esta suspensión no podrá tener una duración mayor a seis meses.\n\nEn caso de sentencia absoluta con posterioridad al lapso previsto en este artículo, la Administración reincorporará al funcionario o funcionaria público con la cancelación de los sueldos dejados de percibir durante el lapso en que estuvo suspendido.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO VIII. CONTENCIOSO ADMINISTRATIVO FUNCIONARIAL",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "92",
+          "encabezado": null,
+          "texto_principal": "Los actos administrativos de carácter particular dictados en ejecución de esta Ley por los funcionarios o funcionarias públicos agotarán la vía administrativa. En consecuencia, sólo podrá ser ejercido contra ellos el recurso contencioso administrativo funcional dentro del término previsto en el artículo 94 de esta Ley, a partir de su notificación al interesado, o de su publicación, si fuere el caso, conforme a la Ley Orgánica de Procedimientos Administrativos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "93",
+          "encabezado": null,
+          "texto_principal": "Corresponderá a los tribunales competentes en materia contencioso administrativo funcionarial, conocer y decidir todas las controversias que se susciten con motivo de la aplicación de esta Ley, en particular las siguientes:",
+          "numerales_literales": [
+            "1. Las reclamaciones que formulen los funcionarios o funcionarias públicos o aspirantes a ingresar en la función pública cuando consideren lesionados sus derechos por actos o hechos de los órganos o entes de la Administración Pública.",
+            "2. Las solicitudes de declaratoria de nulidad de las cláusulas de los convenios colectivos."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "94",
+          "encabezado": null,
+          "texto_principal": "Todo recurso con fundamento en esta Ley sólo podrá ser ejercido válidamente dentro de un lapso de tres meses contado a partir del día en que se produjo el hecho que dio lugar a él, o desde el día en que el interesado fue notificado del acto.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "95",
+          "encabezado": null,
+          "texto_principal": "Las controversias que se susciten con motivo de la aplicación de la presente Ley se iniciarán a través del recurso contencioso administrativo funcional, el cual consiste en una querella escrita en la que el interesado o interesada deberá indicar en forma breve, inteligible y precisa:",
+          "numerales_literales": [
+            "1. La identificación del accionante y de la parte accionada.",
+            "2. El acto administrativo, la cláusula de la convención colectiva cuya nulidad se solicita a los hechos que afecten al accionante, si tal fuere el caso.",
+            "3. Las pretensiones pecuniarias, si fuere el caso, las cuales deberán especificarse con la mayor claridad y alcance.",
+            "4. Las razones y fundamentos de la pretensión, sin poder explanarlos a través de consideraciones doctrinales. Los procedentes jurisprudenciales podrán alegarse sólo si los mismos fueren claros y precisos y aplicables con exactitud a la situación de hecho planteada. En ningún caso se transcribirán literalmente los artículos de los textos normativos no las sentencias en su integridad.",
+            "5. Los instrumentos en que se fundamente la pretensión, esto es, aquéllos de los cuales se derive inmediatamente el derecho deducido. Estos instrumentos deberán producirse con la querella.",
+            "6. Lugar donde deberán practicarse las citaciones y notificaciones.",
+            "7. Nombres y apellidos del mandatario o mandataria si fuere el caso. En tal supuesto deberá consignarse junto con la querella el poder correspondiente.",
+            "8. Cualesquiera otras circunstancias que, de acuerdo con la naturaleza de la pretensión, sea necesario poner en conocimiento del juez o jueza."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "96",
+          "encabezado": null,
+          "texto_principal": "Las querellas que se extiendan en consideraciones doctrinales y jurisprudenciales que se reputan conocidas por el juez o la jueza, las que sean ininteligibles o repetitivas de hechos o circunstancias, las que transcriban el acto administrativo que se acompaña o que sean tan extensas de forma tal que el juez o la jueza evidenciare que por estas causas se podrá producir un retardo en la administración de justicia, serán devueltas al accionante dentro de los tres días de despacho siguiente a su presentación, a los fines de que sean reformuladas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "97",
+          "encabezado": null,
+          "texto_principal": "La querella podrá ser consignada ante cualquier juez o jueza de Primera Instancia o de municipio, quien deberá remitirla dentro de los tres días de despacho siguientes a su recepción, al tribunal competente. En este supuesto el lapso para la devolución, de ser el caso, se contará a partir del día de la recepción de la querella por parte del tribunal competente.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "98",
+          "encabezado": null,
+          "texto_principal": "Al recibir la querella, bien sea en su primera oportunidad si se encuentra ajustada a la ley, o bien después de haber sido reformulada, el tribunal competente la admitirá dentro de los tres días de despacho siguientes, si no estuviese incursa en algunas de las causales previstas para su inadmisión en la Ley Orgánica de la Corte Suprema de Justicia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "99",
+          "encabezado": null,
+          "texto_principal": "Admitida la querella, dentro de los dos días de despacho siguientes el tribunal solicitará el expediente administrativo al Procurador o Procuradora General de la República, al Procurador o Procuradora General del estado, al Síndico Procurador Municipal o al representante legal del instituto autónomo nacional, estatal o municipal.\n\nEn esa misma oportunidad el tribunal conminará a la parte accionada a dar contestación a la querella dentro de un plazo de quince días de despacho a partir de su citación, la cual podrá tener lugar por oficio con aviso de recibo o por correo certificado.\n\nA la citación el juez o jueza deberá acompañar copia certificada de la querella y de todos los anexos de la misma. Citada la parte accionada conforme a lo dispuesto anteriormente, las partes se entenderán a derecho, por lo cual no será necesario una nueva notificación para los subsiguientes actos del proceso, salvo que así lo determine la ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "100",
+          "encabezado": null,
+          "texto_principal": "A la contestación de la querella se le aplicarán las mismas disposiciones previstas para la querella, en cuanto fuere posible, pero en ningún caso la contestación de la querella se devolverá.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "101",
+          "encabezado": null,
+          "texto_principal": "Todas las pretensiones de la parte accionante y las defensas de la accionada serán resueltas en la sentencia definitiva, dejando a salvo lo previsto en el artículo 98 de esta Ley, respecto a la admisión de la querella.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "102",
+          "encabezado": null,
+          "texto_principal": "Si la parte accionada no diere contestación a la querella dentro del plazo previsto, la misma se entenderá contradicha en todas sus partes en caso de que la parte accionada gozarse de este privilegio.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "103",
+          "encabezado": null,
+          "texto_principal": "Vencido el plazo de quince días de despacho para la contestación, haya tenido o no lugar la misma, el tribunal fijará en uno de los cinco días de despacho siguientes, la hora para que tenga lugar la audiencia preliminar.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "104",
+          "encabezado": null,
+          "texto_principal": "En la audiencia preliminar el juez o jueza podrá de manifiesto a las partes los términos en que, en su concepto, ha quedado trabada la litis. Las partes podrán formular cualesquiera consideraciones al respecto, las cuales podrán ser acogidas por el juez o jueza. A su vez, éste podrá formular preguntas a las mismas a los fines de aclarar situaciones dudosas en cuanto a los extremos de la controversia.\n\nEn la misma audiencia, el juez o jueza deberá llamar a las partes a conciliación, ponderado con la mayor objetividad la situación procesal de cada una de ellas. Igualmente, podrá el juez o jueza fijar una nueva oportunidad para la continuación de la audiencia preliminar. En ningún caso, la intervención del juez o jueza en esta audiencia podrá dar lugar a su inhibición o recusación, pues se entiende que obra en pro de una justicia expedita y eficaz.\n\nDe producirse la conciliación, se dará por concluido el proceso.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "105",
+          "encabezado": null,
+          "texto_principal": "Las partes, dentro de los cinco días de despacho siguientes a la audiencia preliminar, sólo si alguna de las mismas solicita en esa oportunidad la apertura del lapso probatorio, deberán acompañar las que no requieran evacuación y promover aquéllas que la requieran.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "106",
+          "encabezado": null,
+          "texto_principal": "La evacuación de las pruebas tendrá lugar dentro de los diez días de despacho siguientes al vencimiento de lapso previsto en el artículo anterior, más el término de distancia para las pruebas que hayan de evacuarse fuera de la sede del tribunal, el cual se calculará a razón de un día por cada doscientos kilómetros o fracción, pero que no excederán de diez días consecutivos. El juez o jueza solamente podrá comisionar para las pruebas que hayan de evacuarse fuera de la sede del tribunal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "107",
+          "encabezado": null,
+          "texto_principal": "Vencido el lapso probatorio, el juez o jueza fijará uno de los cinco días de despacho siguientes para que tenga lugar la audiencia definitiva. La misma la declarará abierta el juez o la jueza, quien la dirige. Al efecto, dispondrá de potestades disciplinarias para asegurar el orden y la mejor celebración de la misma.\n\nLas partes harán uso del derecho de palabra para defender sus posiciones. Al respecto, el tribunal fijará la duración de cada intervención. Además, podrá de nuevo interrogar a las partes sobre algún aspecto de la controversia y luego se retirará para estudiar su decisión definitiva, cuyo dispositivo será dictado en la misma audiencia definitiva, salvo que la complejidad del asunto exija que la misma sea dictada dentro de los cinco días de despacho siguientes a dicha audiencia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "108",
+          "encabezado": null,
+          "texto_principal": "El Juez o Jueza, dentro de los diez días de despacho siguientes al vencimiento del lapso previsto en el único aparte del artículo anterior, dictará sentencia escrita sin narrativa y, menos aún con transcripciones de actas, documentos, demás actos del proceso o citas doctrinales, precisando en forma clara, breve y concisa los extremos de la litis y los motivos de hecho y de derecho de la decisión, pronunciándose sobre cada uno de esos extremos con fundamento en las pruebas aportadas, si fuere el caso y sin poder extender su fallo en consideraciones doctrinales o citas jurisprudenciales.\n\nEl Juez o Jueza, en la sentencia, podrá declarar inadmisible el recurso por cualquiera de las causales establecidas en la Ley Orgánica de la Corte Suprema de Justicia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "109",
+          "encabezado": null,
+          "texto_principal": "El juez o jueza, en cualquier estado del proceso podrá, a solicitud de las partes, dictar medidas cautelares si considerase que las mismas son necesarias para evitar perjuicios irreparables o de difícil reparación por la definitiva, tomando en consideración las circunstancias del caso.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "110",
+          "encabezado": null,
+          "texto_principal": "Contra las decisiones dictadas por los jueces o juezas superiores con competencia para conocer del recurso contencioso administrativo funcional, podrá interponerse apelación en el término de cinco días de despacho contado a partir de cuándo se consigne por escrito la decisión definitiva, para ante la Corte Primera de lo Contencioso Administrativo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "111",
+          "encabezado": null,
+          "texto_principal": "En las materias no reguladas expresamente en este Título, se aplicará supletoriamente el procedimiento breve previsto en el Código de Procedimiento Civil, siempre que sus normas no resulten incompatibles con lo dispuesto en esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "DISPOSICIONES TRANSITORIAS",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Primera",
+          "encabezado": null,
+          "texto_principal": "Mientras se dicte la ley que regule la jurisdicción contencioso administrativa, son competentes en primera instancia para conocer de las controversias a que se refiere el artículo 93 de esta Ley, los jueces o juezas superiores con competencia en lo contencioso administrativo en el lugar donde hubieren ocurrido los hechos, donde se hubiere dictado el acto administrativo, o donde funcione el órgano o ente de la Administración Pública que dio lugar a la controversia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Segunda",
+          "encabezado": null,
+          "texto_principal": "Mientras se dicta la ley que regule la jurisdicción contencioso administrativa, y a los fines de una mayor celeridad en la decisiones de los jueces en materia contencioso administrativo funcionarial, los actuales integrantes del Tribunal de Carrera Administrativa pasarán a constituir los jueces superiores quinto, sexto y séptimo de lo contencioso administrativo de la región capital, con sede en Caracas, dejando a salvo las atribuciones que le corresponda a los órganos de dirección del Poder Judicial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Tercera",
+          "encabezado": null,
+          "texto_principal": "Mientras se dicte la ley que regule la jurisdicción contencioso administrativa, el procedimiento a seguirse en segunda instancia será el previsto en la Ley Orgánica de la Corte Suprema de Justicia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Cuarta",
+          "encabezado": null,
+          "texto_principal": "Los expedientes que cursen ante el Tribunal de la Carrera Administrativa serán distribuidos en un lapso máximo de treinta días continuos, conforme a la competencia territorial a que se refiere la Disposición Transitoria Primera de esta Ley. Durante este lapso se entenderán paralizados los procesos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Quinta",
+          "encabezado": null,
+          "texto_principal": "Los procesos en curso ante el Tribunal de la Carrera Administrativa se continuarán sustanciando por los juzgados superiores de lo contencioso administrativo que resulten competentes.\n\nLos procesos que se encuentren actualmente en curso serán decididos conforme a la norma sustantiva y adjetiva prevista en la Ley de Carrera Administrativa.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "DISPOSICIÓN DEROGATORIA",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Derogatoria",
+          "identificador": "Única",
+          "encabezado": null,
+          "texto_principal": "Al entrar en vigencia la presente Ley quedarán derogados la Ley de Carrera Administrativa del 3 de septiembre de 1970, publicada en la Gaceta Oficial de la República de Venezuela N 1.428 Extraordinario de fecha 4 de septiembre de 1970, reformada por el Decreto N 914 del 13 de mayo de 1975, publicado en la Gaceta Oficial de la República de Venezuela N 1.745 Extraordinario del 23 de mayo de 1975; el Decreto N 211 del 2 de julio de 1974, publicado en la Gaceta Oficial de la República de Venezuela N 30.438 de fecha 2 de julio de 1974; el Reglamento sobre los Sindicatos de Funcionarios Públicos dictado mediante Decreto N 585 del 28 de abril de 1971, publicado en la Gaceta Oficial de la República de Venezuela N 29.497 del 30 de abril de 1971 y cualesquiera otras disposiciones que colidan con la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Derogatoria",
+          "identificador": "Única",
+          "encabezado": null,
+          "texto_principal": "La presente Ley entrará en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.\n\nDada, firmada y sellada en el Palacio Federal Legislativo, sede de la Asamblea Nacional, en Caracas, a los nueve días del mes de julio de dos mil dos. Año 192 de la Independencia y 143 de la Federación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:http/http.dart' as http;
@@ -22,6 +21,8 @@ class JurisprudenciaService {
     required String tipoFiltro, // 'sentencias', 'jurisprudencias', 'resoluciones'
     String? salaFiltro,
     int? anioFiltro,
+    int? mesFiltro,
+    int? diaFiltro,
     int limit = 50,
   }) async {
     try {
@@ -43,8 +44,15 @@ class JurisprudenciaService {
         query = query.eq('sala', salaFiltro.toLowerCase());
       }
 
-      // Filtro por año
-      if (anioFiltro != null) {
+      // Filtro por año/mes/día
+      if (diaFiltro != null && anioFiltro != null && mesFiltro != null) {
+        final m = mesFiltro.toString().padLeft(2, '0');
+        final d = diaFiltro.toString().padLeft(2, '0');
+        query = query.ilike('fecha', '$anioFiltro-$m-$d%');
+      } else if (mesFiltro != null && anioFiltro != null) {
+        final m = mesFiltro.toString().padLeft(2, '0');
+        query = query.ilike('fecha', '$anioFiltro-$m%');
+      } else if (anioFiltro != null) {
         query = query.ilike('fecha', '%$anioFiltro%');
       }
 
@@ -54,9 +62,19 @@ class JurisprudenciaService {
         final terminosExpandidos = await _expandirConsultaSemantica(textoBusqueda);
         debugPrint('🧠 Términos expandidos: $terminosExpandidos');
 
-        // Construir búsqueda fulltext con todos los términos (OR)
-        final tsQuery = terminosExpandidos.join(' | ');
-        query = query.textSearch('search_vector', tsQuery, config: 'spanish', type: TextSearchType.plain);
+        // Construir búsqueda fulltext con todos los términos (OR).
+        // 'websearch' interpreta "a OR b" como disyunción (antes se usaba
+        // 'plain', que hacía AND de todos los términos y devolvía casi nada).
+        final tsQuery = terminosExpandidos
+            .map((t) => t.trim())
+            .where((t) => t.isNotEmpty)
+            .join(' OR ');
+        query = query.textSearch(
+          'search_vector',
+          tsQuery,
+          config: 'spanish',
+          type: TextSearchType.websearch,
+        );
       }
 
       // Orden descendente por fecha y límite
@@ -93,6 +111,8 @@ class JurisprudenciaService {
     String? tipo,
     String? sala,
     int? anio,
+    int? mes,
+    int? dia,
     int limit = 50,
   }) async {
     // Convertir tipo a tipoFiltro
@@ -110,8 +130,57 @@ class JurisprudenciaService {
       tipoFiltro: tipoFiltro,
       salaFiltro: sala,
       anioFiltro: anio,
+      mesFiltro: mes,
+      diaFiltro: dia,
       limit: limit,
     );
+  }
+
+  /// Meses (1-12) que tienen al menos una sentencia en [anio].
+  Future<List<int>> obtenerMesesDisponibles(int anio) async {
+    try {
+      final resp = await _supabase
+          .from('documentos')
+          .select('fecha')
+          .ilike('fecha', '$anio-%')
+          .limit(10000);
+      final meses = <int>{};
+      for (final r in resp as List) {
+        final f = r['fecha'] as String?;
+        if (f != null && f.length >= 7) {
+          final m = int.tryParse(f.substring(5, 7));
+          if (m != null) meses.add(m);
+        }
+      }
+      return meses.toList()..sort();
+    } catch (e) {
+      debugPrint('❌ Error obteniendo meses: $e');
+      return [];
+    }
+  }
+
+  /// Días (1-31) que tienen al menos una sentencia en [anio]/[mes].
+  Future<List<int>> obtenerDiasDisponibles(int anio, int mes) async {
+    try {
+      final prefijo = '$anio-${mes.toString().padLeft(2, '0')}-';
+      final resp = await _supabase
+          .from('documentos')
+          .select('fecha')
+          .ilike('fecha', '$prefijo%')
+          .limit(10000);
+      final dias = <int>{};
+      for (final r in resp as List) {
+        final f = r['fecha'] as String?;
+        if (f != null && f.length >= 10) {
+          final d = int.tryParse(f.substring(8, 10));
+          if (d != null) dias.add(d);
+        }
+      }
+      return dias.toList()..sort();
+    } catch (e) {
+      debugPrint('❌ Error obteniendo días: $e');
+      return [];
+    }
   }
 
   /// Obtener lista de años disponibles (generada del 2000 al año actual)
@@ -123,6 +192,11 @@ class JurisprudenciaService {
   /// Expande una consulta de búsqueda usando DeepSeek para obtener términos relacionados
   /// Ejemplo: "matar" → ["matar", "homicidio", "asesinato", "muerte", "occiso"]
   Future<List<String>> _expandirConsultaSemantica(String consulta) async {
+    // Si la consulta trae un número (artículo), NO expandir: la expansión
+    // añade ruido (ej. 'homicidio 406' -> 'hurto 451') porque el número es ambiguo.
+    if (RegExp(r'\d').hasMatch(consulta)) {
+      return [consulta];
+    }
     // Verificar caché
     final cacheKey = consulta.toLowerCase().trim();
     if (_cacheExpansiones.containsKey(cacheKey)) {
@@ -337,7 +411,14 @@ class JurisprudenciaService {
     }
   }
 
+  /// Descarga el texto completo de una sentencia desde su URL pública
+  /// (compatible Android, iOS y Web).
+  Future<String> descargarTextoCompleto(String urlTxt) =>
+      _descargarTextoR2(urlTxt);
+
   /// Descargar texto completo desde URL (R2 o cualquier URL pública)
+  ///
+  /// Usa el paquete `http` (no `dart:io`) para ser compatible con Web.
   Future<String> _descargarTextoR2(String urlTxt) async {
     if (urlTxt.isEmpty || urlTxt == 'null') {
       debugPrint('⚠️ URL txt vacía');
@@ -347,14 +428,17 @@ class JurisprudenciaService {
     try {
       debugPrint('📥 Descargando texto desde: $urlTxt');
       
-      // Usar http para descargar directamente
       final uri = Uri.parse(urlTxt);
-      final client = HttpClient();
-      final request = await client.getUrl(uri);
-      final response = await request.close();
+      final response = await http.get(uri).timeout(
+        const Duration(seconds: 30),
+        onTimeout: () {
+          debugPrint('⏰ Timeout descargando R2');
+          return http.Response('', 408);
+        },
+      );
       
       if (response.statusCode == 200) {
-        final texto = await response.transform(utf8.decoder).join();
+        final texto = utf8.decode(response.bodyBytes);
         debugPrint('✅ Texto descargado: ${texto.length} caracteres');
         return texto;
       }

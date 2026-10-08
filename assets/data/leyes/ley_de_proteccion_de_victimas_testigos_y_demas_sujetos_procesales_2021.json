@@ -1,0 +1,1223 @@
+{
+ "id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021",
+ "codigo": "LPVT",
+ "nombre": "Ley de Protección de Víctimas, Testigos y demás Sujetos Procesales",
+ "rama": "Derecho Constitucional y DDHH",
+ "anio": "2021",
+ "archivo": "20. Ley de Protección de Víctimas, Testigos y demás Sujetos Procesales (2021).docx",
+ "orden": 29,
+ "num_articulos": 49,
+ "num_secciones": 5,
+ "preambulo": null,
+ "secciones": [
+  {
+   "id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S1",
+   "tipo": "CAPITULO",
+   "numero": "I",
+   "titulo": "Disposiciones Generales",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 1,
+   "disposicion": false
+  },
+  {
+   "id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S2",
+   "tipo": "CAPITULO",
+   "numero": "II",
+   "titulo": "Protección y Asistencia",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 2,
+   "disposicion": false
+  },
+  {
+   "id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S3",
+   "tipo": "CAPITULO",
+   "numero": "III",
+   "titulo": "Medidas de Protección",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 3,
+   "disposicion": false
+  },
+  {
+   "id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "tipo": "CAPITULO",
+   "numero": "IV",
+   "titulo": "Procedimiento para la aplicación de las Medidas de Protección",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 4,
+   "disposicion": false
+  },
+  {
+   "id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S5",
+   "tipo": "CAPITULO",
+   "numero": "V",
+   "titulo": "Oficina de Atención a la Víctima en materia de Derechos",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 5,
+   "disposicion": false
+  }
+ ],
+ "articulos": [
+  {
+   "numero_texto": "1",
+   "numero": 1,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Esta Ley tiene por objeto proteger los derechos e intereses de las víctimas, testigos y demás sujetos procesales, así como regular las medidas de protección, en cuanto a su ámbito de aplicación, modalidades y procedimiento."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Competencia"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "2",
+   "numero": 2,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son competentes para la aplicación de la presente Ley, el Ministerio Público y los tribunales respectivos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Medidas"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "3",
+   "numero": 3,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las autoridades competentes para la aplicación de la presente Ley tienen el deber de instrumentar todo tipo de medidas para el cumplimiento de la misma. Las medidas podrán ser informales, administrativas, judiciales y de cualquier otro carácter en procura de garantizar los derechos de las personas protegidas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Destinatarias y destinatarios de la protección"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "4",
+   "numero": 4,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son destinatarias y destinatarios de la protección prevista en esta Ley, todas las personas que corran peligro por causa o con ocasión de su intervención actual, futura o eventual, en el proceso penal, por ser víctima directa o indirecta, testigo, experta o experto, funcionaria o funcionario del Ministerio Público o de los órganos de policía, y demás sujetos, principales y secundarios, que intervengan en ese proceso."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Las medidas de protección pueden extenderse a los familiares, por parentesco dentro del cuarto grado de consanguinidad o segundo de afinidad, y a quienes por su relación inmediata de carácter afectivo, con quienes se señalan en el párrafo anterior, así lo requieran."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Víctimas"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "5",
+   "numero": 5,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se consideran víctimas directas, a los efectos de la presente Ley, las personas que individual o colectivamente hayan sufrido cualquier tipo de daños físicos o psicológicos, pérdida financiera o menoscabo sustancial de sus derechos fundamentales, como consecuencia de acciones u omisiones que violen la legislación penal vigente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "De igual forma, se consideran víctimas indirectas a las y los familiares dentro del cuarto grado de consanguinidad o segundo de afinidad; o personas a cargo que tengan relación inmediata con la víctima directa, y a las personas que hayan sufrido daños al intervenir para asistir a la víctima en peligro o para prevenir la victimización."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Víctimas especialmente vulnerables"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "6",
+   "numero": 6,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las ejecutoras o ejecutores de lo dispuesto en la presente Ley deben prestar especial atención a las personas adultas mayores, con discapacidad, niñas, niños y adolescentes y personas víctimas de delitos sexuales o de violencia intrafamiliar."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Los pueblos y comunidades indígenas víctimas de delito, individual o colectivamente, deben estar protegidos siguiendo sus propias normas de administración de justicia, así como sus diferencias socio-culturales, cosmovisión y patrones de asentamiento sobre las cuales se encuentre la jurisdicción especial indígena que le corresponde. La funcionaria o funcionario que le compete conocer del caso deberá solicitar la opinión de las autoridades propias de estos pueblos y comunidades en base a sus tradiciones ancestrales, así como el respectivo informe socio-antropológico que dé cuenta de la visión intercultural que debe prevalecer y el servicio de intérprete en todo el proceso penal."
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "7",
+   "numero": 7,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La protección y asistencia a que se refiere esta Ley deben proporcionarla los órganos jurisdiccionales competentes, los órganos de policía de investigaciones penales, los órganos con competencia especial en las investigaciones penales y los órganos de apoyo a la investigación penal, en sus respectivos ámbitos de competencia, a solicitud del Ministerio Público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Todas las entidades, organismos y dependencias públicas o privadas, según el caso, quedan obligadas a prestar la colaboración que les sea exigida por el Ministerio Público o el órgano jurisdiccional competente, para la realización de las medidas de protección previstas en la presente Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Colaboración"
+    }
+   ],
+   "seccion_label": "CAPITULO II: Protección y Asistencia"
+  },
+  {
+   "numero_texto": "8",
+   "numero": 8,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio Público sin perjuicio de gestionar ante otras autoridades competentes las medidas que considere necesarias para proteger a las víctimas, testigos y demás sujetos procesales, y para asegurar su salud, seguridad y bienestar, incluyendo su estado psicológico y adaptación social mientras persista el peligro, solicitará al Ejecutivo Nacional por órgano de los ministerios competentes su colaboración para garantizar de manera efectiva, entre otras, las medidas siguientes:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Proveer la seguridad necesaria para la protección de la integridad física de la persona protegida, y en su caso, de su grupo familiar conviviente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Proveer la documentación necesaria para el establecimiento de una nueva identidad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Asistir a la persona en la obtención de un trabajo."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Proveer otros servicios necesarios para asistir a la persona protegida y, en su caso, a su grupo familiar conviviente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Proveer de vivienda o habitación a la persona protegida y, en su caso, a su grupo familiar conviviente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Proveer transporte para el mobiliario y bienes personales de la persona protegida y, en su caso, a su grupo familiar conviviente, en el caso de traslado a una nueva residencia."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Proveer de atención médica y psicológica a la persona protegida y, en su caso, a su grupo familiar conviviente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Prestar el apoyo a la persona protegida, y, en su caso, a su grupo familiar conviviente, a los fines de la educación y facilitación en el sistema educativo con ocasión de algunas de las medidas dictadas en esta Ley, cuando medie el traslado a una nueva residencia."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Prestar el apoyo en lo relativo a las actividades de formación, educación y difusión en todos los aspectos vinculados con la protección de las víctimas, testigos y demás sujetos procesales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Ejecutivo Nacional adoptará los mecanismos correspondientes para que los ministerios competentes lleven a cabo la colaboración prevista en este artículo. Asimismo, velará porque se asignen efectivamente en el presupuesto de los ministerios competentes los recursos financieros que resulten necesarios, previo cumplimiento de los requisitos establecidos en la Ley que regula la materia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Políticas para la protección y asistencia"
+    }
+   ],
+   "seccion_label": "CAPITULO II: Protección y Asistencia"
+  },
+  {
+   "numero_texto": "9",
+   "numero": 9,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Para que la protección prevista en la presente Ley se haga efectiva, las obligadas u obligados a proporcionar protección o asistencia a las víctimas, testigos y demás sujetos procesales, según sea su ámbito de competencia, en coordinación con el Ministerio Público, implementarán las políticas y estrategias necesarias para la atención de las víctimas, testigos y demás sujetos procesales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Celebración de acuerdos"
+    }
+   ],
+   "seccion_label": "CAPITULO II: Protección y Asistencia"
+  },
+  {
+   "numero_texto": "10",
+   "numero": 10,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "A fin de lograr los objetivos de esta Ley, el Ministerio Público está facultado para celebrar los acuerdos, convenios y contratos con personas naturales o jurídicas, públicas o privadas, nacionales o internacionales, que resulten conducentes para favorecer la protección de las víctimas, testigos y demás sujetos procesales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Presupuesto"
+    }
+   ],
+   "seccion_label": "CAPITULO II: Protección y Asistencia"
+  },
+  {
+   "numero_texto": "11",
+   "numero": 11,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los órganos de la Administración Pública harán las previsiones presupuestarias que les permitan el debido cumplimiento de sus obligaciones, debiendo el Estado garantizar dicho presupuesto."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Asistencia médica"
+    }
+   ],
+   "seccion_label": "CAPITULO II: Protección y Asistencia"
+  },
+  {
+   "numero_texto": "12",
+   "numero": 12,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los organismos que prestan servicios médicos públicos en la República Bolivariana de Venezuela deben ayudar o asistir de manera amplia a las víctimas, testigos y demás sujetos procesales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Centros de protección"
+    }
+   ],
+   "seccion_label": "CAPITULO II: Protección y Asistencia"
+  },
+  {
+   "numero_texto": "13",
+   "numero": 13,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio Público tramitará lo conducente para coordinar el establecimiento de los centros de protección que sean necesarios en las distintas circunscripciones judiciales, destinados a resguardar por el tiempo estrictamente necesario a todas aquellas víctimas, testigos y demás sujetos procesales que lo requieran, a objeto de salvaguardar su integridad física o psicológica."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Ejecutivo Nacional y Estadal, deberán colaborar con el Ministerio Público en la obtención de los establecimientos para los centros de protección dentro del ámbito de sus competencias."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Brigadas policiales especiales"
+    }
+   ],
+   "seccion_label": "CAPITULO II: Protección y Asistencia"
+  },
+  {
+   "numero_texto": "14",
+   "numero": 14,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los organismos policiales, en el ámbito de sus competencias, establecerán brigadas especiales para la protección y asistencia de las víctimas, testigos y demás sujetos procesales, a quienes corresponde cumplir las medidas de protección previstas en esta Ley, que hubieren sido solicitadas por el Ministerio Público o el órgano jurisdiccional correspondiente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Línea de emergencia"
+    }
+   ],
+   "seccion_label": "CAPITULO II: Protección y Asistencia"
+  },
+  {
+   "numero_texto": "15",
+   "numero": 15,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ejecutivo Nacional, a través de la Oficina de Coordinación Policial del ministerio con competencia en materia de seguridad ciudadana, establecerá y mantendrá en operación las veinticuatro horas del día una línea de emergencia, con personal especialmente capacitado para tales fines, al servicio de las víctimas, testigos y demás sujetos procesales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En los casos establecidos por esta Ley, toda víctima de delito, testigos o demás sujetos procesales debe ser orientada desde el comienzo del proceso penal por las operadoras u operadores del sistema de administración de justicia, acerca de la existencia y utilidad de esta línea de emergencia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "De las llamadas recibidas a través de esta línea se notificará al Ministerio Público mensualmente por conducto de la Dirección de Fiscalías Superiores."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Gratuidad"
+    }
+   ],
+   "seccion_label": "CAPITULO II: Protección y Asistencia"
+  },
+  {
+   "numero_texto": "16",
+   "numero": 16,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Todo el apoyo, servicio o protección que se proporcione a las víctimas de delito, testigos y demás sujetos procesales será gratuito, por lo que aquellas instituciones a quienes corresponda proporcionarlo, no podrán exigir remuneración alguna por ello."
+    }
+   ],
+   "seccion_label": "CAPITULO II: Protección y Asistencia"
+  },
+  {
+   "numero_texto": "17",
+   "numero": 17,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las medidas a las que se refiere la presente Ley serán solicitadas por el Ministerio Público, ante el órgano jurisdiccional correspondiente, previo análisis de los siguientes aspectos:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. La presunción fundamentada de un peligro cierto para la integridad de una persona, a consecuencia de su colaboración o declaración relevante en una causa penal."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. La viabilidad de la aplicación de las medidas especiales de protección."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. La adaptabilidad de la persona a las medidas especiales de protección."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. El interés público en la investigación y en el juzgamiento del hecho en razón de su grado de afectación social; o la validez, verosimilitud e importancia del aporte de la persona cuya protección se requiere para la investigación y juicio penal correspondiente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Trámite de las medidas de protección"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Medidas de Protección"
+  },
+  {
+   "numero_texto": "18",
+   "numero": 18,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Toda medida de protección debe ser inmediata y efectiva. El trámite para su dictado debe llevarse a cabo respetando estrictamente los principios procesales de celeridad, inmediación, concentración, economía procesal y oralidad."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Provisionalidad de las medidas de protección"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Medidas de Protección"
+  },
+  {
+   "numero_texto": "19",
+   "numero": 19,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Toda medida de protección debe ser impuesta provisionalmente de acuerdo con las particulares necesidades del caso. Ante diversas posibilidades, debe aplicarse la medida que resulte adecuada y que, además, resulte menos lesiva o restrictiva de derechos de terceros."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando por el cambio de las circunstancias que dieron lugar a la medida de protección sea necesario modificarla, se podrá imponer una o más medidas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando las medidas de protección previstas en la presente Ley resulten, por especiales circunstancias, ineficaces, inadecuadas o insuficientes para asegurar los derechos e intereses de la persona protegida, el Ministerio Público debe requerir la aplicación de otras medidas de protección que resulten sustancialmente análogas a las reconocidas expresamente en la presente Ley, mientras sean compatibles con su objeto y fin."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Clases de medidas de protección"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Medidas de Protección"
+  },
+  {
+   "numero_texto": "20",
+   "numero": 20,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las medidas de protección a las que se refiere esta Ley son extraproceso e intraproceso."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Medidas de protección extraproceso"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Medidas de Protección"
+  },
+  {
+   "numero_texto": "21",
+   "numero": 21,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las medidas especiales de protección, cuando las circunstancias lo permitan y lo hagan aconsejable, consistirán en:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. La custodia personal o residencial, bien mediante la vigilancia directa o a través de otras medidas de seguridad, incluso en la residencia de la víctima del delito o sujeto protegida o protegido según sea el caso."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. El alojamiento temporal en lugares reservados o centros de protección."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. El cambio de residencia."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. El suministro de los medios económicos para alojamiento, transporte, alimentos, comunicación, atención sanitaria, mudanza, reinserción laboral, trámites, sistemas de seguridad, acondicionamiento de vivienda y demás gastos indispensables, dentro o fuera del país, mientras la persona beneficiaria se halle imposibilitada de obtenerlos por sus propios medios."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. La asistencia para la reinserción laboral."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. El cambio de identidad consistente en el suministro de documentación que acredite identidad bajo nombre supuesto, a los fines de mantener en reserva la ubicación de la persona protegida y su grupo familiar."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Ordenar al victimaria o victimario, imputada o imputado, o acusada o acusado, a abstenerse de acercarse a cualquier lugar donde se encuentre la víctima, testigos o demás sujetos procesales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Ordenar al victimaria o victimario, imputada o imputado, acusada o acusado, entregar a los órganos de investigaciones científicas, penales y criminalísticas, con carácter temporal, con la suspensión del permiso de porte de arma respectivo, cualquier arma de fuego que posea, cuando a juicio de las autoridades de aplicación dicha arma de fuego pueda ser utilizada por la victimaria o victimario, imputada o imputado o acusada o acusado, para causarle daño a algún sujeto procesal u otra persona que intervenga en el proceso penal."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Cualquier otra medida aconsejable para la protección de las víctimas, testigos y demás sujetos procesales, de conformidad con las leyes de la República."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Medida de Desalojo"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Medidas de Protección"
+  },
+  {
+   "numero_texto": "22",
+   "numero": 22,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando se trate de víctimas de delitos sexuales o de violencia intrafamiliar, el Ministerio Público dispondrá lo necesario a los efectos de que la victimaria o victimario desaloje la casa de habitación que comparte con la víctima, independientemente de quien sea el propietario de la vivienda y del derecho que se reclame sobre la misma."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Del mismo modo, se podrá prohibir que en la misma se introduzcan armas o se mantengan éstas en el domicilio en común, pudiendo el órgano jurisdiccional ordenar su retención, a fin de garantizar que no se utilicen para intimidar, amenazar ni causar daño."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Medidas de protección intraproceso"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Medidas de Protección"
+  },
+  {
+   "numero_texto": "23",
+   "numero": 23,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Entre las medidas de protección generales y necesarias que el Ministerio Público solicitará, una vez llenos los extremos del artículo 16 de la presente Ley, se encuentran las siguientes:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Preservar en el proceso penal de la identidad de la víctima o los sujetos procesales, su domicilio, profesión y lugar de trabajo, sin perjuicio de la oposición a la medida que asiste a la defensa de la imputada o imputado, acusada o acusado."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Que no consten en las diligencias que se practiquen, su nombre, apellidos, domicilio, lugar de trabajo y profesión, ni cualquier otro dato que pudiera servir para la identificación de los mismos, para cuyo control podría adoptarse alguna clase de numeración, clave o mecanismo automatizado."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Que comparezcan para la práctica de cualquier diligencia, utilizando al procedimiento que imposibilite su identificación visual normal."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Que se fije como domicilio, a efectos de citaciones y notificaciones, la sede del órgano judicial de que se trate, quien las hará llegar reservadamente a su destinatario."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Cualquier otra medida aconsejable para la protección de las víctimas, testigos y demás sujetos procesales, de conformidad con las leyes de la República."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Protección policial"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Medidas de Protección"
+  },
+  {
+   "numero_texto": "24",
+   "numero": 24,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio Público podrá solicitar a la autoridad judicial competente que se le conceda protección policial a las víctimas, testigos y demás sujetos procesales que la ameriten. Esta protección policial podrá ser acordada por la autoridad judicial competente en cualquiera de las etapas del proceso penal."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Otras medidas de protección"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Medidas de Protección"
+  },
+  {
+   "numero_texto": "25",
+   "numero": 25,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio Público, el órgano jurisdiccional y los órganos policiales dentro del ámbito de sus competencias, tomarán las medidas que consideren pertinentes, a fin de evitar que se capten imágenes por cualquier mecanismo o para prevenir que imágenes tomadas con anterioridad se utilicen para identificar a las víctimas, testigos y demás sujetos procesales que se encuentren bajo el régimen de protección previsto en esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En tales casos, la autoridad judicial competente, bien de oficio o a solicitud del Ministerio Público, ordenará la retención y retiro del material fotográfico, cinematográfico, videográfico o de cualquier otro tipo, a quienes contravinieren esta prohibición. Cuando alguna persona sea sorprendida tomando la imagen de cualesquiera de los sujetos sometidos a la medida de protección, el Ministerio Público y las autoridades policiales quedan facultados para proceder de manera inmediata a la citada retención, de todo lo cual notificarán, con la urgencia del caso, a la autoridad judicial por conducto del Ministerio Público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Dicho material será devuelto a la persona a la que se le hubiere retenido, una vez comprobado que no existen elementos de riesgo que permitan identificar a las víctimas, testigos y demás sujetos procesales. En caso contrario, la autoridad judicial correspondiente ordenará la destrucción o resguardo de tales materiales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Traslado de las víctimas, testigos y demás sujetos procesales"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Medidas de Protección"
+  },
+  {
+   "numero_texto": "26",
+   "numero": 26,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las víctimas, testigos y demás sujetos procesales pueden solicitarle a la o el fiscal del Ministerio Público o al Fiscal Superior de la correspondiente circunscripción judicial, que sean conducidos a las dependencias judiciales al lugar donde deba practicarse alguna diligencia, o a su domicilio, en vehículos oficiales o con custodia, siempre que existan circunstancias que hagan presumir que la vida e integridad física de éstos se encuentren en situación de peligro."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La solicitud que realicen las víctimas, testigos y demás sujetos procesales debe ser remitida por el fiscal del Ministerio Público receptor al Fiscal Superior correspondiente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En tales casos, la autoridad judicial competente y durante el tiempo que permanezcan en dichas dependencias les facilitará a las víctimas, testigos y demás sujetos procesales un local reservado para su exclusivo uso convenientemente custodiado, y asignará las funcionarias o funcionarios policiales que considere necesarios, a los fines de dar cumplimiento efectivo a la medida."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Otros medios de protección"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Medidas de Protección"
+  },
+  {
+   "numero_texto": "27",
+   "numero": 27,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando las circunstancias así lo justifiquen, se permitirá que durante el desarrollo del juicio oral y público se utilicen sistemas de videoconferencias, sistemas televisivos de circuito cerrado, exposiciones grabadas en cinta de video o cualquier otro sistema de grabación o transmisión confiable, en procura de proteger a los sujetos procesales y a cualquier interviniente llamado al proceso, garantizando siempre el derecho a la defensa y el contradictorio."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Condiciones para el mantenimiento de las medidas"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Medidas de Protección"
+  },
+  {
+   "numero_texto": "28",
+   "numero": 28,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Es condición imprescindible para que se acuerde alguna de las medidas de asistencia y protección previstas en esta Ley, la aceptación por escrito, suscrita por la beneficiaria o beneficiario de la medida, o alguna alterna si ésta o éste presenta discapacidad, ante el Ministerio Público, acerca de su disposición de cumplir con lo siguiente:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Mantener absoluta reserva y confidencialidad respecto de la situación de protección y de las medidas adoptadas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Someterse, en caso de ser necesario, a los exámenes médicos, psicológicos, físicos y socio-ambientales que permitan evaluar su capacidad de adaptación a las medidas que fuera necesario adoptar."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Cambiar de residencia cada vez que sea necesario y aceptar el centro de protección que se la asigne."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Abstenerse de concurrir a lugares de probable riesgo o más allá de la capacidad de alcance operativo del personal asignado para la protección."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Respetar los límites impuestos por las medidas especiales de protección y las instrucciones que a tal efecto se le impartan."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Cualquier otra condición que el Ministerio Público considere conveniente."
+    }
+   ],
+   "seccion_label": "CAPITULO III: Medidas de Protección"
+  },
+  {
+   "numero_texto": "29",
+   "numero": 29,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio Público, una vez recibido el requerimiento de protección, procederá a elaborar un legajo de trámite reservado, carácter que también revestirán las actuaciones a realizarse en el órgano jurisdiccional y en los ministerios con competencia en materia de seguridad ciudadana, trabajo, vivienda y hábitat, salud y de educación y deportes o, en su caso, en cualquier otro organismo del Estado Nacional que sea convocado a los efectos de esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Oportunidad"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: Procedimiento para la aplicación de las Medidas de Protección"
+  },
+  {
+   "numero_texto": "30",
+   "numero": 30,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las medidas de protección previstas en la presente Ley serán solicitadas por el Ministerio Público desde la fase de investigación y hasta que concluya el proceso, y las mismas serán decretadas por el órgano jurisdiccional correspondiente, determinando las circunstancias de modo, lugar y tiempo en que se ejecutarán; no obstante, la tutela de la víctima, testigos y demás sujetos procesales podrá prorrogarse o acordarse por un tiempo prudencial luego de finalizado el juicio."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En caso de estimarlo pertinente, aun cuando no se hubiere iniciado la investigación, el Ministerio Público solicitará al órgano jurisdiccional que decrete una medida de protección a la víctima del delito o testigos, cuando éstos así lo requieran, a los efectos de garantizar su integridad física y la de sus familiares, con ocasión a la futura presentación de la denuncia o informaciones sobre el hecho punible."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Órgano jurisdiccional competente"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: Procedimiento para la aplicación de las Medidas de Protección"
+  },
+  {
+   "numero_texto": "31",
+   "numero": 31,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La competencia para dictar las medidas de protección previstas en la presente Ley corresponderá, previa solicitud del Ministerio Público, al órgano jurisdiccional competente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Trámite"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: Procedimiento para la aplicación de las Medidas de Protección"
+  },
+  {
+   "numero_texto": "32",
+   "numero": 32,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando respecto de alguno de los sujetos u otro interviniente en el proceso penal exista amenaza, riesgo o peligro inminente de daño en su integridad, libertad, bienes materiales o menoscabo sustancial de los derechos fundamentales, la o el fiscal del Ministerio Público que intervenga en el proceso, previa solicitud oral, escrita del interesado o de oficio, tramitará en forma inmediata la solicitud de protección a la o el Fiscal Superior del Ministerio Público correspondiente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La o el Fiscal Superior podrá sólo si resulta indispensable, realizar una investigación sumaria, previa a la solicitud de protección al órgano jurisdiccional, la cual no podrá exceder los cinco (5) días continuos. Concluida ésta, de considerar procedente la concesión de la medida de protección, la solicitará de inmediato y con indicación de su fundamento, al órgano jurisdiccional correspondiente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Audiencia para oír a la víctima, testigos o demás sujetos"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "procesales"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: Procedimiento para la aplicación de las Medidas de Protección"
+  },
+  {
+   "numero_texto": "33",
+   "numero": 33,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La jueza o juez ante quien se solicite la medida de protección, de estimarlo necesario, podrá fijar una audiencia a celebrarse dentro de las veinticuatro (24) horas siguientes de dictada la medida, donde se escuche a la persona a favor de quien se ha solicitado la aplicación de la medida de protección. En la citada audiencia deberá estar presente un o una representante del Ministerio Público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Concluida la audiencia, el tribunal deberá dictar su decisión inmediatamente o, de manera excepcional, si la complejidad del asunto así lo exige, en un plazo no mayor de veinticuatro (24) horas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Decisión"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: Procedimiento para la aplicación de las Medidas de Protección"
+  },
+  {
+   "numero_texto": "34",
+   "numero": 34,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La jueza o el juez ante quien se hubiere solicitado la medida de protección, en atención al grado de riesgo y peligro, acorde con la correcta elegibilidad para la protección, y de conformidad con lo previsto en esta Ley, decretará la medida solicitada mediante decisión motivada, con indicación expresa de lo siguiente:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Fecha y hora de la decisión."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Datos de identificación de la persona protegida."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Fundamentos de hecho y de derecho de la decisión adoptada."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Indicación de cuál es el alcance y contenido de la medida de protección acordada, y a qué organismo, dependencia o particular le corresponde su cumplimiento. Asimismo, deberá expresar el lapso máximo que se otorga a la dependencia u organismo para dar cumplimiento a la medida."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Tiempo de duración o vigencia de la medida acordada"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Indicación respecto de la aceptación expresa de la medida por sujeto protegido, realizada ante el Ministerio Público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "7."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Control del cumplimiento de la medida"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: Procedimiento para la aplicación de las Medidas de Protección"
+  },
+  {
+   "numero_texto": "35",
+   "numero": 35,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Corresponderá a la jueza o juez a que decretó la medida de protección notificar inmediatamente su resolución al organismo, dependencia o persona que deba acatar la decisión, a los fines de su ejecución. Asimismo, deberá el órgano jurisdiccional realizar el seguimiento y controlar el adecuado cumplimiento de la medida acordada, todo lo cual podrá realizar en coordinación con el asignado o asignada al caso."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La jueza o el juez y la o el fiscal del Ministerio Público deberán trabajar en relación estrecha con el sujeto u otro interviniente en el proceso penal, para establecer si se requieren otras medidas específicas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Oposición a la medida"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: Procedimiento para la aplicación de las Medidas de Protección"
+  },
+  {
+   "numero_texto": "36",
+   "numero": 36,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La parte que se sienta afectada por una medida de protección o alcance de ésta, decretada por la jueza o juez competente, podrá oponerse dentro de las veinticuatro (24) horas siguientes de haber sido acordada. La jueza o juez dispondrá lo conducente para permitir a las otras partes exponer sus argumentos a más tardar al día siguiente del planteamiento de oposición, y hágalo ésta o no, decidirá dentro de las cuarenta y ocho (48) horas siguientes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La oposición se realizará ante la misma autoridad judicial que dictó la medida, sin que ello suspenda los efectos de la misma."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Solicitud de descubrimiento de la identidad de testigos,"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "expertas o expertos y demás sujetos procesales"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: Procedimiento para la aplicación de las Medidas de Protección"
+  },
+  {
+   "numero_texto": "37",
+   "numero": 37,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Si durante un proceso penal, la parte interesada solicitare la plena identificación de testigos, expertas o expertos y demás sujetos procesales sometidos o sometidas al régimen de protección establecido en esta Ley, concernirá a la autoridad judicial correspondiente determinar la procedencia de la solicitud, previa opinión del fiscal del Ministerio Público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Plazo para la recusación de expertas o expertos,"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "intérpretes y demás sujetos procesales"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: Procedimiento para la aplicación de las Medidas de Protección"
+  },
+  {
+   "numero_texto": "38",
+   "numero": 38,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En el caso indicado en el artículo anterior, el plazo para la recusación de los sujetos procesales, peritos e intérpretes a que se refieren los artículos 93 y 99 del Código Orgánico Procesal Penal, será de cuarenta y ocho (48) horas, contadas a partir del momento en que se notifique a las partes la identidad de los mismos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Proposición de nuevas pruebas"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: Procedimiento para la aplicación de las Medidas de Protección"
+  },
+  {
+   "numero_texto": "39",
+   "numero": 39,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Dentro de los cinco (5) días siguientes a la notificación a las partes de la identidad de los testigos, expertas o expertos, cualquiera de ellas podrá proponer nuevas pruebas tendentes a acreditar alguna circunstancia que pueda influir en el valor probatorio de su testimonio."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Las partes podrán hacer uso del derecho previsto en este artículo, a la vista de las pruebas solicitadas por las otras partes y admitidas por el órgano judicial, en el plazo previsto para la interposición del recurso de revocación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Valoración de las medidas adoptadas"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: Procedimiento para la aplicación de las Medidas de Protección"
+  },
+  {
+   "numero_texto": "40",
+   "numero": 40,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El tribunal de juicio, en la oportunidad en la que deba declararse abierto el debate, luego de oír a las partes se pronunciará en forma motivada sobre la procedencia de mantener, modificar o suprimir todas o algunas de las medidas de protección de las víctimas, testigos y demás sujetos procesales, acordadas por la jueza o juez de control."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El tribunal de juicio se pronunciará en forma motivada sobre la adopción de nuevas medidas de protección que considere necesarias con la finalidad de salvaguardar la vida e integridad física de las víctimas, testigos y demás sujetos procesales, previa valoración de las circunstancias que pudieran justificar la adopción de tales medidas, previa opinión del Ministerio Público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Contra la decisión que dicte el tribunal de juicio procederá recurso revocación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Incorporación al juicio"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: Procedimiento para la aplicación de las Medidas de Protección"
+  },
+  {
+   "numero_texto": "41",
+   "numero": 41,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las declaraciones de testigos o los informes de peritos que hayan sido objeto de protección en aplicación de esta Ley, durante la fase de investigación o preparatoria, solamente podrán tener valor de prueba, a efectos de la sentencia, si son ratificadas en el acto del juicio oral en la forma prescrita en el Código Orgánico Procesal Penal. Si se consideran de imposible reproducción conforme a lo establecido en el artículo 307 del Código Orgánico Procesal Penal, habrán de ser incorporados mediante lectura literal, a fin de que puedan ser sometidos a contradicción por las partes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Duración de las medidas de protección"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: Procedimiento para la aplicación de las Medidas de Protección"
+  },
+  {
+   "numero_texto": "42",
+   "numero": 42,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las medidas de protección tendrán una duración máxima de seis (6) meses, sin perjuicio de que puedan ser prorrogadas y las mismas serán decretadas por el órgano jurisdiccional correspondiente, determinando las circunstancias de modo, lugar y tiempo de acuerdo con la evaluación que realice la jueza o juez competente que conozca el caso y previa opinión del Ministerio Público, sin perjuicio del derecho de defensa de la imputada o imputado, acusada o acusado. Queda entendido que mientras se aprueba la prórroga arriba mencionada se mantendrán las medidas de protección."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Las medidas de protección se darán por terminadas, previa decisión judicial fundada, cuando finalice el plazo por el cual fueron otorgadas, sin que hubieren sido prorrogadas, cuando desaparezcan las circunstancias de riesgo que motivaron la protección o cuando la beneficiaria o beneficiario incumpla la medida, condiciones u obligaciones establecidas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La prórroga de las medidas de protección será acordada de oficio por el órgano jurisdiccional, o a solicitud del Ministerio Público, de la víctima, testigo y demás sujetos procesales amparados por la medida."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Urgencia de la medida de protección"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: Procedimiento para la aplicación de las Medidas de Protección"
+  },
+  {
+   "numero_texto": "43",
+   "numero": 43,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando por razón de la inminencia de la amenaza de daño o peligro en la integridad, libertad o bienes materiales de las víctimas, testigos y demás sujetos procesales, se imposibilite, por el riesgo de que se ocasione un daño irreparable, el hacer efectivo ante el órgano jurisdiccional el trámite de la solicitud de la medida, el fiscal del Ministerio Público notificará de forma motivada a la o el Fiscal Superior correspondiente, para que ésta o éste ordene le sea brindada una protección transitoria a la persona protegida, actuación ésta que deberá ser puesta en conocimiento del órgano jurisdiccional, dentro de las veinticuatro (24) horas siguientes, a los fines de que éste la ratifique."
+    }
+   ],
+   "seccion_label": "CAPITULO IV: Procedimiento para la aplicación de las Medidas de Protección"
+  },
+  {
+   "numero_texto": "44",
+   "numero": 44,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Oficina de Atención a la Víctima en materia Derechos Humanos del Ministerio Público tendrá las siguientes atribuciones:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Garantizar la protección y asistencia integral de las víctimas directas e indirectas, testigos y demás sujetos procesales, en casos de vulneración de derechos humanos, conforme a los principios de interdependencia, indivisibilidad y progresividad de los derechos humanos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Brindar servicios de atención integral con equipos multidisciplinarios en el área jurídica, psicológica y social a las víctimas directas e indirectas en los casos de vulneración de los derechos humanos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Recibir de parte de las víctimas, testigos y demás sujetos procesales las solicitudes de medidas de protección relacionadas con esta Ley, en casos de vulneración de derechos humanos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Realizar la evaluación con respecto a los factores de riesgos en los que se encuentren inmersas las personas solicitantes en cada caso."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Tramitar ante los órganos jurisdiccionales la solicitud de las medidas de protección requeridas por víctimas, testigos y demás sujetos procesales, de conformidad con la normativa correspondiente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Realizar el seguimiento correspondiente ante el organismo designado por el Tribunal para la materialización de las medidas de protección acordadas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Tramitar lo concerniente a la actualización de las medidas acordadas, en cuanto a los datos de las personas beneficiadas, organismo designado para la materialización, fases del proceso penal y cualquier otra información de relevancia para el caso."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Ejecutar actividades de formación integral para los organismos designados para la materialización de las medidas de protección, en cuanto a los avances que en materia de derechos humanos y de los derechos de las víctimas en general, se vayan produciendo."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Las demás establecidas en los Reglamentos y Resoluciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Creación, adscripción y administración"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Oficina de Atención a la Víctima en materia de Derechos"
+  },
+  {
+   "numero_texto": "45",
+   "numero": 45,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se crea la Unidad Administradora de Fondos para la Protección y Asistencia de las Víctimas, Testigos y demás Sujetos Procesales, la cual estará adscrita al Ministerio Público a cargo de la persona que designe el Fiscal General de la República."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En el presupuesto de gastos, a que se refiere la Ley de Presupuesto nacional se incorporará una partida destinada a asegurar el pago de los gastos por concepto de asistencia y protección a las víctimas, testigos y demás sujetos procesales, la cual estará destinada a financiar la ejecución de programas, acciones o servicios de protección, asistencia y atención. En ningún caso esta partida podrá utilizarse para la cancelación o financiamiento de otros gastos administrativos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El reglamento y su normativa interna establecerán las modalidades de ejercicio de la administración de la respectiva unidad administradora y estará sometida a los mismos controles internos y externos que se apliquen a los organismos del Estado."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Otros recursos"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Oficina de Atención a la Víctima en materia de Derechos"
+  },
+  {
+   "numero_texto": "46",
+   "numero": 46,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "De las multas impuestas en procesos penales, incautaciones, confiscaciones o comiso de bienes por parte del Estado venezolano, ya sea por delitos de narcotráfico, de delincuencia organizada o afines, se destinará un porcentaje suficiente que, aunado a las donaciones, auxilios, contribuciones, subvenciones, transferencias, legados o cualquier clase de asignación lícita de personas naturales, entidades nacionales e internacionales, gubernamentales o no gubernamentales, y cualesquiera otras que su reglamento indique, serán en beneficio de la Unidad Administradora del Fondo para la Protección y Asistencia de las Víctimas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Apoyo material"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Oficina de Atención a la Víctima en materia de Derechos"
+  },
+  {
+   "numero_texto": "47",
+   "numero": 47,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El apoyo material que se menciona en esta Ley, solamente se proporciona a quienes cumplan los siguientes requisitos:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Carecer de recursos económicos, lo cual se acreditará mediante el estudio socioeconómico correspondiente; y"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. No tener el carácter de beneficiarias o beneficiarios de algún seguro que cubra los aspectos que esta Ley prevé."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Sanciones"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Desacato de la medida de protección ordenada"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Oficina de Atención a la Víctima en materia de Derechos"
+  },
+  {
+   "numero_texto": "48",
+   "numero": 48,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Aquélla o aquél a quien corresponda acatar la medida de protección acordada a favor de las víctimas, testigos y demás sujetos procesales, que no le diere cabal cumplimiento, en los términos y condiciones establecidos, será sancionado con prisión de tres (3) meses a un (1) año y multa de cien unidades tributarias (100 U.T) a quinientas unidades tributarias (500 U.T). Para la aplicación de la respectiva sanción se seguirá el procedimiento ordinario previsto en el Código Orgánico Procesal Penal."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Violación de la Reserva"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Oficina de Atención a la Víctima en materia de Derechos"
+  },
+  {
+   "numero_texto": "49",
+   "numero": 49,
+   "titulo": null,
+   "seccion_id": "ley_de_proteccion_de_victimas_testigos_y_demas_sujetos_procesales_2021_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Toda persona que teniendo información relacionada con las medidas de protección acordadas a alguna de las víctimas, testigos y demás sujetos procesales, la revelare, comprometiendo con ello la seguridad de la beneficiaria o beneficiario de la medida, será sancionada o sancionado con prisión de seis (6) meses a dos (2) años. Asimismo, en caso de tratarse de una funcionaria o funcionario público, la pena será aumentada en una tercera parte."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Si con ocasión a la revelación de la información, la víctima, testigo y demás sujetos protegidos sufrieren un daño o lesión en su integridad, libertad o bienes materiales, la pena será la establecida en el Código Penal para ese delito y se incrementará a la mitad si se produjere la muerte."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "DISPOSICIÓN FINAL"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Única. Esta Ley entrará en vigencia al momento de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Dada, firmada y sellada en el Palacio Federal Legislativo, sede de la Asamblea Nacional, en Caracas, a los dieciséis días del mes de septiembre de dos mil veintiuno. Año 211 de la Independencia, 162 de la Federación y 22 de la Revolución Bolivariana."
+    }
+   ],
+   "seccion_label": "CAPITULO V: Oficina de Atención a la Víctima en materia de Derechos"
+  }
+ ]
+}

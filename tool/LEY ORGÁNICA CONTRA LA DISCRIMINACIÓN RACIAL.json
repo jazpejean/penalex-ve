@@ -1,0 +1,694 @@
+{
+  "ley_nombre": "LEY ORGÁNICA CONTRA LA DISCRIMINACIÓN RACIAL",
+  "estructura": [
+    {
+      "libro": null,
+      "titulo": "TÍTULO I. DISPOSICIONES FUNDAMENTALES",
+      "capitulo": "Capítulo I. Disposiciones Fundamentales",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "1",
+          "encabezado": "Objeto",
+          "texto_principal": "Esta Ley tiene por objeto establecer los mecanismos adecuados para prevenir, atender, erradicar y sancionar la discriminación racial en cualquiera de sus manifestaciones, garantizando a toda persona y grupos de personas, el goce y ejercicio de sus derechos y deberes consagrados en la Constitución, leyes, tratados, pactos y convenios internacionales relativos a derechos humanos, suscritos y ratificados por la República.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "2",
+          "encabezado": "Ámbito de aplicación",
+          "texto_principal": "Queda sujeta a esta Ley toda persona natural o jurídica, de carácter público o privado, que se encuentre en el territorio nacional.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "3",
+          "encabezado": "Reconocimiento y declaratoria",
+          "texto_principal": "Se reconoce la diversidad cultural de la sociedad venezolana. Las culturas constitutivas de la venezolanidad tienen igual valor e importancia en la consolidación del acervo cultural de la Nación. Se declara de orden público, interés general y social lo previsto en esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "4",
+          "encabezado": "Principios",
+          "texto_principal": "Esta Ley se fundamenta en los principios de respeto a la dignidad de la persona humana, la pluriculturalidad, multietnicidad, interculturalidad, plurilingüismo, justicia social, participación protagónica, solidaridad, tolerancia, igualdad, equidad, gratuidad, celeridad, legalidad, progresividad, colaboración entre poderes y la protección a las futuras generaciones en la construcción de una sociedad socialista y antiimperialista.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "5",
+          "encabezado": "Acceso a la justicia",
+          "texto_principal": "Toda persona o grupo de personas que haya sido discriminada racialmente, marginada o vulnerada en uno o varios de sus derechos individuales o colectivos, está amparada por esta Ley en igualdad de condiciones. Los órganos competentes del Poder Público tienen el deber de asistirlos y todas sus actuaciones son de manera gratuita y breve.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "6",
+          "encabezado": "Medidas de salvaguarda",
+          "texto_principal": "El Estado debe adoptar medidas de salvaguarda a favor de toda persona y grupos vulnerables, a fin de erradicar la discriminación racial, el racismo, el endorracismo y la xenofobia, asegurando el bienestar psíquico, físico y socioeconómico, garantizando el goce y ejercicio de sus derechos, así como el respeto a su dignidad e integridad, a través de la ejecución de planes, programas, proyectos y procesos continuos de actividades y labores acordes con los principios de la Seguridad de la Nación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "7",
+          "encabezado": "Deber de transmisión y difusión de mensajes",
+          "texto_principal": "El Estado, en corresponsabilidad con los diferentes actores de la sociedad, personas naturales y jurídicas, de carácter público o privado, tienen el deber de transmitir y difundir mensajes para la prevención y erradicación de toda forma de discriminación racial, fomentando el respeto a la diversidad de las culturas y la igualdad de todos los seres humanos ante la ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "8",
+          "encabezado": "Prohibición de actos de discriminación racial",
+          "texto_principal": "Toda persona tiene derecho a la protección y al respeto de su honor, dignidad, moral y reputación, sin distinción de raza, color, linaje u origen nacional o étnico, que de forma directa, indirecta, o interseccional, tenga por objeto o por resultado anular o menoscabar el reconocimiento, goce o ejercicio, en condiciones de igualdad, de los derechos y libertades reconocidas en la Constitución de la República Bolivariana de Venezuela y los tratados internacionales sobre derechos humanos suscritos y ratificados por la República.\n\nA los fines de esta Ley y conforme al ordenamiento jurídico vigente, se prohíbe todo acto de racismo, discriminación racial, xenofobia, incitación al odio racial y prácticas afines, que tengan por objeto limitar o menoscabar el reconocimiento, goce y ejercicio de los derechos humanos y libertades de la persona o grupos de personas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "9",
+          "encabezado": "Hechos no discriminatorios",
+          "texto_principal": "No se consideran actos de discriminación racial los siguientes:",
+          "numerales_literales": [
+            "1. Las medidas positivas o compensatorias en el ámbito legislativo, con el objeto de garantizar la igualdad real de oportunidades y condiciones a favor de personas o grupos vulnerables.",
+            "2. Las medidas positivas o compensatorias en las políticas públicas que se establezcan a favor de personas o grupos vulnerables, con el objeto de proteger, garantizar y promover la igualdad real de oportunidades y condiciones.",
+            "3. Las medidas especiales adoptadas con el fin de asegurar el adecuado progreso de personas o grupos vulnerables, con el objeto de promover la igualdad real de oportunidades y condiciones, garantizando el goce o ejercicio de los derechos humanos reconocidos en la Constitución, tratados, pactos y convenios internacionales suscritos y ratificados por la República.",
+            "4. Las distinciones basadas en capacidades o conocimientos especializados, para desempeñar un cargo, oficio o actividad determinada.",
+            "5. Los requisitos académicos, pedagógicos y de evaluación en el ámbito educativo.",
+            "6. Las que se establezcan como requisitos de ingreso o permanencia, para el desempeño de la función pública y cualquier otro señalado en el ordenamiento jurídico.",
+            "7. El trato especial que reciba una persona que padezca alguna enfermedad, por su condición de discapacidad o adulto mayor.",
+            "8. El trato oficial que recibe una persona o grupos de personas bajo fórmulas diplomáticas.",
+            "9. Los usos, prácticas, costumbres y derechos de los pueblos y comunidades indígenas.",
+            "10. En general, todo trato o distinción a personas o grupos vulnerables que tengan por objeto garantizar el goce, ejercicio de los derechos, libertades y la igualdad de oportunidades y condiciones, protegiendo la dignidad humana sin perjuicio de las limitaciones y restricciones establecidas en las leyes en diversas materias."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "10",
+          "encabezado": "Igualdad y equidad de género",
+          "texto_principal": "La prevención, atención y erradicación de la discriminación racial debe desarrollarse en condiciones de igualdad y equidad de género, respetando las características individuales y las necesidades particulares relativas a la diversidad de género, eliminando barreras y sin discriminación.\n\nEl Estado, las familias y la sociedad deben promover, respetar y garantizar la igualdad y equidad de género en la prevención, atención y erradicación de la discriminación racial. A tal efecto, deben adoptar todas las medidas necesarias y adecuadas para asegurar que la igualdad y equidad de género sea real y efectiva.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "11",
+          "encabezado": "Principio de interpretación",
+          "texto_principal": "En caso de duda en la interpretación o aplicación de esta Ley se adoptará aquella que favorezca más la garantía de la igualdad de las personas y asegure mayor protección frente a la discriminación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO I. DISPOSICIONES FUNDAMENTALES",
+      "capitulo": "Capítulo II. Definiciones",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "12",
+          "encabezado": "Definiciones",
+          "texto_principal": "A los efectos de esta Ley, se entiende por:",
+          "numerales_literales": [
+            "1. Discriminación Racial: Es toda distinción, exclusión, restricción, preferencia, acción u omisión, basada en motivos de raza, color, linaje u origen nacional o étnico, que de forma directa, indirecta, o interseccional, tenga por objeto o por resultado anular o menoscabar el reconocimiento, goce o ejercicio, en condiciones de igualdad, de los derechos y libertades reconocidas en la Constitución de la República Bolivariana de Venezuela y los tratados internacionales sobre derechos humanos suscritos y ratificados por la República, en las esferas política, económica, social, cultural o en cualquier otra esfera de la vida pública o privada de la persona o grupos de personas.",
+            "2. Origen étnico: Se refiere a la etnia de origen de una persona o grupo de personas, caracterizado por factores históricos, genealógicos, culturales y territoriales.",
+            "3. Origen nacional: Se refiere a la nacionalidad de nacimiento o aquella que la persona haya adquirido por circunstancias particulares.",
+            "4. Fenotipo: Se considera cualquier rasgo físico observable en una persona o grupo de personas, como resultado de la relación de su genotipo y el ambiente en el que se desenvuelven, influyendo los aspectos naturales y sociales.",
+            "5. Grupos vulnerables: Persona o grupo de personas que, como consecuencia de su origen étnico, origen nacional, rasgos del fenotipo, se encuentren en circunstancias de debilidad manifiesta para el ejercicio de sus derechos.",
+            "6. Diversidad cultural: Se refiere a la multiplicidad de formas en que se expresan las culturas de los grupos y sociedades. Estas expresiones se transmiten dentro y entre los grupos y las sociedades.\n\nLa diversidad cultural se manifiesta no solo en las diversas formas que se expresa, enriquece y transmite el patrimonio cultural de la humanidad, mediante la variedad de expresiones culturales, sino a través de distintos modos de creación artística, producción, difusión, distribución y disfrute de las expresiones culturales, cualesquiera que sean los medios y las tecnologías utilizados.",
+            "7. Racismo: Toda teoría o práctica que invoque una superioridad o inferioridad intrínseca de personas o grupos de personas en virtud de su origen étnico o cultural, que engloba las ideologías racistas, las actitudes fundadas en los prejuicios raciales, los comportamientos discriminatorios, que históricamente se ha manifestado por medio de disposiciones legislativas o reglamentarias, prácticas discriminatorias, y en general por actos que anulen, menoscaben o impidan el reconocimiento, goce y ejercicio, en condiciones de igualdad, de los derechos humanos y libertades de la persona o grupos de personas. El racismo es un mecanismo de dominación y explotación sociocultural, étnica, económica, política, entre otros.",
+            "8. Endorracismo: Es toda acción u omisión que, producto de procesos de socialización y educación racista, conduce a la auto descalificación y a la descalificación de personas del mismo horizonte cultural, reproduciendo así el racismo interiorizado y normalizado por los propios sujetos objeto de discriminación.",
+            "9. Xenofobia: Odio, rechazo u hostilidad hacia la persona o grupos de personas de diferente origen nacional."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. MEDIDAS DE SALVAGUARDA",
+      "capitulo": "Capítulo I. Medidas Positivas",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "13",
+          "encabezado": "Mecanismos de articulación",
+          "texto_principal": "Los órganos del Poder Público y del Poder Popular deben colaborar entre sí, creando espacios de participación en cada uno de sus órganos y entes, para articular y ejecutar políticas públicas en el marco de los principios de cooperación y corresponsabilidad para erradicar la discriminación racial, racismo, endorracismo y la xenofobia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "14",
+          "encabezado": "Órganos de seguridad ciudadana",
+          "texto_principal": "Los órganos de seguridad ciudadana, de conformidad con esta Ley, deben crear dentro de sus estructuras una instancia destinada a educar y formar a sus funcionarias y funcionarios, con el fin de atender, prevenir, y erradicar la discriminación racial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "15",
+          "encabezado": "Participación",
+          "texto_principal": "El Estado garantiza a toda persona o grupo de personas el derecho a la participación política, económica, social y cultural, en todos los asuntos públicos sin discriminación racial, promoviendo el respeto a la dignidad humana, la diversidad cultural, multietnicidad y la pluriculturalidad de la población que constituyen la venezolanidad.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "16",
+          "encabezado": "Información estadística",
+          "texto_principal": "El Ejecutivo Nacional, a través de sus órganos y entes competentes, deben identificar a todas las personas y grupos vulnerables a los fines de su inclusión en la estadística poblacional. La inclusión de indicadores demográficos que contengan variables étnicas y su desagregación por género en las estadísticas públicas, se hará con la finalidad de producir y divulgar información oportuna sobre las condiciones de vida de la población venezolana, a fin de evitar la discriminación racial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "17",
+          "encabezado": "Legitimación activa",
+          "texto_principal": "Se encuentran legitimadas y legitimados para ejercer acciones administrativas y judiciales por conductas u omisiones de discriminación racial, la persona o grupo de personas agraviadas, la Defensoría del Pueblo, el Ministerio Público, el Instituto Nacional Contra la Discriminación Racial, así como las asociaciones, colectivos, movimientos sociales y demás representaciones del poder popular organizado, cuyas líneas de acción propendan a la eliminación de toda forma de discriminación, xenofobia, genocidio y demás actos contra la dignidad humana.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "18",
+          "encabezado": "Políticas y presupuesto público",
+          "texto_principal": "El Ejecutivo Nacional debe estimar en el presupuesto para el ejercicio fiscal correspondiente, el financiamiento de las políticas públicas que garanticen a las personas y grupos vulnerables el goce y ejercicio de sus derechos individuales y colectivos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "19",
+          "encabezado": "Planes, programas, proyectos y actividades de formación",
+          "texto_principal": "El Instituto Nacional Contra la Discriminación Racial, en coordinación con los órganos y entes competentes en materia laboral y educativa, diseñará los planes, programas, proyectos y actividades orientados a la formación, concienciación y sensibilización de las funcionarias o funcionarios, empleadas o empleados, trabajadoras y trabajadores del sector público y privado, con el fin de educar y fomentar un trato justo a toda persona y grupos de personas, teniendo como objetivo principal la prevención y erradicación de la discriminación racial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "20",
+          "encabezado": "Sistema Educativo",
+          "texto_principal": "En todos los subsistemas, niveles y modalidades del Sistema Educativo se incluirán contenidos relativos a las culturas, historias y tradiciones constitutivas de la venezolanidad, destinados a prevenir y erradicar toda forma de discriminación racial, racismo, endorracismo y la xenofobia.\n\nLos órganos y entes competentes en materia educativa y cultural deben elaborar y ejecutar planes, programas, proyectos y actividades para promover y difundir conocimientos y valores de aceptación, tolerancia, comprensión y respeto a la diversidad cultural, a fin de erradicar los estereotipos de origen étnico en los instrumentos pedagógicos y didácticos utilizados en el Sistema Educativo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. MEDIDAS DE SALVAGUARDA",
+      "capitulo": "Capítulo II. Las Obligaciones",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "21",
+          "encabezado": "Medios de comunicación social",
+          "texto_principal": "Los medios de comunicación social y difusión de carácter privado, el Sistema Nacional de Medios Públicos, así como los medios de comunicación del Poder Popular o de otras modalidades, en el ámbito comunal, municipal, estadal y nacional, deben incluir en su programación contenidos orientados a la prevención y erradicación de la discriminación racial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "22",
+          "encabezado": "Obligación de formación de trabajadores",
+          "texto_principal": "Las propietarias, propietarios, administradoras, administradores, empleadoras, empleadores o responsables, y en general toda persona natural o jurídica, prestadores de bienes o servicios, en coordinación con el Instituto Nacional Contra la Discriminación Racial, deben disponer de los mecanismos necesarios para la formación, concienciación y sensibilización de las trabajadoras y trabajadores a su cargo en materia de prevención y erradicación de la discriminación racial, así como de establecer condiciones equitativas que fomenten las relaciones de igualdad entre éstas y éstos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "23",
+          "encabezado": "Obligación de publicación de cartel",
+          "texto_principal": "En los locales comerciales o de recreación, salas de espectáculos, bares, restaurantes y, en general, en todo establecimiento de carácter público o privado de acceso público, debe exhibirse de manera visible un cartel contentivo con el texto del artículo 8 de esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "24",
+          "encabezado": "Multas",
+          "texto_principal": "El incumplimiento de las obligaciones previstas en los artículos 18, 19 y 20, será sancionado con multa de setecientas cincuenta veces (750) el tipo de cambio oficial de la moneda de mayor valor, publicado por el Banco Central de Venezuela. En caso de reincidencia, el ente competente ordenará el cierre temporal del establecimiento comercial por un período de hasta veinticuatro horas laborables continuas y la multa será desde mil doscientas veces (1.200) hasta mil quinientas veces (1.500) el tipo de cambio oficial de la moneda de mayor valor, publicado por el Banco Central de Venezuela.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "25",
+          "encabezado": "Procedimiento",
+          "texto_principal": "El procedimiento a aplicar en las sanciones establecidas en los artículos anteriores, se realizará de conformidad con lo establecido en la Ley Orgánica de Procedimientos Administrativos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "26",
+          "encabezado": "Destino de las multas",
+          "texto_principal": "Los recursos generados por conceptos de multas, de conformidad con esta Ley, que imponga el Instituto Nacional Contra la Discriminación Racial deben ingresar al Fondo para la Prevención y Erradicación de la Discriminación Racial, según lo establecido en esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. ÓRGANO RECTOR Y ENTE EJECUTOR EN MATERIA. DE DISCRIMINACIÓN RACIAL",
+      "capitulo": "Capítulo I. Órgano Rector",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "27",
+          "encabezado": "Órgano rector",
+          "texto_principal": "El Ejecutivo Nacional, a través del ministerio del poder popular con competencia en materia de relaciones interiores, justicia y paz, es el responsable de diseñar las políticas públicas relativas a la promoción, fomento y defensa de los derechos humanos, y tiene el deber de coordinar con los demás órganos y entes las estrategias del Estado en la lucha para prevenir y erradicar la discriminación racial.\n\nA tales fines, atendiendo a la naturaleza interseccional de la discriminación racial, todos los órganos y entes de la Administración Pública y del sistema de justicia, contribuirán y desarrollarán las políticas de prevención y erradicación de la discriminación racial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. ÓRGANO RECTOR Y ENTE EJECUTOR EN MATERIA. DE DISCRIMINACIÓN RACIAL",
+      "capitulo": "Capítulo II. Ente Ejecutor en Materia de Discriminación Racial",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "28",
+          "encabezado": "Creación del Instituto Nacional Contra la Discriminación Racial",
+          "texto_principal": "Se crea el Instituto Nacional Contra la Discriminación Racial (INCODIR), la cual tendrá carácter de Instituto Público, personalidad jurídica, patrimonio propio, autonomía técnica, organizativa y administrativa, adscrito al Ministerio del Poder Popular con competencia en materia de relaciones interiores, justicia y paz, y gozará de las prerrogativas y privilegios establecidos en las leyes de la República.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "29",
+          "encabezado": "Objeto del Instituto Nacional Contra la Discriminación Racial",
+          "texto_principal": "El Instituto Nacional Contra la Discriminación Racial, tiene por objeto ejecutar las políticas públicas destinadas a la prevención y erradicación de la discriminación racial en todos los ámbitos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "30",
+          "encabezado": "Competencias",
+          "texto_principal": "El Instituto Nacional Contra la Discriminación Racial, tendrá las siguientes competencias:",
+          "numerales_literales": [
+            "1. Ejecutar las políticas públicas que le competen en materia de discriminación racial.",
+            "2. Ejecutar los dictámenes, órdenes e instrucciones del órgano rector.",
+            "3. Practicar las supervisiones que considere necesarias, a los sujetos obligados al cumplimiento de las normas previstas en esta Ley.",
+            "4. Constatar y exigir a los sujetos obligados o a terceros relacionados con éstos, la exhibición del cartel de conformidad con esta Ley.",
+            "5. Educar, formar y sensibilizar a las personas naturales y jurídicas en la prevención y erradicación de la discriminación racial.",
+            "6. Impulsar y ejecutar campañas educativas tendientes al reconocimiento y valorización de la interculturalidad, así como promover la erradicación de actitudes discriminatorias raciales.",
+            "7. Difundir campañas informativas a fin de dar a conocer a la opinión pública sobre actitudes y conductas discriminatorias, xenofóbicas o racistas que se manifiesten en cualquier ámbito de la vida nacional.",
+            "8. Conocer, sustanciar, decidir y ejecutar los procedimientos administrativos a que hubiere lugar, de conformidad con esta Ley.",
+            "9. Recibir y canalizar por ante los órganos jurisdiccionales competentes, los planteamientos o denuncias de acciones u omisiones que pudieran constituir delitos de discriminación racial.",
+            "10. Practicar las supervisiones que sean necesarias, sobre las personas naturales o jurídicas prestadores de bienes y servicios, de carácter público o privado.",
+            "11. Recopilar, actualizar y difundir la información sobre la materia de discriminación racial, incluso de los actos o hechos de discriminación racial documentados por los órganos de seguridad ciudadana.",
+            "12. Promover, en coordinación con el ente competente en materia de estadística, la incorporación de variables, indicadores e índices sociodemográficos que den cuenta de la realidad étnica de la población venezolana.",
+            "13. Prestar asesoría integral y gratuita a personas o grupos vulnerables discriminados, así como a víctimas de cualquier tipo de discriminación.",
+            "14. Actuar como órgano auxiliar y de apoyo en las investigaciones penales del Ministerio Público y el Sistema de Justicia, sobre los hechos que estén tipificados como delitos de conformidad con esta Ley, Código Penal y en otras leyes.",
+            "15. Constituir comités contra la discriminación racial en todas las instituciones públicas, privadas y del Poder Popular. Las funciones de estos comités serán establecidas en el Reglamento de esta Ley.",
+            "16. Dictar las normas relativas al diseño y publicación del cartel a que se esta Ley.",
+            "17. Dictar su reglamento interno y de funcionamiento.",
+            "18. Formular las recomendaciones y observaciones ante los órganos competentes, necesarias para la prevención y erradicación de la discriminación racial.",
+            "19. Participar, conjuntamente con los órganos competentes, en la elaboración de los informes previstos en los convenios en materia de discriminación racial suscritos y ratificados por la República.",
+            "20. Las demás que se establezcan en esta Ley y otros instrumentos legales."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "31",
+          "encabezado": "Sede",
+          "texto_principal": "El Instituto Nacional Contra la Discriminación Racial tendrá su sede principal en la ciudad de Caracas y podrá establecer oficinas en cada entidad federal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "32",
+          "encabezado": "Patrimonio",
+          "texto_principal": "El patrimonio del Instituto Nacional Contra la Discriminación Racial estará integrado de la forma siguiente:",
+          "numerales_literales": [
+            "1. Los recursos asignados en la ley de presupuesto para el ejercicio fiscal correspondiente y los aportes extraordinarios que le acuerde el Ejecutivo Nacional.",
+            "2. Los ingresos provenientes de su gestión.",
+            "3. Las inversiones, aportes, donaciones y legados que reciba de personas naturales o jurídicas, públicas o privadas, de conformidad con esta Ley.",
+            "4. Los bienes, derechos u obligaciones de cualquier naturaleza que adquiera en la realización de sus actividades."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. ÓRGANO RECTOR Y ENTE EJECUTOR EN MATERIA. DE DISCRIMINACIÓN RACIAL",
+      "capitulo": "Capítulo III. Organización y Funcionamiento del Instituto Nacional Contra la. Discriminación Racial",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "33",
+          "encabezado": "Conformación",
+          "texto_principal": "El Instituto Nacional Contra la Discriminación Racial, estará conformado por un Consejo Directivo y un Consejo General, asistido por una secretaria o un secretario, quien ejercerá las funciones establecidas en esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "34",
+          "encabezado": "Consejo Directivo",
+          "texto_principal": "El Instituto Nacional Contra la Discriminación Racial tendrá un Consejo Directivo conformado por una Presidenta o Presidente y una Vicepresidenta o Vicepresidente, que serán designadas o designados por la Ministra o Ministro del Poder Popular con competencia en la materia de relaciones interiores, justicia y paz.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "35",
+          "encabezado": "Consejo General",
+          "texto_principal": "El Consejo General del Instituto Nacional Contra la Discriminación Racial estará integrado por:",
+          "numerales_literales": [
+            "1. El Consejo Directivo.",
+            "2. Una o un representante por cada uno de los ministerios del Poder Popular competentes en materia de cultura, educación, trabajo, salud, pueblos indígenas, comunas y protección social.",
+            "3. Dos voceras o voceros de las organizaciones de los pueblos y comunidades indígenas.",
+            "4. Dos voceras o voceros de las organizaciones afrodescendientes.",
+            "5. Una vocera o vocero del Poder Popular.",
+            "6. Una vocera o vocero de las organizaciones o movimientos sociales de inmigrantes.",
+            "7. Una vocera o vocero de las organizaciones o movimientos sociales."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "36",
+          "encabezado": "Requisitos",
+          "texto_principal": "Los miembros del Instituto Nacional Contra la Discriminación Racial y sus suplentes deben reunir las condiciones siguientes:",
+          "numerales_literales": [
+            "1. Ser venezolana o venezolano.",
+            "2. Mayor de edad.",
+            "3. No estar sometida o sometido a interdicción civil o inhabilitación política.",
+            "4. Tener conocimientos en materia de derechos humanos, en la erradicación de la discriminación racial."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "37",
+          "encabezado": "Atribuciones de la Presidenta o Presidente",
+          "texto_principal": "La Presidenta o Presidente del Instituto Nacional Contra la Discriminación Racial, tiene las siguientes atribuciones:",
+          "numerales_literales": [
+            "1. Ejercer la administración del Instituto Nacional Contra la Discriminación Racial.",
+            "2. Presidir las reuniones ordinarias y extraordinarias del Consejo General y del Consejo Directivo.",
+            "3. Ejecutar y hacer cumplir los actos generales e individuales que dicte el Consejo General y el Consejo Directivo del Instituto Nacional Contra la Discriminación Racial.",
+            "4. Dar cumplimiento a las decisiones aprobadas por el Consejo General y el Consejo Directivo, así como ejecutar las actividades necesarias, según sea el caso.",
+            "5. Elaborar el proyecto de presupuesto, el plan operativo anual, el balance general y el informe anual del Instituto Nacional Contra la Discriminación Racial.",
+            "6. Presentar el informe anual a la Ministra o Ministro del Poder Popular con competencia en materia de relaciones interiores, justicia y paz, de las actividades y avances del Instituto Nacional Contra la Discriminación Racial, en cuanto a la ejecución de políticas públicas en materia de discriminación racial.",
+            "7. Otorgar poderes para la representación judicial y extrajudicial del Instituto Nacional Contra la Discriminación Racial.",
+            "8. Designar a la Secretaria o Secretario del Instituto.",
+            "9. Las demás atribuciones señaladas en esta Ley, demás disposiciones legales y reglamentarias."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "38",
+          "encabezado": "Atribuciones de la Vicepresidenta o Vicepresidente",
+          "texto_principal": "La Vicepresidenta o Vicepresidente tiene las siguientes atribuciones:",
+          "numerales_literales": [
+            "1. Suplir las faltas temporales y absolutas de la Presidenta o Presidente.",
+            "2. Desempeñar las labores encomendadas por el Consejo Directivo.",
+            "3. Asistir a las reuniones ordinarias y extraordinarias del Consejo Directivo y del Consejo General.",
+            "4. Las demás que le señale esta Ley y otras disposiciones legales y reglamentarias."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "39",
+          "encabezado": "Atribuciones de la Secretaria o Secretario",
+          "texto_principal": "La Secretaria o Secretario tiene las siguientes atribuciones:",
+          "numerales_literales": [
+            "1. Asistir a las reuniones del Consejo General y Consejo Directivo.",
+            "2. Llevar las actas de reuniones ordinarias y extraordinarias.",
+            "3. Llevar el control de la correspondencia enviada y recibida por la presidencia.",
+            "4. Diligenciar los documentos necesarios para las reuniones del Consejo General y Consejo Directivo.",
+            "5. Coordinar con la Presidenta o Presidente las actividades del Consejo Directivo.",
+            "6. Las demás que se establezcan en el reglamento interno y funcionamiento."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO IV. DELITOS",
+      "capitulo": "Capítulo I. Delito de Discriminación Racial",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "40",
+          "encabezado": "Delito discriminación racial",
+          "texto_principal": "Toda persona que mediante acción u omisión, realice de forma directa, indirecta, o interseccional una distinción, exclusión, restricción o preferencia, basada en motivos de raza, color, linaje u origen nacional o étnico, con el propósito o resultado de anular o menoscabar el reconocimiento, goce o ejercicio, en condiciones de igualdad, de los derechos y libertades reconocidas en la Constitución de la República Bolivariana de Venezuela y los tratados internacionales sobre derechos humanos suscritos y ratificados por la República, en las esferas política, económica, social, cultural o en cualquier otra esfera de la vida pública o privada, en perjuicio de una persona o grupo de personas, será penada con prisión de uno a tres años.\n\nQuien cometa el delito de discriminación racial cumplirá entre doscientas y seiscientas horas de servicio social comunitario.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "41",
+          "encabezado": "Responsabilidad civil",
+          "texto_principal": "Las víctimas de discriminación racial tienen derecho a ser indemnizadas integralmente por los responsables de la acción u omisión de forma directa, indirecta, o interseccional que conlleve a una distinción, exclusión, restricción o preferencia, basada en motivos de raza, color, linaje u origen nacional o étnico, con el propósito o resultado de anular o menoscabar el reconocimiento, goce o ejercicio, en condiciones de igualdad, de los derechos y libertades reconocidas en la Constitución de la República Bolivariana de Venezuela y los tratados internacionales sobre derechos humanos suscritos y ratificados por la República.\n\nLa indemnización integral será proporcional a los daños morales, psicológicos y patrimoniales. Se encuentran legitimadas para ejercer las acciones judiciales, dirigidas a establecer la responsabilidad civil prevista en este artículo, las personas naturales víctimas de la discriminación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "42",
+          "encabezado": "Circunstancias Agravantes",
+          "texto_principal": "La pena prevista para el delito de discriminación racial, se aumentará en un tercio en los casos siguientes:",
+          "numerales_literales": [
+            "1. Si el hecho se realizare a través de dos o más personas asociadas para tal fin.",
+            "2. Si el hecho se cometiere en contra de niñas, niños, adolescentes, mujeres, adultas y adultos mayores, personas enfermas o personas con discapacidad.",
+            "3. Cuando haya violencia policial, funcionarial o abuso de la autoridad en el hecho discriminatorio.",
+            "4. Ejecutarlo en la persona de una funcionaria pública o funcionario público que se halle en el ejercicio de sus funciones.",
+            "5. Si el hecho se comete en la persona de una autoridad legítima tradicional de los pueblos y comunidades indígenas.",
+            "6. Si el hecho lo cometiere una funcionaria pública o funcionario público quien se encuentre en el ejercicio de sus funciones.",
+            "7. Si el hecho se cometiere basado en perfiles o estereotipos raciales o fenotípicos, hacia la persona o grupo de personas, en actividades de investigación policial, penal o criminalística.",
+            "8. Las demás circunstancias agravantes establecidas en el Código Penal vigente."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO V. FONDO PARA LA PREVENCIÓN Y ERRADICACIÓN. DE LA DISCRIMINACIÓN RACIAL",
+      "capitulo": "Capítulo I. Creación y Recursos del Fondo para la Prevención y Erradicación de la Discriminación Racial.",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "43",
+          "encabezado": null,
+          "texto_principal": "Se crea el Fondo para la Prevención y Erradicación de la Discriminación Racial, el cual tendrá por objeto promover y fomentar las condiciones de infraestructura, recursos humanos, tecnológicos y económicos necesarios para dar cumplimiento al objeto del Instituto Nacional Contra la Discriminación Racial.\n\nEste Fondo será administrado por el Instituto Nacional Contra la Discriminación Racial de acuerdo al Reglamento de esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "44",
+          "encabezado": "Recursos del Fondo",
+          "texto_principal": "El Fondo para la Prevención y Erradicación de la Discriminación Racial, estará constituido por los siguientes recursos:",
+          "numerales_literales": [
+            "1. Las donaciones, legados, aportes, subvenciones y demás liberalidades que reciba de personas naturales o jurídicas nacionales, estadales y municipales, públicas o privadas.",
+            "2. Todos los bienes y rentas adquiridos por cualquier título lícito.",
+            "3. Los montos recaudados por concepto de multas impuestas conforme a esta Ley."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "Disposición Transitoria",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Única",
+          "encabezado": null,
+          "texto_principal": "Hasta tanto entre en funcionamiento el Instituto Nacional Contra la Discriminación Racial, el Ministerio del Poder Popular con competencia en materia de relaciones interiores, justicia y paz establecerá las políticas necesarias para dar cumplimiento a los mecanismos adecuados para prevenir, atender, erradicar y sancionar la discriminación racial en cualquiera de sus manifestaciones.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "Disposición Final",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Final",
+          "identificador": "Única",
+          "encabezado": null,
+          "texto_principal": "Esta Ley entrará en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.\n\nDado, firmado y sellado en el Palacio Federal Legislativo, sede de la Asamblea Nacional de la República Bolivariana de Venezuela, en Caracas, a los veintisiete días del mes de octubre de dos mil veintiuno. Años 211 de la Independencia, 162 de la Federación y 22 de la Revolución Bolivariana.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    }
+  ]
+}

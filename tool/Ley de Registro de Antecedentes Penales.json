@@ -1,0 +1,290 @@
+{
+  "ley_nombre": "LEY DE REGISTRO DE ANTECEDENTES PENALES",
+  "estructura": [
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": "Capítulo I. Disposiciones Generales",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "1",
+          "encabezado": "Objeto",
+          "texto_principal": "Esta Ley tiene por objeto regular el registro de antecedentes penales a los fines de garantizar los derechos de las personas y el adecuado funcionamiento del sistema de justicia, de conformidad con la Constitución de la República Bolivariana de Venezuela, los tratados internacionales suscritos y ratificados por la República y demás leyes.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "2",
+          "encabezado": "Finalidad",
+          "texto_principal": "Esta Ley tiene por finalidad:",
+          "numerales_literales": [
+            "1. Garantizar la idoneidad del registro de antecedentes penales.",
+            "2. Proteger los derechos y garantías de las personas en relación el registro de antecedentes penales.",
+            "3. Asegurar que el registro de antecedentes penales cuente con la información necesaria, veraz y oportuna para el adecuado funcionamiento del sistema de justicia."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "3",
+          "encabezado": "Principios",
+          "texto_principal": "Esta Ley se rige por los principios de honestidad, participación, celeridad, eficiencia, transparencia, simplificación, uniformidad, eficacia de los trámites rendición de cuentas y responsabilidad en el ejercicio de la función pública.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "4",
+          "encabezado": "Igualdad y no discriminación",
+          "texto_principal": "El registro de antecedentes penales debe respetar y garantizar la igualdad, real y efectiva de las personas, sin discriminaciones fundadas en la raza, color, linaje, sexo, credo, condición social, pensamiento, conciencia, opinión política, cultura, idioma, origen étnico, social o nacional, orientación sexual, identidad de género, expresión de género, edad, posición económica, discapacidad, condición de salud o, aquellas que, en general, tengan por objeto o resultado anular o menoscabar el reconocimiento, goce o ejercicio en condiciones de igualdad de los derechos, garantías y deberes de las personas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "5",
+          "encabezado": "Enfoque de igualdad y equidad de género",
+          "texto_principal": "Las disposiciones de esta Ley se aplicarán bajo el enfoque de género, inclusivo y no sexista en condiciones de igualdad y que no conlleva estereotipos de género. Por tanto, evita el sesgo hacia un sexo o género en particular y, por ello, no oculta, subordina, jerarquiza, ni excluye a ninguno de los géneros.\n\nEl registro de antecedentes penales debe cumplir con las disposiciones de enfoque de género previstos en la ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "6",
+          "encabezado": "Derecho a la información y habeas data",
+          "texto_principal": "Toda persona tiene el derecho de acceder a la información y a los datos que sobre sí misma se encuentren en el registro de antecedentes penales, con las excepciones que establezca la ley, reglamentos y resoluciones.\n\nAsí mismo, tiene derecho a ejercer la acción de habeas data ante el tribunal competente para la actualización, la rectificación o destrucción de aquellos registros, si fuesen erróneos o afectasen ilegítimamente sus derechos y garantías.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "7",
+          "encabezado": "Derecho a la confidencialidad",
+          "texto_principal": "Las personas tienen derecho a la confidencialidad de la información que sobre ellas se encuentre en el registro de antecedentes penales para prevenir los efectos discriminatorios que puedan derivar de las penas y que puedan exceder el contenido de la sanción, salvo las excepciones previstas para garantizar los derechos humanos, el adecuado funcionamiento del sistema de justicia, el orden público y la seguridad y defensa de la Nación.\n\nEl órgano encargado de ordenar y dirigir la investigación penal, y los demás órganos y entes del Estado tendrán acceso a la información prevista en el registro de antecedentes penales para el cumplimiento de sus funciones, de conformidad con la Constitución de la República Bolivariana de Venezuela, la ley, reglamentos y resoluciones.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "8",
+          "encabezado": "Interés general y orden público",
+          "texto_principal": "Se declara de interés general el contenido de esta Ley. Las disposiciones de esta Ley son de orden público.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": "CAPÍTULO II. REGISTRO DE ANTECEDENTES PENALES",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "9",
+          "encabezado": "Registro de antecedentes penales",
+          "texto_principal": "El ministerio del poder popular con competencia en materia de interior, justicia y paz mantendrá y ejercerá la rectoría del registro de antecedentes penales. La información contenida en el registro de antecedentes penales es confidencial, de conformidad con la Constitución de la República Bolivariana de Venezuela, la ley, reglamentos y resoluciones.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "10",
+          "encabezado": "Datos de registro",
+          "texto_principal": "En el Registro de antecedentes penales se hará constar para cada condenado los siguientes datos:",
+          "numerales_literales": [
+            "1. Nombres.",
+            "2. Apellidos.",
+            "3. Cédula de identidad.",
+            "4. Sexo.",
+            "5. Fecha de nacimiento.",
+            "6. Lugar de nacimiento.",
+            "7. Nacionalidad o nacionalidades.",
+            "8. Estado civil.",
+            "9. Delito o falta a que se refiere la sentencia condenatoria.",
+            "10. Admisión de hechos.",
+            "11. Acuerdos reparatorios.",
+            "12. Suspensión de la ejecución de la pena.",
+            "13. Agravantes o atenuantes.",
+            "14. Carácter primario o reincidente.",
+            "15. Penas impuestas.",
+            "16. Tribunal que impuso las penas.",
+            "17. Reparación de daños a la víctima.",
+            "18. Lugar o establecimiento penitenciarios de cumplimiento de la condena.",
+            "19. Los datos que se puedan obtener a través de herramientas tecnológicas para su identificación plena.",
+            "20. Las demás establecidas en la Constitución de la República Bolivariana de Venezuela, las leyes, reglamentos y resoluciones."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "11",
+          "encabezado": "Sistema de archivo",
+          "texto_principal": "El registro de antecedentes penales acoge el sistema de archivo mixto, el cual comprenderá uno digital y automatizado, y otro físico. El archivo digital y automatizado almacenará todas las inscripciones que se realicen en el registro de antecedentes penales. Los asientos contenidos en este archivo tendrán la eficacia probatoria que la ley otorga a los documentos públicos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "12",
+          "encabezado": "Rectoría",
+          "texto_principal": "El ministerio del poder popular con competencia en materia de interior, justicia y paz tiene las siguientes atribuciones:",
+          "numerales_literales": [
+            "1. Definir la organización y funcionamiento del registro de antecedentes penales, así como para el desarrollo, manejo y funcionamiento de los archivos digital y físico.",
+            "2. Aprobar los lineamientos y directrices generales, de carácter imperativo y obligatorio cumplimiento del registro de antecedentes penales.",
+            "3. Establecer y desarrollar formas de interacción y coordinación entre los órganos y entes del Estado que deben suministrar información al registro de antecedentes penales para garantizar la veracidad de los datos de identificación del ciudadano o ciudadana.",
+            "4. Garantizar la veracidad, actualización y fidelidad de la información contenida en los registros de antecedentes penales.",
+            "5. Garantizar que el derecho de las personas al acceso a la información que sobre si mismas se encuentre en el registro de antecedentes penales, de conformidad con la Constitución de la República Bolivariana de Venezuela y la ley.",
+            "6. Asegurar el acceso a los órganos y entes del Estado la información, de conformidad con la Constitución de la República Bolivariana de Venezuela y la ley.",
+            "7. Las demás establecidas en la ley, reglamentos y resoluciones."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "13",
+          "encabezado": "Deber de suministrar información",
+          "texto_principal": "Todos los órganos y entes del Estado, especialmente del sistema de justicia, tiene la obligación de suministrar permanente, periódica, oportuna, veraz y confiable la información requerida para el registro de antecedentes penales, de conformidad con las leyes, reglamentos y resoluciones.El incumplimiento de esta obligación generara responsabilidad civil, penal y administrativa, de conformidad con la ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "14",
+          "encabezado": "Tasa",
+          "texto_principal": "Para la tramitación del certificado de antecedentes penales solicitado por la persona interesada ante el Ministerio del Poder Popular para las Relaciones Interiores, Justicia y Paz, se deberá cancelar una tasa que oscilará entre diez (10) a cincuenta (50) veces el tipo de cambio oficial de la moneda de mayor valor de acuerdo a la tasa publicada por el Banco Central de Venezuela (BCV). El ministerio determinará mediante resolución el monto de la tasa, dentro de los límites en esta Ley, y podrá establecer tasas diferenciadas tomando en cuenta el lugar donde se realiza la solicitud. El certificado de antecedentes penales solicitado por los órganos y entes del Estado competentes será gratuito.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "15",
+          "encabezado": "Expedición de copias certificadas",
+          "texto_principal": "Únicamente se expedirán copias simples o certificadas del registro de antecedentes penales al interesado y a las autoridades públicas que por la naturaleza de sus funciones intervengan en el proceso penal o por razones de seguridad o de interés social en los casos establecidos por la ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "16",
+          "encabezado": "Prohibiciones",
+          "texto_principal": "Se prohíbe a cualquier persona jurídica o natural en funciones de empleador exigir a las personas la presentación de antecedentes penales como requisito para postularse a una oferta de trabajo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "17",
+          "encabezado": "Sanciones",
+          "texto_principal": "Sin perjuicio de la aplicación de las sanciones establecidas en las leyes y reglamentos en materia de función pública, la servidora pública y servidor público que revele, comunique o publique los datos contenidos en el registro de antecedentes penales, será sancionado con la pena privativa de libertad de tres a quince meses de prisión.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "18",
+          "encabezado": "Multas",
+          "texto_principal": "Cualquier persona natural o jurídica que requiriere como requisito previo el certificado de antecedentes penales en perjuicio de la persona aspirante a determinada situación académica, laboral, beneficios de salud en seguros, créditos bancarios, ingreso o permanencia en algún establecimiento o lugar; o cualquier otra situación de índole personal se le impondrá una multa de mil (1000) veces el tipo de cambio oficial de la moneda de mayor valor de acuerdo a la tasa publicada por el Banco Central de Venezuela (BCV). El ministerio con competencia en la materia podrá establecer tasas diferenciadas tomando en cuenta las variables que puedan presentarse en este tipo de situaciones.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "DISPOSICION DEROGATORIA",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Derogatoria",
+          "identificador": "Única",
+          "encabezado": null,
+          "texto_principal": "Se deroga la Ley de registro de antecedentes penales publicada en Gaceta Oficial N. 31.791 de fecha 3 de agosto de del año 1979.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "DISPOSICION FINAL",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Final",
+          "identificador": "Única",
+          "encabezado": null,
+          "texto_principal": "Esta Ley entrará en vigencia mediante su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela. Dada, firmada y sellada en el Palacio Federal Legislativo, sede de la Asamblea Nacional de la República Bolivariana de Venezuela, en Caracas a los doce días del mes de julio dos mil veintidós. Años 212 de la Independencia, 163 de la Federación y 23 de la Revolución Bolivariana.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    }
+  ]
+}

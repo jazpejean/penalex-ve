@@ -64,3 +64,4 @@ analyzer:
     - "backup_quiz_*/**"  # Carpetas de backup
     - "recuperar quiz/**"  # Carpeta de recuperación
     - "para el quiz/**"  # Carpeta temporal
+    - "Quiz/**"  # Proyecto plantilla original anidado

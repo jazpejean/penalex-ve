@@ -1,7 +1,6 @@
 /// Modelo para estrategias legales y su comparación
 library;
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 /// Tipo de estrategia legal
 enum TipoEstrategia {
@@ -65,6 +64,33 @@ extension TipoEstrategiaExtension on TipoEstrategia {
         return 'Reducción de pena por circunstancias favorables';
       case TipoEstrategia.transaccionPenal:
         return 'Acuerdo reparatorio para delitos menores';
+    }
+  }
+
+  /// Instrucción en lenguaje natural para redactar el escrito correspondiente
+  /// en el Redactor de Documentos (un solo toque).
+  String get instruccionRedaccion {
+    switch (this) {
+      case TipoEstrategia.defensaTecnica:
+        return 'redacta una contestación de la acusación fiscal';
+      case TipoEstrategia.negociacion:
+        return 'redacta una solicitud de acuerdo reparatorio';
+      case TipoEstrategia.recursoApelacion:
+        return 'redacta un recurso de apelación';
+      case TipoEstrategia.accionTutela:
+        return 'redacta un amparo constitucional';
+      case TipoEstrategia.medidasCautelares:
+        return 'redacta una solicitud de medidas cautelares';
+      case TipoEstrategia.libertadProvisional:
+        return 'redacta una solicitud de libertad';
+      case TipoEstrategia.nulidad:
+        return 'redacta una solicitud de nulidad';
+      case TipoEstrategia.prescripcion:
+        return 'redacta una solicitud de prescripción de la acción penal';
+      case TipoEstrategia.atenuantes:
+        return 'redacta una solicitud de suspensión condicional del proceso';
+      case TipoEstrategia.transaccionPenal:
+        return 'redacta una solicitud de acuerdo reparatorio';
     }
   }
 }
@@ -169,7 +195,7 @@ class JurisprudenciaRespaldo {
     return {
       'sentenciaId': sentenciaId,
       'ponente': ponente,
-      'fecha': Timestamp.fromDate(fecha),
+      'fecha': fecha.toIso8601String(),
       'extracto': extracto,
       'relevancia': relevancia,
     };
@@ -179,7 +205,7 @@ class JurisprudenciaRespaldo {
     return JurisprudenciaRespaldo(
       sentenciaId: map['sentenciaId'] ?? '',
       ponente: map['ponente'] ?? '',
-      fecha: (map['fecha'] as Timestamp).toDate(),
+      fecha: _parseFecha(map['fecha']),
       extracto: map['extracto'] ?? '',
       relevancia: (map['relevancia'] ?? 0.0).toDouble(),
     );
@@ -200,6 +226,9 @@ class EstrategiaLegal {
   final List<JurisprudenciaRespaldo> jurisprudencia;
   final int duracionEstimadaDias;
   final String costoEstimado;
+  final double costoMinimoUSD;
+  final double costoMaximoUSD;
+  final String categoriaCosto; // 'bajo' | 'medio' | 'alto'
   final DateTime fechaCreacion;
   final bool generadaPorIA;
 
@@ -216,6 +245,9 @@ class EstrategiaLegal {
     required this.jurisprudencia,
     required this.duracionEstimadaDias,
     required this.costoEstimado,
+    this.costoMinimoUSD = 0,
+    this.costoMaximoUSD = 0,
+    this.categoriaCosto = 'medio',
     required this.fechaCreacion,
     this.generadaPorIA = false,
   });
@@ -234,7 +266,10 @@ class EstrategiaLegal {
       'jurisprudencia': jurisprudencia.map((j) => j.toMap()).toList(),
       'duracionEstimadaDias': duracionEstimadaDias,
       'costoEstimado': costoEstimado,
-      'fechaCreacion': Timestamp.fromDate(fechaCreacion),
+      'costoMinimoUSD': costoMinimoUSD,
+      'costoMaximoUSD': costoMaximoUSD,
+      'categoriaCosto': categoriaCosto,
+      'fechaCreacion': fechaCreacion.toIso8601String(),
       'generadaPorIA': generadaPorIA,
     };
   }
@@ -266,7 +301,10 @@ class EstrategiaLegal {
           [],
       duracionEstimadaDias: map['duracionEstimadaDias'] ?? 0,
       costoEstimado: map['costoEstimado'] ?? '',
-      fechaCreacion: (map['fechaCreacion'] as Timestamp).toDate(),
+      costoMinimoUSD: (map['costoMinimoUSD'] ?? 0).toDouble(),
+      costoMaximoUSD: (map['costoMaximoUSD'] ?? 0).toDouble(),
+      categoriaCosto: map['categoriaCosto'] ?? 'medio',
+      fechaCreacion: _parseFecha(map['fechaCreacion']),
       generadaPorIA: map['generadaPorIA'] ?? false,
     );
   }
@@ -314,7 +352,7 @@ class ComparacionEstrategias {
       'titulo': titulo,
       'casoId': casoId,
       'estrategias': estrategias.map((e) => e.toMap()).toList(),
-      'fechaCreacion': Timestamp.fromDate(fechaCreacion),
+      'fechaCreacion': fechaCreacion.toIso8601String(),
       'notas': notas,
     };
   }
@@ -328,7 +366,7 @@ class ComparacionEstrategias {
               ?.map((e) => EstrategiaLegal.fromMap(e as Map<String, dynamic>))
               .toList() ??
           [],
-      fechaCreacion: (map['fechaCreacion'] as Timestamp).toDate(),
+      fechaCreacion: _parseFecha(map['fechaCreacion']),
       notas: map['notas'],
     );
   }
@@ -345,4 +383,15 @@ class ComparacionEstrategias {
     if (estrategias.isEmpty) return null;
     return estrategiasOrdenadas.first;
   }
+}
+
+
+/// Parsea fechas provenientes de Supabase (ISO 8601) con tolerancia.
+DateTime _parseFecha(dynamic value) {
+  if (value is String) {
+    final parsed = DateTime.tryParse(value);
+    if (parsed != null) return parsed;
+  }
+  if (value is DateTime) return value;
+  return DateTime.now();
 }

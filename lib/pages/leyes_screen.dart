@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 
+import '../widgets/sentencias_relacionadas_widget.dart';
+
 class LeyesScreen extends StatefulWidget {
   const LeyesScreen({super.key, this.selectedLawIndex});
   final int? selectedLawIndex;
@@ -228,6 +230,7 @@ class _CodigoPenalDetailScreenState extends State<CodigoPenalDetailScreen> {
   final TextEditingController _chatController = TextEditingController();
   final List<Map<String, String>> _messages = [];
   String? _selectedArticle;
+  String _selectedArticleContenido = '';
   bool _isThinking = false;
 
   @override
@@ -327,6 +330,7 @@ class _CodigoPenalDetailScreenState extends State<CodigoPenalDetailScreen> {
   void _showArticleIA(Map<String, dynamic> articulo) {
     setState(() {
       _selectedArticle = articulo['numero'].toString();
+      _selectedArticleContenido = articulo['contenido']?.toString() ?? '';
       _showAIChat = true;
       _messages.clear();
       _messages.add({
@@ -526,6 +530,40 @@ class _CodigoPenalDetailScreenState extends State<CodigoPenalDetailScreen> {
     );
   }
 
+  /// Construye los elementos del chat: mensajes + módulo RAG de
+  /// sentencias reales del TSJ relacionadas con el artículo seleccionado.
+  List<Widget> _buildChatChildren() {
+    final List<Widget> children = [];
+
+    for (var i = 0; i < _messages.length + (_isThinking ? 1 : 0); i++) {
+      if (i == _messages.length && _isThinking) {
+        children.add(_buildThinkingBubble());
+      } else {
+        final message = _messages[i];
+        children.add(_buildMessageBubble(
+          message['content']!,
+          message['role']! == 'user',
+        ));
+      }
+    }
+
+    // 🔍 Módulo RAG: sentencias reales del TSJ relacionadas con el artículo
+    if (_selectedArticle != null) {
+      children.addAll([
+        const SizedBox(height: 12),
+        Divider(color: dorado.withOpacity(0.3)),
+        const SizedBox(height: 4),
+        SentenciasRelacionadasWidget(
+          contextoLegal: _selectedArticleContenido,
+          darkMode: true,
+        ),
+        const SizedBox(height: 8),
+      ]);
+    }
+
+    return children;
+  }
+
   Widget _buildAIChatPanel() {
     return Positioned(
       right: 0,
@@ -595,21 +633,11 @@ class _CodigoPenalDetailScreenState extends State<CodigoPenalDetailScreen> {
               ),
             ),
             
-            // Messages
+            // Messages + Sentencias relacionadas (RAG)
             Expanded(
-              child: ListView.builder(
+              child: ListView(
                 padding: const EdgeInsets.all(16),
-                itemCount: _messages.length + (_isThinking ? 1 : 0),
-                itemBuilder: (context, index) {
-                  if (index == _messages.length && _isThinking) {
-                    return _buildThinkingBubble();
-                  }
-                  final message = _messages[index];
-                  return _buildMessageBubble(
-                    message['content']!,
-                    message['role']! == 'user',
-                  );
-                },
+                children: _buildChatChildren(),
               ),
             ),
             

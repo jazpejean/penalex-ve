@@ -1,0 +1,891 @@
+{
+ "id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o",
+ "codigo": "EPSTOTCI",
+ "nombre": "Ley Especial Para Prevenir y Sancionar La Tortura y Otros Tratos Crueles, Inhumanos o",
+ "rama": "Derecho Penal y Criminológico",
+ "anio": null,
+ "archivo": "11. Ley Especial Para Prevenir y Sancionar La Tortura y Otros Tratos Crueles, Inhumanos o.docx",
+ "orden": 22,
+ "num_articulos": 37,
+ "num_secciones": 7,
+ "preambulo": null,
+ "secciones": [
+  {
+   "id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S1",
+   "tipo": "CAPITULO",
+   "numero": "I",
+   "titulo": "Disposiciones Generales",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 1,
+   "disposicion": false
+  },
+  {
+   "id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S2",
+   "tipo": "CAPITULO",
+   "numero": "II",
+   "titulo": "Derechos de las víctimas y sus familiares sujetos a los delitos de tortura",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 2,
+   "disposicion": false
+  },
+  {
+   "id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S3",
+   "tipo": "CAPITULO",
+   "numero": "III",
+   "titulo": "Mecanismo Nacional de Prevención de la Tortura y otros Tratos Crueles,",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 3,
+   "disposicion": false
+  },
+  {
+   "id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "tipo": "CAPITULO",
+   "numero": "IV",
+   "titulo": "De los delitos concernientes a la tortura, tratos crueles,",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 4,
+   "disposicion": false
+  },
+  {
+   "id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S5",
+   "tipo": "DISPOSICIONES",
+   "numero": "ÚNICO",
+   "titulo": "Única. Se deroga el artículo 181 del Código Penal.",
+   "nivel": 1,
+   "parent_id": null,
+   "orden": 5,
+   "disposicion": true
+  },
+  {
+   "id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S6",
+   "tipo": "DISPOSICIONES",
+   "numero": "ÚNICO",
+   "titulo": "Disposiciones",
+   "nivel": 1,
+   "parent_id": null,
+   "orden": 6,
+   "disposicion": true
+  },
+  {
+   "id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S7",
+   "tipo": "DISPOSICIONES",
+   "numero": "ÚNICO",
+   "titulo": "Disposiciones",
+   "nivel": 1,
+   "parent_id": null,
+   "orden": 7,
+   "disposicion": true
+  }
+ ],
+ "articulos": [
+  {
+   "numero_texto": "1",
+   "numero": 1,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La presente Ley tiene por objeto la prevención, tipificación, sanción de los delitos de tortura y otros tratos crueles,, inhumanos o degradantes, así como la reparación del daño a las personas que hayan sido víctimas de estos delitos, promoviendo la participación protagónica de los ciudadanos y ciudadanas a través de las instancias y organizaciones del Poder Popular, organizaciones sociales y organizaciones de víctimas de estos delitos, en corresponsabilidad con los órganos y entes del Poder Público competentes, en la protección y defensa de los derechos humanos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Fundamento constitucional"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "2",
+   "numero": 2,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La presente Ley desarrolla los principios constitucionales sobre el derecho de toda persona al respeto de su dignidad, su integridad física, psíquica y moral; y la prohibición absoluta de la tortura y otros tratos crueles, inhumanos o degradantes; el deber de toda persona de promover y defender los derechos humanos como fundamento de la convivencia democrática y de la paz social, y la obligación que tiene el Estado de prevenir, investigar y sancionar los delitos contra los derechos humanos cometidos por los funcionarios públicos, las funcionarias públicas y las personas naturales, atendiendo al principio de imprescriptibilidad de éstos y a su exclusión de todo beneficio procesal."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Finalidad"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "3",
+   "numero": 3,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La presente Ley tiene como finalidad desarrollar el mandato constitucional en el marco internacional de los derechos humanos, en materia de delitos de tortura y otros tratos crueles, inhumanos o degradantes, con el objeto de:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Garantizar y proteger el derecho a la vida, así como la integridad física, psíquica y moral de toda persona humana, en el territorio de la República Bolivariana de Venezuela, de conformidad con las obligaciones de protección, garantía y vigencia plena de los derechos humanos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Fortalecer la institucionalidad y las políticas públicas de prevención de los delitos de tortura, trato cruel, inhumano o degradante."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Promover la participación y protagonismo de las organizaciones de carácter civil e instancias del Poder Popular, así como los órganos y entes del Poder Público, que actúan en la protección y defensa de tos derechos humanos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Garantizar a las víctimas de tortura u otros tratos crueles, inhumanos o degradantes el ejercicio de las acciones administrativas y judiciales que permiten la protección de sus derechos y el castigo de los responsables mediante mecanismos que aseguren la imparcialidad y el cumplimiento de las disposiciones constitucionales del derecho a la defensa y el debido proceso."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Personas sujetas a la presente Ley"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "4",
+   "numero": 4,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Quedan sujetos a la aplicación de la presente Ley:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Los funcionarios públicos y funcionarias públicas que prestan servicio en la Fuerza Armada Nacional Bolivariana, la Policía Nacional Bolivariana, las policías estadales, municipales, los cuerpos de seguridad ciudadana y los cuerpos de seguridad del Estado que en razón o por motivo de su cargo, incurran en la comisión de los delitos establecidos en la presente Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Los funcionarios públicos y funcionarias públicas adscritos al sistema penitenciario y al sistema nacional de salud."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Las víctimas de los delitos de tortura, trato cruel, inhumano o degradante y sus familiares."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Las personas naturales que sean autores o autoras, intelectuales o materiales, cómplices, partícipes o encubridores de estos delitos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Definiciones"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "5",
+   "numero": 5,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "A los efectos de la presente Ley, se definen los siguientes términos:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Violación de derechos humanos: son aquellos delitos que atentan contra los derechos fundamentales del hombre y de la mujer, en cuanto miembros de la humanidad, que se encuentran definidas en el Pacto Internacional de Derechos Civiles y Políticos, y que son realizadas por el Estado - directa, indirectamente o por omisión - al amparo de su poder único."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Tortura: son actos por los cuales se inflije intencionadamente a una persona dolores o sufrimientos, ya sea físicos o mentales, con el fin de obtener de ella o de un tercero información o una confesión, de castigarla por un acto que haya cometido, o de intimidar o coaccionar a esa persona o a otras, o por cualquier razón basada en cualquier tipo de discriminación, cuando dichos sufrimientos sean infligidos por un funcionario público o funcionaria pública u otra persona en el ejercicio de funciones públicas, a instigación suya, o con su consentimiento. Asimismo se entenderá como tortura la aplicación sobre una persona de métodos tendientes a anular la personalidad de la víctima o a disminuir su capacidad física o mental; aunque no acusen dolor físico o angustia psíquica."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Trato cruel: son actos bajo los cuales se agrede o maltrata intencionalmente a una persona, sometida o no a privación de libertad, con la finalidad de castigar o quebrantar la resistencia física o moral de ésta, generando sufrimiento o daño físico."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Trato inhumano o degradante: son actos bajo los cuales se agrede psicológicamente a otra persona, sometida o no a privación de libertad, ocasionándole temor, angustia, humillación; o un grave ataque contra su dignidad, con la finalidad de castigar o quebrantar su voluntad o resistencia moral."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Integridad física, psíquica y moral: es el conjunto de condiciones que le permiten al ser humano su existencia, sin sufrir ningún tipo de menoscabo en sus condiciones y proyecto de vida."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Medidas de protección y seguimiento: son providencias cautelares de carácter judicial y administrativa, que tienen como objetivo la protección inmediata de la integridad física de la víctima."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Medidas de Prevención: son aquellas adoptadas por los órganos y entes competentes, para impedir que se produzcan daños físicos, mentales y sensoriales, o a impedir que la afectación o daño que se han producido, tengan consecuencias físicas, psicológicas y sociales negativas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Rehabilitación: son medidas específicas de asistencia médica, psicológica y social a las víctimas, para la restitución de su integridad física, psíquica y moral."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Maltrato psicológico: Toda conducta activa u omisiva de una persona sobre otra que ocasione a la víctima alteraciones temporales o permanentes en sus facultades mentales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Reparación del daño: Es la justa reparación social y moral a las víctimas de violación de derechos humanos y a sus familiares, incluido el reconocimiento público realizado por el Estado, lo que implica la reparación de los daños materiales y morales, medidas de protección social, el restablecimiento de la dignidad, readaptación, asistencia legal o social."
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "6",
+   "numero": 6,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las víctimas y familiares de tortura, tratos crueles, inhumanos y degradantes tienen derecho a exigir medidas de protección y seguimiento, y medidas de prevención a los órganos y entes competentes, previo cumplimiento del ordenamiento jurídico vigente, a fin de preservar su integridad física y obtener la protección necesaria. Es de carácter obligatorio para los órganos competentes en materia de seguridad ciudadana y de prevención, acoger de manera inmediata estas medidas y proteger a las víctimas de tratos crueles, inhumanos y degradantes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Políticas de prevención"
+    }
+   ],
+   "seccion_label": "CAPITULO II: Derechos de las víctimas y sus familiares sujetos a los delitos de tortura"
+  },
+  {
+   "numero_texto": "7",
+   "numero": 7,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Constituyen acciones a desarrollar para evitar la consumación de los delitos de tortura y otros tratos crueles, inhumanos o degradantes, en los órganos y entes del Estado, especialmente del sistema de justicia, del servicio- penitenciario, de los órganos de inteligencia, órganos de investigación penal, cuerpos de policía, entre otros, las siguientes:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. La orientación y asistencia de organizaciones de carácter civil y del Poder Popular para vigilar la exacta observancia de las garantías constitucionales en materia de derechos humanos, de las personas privadas de libertad y de los que se encuentren sujetos al proceso penal."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. La organización de cursos a nivel académico de capacitación para promover el respeto de los derechos humanos, de todos los cuerpos policiales en materia de derechos humanos, y su debida certificación a través de evaluaciones semestrales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. La profesionalización de los servidores públicos y las servidoras públicas que participan en la custodia y tratamiento de toda persona sometida a privación de libertad, y de los que se encuentren sujetos al proceso penal."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Incentivar la promoción, formación, capacitación y certificación de los funcionarios públicos o funcionarias públicas, encargados de hacer cumplir la ley en materia de derechos humanos, específicamente en materia de prevención de la tortura y otros tratos crueles, inhumanos o degradantes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Exámenes médicos"
+    }
+   ],
+   "seccion_label": "CAPITULO II: Derechos de las víctimas y sus familiares sujetos a los delitos de tortura"
+  },
+  {
+   "numero_texto": "8",
+   "numero": 8,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El reconocimiento médico, así como el control y registro del estado físico, psicológico y mental de la víctima de los delitos previstos en la presente Ley, debe estar debidamente documentados mediante las resultas del examen médico correspondiente y debidamente refrendado por la medicatura forense que le corresponde."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Derechos laborales de las víctimas"
+    }
+   ],
+   "seccion_label": "CAPITULO II: Derechos de las víctimas y sus familiares sujetos a los delitos de tortura"
+  },
+  {
+   "numero_texto": "9",
+   "numero": 9,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Toda víctima de los delitos previstos en la presente Ley, tiene el derecho a la reducción o adaptación de su jornada laboral, al cambio del centro de trabajo, y a la suspensión temporal de la relación laboral. Las ausencias el puesto de trabajo, motivadas por la condición física o psicológica derivada de la tortura o el trato cruel, inhumano o degradante, no se consideran suspensión de la relación del trabajo, de conformidad con la legislación laboral vigente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Reparación a las víctimas y sus familiares"
+    }
+   ],
+   "seccion_label": "CAPITULO II: Derechos de las víctimas y sus familiares sujetos a los delitos de tortura"
+  },
+  {
+   "numero_texto": "10",
+   "numero": 10,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Es deber del Estado la reparación a las víctimas de los delitos de tortura y otros tratos crueles, inhumanos o degradantes, quien tiene la obligación de proveer la asistencia médica, psicológica y social a las víctimas y sus familiares, hasta su total rehabilitación. Es deber, del Estado generar las políticas públicas necesarias para dar cumplimiento al contenido del presente artículo."
+    }
+   ],
+   "seccion_label": "CAPITULO II: Derechos de las víctimas y sus familiares sujetos a los delitos de tortura"
+  },
+  {
+   "numero_texto": "11",
+   "numero": 11,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se crea la Comisión Nacional de Prevención de la Tortura y otros Tratos Crueles, Inhumanos o Degradantes, que estará integrada a la estructura organizativa de la Defensoría del Pueblo, que tendrá por objeto la coordinación promoción, supervisión y control nacional de las políticas y planes nacionales de prevención de la tortura, y otros tratos crueles, inhumanos o degradantes; así como la vigilancia de los derechos de las personas privadas de libertad; de igual forma velará por el cumplimiento de la presente Ley, de la garantía del derecho a la integridad física, psíquica y moral, y la prohibición de tortura y otros tratos crueles, inhumanos o degradantes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Funciones y facultades de la Comisión Nacional de Prevención"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "de la Tortura y otros Tratos Crueles, Inhumanos o Degradantes"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Mecanismo Nacional de Prevención de la Tortura y otros Tratos Crueles,"
+  },
+  {
+   "numero_texto": "12",
+   "numero": 12,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Corresponde a la Comisión Nacional de Prevención de la Tortura y otros Tratos Crueles, Inhumanos o Degradantes:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Establecer planes nacionales de formación anual, en derechos humanos y prevención de la tortura y otros tratos crueles inhumanos o degradantes, dirigidos a los funcionarios públicos y funcionarias públicas, a quienes se les deberá informar sobre las responsabilidades en que incurran en caso de comisión de los delitos previstos en la presente Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Promover planes nacionales de sensibilización y formación en derechos humanos y prevención de la tortura y otros tratos crueles inhumanos o degradantes, dirigidos a centros educativos públicos y privados, universidades, institutos militares, centros de salud públicos y privados."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Difundir a nivel nacional la presente Ley y demás normas y principios de protección a la integridad física, psíquica y moral, la prevención de los delitos de tortura y otros tratos crueles inhumanos o degradantes, y las sanciones correspondientes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Promover la inclusión de materias de derechos humanos en todos los niveles educativos escolares y universitarios."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Desarrollar planes nacionales de sensibilización e información sobre la prevención de la tortura y otros tratos crueles inhumanos o degradantes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Revisar el ordenamiento jurídico vigente y proyectos de ley, vinculados con la protección a la integridad física y mental, derechos humanos y prevención de la tortura y otros tratos crueles, inhumanos o degradantes, para presentar las propuestas y observaciones conducentes, así como revisar todos los protocolos y leyes que tienen que ver con los procedimientos de detención e interrogatorio de los detenidos y privados de libertad para garantizar que estén en concordancia y bajo el mandato de la presente Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Realizar visitas libremente a centros de privación de libertad, tales como centros penales, centros de detención preventiva, instituciones policiales, instituciones psiquiátricas, centros de desintoxicación farmacológica, zonas de tránsito en puertos internacionales, u otros. Estas visitas podrán ser realizadas sin previo aviso, con la finalidad de garantizar los derechos humanos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Realizar reuniones con las y los responsables, las funcionarias y los funcionarios de los centros visitados para mantener un diálogo constructivo con las autoridades pertinentes, y elaborar informes que reflejen las situaciones observadas, y el seguimiento acordado desde la Comisión Nacional de Prevención de la Tortura y otros Tratos Crueles, inhumanos o Degradantes a cada una de ellas. Este informe deberá ser remitido a los superiores jerárquicos de cada uno de los entes que conforman la Comisión Nacional de Prevención."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Seleccionar libremente los lugares que se deben visitar y las personas a las que se quiere entrevistar, así mismo, podrá realizar estas visitas con médicos debidamente calificados que puedan certificar las condiciones físicas y mentales, marcas o lesiones denunciadas por las personas entrevistadas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Acceder a la información de cualquier órgano y ente oficial, institución pública o privada, sobre el seguimiento o cumplimiento de las normas y disposiciones previstas en esta Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "11. Acceder en cualquier momento a toda la información sobre el número de personas privadas de libertad, y el trato dado a las mismas, a cualquier centro de detención, así como todo lo referente al número, ubicación y condiciones de detención de las personas que allí se encuentren."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "12. Entrevistar a las personas privadas de libertad, sin testigos, personalmente o con la asistencia de un intérprete en caso necesario, y de cualquier otra persona que considere pueda ayudar o mediar para realizar la entrevista. Asimismo, podrán incorporarse a las visitas y entrevistas cámaras de fotos y grabadoras."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "13. Redactar informes semestrales o anuales en seguimiento a las actividades desarrolladas y sus recomendaciones o propuestas a los entes oficiales e instituciones públicas o privadas respectivas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "14. Recibir, procesar y dar seguimiento a las denuncias en materia de tortura, y otros tratos crueles, inhumanos o degradantes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "15. En caso de recibir denuncia, previa formalidades, individual o grupal de la comisión de delitos de tortura u otros tratos crueles, inhumanos o degradantes, deberá notificar de manera inmediata al Ministerio Público, para que inicie el procedimiento pertinente y solicite las medidas necesarias para proteger a las víctimas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "16. La Comisión Nacional de Prevención, podrá invitar a sus reuniones a representantes de otros organismos públicos o privados, involucrados en la prevención de la tortura y otros tratos crueles, inhumanos o degradantes, a quienes oirá en los asuntos que considere pertinente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "17. Contratar expertos y especialistas, y realizar acuerdos con universidades, que realicen estudios e investigaciones, para el mejor cumplimiento de los deberes de prevención a nivel nacional."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "18. Cada representante designado o designada ante la Comisión Nacional de Prevención de la Tortura y otros Tratos Crueles, Inhumanos o Degradantes, deberá inhumar periódicamente a su respectivo superior jerárquico, del cumplimiento de las funciones aquí previstas, y remitir los informes semestrales y anuales respectivos, y cuando sean requeridos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "19. Redactar y aprobar su Reglamento."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "20. Cualquier otra función inherente a su actividad."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Integrantes de la Comisión Nacional de Prevención de lo Tortura,"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "y otros Tratos Crueles, Inhumanos o Degradantes"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Mecanismo Nacional de Prevención de la Tortura y otros Tratos Crueles,"
+  },
+  {
+   "numero_texto": "13",
+   "numero": 13,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Comisión Nacional de Prevención estará integrada por dos voceros o voceras de la Defensoría del Pueblo, quien la presidirá, y un vocero o vocera de los Organismos e Instituciones que a continuación se mencionan: Tribunal Supremo de Justicia, Defensa Pública, Ministerio Público, Asamblea Nacional y de los ministerios del Poder Popular con competencia en materia de Servicio Penitenciario, Relaciones Interiores, Justicia y Paz, Comunas y Protección Social, Defensa, Salud, Pueblos Indígenas, y un vocero o vocera del Poder Popular designado del seno del Consejo Federal de Gobierno."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Los voceros y voceras, objeto del presente artículo, serán nombrados dentro del marco de las normas y procedimientos de la institución correspondiente, y tienen derecho a voz y voto en las decisiones que se adopten."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "De los gastos de funcionamiento de la Comisión Nacional de"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Prevención de la Tortura y otros Tratos Crueles, Inhumanos o Degradantes"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Mecanismo Nacional de Prevención de la Tortura y otros Tratos Crueles,"
+  },
+  {
+   "numero_texto": "14",
+   "numero": 14,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los gastos de funcionamiento de la Comisión Nacional de Prevención de la Tortura y otros Tratos Crueles, Inhumanos o Degradantes, serán provistos con cargo al presupuesto fiscal de la Defensoría del Pueblo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Obligación de notificar a la Defensoría del Pueblo"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Mecanismo Nacional de Prevención de la Tortura y otros Tratos Crueles,"
+  },
+  {
+   "numero_texto": "15",
+   "numero": 15,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando los funcionarios o funcionarias policiales, del servicio penitenciario, los o las fiscales del Ministerio Público, los defensores públicos o las defensoras públicas, los funcionarios o funcionarias militares, los jueces o juezas de la República tengan conocimiento que se ha producido uno de los delitos previstos en esta Ley, deberán notificar a la Defensoría del Pueblo, en un lapso no mayor a cuarenta y ocho horas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Confidencialidad de las entrevistas"
+    }
+   ],
+   "seccion_label": "CAPITULO III: Mecanismo Nacional de Prevención de la Tortura y otros Tratos Crueles,"
+  },
+  {
+   "numero_texto": "16",
+   "numero": 16,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La información que hayan suministrado las personas y entidades a la Comisión Nacional de Prevención de la Tortura y otros Tratos Crueles, Inhumanos o Degradantes, será confidencial."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "No se podrá hacer pública la información confidencial obtenida a través de visitas a centros de privación de libertad o entrevistas efectuadas a familiares o víctimas de tortura, tratos crueles, inhumanos o degradantes, ni la información sobre casos individuales sin el consentimiento previo de la persona interesada. Se reserva la privacidad de la fuente."
+    }
+   ],
+   "seccion_label": "CAPITULO III: Mecanismo Nacional de Prevención de la Tortura y otros Tratos Crueles,"
+  },
+  {
+   "numero_texto": "17",
+   "numero": 17,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El funcionario público o la funcionaria, pública que en funciones inherentes a su cargo lesione a una persona que se encuentre bajo su custodia en su integridad física, psíquica o moral, o por cualquier razón basada en cualquier tipo de discriminación, con la intención de intimidar, castigar u obtener información o una confesión, será sancionado o sancionada con la pena de quince a veinticinco años de prisión o inhabilitación para el ejercicio de la función pública y política, por un período equivalente a la pena decretada. Tanto la inhabilitación del ejercicio de la función pública como política no estarán sujetas a rebaja alguna."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Del delito de trato cruel"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "18",
+   "numero": 18,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El funcionario público o funcionaria pública que someta o inflija trato cruel a una persona sometida o no a privación de libertad con la finalidad de castigar o quebrantar la resistencia física o moral de esta, genere sufrimiento, daño físico o psíquico, será sancionado o sancionada con pena de trece a veintitrés años de prisión e inhabilitación para el ejercicio de la función pública y política por un período equivalente al de la pena decretada. Tanto la inhabilitación del ejercicio de la función pública como política no estarán sujetas a rebaja alguna."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Colaboración, encubrimiento y obstrucción"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "19",
+   "numero": 19,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El funcionario público o funcionaria pública que colabore de cualquier forma o encubra a los agentes activos de los delitos previstos en los artículos 17 y 18, será sancionado o sancionada con pena equivalente a lo establecido en los artículos antes señalados. En la misma pena incurrirán los funcionarios públicos y las funcionarias públicas, que entorpezcan las investigaciones correspondientes que instruya el Ministerio Público y la Defensoría del Pueblo, e inhabilitación para el ejercicio función pública y política por un período equivalente al de la pena decretada. Tanto la inhabilitación del ejercicio de la función pública como política no estarán sujetas a rebaja alguna."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "De la autoría material, intelectual o colaboración de las personas naturales"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "20",
+   "numero": 20,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las personas naturales que participen en calidad de autores materiales o intelectuales de cualquier forma con él o los agentes activos de los delitos previstos en los artículos 17, 18 y 19, respectivamente, serán sancionadas con una pena equivalente a las tres cuartas partes de la pena principal aplicada a estos agentes activos, e inhabilitación para el ejercicio de la función pública y política por un período equivalente al de la pena decretada. De igual forma quien colabore con cualquier forma con los agentes activos de los delitos señalados en este artículo será sancionado con pena de las dos cuartas partes de la pena principal e inhabilitación para el ejercicio de la función pública y política por un período equivalente al de la pena decretada. Tanto la inhabilitación del ejercicio de la función pública como política no estarán sujetas a rebaja alguna."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "De los delitos de tratos inhumanos o degradantes"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "21",
+   "numero": 21,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El funcionario público o funcionaria pública que en funciones inherentes a su cargo, cometa actos bajo los cuales se agreda psicológicamente a otra persona, sometida o no a privación de libertad, ocasionándole temor, angustia, humillación; realice un grave ataque contra su dignidad, con la finalidad de castigar o quebrantar su voluntad o resistencia moral, será sancionado o sancionada con la pena de tres a seis años de prisión e inhabilitación para el ejercicio de la función pública y política por un período equivalente al de la pena decretada. Tanto la inhabilitación del ejercicio de la función pública como política no estarán sujetas a rebaja alguna."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "No será considerado trato cruel el uso progresivo, diferenciado y proporcionado de la fuerza potencialmente letal por parte de los organismos de seguridad del Estado, conforme a los lineamientos de la Ley que rige la materia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Maltrato físico y verbal"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "22",
+   "numero": 22,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los funcionarios públicos o funcionarias públicas adscritos al sistema nacional de salud, con responsabilidad en el trato de tutelados o pacientes, que maltraten física o psicológicamente a las personas sometidas a su tutela, custodia o disciplina, o a los usuarios y usuarias del servicio, serán sancionados o sancionadas con amonestación escrita, trabajo comunitario, destitución, o con arresto proporcional a los establecido en la ley que regula la materia, de conformidad con la gravedad de la lesión."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Espacios e instrumentos de tortura"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "23",
+   "numero": 23,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los funcionarios públicos o funcionarias públicas responsables de los centros de detención, donde se encuentren espacios o instrumentos utilizados para infligir tortura, serán sancionados con pena de uno a cinco años de prisión y multa de doscientos cincuenta Unidades Tributarias (250 U.T.) a quinientas Unidades Tributarias (500 U.T.), así como la clausura del espacio y la destrucción del instrumento de tortura; siempre que los mismos no se constituyan en elementos o instrumentos probatorios enjuicio."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Sanción al incumplimiento de notificación a la Defensoría del Pueblo"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "24",
+   "numero": 24,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los funcionarios o funcionarias policiales, del servicio penitenciario, los o las fiscales del Ministerio Público, los defensores públicos o las defensoras públicas, los funcionarios o funcionarias militares, del sistema educativo, del sistema nacional de salud, los jueces o juezas de la República, que incumplan con la obligación de notificar a la Defensoría del Pueblo cuando tengan conocimiento que se ha producido uno de los delitos previstos en esta Ley, serán sancionado o sancionada con una multa de cincuenta Unidades Tributarias (50 U.T.) a doscientos cincuenta Unidades Tributarias (250 U.T.), trabajo comunitario, o destitución según la gravedad del caso."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Obligación de dar información a los miembros integrantes"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "de la Comisión Nacional de Prevención de la Tortura"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "y otros Tratos Crueles, Inhumanos o Degradantes"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "25",
+   "numero": 25,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El funcionario público o funcionaria pública que se niegue a dar información a los distintos representantes de los órganos y entes que conforman la Comisión Nacional de Prevención de la Tortura y otros Tratos Crueles, Inhumanos o Degradantes, le negare el acceso a los expedientes del centro de reclusión o de la persona detenida, el registro de detenidos o impida la entrevista con los mismos o negare la entrada a un centro de detención o algún lugar dentro del centro de detención, será sancionado con arresto de quince a veinticinco días y multa de doscientos cincuenta Unidades Tributarias (250 U.T.) a quinientas Unidades Tributarias (500 U.T.)."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Faltas en instituciones privadas"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "26",
+   "numero": 26,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El personal de salud que labore en instituciones privadas y con responsabilidad en el trato de pacientes, que maltraten física o verbalmente a las personas de la prestación de sus servicios, serán sancionados con multas de veinticinco Unidades Tributarias (25 U.T.) a Cincuenta Unidades Tributarias (50 U.T.) unidades tributarias o arresto proporcional, conforme al maltrato físico causado."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Falsedad del informe médico"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "27",
+   "numero": 27,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El médico o médica que incurra en falsedad al expedir el informe médico legal, psicológico o mental respectivo, u omita la mención de signos de tortura o maltrato, será sancionado o sancionada con pena de ocho a doce años de prisión y suspensión de la licencia por un período equivalente a la pena."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Violación a la confidencialidad de las entrevistas"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "28",
+   "numero": 28,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El funcionario público o funcionaria pública que incurra en violación a lo dispuesto en el artículo 16 de la presente Ley, será sancionado o sancionada con pena de cuatro a seis años de prisión, con la destitución del cargo, e inhabilitación para el ejercicio de la función pública por un período de cinco años."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Causas eximentes"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "29",
+   "numero": 29,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "No se considerarán como causas eximentes de responsabilidad de los delitos de tortura y otros tratos crueles, inhumanos o degradantes, tipificados en la presente Ley, el que se invoquen o existan circunstancias excepcionales de orden social, económico, político, natural o ecológico, que afecten gravemente la seguridad de la Nación, de las instituciones y de las personas, estados de excepción, urgencia en las investigaciones o cualquier otra circunstancia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Principio de obediencia reflexiva"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "30",
+   "numero": 30,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los funcionarios públicos y las funcionarias públicas, no podrán invocar como causa de justificación, la orden de un superior jerárquico o de cualquier otra autoridad, para justificar la comisión de los delitos previstos en la presente Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Deber de denuncia"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "31",
+   "numero": 31,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Todo funcionario público y funcionaria pública que presencie o tenga conocimiento de la comisión de los delitos previstos en la presente Ley, o se le instruya una orden para ejecutar actos típicos previstos en esta Ley, aun cuando no se ejecutaren, está obligado u obligada a denunciarlo de inmediato ante las autoridades competentes. El funcionario público o funcionaria pública que incurra en omisión a lo dispuesto en el presente artículo, será sancionado o sancionada con pena de uno a tres años de prisión."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Investigación de los delitos"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "32",
+   "numero": 32,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Corresponde al Ministerio Público la investigación para la determinación del hecho punible y la identificación del autor o autores y/o partícipe, de acuerdo a los procedimientos especiales previstos para tales efectos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La Defensoría del Pueblo podrá participar de la investigación, y tendrá acceso al expediente y a sus actas o cualquier otra información que repose en los archivos del Estado o en instituciones privadas, con el fin de hacer las recomendaciones a que hubiere lugar."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Valor probatorio"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "33",
+   "numero": 33,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Ninguna confesión o información que haya sido obtenida mediante tortura, tratos crueles, inhumanos o degradantes, podrá promoverse como prueba, y el documento que la contenga es nulo de nulidad absoluta. La promoción de esta prueba será considerada fraude a la ley y en consecuencia, acarreará responsabilidad penal y administrativa."
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De los delitos concernientes a la tortura, tratos crueles,"
+  },
+  {
+   "numero_texto": "PRIMERA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S6",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los órganos y entes de la República, los estados y municipios, en un lapso no mayor de seis meses, a partir de la publicación de la presente Ley en la Gaceta Oficial de la República Bolivariana de Venezuela, dispondrán lo conducente para la adaptación y seguimiento de las disposiciones previstas en la presente Ley."
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Disposiciones"
+  },
+  {
+   "numero_texto": "SEGUNDA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S6",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La designación de los voceros y voceras de los órganos y entes del Estado señalados en el artículo 13 de la presente Ley, será efectiva en un lapso no mayor de cuatro meses contados a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela."
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Disposiciones"
+  },
+  {
+   "numero_texto": "PRIMERA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En todo lo no previsto en esta Ley, serán aplicables las disposiciones del Código Penal y del Código Orgánico Procesal Penal, así como las normas dispuestas en las convenciones, tratados y demás fuentes internacionales de protección de los derechos humanos, suscritos y ratificados por la República Bolivariana de Venezuela."
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Disposiciones"
+  },
+  {
+   "numero_texto": "SEGUNDA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_especial_para_prevenir_y_sancionar_la_tortura_y_otros_tratos_crueles_inhumanos_o_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La presente Ley entrará en vigencia desde la fecha de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Dado, firmado y sellado en el Palacio Federal Legislativo, sede de la Asamblea Nacional, en Caracas, a los cuatro días del mes de junio de dos mil trece. Año 203 de la Independencia y 154 de la Federación."
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Disposiciones"
+  }
+ ]
+}

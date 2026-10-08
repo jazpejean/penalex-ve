@@ -24,6 +24,10 @@
 		<string>$(FLUTTER_BUILD_NUMBER)</string>
 		<key>LSRequiresIPhoneOS</key>
 		<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Penalex VE necesita acceso a la camara para escanear documentos.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Penalex VE necesita acceso a tus fotos para importar documentos.</string>
 		<key>UILaunchStoryboardName</key>
 		<string>LaunchScreen</string>
 		<key>UIMainStoryboardFile</key>

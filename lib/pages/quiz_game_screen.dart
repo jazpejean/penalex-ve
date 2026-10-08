@@ -1,9 +1,21 @@
+import 'dart:async';
+
+import 'package:confetti/confetti.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../models/caso_hipotetico_model.dart';
-import '../providers/game_provider.dart';
-import '../services/casos_service.dart';
-import '../data/venezuela_regions.dart';
+import 'package:share_plus/share_plus.dart';
+
+import '../models/caso_quiz.dart';
+import '../services/quiz_certificate_service.dart';
+import '../services/quiz_rules.dart';
+import '../services/quiz_ranking_service.dart';
+import '../services/quiz_storage_service.dart';
+import '../utils/quiz_seed.dart';
+
+const _navy = Color(0xFF0F172A);
+const _goldBright = Color(0xFFE9C86A);
+const _gold = Color(0xFFC5A059);
+const _bg = Color(0xFF1E2536);
 
 class QuizGameScreen extends StatefulWidget {
   const QuizGameScreen({super.key});
@@ -12,389 +24,501 @@ class QuizGameScreen extends StatefulWidget {
   State<QuizGameScreen> createState() => _QuizGameScreenState();
 }
 
-class _QuizGameScreenState extends State<QuizGameScreen> with SingleTickerProviderStateMixin {
-  late CasoHipotetico _currentCaso;
-  int? _selectedOption;
-  bool _showingResult = false;
-  bool _isCorrect = false;
-  int _attempts = 0;
-  late AnimationController _animationController;
-  late Animation<double> _fadeAnimation;
-  late Animation<Offset> _slideAnimation;
+class _QuizGameScreenState extends State<QuizGameScreen> {
+  final QuizStorageService _service = QuizStorageService();
+  final ConfettiController _confetti =
+      ConfettiController(duration: const Duration(seconds: 2));
 
-  static const Color _bgPrincipal = Color(0xFF0A0E1A);
-  static const Color _bgSecundario = Color(0xFF1A1F2E);
-  static const Color _bgCard = Color(0xFF0F1623);
-  static const Color _borderColor = Color(0xFF2A3142);
-  static const Color _dorado = Color(0xFFD4AF37);
-  static const Color _success = Color(0xFF22C55E);
-  static const Color _error = Color(0xFFEF4444);
-  static const Color _warning = Color(0xFFF59E0B);
-  static const Color _info = Color(0xFFF97316);
+  Map<String, dynamic> _progreso = {};
+  CasoQuiz? _caso;
+  bool _cargando = true;
+  bool _respondida = false;
+  bool _correcta = false;
+  int? _seleccionada;
+  int _racha = 0;
+  int _apelaciones = 5;
+  int _xp = 0;
+  int _nivelActual = 1;
+
+  int _tiempoRestante = 30;
+  Timer? _timer;
 
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
-    );
-    _slideAnimation = Tween<Offset>(
-      begin: const Offset(0, 0.3),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _animationController, curve: Curves.easeOut));
-    
-    _loadQuestion();
+    _inicializar();
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _timer?.cancel();
+    _confetti.dispose();
     super.dispose();
   }
 
-  void _loadQuestion() {
-    final gameState = Provider.of<GameState>(context, listen: false);
+  Future<void> _inicializar() async {
+    await sembrarCasosIniciales();
+    final p = await _service.cargarProgreso();
+    final regen = _service.regenerarApelaciones(p);
+    await _service.guardarProgreso(regen);
+    if (!mounted) return;
     setState(() {
-      _currentCaso = CasosService.getCasoParaNivel(gameState.currentLevel);
-      _selectedOption = null;
-      _showingResult = false;
-      _isCorrect = false;
-      _attempts = 0;
+      _progreso = regen;
+      _xp = (regen['xp'] as num?)?.toInt() ?? 0;
+      _racha = (regen['racha_actual'] as num?)?.toInt() ?? 0;
+      _apelaciones = (regen['apelaciones'] as num?)?.toInt() ?? 5;
+      _nivelActual = (regen['nivel_actual'] as num?)?.toInt() ?? 1;
+    });
+    await _cargarCaso();
+  }
+
+  Future<void> _cargarCaso() async {
+    setState(() {
+      _cargando = true;
+      _respondida = false;
+      _seleccionada = null;
+      _correcta = false;
+      _tiempoRestante = 30;
+    });
+    _timer?.cancel();
+
+    final excluir = _service.idsExcluidos(_progreso);
+    final caso = await _service.obtenerCaso(_nivelActual, excluirIds: excluir);
+
+    if (!mounted) return;
+    setState(() {
+      _caso = caso;
+      _cargando = false;
+    });
+    if (_apelaciones > 0) _iniciarTimer();
+  }
+
+  void _iniciarTimer() {
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 1), (t) {
+      if (_respondida) {
+        t.cancel();
+        return;
+      }
+      setState(() => _tiempoRestante--);
+      if (_tiempoRestante <= 0) {
+        t.cancel();
+        _resolver(tiempoAgotado: true);
+      }
     });
   }
 
-  void _verifyAnswer() {
-    if (_selectedOption == null) return;
+  Future<void> _resolver({bool tiempoAgotado = false, int? indice}) async {
+    if (_caso == null || _respondida) return;
+    final correcta = tiempoAgotado ? false : indice == _caso!.respuestaCorrecta;
 
     setState(() {
-      _attempts++;
-      _isCorrect = _selectedOption == _currentCaso.respuestaCorrecta;
-      _showingResult = true;
+      _respondida = true;
+      _seleccionada = tiempoAgotado ? null : indice;
+      _correcta = correcta;
     });
+    _timer?.cancel();
 
-    _animationController.forward(from: 0.0);
+    var nuevo = Map<String, dynamic>.from(_progreso);
+    final rangoAnterior = QuizRules.rangoParaXp(_xp);
+    int xpGanado = 0;
 
-    if (_isCorrect) {
-      Future.delayed(const Duration(seconds: 4), () {
-        if (mounted) {
-          final gameState = Provider.of<GameState>(context, listen: false);
-          gameState.completeLevel();
-          _loadNextQuestion();
-        }
-      });
+    if (correcta) {
+      xpGanado = QuizRules.xpPorAcierto(
+        dificultad: _caso!.dificultad,
+        racha: _racha,
+      );
+      _racha++;
+      _xp += xpGanado;
+      nuevo = _service.registrarAcierto(nuevo, _caso!.id);
+      _confetti.play();
+      await Future.delayed(const Duration(milliseconds: 350));
+    } else {
+      _apelaciones = (_apelaciones - 1).clamp(0, 999);
+      _racha = 0;
+      nuevo = _service.registrarFallo(nuevo, _caso!.id);
     }
+
+    nuevo['xp'] = _xp;
+    nuevo['racha_actual'] = _racha;
+    if (_racha > (nuevo['racha_maxima'] ?? 0)) nuevo['racha_maxima'] = _racha;
+    nuevo['apelaciones'] = _apelaciones;
+    nuevo['nivel_actual'] = _nivelActual;
+    _progreso = nuevo;
+    await _service.guardarProgreso(nuevo);
+    await QuizRankingService.actualizar(
+      xp: _xp,
+      nivelActual: _nivelActual,
+      rango: QuizRules.rangoParaXp(_xp),
+    );
+
+    if (!mounted) return;
+    setState(() {});
+    if (correcta) {
+      final rangoNuevo = QuizRules.rangoParaXp(_xp);
+      if (rangoNuevo != rangoAnterior) {
+        final hito = QuizRules.certificadoActual(_xp);
+        if (hito != null && hito.nombre == rangoNuevo) {
+          _mostrarLogro(rangoNuevo, xpGanado);
+        } else {
+          _mostrarAscenso(rangoNuevo, xpGanado);
+        }
+      }
+    }
+  }
+
+  void _mostrarAscenso(String rango, int xpGanado) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: _navy,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        title: const Text('⚖️ ¡Ascenso!', style: TextStyle(color: _gold)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.military_tech, size: 64, color: _gold),
+            const SizedBox(height: 16),
+            Text(
+              rango,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              '+$xpGanado XP',
+              style: const TextStyle(color: Colors.greenAccent, fontSize: 16),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Continuar', style: TextStyle(color: _gold)),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('Nivel ${Provider.of<GameState>(context).currentLevel}'),
-        backgroundColor: const Color(0xFF003893),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: _currentGame != null
-                ? GameWidget(game: _currentGame!)
-                : const Center(child: CircularProgressIndicator()),
-          ),
-          if (!_showingResult)
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: ElevatedButton(
-                onPressed: () {
-                  _currentGame?.verifyAnswer();
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFD4AF37),
-                  minimumSize: const Size(double.infinity, 60),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: const Text(
-                  'VERIFICAR RESPUESTA',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
+      backgroundColor: _bg,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                _buildTopBar(),
+                _buildXpBar(),
+                Expanded(child: _buildContenido()),
+              ],
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: ConfettiWidget(
+                confettiController: _confetti,
+                blastDirectionality: BlastDirectionality.explosive,
+                numberOfParticles: 24,
+                gravity: 0.2,
+                colors: const [Colors.amber, Colors.greenAccent, Colors.white],
               ),
             ),
-          if (_showingResult && _resultado != null)
-            _buildResultPanel(_resultado!),
-        ],
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildResultPanel(ResultadoRespuesta resultado) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: resultado.correcto
-            ? const Color(0xFF4CAF50).withOpacity(0.1)
-            : const Color(0xFFF44336).withOpacity(0.1),
-        border: Border(
-          top: BorderSide(
-            color: resultado.correcto
-                ? const Color(0xFF4CAF50)
-                : const Color(0xFFF44336),
-            width: 3,
-          ),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            children: [
-              Icon(
-                resultado.correcto ? Icons.check_circle : Icons.error,
-                color: resultado.correcto
-                    ? const Color(0xFF4CAF50)
-                    : const Color(0xFFF44336),
-                size: 32,
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  resultado.mensaje ?? '',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: resultado.correcto
-                        ? const Color(0xFF2E7D32)
-                        : const Color(0xFFC62828),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          if (resultado.correcto && resultado.fundamentacion != null)
-            _buildFundamentacion(resultado.fundamentacion!),
-          if (!resultado.correcto && resultado.pista != null)
-            _buildPista(resultado.pista!),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildFundamentacion(Fundamentacion fundamentacion) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          '⚖️ Fundamentación Legal',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFF003893),
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          fundamentacion.explicacion,
-          style: const TextStyle(fontSize: 14, height: 1.4),
-        ),
-        const SizedBox(height: 12),
-        ...fundamentacion.articulos.map((art) => Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Text(
-                '• ${art.articulo}: ${art.texto}',
-                style: const TextStyle(
-                  fontSize: 13,
-                  fontStyle: FontStyle.italic,
-                  color: Colors.black87,
-                ),
-              ),
-            )),
-      ],
-    );
-  }
-
-  Widget _buildPista(Pista pista) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          '💡 Pista',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFFF57C00),
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          pista.textoPista,
-          style: const TextStyle(fontSize: 14, height: 1.4),
-        ),
-        if (pista.busquedaSugerida != null) ...[
-          const SizedBox(height: 8),
-          Text(
-            pista.busquedaSugerida!,
-            style: const TextStyle(
-              fontSize: 12,
-              fontStyle: FontStyle.italic,
-              color: Colors.black54,
-            ),
-          ),
-        ],
-      ],
-    );
-  }
-}
-
-  Widget _buildBloqueadoCard() {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: _bgCard,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: _warning, width: 2),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  color: _warning.withOpacity(0.2),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(Icons.lock, color: _warning, size: 24),
-              ),
-              const SizedBox(width: 12),
-              const Expanded(
-                child: Text(
-                  'CASO BLOQUEADO',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: _warning,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          const Text(
-            'Has agotado los 3 intentos permitidos',
-            style: TextStyle(
-              fontSize: 15,
-              color: Colors.white70,
-            ),
-          ),
-          const Divider(color: _borderColor, height: 32),
-          const Text(
-            '⚠️  OPCIONES DISPONIBLES:',
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 16),
-          _buildOptionInfo(
-            icon: Icons.description,
-            title: '1. 📜 USAR APELACIÓN',
-            subtitle: 'Desbloquea este caso inmediatamente\nSe regenera 1 cada 30 minutos',
-          ),
-          const SizedBox(height: 12),
-          _buildOptionInfo(
-            icon: Icons.schedule,
-            title: '2. ⏰ ESPERAR 24 HORAS',
-            subtitle: 'El caso se desbloqueará automáticamente\nPuedes avanzar otros niveles mientras',
-          ),
-          const SizedBox(height: 12),
-          _buildOptionInfo(
-            icon: Icons.book,
-            title: '3. 📚 ESTUDIAR EN REPOSITORIO',
-            subtitle: 'Revisa jurisprudencias relacionadas',
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildOptionInfo({required IconData icon, required String title, required String subtitle}) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: _bgSecundario,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: _borderColor),
-      ),
+  Widget _buildTopBar() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 12, 20, 4),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: _dorado, size: 20),
-          const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Text('RANGO',
+                    style: TextStyle(color: Colors.white54, fontSize: 11)),
                 Text(
-                  title,
+                  QuizRules.rangoParaXp(_xp),
                   style: const TextStyle(
-                    fontSize: 13,
+                    color: _gold,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  subtitle,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Colors.white60,
-                    height: 1.4,
                   ),
                 ),
               ],
             ),
           ),
+          _stat(Icons.local_fire_department, '$_racha', Colors.orange),
+          const SizedBox(width: 12),
+          _stat(Icons.balance, '$_apelaciones', _gold),
+          const SizedBox(width: 12),
+          _stat(Icons.star, '$_xp XP', Colors.amber),
         ],
       ),
     );
   }
 
-  Widget _buildContinueButton() {
-    return ElevatedButton(
-      onPressed: () => Navigator.pop(context),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: _success,
-        foregroundColor: Colors.white,
-        padding: const EdgeInsets.symmetric(vertical: 18),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        elevation: 4,
-      ),
-      child: const Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.arrow_forward, size: 20),
-          SizedBox(width: 8),
-          Text(
-            'CONTINUAR AL SIGUIENTE NIVEL',
+  Widget _stat(IconData icon, String valor, Color color) {
+    return Row(
+      children: [
+        Icon(icon, color: color, size: 18),
+        const SizedBox(width: 4),
+        Text(valor,
             style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 14)),
+      ],
+    );
+  }
+
+  Widget _buildXpBar() {
+    final sig = QuizRules.siguienteRango(_xp);
+    final progreso = QuizRules.progresoRango(_xp);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: LinearProgressIndicator(
+              value: progreso,
+              minHeight: 8,
+              backgroundColor: Colors.white10,
+              valueColor: const AlwaysStoppedAnimation(_gold),
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            sig != null
+                ? 'Siguiente: ${sig.nombre} (${sig.xp} XP)'
+                : 'Rango máximo alcanzado',
+            style: const TextStyle(color: Colors.white54, fontSize: 11),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContenido() {
+    if (_cargando) {
+      return const Center(child: CircularProgressIndicator(color: _gold));
+    }
+    if (_caso == null) {
+      return _sinCasos();
+    }
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _buildTimer(),
+          const SizedBox(height: 12),
+          _buildPreguntaCard(),
+          const SizedBox(height: 16),
+          ..._caso!.opciones.asMap().entries.map((e) => _buildOpcion(e.key)),
+          if (_respondida) ...[
+            const SizedBox(height: 16),
+            _buildFundamentacion(),
+          ],
+          if (_respondida) ...[
+            const SizedBox(height: 20),
+            _buildSiguiente(),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Future<void> _mostrarLogro(String rango, int xpGanado) async {
+    _confetti.play();
+    String? ruta;
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      final nombre = (user?.displayName?.trim().isNotEmpty == true)
+          ? user!.displayName!
+          : (user?.email?.split('@').first ?? 'Abogado Penalex');
+      final uid = user?.uid ?? 'anon';
+      final codigo = QuizCertificateService.generarCodigo(uid, _xp);
+      ruta = await QuizCertificateService.generarCertificado(
+        nombre: nombre,
+        rango: rango,
+        xp: _xp,
+        codigo: codigo,
+      );
+      _progreso = _service.registrarLogro(_progreso, {
+        'rango': rango,
+        'fecha': DateTime.now().toIso8601String(),
+        'codigo': codigo,
+      });
+      await _service.guardarProgreso(_progreso);
+    } catch (e) {
+      debugPrint('Error generando certificado de logro: $e');
+    }
+    if (!mounted) return;
+
+    await showGeneralDialog(
+      context: context,
+      barrierDismissible: false,
+      barrierColor: Colors.black.withValues(alpha: 0.85),
+      transitionDuration: const Duration(milliseconds: 500),
+      transitionBuilder: (context, anim, sec, child) => ScaleTransition(
+        scale: CurvedAnimation(parent: anim, curve: Curves.elasticOut),
+        child: FadeTransition(opacity: anim, child: child),
+      ),
+      pageBuilder: (context, _, __) => Dialog(
+        backgroundColor: _navy,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+        child: Padding(
+          padding: const EdgeInsets.all(28),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.military_tech, size: 72, color: _goldBright),
+              const SizedBox(height: 12),
+              const Text(
+                '¡LOGRO DESBLOQUEADO!',
+                style: TextStyle(
+                  color: _gold,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 15,
+                  letterSpacing: 1.5,
+                ),
+              ),
+              const SizedBox(height: 14),
+              Text(
+                rango,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                '+$xpGanado XP · $_xp XP totales',
+                style: const TextStyle(color: Colors.white70, fontSize: 14),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Certificado generado y guardado en Mis Logros',
+                style: TextStyle(color: Colors.white54, fontSize: 12),
+              ),
+              const SizedBox(height: 24),
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: () => Navigator.pop(context),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: Colors.white70,
+                        side: const BorderSide(color: Colors.white24),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                      ),
+                      child: const Text('Continuar'),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: () async {
+                        Navigator.pop(context);
+                        if (ruta != null) {
+                          await Share.shareXFiles([XFile(ruta)],
+                              text: 'Certificado Penalex: $rango');
+                        }
+                      },
+                      icon: const Icon(Icons.ios_share, size: 18),
+                      label: const Text('Compartir'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: _gold,
+                        foregroundColor: _navy,
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTimer() {
+    return Center(
+      child: SizedBox(
+        width: 54,
+        height: 54,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            CircularProgressIndicator(
+              value: _tiempoRestante / 30,
+              strokeWidth: 4,
+              backgroundColor: Colors.white10,
+              valueColor: AlwaysStoppedAnimation(
+                  _tiempoRestante <= 8 ? Colors.redAccent : _gold),
+            ),
+            Text('$_tiempoRestante',
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPreguntaCard() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: _navy,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: _gold.withValues(alpha: 0.3)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.3),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            decoration: BoxDecoration(
+              color: _gold.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Text(
+              _caso!.delitoBase,
+              style: const TextStyle(color: _gold, fontSize: 12),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            _caso!.contextoNarrativo,
+            style: const TextStyle(
+              color: Colors.white,
               fontSize: 16,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 0.5,
+              height: 1.5,
             ),
           ),
         ],
@@ -402,118 +526,189 @@ class _QuizGameScreenState extends State<QuizGameScreen> with SingleTickerProvid
     );
   }
 
-  Widget _buildRetryButton() {
-    return ElevatedButton(
-      onPressed: _retry,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: _info,
-        foregroundColor: Colors.white,
-        padding: const EdgeInsets.symmetric(vertical: 18),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+  Widget _buildOpcion(int idx) {
+    final esCorrecta = _respondida && idx == _caso!.respuestaCorrecta;
+    final esSeleccionada = _respondida && idx == _seleccionada;
+
+    Color borde = Colors.white12;
+    Color fondo = Colors.white.withValues(alpha: 0.04);
+    if (_respondida) {
+      if (esCorrecta) {
+        borde = Colors.greenAccent;
+        fondo = Colors.green.withValues(alpha: 0.15);
+      } else if (esSeleccionada) {
+        borde = Colors.redAccent;
+        fondo = Colors.red.withValues(alpha: 0.15);
+      }
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 250),
+        decoration: BoxDecoration(
+          color: fondo,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: borde, width: 1.4),
         ),
-        elevation: 4,
-      ),
-      child: const Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.refresh, size: 20),
-          SizedBox(width: 8),
-          Text(
-            'INTENTAR DE NUEVO',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 0.5,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(16),
+            onTap: _respondida ? null : () => _resolver(indice: idx),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 14,
+                    backgroundColor: _respondida && esCorrecta
+                        ? Colors.greenAccent
+                        : _gold.withValues(alpha: 0.2),
+                    child: Text(
+                      String.fromCharCode(65 + idx),
+                      style: TextStyle(
+                        color:
+                            _respondida && esCorrecta ? Colors.black : _gold,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      _caso!.opciones[idx],
+                      style: const TextStyle(color: Colors.white, fontSize: 14),
+                    ),
+                  ),
+                  if (_respondida && esCorrecta)
+                    const Icon(Icons.check_circle, color: Colors.greenAccent)
+                  else if (_respondida && esSeleccionada)
+                    const Icon(Icons.cancel, color: Colors.redAccent),
+                ],
+              ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
 
-  Widget _buildApelacionButtons() {
-    final gameState = Provider.of<GameState>(context, listen: false);
-    
+  Widget _buildFundamentacion() {
+    return AnimatedOpacity(
+      opacity: _respondida ? 1 : 0,
+      duration: const Duration(milliseconds: 400),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.green.withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Colors.greenAccent.withValues(alpha: 0.4)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Row(
+              children: [
+                Icon(Icons.gavel, color: Colors.greenAccent, size: 18),
+                SizedBox(width: 8),
+                Text('FUNDAMENTACIÓN',
+                    style: TextStyle(
+                        color: Colors.greenAccent,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13)),
+              ],
+            ),
+            const SizedBox(height: 8),
+            if (_caso!.fundamentacion.isNotEmpty)
+              Text(_caso!.fundamentacion,
+                  style: const TextStyle(color: Colors.white, height: 1.5))
+            else
+              Text(
+                'Respuesta correcta: ${_caso!.opciones[_caso!.respuestaCorrecta]}',
+                style: const TextStyle(
+                  color: Colors.white,
+                  height: 1.5,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            if (_caso!.articulos.isNotEmpty) ...[
+              const SizedBox(height: 10),
+              ..._caso!.articulos.map((a) => Text('📜 $a',
+                  style: const TextStyle(
+                      color: Color(0xFFBFD7EA), fontSize: 13))),
+            ],
+            if (_caso!.sentencias.isNotEmpty) ...[
+              const SizedBox(height: 10),
+              ..._caso!.sentencias.map((s) => Text('⚖️ $s',
+                  style: const TextStyle(
+                      color: Color(0xFFBFD7EA), fontSize: 13))),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSiguiente() {
+    final restante = _apelaciones <= 0
+        ? QuizStorageService.tiempoSiguienteApelacion(_progreso)
+        : null;
     return Column(
       children: [
         ElevatedButton(
-          onPressed: gameState.apelacionesDisponibles > 0 ? _useApelacion : null,
           style: ElevatedButton.styleFrom(
-            backgroundColor: _dorado,
-            foregroundColor: _bgPrincipal,
-            padding: const EdgeInsets.symmetric(vertical: 18),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            elevation: 4,
+            backgroundColor: _gold,
+            foregroundColor: Colors.black,
+            disabledBackgroundColor: Colors.white12,
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           ),
-          child: Row(
+          onPressed: _apelaciones <= 0 ? null : _cargarCaso,
+          child: Text(
+            _apelaciones <= 0 ? 'Sin apelaciones' : 'SIGUIENTE',
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+        ),
+        if (restante != null) ...[
+          const SizedBox(height: 10),
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.description, size: 20),
-              const SizedBox(width: 8),
+              const Icon(Icons.timer_outlined, color: _goldBright, size: 18),
+              const SizedBox(width: 6),
               Text(
-                'USAR 1 APELACIÓN (${gameState.apelacionesDisponibles} disponibles)',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.5,
-                ),
+                'Próxima apelación en ${restante.inMinutes}m '
+                '${(restante.inSeconds % 60).toString().padLeft(2, '0')}s',
+                style: const TextStyle(color: Colors.white70, fontSize: 13),
               ),
             ],
           ),
-        ),
-        const SizedBox(height: 12),
-        OutlinedButton(
-          onPressed: () {
-            // TODO: Navegar al repositorio de jurisprudencia
-            Navigator.pop(context);
-          },
-          style: OutlinedButton.styleFrom(
-            foregroundColor: _dorado,
-            side: const BorderSide(color: _dorado, width: 2),
-            padding: const EdgeInsets.symmetric(vertical: 18),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.library_books, size: 20),
-              SizedBox(width: 8),
-              Text(
-                'IR AL REPOSITORIO',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.5,
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 12),
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.arrow_back, color: Colors.white54, size: 18),
-              SizedBox(width: 8),
-              Text(
-                'VOLVER AL LOBBY',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.white54,
-                  letterSpacing: 0.5,
-                ),
-              ),
-            ],
-          ),
-        ),
+        ],
       ],
+    );
+  }
+
+  Widget _sinCasos() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.inventory_2_outlined,
+                size: 64, color: Colors.white24),
+            const SizedBox(height: 16),
+            const Text('No hay casos disponibles aún',
+                style: TextStyle(color: Colors.white70, fontSize: 16)),
+            const SizedBox(height: 8),
+            const Text(
+              'Se están generando preguntas nuevas.',
+              style: TextStyle(color: Colors.white38, fontSize: 13),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

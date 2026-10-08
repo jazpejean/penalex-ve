@@ -1,0 +1,3457 @@
+{
+ "id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026",
+ "codigo": "LEFPI",
+ "nombre": "Ley del Estatuto de la Función de la Policía de Investigación",
+ "rama": "Derecho Penal y Criminológico",
+ "anio": "2026",
+ "archivo": "01. Ley del Estatuto de la Función de la Policía de Investigación (2026).docx",
+ "orden": 7,
+ "num_articulos": 141,
+ "num_secciones": 12,
+ "preambulo": null,
+ "secciones": [
+  {
+   "id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S1",
+   "tipo": "CAPITULO",
+   "numero": "I",
+   "titulo": "Disposiciones Generales",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 1,
+   "disposicion": false
+  },
+  {
+   "id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S2",
+   "tipo": "CAPITULO",
+   "numero": "II",
+   "titulo": "De los derechos, garantías y deberes",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 2,
+   "disposicion": false
+  },
+  {
+   "id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S3",
+   "tipo": "CAPITULO",
+   "numero": "III",
+   "titulo": "De la rectoría, dirección y gestión",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 3,
+   "disposicion": false
+  },
+  {
+   "id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "tipo": "CAPITULO",
+   "numero": "IV",
+   "titulo": "De la Carrera Policial de Investigación",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 4,
+   "disposicion": false
+  },
+  {
+   "id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S5",
+   "tipo": "CAPITULO",
+   "numero": "V",
+   "titulo": "Remuneraciones, beneficios sociales y demás condiciones de trabajo",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 5,
+   "disposicion": false
+  },
+  {
+   "id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S6",
+   "tipo": "CAPITULO",
+   "numero": "VI",
+   "titulo": "De la administración del sistema de",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 6,
+   "disposicion": false
+  },
+  {
+   "id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S7",
+   "tipo": "CAPITULO",
+   "numero": "VII",
+   "titulo": "Del control, supervisión y participación ciudadana",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 7,
+   "disposicion": false
+  },
+  {
+   "id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S8",
+   "tipo": "CAPITULO",
+   "numero": "VIII",
+   "titulo": "Supervisión, responsabilidades y régimen disciplinario",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 8,
+   "disposicion": false
+  },
+  {
+   "id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "tipo": "CAPITULO",
+   "numero": "IX",
+   "titulo": "Procedimiento de Destitución",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 9,
+   "disposicion": false
+  },
+  {
+   "id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S10",
+   "tipo": "CAPITULO",
+   "numero": "X",
+   "titulo": "Comisionaduría Nacional de Derechos Humanos",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 10,
+   "disposicion": false
+  },
+  {
+   "id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S11",
+   "tipo": "CAPITULO",
+   "numero": "XI",
+   "titulo": "Expertas y Expertos en materia de Investigación Penal",
+   "nivel": 3,
+   "parent_id": null,
+   "orden": 11,
+   "disposicion": false
+  },
+  {
+   "id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S12",
+   "tipo": "DISPOSICIONES",
+   "numero": "ÚNICO",
+   "titulo": "Primera. El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, adecuará los niveles jerárquicos dentro de su estructura organizativa, a partir de la entrada en vigencia de esta Ley.",
+   "nivel": 1,
+   "parent_id": null,
+   "orden": 12,
+   "disposicion": true
+  }
+ ],
+ "articulos": [
+  {
+   "numero_texto": "1",
+   "numero": 1,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La presente Ley tiene por objeto regir las relaciones de empleo público entre las funcionarias y funcionarios policiales de investigación penal, así como otros expertos y expertas legales que intervienen directamente en la investigación penal, y el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, lo cual comprende:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. El sistema de dirección y de gestión de la Función de la Policía de Investigación y la articulación de la carrera policial en investigación penal."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. El sistema de administración de personal, el cual incluye la planificación de recursos humanos, procesos de reclutamiento, selección, ingreso, inducción, educación y desarrollo, planificación de la carrera, evaluación de méritos, ascensos, traslados, transferencias, valoración y clasificación de cargos, jerarquías, escalas de remuneraciones y beneficios, permisos, licencias y régimen disciplinario."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Los derechos, garantías y deberes de los funcionarios y funcionarias policiales de investigación penal en sus relaciones de empleo público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Finalidad"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "2",
+   "numero": 2,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La presente Ley tiene las siguientes finalidades:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Regular el sistema de administración de personal de las funcionarias y funcionarios policiales de investigación penal para garantizar su idoneidad en la prestación del servicio de policía de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Establecer un régimen uniforme y razonable de remuneraciones y beneficios sociales de las funcionarias y funcionarios policiales de investigación penal, que reconozca su compromiso institucional, formación, responsabilidades, desarrollo y desempeño profesional."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Establecer la organización jerárquica y la distribución de las responsabilidades en los diversos ámbitos de decisión y ejecución de las instrucciones para el mejor cumplimiento de la Función de la Policía de Investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Regular el sistema equilibrado de supervisión interna y externa del desempeño de la policía de investigación, contemplado en el Decreto con Rango, Valor y Fuerza de Ley del Servicio de Policía de Investigación, el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses, conforme a los principios de la intervención oportuna; el fomento de buenas prácticas policiales; la corrección temprana de las desviaciones y la responsabilidad administrativa individual; señalando el marco de tipificación de las infracciones, así como los procedimientos para identificarlas, detectarlas y controlarlas con eficacia, asegurando así el cumplimiento de la Constitución de la República Bolivariana de Venezuela y la ley, el respeto de los derechos humanos, la dignificación y profesionalización de los funcionarios y funcionarias."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Ámbito de aplicación"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "3",
+   "numero": 3,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La presente Ley es aplicable a todos las funcionarias y funcionarios policiales de investigación que prestan servicio al Cuerpo de Investigaciones Científicas, Penales y Criminalísticas. Se entenderá por funcionaria o funcionario policial de investigación toda persona natural que, en virtud del nombramiento expedido por la autoridad competente de conformidad con los procedimientos establecidos en la Constitución de la República Bolivariana de Venezuela y en esta Ley, se desempeñe en el ejercicio de función pública remunerada permanente en el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, siempre que comporte el uso potencial de la fuerza física. No se permitirá la condición de funcionarias y funcionarios policiales ad honorem u honorarios."
+    },
+    {
+     "tipo": "apartado",
+     "texto": "Parágrafo único: Quedan excluidas y excluidos de la aplicación de esta Ley las funcionarias públicas, funcionarios públicos, obreras, obreros y personal contratado al servicio del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas que brindan funciones de apoyo administrativo a la Función Policial y no ejercen directamente la Función de la Policía de Investigación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Orden público y servicio público esencial"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "4",
+   "numero": 4,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las disposiciones de este Ley son de estricto orden público y no podrán ser modificadas por normas de inferior jerarquía ni por contratos, convenios o acuerdos de cualquier naturaleza."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación brindan un servicio público esencial en un cuerpo armado. En consecuencia, son incompatibles con la Función de la Policía de Investigación el ejercicio de los derechos a la libre asociación sindical, la libertad sindical, a la negociación colectiva y de huelga, así como las demás normas jurídicas relativas al derecho colectivo del trabajo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Principio de Interpretación y aplicación de la ley"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "5",
+   "numero": 5,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En caso de plantearse dudas razonables en la interpretación o aplicación de las disposiciones de la presente Ley, sus reglamentos o resoluciones, se optará por aquella alternativa que favorezca el equilibrio entre la protección de los derechos humanos de la población, los derechos de las funcionarias y funcionarios policiales de investigación en su relación de empleo público, la garantía del funcionamiento óptimo de los servicios de policía de investigación y las necesidades derivadas del orden público y la paz social."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Principios del sistema de administración de personal"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "6",
+   "numero": 6,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El sistema de administración de personal de las funcionarias y funcionarios policiales de investigación se rige, entre otros, por los siguientes principios:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Promoción y protección de la dignidad profesional: deben respetarse y garantizarse los derechos humanos de las funcionarias y funcionarios policiales de investigación en su relación de empleo público con el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, así como promover su desarrollo profesional e integral."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Régimen estatutario de la Función de la Policía de Investigación: la relación de empleo público de las funcionarias y funcionarios policiales de investigación se rige exclusivamente por lo establecido en esta Ley, sus reglamentos y resoluciones, por lo que no podrá ser regulada o modificada por decisiones de inferior jerarquía, contratos, convenios o acuerdos de cualquier naturaleza."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Carácter profesional y civil de la Función Policial: la relación de empleo público de las funcionarias y funcionarios policiales de investigación con el Cuerpo de Investigaciones Científicas, Penales y Criminalística es de naturaleza estrictamente profesional y civil."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Planificación de la Función Policial: las políticas y planes en materia de Función de la Policía de Investigación deben tener una direccionalidad y orientación común a los fines de fortalecer y mejorar el servicio de policía y el desarrollo profesional e integral de las funcionarias y funcionarios policiales de investigación, en estricto cumplimiento de la Constitución de la República, las leyes y ordenanzas, así como del Plan de Desarrollo Económico y Social de la Nación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Equidad en las condiciones de empleo público: las políticas y planes en materia de función policial de investigación garantizarán condiciones de empleo público que fomenten compromiso, formación, responsabilidad, desarrollo y desempeño profesional."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Actos de servicio"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "7",
+   "numero": 7,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación cumplen actos de servicio cuando desempeñan funciones de policía de investigación penal y policial dentro de la jornada de trabajo o, aun cuando fuera de ella, intervengan para prevenir delitos y faltas, efectuar detenciones en flagrancia o en otras situaciones contempladas en la ley. Los actos de servicio fuera de la jornada de trabajo generan efectos en cuanto a los derechos, garantías, deberes y responsabilidades de los funcionarios y funcionarias policiales de investigación, así como sobre el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Responsabilidad personal"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "8",
+   "numero": 8,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación responderán penal, civil, administrativa y disciplinariamente por los hechos ilícitos, delitos, faltas e Irregularidades administrativas cometidas en el ejercicio de sus funciones de conformidad con la ley, reglamentos y resoluciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Incompatibilidades"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "9",
+   "numero": 9,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La prestación del servicio de las funcionarias y funcionarios y policiales de investigación es incompatible con el desempeño de cualquier cargo o actividad que menoscabe o impida el ejercicio efectivo y eficiente de la Función de la Policía de Investigación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En los casos de ejercido de cargos académicos, accidentales, asistenciales y docentes, declarados por la ley como compatibles con el ejercicio de un destino público remunerado, se realizarán sin menoscabo del cumplimiento efectivo y eficiente de la Función de la Policía de Investigación, de conformidad con lo establecido en la presente Ley, sus reglamentos y resoluciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "De la participación protagónica en materia de gestión policial"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "10",
+   "numero": 10,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los órganos y entes con competencia en materia de investigación penal y policial atenderán las recomendaciones de las organizaciones comunitarias y sociales estructuradas para el mejoramiento del servicio de policía de investigación, con fundamento en los valores de la solidaridad, el humanismo y en los principios de democracia participativa, corresponsable y protagónica estableados en la Constitución de la República Bolivariana de Venezuela, favoreciendo el mantenimiento de la paz social y la convivencia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Normas supletorias"
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "11",
+   "numero": 11,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Todo lo no previsto en la presente Ley, sus reglamentos y resoluciones se regulará de conformidad con lo establecido en la Ley del Estatuto de la Función Policial y sus reglamentos, así como por la Ley del Estatuto de la Función Pública y sus reglamentos en cuanto sea compatible con el servicio de policía de investigación."
+    }
+   ],
+   "seccion_label": "CAPITULO I: Disposiciones Generales"
+  },
+  {
+   "numero_texto": "12",
+   "numero": 12,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación tienen, entre otros, los siguientes derechos y garantías:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Derecho a un trato digno y respetuoso por parte de la comunidad y los demás funcionarios y funcionarias policiales de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Derecho a la igualdad y a no ser víctimas de discriminaciones fundadas en la raza, el sexo, género, credo, la condición social, la orientación política, o aquellas que, en general, tengan por objeto o por resultado anular o menoscabar el reconocimiento, goce o ejercicio en condiciones de igualdad, de los derechos y libertades de toda persona."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Derecho a la protección de sus familias, para que las relaciones familiares se funden en la igualdad de derechos y deberes, la solidaridad, el esfuerzo común, la comprensión mutua y el respeto recíproco entre sus integrantes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Derecho al tiempo libre, el descanso y la recreación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Derecho a la salud y a recibir atención médica de emergencia. Todos los centros y servicios de salud privados deben prestarles atención médica inmediata en los casos de emergencia en que peligre su vida con ocasión de los actos de servicio, cuando la ausencia de atención médica o la remisión de la afectada o afectado a otro centro o servicio de salud, implique un peligro inminente a su vida o daños graves irreversibles y evitables a su salud. En estos casos no podrá negarse la atención alegando razones injustificadas, tales como: la carencia de documentos de identidad o de recursos económicos, considerándose tal conducta como omisión de auxilio conforme a lo previsto en el Código Penal, independientemente de que la consecuencia de la misma pueda configurar otro delito."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Derecho a una vivienda adecuada, segura, cómoda, higiénica, con servicios básicos esenciales que incluyan un hábitat que humanice las relaciones familiares, vecinales y comunitarias. La satisfacción progresiva de este derecho es obligación compartida entre las funcionarias y funcionarios policiales y el Estado a través de políticas sociales y facilidades para acceso al crédito para la construcción, adquisición o ampliación de viviendas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Derecho a recibir educación continua, permanente y de calidad, para su mejoramiento personal y profesional."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Derechos laborales y de seguridad social, de conformidad con lo establecido en esta Ley, sus reglamentos y resoluciones."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Derecho a la defensa y al debido proceso, especialmente en los procedimientos dirigidos a determinar responsabilidades e imponer sanciones penales o disciplinarias. En estos casos tendrán derecho a recibir asesoría, asistencia y representación de la Defensa Pública especializada."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Los demás establecidos en la Constitución de la República Bolivariana de Venezuela, leyes, reglamentos y resoluciones, siempre que sean compatibles con el servicio de policía de investigación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Deberes"
+    }
+   ],
+   "seccion_label": "CAPITULO II: De los derechos, garantías y deberes"
+  },
+  {
+   "numero_texto": "13",
+   "numero": 13,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S2",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los funcionarios y funcionarias policiales de investigación tienen, entre otros, los siguientes deberes:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Cumplir y hacer cumplir la Constitución de la República Bolivariana de Venezuela, las leyes, reglamentos y demás disposiciones legales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Respetar y proteger la dignidad humana y defender y promover los derechos humanos de todas las personas sin discriminación alguna."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Servir a la comunidad y proteger a todas las personas contra los actos inconstitucionales e ilegales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Ejercer el servicio de policía de investigación penal y policial con ética, imparcialidad, legalidad, transparencia, proporcionalidad y humanidad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Observar en toda actuación un trato correcto y esmerado en sus relaciones con las personas, a quienes procurarán proteger y auxiliar en las circunstancias que fuesen requeridas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Asegurar plena protección a la salud e integridad de las personas, especialmente de quienes se encuentran bajo su custodia, adoptando las medidas inmediatas para proporcionar atención médica de emergencia."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Respetar los principios de actuación policial de investigación establecidos en el Decreto con Rango, Valor y Fuerza de Ley del Servicio de Policía de Investigación, el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses, con preeminencia al respeto y garantía de los derechos humanos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Cumplir con las actividades de capacitación y mejoramiento profesional."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Cumplir con los manuales de estándares del servicio de policía establecidos por el Ministerio del Poder Popular con competencia en materia de seguridad ciudadana."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Los demás establecidos en la Constitución de la República, leyes, reglamentos y resoluciones, siempre que sean compatibles con el servicio de policía de investigación."
+    }
+   ],
+   "seccion_label": "CAPITULO II: De los derechos, garantías y deberes"
+  },
+  {
+   "numero_texto": "14",
+   "numero": 14,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Presidenta o Presidente de la República ejerce la rectoría de la Función de la Policía de Investigación, así como su dirección en el Poder Ejecutivo Nacional."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Gestión de la Función de la Policía de Investigación"
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la rectoría, dirección y gestión"
+  },
+  {
+   "numero_texto": "15",
+   "numero": 15,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La gestión de la Función de la Policía de Investigación corresponderá a la Directora General o Director General del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, de conformidad con esta Ley, sus reglamentos, resoluciones y protocolos respectivos, así como de las directrices del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La funcionaria o funcionario que ejerza el cargo de Directora General o Director General del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, ostentará la denominación de Comisaria General Superior Nacional o Comisario General Superior Nacional."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Ejecución de la Función de la Policía de Investigación"
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la rectoría, dirección y gestión"
+  },
+  {
+   "numero_texto": "16",
+   "numero": 16,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La ejecución de la gestión de la Función Policial corresponderá a la oficina de recursos humanos del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, de conformidad con la presente Ley, sus reglamentos y resoluciones, así como de las directrices del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La organización y funcionamiento de la oficina de recursos humanos se regirá por lo previsto bajo los principios de uniformidad, planificación, eficiencia, eficacia y transparencia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Planificación de la Función de la"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Policía de Investigación"
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la rectoría, dirección y gestión"
+  },
+  {
+   "numero_texto": "17",
+   "numero": 17,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El órgano responsable de la planificación del desarrollo de la Función de la Policía de Investigación es el Ministerio del Poder Popular con competencia en materia de seguridad ciudadana, en coordinación con el Ministerio del Poder Popular con competencia en materia de planificación y desarrollo. Corresponde a este Ministerio asistir al Presidente o Presidenta de la República en el ejercicio de las competencias de rectoría y dirección de la Función de la Policía de Investigación, de conformidad con lo previsto en la presente Ley, sus reglamentos y resoluciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Atribuciones del órgano rector del servicio de policía"
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la rectoría, dirección y gestión"
+  },
+  {
+   "numero_texto": "18",
+   "numero": 18,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio del Poder Popular con competencia en materia de seguridad ciudadana, en coordinación con el Ministerio del Poder Popular con competencia en materia de planificación y desarrollo, como responsable de la planificación de la Función de la Policía de Investigación, tiene las siguientes atribuciones:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Evaluar, aprobar y controlar la aplicación de las políticas en materia de Función de la Policía de Investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Organizar el sistema de la función de la Policía de Investigación y supervisar su aplicación y desarrollo."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Dictar resoluciones que establezcan las directrices y procedimientos relativos al reclutamiento, selección, ingreso, clasificación, valoración, remuneración, beneficios sociales, jornada, evaluación del desempeño, desarrollo, formación, capacitación, entrenamiento, ascensos, traslados, transferencias, licencias, permisos, viáticos, registros de personal, régimen disciplinario y egresos, así como cualesquiera otras directrices y procedimientos inherentes al sistema de la Función de la Policía de Investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Hacer control, evaluación y seguimiento al cumplimiento de las resoluciones a que se refiere el numeral anterior."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Aprobar los planes de personal del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, así como sus modificaciones."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Realizar auditorías, estudios, análisis e investigaciones para evaluar la ejecución de las políticas de la Función de la Policía de Investigación y planes de personal del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Requerir al Cuerpo de Investigaciones Científicas, Penales y Criminalísticas la información que sea necesaria para el desempeño de sus funciones en materia de la Función de la Policía de Investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Prestar asesoría técnica al Cuerpo de Investigaciones Científicas, Penales y Criminalísticas en materia de la gestión de la Función de la Policía de Investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Emitir dictámenes y opiniones sobre las consultas que le formule el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas en relación con la Función de la Policía de Investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Presentar para la consideración y aprobación de la Presidenta o Presidente de la República, una vez verificada la correspondiente disponibilidad presupuestaria con el Ministerio del Poder Popular con competencia en materia de finanzas, los informes técnicos sobre la escala de remuneraciones y escala de beneficios sociales del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "11. Aprobar las bases y los baremos de los concursos para el ingreso y ascenso de las funcionarias o funcionarios policiales de investigación, los cuales deberán incluir los perfiles y requisitos exigidos para cada cargo."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "12. las demás establecidas en la presente Ley, sus reglamentos y resoluciones, así como de las directrices del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Registro Público Nacional de Funcionarios y"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Funcionarias Policiales de Investigación"
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la rectoría, dirección y gestión"
+  },
+  {
+   "numero_texto": "19",
+   "numero": 19,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio del Poder Popular con competencia en materia de seguridad ciudadana deberá llevar y mantener actualizado el Registro Público Nacional de Funcionarias y Funcionarios Policiales de Investigación al servicio del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas. La organización y funcionamiento de este registro se rige de conformidad con lo previsto en la presente Ley, sus reglamentos y resoluciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Este Registro Público estará integrado al Registro Público Nacional de Funcionarias y Funcionarios Policiales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Atribuciones de la oficina de recursos humanos"
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la rectoría, dirección y gestión"
+  },
+  {
+   "numero_texto": "20",
+   "numero": 20,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La oficina de recursos humanos del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, como responsable de la ejecución de la Función Policial, tiene las siguientes atribuciones:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Ejecutar las decisiones y órdenes del director o directora del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas en materia de la gestión de la Función de la Policía de Investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Elaborar el plan de personal del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y presentarlo a consideración de la directora o director, de conformidad con lo previsto en la presente Ley, sus reglamentos y resoluciones, así como de las directrices del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Dirigir la ejecución del plan de personal del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, así como coordinar, evaluar y controlar su ejecución, de conformidad con lo previsto en la presente Ley, sus reglamentos y resoluciones, así como de las directrices del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Remitir al Ministerio del Poder Popular con competencia en materia de seguridad ciudadana, en la forma y oportunidad que se establezca en los reglamentos y resoluciones de esta Ley, los informes relacionados con la ejecución de la Función de la Policía de Investigación y cualquier otra información que le fuere requerida."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Dirigir la aplicación de las normas y de los procedimientos en materia de administración de personal, de conformidad con lo previsto en la presente Ley, sus reglamentos y resoluciones."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Organizar y realizar los concursos y procedimientos que se requieran para el ingreso o ascenso de las funcionarias o funcionarios policiales de investigación, según las bases y baremos aprobados por el Ministerio del Poder Popular con competencia en materia de seguridad ciudadana, en coordinación con la Inspectoría General."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Proponer, a los fines de su aprobación ante el Ministerio del Poder Popular con competencia en materia de seguridad ciudadana, los movimientos de personal a que hubiere lugar en el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Actuar como enlace en materia de la Función de la Policía de Investigación entre el órgano o ente respectivo y el Ministerio del Poder Popular con competencia en materia de seguridad ciudadana."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Las demás establecidas en la presente Ley, sus reglamentos y resoluciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Planes de personal"
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la rectoría, dirección y gestión"
+  },
+  {
+   "numero_texto": "21",
+   "numero": 21,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Directora o Director del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas presentará los planes de personal ante el Ministerio del Poder Popular con competencia en materia de seguridad ciudadana."
+    }
+   ],
+   "seccion_label": "CAPITULO III: De la rectoría, dirección y gestión"
+  },
+  {
+   "numero_texto": "22",
+   "numero": 22,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La carrera policial de investigación es el ejercicio de la Función de la Policía de Investigación dentro del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, teniendo como fundamentos: el ideario de nuestros libertadores; el desarrollo integral de las funcionarias y funcionarios policiales de investigación; y el respeto a los principios, valores y derechos humanos establecidos en la Constitución de la República Bolivariana de Venezuela."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Ingreso al Cuerpo de Investigaciones"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Científicas, Penales y Criminalísticas"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "23",
+   "numero": 23,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Para ingresar al Cuerpo de Investigaciones Científicas, Penales y Criminalísticas como funcionarias y funcionarios policiales de investigación, además de los requisitos contemplados en el Decreto con Rango, Valor y Fuerza de Ley del Servicio de Policía de Investigación, el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses, se requiere aprobar un concurso de admisión que contemplará pruebas de aptitudes y habilidades, así como cumplir exitosamente un período de prueba de tres meses. El sólo egreso de la institución académica nacional especializada en seguridad no asegura la incorporación de la candidata o candidato postulante, si no aprueba las evaluaciones correspondientes al protocolo del concurso de ingreso único y uniforme para el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Concurso para ingresar al"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Cuerpo de Investigaciones Científicas,"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Penales y Criminalísticas"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "24",
+   "numero": 24,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El concurso para ingresar al Cuerpo de Investigaciones Científicas, Penales y Criminalísticas establecido en el artículo anterior es independiente del mecanismo de selección que se adopte para admitir a las candidatas y candidatos a la institución académica nacional especializada en seguridad, y tendrá como objetivo determinar las habilidades, destrezas, competencias y condiciones físicas, mentales y morales requeridas para e! desempeño de la Función de la Policía de Investigación una vez culminado el período de estudios de un año requerido, como mínimo, de formación básica de las funcionarias y funcionarios policiales. El Ministerio del Poder Popular con competencia en materia de seguridad ciudadana podrá determinar los elementos variables en dicho concurso, el cual contará con un núcleo fundamental y común que evalúe el compromiso con el servicio policial y las condiciones físicas, cognitivas y emocionales de la candidata o candidato que permitan realizar un pronóstico de factibilidad para el desarrollo de su carrera policial o pública, según el caso. Los reglamentos y resoluciones de esta Ley establecerán las bases para el desarrollo de este concurso."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Período de prueba"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "25",
+   "numero": 25,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El período de prueba de tres meses para el ingreso al Cuerpo de Investigaciones Científicas, Penales y Criminalísticas tendrá por objeto evaluar el desempeño preliminar del candidato o candidata a iniciar la carrera policial o pública, según el caso, a cuyo efecto estará sujeto a supervisión directa y continua por un funcionaria o funcionario o de la jefa o jefe directo de la unidad administrativa en la cual brinda sus servicios. El informe de esta supervisión especificará el cumplimiento de las diversas tareas asignadas al candidato o candidata en términos de prontitud, eficacia y disciplina, y deberá ser suscrito por la jefa o jefe directo de la unidad administrativa correspondiente, quien lo enviará a la Dirección del cuerpo con la recomendación correspondiente, una vez finalizado el período de prueba. Corresponde a la Directora o Director del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas decidir, mediante acto debidamente motivado, la revocación del nombramiento de la candidata o candidato. Contra dicha decisión, procederá recurso jerárquico ante la Ministra Ministro del Poder Popular con competencia en materia de seguridad ciudadana."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Formación inicial para la carrera policial de investigación"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "26",
+   "numero": 26,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El proceso de formación inicial para la carrera policial de investigación estará orientado por los principios de captación profesional; entrenamiento instrumental efectivo; protección y tutela de los derechos humanos y garantías de las personas; ética de servicio y dignificación de la Función Policial, adoptando un currículo flexible y adaptable a la dinámica y evolución social y tecnológica que inciden en el desempeño de dicha función. Corresponde, conjuntamente a los Ministerios del Poder Popular con competencia en materia de seguridad ciudadana y de educación universitaria, definir las políticas, acciones y diseño curricular que propendan al logro de los fines establecidos en el Decreto con Rango, Valor y Fuerza de Ley del Servicio de Policía de Investigación, el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Formación continua y la acreditación"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "27",
+   "numero": 27,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La formación continua es un principio fundamental de la capacitación para el desempeño de la Función de la Policía de Investigación. Los reglamentos y resoluciones de esta Ley establecerán las áreas, temáticas, alcance, modalidades, sistemas de entrenamiento continuo y evaluación en materia de formación continua, a los fines de lograr permanente actualización y niveles adecuados de respuesta del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y de sus funcionarias y funcionarios a las exigencias de la población en materia de seguridad ciudadana e investigación penal."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Reentrenamiento"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "28",
+   "numero": 28,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El reentrenamiento para el servicio es un derecho de las funcionarias y funcionarios policiales de investigación y una exigencia periódica, al menos cada dos años, así como obligación específica en los casos previstos en esta Ley sobre asistencia voluntaria y asistencia obligatoria. Su finalidad es la de proporcionar condiciones que incrementen la seguridad, previsibilidad, eficacia y eficiencia en la prestación del servicio policial de investigación, en beneficio de la colectividad y de las propias funcionarias y funcionarios policiales de investigación. El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas desarrollará, conforme a los lineamientos del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana, planes y programas de reentrenamiento que permitan la uniformidad, sinergia Y. confiabilidad del desempeño policial, tomando en consideración las particularidades regionales y locales correspondientes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Desempeño policial y sus indicadores"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "29",
+   "numero": 29,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El desempeño de las funcionarias y funcionarios policiales de investigación se evaluará de manera individual y en equipos de trabajo, a través de un sistema fundamentado en criterios de eficacia y eficiencia. la Inspectoría General implementará, como parte del protocolo de supervisión continua e intervención temprana, y de conformidad con los indicadores que establezcan los reglamentos y resoluciones de esta Ley, un sistema que permita registrar el seguimiento de las actividades de las funcionarias y funcionarios policiales de investigación y los informes de supervisión correspondientes, a fin de incorporarlo en el historial personal y un sistema de puntaje que permita calibrar los logros y avances de cada funcionaria o funcionario policial en su carrera de una forma objetiva, imparcial e integral."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Historial personal"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "30",
+   "numero": 30,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Todas las funcionarias y funcionarios policiales de investigación tendrán un historial personal contentivo de la documentación relacionada con su carrera policial, que permita un conocimiento de su situación personal, familiar y socioeconómica, así como de su evaluación integral y continua. El historial personal será de manejo confidencial, al cual sólo tiene acceso la funcionaria o funcionario policial a quien se refiere y las autoridades competentes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La oficina de recursos humanos del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas debe llevar y mantener actualizado el historial personal de todos los funcionarios y funcionarias policiales de investigación que presten servicio. Copia de este historial personal deberá ser presentada anualmente al Ministerio del Poder Popular con competencia en materia de seguridad ciudadana. la organización y regulaciones del historial personal se rigen de conformidad con lo previsto en la presente Ley, sus reglamentos y resoluciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Reconocimientos institucionales"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "31",
+   "numero": 31,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas promoverá reconocimientos institucionales a las funcionarias y funcionarios policiales de investigación más destacadas y destacados en el desempeño de sus funciones, estimulando el sentido de dignidad profesional, el apego y compromiso institucional, la respuesta a las necesidades de la población y, en general, la contribución al desarrollo de buenas prácticas policiales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Se crea la Orden Honor al Mérito del Servicio de Policía en tres clases. La resolución especial de esta Ley establecerá las condiciones y procedimientos para su imposición. Igualmente, podrán crearse listados de funcionarias y funcionarios policiales de investigación del mes y otras distinciones, incluyendo las que recompensen actos heroicos y destacados en beneficio de la colectividad, de conformidad con los reglamentos y resoluciones de esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Del cargo, los niveles jerárquicos y los rangos policiales"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "32",
+   "numero": 32,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La carrera policial de investigación penal estará estructurada en tres niveles jerárquicos, a saber:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. El primer nivel, con responsabilidades de la ejecución de actividades de contacto de investigación básica, estará integrado, en orden ascendente, por las detectives y los detectives, por las detectives asistentes y los detectives asistentes, por las detectives supervisoras y los detectives supervisores."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. El segundo nivel, con responsabilidades de dirección media, diseño de operaciones, supervisión y evaluación a nivel táctico, estará integrado, en orden ascendente, por las inspectoras y los inspectores, por las inspectoras adjuntas y los inspectores adjuntos, las inspectoras jefas y los inspectores jefes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. El tercer nivel, con responsabilidades de alta dirección, planificación y evaluación a nivel estratégico, estará integrado, en orden ascendente, por las comisarias y los comisarios, las comisarias jefes y los comisarios jefes, las comisarias generales y los comisarios generales, las comisarias generales superiores y los comisarios generales superiores, la comisaria general superior nacional o el comisario general superior nacional."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "De las competencias y habilidades, según los"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "niveles jerárquicos y los rangos policiales"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "33",
+   "numero": 33,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las responsabilidades requeridas para cada nivel jerárquico del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, estarán orientadas por los siguientes principios y pautas generales:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Corresponderá a las y los detectives realizar por iniciativa propia tareas ordinarias de baja complejidad y, bajo dirección, supervisión, orientación y asesoría, realizar tareas de diversos tipos según indicaciones y directrices de la superior jerárquica o superior jerárquico correspondiente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Corresponderá a las y los detectives asistentes supervisar, orientar y asesorar en tareas ordinarias de baja complejidad al personal con rango de detective y, bajo dirección, supervisión, orientación y asesoría, realizar tareas de diversos tipos, según indicaciones y directrices de la superior jerárquica o superior jerárquico correspondiente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Corresponderá a las detectives supervisoras y los detectives supervisores dirigir, supervisar, orientar y asesorar en tareas ordinarias y novedosas de baja complejidad al personal con rango de detectives asistentes y bajo dirección, supervisión, orientación y asesoría, realizar tareas de diversos tipos según indicaciones y directrices de la superior jerárquica o superior jerárquico correspondiente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Corresponderá a las inspectoras y los inspectores dirigir, supervisar, orientar y asesorar en tareas ordinarias y novedosas de baja y mediana complejidad al personal con rango de detectives, detectives asistentes y detectives supervisoras y supervisores y, bajo dirección, supervisión, orientación y asesoría, realizar tareas de diversos tipos, según indicaciones y directrices de la superior jerárquica o superior jerárquico correspondiente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Corresponderá a las inspectoras adjuntas y los inspectores adjuntos dirigir, supervisar, orientar y asesorar en tareas ordinarias y novedosas de baja, mediana y elevada complejidad al personal con rango de detectives, detectives asistentes, detectives supervisoras y detectives supervisores, inspectoras e inspectores y, bajo dirección, supervisión, orientación y asesoría, realizar tareas de diversos tipos, según indicaciones y directrices de la superior jerárquica o superior jerárquico correspondiente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Corresponderá a las inspectoras jefes y a los inspectores jefes dirigir, supervisar, orientar y asesorar en tareas ordinarias y novedosas de baja, mediana, elevada y muy alta complejidad al personal con rango de detectives, detectives asistentes, detectives supervisoras y detectives supervisores, inspectoras e inspectores, inspectoras adjuntas e inspectores adjuntos y bajo dirección, supervisión, orientación y asesoría, realizar tareas de diversos tipos, según indicaciones y directrices de la superior jerárquica o superior jerárquico correspondiente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Corresponderá a las comisarias y a los comisarios programar, dirigir, supervisar, orientar y asesorar en tareas novedosas de baja, mediana, elevada y muy alta complejidad al personal con rango de detectives, detectives asistentes, detectives supervisoras y supervisores, inspectoras e inspectores, inspectoras adjuntas e inspectores adjuntos, inspectoras jefes e inspectores jefes, realizando otras tareas de coordinación, supervisión y organización bajo instrucciones de la superior jerárquica o superior jerárquico correspondiente o conforme a directrices contenidas en manuales y protocolos de servicio."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Corresponderá a las comisarias jefes y los comisarios jefes programar, dirigir, supervisar, orientar y asesorar en tareas novedosas de baja, mediana, elevada y muy alta complejidad al personal con rango de detectives, detectives asistentes, detectives supervisoras y supervisores, inspectoras e inspectores, inspectoras adjuntas e inspectores adjuntos, inspectoras jefes e inspectores jefes, comisarias y comisarios, realizando otras tareas de coordinación, supervisión y organización, de acuerdo con los manuales y protocolos de servicio bajo revisión y control por parte de la superior jerárquica o superior jerárquico correspondiente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Corresponderá a las comisarias generales y los comisarios generales planificar, dirigir, supervisar, orientar y asesorar en tareas novedosas de elevada y muy alta complejidad al personal con rango de detectives, detectives asistentes, detectives supervisoras y detectives supervisores, inspectoras e inspectores, inspectoras adjuntas e inspectores adjuntos, inspectoras jefes e inspectores jefes, comisarias y comisarios, comisarias jefes y comisarios jefes, realizando otras tareas de coordinación, supervisión y organización, de acuerdo con los manuales y protocolos de servicio bajo la revisión y control por parte de la superior jerárquica o superior jerárquico correspondiente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Corresponderá a las comisarias generales superiores y los comisarios generales superiores, organizar, planificar, dirigir, supervisar, orientar y asesorar en tareas novedosas de elevada y muy alta complejidad al personal con rango de detectives, detectives asistentes, detectives supervisoras y supervisores, inspectoras e inspectores, inspectoras adjuntas e inspectores adjuntos, inspectoras jefes e inspectores jefes, comisarias y comisarios, comisarias jefes y comisarios jefes, comisarias generales y comisarios generales, de acuerdo con los manuales y protocolos de servicio bajo revisión y control por parte del órgano Rector."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Calificación de servicio en la jerarquía"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "policial de investigación"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "34",
+   "numero": 34,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La calificación de servicio dentro de la jerarquía policial de investigación, está sujeta al cumplimiento de las condiciones previstas en este artículo y al conocimiento en materia de gestión de riesgo, independientemente del rango policial; en los siguientes términos:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Las Detectives y los Detectives: haber cursado y aprobado el técnico superior universitario en la Universidad Nacional Experimental de la Seguridad (UNES), además de haber aprobado el concurso y culminado en forma exitosa el período de prueba a que se refiere esta Ley y su reglamento, demostrando un alto sentido de pertenencia e identidad institucional."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Las Detectives Asistentes y los Detectives Asistentes: deberán contar con una antigüedad de cuatro años mínimo como detective y, a nivel de educación formal, técnico superior universitario, además de conocimientos que permitan demostrar capacidades adquiridas en materia de ética y derechos humanos, uso progresivo y diferenciado de la fuerza, métodos y técnicas de planificación básica, y cualquier otro requisito establecido en el marco legal vigente relativo a la materia de investigación penal o criminalística, demostrando durante un proceso de evaluación, a través de entrevista y paneles, la capacidad para organizar y supervisar grupos mínimos de funcionarias y funcionarios policiales de investigación en tareas básicas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Las Detectives Supervisoras y Los Detectives Supervisores: deberán contar con una antigüedad de ocho años como mínimo en la carrera policial de investigación penal o criminalística, cuatro de ellos como detectives asistentes y, a nivel de educación formal, con el grado de técnico superior universitario, además de conocimientos que permitan demostrar capacidades adquiridas en materia de ética y derechos humanos, uso progresivo y diferenciado de la fuerza, métodos y técnicas de planificación avanzada de mayor nivel de complejidad y cualquier otro requisito establecido en el marco legal vigente, demostrando durante un proceso de evaluación, a través de entrevista y paneles, la capacidad para organizar y supervisar en tareas sencillas, ordinarias o novedosas, a grupos pequeños y medianos de funcionarias y funcionarios policiales de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Las Inspectoras y los Inspectores: deberán contar con una antigüedad de doce años como mínimo en la carrera policial de investigación penal o criminalística, cuatro de ellos como detectives supervisoras y detectives supervisores y, a nivel de educación formal, con el grado de licenciatura en investigación penal o criminalística, además de formación avanzada en ética aplicada a la función pública y derechos humanos, conocimientos en materia de planificación de mayor complejidad y cualquier otro requisito establecido en el marco legal vigente, demostrando durante un proceso de evaluación, a través de entrevista y paneles, la capacidad de aplicar liderazgo situacional y gerencial en tareas de mediana complejidad, ordinarias o novedosas, a grupos de funcionarias y funcionarios policiales integrantes de este nivel y de la jerarquía anterior."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Las Inspectoras Adjuntas y los Inspectores Adjuntos: deberán contar con una antigüedad de dieciséis años como mínimo en la carrera policial de investigación penal o criminalística, cuatro de ellos como inspectora o inspector y a nivel de educación formal de licenciatura en investigación penal o criminalística, además de estudios avanzados en ética aplicada a la función pública y derechos humanos, actualizados en un lapso de dos años antes de su respectivo ascenso, planificación de mayor complejidad y cualquier otro requisito establecido en el marco legal vigente, demostrando durante un proceso de evaluación, a través de entrevista y paneles, la capacidad de aplicar liderazgo situacional y gerencial en tareas de elevada complejidad, a grupos medianos de funcionarias y funcionarios policiales de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Las Inspectoras Jefes y los Inspectores Jefes: deberán contar con una antigüedad de diecinueve años como mínimo en la carrera policial de investigación penal o criminalística, tres de ellos como inspectora adjunta o inspector adjunto y, a nivel de educación formal, de especialización en materia penal o criminalística con un semestre aprobado como mínimo, además de cursos avanzados en derechos humanos, ética del servidor público y planificación estratégica básica y cualquier otro requisito establecido en materia de carrera policial, demostrando durante un proceso de evaluación, a través de entrevista y paneles, la capacidad para evaluar en forma continua al personal a su cargo, adoptar correctivos ante conductas inadecuadas y coordinar con otras entidades o instituciones fuera del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Las Comisarias y los Comisarios: deberán contar con una antigüedad de veintidós años como mínimo en la carrera policial de investigación penal o criminalística, tres de ellos como inspectora jefe o inspector jefe y a nivel de educación formal, con estudios de especialización aprobados, además de cumplir con cursos avanzados en materia de derechos humanos, ética del servidor público, así como el curso básico de nivel estratégico, y cualquier otro establecido en el reglamento relativo a la materia, demostrando durante un proceso de evaluación, a través de entrevista y paneles, la capacidad para administrar talento humano y recursos materiales promoviendo la rendición de cuentas y la participación de las comunidades en el mejor desempeño del servicio de policía de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Las Comisarias Jefes y los Comisarios Jefes: deberán contar con una antigüedad de veinticuatro años como mínimo en la carrera policial de investigación penal o criminalística, dos de ellos como comisaria o comisario y a nivel de educación formal, con estudios de maestría con duración mínima de cuatro semestres, además de cursos avanzados en materia de derechos humanos, ética del servidor público y curso medio de nivel estratégico, y cualquier otro establecido en el marco legal vigente, demostrando durante un proceso de evaluación, a través de entrevista y paneles, la capacidad para procesar y utilizar información para planificar, desarrollar y supervisar estrategias en situaciones complejas, así como definir y ejecutar lineamientos administrativos, funcionales y operativos para la más eficiente prestación del servicio de policía de investigación. Además, la realización de un trabajo de investigación o la publicación de un artículo especializado que constituyan una contribución a la gestión o planificación en materia del servicio de policía de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Las Comisarias Generales y los Comisarios Generales: deberán contar con una antigüedad de veintiséis años como mínimo en la carrera policial de investigación penal o criminalística, dos de ellos como comisaria jefe o comisario jefe y, a nivel de educación formal, con estudios de doctorado aprobado, además de cursos avanzados de derechos humanos, ética del servidor público, y un curso de gerencia y planificación a nivel estratégico con duración mínima de un semestre, o cualquier otro establecido en el marco legal vigente, demostrando capacidad para proponer, adelantar y evaluar planes estratégicos dentro del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, o en colaboración con otros cuerpos e instancias, que contribuyan a mejorar la prestación del servicio de policía de investigación. Además, la realización de una propuesta metodológica para fortalecer los procesos administrativos dentro de la gestión o planificación en materia del servicio de policía de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Las Comisarias Generales Superiores y los Comisarios Generales Superiores: deberán contar con una antigüedad de veintiocho años en la carrera policial de investigación penal o criminalística, dos de ellos como Comisaria General o Comisario General, a nivel de educación formal con título de Doctora o Doctor, haber ejercido mínimo cuatro cargos de alta gerencia dentro de la Institución, cursos avanzados de derechos humanos, ética del servidor público, gerencia y planificación a nivel estratégico, manejo de un idioma adicional fluido y cualquier otro requisito establecido en el marco legal vigente, demostrando capacidad para la planificación estratégica, elaboración de programas y proyectos que contribuyan al avance de la investigación del crimen, o la publicación de un artículo especializado que constituya una contribución a la gestión o planificación en materia del servicio de policía de investigación, manejo de situaciones de alta complejidad, manejo de la tecnología de la información y la comunicación, dentro del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, o en colaboración con otros cuerpos e instancias, que contribuyan a mejorar la prestación del servicio de policía de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "11. La Comisaria General Superior Nacional o el Comisario General Superior Nacional: es la persona que ostenta el cargo de Directora General o Director General del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Ascenso administrativo y del cargo de gestión"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "35",
+   "numero": 35,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación que hayan cumplido el tiempo requerido de servicio, que posean las credenciales académicas correspondientes, que cumplan con los méritos de servicio y aprueben las evaluaciones correspondientes, ascenderán administrativamente en el escalafón correspondiente, sin que ello signifique derecho a ocupar un cargo específico dentro del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, lo cual dependerá de la disponibilidad efectiva. Los procedimientos de ascenso de los funcionarias y funcionarios policiales de investigación, sujetos a procedimientos disciplinarios por motivos de destitución, quedarán suspendidos hasta que los mismos sean decididos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Los reglamentos y resoluciones de la presente Ley establecerán los méritos de servicios requeridos para los ascensos, así como las regulaciones relativas a las evaluaciones y procedimientos para los ascensos de las funcionarias y funcionarios policiales de investigación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Ascensos de honor por muerte en acto de servicio y"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "por mérito extraordinario"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "36",
+   "numero": 36,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En caso de que ocurriere el fallecimiento en acto de servicio de un funcionaria o funcionario policial de investigación, se acordará su ascenso de honor con efectos inmediatos sobre las remuneraciones y beneficios sociales que correspondan a sus herederas y herederos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En caso de actos de servicios de mérito extraordinario relacionado con la investigación penal de un funcionaria o funcionario policial de investigación, se podrá acordar su ascenso, en una sola oportunidad durante su carrera policial, siempre que el candidato o candidata hubiere cumplido, por lo menos, con la antigüedad equivalente a la mitad del tiempo de servicio requerido en el rango correspondiente habiendo registrado un historial personal intachable."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Los reglamentos y resoluciones de la presente Ley regularán los requisitos y procedimientos para los ascensos por muerte en acto de servicio y por mérito extraordinario."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Servicio activo"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "37",
+   "numero": 37,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se considerará en servicio activo a las funcionarias y funcionarios policiales de investigación que ejerzan un cargo en el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas o se encuentren en comisión de servicio, traslado, suspensión, permiso o licencia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Comisión de servicio"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "38",
+   "numero": 38,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La comisión de servicio será la situación administrativa de carácter temporal por la cual se encomienda a un funcionaria o funcionario policial de investigación el ejercido de un cargo diferente, de igual o superior nivel del cual es titular. Para ejercer dicha comisión de servicio, la funcionaria o funcionario policial deberá reunir los requisitos exigidos para el cargo. La comisión de servicio podrá ser realizada en el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas o en otro cuerpo de policía. Si el cargo que se ejerce en comisión de servicio tuviere mayor remuneración o beneficios sociales, la funcionaria funcionario policial de investigación tendrá derecho a los mismos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Las comisiones de servicio serán de obligatoria aceptación y deberán ser ordenadas por el período estrictamente necesario, el cual no podrá exceder de un año a partir del acto de notificación de la misma."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Corresponde a la Ministra o Ministro del Poder Popular con competencia en materia de seguridad ciudadana autorizar en comisión de servicio a los funcionarias y funcionarios policiales de investigación para desempeñar cargos en órganos y entes de la Administración Pública distintos a los cuerpos de policía."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Traslados"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "39",
+   "numero": 39,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación podrán ser trasladadas o trasladados por razones de servicio. Cuando se trate de traslado de una localidad a otra, éste deberá realizarse de mutuo acuerdo, salvo los casos que por necesidades de servicio determinen los reglamentos y resoluciones de esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Ejercicio de cargos de alto nivel"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "40",
+   "numero": 40,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La funcionaria o funcionario policial de investigación que sea designada o designado para ocupar un cargo de alto nivel tendrá el derecho a continuar en la carrera policial de investigación al separarse del mismo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Retiro del Cuerpo de Investigaciones Científicas,"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Penales y Criminalísticas"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "41",
+   "numero": 41,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El retiro del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas procederá en los siguientes casos:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Renuncia escrita de la funcionaria o funcionario policial de investigación debidamente aceptada."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Renuncia o pérdida de la nacionalidad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Interdicción civil."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Condena penal definitivamente firme."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Jubilación o discapacidad total y permanente o gran discapacidad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Destitución."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Fallecimiento."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Reducción de personal por limitaciones financieras o cambios en la organización administrativa."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En los casos establecidos en los numerales 1, 2 y 8 del presente artículo, los funcionarias y funcionarios policiales tendrán derecho a participar en un programa de inducción para fomentar condiciones personales, familiares y sociales adecuadas para su egreso de la carrera policial, especialmente para facilitar su integración al trabajo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En el caso previsto en los numerales 2 y 4, el retiro procede de pleno derecho y se declarará mediante decisión motivada de la directora o director del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Tramitación de la renuncia"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "42",
+   "numero": 42,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La renuncia de la funcionaria o funcionario policial de investigación deberá presentarse a la jefa inmediata o jefe inmediato de la unidad administrativa donde preste servicios, quien deberá someterla de inmediato al conocimiento de la directora o director del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas. La funcionaria o funcionario policial que renuncie, deberá permanecer en el ejercido de su cargo hasta que efectúe formal entrega de la dotación asignada y que reciba la aceptación de la renuncia, todo lo cual se hará dentro de los quince días siguientes a la participación que de la renuncia se haga a la directora o director. La falta de respuesta se considerará como aceptación de la renuncia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Devolución de dotación"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "43",
+   "numero": 43,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La funcionaria o funcionario policial de investigación que egrese del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas estará obligada u obligado a devolver sus insignias policiales, documento de identificación que lo acredite como tal, así como su armamento y todos los implementos que le hubieren sido asignados para el desempeño de sus funciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios y en condición de jubilación obtendrán su identificación correspondiente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Reingreso y reincorporación"
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "44",
+   "numero": 44,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La funcionaria o funcionario policial de investigación que egrese del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas por renuncia, podrá solicitar su reingreso, siempre que cumpla con los requisitos exigidos por la ley para su ingreso. En estos casos, además de cumplir todos los requisitos establecidos en la presente Ley y el Decreto con Rango, Valor y Fuerza de Ley del Servicio de Policía de Investigación, el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses, se deberá revisar y evaluar sus antecedentes de servicio, a cuyo efecto se utilizará el sistema automatizado de registro policial que se establezca por parte del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "No podrá aprobarse el reingreso o reincorporación de las funcionarias y funcionarios policiales de investigación que hayan egresado por otras causas del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas."
+    }
+   ],
+   "seccion_label": "CAPITULO IV: De la Carrera Policial de Investigación"
+  },
+  {
+   "numero_texto": "45",
+   "numero": 45,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación tienen derecho, al incorporarse a un nuevo cargo, a ser informadas e informados por su superior inmediato acerca de los fines, organización y funcionamiento de la unidad administrativa correspondiente y de las atribuciones, deberes y responsabilidades que le incumben."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Remuneraciones y beneficios sociales"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Remuneraciones, beneficios sociales y demás condiciones de trabajo"
+  },
+  {
+   "numero_texto": "46",
+   "numero": 46,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias o funcionarios policiales de investigación tienen derecho a percibir las remuneraciones y beneficios sociales correspondientes al cargo que desempeñen, de conformidad con lo establecido en esta Ley, sus reglamentos y resoluciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Las remuneraciones y beneficios sociales de los funcionarios y funcionarias policiales de investigación deben ser suficientes que les permitan vivir con dignidad y cubrir para sí y sus familias las necesidades básicas materiales, sociales e intelectuales. Así mismo, deben reconocer su dignidad humana, responsabilidades, desempeño, compromiso, formación, desarrollo y desempeño profesional."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Vacaciones"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Remuneraciones, beneficios sociales y demás condiciones de trabajo"
+  },
+  {
+   "numero_texto": "47",
+   "numero": 47,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación tendrán derecho a disfrutar de una vacación anual de:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Veinte días hábiles durante el primer quinquenio de servicios."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Veintitrés días hábiles durante el segundo quinquenio."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Veinticinco días hábiles a partir del décimo primer año de servicio."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El disfrute efectivo de las vacaciones no será acumulable. Las mismas deberán ser disfrutadas dentro del lapso de seis meses siguientes contados a partir del momento de adquirir este derecho. Excepcionalmente, el director o directora del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas podrá postergar, mediante acto motivado fundado en razones de servicio, el disfrute efectivo de las vacaciones hasta por un lapso de un año contado a partir del momento en que se adquirió este derecho."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Bono vacacional"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Remuneraciones, beneficios sociales y demás condiciones de trabajo"
+  },
+  {
+   "numero_texto": "48",
+   "numero": 48,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación tienen derecho a un bono vacacional anual de cuarenta días de sueldo, el cual deberá ser pagado al momento del disfrute efectivo de las vacaciones. Cuando el funcionario o funcionaria policial egrese por cualquier causa antes de cumplir el año de servicio, bien durante el primer año o en los siguientes, tendrá derecho a recibir el bono vacacional proporcional al tiempo de servicio prestado."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Bonificación de fin de año"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Remuneraciones, beneficios sociales y demás condiciones de trabajo"
+  },
+  {
+   "numero_texto": "49",
+   "numero": 49,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación tendrán derecho a disfrutar por cada año calendario de servicio activo, dentro del ejercicio fiscal correspondiente, de una bonificación de fin de año equivalente a un mínimo de noventa días de sueldo integral."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Permisos y licencias"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Remuneraciones, beneficios sociales y demás condiciones de trabajo"
+  },
+  {
+   "numero_texto": "50",
+   "numero": 50,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación tendrán derecho a los permisos y licencias que establezca el Ministerio del Poder Popular con competencia en materia de seguridad ciudadana mediante las resoluciones especiales, los cuales podrán ser con goce de sueldo o sin él y de carácter obligatorio o potestativo. Las resoluciones especiales establecerán los requisitos, autoridad responsable de concederlos o no, duración y demás condiciones de estos permisos y licencias."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Seguridad social integral"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Remuneraciones, beneficios sociales y demás condiciones de trabajo"
+  },
+  {
+   "numero_texto": "51",
+   "numero": 51,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las jubilaciones y pensiones de las funcionarias y funcionarios policiales de investigación se rigen por los principios de universalidad, integralidad, eficiencia, financiamiento solidario, contributivo y unitario, estando integradas al régimen prestacional de pensiones y otras asignaciones económicas del sistema de seguridad social."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Salud y seguridad laborales"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Remuneraciones, beneficios sociales y demás condiciones de trabajo"
+  },
+  {
+   "numero_texto": "52",
+   "numero": 52,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La salud y seguridad laborales de las funcionarias y funcionarios y policiales de investigación, especialmente las responsabilidades derivadas de las enfermedades profesionales y accidentes de trabajo en actos de servicio, así como los servicios de seguridad y salud en el trabajo, se rigen por la Ley Orgánica de Prevención, Condiciones y Medio Ambiente de Trabajo en tanto sea compatible con el servicio de policía."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas debe adoptar todas las medidas necesarias para prevenir los riesgos laborales derivados de la prestación del servicio de policía."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Prestaciones Sociales"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Remuneraciones, beneficios sociales y demás condiciones de trabajo"
+  },
+  {
+   "numero_texto": "53",
+   "numero": 53,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación gozarán de los mismos beneficios contemplados en la Constitución de la República Bolivariana de Venezuela, en la Ley Orgánica del Trabajo, la Trabajadora y el Trabajador y sus reglamentos, en lo atinente a las prestaciones sociales y condiciones para su percepción."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Protección de la maternidad y paternidad"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Remuneraciones, beneficios sociales y demás condiciones de trabajo"
+  },
+  {
+   "numero_texto": "54",
+   "numero": 54,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación disfrutarán de la protección integral a la maternidad y paternidad de conformidad con lo establecido en la Constitución de la República Bolivariana de Venezuela, las leyes y reglamentos. Las funcionarias policiales de investigación en estado de gravidez no podrán ejercer funciones que impliquen el uso potencial de la fuerza física. En caso de que sea necesario trasladar a la funcionaria policial de investigación para cumplir efectivamente con esta garantía, no podrán ser desmejoradas sus remuneraciones, beneficios sociales y demás condiciones de trabajo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Estabilidad absoluta"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Remuneraciones, beneficios sociales y demás condiciones de trabajo"
+  },
+  {
+   "numero_texto": "55",
+   "numero": 55,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación que ocupen cargos de carrera, gozarán de estabilidad en el desempeño de sus cargos. En consecuencia, sólo podrán ser retirados o retiradas del servicio por las causales contempladas y de conformidad con los procedimientos previstos en la presente Ley, sus reglamentos y resoluciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Ascensos"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Remuneraciones, beneficios sociales y demás condiciones de trabajo"
+  },
+  {
+   "numero_texto": "56",
+   "numero": 56,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios y policiales de investigación que ocupen cargos de carrera tendrán derecho a optar a los ascensos en los términos previstos en esta Ley, sus reglamentos y resoluciones. El ascenso en el escalafón administrativo no 1mplica el desempeño de responsabilidades de supervisión y mando dentro de la estructura policial."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Jornada de servicios"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Remuneraciones, beneficios sociales y demás condiciones de trabajo"
+  },
+  {
+   "numero_texto": "57",
+   "numero": 57,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación que ocupen cargos de carrera, tendrán derecho a jornada de servicios que les garantice las condiciones para su desarrollo físico, espiritual y cultural, así como el debido descanso, recreación y esparcimiento. A tal efecto, la jornada de servicios diurna no podrá exceder de ocho horas dianas, ni de cuarenta y cuatro semanales; la jornada de servicios nocturna no podrá exceder de siete horas diarias, ni de treinta y cinco semanales; y la jornada mixta no podrá exceder de siete horas y media por día, ni de cuarenta semanales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio del Poder Popular con competencia en materia de seguridad ciudadana por motivos de interés público y social podrá, mediante resolución especial, establecer prolongaciones de las jornadas de servicios por encima de los límites establecidos en la presente Ley, a los fines de salvaguardar los derechos humanos de la población, garantizar el funcionamiento óptimo de los servicios de policía de investigación y satisfacer las necesidades derivadas del orden público y la paz social."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En estos casos los horarios podrán excederse de los límites establecidos para la jornada diaria o semanal, con la condición de que la jornada diaria no exceda de once horas diarias de trabajo y que el total de horas trabajadas en un periodo de ocho semanas no exceda, en promedio, de cuarenta horas por semana y que el trabajador disfrute de dos días de descanso continuos y remunerados cada semana."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Viáticos y dotación"
+    }
+   ],
+   "seccion_label": "CAPITULO V: Remuneraciones, beneficios sociales y demás condiciones de trabajo"
+  },
+  {
+   "numero_texto": "58",
+   "numero": 58,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio del Poder Popular con competencia en materia de seguridad ciudadana establecerá, mediante resoluciones especiales, el régimen de viáticos y de dotación de las funcionarias funcionarios y policiales de investigación. La máxima autoridad del órgano rector podrá asignar viáticos al funcionario o funcionaria que por índole de sus funciones tenga que viajar constantemente dentro del país."
+    }
+   ],
+   "seccion_label": "CAPITULO V: Remuneraciones, beneficios sociales y demás condiciones de trabajo"
+  },
+  {
+   "numero_texto": "59",
+   "numero": 59,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S6",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El sistema de remuneraciones y beneficios sociales de la Función de la Policía de Investigación comprende los sueldos, asignaciones, compensaciones, primas y demás beneficios sociales de carácter no remunerativo que reciben las funcionarias y funcionarios policiales de investigación por la prestación de sus servicios."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El sistema de remuneraciones y beneficios sociales es un sistema único e integrado, dirigido a reconocer, promover y mejorar el talento humano de las funcionarias y funcionarios policiales de investigación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Contenido del sistema de remuneraciones y beneficios sociales"
+    }
+   ],
+   "seccion_label": "CAPITULO VI: De la administración del sistema de"
+  },
+  {
+   "numero_texto": "60",
+   "numero": 60,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S6",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El sistema de remuneraciones y beneficios Función de la Policía de Investigación debe contener:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Escala de sueldos para cada cargo y nivel jerárquico del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Asignaciones, compensaciones y primas de contenido pecuniario."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Beneficios sociales de carácter no remunerativo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Lineamientos del sistema de remuneraciones y beneficios sociales"
+    }
+   ],
+   "seccion_label": "CAPITULO VI: De la administración del sistema de"
+  },
+  {
+   "numero_texto": "61",
+   "numero": 61,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S6",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El sistema de remuneraciones y beneficios sociales de la Función de la Policía de Investigación se rige, entre otros, por los siguientes lineamientos:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. La promoción de las buenas prácticas policiales: se reconocerá el mejoramiento en el desempeño policial, a través de remuneraciones y beneficios variables, derivados de la evaluación continua y permanente de los beneficios variables, derivados de la evaluación continua y permanente de los funcionarios y funcionarias policiales de investigación, tanto a nivel individual funcionarios y funcionarias policiales de investigación, tanto a nivel individual como en equipos de trabajo. A tal efecto, el sistema de remuneraciones y como en equipos de trabajo. A tal efecto, el sistema de remuneraciones y beneficios sociales establecerá, como mínimo, que el treinta por ciento del beneficios sociales establecerá, como mínimo, que el treinta por ciento del sueldo mensual debe ser de carácter variable, fijado sobre la base de la sueldo mensual debe ser de carácter variable, fijado sobre la base de la evaluación continua y permanente de la funcionaria o funcionario policial de evaluación continua y permanente de la funcionaria o funcionario policial de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Igualación laboral: se promoverá y garantizará la uniformidad de las remuneraciones y beneficios sociales del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, atendiendo a los niveles político territoriales en los cuales se presta sus servicios, así como a los criterios de territorialidad, complejidad, intensidad y especificidad de los servicios de policía. Así mismo, las remuneraciones y beneficios sociales de las funcionarias y funcionarios policiales de investigación serán fijadas tomando en consideración los ingresos percibidos por las trabajadoras y trabajadores en el territorio nacional, considerando el índice de precios al consumidor en las regiones."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Racionalidad de la Inversión en talento humano: La inversión presupuestaria en las remuneraciones y beneficios sociales de los funcionarios y funcionarias policiales de investigación debe obedecer a los criterios de racionalidad, eficiencia y severidad del gasto, así como a los demás establecidos en la Constitución de la República Bolivariana de Venezuela y la ley. A tal efecto, el sistema de remuneraciones y beneficios sociales no podrá establecer beneficios sociales calculados sobre la base de indicadores variables, tales como salarios mínimos, unidades tributarias y otras unidades de cálculo similares."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Ética en la administración de recursos públicos dirigidos a las remuneraciones y beneficios sociales de los funcionarios y funcionarias policiales de investigación: las personas responsables de administrar y custodiar el patrimonio público deberán hacerlo con decencia, decoro, probidad y honradez, de forma que la utilización de los bienes y el gasto de los recursos que lo integran se haga de la manera prevista en la Constitución de la República Bolivariana de Venezuela y la ley, y se alcancen las finalidades y objetivos establecidos en las mismas con la mayor economía, eficacia y eficiencia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Fijación nacional del sistema de remuneraciones y beneficios sociales"
+    }
+   ],
+   "seccion_label": "CAPITULO VI: De la administración del sistema de"
+  },
+  {
+   "numero_texto": "62",
+   "numero": 62,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S6",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Presidenta o Presidente de la República, mediante decreto publicado en la Gaceta Oficial de la República Bolivariana de Venezuela, previa opinión del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana, fijará el contenido del sistema de remuneraciones y beneficios sociales de la Función de la Policía de Investigación, bajo los siguientes parámetros:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Escala de sueldos del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas: en la cual se fijarán los montos iníciales, intermedio y máximo de sueldos de cada cargo o jerarquía, así como las demás asignaciones, compensaciones y primas de contenido pecuniario."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Régimen de beneficios sociales de carácter no remunerativo del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Los límites establecidos por el Ejecutivo Nacional en materia de sueldos, asignaciones, compensaciones y primas de contenido pecuniario, así como los límites y parámetros relativos a los beneficios sociales de conformidad con este artículo, son imperativos y de obligatorio cumplimiento para todos los ámbitos político-territoriales en los cuales se presta el servicio de policía."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Prohibición de ingresos adicionales"
+    }
+   ],
+   "seccion_label": "CAPITULO VI: De la administración del sistema de"
+  },
+  {
+   "numero_texto": "63",
+   "numero": 63,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S6",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las funcionarias y funcionarios policiales de investigación no podrán percibir por su desempeño en un cuerpo de policía: remuneraciones, provechos o ventajas, cualquiera sea su denominación o método de cálculo, tengan o no carácter salarial o remunerativo, distintos a los establecidos expresamente de conformidad con esta Ley, sus reglamentos y resoluciones. En consecuencia, queda prohibido el pago o percepción de cualquier gratificación, indemnización, bonificación, asignación o reconocimiento pecuniario en infracción a lo establecido en la presente Ley, reglamentos, resoluciones, escalas de sueldos y régimen de beneficios sociales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Son nulas las escalas de sueldos y los regímenes de beneficios sociales de los funcionarios y funcionarias policiales de investigación que sean aprobadas en violación de la presente Ley, sus reglamentos y resoluciones y, por tanto, no generan derecho alguno."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Régimen único de viáticos"
+    }
+   ],
+   "seccion_label": "CAPITULO VI: De la administración del sistema de"
+  },
+  {
+   "numero_texto": "64",
+   "numero": 64,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S6",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio del Poder Popular con competencia en materia de seguridad ciudadana, en coordinación con el Ministerio del Poder Popular con competencia en materia de planificación y desarrollo; establecerá, mediante resolución especial publicada en la Gaceta Oficial de la República Bolivariana de Venezuela, el régimen único de viáticos de las funcionarias y funcionarios policiales de investigación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Son nulos cualesquiera sistemas o regímenes de viáticos de las funcionarias y funcionarios policiales de investigación que sean aprobados en violación de la presente Ley, sus reglamentos y resoluciones y, por tanto, no generan derecho alguno."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Dotación"
+    }
+   ],
+   "seccion_label": "CAPITULO VI: De la administración del sistema de"
+  },
+  {
+   "numero_texto": "65",
+   "numero": 65,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S6",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio del Poder Popular con competencia en materia de seguridad ciudadana fijará, mediante resolución especial publicada en la Gaceta Oficial de la República Bolivariana de Venezuela, la dotación de las funcionarias y funcionarios policiales de investigación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Régimen único de permisos y licencias"
+    }
+   ],
+   "seccion_label": "CAPITULO VI: De la administración del sistema de"
+  },
+  {
+   "numero_texto": "66",
+   "numero": 66,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S6",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio del Poder Popular con competencia en materia de seguridad ciudadana, en coordinación con el Ministerio del Poder Popular con competencia en materia de planificación y desarrollo; establecerá, mediante resolución especial publicada en la Gaceta Oficial de la República Bolivariana de Venezuela, el régimen único de permisos y licencias de las funcionarias y funcionarios policiales de investigación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La resolución especial establecerá los tipos de permisos y licencias, su carácter remunerado o no, su naturaleza obligatoria o potestativa, los requisitos para disfrutarlos, la autoridad responsable de concederlos o no, su duración y demás condiciones que estime necesarias."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Son nulos cualesquiera sistemas o regímenes de permisos y licencias de los funcionarios y funcionarias policiales de investigación que sean aprobados en violación de la presente Ley, sus reglamentos y resoluciones y, por tanto, no generan derecho alguno."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Información de naturaleza pública"
+    }
+   ],
+   "seccion_label": "CAPITULO VI: De la administración del sistema de"
+  },
+  {
+   "numero_texto": "67",
+   "numero": 67,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S6",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La información actualizada sobre las remuneraciones y beneficios sociales correspondiente a los cargos y jerarquías policiales de investigación es de naturaleza pública, salvo las excepciones que por razones de seguridad y defensa de la Nación establezca expresamente el reglamento de la presente Ley. En los portales de internet y en las memorias y cuenta del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas deberá publicar anualmente la información correspondiente a los montos de las remuneraciones y beneficios sociales que corresponden a cada uno de los cargos y jerarquías policiales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Información a la Contraloría General de la República y"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "al Ministerio del Poder Popular con competencia"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "en materia de planificación y desarrollo"
+    }
+   ],
+   "seccion_label": "CAPITULO VI: De la administración del sistema de"
+  },
+  {
+   "numero_texto": "68",
+   "numero": 68,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S6",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las nóminas de pago de las remuneraciones y beneficios sociales de las funcionarias y funcionarios policiales de investigación del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas deberán ser consignadas semestralmente a la Contraloría General de la República y al Ministerio del Poder Popular con competencia en materia de planificación y desarrollo."
+    }
+   ],
+   "seccion_label": "CAPITULO VI: De la administración del sistema de"
+  },
+  {
+   "numero_texto": "69",
+   "numero": 69,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "De conformidad con lo establecido en la Ley Orgánica del Servicio de Policía de Investigación, el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses, el ejercicio de la Función Policial de Investigación está sometido a un proceso de rendición de cuentas que asegure la debida planificación de las actividades de investigaciones policiales, así como del órgano principal de investigación penal, bajo los principios de transparencia, periodicidad, responsabilidad Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses, son los comités ciudadanos de control policial y cualquier organización comunitaria o social debidamente estructurada que pueda contribuir a mejorar procesos, desempeño y productividad de la policía de investigación dentro del marco de las normas constitucionales y legales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Instancias de control interno de la policía"
+    }
+   ],
+   "seccion_label": "CAPITULO VII: Del control, supervisión y participación ciudadana"
+  },
+  {
+   "numero_texto": "70",
+   "numero": 70,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son instancias de control interno de la policía la Inspectoría General, la Oficina de Respuesta a las Desviaciones Policiales y el Consejo Disciplinario de Policía."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Inspectoría General"
+    }
+   ],
+   "seccion_label": "CAPITULO VII: Del control, supervisión y participación ciudadana"
+  },
+  {
+   "numero_texto": "71",
+   "numero": 71,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Inspectoría General es una unidad administrativa adscrita a la Dirección del Cuerpo de Investigaciones, Científicas, Penales y Criminalísticas, que implementará las medidas y dará seguimiento a procesos a fin de asegurar la correcta actuación de las funcionarias y funcionarios policiales de investigación, fomentando los mecanismos de alerta temprana de faltas e infracciones y el desarrollo de buenas prácticas policiales."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La organización y funcionamiento de la Inspectoría General se rige por lo establecido en la presente Ley, sus reglamentos y resoluciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Competencias de la inspectoría General"
+    }
+   ],
+   "seccion_label": "CAPITULO VII: Del control, supervisión y participación ciudadana"
+  },
+  {
+   "numero_texto": "72",
+   "numero": 72,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Inspectoría General tiene las siguientes competencias:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Recibir denuncias de supuestas Irregularidades en que incurran funcionarias o funcionarios policiales de investigación del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, e identificar el tipo de responsabilidad a que diera lugar la acción."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Desarrollar acciones que permitan prevenir las posibles desviaciones de la ética y de las buenas prácticas policiales de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Sustanciar los expedientes disciplinarios de las funcionarias y funcionarios policiales de investigación del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas; para esclarecer los hechos denunciados o investigados y relacionados con las actuaciones que impliquen la presunta comisión de faltas por su acción u omisión."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Proponer recomendaciones para mejorar los procesos de supervisión y el desempeño de las funcionarias y funcionarios y policiales."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Las demás establecidas en los reglamentos y resoluciones de esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Oficina de Respuesta a las Desviaciones Policiales"
+    }
+   ],
+   "seccion_label": "CAPITULO VII: Del control, supervisión y participación ciudadana"
+  },
+  {
+   "numero_texto": "73",
+   "numero": 73,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Oficina de Respuesta a las Desviaciones Policiales es una unidad administrativa adscrita a la Dirección del Cuerpo de Investigaciones Científicas. Penales y Criminalísticas y que reporta al Ministerio del Poder Popular con competencia en materia de seguridad ciudadana sobre situaciones complejas, estructuradas o de envergadura que impliquen violación de la Constitución de la República Bolivariana de Venezuela y la ley en materia de desempeño policial, amenazando el cabal desempeño del servicio conforme a los principios y directrices establecidas en el Decreto con Rango, Valor y Fuerza de Ley Orgánica del Servicio de Policía de Investigación, el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La creación, organización y funcionamiento de la Oficina de Respuesta a las Desviaciones Policiales se rige por lo establecido en la presente Ley, sus reglamentos y resoluciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Competencias de la Oficina de Respuesta a las Desviaciones Policiales"
+    }
+   ],
+   "seccion_label": "CAPITULO VII: Del control, supervisión y participación ciudadana"
+  },
+  {
+   "numero_texto": "74",
+   "numero": 74,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Oficina de Respuesta a las Desviaciones Policiales tiene las siguientes competencias:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Determinar indicios sobre la comisión de hechos constitutivos de faltas graves o delitos cometidos por personal del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Establecer, levantar, procesar y sistematizar información que permita detectar, contener y responder a las desviaciones policiales en el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Coordinar las acciones de inteligencia con las distintas unidades del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, a fin de detectar los casos graves de desviación policial en los que estén involucrados o involucradas las funcionarias o funcionarios policiales de investigación, que comprometan el desempeño y credibilidad del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, e iniciar las acciones que fueren procedentes, incluyendo, si fuere necesario, información al Ministerio del Poder Popular con competencia en materia seguridad ciudadana."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Consejo Disciplinario de Policía de Investigación"
+    }
+   ],
+   "seccion_label": "CAPITULO VII: Del control, supervisión y participación ciudadana"
+  },
+  {
+   "numero_texto": "75",
+   "numero": 75,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Consejo Disciplinario de Policía de Investigación es un órgano colegiado, objetivo e independiente de apoyo a la Dirección del Cuerpo de Investigaciones científicas, Penales y Criminalísticas, encargado de conocer y decidir sobre las infracciones más graves sujetas a sanción de destitución, cometidas por las funcionarias o funcionarios policiales de investigación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Integrantes del Consejo Disciplinario de Policía de Investigación"
+    }
+   ],
+   "seccion_label": "CAPITULO VII: Del control, supervisión y participación ciudadana"
+  },
+  {
+   "numero_texto": "76",
+   "numero": 76,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Consejo Disciplinario de Policía de Investigación estará integrado por tres personas, dos de libre nombramiento y remoción del órgano rector y una de libre nombramiento y remoción de la Directora o Director del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas. Estas designaciones deberán ser publicadas en la Gaceta Oficial de la República Bolivariana de Venezuela."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Consejo Disciplinario de Policía de Investigación se constituirá de forma temporal o permanente para conocer cada caso que le deba ser sometido y aplicará los procedimientos y las reglas previstas en la presente Ley. la integración, organización y funcionamiento del Consejo Disciplinario de Policía de Investigación del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas se rige por lo establecido en la presente Ley, sus reglamentos y resoluciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Competencias del Consejo Disciplinario de Policía de Investigación"
+    }
+   ],
+   "seccion_label": "CAPITULO VII: Del control, supervisión y participación ciudadana"
+  },
+  {
+   "numero_texto": "77",
+   "numero": 77,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Consejo Disciplinario de Policía de Investigación tiene las siguientes competencias:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Decidir los procedimientos disciplinarios que se sigan a las funcionarias funcionarios policiales de investigación del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas en los casos de faltas sujetas a la sanción de destitución."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Mantener informada o informado permanentemente a la Directora o Director o del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas; del resultado de las procedimientos y, de manera periódica, preparar informes a ser remitidos al Ministerio del Poder Popular con competencia en materia de seguridad ciudadana, sobre las faltas más conocidas y otros elementos de interés que posibiliten evaluar las causas v condiciones que las favorecen."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Las demás establecidas en los reglamentos y resoluciones de esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Instancias del control externo de la policía de investigación"
+    }
+   ],
+   "seccion_label": "CAPITULO VII: Del control, supervisión y participación ciudadana"
+  },
+  {
+   "numero_texto": "78",
+   "numero": 78,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las instancias de control externo de la policía de investigación, de conformidad con lo previsto en el Decreto con Rango, Valor y Fuerza de Ley Orgánica del Servicio de Policía de Investigación, el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses, son los comités ciudadanos de control policial y cualquier organización comunitaria o social debidamente estructurada que pueda contribuir a mejorar procesos, desempeño y productividad de la policía de investigación dentro del marco de las normas constitucionales y legales."
+    }
+   ],
+   "seccion_label": "CAPITULO VII: Del control, supervisión y participación ciudadana"
+  },
+  {
+   "numero_texto": "79",
+   "numero": 79,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas desarrollará un sistema de supervisión continua y regular de sus funcionarias y funcionarios policiales y expertas y expertos en materia de investigación penal que permita identificar las fallas en el cumplimiento de sus deberes y obligaciones e intervenir, en forma temprana, oportuna y efectiva, a fin de corregirlas y subsanar las situaciones que incidan en el deficiente desempeño de la Función Policial de Investigación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Principios sustantivos sobre las medidas de intervención y corrección"
+    }
+   ],
+   "seccion_label": "CAPITULO VIII: Supervisión, responsabilidades y régimen disciplinario"
+  },
+  {
+   "numero_texto": "80",
+   "numero": 80,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las medidas que sean adoptadas se orientarán por los principios de ponderación, proporcionalidad, reentrenamiento y adecuación a la entidad de las deficiencias y faltas, a las perspectivas de corrección y al grado de participación y responsabilidad individual de las funcionarias y funcionarios policiales de investigación. La ponderación implica la consideración de todas las circunstancias del hecho, de modo que exista correspondencia racional entre el alcance de la medida y el objetivo a lograr."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La proporcionalidad implica un equilibrio entre la magnitud de la medida y la entidad de la falta, de modo que faltas equivalentes sean tratadas con medidas equivalentes. El reentrenamiento implica que el objetivo de la medida sea un cambio positivo observable en las destrezas y habilidades de la funcionaria funcionario policial de investigación. La adecuación implica la individualización de las medidas de corrección en función del grado de amenaza o daño, del pronóstico de enmienda y del nivel de involucramiento de cada uno de los funcionarias o funcionarios policiales de investigación que hayan participado en la falta correspondiente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Principios procedimentales sobre las medidas"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "de Intervención y corrección"
+    }
+   ],
+   "seccion_label": "CAPITULO VIII: Supervisión, responsabilidades y régimen disciplinario"
+  },
+  {
+   "numero_texto": "81",
+   "numero": 81,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El procedimiento de identificación e intervención de las fallas y faltas en el cumplimiento de deberes y obligaciones de los funcionarias y funcionarios policiales de investigación y expertas y expertos en materia de investigación penal está orientado por los principios de alerta temprana, continuidad, eficacia, celeridad, imparcialidad, proactividad y garantía de los derechos humanos del funcionario o funcionaria, sin que la identificación, el seguimiento, el registro y la documentación de cada caso puedan interpretarse como parte de un procedimiento de tipo acusatorio en contra del funcionario involucrado o funcionaria involucrada."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Proceso de supervisión continua e Intervención temprana"
+    }
+   ],
+   "seccion_label": "CAPITULO VIII: Supervisión, responsabilidades y régimen disciplinario"
+  },
+  {
+   "numero_texto": "82",
+   "numero": 82,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Inspectoría General aplicará un protocolo de supervisión continua e intervención temprana que permita determinar, a través de los supervisores directos y supervisoras directas de las funcionarias y funcionarios policiales y expertas y expertos en materia de investigación penal, de las quejas y reclamos de las personas, de los informes de los jefes de unidades, departamentos y oficinas, de la Oficina de Respuesta a las Desviaciones Policiales o de la directora o director del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, las fallas, faltas e incumplimiento de normas, manuales, protocolos, instructivos y órdenes impartidas a las funcionarias y funcionarios policiales de investigación en sus diversos niveles de jerarquía, mediante un reporte escrito en el que conste el motivo de la observación o reclamo, el contenido y modalidades de la acción u omisión reportada y las circunstancias de tiempo, lugar y testimonios frente al comportamiento en cuestión, con indicación de cualquier otro elemento que contribuya a su mejor determinación y documentación. Los reglamentos y resoluciones de la presente Ley establecerán los contenidos, alcances, formatos y gestión del protocolo de supervisión continua e intervención temprana a que se refiere este artículo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Asistencia voluntaria"
+    }
+   ],
+   "seccion_label": "CAPITULO VIII: Supervisión, responsabilidades y régimen disciplinario"
+  },
+  {
+   "numero_texto": "83",
+   "numero": 83,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La medida de asistencia voluntaria consiste en el sometimiento consentido del funcionario o funcionaria policial de investigación o una experta o experto en materia de investigación penal a un programa corto de supervisión intensiva y reentrenamiento en el área a que corresponda la falta detectada. Este programa podrá estar a cargo de la supervisora directa o supervisor directo del funcionaria o funcionario policial o de algún otro supervisor o unidad de reentrenamiento y formación dentro del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y tendrá una duración que no excederá de seis horas. Los reglamentos y resoluciones de la presente Ley establecerán los parámetros para el desarrollo de este programa, incluyendo cualquier restricción en la dotación o funciones de la funcionaria o funcionario policial de investigación y los criterios para evaluar sus resultados."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Causales de aplicación de la asistencia voluntaria"
+    }
+   ],
+   "seccion_label": "CAPITULO VIII: Supervisión, responsabilidades y régimen disciplinario"
+  },
+  {
+   "numero_texto": "84",
+   "numero": 84,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son causales de aplicación de la medida de asistencia voluntaria las siguientes:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Incumplimiento del horario de trabajo que no exceda del veinte por ciento (20%) de una jornada laboral o del tiempo a disponibilidad del servicio a que se refiera una comisión especial, hasta un máximo de dos oportunidades en un período de tres meses."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Descuido o negligencia en el uso de insignias, equipamiento o apariencia personal, siempre que no implique simulación, ocultamiento u obstaculización de la identificación personal o del equipo del funcionario o funcionaria policial de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Omisión o retardo en el cumplimiento de tareas, asignaciones, órdenes o disposiciones, siempre que no comprometa la atención de una emergencia o la prestación de un servicio de policía de investigación requerido en forma inmediata e indiferible por parte del público."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Falta de atención y compromiso en la ejecución de sus funciones o en los planes, programas, cursos y actividades de formación y entrenamiento, siempre que no implique indisciplina deliberada o actitud refractaria u hostil a la organización y funcionamiento del servicio de policía de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Omisión o retardo en la presentación de informes o reportes de actos de servicio que no comprometan, de manera sustancial, la integridad y confiabilidad de la prestación del servicio policial de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Cualquier violación de reglamento, instructivo, protocolo, orden de servicio o instrucción que no afecte, de manera sustancial, la integridad y confiabilidad de la prestación del servicio policial de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. No dar debido cumplimiento a lo previsto en el numerales 6 y 8 del artículo 79 del Decreto con Rango, Valor y Fuerza de Ley Orgánica del Servicio de Policía de Investigación, el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Cualquier otro supuesto derivado de las causales antes descritas, cuya exacta determinación en cuanto a la conducta o el resultado esté prevista en un reglamento, manual o instructivo policial, sin que se admita un reenvío secundario a otra pauta o disposición normativa."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Asistencia obligatoria"
+    }
+   ],
+   "seccion_label": "CAPITULO VIII: Supervisión, responsabilidades y régimen disciplinario"
+  },
+  {
+   "numero_texto": "85",
+   "numero": 85,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La medida de asistencia obligatoria consiste en el sometimiento obligatorio de la funcionaria o funcionario policial o experta y experto en materia de investigación penal de investigación a un programa de supervisión intensiva y reentrenamiento en el área a que corresponda la falta detectada. Este programa podrá estar a cargo de la supervisora directa o supervisor directo o de la funcionaria o funcionario de algún otro supervisor o unidad de reentrenamiento y formación dentro del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, y tendrá una duración que no excederá de treinta horas. Los reglamentos y resoluciones de la presente Ley establecerán los parámetros para el desarrollo de este programa, incluyendo cualquier restricción en la dotación o desempeño de la funcionaria o funcionario policial de investigación y los criterios para evaluar sus resultados."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Causales de aplicación de la asistencia obligatoria"
+    }
+   ],
+   "seccion_label": "CAPITULO VIII: Supervisión, responsabilidades y régimen disciplinario"
+  },
+  {
+   "numero_texto": "86",
+   "numero": 86,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son causales de aplicación de la medida de asistencia obligatoria las siguientes:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Falta de adopción, cumplimiento o informe sobre el programa de asistencia voluntaria que se hubiere recomendado a la funcionaria o funcionario policial de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Incumplimiento del horario de trabajo que exceda del veinte por ciento (20%) de una jornada laboral o del tiempo a disponibilidad del servicio a que se refiera una comisión especial, o que alcance a dos días hábiles en un período de treinta días continuos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Omisión o retardo en el cumplimiento de tareas, asignaciones, órdenes o disposiciones indicadas por la supervisora, supervisor, superiora inmediata o superior inmediato, que pongan en riesgo la atención de una emergencia o la prestación de un servicio de policía de investigación requerido en forma inmediata e indiferible por parte del público."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Manifestaciones de indisciplina, actitud refractaria u hostil a la organización y funcionamiento del servicio de policía de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Omisión o retardo en la presentación de informes o reportes de actos de servicio, bien sean exigibles de oficio o expresamente requeridos por el supervisora o supervisor, superiora inmediata o superior inmediato, que por su relevancia, condiciones, situaciones o modalidades puedan comprometer, de manera sustancial, la integridad y confiabilidad de la prestación del servicio policial de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Daño o perjuicio material debido a negligencia, imprudencia o impericia manifiestas sobre bienes dotación, equipos, equipamiento o infraestructura para la prestación del servicio policial de investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. No dar debido cumplimiento a lo previsto en los numerales 3, 5, 9 y 11 del artículo 79 del Decreto con Rango, Valor y Fuerza de Ley Orgánica del Servicio de Policía de Investigación, el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Cualquier otro supuesto derivado de las causales antes descritas, cuya exacta determinación en cuanto a la conducta o el resultado esté prevista en el reglamento, manual o instructivo policial, sin que se admita un reenvío secundario a otra pauta o disposición normativa."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Procedimiento para la aplicación de las medidas de"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "asistencia voluntaria y asistencia obligatoria"
+    }
+   ],
+   "seccion_label": "CAPITULO VIII: Supervisión, responsabilidades y régimen disciplinario"
+  },
+  {
+   "numero_texto": "87",
+   "numero": 87,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La autoridad competente del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, una vez revisada la documentación acopiada, después de informar y oír a la funcionaria o funcionario policial de investigación o experta o experto en materia de investigación penal involucrada o involucrado sobre los alegatos que estime pertinentes, adoptara la decisión correspondiente, le notificará sobre las medidas de asistencia voluntaria u obligatoria a que hubiere lugar, de conformidad con esta Ley, sus reglamentos y resoluciones. La decisión podrá ser recurrida ante la Directora o Director del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas. Las autoridades y procedimientos serán regulados en los reglamentos y resoluciones del presente Decreto con Rango, Valor y Fuerza de Ley Orgánica del Servicio de Policía de Investigación, el Cuerpo de Investigaciones Científicas, Penates y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Destitución"
+    }
+   ],
+   "seccion_label": "CAPITULO VIII: Supervisión, responsabilidades y régimen disciplinario"
+  },
+  {
+   "numero_texto": "88",
+   "numero": 88,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La medida de destitución comporta la separación definitiva del cargo de la funcionaria o funcionario policial de investigación o experta y experto en materia de investigación penal. El Consejo Disciplinario de Policía de investigación decidirá sobre la medida de destitución."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Efectos de la destitución"
+    }
+   ],
+   "seccion_label": "CAPITULO VIII: Supervisión, responsabilidades y régimen disciplinario"
+  },
+  {
+   "numero_texto": "89",
+   "numero": 89,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La destitución acordada, una vez firme la decisión correspondiente, será notificada al Ministerio del Poder Popular con competencia en materia de seguridad ciudadana a fin de efectuar el registro correspondiente a la desincorporación del listado. y credenciales funcionariales, y a los fines de dar cumplimiento al Decreto con Rango, Valor y Fuerza de Ley Orgánica del Servicio de Policía de Investigación, el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Instituto Nacional de Mediana y Ciencias Forenses."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Si la destitución procediere por la comisión de un delito, la Directora o Director del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas notificará al Ministerio Público a los fines de iniciar la averiguación penal a que hubiere lugar. En caso que el Ministerio Público hubiere iniciado de oficio una averiguación por la comisión de un delito, la Directora o Director del cuerpo de policía correspondiente procederá a suspender del ejercicio de sus funciones al funcionaria o funcionario policial o experta y experto en materia de investigación penal cuando su acusación haya sido admitida por el Tribunal respectivo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Causales de aplicación de la destitución"
+    }
+   ],
+   "seccion_label": "CAPITULO VIII: Supervisión, responsabilidades y régimen disciplinario"
+  },
+  {
+   "numero_texto": "90",
+   "numero": 90,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son causales de aplicación de la medida de destitución las siguientes:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Resistencia, contumacia, rechazo o incumplimiento de la medida de asistencia obligatoria aplicada, o haber sido sometida o sometido en tres oportunidades durante el último año a esta medida sin que haya evidencia de corrección según los informes del supervisora o supervisor correspondiente."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Comisión intencional o por imprudencia, negligencia o impericia graves, de un hecho delictivo que afecte la prestación del servicio policial o la credibilidad y respetabilidad de la Función Policial de Investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Conductas de desobediencia, insubordinación, u obstaculización, sabotaje, daño material o indisposición frente a instrucciones de servicio o normas y pautas de conducta para el ejercicio de la Función Policial de Investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Alteración, falsificación, simulación, sustitución o forjamiento de actas y documentos que comprometan la prestación del servicio o la credibilidad y respetabilidad de la Función Policial de Investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Violación reiterada de reglamentos, manuales, protocolos, instructivos, órdenes, disposiciones, reserva y, en general, comandos e instrucciones, de manera que comprometan la prestación del servicio o la credibilidad y respetabilidad de la Función Policial de Investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Utilización de la fuerza física, la coerción, los procedimientos policiales, los actos de servicio y cualquier otra intervención amparada por el ejercido de la autoridad de policía, en interés privado o por abuso de poder, desviándose del propósito de la prestación del servicio policial de Investigación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Inasistencia Injustificada al trabajo durante tres días hábiles dentro de un lapso de treinta días continuos, o abandono del trabajo."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Simulación, ocultamiento u obstaculización intencionales de la identificaci6n personal o del equipo de la funcionaria funcionarlo o policial de investigación, que permita facilitar la perpetración de un delito o acto ilícito, eliminar o desvanecer huellas, rastros o trazas de su ejecución, evadir la responsabilidad, amenazar o intimidar a cualquier persona con ocasión de su ejecución y efectos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Violación deliberada y grave de las normas previstas en los numerales 7, 10, 13, 14 y 15 del artículo 79 del Decreto con Rango, Valor y Fuerza de Ley Orgánica del Servicio de Policía de Investigación, el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Cualquier otra falta prevista en la Ley del Estatuto de la Función Pública como causal de destitución."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "11. Conducta desconsiderada, irrespetuosa, agresiva o de maltrato u hostigamiento hacia superiores, supervisores, subalternos, compañeros de trabajo, víctimas o personas en general."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "12. Cualquier supuesto grave de rechazo, rebeldía, dolo, negligencia manifiesta, atentado, subversión, falsedad, extralimitación o daño respecto a normas, instrucciones o la integridad del servicio policial cuya exacta determinación conste en el reglamento correspondiente, sin que sea admisible un segundo reenvío."
+    }
+   ],
+   "seccion_label": "CAPITULO VIII: Supervisión, responsabilidades y régimen disciplinario"
+  },
+  {
+   "numero_texto": "91",
+   "numero": 91,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El procedimiento disciplinario de destitución se iniciará y adelantará por la Inspectoría General de oficio o por denuncia, cuando tenga conocimiento de la comisión de una falta prevista en la presente Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Diligencias necesarias"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "92",
+   "numero": 92,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Inspectoría General deberá practicar las diligencias necesarias con el fin de investigar tanto los hechos, como las circunstancias útiles para determinar o no la responsabilidad disciplinaria de la funcionaria o funcionario policial de investigación o experta o experto en materia de investigación penal presuntamente incurso en un supuesto sancionado con destitución."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Obligatoriedad de la denuncia"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "93",
+   "numero": 93,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Toda funcionaria o funcionario policial de investigación o experta experto en materia de investigación penal que tenga conocimiento de la ocurrencia de un hecho constitutivo de falta disciplinaria, deberá hacerlo del conocimiento de la Inspectoría General, suministrando toda la información y pruebas que tuviere."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La obligatoriedad de la denuncia no procede contra sí mismo, contra su cónyuge, persona con la cual mantenga unión estable de hecho o pariente dentro del cuarto grado de consanguinidad o segundo de afinidad."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La o el denunciante o informante que actuare falsamente serán responsables de conformidad con la ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Obligación de comunicación a la autoridad penal"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "94",
+   "numero": 94,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Si los hechos objeto de la investigación disciplinaria pudieren constituir delitos, la Inspectoría General deberá notificarlo al Ministerio Público, remitiéndole los elementos de convicción que correspondan."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Derechos de la funcionaria o funcionario investigado"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "95",
+   "numero": 95,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son derechos de la funcionaria o funcionario policiales de investigación y expertas y expertos en materia de investigación penal sujetos a un procedimiento disciplinario de destitución:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Ser notificada o notificado de los hechos por los cuales se le investiga."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Formular sus alegatos y defensas y solicitar expresamente ser oído u oída en declaración de conformidad con el procedimiento establecido en esta Ley."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Disponer de los medios de prueba que estime conducentes para ejercer su defensa e intervenir en las evacuaciones de las mismas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Acceder a las pruebas que existan en su contra."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Examinar las diligencias practicadas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Impugnar las decisiones cuando hubiere lugar a ello."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Designar apoderada u apoderado en cualquier etapa del proceso. En caso de no hacerlo se le designará uno de oficio."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Representación en ausencia"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "96",
+   "numero": 96,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En caso que la funcionaria o funcionario policial de investigación o experta o experto en materia de investigación penal se encontrare en rebeldía, contumacia, renuencia o ausencia, el Consejo Disciplinario de Policía de Investigación le designará una defensora o defensor de oficio, con quien se entenderá la notificación y lo representará en todo estado y grado del procedimiento."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Prueba para sancionar"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "97",
+   "numero": 97,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La sanción sólo procederá cuando obre prueba que conduzca a la certeza de la falta y responsabilidad de la funcionaria o funcionario policial de investigación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Duración máxima"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "98",
+   "numero": 98,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El procedimiento disciplinario de destitución se seguirá por escrito y su plazo de instrucción no podrá exceder de dos meses, pudiendo ser prorrogado hasta por igual tiempo cuando la complejidad del caso lo amerite."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Solicitud del investigada o investigado"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "99",
+   "numero": 99,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "En cualquier caso, vencido el plazo de instrucción, la funcionaria o funcionario policial o experta o experto en materia de investigación penal investigado, podrá solicitar al Consejo Disciplinario de Policía de investigación que inste a la Inspectoría General a que presente la propuesta correspondiente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Obligación de las partes"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "100",
+   "numero": 100,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los términos o plazos establecidos en esta Ley relativos al procedimiento disciplinario ordinario obligan por igual a las autoridades, funcionarias o funcionarios policiales investigados, expertas o expertos en materia de investigación penal y a la defensa."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Indagación preliminar"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "101",
+   "numero": 101,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Inspectoría General podrá iniciar la indagación preliminar en caso de indicios sobre la comisión de un hecho constitutivo de falta disciplinaria."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Notificación"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "102",
+   "numero": 102,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El procedimiento de destitución se seguirá a las funcionarias o funcionarios policiales de investigación o expertas o expertos en materia de investigación penal que incurran en las faltas previstas y sancionadas en el artículo 90 de la presente Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Iniciado el procedimiento, la Inspectoría General notificará a la funcionaria o funcionario policial investigado, en un lapso de cinco días hábiles, imponiéndolo de los hechos que se le atribuyen y de los derechos que le asisten. Si durante el desarrollo de la investigación surgen elementos que permitan individualizar, como investigar a otros funcionarios, se procederá con respecto a estos en los términos señalados."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Medidas cautelares y preventivas"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "103",
+   "numero": 103,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando la investigación verse sobre faltas que dan lugar a la destitución, la Inspectoría General, mediante auto motivado, podrá ordenar la suspensión provisional de la funcionaria o funcionario policial o experta o experto en materia de investigación penal investigado con o sin goce de sueldo durante el tiempo de la investigación, a fin de evitar la obstrucción al normal funcionamiento de la misma, o ante la posibilidad de la continuidad o reiteración de la falta. Dicha medida generará un régimen de presentaciones periódicas cada tres días ante la Inspectoría General mientras dure la investigación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En caso de que la funcionaria o funcionario policial investigado se encuentre privado preventivamente de libertad; asuma una conducta de rebeldía, renuencia, contumacia o ausencia en el procedimiento disciplinario, y en caso de presuntas amenazas o violaciones a los derechos humanos, la suspensión del ejercicio del cargo será sin goce de sueldo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Si la investigación disciplinaria amerita la retención del arma orgánica y medios que lo identifiquen como funcionaria o funcionario del Cuerpo, la Inspectoría General podrá acordarla mediante auto motivado, por el tiempo absolutamente necesario. El auto que ordene dichas medidas, tendrá vigencia inmediata y contra él no procede recurso alguno en vía administrativa."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Nombramiento de apoderado o defensor de oficio"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "104",
+   "numero": 104,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La funcionaria o funcionario policial o experta o experto en materia de investigación penal investigado, dispondrá de un lapso de cinco días hábiles siguientes a la notificación, para nombrar apoderado; de no hacerlo y vencido el plazo señalado, la Inspectoría General solicitará al Consejo Disciplinario de Policía de Investigación le designará una defensora o defensor de oficio, a quien se le notificará por escrito."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La defensora o defensor designado dispondrá de un lapso de setenta y dos horas para aceptar el nombramiento, en caso de rechazar la designación deberá hacerlo mediante escrito motivado ante el Consejo Disciplinario de Policía de Investigación. Dicha excusa solo procederá por las causales de recusación previstas en las leyes, reglamentos y resoluciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En todo momento la funcionaria o funcionario investigado podrá designar un apoderado en sustitución del defensor de oficio. Si el apoderado no comparece a los actos procesales se considerará abandonada la defensa y responderá su inmediato reemplazo con un defensor de oficio."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Imposición de los hechos y de las actas"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "105",
+   "numero": 105,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Aceptada la designación por la defensora o defensor o de oficio o nombrado apoderado, se iniciará un lapso de cinco días hábiles, para que la funcionaria o funcionario investigado se imponga de los hechos, debiendo la Inspectoría General, permitir el acceso y examen de las actas y diligencias que conforman el expediente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Plazo para alegatos y defensa"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "106",
+   "numero": 106,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Analizado el plazo anterior, la funcionaria o funcionario policial o experta o experto en materia de investigación penal investigado dispondrá de un plazo de diez días hábiles, para formular sus alegatos y defensa y promover las pruebas que considere conducentes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Práctica de las pruebas y diligencias"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "107",
+   "numero": 107,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Vencido el término anterior, la Inspectoría General procederá a evacuar las pruebas promovidas y a practicar las que de oficio considere pertinentes, en un lapso que no podrá exceder de veinte días continuos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Declaración de la funcionaria o funcionario"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "108",
+   "numero": 108,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Dentro del lapso estableado en el artículo anterior, se fijará un día y hora para la declaración de la funcionaria o funcionario policial o experta o experto en materia de investigación penal investigado, con asistencia de su apoderado o el defensor de oficio. Antes de comenzar la declaración se le informará de sus derechos, especialmente del contenido en el numeral 5 del artículo 49 de la Constitución de la República Bolivariana de Venezuela."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La declaración de la funcionaria o funcionario policial se transcribirá en acta, la cual será firmada por los intervinientes y anexada al expediente. Se prohíben las preguntas capciosas y sugestivas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Diligencias necesarias"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "109",
+   "numero": 109,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Inspectoría General deberá practicar las diligencias necesarias con el fin de investigar tanto los hechos como las circunstancias útiles para determinar o no la responsabilidad disciplinaria de la funcionaria o funcionario investigado."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Constancia por escrito"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "110",
+   "numero": 110,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las diligencias practicadas se harán constar por escrito, con indicación del día, hora y lugar en que se realizan, la descripción de su utilidad para la investigación y la identificación de las personas intervinientes. Las resultas de las diligencias se anexarán al expediente."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Terminación de la Investigación disciplinarla"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "111",
+   "numero": 111,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Obtenida la declaración de la funcionaria o funcionario policial o experta o experto en materia de investigación penal investigado, practicadas las pruebas y diligencias pertinentes, concluido el lapso de instrucción o vencida su prórroga, la Inspectoría General remitirá el expediente al Consejo Disciplinario de Policía de Investigación, con su debida propuesta."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Archivo"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "112",
+   "numero": 112,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando la investigación resulte insuficiente para proponer· sanción o absolución, la Inspectoría General presentará propuesta de archivo de la causa disciplinaria, sin perjuicio de la reapertura cuando emerjan nuevos elementos de convicción."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Cesará toda medida cautelar o preventiva acordada contra el investigado, si fuere el caso."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Contenido de la proposición"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "113",
+   "numero": 113,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La proposición de la Inspectoría General, además de los requisitos previstos en la ley que regula los procedimientos administrativos deberá contener:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Los datos de la funcionaria o funcionario policial investigado o experta o experto en materia de investigación penal y de su apoderado."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Una relación clara, precisa y motivada de los hechos, razones y pedimentos correspondientes."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Las normas que contienen las faltas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. El ofrecimiento de los medios de prueba que se presentarán en la audiencia, con indicación de su pertinencia o necesidad."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. La sanción, absolución o archivo que se propone y su basamento legal."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Las demás que establezcan los reglamentos y resoluciones de la presente Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Reposición de la causa disciplinaría"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "114",
+   "numero": 114,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Una vez recibida la causa disciplinaria con su propuesta, el Consejo Disciplinario, si observare algún vicio de trámite o de resolución, ordenará la reposición a fin de subsanar el acto, acordando la práctica de las diligencias, a tal efecto devolverá el expediente a la Inspectoría General, la cual deberá cumplir con lo señalado en un lapso que no excederá treinta días hábiles."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Revisión de Propuesta"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "115",
+   "numero": 115,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando el Consejo Disciplinario de Policía de Investigación observare que los elementos valorados sean insuficientes para sustentar la proposición de archivo o absolución, solicitará a la Inspectoría General que prosiga con la investigación o formule la propuesta a que haya lugar, en un lapso no mayor de treinta días hábiles."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Oportunidad de fijación de la audiencia ante"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "el Consejo Disciplinarlo de Policía de Investigación"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "116",
+   "numero": 116,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Recibido el expediente por el Consejo Disciplinario de Policía de Investigación y dentro de los diez días hábiles siguientes se fijará el día y la hora que tendrá lugar la audiencia oral y pública, tomando en consideración el cronograma de actividades del Consejo Disciplinario."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Fijada la fecha de la audiencia oral y pública se notificará a las partes y se procederá a la citación de los testigos y expertos que por requerimiento de alguna de las partes, deban comparecer a la audiencia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Celebración de la audiencia"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "117",
+   "numero": 117,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Llegados el día y la hora para la celebración de la audiencia, la presidenta o presidente del Consejo Disciplinario de Policía de Investigación verificará la presencia de las partes, expertos y testigos que deban intervenir, declarando abierta la audiencia. El secretario de audiencia en forma sucinta dará lectura de los hechos atribuidos, seguidamente se concederá la palabra al Inspector General o su representante, quien expondrá los alegatos contenidos en la propuesta, se oirá la defensa de la funcionaria o funcionario policial investigado e inmediatamente se oirá al investigado, procediéndose a resolver sobre las pruebas evacuadas y las diligencias."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Declaración de la funcionaria o funcionario"
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "investigada en audiencia"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "118",
+   "numero": 118,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La presidenta o presidente del Consejo Disciplinario de Policía de Investigación dispondrá que se oiga la declaración de la funcionaria o funcionario policial o experta o experto en materia de investigación penal investigado, deberá explicarle de manera sencilla el hecho que se le atribuye y le advertirá que podrá abstenerse de declarar total o parcialmente, sin que su silencio le perjudique. La audiencia continuará aunque éste no declare. Se permitirá que manifieste libremente cuanto tenga por conveniencia, pudiendo ser interrogado posteriormente por la funcionaria o funcionario de la Inspectoría General, el defensor de oficio o su apoderado y quienes integran el Consejo Disciplinario, en este mismo orden."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Expertos"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "119",
+   "numero": 119,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las expertas y expertos que hayan sido notificados para comparecer responderán de manera directa las preguntas que se le formulen."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La presidenta o presidente del Consejo Disciplinario de Policía de Investigación, si lo considera conveniente, podrá disponer que los expertos presencien los actos de la audiencia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Las expertas y expertos podrán consultar notas y dictámenes sin que puedan reemplazarse las declaraciones por su lectura."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Testigos"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "120",
+   "numero": 120,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Finalizada la declaración de las expertas y expertos, la presidenta o presidente del Consejo Disciplinario de Policía de Investigación procederá a llamar a los testigos que hayan sido citados, uno a uno, comenzando por los que haya ofrecido la Inspectoría General y continuará con los propuestos por la defensa. El Consejo Disciplinario podrá alterar este orden cuando lo considere conveniente para el mejor esclarecimiento del hecho."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Antes de declarar, las y los testigos no podrán comunicarse entre sí ni con otras personas, ni presenciar la audiencia. Culminada su declaración el presidente del Consejo Disciplinario dispondrá acerca de su permanencia en la sala. No obstante, el incumplimiento de la incomunicación no impedirá la información del testigo, pudiendo el Consejo Disciplinario valorar estas circunstancias."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Cierre de la recepción de pruebas"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "121",
+   "numero": 121,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Terminada la recepción de las pruebas, la presidenta o presidente del Consejo Disciplinario de Policía de Investigación concederá el derecho de palabra al representante de la Inspectoría General y al defensor de oficio o apoderado de la funcionaria o funcionario policial o experta o experto en materia de investigación penal para que expongan sus conclusiones. Seguidamente se otorgará la posibilidad de réplica en el mismo orden para referirse sólo a las conclusiones formuladas por la parte contraria que antes no hayan sido discutidas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Finalmente, la presidenta o presidente del Consejo Disciplinario preguntará al funcionaria o funcionario investigada si tiene algo más que manifestar y declarará clausurado el debate."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Incorporación para la lectura"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "122",
+   "numero": 122,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Durante la audiencia y previa aprobación del Consejo Disciplinario de Policía de Investigación, podrán ser incorporadas a través de la lectura: reconocimientos, documentos, informes, inspecciones técnicas, experticias, declaraciones, actas de las pruebas que se ordene practicar fuera de la sala durante la audiencia, que por algún impedimento debidamente motivado no puedan evacuarse."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Cualquier otro elemento de convicción que se incorpore para su lectura a la audiencia no tendrá valor alguno, salvo que las partes y el Consejo Disciplinario, de común acuerdo, manifiesten expresamente su conformidad con la incorporación."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Nueva calificación jurídica"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "123",
+   "numero": 123,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Si en el curso de la audiencia, el Consejo Disciplinario de Investigación Penal, observa la posibilidad de una calificación jurídica que no ha sido considerada por ninguna de las partes, podrá advertir a la funcionaria o funcionario policial o experta o experto en materia de investigación penal sobre esa posibilidad, para que prepare su defensa. A todo evento, esta advertencia deberá ser formulada por el Presidente del Consejo Disciplinario después de terminada la recepción de pruebas, si antes no lo hubiese hecho."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En este caso, se recibirá nueva declaración a la funcionaria o funcionario policial investigado y se informará a las partes que tendrán derecho a pedir la suspensión de la audiencia para ofrecer más pruebas o preparar la defensa."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Ampliación de la propuesta disciplinarla"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "124",
+   "numero": 124,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Durante la audiencia y hasta antes de concederle la palabra a las partes para que expongan sus conclusiones, la Inspectoría General podrá ampliar la propuesta, mediante la inclusión de un nuevo hecho o circunstancia que no haya sido mencionado y que modifique la calificación jurídica o la falta del hecho objeto del debate."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "En tal caso, quedará a criterio del Consejo Disciplinario de Policía de Investigación determinar si existen tales circunstancias, de ser así se recibirá nueva declaración de la funcionaria o funcionario policial o experta o experto en materia de investigación penal investigado y se informará a las partes que tendrán derecho a pedir la suspensión de la audiencia para ofrecer nuevas pruebas o preparar su defensa."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Cuando este derecho o el mencionado en el artículo anterior sea ejercido, el Consejo Disciplinario suspenderá el debate por un plazo que no deberá exceder de diez días hábiles, según la naturaleza de los hechos y las necesidades de la defensa. De lo realizado, se dejará constancia en el acta de desarrollo de la audiencia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Calificación disciplinaria en audiencia"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "125",
+   "numero": 125,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Si durante la declaración de la funcionaria o funcionario policial investigado, experta o experto en materia de investigación penal o los testigos que depusieren en la audiencia, señalaren la participación de un funcionario no investigado, el representante de la Inspectoría General solicitará al Consejo Disciplinario de Policía de Investigación la apertura de una investigación disciplinaria contra él o los funcionarios señalados. A tal efecto, el Consejo Disciplinario deberá pronunciarse en audiencia, acordando lo conducente mediante cuaderno separado."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Incomparecencia para la audiencia"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "126",
+   "numero": 126,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Si en la causa disciplinaria existiesen varias funcionarias o funcionarios policiales o expertas o expertos en materia de investigación penal investigados, y llegado el día del debate no se encontraren todos presentes, la audiencia se celebrará con los asistentes, sin que proceda el diferimiento. El Consejo Disciplinario de Policía de Investigación fijará una nueva audiencia a los inasistentes dentro de los diez días hábiles siguientes, les notificará personalmente o través de sus apoderados o defensores de oficio, con quienes se entenderá el proceso, según lo establecido en esta Ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Deliberación y decisión"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "127",
+   "numero": 127,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Concluida la audiencia, quienes integran el Consejo Disciplinario someterán a su consideración los hechos debatidos, a los fines de tomar una determinación, la cual plasmarán en un proyecto de decisión, debiendo presentarlo a la Directora o Director General del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas a los fines de escuchar su opinión no vinculante. Oída la opinión, el Consejo Disciplinario procederá a dictar decisión por mayoría de sus integrantes, al décimo día hábil siguiente de concluida la audiencia oral y pública."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Pronunciamiento e imposición"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "128",
+   "numero": 128,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Tomada la decisión, el Consejo Disciplinario de Policía de Investigación convocará a una nueva audiencia al tercer día hábil siguiente a los fines de imponerla, notificará a las partes mediante la entrega de copia certificada del auto que contiene la decisión y dará lectura al texto íntegro de la misma."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Mediante la lectura del fallo se tendrá como efectuada la notificación del acto a la funcionaria o funcionario investigado o a su apoderado o defensor de oficio presente, a los fines del ejercicio de los recursos respectivos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El Consejo Disciplinario, a través de la secretaría de ejecución, remitirá una copia certificada de su decisión a la dependencia competente en materia de recursos humanos, a los fines que la misma realice los trámites administrativos correspondientes."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Contenido de la decisión"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "129",
+   "numero": 129,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La decisión del Consejo Disciplinario de Policía de Investigación contendrá:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Resumen de los hechos atribuidos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Síntesis de las pruebas recaudadas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Resumen de los alegatos de la funcionaria o funcionario policial o experta o experto en materia de investigación penal y las razones por las cuales se aceptan o se niegan los señalamientos de la Inspectoría General."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Los fundamentos de hecho y de derecho de la motivación."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. La indicación de las faltas que se consideren probadas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. La decisión que se adopte y las comunicaciones necesarias para su ejecución."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. El levantamiento de las medidas cautelares y preventivas acordadas en caso de absolución, ordenándose su reincorporación a sus funciones y la entrega de los medios de identificación e instrumentos policiales retenidos, si fuere el caso."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. En caso de destitución se notificará al Ministerio con competencia en materia de seguridad ciudadana."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Los recursos que pueda interponer el funcionario o funcionaria de conformidad con la ley."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Recurso contencioso administrativo"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "130",
+   "numero": 130,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La medida de destitución de la funcionaria o funcionario policial de investigación o experta o experto en materia de investigación penal agota la vía administrativa, y contra ella es procedente el recurso contencioso administrativo conforme a lo previsto en el Título VIII de la Ley del Estatuto de la Función Pública."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Defensa Pública"
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "131",
+   "numero": 131,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S9",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se promoverá dentro del Sistema Autónomo de Defensa Pública una unidad especializada para las funcionarias y funcionarios policiales que en el cumplimiento del deber incurran en la comisión de hechos punibles, con el fin de brindar orientación y asistencia judicial."
+    }
+   ],
+   "seccion_label": "CAPITULO IX: Procedimiento de Destitución"
+  },
+  {
+   "numero_texto": "132",
+   "numero": 132,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S10",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Comisionaduría Nacional de Derechos Humanos es una unidad administrativa, dependiente jerárquicamente del Ministerio con competencia en materia de seguridad ciudadana, encargada de recibir, tramitar e investigar disciplinariamente las denuncias de violación de derechos humanos, cometidos por los funcionarios y funcionarias que forman parte del sistema integrado de policía, del sistema integrado de investigación penal o que excepcionalmente ejerzan funciones de seguridad ciudadana, así como dar seguimiento, recomendar e implementar las medidas correspondientes frente a estos casos conforme a los principios de indivisibilidad, interdependencia y progresividad de los derechos humanos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "La Comisionaduría tendrá presencia en todo el territorio nacional, considerando el esquema organizativo que establezca el Ministerio con competencia en materia de seguridad ciudadana; y contará con los equipos humanos y materiales de trabajo necesarios para el cumplimiento de sus funciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Colaboración interinstitucional"
+    }
+   ],
+   "seccion_label": "CAPITULO X: Comisionaduría Nacional de Derechos Humanos"
+  },
+  {
+   "numero_texto": "133",
+   "numero": 133,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S10",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La Comisionaduría Nacional de Derechos Humanos contará con la colaboración y asesoría de la Defensoría del Pueblo, el Ministerio Público, profesionales del derecho y criminología, así como de organizaciones y especialistas en derechos humanos, los cuales facilitarán el cumplimiento de sus funciones sobre los casos de presuntas violaciones de derechos humanos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Atribuciones"
+    }
+   ],
+   "seccion_label": "CAPITULO X: Comisionaduría Nacional de Derechos Humanos"
+  },
+  {
+   "numero_texto": "134",
+   "numero": 134,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S10",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Son atribuciones de la Comisionaduría Nacional de Derechos Humanos, las siguientes:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Recibir, por cualquier medio disponible, denuncias sobre presuntas violaciones a los derechos humanos, cometidas por funcionarias y funcionarios de los órganos que conforman el sistema integrado de policía, el sistema integrado de investigación penal o que excepcionalmente ejerzan funciones de seguridad ciudadana."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Remitir al Ministerio Público y la Defensoría del Pueblo las denuncias sobre presuntas violaciones a los derechos humanos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Solicitar la información necesaria y pertinente en los casos que se presuma la violación de derechos humanos sometidos a su conocimiento."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Investigar disciplinariamente las denuncias sobre los presuntos hechos constitutivos de violación de derechos humanos en el ámbito de su competencia."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "5. Instruir a las inspectorías correspondientes, según sea el caso, la apertura de la investigación administrativa en contra de los funcionarios y funcionarias involucrados."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "6. Realizar seguimiento, supervisión y fiscalización de los procedimientos administrativos, llevados en los diferentes órganos y entes de seguridad ciudadana, a los funcionarios y funcionarias involucrados en casos de violación de derechos humanos."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "7. Solicitar la avocación de las dependencias encargadas del régimen disciplinario del ministerio con competencia en materia de seguridad ciudadana, cuando el caso lo justifique."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "8. Recomendar al Órgano Rector en materia de policía y policía de investigación la aplicación de procedimientos de asistencia técnica, intervención o suspensión, en aquellos cuerpos policiales donde la situación de vulneración de derechos humanos detectada así lo amerite."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "9. Remitir al ministro o ministra con competencia en materia de seguridad ciudadana, los informes respectivos sobre los casos atendidos, estadísticas generadas y recomendaciones derivadas de la labor realizada."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "10. Las demás atribuciones previstas en la ley, reglamentos y resoluciones."
+    }
+   ],
+   "seccion_label": "CAPITULO X: Comisionaduría Nacional de Derechos Humanos"
+  },
+  {
+   "numero_texto": "135",
+   "numero": 135,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S11",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se entiende por expertas y expertos en materia de investigación penal, toda persona natural que, en virtud de nombramiento expedido por la autoridad competente de conformidad con los procedimientos establecidos en la Constitución de la República y en esta Ley, se desempeñe en el ejercicio de función pública remunerada permanente en el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, siempre que comporte el desempeño y realización directa de una actividad científica y técnica de experticia legal, peritaje legal o criminalística dentro de una investigación penal o policial. Las expertas y expertos deberán poseer título de educación superior en la especialidad científica en la cual practican las experticias legales, peritajes legales o actividades criminalísticas, salvo que en el país no existan estudios de educación superior en el área o materia."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Las expertas y expertos en materia de investigación penal que prestan servicio en el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas no tienen la condición de funcionarias o funcionarios policiales de investigación y, en consecuencia, no tienen atribuciones para el uso potencial de la fuerza física ni podrán ser incorporados por equivalencia a la carrera policial de investigación. No se permitirá la condición de expertos y expertas en materia de investigación penal ad honorem u honorarios."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Régimen Jurídico de Función Pública"
+    }
+   ],
+   "seccion_label": "CAPITULO XI: Expertas y Expertos en materia de Investigación Penal"
+  },
+  {
+   "numero_texto": "136",
+   "numero": 136,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S11",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las expertas y expertos en materia de investigación penal que prestan servicio al Cuerpo de Investigaciones Científicas, Penales y Criminalísticas son funcionarias y públicas funcionarios públicos que se rigen por el Estatuto de la Función Pública y sus reglamentos, excepto en lo establecido en la presente Ley en materia de ingreso, jornada de servicios, régimen de remuneraciones y beneficios sociales, régimen única de permisos y licencias, régimen único de viáticos, reentrenamiento, formación continua, supervisión y régimen disciplinario."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Ingreso"
+    }
+   ],
+   "seccion_label": "CAPITULO XI: Expertas y Expertos en materia de Investigación Penal"
+  },
+  {
+   "numero_texto": "137",
+   "numero": 137,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S11",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Para ingresar al Cuerpo de Investigaciones Científicas, Penales y Criminalísticas como expertas y expertos en materia de investigación penal, se deben cumplir con los siguientes requisitos: ser venezolano o venezolana, mayor de dieciocho años de edad, no poseer antecedentes penales, ni haber sido destituido o destituida de algún órgano militar o de cualquier organismo de seguridad del Estado, así como cualquier otro que determine el reglamento o resolución respectivo."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "El concurso para ingresar como experta o experto en materia de investigación penal se realizará en el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, siguiendo las políticas de selección estableadas para tal fin por el órgano rector, debiendo someterse a un período de capacitación de un mes en la institución académica nacional especializada en seguridad y de dos meses en este cuerpo de policía, cuyo resultado determinará su ingreso, sin que ello implique el ejercicio de la carrera policial."
+    }
+   ],
+   "seccion_label": "CAPITULO XI: Expertas y Expertos en materia de Investigación Penal"
+  },
+  {
+   "numero_texto": "SEGUNDA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S12",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Hasta tanto entre en vigencia la ley que regula el régimen prestacional de pensiones y otras asignaciones económicas, las jubilaciones y pensiones de las funcionarias y funcionarios policiales de investigación y las expertas y expertos en materia de investigación penal se regirán por las siguientes normas:"
+    },
+    {
+     "tipo": "numeral",
+     "texto": "1. Se mantiene el Instituto Autónomo de Previsión Social del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "2. Son atribuciones del Instituto Autónomo de Previsión Social del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas: prestar servicio de previsión y asistencia médica, económica y social a todos a las funcionarias y funcionarios policiales de investigación, así como a las expertas y expertos de investigación penal, del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y a sus familiares inmediatos en las condiciones que establezca el Estatuto Social del Instituto dictado por el Órgano Rector; brindar protección social en caso de muerte; ayudar a resolver los problemas educacionales, culturales y de esparcimiento de las funcionaras y funcionarios y policiales de investigación, los expertas y expertos de investigación penal y sus familiares."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "3. Todo lo relacionado con el patrimonio del Instituto Autónomo de Previsión Social del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, la condición de miembro, deberes y derechos, dirección y administración, asambleas y funcionamiento estará determinado en su Estatuto Social dictado por el Órgano Rector."
+    },
+    {
+     "tipo": "numeral",
+     "texto": "4. Todas las funcionarias públicas y funcionarios públicos, sin distinción alguna, que presten servicios en el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, así como sus familiares inmediatos, continuarán en su condición de afiliadas y afiliados del Instituto Autónomo de Previsión Social del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, siempre que dicha afiliación haya sido previa a la fecha de entrada en vigencia de la presente Ley. En consecuencia, disfrutarán de todos los servicios, protección social, jubilaciones y pensiones que les corresponda."
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Primera. El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, adecuará los niveles jerárquicos dentro de su estructura organizativa, a partir de la entrada en vigencia de esta Ley."
+  },
+  {
+   "numero_texto": "TERCERA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S12",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "A partir de la entrada en vigencia de la presente Ley, las funcionarias públicas y funcionarios públicos que prestan servicios al Cuerpo de Investigaciones Científicas, Penales y Criminalísticas que no se encuentren dentro del ámbito de su aplicación se regirán por la Ley del Estatuto de la Función Pública y sus reglamentos."
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Primera. El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, adecuará los niveles jerárquicos dentro de su estructura organizativa, a partir de la entrada en vigencia de esta Ley."
+  },
+  {
+   "numero_texto": "CUARTA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S12",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "A partir de la entrada en vigencia de la presente Ley, las obreras y obreros que prestan servicios al Cuerpo de Investigaciones Científicas, Penales y Criminalísticas que no se encuentren dentro del ámbito de su aplicación se regirán por la ley Orgánica del Trabajo, las Trabajadoras y los Trabajadores y sus reglamentos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "DISPOSICIÓN FINAL"
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Primera. El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, adecuará los niveles jerárquicos dentro de su estructura organizativa, a partir de la entrada en vigencia de esta Ley."
+  },
+  {
+   "numero_texto": "ÚNICA",
+   "numero": null,
+   "titulo": null,
+   "seccion_id": "ley_del_estatuto_de_la_funcion_de_la_policia_de_investigacion_2026_S12",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "La presente Ley entrará en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Dada, firmada y sellada en el Palacio Federal Legislativo, sede de la Asamblea Nacional de la República Bolivariana de Venezuela, en Caracas, a los veintisiete días del mes de enero de 2026. Años 215° de la Independencia, 166° de la Federación, y 26° de la Revolución Bolivariana."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Promulgación de la LEY DE REFORMA PARCIAL DE LA LEY DEL ESTATUTO DE LA FUNCIÓN DE LA POLICÍA DE INVESTIGACIÓN, de conformidad con lo previsto en el artículo 213 de la Constitución de la República Bolivariana de Venezuela. Palacio de Miraflores, en Caracas, a los cinco días del mes de febrero de dos mil veintiséis. Años 215° de la Independencia, 166° de la Federación y 27° de la Revolución Bolivariana."
+    }
+   ],
+   "seccion_label": "DISPOSICIONES ÚNICO: Primera. El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, adecuará los niveles jerárquicos dentro de su estructura organizativa, a partir de la entrada en vigencia de esta Ley."
+  }
+ ]
+}

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import '../models/estrategia_legal.dart';
 import '../services/comparador_service.dart';
+import 'redactor_documentos_screen.dart';
+import '../services/chat_legal_export_service.dart';
+import '../services/membrete_service.dart';
 
 class ComparadorEstrategiasScreen extends StatefulWidget {
   final String? casoId;
@@ -20,6 +24,11 @@ class _ComparadorEstrategiasScreenState
   List<EstrategiaLegal>? _estrategias;
   bool _cargando = false;
   String? _error;
+
+  // Contexto del caso (para pasar al redactor al redactar un escrito)
+  String _descripcionCaso = '';
+  List<String> _delitos = [];
+  String _etapaProcesal = '';
 
   @override
   void initState() {
@@ -85,6 +94,16 @@ class _ComparadorEstrategiasScreenState
       appBar: AppBar(
         title: const Text('Comparador de Estrategias'),
         actions: [
+          if (_estrategias != null && _estrategias!.isNotEmpty)
+            PopupMenuButton<String>(
+              icon: const Icon(Icons.download),
+              tooltip: 'Exportar comparación',
+              onSelected: _exportarComparacion,
+              itemBuilder: (context) => const [
+                PopupMenuItem(value: 'pdf', child: Text('Exportar PDF')),
+                PopupMenuItem(value: 'word', child: Text('Exportar Word')),
+              ],
+            ),
           if (_estrategias != null && _estrategias!.isNotEmpty)
             IconButton(
               icon: const Icon(Icons.save),
@@ -477,6 +496,14 @@ class _ComparadorEstrategiasScreenState
                       '${estrategia.duracionEstimadaDias}d',
                       Colors.blue,
                     ),
+                    const SizedBox(width: 16),
+                    _buildMetrica(
+                      'Costo',
+                      estrategia.costoMaximoUSD > 0
+                          ? '\$${(estrategia.costoMaximoUSD / 1000).toStringAsFixed(1)}k'
+                          : '-',
+                      Colors.orange,
+                    ),
                   ],
                 ),
                 const SizedBox(height: 16),
@@ -625,10 +652,143 @@ class _ComparadorEstrategiasScreenState
                     ),
                   ],
                 ),
+
+                // Acción: redactar el escrito correspondiente
+                const SizedBox(height: 16),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton.icon(
+                    onPressed: () => _abrirRedactor(estrategia),
+                    icon: const Icon(Icons.description_outlined),
+                    label: const Text('Redactar escrito'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF0F172A),
+                      foregroundColor: const Color(0xFFC5A059),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  String _construirMarkdownComparacion() {
+    final estrategias = _estrategias ?? [];
+    final buffer = StringBuffer();
+    buffer.writeln('# Comparación de Estrategias');
+    if (_descripcionCaso.isNotEmpty) buffer.writeln('**Caso:** $_descripcionCaso');
+    if (_delitos.isNotEmpty) buffer.writeln('**Delitos:** ${_delitos.join(', ')}');
+    if (_etapaProcesal.isNotEmpty) buffer.writeln('**Etapa:** $_etapaProcesal');
+    buffer.writeln();
+
+    final ordenadas = List<EstrategiaLegal>.from(estrategias)
+      ..sort((a, b) => b.scorePonderado.compareTo(a.scorePonderado));
+
+    for (var i = 0; i < ordenadas.length; i++) {
+      final e = ordenadas[i];
+      buffer.writeln('## ${i + 1}. ${e.titulo}');
+      buffer.writeln('**Tipo:** ${e.tipo.nombre} · '
+          '**Éxito:** ${(e.probabilidadExito * 100).toStringAsFixed(0)}% · '
+          '**Score:** ${(e.scorePonderado * 100).toStringAsFixed(0)}%');
+      buffer.writeln('**Duración:** ${e.duracionEstimadaDias} días · '
+          '**Costo:** ${e.costoEstimado}');
+      buffer.writeln();
+      buffer.writeln(e.descripcion);
+      buffer.writeln();
+      if (e.beneficios.isNotEmpty) {
+        buffer.writeln('**Beneficios:**');
+        for (final b in e.beneficios) {
+          buffer.writeln('- ${b.descripcion} (${(b.impacto * 100).toStringAsFixed(0)}%)');
+        }
+        buffer.writeln();
+      }
+      if (e.riesgos.isNotEmpty) {
+        buffer.writeln('**Riesgos:**');
+        for (final r in e.riesgos) {
+          buffer.writeln('- ${r.descripcion} (${r.nivel.nombre}, ${(r.probabilidad * 100).toStringAsFixed(0)}%)');
+        }
+        buffer.writeln();
+      }
+      if (e.requisitos.isNotEmpty) {
+        buffer.writeln('**Requisitos:**');
+        for (final r in e.requisitos) buffer.writeln('- $r');
+        buffer.writeln();
+      }
+      if (e.pasos.isNotEmpty) {
+        buffer.writeln('**Pasos:**');
+        for (final p in e.pasos) buffer.writeln('- $p');
+        buffer.writeln();
+      }
+      if (e.jurisprudencia.isNotEmpty) {
+        buffer.writeln('**Jurisprudencia de respaldo:**');
+        for (final j in e.jurisprudencia) {
+          buffer.writeln('- ${j.sentenciaId} · ${j.ponente} · '
+              '${j.fecha.day}/${j.fecha.month}/${j.fecha.year}: ${j.extracto}');
+        }
+        buffer.writeln();
+      }
+    }
+    return buffer.toString().trim();
+  }
+
+  Future<void> _exportarComparacion(String formato) async {
+    final markdown = _construirMarkdownComparacion();
+    if (markdown.isEmpty) return;
+
+    final config = await MembreteService.obtenerConfig();
+    String? ruta;
+    if (formato == 'pdf') {
+      ruta = await ChatLegalExportService.exportarTextoAPDF(
+        markdown,
+        titulo: 'Comparación de Estrategias',
+        membreteUrl: config.url,
+        alineacion: config.alineacion,
+        tamano: config.tamano,
+      );
+    } else {
+      ruta = await ChatLegalExportService.exportarTextoAWord(
+        markdown,
+        titulo: 'Comparación de Estrategias',
+        membreteUrl: config.url,
+        alineacion: config.alineacion,
+        tamano: config.tamano,
+      );
+    }
+
+    if (ruta != null) {
+      await Share.shareXFiles([XFile(ruta)], text: 'Comparación de Estrategias');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('✅ Comparación exportada')),
+        );
+      }
+    }
+  }
+
+  String _instruccionConContexto(EstrategiaLegal estrategia) {
+    final buffer = StringBuffer(estrategia.tipo.instruccionRedaccion);
+    if (_descripcionCaso.trim().isNotEmpty) {
+      buffer.write('\n\nContexto del caso: ${_descripcionCaso.trim()}');
+    }
+    if (_delitos.isNotEmpty) {
+      buffer.write('\nDelitos: ${_delitos.join(', ')}');
+    }
+    if (_etapaProcesal.trim().isNotEmpty) {
+      buffer.write('\nEtapa procesal: ${_etapaProcesal.trim()}');
+    }
+    return buffer.toString();
+  }
+
+  void _abrirRedactor(EstrategiaLegal estrategia) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => RedactorDocumentosScreen(
+          initialPrompt: _instruccionConContexto(estrategia),
+        ),
       ),
     );
   }
@@ -765,6 +925,9 @@ class _ComparadorEstrategiasScreenState
     setState(() {
       _cargando = true;
       _error = null;
+      _descripcionCaso = descripcion;
+      _delitos = delitos;
+      _etapaProcesal = etapa;
     });
 
     try {
@@ -795,19 +958,37 @@ class _ComparadorEstrategiasScreenState
 }
 
 /// Pantalla de historial de comparaciones
-class HistorialComparacionesScreen extends StatelessWidget {
+class HistorialComparacionesScreen extends StatefulWidget {
   const HistorialComparacionesScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final comparadorService = ComparadorService();
+  State<HistorialComparacionesScreen> createState() =>
+      _HistorialComparacionesScreenState();
+}
 
+class _HistorialComparacionesScreenState
+    extends State<HistorialComparacionesScreen> {
+  final ComparadorService _comparadorService = ComparadorService();
+  late Future<List<ComparacionEstrategias>> _future;
+
+  @override
+  void initState() {
+    super.initState();
+    _future = _comparadorService.obtenerComparaciones();
+  }
+
+  void _recargar() {
+    setState(() => _future = _comparadorService.obtenerComparaciones());
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Historial de Comparaciones'),
       ),
-      body: StreamBuilder<List<ComparacionEstrategias>>(
-        stream: comparadorService.obtenerComparaciones(),
+      body: FutureBuilder<List<ComparacionEstrategias>>(
+        future: _future,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -851,8 +1032,7 @@ class HistorialComparacionesScreen extends StatelessWidget {
                         context: context,
                         builder: (context) => AlertDialog(
                           title: const Text('Confirmar'),
-                          content: const Text(
-                              '¿Eliminar esta comparación?'),
+                          content: const Text('¿Eliminar esta comparación?'),
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.pop(context, false),
@@ -867,13 +1047,13 @@ class HistorialComparacionesScreen extends StatelessWidget {
                       );
 
                       if (confirm == true) {
-                        await comparadorService
+                        await _comparadorService
                             .eliminarComparacion(comparacion.id);
+                        _recargar();
                       }
                     },
                   ),
                   onTap: () {
-                    // Abrir detalles de la comparación
                     Navigator.push(
                       context,
                       MaterialPageRoute(

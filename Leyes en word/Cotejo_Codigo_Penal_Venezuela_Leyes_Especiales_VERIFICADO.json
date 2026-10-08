@@ -1,0 +1,812 @@
+{
+  "jurisdiccion": "República Bolivariana de Venezuela",
+  "materia": "Derecho Penal Sustantivo (Parte General y Especial)",
+  "instrumento_base": "Código Penal de Venezuela (G.O. N° 5.768 Extraordinario del 13/04/2005)",
+  "principio_rector_desplazamiento": "Artículo 14 del Código Penal (Principio de Especialidad / Concurso Aparente de Leyes)",
+  "fecha_dictamen": "2026-08-23T04:27:05.353Z",
+  "total_articulos_analizados": 21,
+  "analisis_articulos": [
+    {
+      "id": "penal-1",
+      "articulo_codigo_penal": "Artículo 459 CP",
+      "epigrafe_original": "Extorsión genérica e intimidación pecuniaria",
+      "estatus": "Desplazado por especialidad",
+      "ley_especial_derogatoria": "Ley Contra el Secuestro y la Extorsión",
+      "gaceta_ley_especial": "G.O. N° 39.194 del 05/06/2009",
+      "articulos_ley_especial": "Artículo 16 (Delito de Extorsión)",
+      "tipo_ley_especial": "Extorsión básica y modalidades agravadas",
+      "fundamento_dogmatico": "El artículo 26 de la Ley Contra el Secuestro y la Extorsión derogó expresamente las disposiciones sobre extorsión del Código Penal, fijando pena privativa de libertad de 10 a 15 años de prisión.",
+      "pena_original_cp": "4 a 8 años de prisión",
+      "pena_ley_especial": "10 a 15 años de prisión",
+      "verificacion": {
+        "estado": "corregido",
+        "fecha": "2026-08-23T05:20:02.135114+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "La Disposición Derogatoria de la LCSE es GENÉRICA (\"todas las disposiciones que colidan\"), no deroga expresamente el art. 459 CP (no se cita el artículo 26 como tal). Se reclasifica como desplazamiento por especialidad. El art. 16 LCSE (extorsión) está confirmado en el texto local.",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [
+          16
+        ],
+        "articulos_corregidos_desde": [],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 16,
+            "extracto": "Artículo 16. Quien por cualquier medio capaz de generar violencia, engaño; alarma o amenaza de graves daños contra personas o bienes, constriña él consentimiento de una persona para ejecutar acciones u omisiones capaces de generar perjuicio en su patrimonio o "
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-2",
+      "articulo_codigo_penal": "Artículo 459 (Último aparte) CP",
+      "epigrafe_original": "Extorsión por allegados o prevalimiento de confianza",
+      "estatus": "Derogado expresamente",
+      "ley_especial_derogatoria": "Ley Contra el Secuestro y la Extorsión",
+      "gaceta_ley_especial": "G.O. N° 39.194 del 05/06/2009",
+      "articulos_ley_especial": "Artículo 17 (Extorsión por relación especial)",
+      "tipo_ley_especial": "Extorsión agravada por vínculo laboral, familiar o contractual",
+      "fundamento_dogmatico": "Tipo autónomo específico creado con agravación punitiva por prevalimiento de relación de confianza o dependencia.",
+      "pena_original_cp": "Aumento de un tercio a la mitad",
+      "pena_ley_especial": "15 a 20 años de prisión",
+      "verificacion": {
+        "estado": "ok",
+        "fecha": "2026-08-23T05:20:02.135189+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "Art. 17 LCSE (extorsión por relación contractual, gremial, laboral o de confianza) confirmado.",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [
+          17
+        ],
+        "articulos_corregidos_desde": [],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 17,
+            "extracto": "Artículo 17. Quien se valga de una relación contractual, gremial, laboral o de confianza para extorsionar a una persona con el fin de obtener de ella o de terceras personas, dinero, títulos, bienes, documentos, beneficios, acciones u omisiones capaces de gener"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-3",
+      "articulo_codigo_penal": "Artículo 460 CP",
+      "epigrafe_original": "Secuestro genérico y rapto con fines de rescate",
+      "estatus": "Derogado expresamente",
+      "ley_especial_derogatoria": "Ley Contra el Secuestro y la Extorsión",
+      "gaceta_ley_especial": "G.O. N° 39.194 del 05/06/2009",
+      "articulos_ley_especial": "Artículo 3 (Delito de Secuestro)",
+      "tipo_ley_especial": "Secuestro ordinario y agravantes específicas",
+      "fundamento_dogmatico": "Derogación expresa por disposición derogatoria única. Regula exhaustivamente el secuestro, fines de rescate, canje o pretensiones ilícitas.",
+      "pena_original_cp": "10 a 20 años de presidio",
+      "pena_ley_especial": "20 a 30 años de prisión",
+      "verificacion": {
+        "estado": "ok",
+        "fecha": "2026-08-23T05:20:02.135227+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "Art. 3 LCSE (privación ilegítima de libertad con fines de rescate, canje u otras pretensiones) confirmado.",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [
+          3
+        ],
+        "articulos_corregidos_desde": [],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 3,
+            "extracto": "Artículo 3. Quien ilegítimamente prive de su libertad, retenga, oculte, arrebate o traslade a una o más personas, por cualquier medio, a un lugar distinto al que se hallaba, para obtener de ellas o de terceras personas dinero, bienes, títulos, documentos, bene"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-4",
+      "articulo_codigo_penal": "Artículo 460 (1er aparte) CP",
+      "epigrafe_original": "Retención y privación de libertad breve para cobro",
+      "estatus": "Derogado expresamente",
+      "ley_especial_derogatoria": "Ley Contra el Secuestro y la Extorsión",
+      "gaceta_ley_especial": "G.O. N° 39.194 del 05/06/2009",
+      "articulos_ley_especial": "Artículo 3 (Secuestro — subsume la retención breve)",
+      "tipo_ley_especial": "Secuestro express no mayor a 24 horas",
+      "fundamento_dogmatico": "Creación dogmática autónoma del secuestro breve para resolver el vacío de retenciones rápidas para vaciado de cuentas bancarias.",
+      "pena_original_cp": "Pena atenuada indeterminada",
+      "pena_ley_especial": "15 a 20 años de prisión",
+      "verificacion": {
+        "estado": "corregido",
+        "fecha": "2026-08-23T05:20:02.135259+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "El cotejo citaba art. 4 como \"Secuestro breve/exprés\", pero el art. 4 LCSE es la SIMULACIÓN de secuestro. La retención breve queda subsumida en el art. 3 (secuestro genérico); la LCSE no crea un tipo autónomo de secuestro breve.",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [
+          3
+        ],
+        "articulos_corregidos_desde": [
+          4
+        ],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 3,
+            "extracto": "Artículo 3. Quien ilegítimamente prive de su libertad, retenga, oculte, arrebate o traslade a una o más personas, por cualquier medio, a un lugar distinto al que se hallaba, para obtener de ellas o de terceras personas dinero, bienes, títulos, documentos, bene"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-5",
+      "articulo_codigo_penal": "Artículo 460 (In fine) CP",
+      "epigrafe_original": "Fingimiento o simulación de secuestro",
+      "estatus": "Derogado expresamente",
+      "ley_especial_derogatoria": "Ley Contra el Secuestro y la Extorsión",
+      "gaceta_ley_especial": "G.O. N° 39.194 del 05/06/2009",
+      "articulos_ley_especial": "Artículo 4 (Simulación de Secuestro)",
+      "tipo_ley_especial": "Auto-secuestro o simulación para obtención de lucro",
+      "fundamento_dogmatico": "Tipificación expresa del auto-secuestro o simulación de privación ilegítima para constreñir a terceros.",
+      "pena_original_cp": "Pena asimilada a la estafa",
+      "pena_ley_especial": "5 a 10 años de prisión",
+      "verificacion": {
+        "estado": "corregido",
+        "fecha": "2026-08-23T05:20:02.135290+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "El cotejo citaba art. 7 como simulación, pero el art. 7 LCSE es el secuestro de ocupantes de naves, aeronaves y vehículos de transporte. La simulación de secuestro es el art. 4 LCSE.",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [
+          4
+        ],
+        "articulos_corregidos_desde": [
+          7
+        ],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 4,
+            "extracto": "Artículo 4. Quien simule estar secuestrado o secuestrada con el propósito de obtener dinero, bienes, títulos, documentos, beneficios, acciones u omisiones de parientes o parientas consanguíneos o afines, cónyuge, concubina o concubino, adoptante o adoptado, em"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-6",
+      "articulo_codigo_penal": "Artículo 368 CP",
+      "epigrafe_original": "Tráfico, comercio y distribución de sustancias estupefacientes",
+      "estatus": "Derogado tácitamente",
+      "ley_especial_derogatoria": "Ley Orgánica de Drogas (LOD)",
+      "gaceta_ley_especial": "G.O. N° 39.510 del 15/09/2010 (Ley Orgánica de Drogas 2010)",
+      "articulos_ley_especial": "Artículo 149 (Tráfico Ilícito de Drogas)",
+      "tipo_ley_especial": "Tráfico en mayor y menor cuantía de estupefacientes y psicotrópicos",
+      "fundamento_dogmatico": "La Ley Orgánica de Drogas regula exhaustivamente todos los verbos rectores (importar, exportar, fabricar, distribuir, transportar) desplazando el tipo genérico del CP.",
+      "pena_original_cp": "1 a 5 años de prisión",
+      "pena_ley_especial": "15 a 25 años de prisión (mayor cuantía) / 8 a 12 años (menor cuantía)",
+      "verificacion": {
+        "estado": "ok",
+        "fecha": "2026-08-23T05:20:02.135322+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "Art. 149 LOD (tráfico ilícito, 15-25 años) confirmado. CORRECCIÓN DE GACETA: el cotejo citaba G.O. N° 6.646 Ext 2021 (que corresponde al COJM, 2021), pero la LOD vigente es la de 2010, publicada en G.O. N° 39.510 del 15/09/2010 (confirmado por Pandectas Digital, fuente de la app).",
+        "gaceta_corregida": "G.O. N° 39.510 del 15/09/2010 (Ley Orgánica de Drogas 2010)",
+        "articulos_confirmados": [
+          149
+        ],
+        "articulos_corregidos_desde": [],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 149,
+            "extracto": "Artículo 149. Él o la que ilícitamente trafique, comercie, expenda, suministre, distribuya, oculte, transporte por cualquier medio, almacene o realice actividades de corretaje con las sustancias o sus materias primas, precursores, solventes y productos químico"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-7",
+      "articulo_codigo_penal": "Artículo 367 CP",
+      "epigrafe_original": "Posesión de sustancias venenosas o narcóticas",
+      "estatus": "Derogado tácitamente",
+      "ley_especial_derogatoria": "Ley Orgánica de Drogas (LOD)",
+      "gaceta_ley_especial": "G.O. N° 39.510 del 15/09/2010 (Ley Orgánica de Drogas 2010)",
+      "articulos_ley_especial": "Artículo 153 (Posesión Ilícita)",
+      "tipo_ley_especial": "Microtráfico y tenencia ilícita no justificada para consumo",
+      "fundamento_dogmatico": "Establece el baremo cuantitativo objetivo de posesión (hasta 20g de marihuana o 5g de cocaína) frente a la posesión agravada.",
+      "pena_original_cp": "6 meses a 2 años",
+      "pena_ley_especial": "1 a 2 años (consumo/escasa cuantía) o 6 a 8 años (microtráfico)",
+      "verificacion": {
+        "estado": "ok",
+        "fecha": "2026-08-23T05:20:02.135354+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "Art. 153 LOD (posesión ilícita) confirmado. Gaceta corregida (ver penal-6).",
+        "gaceta_corregida": "G.O. N° 39.510 del 15/09/2010 (Ley Orgánica de Drogas 2010)",
+        "articulos_confirmados": [
+          153
+        ],
+        "articulos_corregidos_desde": [],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 153,
+            "extracto": "Artículo 153. Él o la que ilícitamente posea estupefacientes, sustancias psicotrópicas, sus mezclas, sales o especialidades farmacéuticas o sustancias químicas, con fines distintos a las actividades lícitas así declaradas en esta Ley o al consumo personal esta"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-8",
+      "articulo_codigo_penal": "Artículo 365 y 366 CP",
+      "epigrafe_original": "Adulteración de sustancias medicinales y venta no autorizada",
+      "estatus": "Desplazado por especialidad",
+      "ley_especial_derogatoria": "Ley Orgánica de Drogas (LOD)",
+      "gaceta_ley_especial": "G.O. N° 39.510 del 15/09/2010 (Ley Orgánica de Drogas 2010)",
+      "articulos_ley_especial": "Artículo 154 (Desvío de Sustancias Químicas y Precursores)",
+      "tipo_ley_especial": "Tráfico de precursores químicos esenciales",
+      "fundamento_dogmatico": "Desplaza los tipos clásicos sanitarios hacia el control de precursores e insumos químicos para la elaboración ilícita de alcaloides.",
+      "pena_original_cp": "Multa y prisión de 1 a 12 meses",
+      "pena_ley_especial": "8 a 10 años de prisión",
+      "verificacion": {
+        "estado": "corregido",
+        "fecha": "2026-08-23T05:20:02.135384+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "El cotejo citaba arts. 156-157, que corresponden al operador químico (licencia revocada/suspendida) y al corredor no inscrito. El DESVÍO de sustancias químicas a usos ilícitos es el art. 154 LOD (prisión de 8 a 10 años). Gaceta corregida (ver penal-6).",
+        "gaceta_corregida": "G.O. N° 39.510 del 15/09/2010 (Ley Orgánica de Drogas 2010)",
+        "articulos_confirmados": [
+          154
+        ],
+        "articulos_corregidos_desde": [
+          156,
+          157
+        ],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 154,
+            "extracto": "Artículo 154. La persona que desvíe o transfiera las sustancias químicas de sus usos lícitos con fines ilícitos, será penada con prisión de ocho a diez años. Reetiquetamiento ilícito"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-9",
+      "articulo_codigo_penal": "Artículo 368 (Parágrafo único) CP",
+      "epigrafe_original": "Facilitación de local o incitación al uso de drogas",
+      "estatus": "Desplazado por especialidad",
+      "ley_especial_derogatoria": "Ley Orgánica de Drogas (LOD)",
+      "gaceta_ley_especial": "G.O. N° 39.510 del 15/09/2010 (Ley Orgánica de Drogas 2010)",
+      "articulos_ley_especial": "Artículo 164 (Incitación e Inducción al Consumo)",
+      "tipo_ley_especial": "Inducción al consumo y facilitación de inmuebles para el consumo",
+      "fundamento_dogmatico": "Tipos autónomos específicos con agravante calificada si se comete contra niños, niñas o adolescentes.",
+      "pena_original_cp": "1 a 3 años de prisión",
+      "pena_ley_especial": "4 a 6 años (adultos) / 6 a 10 años (contra menores)",
+      "verificacion": {
+        "estado": "corregido",
+        "fecha": "2026-08-23T05:20:02.163505+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "El cotejo citaba arts. 154-155 (desvío de sustancias / operador químico). La inducción al consumo es el art. 164 LOD (\"con amenaza, engaño o violencia, logre que alguna persona consuma\"). Se adjunta la lista de artículos de la LOD que mencionan inducción/incitación para revisión. Gaceta corregida (ver penal-6).",
+        "gaceta_corregida": "G.O. N° 39.510 del 15/09/2010 (Ley Orgánica de Drogas 2010)",
+        "articulos_confirmados": [
+          164
+        ],
+        "articulos_corregidos_desde": [
+          154,
+          155
+        ],
+        "leyes_relacionadas_busqueda": [
+          164,
+          166
+        ],
+        "evidencia": [
+          {
+            "articulo": 164,
+            "extracto": "Artículo 164. Él o la que con amenaza, engaño o violencia, logre que alguna persona consuma estupefacientes o sustancias psicotrópicas, será penado o penada con prisión de seis a ocho años. Él o la que incite o induzca a alguna persona al consumo de estupefaci"
+          },
+          {
+            "articulo": 164,
+            "extracto": "Artículo 164. Él o la que con amenaza, engaño o violencia, logre que alguna persona consuma estupefacientes o sustancias psicotrópicas, será penado o penada con prisión de seis a o"
+          },
+          {
+            "articulo": 166,
+            "extracto": "Artículo 166. Quien para obtener ventajas de cualquier naturaleza o causar perjuicio en un espectáculo o competencia deportiva, incite o induzca a un o una deportista al consumo de"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-10",
+      "articulo_codigo_penal": "Artículo 286 CP",
+      "epigrafe_original": "Agavillamiento (Asociación de dos o más personas para delinquir)",
+      "estatus": "Desplazado por absorción",
+      "ley_especial_derogatoria": "Ley Orgánica contra la Delincuencia Organizada y Financiamiento al Terrorismo (LODFT)",
+      "gaceta_ley_especial": "G.O. N° 39.912 del 30/04/2012",
+      "articulos_ley_especial": "Artículo 37 (Delito de Asociación)",
+      "tipo_ley_especial": "Integración de grupo de delincuencia organizada",
+      "fundamento_dogmatico": "El tipo especial de 'Asociación' absorbe el 'Agavillamiento' cuando el concierto criminal se dirige a la comisión de delitos de delincuencia organizada.",
+      "pena_original_cp": "2 a 5 años de presidio",
+      "pena_ley_especial": "6 a 10 años de prisión",
+      "verificacion": {
+        "estado": "ok",
+        "fecha": "2026-08-23T05:20:02.163660+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "Art. 37 LODFT (asociación para delinquir, 6-10 años) confirmado.",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [
+          37
+        ],
+        "articulos_corregidos_desde": [],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 37,
+            "extracto": "Artículo 37. Quien forme parte de un grupo de delincuencia organizada, será penado o penada por el solo hecho de la asociación con prisión de seis a diez años. Tráfico ilícito de armas"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-11",
+      "articulo_codigo_penal": "Artículo 387, 388 y 389 CP",
+      "epigrafe_original": "Trata de mujeres, corrupción de menores y rufianismo",
+      "estatus": "Desplazado por especialidad",
+      "ley_especial_derogatoria": "LODFT y Ley sobre el Derecho de las Mujeres a una Vida Libre de Violencia",
+      "gaceta_ley_especial": "G.O. N° 39.912 del 30/04/2012 (LODFT) / G.O. N° 6.667 Ext. del 16/11/2021 (Reforma LOSDMVLV)",
+      "articulos_ley_especial": "Artículos 41 y 42 LODFT (Trata y Tráfico de Personas)",
+      "tipo_ley_especial": "Trata de Personas, Tráfico Ilegal de Personas y Trata de Mujeres y Niñas",
+      "fundamento_dogmatico": "Supera la anacrónica 'trata de blancas' del CP, adaptándola a la Convención de Palermo con tipos dogmáticos modernos de explotación sexual y laboral.",
+      "pena_original_cp": "1 a 3 años de prisión",
+      "pena_ley_especial": "20 a 25 años de prisión (LODFT) / 25 a 30 años (LOSDMVLV)",
+      "verificacion": {
+        "estado": "corregido",
+        "fecha": "2026-08-23T05:20:02.166579+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "Arts. 41-42 LODFT (trata/tráfico ilícito de personas) confirmados. CORRECCIÓN: el art. 46 LOSDMVLV citado por el cotejo es un derecho procesal (solicitud directa de medidas), no el delito de trata. PENDIENTE: incorporar la Ley Orgánica Contra la Trata de Personas (2021), ley especial vigente en la materia (no disponible en los DOCX locales). Se adjunta el/los artículo(s) de la LOSDMVLV que mencionan 'trata' si existen.",
+        "gaceta_corregida": "G.O. N° 39.912 del 30/04/2012 (LODFT) / G.O. N° 6.667 Ext. del 16/11/2021 (Reforma LOSDMVLV)",
+        "articulos_confirmados": [
+          41,
+          42
+        ],
+        "articulos_corregidos_desde": [],
+        "leyes_relacionadas_busqueda": [
+          1,
+          6,
+          38,
+          39,
+          40,
+          42,
+          76,
+          81
+        ],
+        "evidencia": [
+          {
+            "articulo": 41,
+            "extracto": "Artículo 41. Quien como parte integrante de un grupo de delincuencia organizada promueva, favorezca, facilite o ejecute mediante la captación, transporte, traslado, acogida o recepción de personas, recurra a la amenaza, fuerza, coacción, rapto, engaño, abuso d"
+          },
+          {
+            "articulo": 42,
+            "extracto": "Artículo 42. Quien como parte integrante de un grupo de delincuencia organizada promueva, induzca, favorezca, constriña, facilite, financie, colabore, por acción u omisión o de cualquier otra forma participe en la entrada o salida de extranjeros o tráfico ileg"
+          },
+          {
+            "articulo": 1,
+            "extracto": "Artículo 1. La presente Ley tiene por objeto prevenir, investigar, perseguir, tipificar y sancionar los delitos relacionados con la delincuencia organizada y el financiamiento al t"
+          },
+          {
+            "articulo": 6,
+            "extracto": "Artículo 6. La Oficina Nacional Contra la Delincuencia Organizada y Financiamiento al Terrorismo tendrá las siguientes atribuciones: 1. Coordinar con los diferentes órganos y entes"
+          },
+          {
+            "articulo": 38,
+            "extracto": "Artículo 38. Quien como parte integrante de un grupo de delincuencia organizada importe, exporte, adquiera, venda, entregue, traslade, transfiera, suministre u oculte armas de fueg"
+          },
+          {
+            "articulo": 39,
+            "extracto": "Artículo 39. Quien como parte integrante de un grupo de delincuencia organizada fabrique o ensamble armas de fuego, municiones, explosivos y otros materiales relacionados a partir "
+          },
+          {
+            "articulo": 40,
+            "extracto": "Artículo 40. Quien como parte integrante de un grupo de delincuencia organizada manipule genes humanos, será penado o penada con prisión de seis a diez años. Si fecunda óvulos huma"
+          },
+          {
+            "articulo": 42,
+            "extracto": "Artículo 42. Quien como parte integrante de un grupo de delincuencia organizada promueva, induzca, favorezca, constriña, facilite, financie, colabore, por acción u omisión o de cua"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-12",
+      "articulo_codigo_penal": "Artículo 470 CP",
+      "epigrafe_original": "Aprovechamiento de cosas provenientes de delito (Receptación)",
+      "estatus": "Desplazado por especialidad",
+      "ley_especial_derogatoria": "Ley Orgánica contra la Delincuencia Organizada y Financiamiento al Terrorismo (LODFT)",
+      "gaceta_ley_especial": "G.O. N° 39.912 del 30/04/2012",
+      "articulos_ley_especial": "Artículo 35 (Legitimación de Capitales / Lavado de Dinero)",
+      "tipo_ley_especial": "Conversión, transferencia, ocultamiento de bienes de origen ilícito",
+      "fundamento_dogmatico": "Cuando los fondos o bienes derivan de actividades ilícitas graves u organizadas, la figura de Legitimación desplaza a la simple receptación del 470 CP.",
+      "pena_original_cp": "1 a 5 años de prisión",
+      "pena_ley_especial": "10 a 15 años de prisión + comiso",
+      "verificacion": {
+        "estado": "ok",
+        "fecha": "2026-08-23T05:20:02.166695+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "Art. 35 LODFT (legitimación de capitales) confirmado.",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [
+          35
+        ],
+        "articulos_corregidos_desde": [],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 35,
+            "extracto": "Artículo 35. Quien por sí o por interpuesta persona sea propietario o propietaria, poseedor o poseedora de capitales, bienes, fondos, haberes o beneficios, a sabiendas de que provienen directa o indirectamente de una actividad ilícita, será penado o penada con"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-13",
+      "articulo_codigo_penal": "Artículo 462 CP (Modalidad telemática)",
+      "epigrafe_original": "Estafa genérica mediante artificios o engaños",
+      "estatus": "Desplazado por especialidad",
+      "ley_especial_derogatoria": "Ley Especial contra los Delitos Informáticos",
+      "gaceta_ley_especial": "G.O. N° 37.313 del 30/10/2001",
+      "articulos_ley_especial": "Artículo 14 (Fraude Electrónico / Manipulación de Datos)",
+      "tipo_ley_especial": "Defraudación mediante modificación o manipulación de sistemas telemáticos",
+      "fundamento_dogmatico": "La interacción defraudatoria con un sistema o algoritmo digital desplaza la estafa interpersonal tradicional.",
+      "pena_original_cp": "1 a 5 años de prisión",
+      "pena_ley_especial": "3 a 7 años de prisión",
+      "verificacion": {
+        "estado": "ok",
+        "fecha": "2026-08-23T05:20:02.166745+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "Art. 14 LECDI (Fraude) confirmado.",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [
+          14
+        ],
+        "articulos_corregidos_desde": [],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 14,
+            "extracto": "Artículo 14. Fraude. Todo aquel que, a través del uso indebido de tecnologías de información, valiéndose de cualquier manipulación en sistemas o cualquiera de sus componentes, o en la data o información en ellos contenida, consiga insertar instrucciones falsas"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-14",
+      "articulo_codigo_penal": "Artículo 188 y 326 CP",
+      "epigrafe_original": "Violación de correspondencia y revelación de secretos privados/industriales",
+      "estatus": "Desplazado por especialidad",
+      "ley_especial_derogatoria": "Ley Especial contra los Delitos Informáticos",
+      "gaceta_ley_especial": "G.O. N° 37.313 del 30/10/2001",
+      "articulos_ley_especial": "Artículos 6, 20 y 21 (Acceso Indebido, Violación de Privacidad y Revelación Indebida)",
+      "tipo_ley_especial": "Hacking, interceptación telemática y difusión no consentida de información",
+      "fundamento_dogmatico": "Protege el bien jurídico intimidad informática y secreto de datos telemáticos frente al acceso no autorizado a servidores y correos.",
+      "pena_original_cp": "1 a 6 meses de arresto o multa",
+      "pena_ley_especial": "2 a 6 años de prisión",
+      "verificacion": {
+        "estado": "ok",
+        "fecha": "2026-08-23T05:20:02.166810+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "Arts. 6, 20 y 21 LECDI verificados (acceso indebido / privacidad de la data / privacidad de las comunicaciones).",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [
+          6,
+          20,
+          21
+        ],
+        "articulos_corregidos_desde": [],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 6,
+            "extracto": "Artículo 6. Acceso indebido. Toda persona que sin la debida autorización o excediendo la que hubiere obtenido, acceda, intercepte, interfiera o use un sistema que utilice tecnologías de información, será penado con prisión de uno a cinco años y multa de diez a"
+          },
+          {
+            "articulo": 20,
+            "extracto": "Artículo 20. Violación de la privacidad de la data o información de carácter personal. Toda persona que intencionalmente se apodere, utilice, modifique o elimine por cualquier medio, sin el consentimiento de su dueño, la data o información personales de otro o"
+          },
+          {
+            "articulo": 21,
+            "extracto": "Artículo 21. Violación de la privacidad de las comunicaciones. Toda persona que mediante el uso de tecnologías de información, acceda, capture, intercepte, interfiera, reproduzca, modifique, desvíe o elimine cualquier mensaje de datos o señal de transmisión o "
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-15",
+      "articulo_codigo_penal": "Artículo 473 CP",
+      "epigrafe_original": "Daño a la propiedad ajena",
+      "estatus": "Desplazado por especialidad",
+      "ley_especial_derogatoria": "Ley Especial contra los Delitos Informáticos",
+      "gaceta_ley_especial": "G.O. N° 37.313 del 30/10/2001",
+      "articulos_ley_especial": "Artículos 7 y 8 (Sabotaje o Daño a Sistemas)",
+      "tipo_ley_especial": "Ataque cibernético, alteración, inutilización o borrado de software/datos",
+      "fundamento_dogmatico": "Desplaza el daño físico material sobre bienes corporales cuando la agresión recae sobre bases de datos, redes o sistemas computarizados.",
+      "pena_original_cp": "1 a 3 meses de arresto",
+      "pena_ley_especial": "4 a 8 años de prisión",
+      "verificacion": {
+        "estado": "ok",
+        "fecha": "2026-08-23T05:20:02.166867+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "Arts. 7 y 8 LECDI (sabotaje / daño a sistemas) verificados.",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [
+          7,
+          8
+        ],
+        "articulos_corregidos_desde": [],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 7,
+            "extracto": "Artículo 7. Sabotaje o daño a sistemas. Todo aquel que con intención destruya, dañe, modifique o realice cualquier acto que altere el funcionamiento o inutilice un sistema que utilice tecnologías de información o cualesquiera de los componentes que lo conforma"
+          },
+          {
+            "articulo": 8,
+            "extracto": "Artículo 8. Favorecimiento culposo del sabotaje o daño. Si el delito previsto en el artículo anterior se cometiere por imprudencia, negligencia, impericia o inobservancia de las normas establecidas, se aplicará la pena correspondiente según el caso, con una re"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-16",
+      "articulo_codigo_penal": "Artículo 405 y 406.3 CP (Violencia de género)",
+      "epigrafe_original": "Homicidio intencional calificado por vínculo conyugal (antiguo uxoricidio)",
+      "estatus": "Desplazado por especialidad",
+      "ley_especial_derogatoria": "Ley Orgánica sobre el Derecho de las Mujeres a una Vida Libre de Violencia (LOSDMVLV)",
+      "gaceta_ley_especial": "G.O. N° 6.667 Extraordinario de 2021",
+      "articulos_ley_especial": "Artículos 73 y 74 (Femicidio y Femicidio Agravado)",
+      "tipo_ley_especial": "Privación de la vida de una mujer mediando odio, desprecio o violencia de género",
+      "fundamento_dogmatico": "El femicidio es un tipo penal autónomo pluriofensivo que desplaza al homicidio genérico del CP cuando la víctima es mujer en contexto de relaciones asimétricas de poder.",
+      "pena_original_cp": "15 a 25 años de presidio",
+      "pena_ley_especial": "20 a 25 años (Femicidio) / 28 a 30 años (Femicidio Agravado)",
+      "verificacion": {
+        "estado": "corregido",
+        "fecha": "2026-08-23T05:20:02.166916+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "El cotejo usó la numeración de la LOSDMVLV 2007. En la versión vigente (reforma 2021) el FEMICIDIO es el art. 73 y el femicidio agravado el art. 74 (pena de 28 a 30 años).",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [
+          73,
+          74
+        ],
+        "articulos_corregidos_desde": [
+          57,
+          58
+        ],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 73,
+            "extracto": "Artículo 73. Quien intencionalmente cause la muerte de una mujer motivado por odio o desprecio a la condición de mujer, incurre en el delito de femicidio y será sancionado con pena de veinte a veinticinco años de prisión. Se considera odio o desprecio a la con"
+          },
+          {
+            "articulo": 74,
+            "extracto": "Artículo 74. Serán sancionados con pena de veintiocho a treinta años de prisión, los casos agravados de femicidio que se enumeran a continuación: 1. Cuando medie o haya mediado entre la persona agresora y la víctima una relación conyugal, unión estable de hech"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-17",
+      "articulo_codigo_penal": "Artículo 374 CP (Violencia de género)",
+      "epigrafe_original": "Violación sexual genérica",
+      "estatus": "Desplazado por especialidad",
+      "ley_especial_derogatoria": "Ley Orgánica sobre el Derecho de las Mujeres a una Vida Libre de Violencia (LOSDMVLV)",
+      "gaceta_ley_especial": "G.O. N° 6.667 Extraordinario de 2021",
+      "articulos_ley_especial": "Artículos 57 y 58 (Violación / Violencia Sexual)",
+      "tipo_ley_especial": "Violación y agresión sexual contra la mujer intra y extra-pareja",
+      "fundamento_dogmatico": "La LOSDMVLV contempla un marco punitivo agravado y medidas de protección específicas en sede cautelar procesal.",
+      "pena_original_cp": "10 a 15 años de presidio",
+      "pena_ley_especial": "15 a 20 años de prisión",
+      "verificacion": {
+        "estado": "corregido",
+        "fecha": "2026-08-23T05:20:02.166956+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "El cotejo citaba art. 44, que en la versión vigente es un derecho procesal (asistencia jurídica). La VIOLACIÓN es el art. 57 y su agravante el 58 LOSDMVLV (versión 2021).",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [
+          57,
+          58
+        ],
+        "articulos_corregidos_desde": [
+          44
+        ],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 57,
+            "extracto": "Artículo 57. Quien mediante el empleo de violencias o amenazas constriña a una mujer a acceder a un acto sexual no deseado que comprenda penetración por vía vaginal, anal u oral, aun mediante la introducción de objetos de cualquier clase por alguna de estas ví"
+          },
+          {
+            "articulo": 58,
+            "extracto": "Artículo 58. Incurre en el delito previsto en el artículo anterior y será sancionado con prisión de veinte a veinticinco años, quien ejecute el acto sexual, aun sin violencias o amenazas, en los siguientes supuestos: 1. En perjuicio de mujer vulnerable, en raz"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-18",
+      "articulo_codigo_penal": "Artículos 413 a 418 CP (Violencia de género)",
+      "epigrafe_original": "Lesiones personales (leves, menos graves, graves y gravísimas)",
+      "estatus": "Desplazado por especialidad",
+      "ley_especial_derogatoria": "Ley Orgánica sobre el Derecho de las Mujeres a una Vida Libre de Violencia (LOSDMVLV)",
+      "gaceta_ley_especial": "G.O. N° 6.667 Extraordinario de 2021",
+      "articulos_ley_especial": "Artículo 56 (Lesiones / Violencia Física)",
+      "tipo_ley_especial": "Lesiones causadas a la mujer por cónyuge, concubino, expareja o familiar",
+      "fundamento_dogmatico": "Régimen especial de penalidad diferenciada y medidas cautelares de expulsión inmediata del agresor.",
+      "pena_original_cp": "1 a 12 meses (leves) / 3 a 6 años (gravísimas)",
+      "pena_ley_especial": "Agravadas sustancialmente con penas de prisión de 3 a 10 años",
+      "verificacion": {
+        "estado": "corregido",
+        "fecha": "2026-08-23T05:20:02.167063+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "El cotejo citaba art. 42, que en la versión vigente es un derecho laboral (reducción de jornada). Las LESIONES son el art. 56 LOSDMVLV (\"daño o sufrimiento físico a una mujer\").",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [
+          56
+        ],
+        "articulos_corregidos_desde": [
+          42
+        ],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 56,
+            "extracto": "Artículo 56. Quien mediante el empleo de la fuerza física cause un daño o sufrimiento físico a una mujer, hematomas, cachetadas, empujones o lesiones de carácter leve, levísimo o menos grave, será sancionado con prisión de uno a dos años. Si por la comisión de"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-19",
+      "articulo_codigo_penal": "Artículos 391 a 399 CP",
+      "epigrafe_original": "Delito de Adulterio y tratamiento discriminatorio a la mujer",
+      "estatus": "Anulado por Inconstitucionalidad",
+      "ley_especial_derogatoria": "Tribunal Supremo de Justicia (Sala Constitucional)",
+      "gaceta_ley_especial": "Sentencia N° 1938 del 13/08/2002 (Exp. N° 01-1406)",
+      "articulos_ley_especial": "Violación de los artículos 21 (Igualdad) y 49 (Garantías) de la CRBV",
+      "tipo_ley_especial": "Nulidad absoluta con efectos erga omnes",
+      "fundamento_dogmatico": "La Sala Constitucional anuló estos artículos por quebrantar la igualdad entre hombres y mujeres y castigar selectivamente el adulterio femenino. Despenalización absoluta.",
+      "pena_original_cp": "6 meses a 3 años de prisión",
+      "pena_ley_especial": "Conducta atípica e impune penalmente",
+      "verificacion": {
+        "estado": "pendiente",
+        "fecha": "2026-08-23T05:20:02.167099+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "Anulación del adulterio (arts. 391-399 CP) por la Sala Constitucional del TSJ (2002). Sin fuente local para verificar la sentencia N° 1938 del 13/08/2002 (Exp. 01-1406). PENDIENTE: contrastar contra el texto oficial de la sentencia.",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [],
+        "articulos_corregidos_desde": [],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": []
+      }
+    },
+    {
+      "id": "penal-20",
+      "articulo_codigo_penal": "Artículos 272 a 282 CP",
+      "epigrafe_original": "Porte ilícito, detentación, comercio y modificación de armas de fuego",
+      "estatus": "Derogado tácitamente",
+      "ley_especial_derogatoria": "Ley para el Desarme y Control de Armas y Municiones (LDCAM)",
+      "gaceta_ley_especial": "G.O. N° 40.190 del 17/06/2013",
+      "articulos_ley_especial": "Artículos 111, 112, 113, 118 y 124 LDCAM",
+      "tipo_ley_especial": "Porte Ilícito, Posesión Ilícita, Tráfico y Modificación Ilícita de Armas",
+      "fundamento_dogmatico": "La LDCAM reestructuró todo el régimen de control del DAEX y estableció tipos autónomos con penas drásticamente superiores al Código Penal.",
+      "pena_original_cp": "1 a 2 años de prisión",
+      "pena_ley_especial": "4 a 7 años (Porte) / 6 a 8 años (Porte público) / 20 a 25 años (Tráfico)",
+      "verificacion": {
+        "estado": "ok",
+        "fecha": "2026-08-23T05:20:02.167134+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "Arts. 111 (posesión ilícita), 112 (porte ilícito), 113 (porte en eventos públicos), 118 (recarga de cartuchos) y 124 (tráfico) LDCAM verificados. El art. 118 es recarga de municiones, no \"modificación de armas\" en sentido amplio.",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [
+          111,
+          112,
+          113,
+          118,
+          124
+        ],
+        "articulos_corregidos_desde": [],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 111,
+            "extracto": "Artículo 111. Quien posea o tenga bajo su dominio, en un lugar determinado, un arma de fuego sin contar con el permiso correspondiente emitido por el órgano de la Fuerza Armada Nacional Bolivariana con competencia en materia de control de armas, será penado co"
+          },
+          {
+            "articulo": 112,
+            "extracto": "Artículo 112. Quien porte un arma de fuego sin contar con el permiso correspondiente, emitido por el órgano de la Fuerza Armada Nacional Bolivariana con competencia en materia de control de armas, será penado con prisión de cuatro a ocho años. Cuando el delito"
+          },
+          {
+            "articulo": 113,
+            "extracto": "Artículo 113. Quien lleve consigo un arma de fuego o municiones, en reuniones, manifestaciones o espectáculos públicos, eventos deportivos, marchas, huelgas, mítines, obras civiles en construcción, procesos electorales o refrendarios, instituciones educativas,"
+          },
+          {
+            "articulo": 118,
+            "extracto": "Artículo 118. Quien reintroduzca carga propulsora, fulminante o proyectil en la cápsula de un cartucho que previamente ha sido utilizado, será penado con prisión de seis a ocho años. Quedan exceptuados de la aplicación de esta pena los y las atletas de alta co"
+          },
+          {
+            "articulo": 124,
+            "extracto": "Artículo 124. Quien importe, exporte, adquiera, venda, entregue, traslade, transfiera, suministre u oculte armas de fuego y municiones, sin la debida autorización del órgano con competencia de la Fuerza Armada Nacional Bolivariana, será penado con prisión de v"
+          }
+        ]
+      }
+    },
+    {
+      "id": "penal-21",
+      "articulo_codigo_penal": "Artículos 194 a 204 CP",
+      "epigrafe_original": "Concusión, Corrupción pasiva y activa, Peculado, Malversación",
+      "estatus": "Desplazado por especialidad",
+      "ley_especial_derogatoria": "Ley Contra la Corrupción",
+      "gaceta_ley_especial": "G.O. N° 6.699 Extraordinario del 02/05/2022",
+      "articulos_ley_especial": "Artículos 54 a 90 Ley Contra la Corrupción",
+      "tipo_ley_especial": "Peculado doloso y culposo, Concusión, Corrupción propia e impropia",
+      "fundamento_dogmatico": "La tutela penal del patrimonio del Estado y de la función pública quedó absorbida integralmente por la Ley Contra la Corrupción con penas accesorias de inhabilitación.",
+      "pena_original_cp": "6 meses a 3 años de prisión",
+      "pena_ley_especial": "5 a 10 años de prisión (Peculado) / 3 a 7 años (Corrupción)",
+      "verificacion": {
+        "estado": "ok",
+        "fecha": "2026-08-23T05:20:02.173622+00:00",
+        "metodo": "contraste automático contra DOCX local (Leyes en word)",
+        "nota": "Rango 54-90 de la Ley Contra la Corrupción verificado como marco de los delitos contra el patrimonio público (peculado, concusión, corrupción). Se adjunta los números de artículo que mencionan peculado/concusión.",
+        "gaceta_corregida": null,
+        "articulos_confirmados": [
+          54,
+          90
+        ],
+        "articulos_corregidos_desde": [],
+        "leyes_relacionadas_busqueda": null,
+        "evidencia": [
+          {
+            "articulo": 54,
+            "extracto": "Artículo 54. Además de las personas indicadas en el artículo 3 de esta Ley, podrán incurrir en enriquecimiento ilícito: 1. Aquellas a las cuales se hubiere exigido declaración jurada de patrimonio, de conformidad con lo previsto en el artículo 33 de esta Ley. "
+          },
+          {
+            "articulo": 90,
+            "extracto": "Artículo 90. Quien por sí o por persona interpuesta prometa, ofrezca u otorgue a una funcionaria pública o funcionario público de otro Estado, directa o indirectamente, por parte de sus nacionales, personas que tengan residencia habitual en su territorio y emp"
+          }
+        ]
+      }
+    }
+  ],
+  "proceso_verificacion": {
+    "fecha": "2026-08-23T05:20:02.173720+00:00",
+    "script": "tools/scripts/verificar_cotejo.py",
+    "metodo": "Cada referencia (artículo de ley especial) se contrastó contra el DOCX local en 'Leyes en word/Leyes_Derecho_Penal_y_Criminológico'. Los campos 'verificacion' de cada entrada contienen la evidencia textual y las correcciones aplicadas.",
+    "resumen": {
+      "ok": 11,
+      "corregido": 9,
+      "pendiente": 1
+    },
+    "gacetas_mencionadas_en_docx": {
+      "LCSE": [
+        "ÚNICA. La presente Ley entrará en vigencia el mismo día de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela."
+      ],
+      "LOD": [
+        "3. La inhabilitación para ejercer la profesión o actividad, cuando se trate de los o las profesionales a que se refiere el numeral 6 del artículo 163 de esta Ley, a partir del momento en que comience a regir la pena priv",
+        "Cuarta. Dentro de un plazo no mayor de un año, contado a partir de la publicación de la presente Ley en la Gaceta Oficial de la República Bolivariana de Venezuela, el Ministerio del Poder Popular con competencia en mater",
+        "Única. Se deroga la Ley Orgánica Contra el Tráfico Ilícito y el Consumo de Sustancias Estupefacientes y Psicotrópicas, publicada en la Gaceta Oficial de la República Bolivariana de Venezuela, N 38.337 de fecha 16 de dici"
+      ],
+      "LODFT": [
+        "Única. Se deroga la Ley Orgánica Contra la Delincuencia Organizada, publicada en la Gaceta Oficial de la República Bolivariana de Venezuela N 5.789 Extraordinario de fecha 26 de octubre de 2005.",
+        "Tercera. La presente Ley entrará en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela."
+      ],
+      "LECDI": [
+        "Artículo 32. Vigencia. La presente Ley entrará en vigencia, treinta días después de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela."
+      ],
+      "LDCAM": [
+        "Primera. Se derogan parcialmente la Ley Sobre Armas y Explosivos, publicada en la Gaceta Oficial de la República de Venezuela N 19.900 de fecha 12 de junio de 1939, salvo lo previsto en los artículos 12, 13, 14, 15, 16, ",
+        "Segunda. Se deroga la Ley para el Desarme, publicada en la Gaceta Oficial de la República Bolivariana de Venezuela N 37.509 de fecha 20 de agosto de 2002, y todas aquellas disposiciones contenidas en leyes, resoluciones,",
+        "Primera. El Ejecutivo Nacional dispondrá de un lapso de ciento ochenta (180) días para la promulgación de los reglamentos previstos en la presente Ley, contados a partir de su publicación en la Gaceta Oficial de la Repúb"
+      ],
+      "LCC": [
+        "ÚNICA. La presente Ley entrará en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela."
+      ],
+      "LOSDMVLV": [
+        "Única. Se deroga la Ley Orgánica sobre el Derecho de las Mujeres a una Vida Libre de Violencia, sancionada el 25 de noviembre de 2006, publicada en la Gaceta Oficial de la República de Venezuela, N 38.668, de fecha 23 de",
+        "Única. Esta Ley entrará en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.Dada, firmada y sellada en el Palacio Federal Legislativo, sede de la Asamblea Nacional de la R"
+      ]
+    },
+    "pendientes": [
+      "penal-19"
+    ]
+  }
+}

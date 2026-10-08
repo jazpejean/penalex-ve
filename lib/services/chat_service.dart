@@ -21,7 +21,7 @@ class ChatService {
       final userId = _currentUserId;
       if (userId == null) throw Exception('Usuario no autenticado');
 
-      final response = await _supabase.from('chat_conversations').insert({
+      final response = await _supabase.from('chat_conversaciones').insert({
         'user_id': userId,
         'title': titulo ?? 'Nueva conversación',
         'created_at': DateTime.now().toIso8601String(),
@@ -44,11 +44,32 @@ class ChatService {
     if (userId == null) return Stream.value([]);
 
     return _supabase
-        .from('chat_conversations')
+        .from('chat_conversaciones')
         .stream(primaryKey: ['id'])
         .eq('user_id', userId)
         .order('updated_at', ascending: false)
         .map((data) => data.map((item) => ChatConversation.fromMap(item)).toList());
+  }
+
+  /// Obtiene las conversaciones del usuario (fetch único, sin realtime).
+  static Future<List<ChatConversation>> obtenerConversaciones() async {
+    try {
+      final userId = _currentUserId;
+      if (userId == null) return [];
+
+      final response = await _supabase
+          .from('chat_conversaciones')
+          .select()
+          .eq('user_id', userId)
+          .order('updated_at', ascending: false);
+
+      return response
+          .map((item) => ChatConversation.fromMap(item))
+          .toList();
+    } catch (e) {
+      debugPrint('❌ Error obteniendo conversaciones: $e');
+      return [];
+    }
   }
 
   /// Obtiene mensajes de una conversación
@@ -151,6 +172,43 @@ class ChatService {
     }
   }
 
+  /// Guarda un mensaje del asistente (ya generado) en la conversación,
+  /// incluyendo las fuentes/jurisprudencia citadas.
+  static Future<ChatMessage> enviarMensajeAsistente({
+    required String conversationId,
+    required String contenido,
+    List<MessageSource> sources = const [],
+  }) async {
+    try {
+      final userId = _currentUserId;
+      if (userId == null) throw Exception('Usuario no autenticado');
+
+      final messageData = {
+        'conversation_id': conversationId,
+        'user_id': userId,
+        'role': 'assistant',
+        'content': contenido,
+        'timestamp': DateTime.now().toIso8601String(),
+        'model_used': 'deepseek-chat',
+        'sources': sources.map((s) => s.toMap()).toList(),
+      };
+
+      final response = await _supabase
+          .from('chat_messages')
+          .insert(messageData)
+          .select()
+          .single();
+
+      await _actualizarConversacion(conversationId, null);
+
+      debugPrint('✅ Respuesta del asistente guardada');
+      return ChatMessage.fromMap(response);
+    } catch (e) {
+      debugPrint('❌ Error guardando respuesta del asistente: $e');
+      rethrow;
+    }
+  }
+
   /// Genera respuesta del asistente con DeepSeek + Tracking
   static Future<ChatMessage> generarRespuestaAsistente({
     required String conversationId,
@@ -237,7 +295,7 @@ class ChatService {
       // Si es el primer mensaje, generar título
       if (ultimoMensaje != null) {
         final conv = await _supabase
-            .from('chat_conversations')
+            .from('chat_conversaciones')
             .select('message_count')
             .eq('id', conversationId)
             .single();
@@ -253,7 +311,7 @@ class ChatService {
       });
 
       await _supabase
-          .from('chat_conversations')
+          .from('chat_conversaciones')
           .update(updates)
           .eq('id', conversationId);
     } catch (e) {
@@ -276,7 +334,7 @@ class ChatService {
           .eq('conversation_id', conversationId);
 
       await _supabase
-          .from('chat_conversations')
+          .from('chat_conversaciones')
           .delete()
           .eq('id', conversationId);
 
@@ -291,7 +349,7 @@ class ChatService {
   static Future<void> togglePin(String conversationId, bool isPinned) async {
     try {
       await _supabase
-          .from('chat_conversations')
+          .from('chat_conversaciones')
           .update({'is_pinned': !isPinned})
           .eq('id', conversationId);
 
@@ -309,7 +367,7 @@ class ChatService {
   ) async {
     try {
       await _supabase
-          .from('chat_conversations')
+          .from('chat_conversaciones')
           .update({'title': nuevoTitulo})
           .eq('id', conversationId);
 

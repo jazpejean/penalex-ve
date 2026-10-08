@@ -1,0 +1,267 @@
+{
+  "ley_nombre": "LEY QUE REGULA EL USO DE LA TELEFONÍA CELULAR Y LA INTERNET EN EL INTERIOR DE LOS ESTABLECIMIENTOS PENITENCIARIOS",
+  "estructura": [
+    {
+      "libro": null,
+      "titulo": "TÍTULO I. DISPOSICIONES GENERALES",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "1",
+          "encabezado": "Objeto",
+          "texto_principal": "Esta Ley tiene por objeto prevenir que desde el interior de los establecimientos penitenciarios del país se ejecuten delitos a través de la utilización de la telefonía celular, la internet y, en general, de todos los servicios de voz y datos que ofrecen las compañías de telecomunicaciones.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "2",
+          "encabezado": "Centros de reclusión regidos por esta Ley",
+          "texto_principal": "Esta Ley regirá en todos los establecimientos penitenciarios de régimen cerrado del país, destinados a procesados judiciales o a penados, así como también en los que coexistan procesados con penados.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. DE LA REGULACIÓN DE LAS TELECOMUNICACIONES EN LOS. ESTABLECIMIENTOS PENITENCIARIOS",
+      "capitulo": "Capítulo I. De los equipos de bloqueo de señales",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "3",
+          "encabezado": "Adquisición e instalación",
+          "texto_principal": "El Ministerio del Poder Popular para el Servicio Penitenciario deberá adquirir e instalar equipos destinados a inhibir, bloquear o anular de manera permanente la señal de telefonía celular y la Internet en el interior de los establecimientos penitenciarios del país.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "4",
+          "encabezado": "No afectación",
+          "texto_principal": "De ninguna manera los equipos y las acciones destinadas a inhibir, bloquear o anular la señal de telefonía celular y la internet en el interior de los centros de reclusión regidos por esta Ley podrán afectar a las comunidades aledañas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "5",
+          "encabezado": "Supervisión periódica",
+          "texto_principal": "Periódicamente el Ministerio del Poder Popular para el Servicio Penitenciario y la Comisión Nacional de Telecomunicaciones (CONATEL) deberán verificar el correcto funcionamiento de los equipos destinados a bloquear o inhibir la telefonía celular y la internet en los establecimientos penitenciarios del país.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "6",
+          "encabezado": "Actualización",
+          "texto_principal": "A los efectos de garantizar en el tiempo los objetivos de esta Ley, el Ministerio del Poder Popular para el Servicio Penitenciario, cuando se haga imprescindible por los avances tecnológicos, deberá hacer lo necesario para actualizar los equipos a los que se refiere este capítulo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. DE LA REGULACIÓN DE LAS TELECOMUNICACIONES EN LOS. ESTABLECIMIENTOS PENITENCIARIOS",
+      "capitulo": "Capítulo II. De la comunicación externa de los reclusos",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "7",
+          "encabezado": "Telefonía pública",
+          "texto_principal": "A solicitud del Ministerio del Poder Popular para el Servicio Penitenciario, se instalarán teléfonos públicos fijos alámbricos en todos los establecimientos penitenciarios del país a los fines de garantizar la posibilidad de comunicación externa de los reclusos. Esto se realizará a través de una central telefónica pública.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "8",
+          "encabezado": "Programación",
+          "texto_principal": "Los teléfonos públicos fijos alámbricos a los que se refiere el artículo anterior, deberán ser programados para reproducir, al principio de cada comunicación, un mensaje grabado en el cual se indicará el nombre y la ubicación del establecimiento penitenciario desde donde se origina la llamada.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "9",
+          "encabezado": "Frecuencia y duración",
+          "texto_principal": "El Ministerio del Poder Popular para el Servicio Penitenciario determinará la frecuencia y el tiempo de duración de las llamadas que puedan realizar los reclusos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "10",
+          "encabezado": "Prohibición",
+          "texto_principal": "Se prohíbe la instalación de redes alámbricas de comunicación destinadas a prestar los servicios de internet, voz y datos en los establecimientos penitenciarios del país.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "11",
+          "encabezado": "Excepción",
+          "texto_principal": "A los fines de contribuir con la formación educativa y la capacitación para el trabajo de los privados de libertad, así como para facilitar las necesidades de comunicación del personal de los recintos carcelarios, las autoridades penitenciarias podrán contratar con las compañías de telecomunicaciones las redes alámbricas a las que se refiere el artículo anterior. La utilización de las mismas por parte de los reclusos se hará siempre bajo la estricta supervisión y control de las autoridades penitenciarias.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. DE LA REGULACIÓN DE LAS TELECOMUNICACIONES EN LOS. ESTABLECIMIENTOS PENITENCIARIOS",
+      "capitulo": "Capitulo III. De la cooperación de las empresas de telecomunicaciones",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "12",
+          "encabezado": "Participación empresarial",
+          "texto_principal": "Las empresas de telecomunicaciones que prestan servicio en el país deberán brindar, cada vez que así sea requerido por el Ministerio del Poder Popular para el Servicio Penitenciario, la asesoría técnica necesaria para alcanzar los objetivos de esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DE LAS SANCIONES",
+      "capitulo": "Capítulo I. De los delitos",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "13",
+          "encabezado": "Introducción ilícita",
+          "texto_principal": "Quien introduzca o facilite la introducción de teléfonos celulares u otros equipos tecnológicos de comunicación personal a los establecimientos penitenciarios con la finalidad de que sean utilizados por los reclusos, será sancionado con prisión de tres a cinco años. La pena será de cuatro a seis años de prisión cuando el autor del delito sea funcionario o empleado público.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "14",
+          "encabezado": "Afectación de equipos",
+          "texto_principal": "Quien intencionalmente dañe, apague o de alguna forma obstruya, aun de forma temporal, el funcionamiento ordinario de alguno de los equipos destinados a anular la señal de los teléfonos celulares y la internet en los establecimientos penitenciarios del país, será sancionado con prisión de cuatro a seis años. La pena será de seis a ocho años de prisión cuando el autor del delito sea funcionario o empleado público.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DE LAS SANCIONES",
+      "capitulo": "Capítulo II. Sanción administrativa",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "15",
+          "encabezado": "Sanción administrativa",
+          "texto_principal": "Las personas jurídicas que en violación de esta Ley instalen en establecimientos penitenciarios del país redes alámbricas destinadas a prestar los servicios de voz y datos para la comunicación de los reclusos, serán sancionadas por la Comisión Nacional de Telecomunicaciones con multa de dos mil (2.000 U.T.) a tres mil Unidades Tributarias (3.000 U.T.) En caso de reincidencia la multa será de tres mil Unidades Tributarias (3.000 U.T.) a cinco mil Unidades Tributarias (5.000 U.T.).",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "Disposiciones Transitorias",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Primera",
+          "encabezado": null,
+          "texto_principal": "El Ministerio del Poder Popular para el Servicio Penitenciario tendrá nueve meses a partir de la publicación de esta Ley en la Gaceta Oficial, para instalar y activar en el interior de todos los establecimientos penitenciarios del país los equipos bloqueadores a los que se refiere el Capítulo I de esta Ley. El mismo lapso se tendrá para la instalación y puesta en funcionamiento de los teléfonos alámbricos fijos a los que se refiere el artículo 7 de esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Segunda",
+          "encabezado": null,
+          "texto_principal": "Una vez que se ejecute la descentralización del sistema penitenciario prevista en el artículo 272 de la Constitución, los gobiernos estadales y municipales que se encarguen de la administración de los establecimientos penitenciarios deberán cumplir con las disposiciones establecidas en esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "DISPOSICIÓN FINAL",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Final",
+          "identificador": "Única",
+          "encabezado": null,
+          "texto_principal": "La presente Ley entrará en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.\n\nDada, firmada y sellada en el Palacio Federal Legislativo, sede de la Asamblea Nacional de la República Bolivariana de Venezuela, en Caracas, a los catorce días del mes de junio de dos mil dieciséis. Año 206 de la Independencia y 157 de la Federación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    }
+  ]
+}

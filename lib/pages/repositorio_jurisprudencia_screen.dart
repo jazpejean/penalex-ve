@@ -1,8 +1,19 @@
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:http/http.dart' as http;
 import 'package:webview_flutter/webview_flutter.dart';
 import '../models/sentencia_model.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../services/jurisprudencia_service.dart';
 import '../services/ai_service.dart';
+import '../services/sentencia_pdf_service.dart';
+import '../services/favoritos_service.dart';
 import '../widgets/app_drawer.dart';
 
 class RepositorioJurisprudenciaScreen extends StatefulWidget {
@@ -22,18 +33,28 @@ class _RepositorioJurisprudenciaScreenState
   List<SentenciaModel> _todosResultados = [];
 
   bool _cargando = false;
+
+  // ⭐ Favoritas / Importantes
+  final FavoritosService _favoritosService = FavoritosService();
+  Set<String> _idsFavoritos = {};
+  bool _soloFavoritas = false;
   
   // ✅ Filtros nuevos
   String _tipoSeleccionado = 'Sentencias';
   String? _salaSeleccionada;
   int? _anioSeleccionado;
+  final Set<String> _resumenGenerado = {};
+  int? _mesSeleccionado;
+  int? _diaSeleccionado;
+  List<int> _mesesDisponibles = [];
+  List<int> _diasDisponibles = [];
   
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
   
   // Colores de la app
   static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
+  static const Color dorado = Color(0xFFEAB308);
   static const Color fondoGris = Color(0xFFF1F5F9);
 
   @override
@@ -47,6 +68,7 @@ class _RepositorioJurisprudenciaScreenState
       parent: _animationController,
       curve: Curves.easeInOut,
     );
+    _cargarFavoritos(); // ⭐ Cargar favoritas guardadas
     _buscar(); // ✅ Cargar sentencias al inicio
   }
 
@@ -55,6 +77,49 @@ class _RepositorioJurisprudenciaScreenState
     _searchController.dispose();
     _animationController.dispose();
     super.dispose();
+  }
+
+  Future<void> _cargarMeses(int anio) async {
+    final meses = await _service.obtenerMesesDisponibles(anio);
+    if (mounted) setState(() => _mesesDisponibles = meses);
+  }
+
+  Future<void> _cargarDias(int anio, int mes) async {
+    final dias = await _service.obtenerDiasDisponibles(anio, mes);
+    if (mounted) setState(() => _diasDisponibles = dias);
+  }
+
+  String _nombreMes(int m) {
+    const nombres = [
+      'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
+    ];
+    return (m >= 1 && m <= 12) ? nombres[m - 1] : '$m';
+  }
+
+  Future<void> _rellenarResumenes() async {
+    if (_resultados.isEmpty) return;
+    for (final s in _resultados.take(5)) {
+      if (_resumenGenerado.contains(s.id)) continue;
+      if (s.resumen.isNotEmpty && s.resumen != 'null') continue;
+      final texto = s.ratioDecidendi.isNotEmpty
+          ? s.ratioDecidendi
+          : (s.extracto.isNotEmpty ? s.extracto : s.decision);
+      if (texto.isEmpty || texto == 'null') continue;
+      _resumenGenerado.add(s.id);
+      try {
+        final resumen = await AIService.generarTesisJurisprudencial(texto);
+        if (resumen.isNotEmpty) {
+          await Supabase.instance.client
+              .from('documentos')
+              .update({'resumen_ia': resumen})
+              .eq('id', s.id);
+          debugPrint('✅ Resumen generado y guardado: ${s.id}');
+        }
+      } catch (e) {
+        debugPrint('⚠️ Error generando resumen: $e');
+      }
+    }
   }
 
   Future<void> _buscar() async {
@@ -74,6 +139,8 @@ class _RepositorioJurisprudenciaScreenState
       tipo: tipoParam,
       sala: _salaSeleccionada,
       anio: _anioSeleccionado,
+      mes: _mesSeleccionado,
+      dia: _diaSeleccionado,
       limit: 50,
     );
 
@@ -82,15 +149,66 @@ class _RepositorioJurisprudenciaScreenState
         _todosResultados = resultados;
         _resultados = resultados; // Ya vienen ordenados por relevancia
         
-        // ✅ Si Firebase está vacío, mostrar datos de ejemplo
+        // ✅ Si Supabase está vacío, mostrar datos de ejemplo
         if (_resultados.isEmpty && _searchController.text.isEmpty) {
           _resultados = _obtenerSentenciasEjemplo();
           _todosResultados = _resultados;
         }
+
+        // ⭐ Aplicar filtro de favoritas si está activo
+        _aplicarFiltroFavoritas();
         
         _cargando = false;
+        _rellenarResumenes();
       });
     }
+  }
+
+  // ⭐ Favoritas / Importantes
+  Future<void> _cargarFavoritos() async {
+    // Sincronizar desde la nube (si hay sesión) y luego leer locales
+    await _favoritosService.sincronizarDesdeNube();
+    final ids = await _favoritosService.obtenerIdsFavoritas();
+    if (mounted) {
+      setState(() => _idsFavoritos = ids);
+    }
+  }
+
+  void _aplicarFiltroFavoritas() {
+    if (_soloFavoritas) {
+      _resultados = _todosResultados
+          .where((s) => _idsFavoritos.contains(s.id))
+          .toList();
+    } else {
+      _resultados = _todosResultados;
+    }
+  }
+
+  Future<void> _toggleFavorita(SentenciaModel sentencia) async {
+    await _favoritosService.toggleFavorita(sentencia.id);
+    if (!mounted) return;
+
+    setState(() {
+      if (_idsFavoritos.contains(sentencia.id)) {
+        _idsFavoritos.remove(sentencia.id);
+      } else {
+        _idsFavoritos.add(sentencia.id);
+      }
+      if (_soloFavoritas) _aplicarFiltroFavoritas();
+    });
+
+    final esFavorita = _idsFavoritos.contains(sentencia.id);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          esFavorita
+              ? '⭐ Agregada a Favoritas'
+              : 'Eliminada de Favoritas',
+        ),
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 1),
+      ),
+    );
   }
   
   // Datos de ejemplo cuando Firebase está vacío
@@ -281,42 +399,77 @@ class _RepositorioJurisprudenciaScreenState
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          // Tipo
-          ...['Sentencias', 'Jurisprudencias', 'Resoluciones'].map((tipo) {
-            final isSelected = _tipoSeleccionado == tipo;
-            return Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: ChoiceChip(
-                label: Text(tipo),
-                selected: isSelected,
-                onSelected: (selected) {
-                  if (selected) {
-                    setState(() {
-                      _tipoSeleccionado = tipo;
-                      if (tipo != 'Sentencias' && tipo != 'Jurisprudencias') {
-                        _salaSeleccionada = null;
-                      }
-                    });
-                    _buscar();
-                  }
-                },
-                selectedColor: dorado,
-                backgroundColor: Colors.transparent,
-                labelStyle: TextStyle(
-                  color: isSelected ? azulMarino : Colors.white,
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+          // ⭐ Filtro solo favoritas
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: ChoiceChip(
+              avatar: Icon(
+                Icons.star,
+                size: 16,
+                color: _soloFavoritas ? azulMarino : Colors.amber,
+              ),
+              label: const Text('Favoritas'),
+              selected: _soloFavoritas,
+              onSelected: (selected) {
+                setState(() => _soloFavoritas = selected);
+                _aplicarFiltroFavoritas();
+              },
+              selectedColor: dorado,
+              backgroundColor: Colors.transparent,
+              labelStyle: TextStyle(
+                color: _soloFavoritas ? azulMarino : Colors.white,
+                fontWeight: _soloFavoritas ? FontWeight.bold : FontWeight.normal,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(
+                  color: _soloFavoritas ? dorado : Colors.white,
                 ),
+              ),
+              visualDensity: VisualDensity.compact,
+              showCheckmark: false,
+            ),
+          ),
+          const SizedBox(width: 8),
+
+          // Tipo (dropdown)
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: PopupMenuButton<String>(
+              initialValue: _tipoSeleccionado,
+              onSelected: (tipo) {
+                setState(() {
+                  _tipoSeleccionado = tipo;
+                  if (tipo != 'Sentencias' && tipo != 'Jurisprudencias') {
+                    _salaSeleccionada = null;
+                  }
+                });
+                _buscar();
+              },
+              itemBuilder: (context) => [
+                'Sentencias',
+                'Jurisprudencias',
+                'Resoluciones',
+              ].map((tipo) => PopupMenuItem<String>(value: tipo, child: Text(tipo))).toList(),
+              child: Chip(
+                label: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(_tipoSeleccionado),
+                    const SizedBox(width: 4),
+                    const Icon(Icons.arrow_drop_down, size: 16, color: Colors.white),
+                  ],
+                ),
+                backgroundColor: Colors.transparent,
+                labelStyle: const TextStyle(color: Colors.white),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
-                  side: BorderSide(
-                    color: isSelected ? dorado : Colors.white,
-                  ),
+                  side: const BorderSide(color: Colors.white),
                 ),
                 visualDensity: VisualDensity.compact,
-                showCheckmark: false,
               ),
-            );
-          }),
+            ),
+          ),
           const SizedBox(width: 8),
           
           // Sala
@@ -367,8 +520,13 @@ class _RepositorioJurisprudenciaScreenState
               onSelected: (int? value) {
                 setState(() {
                   _anioSeleccionado = value;
+                  _mesSeleccionado = null;
+                  _diaSeleccionado = null;
+                  _mesesDisponibles = [];
+                  _diasDisponibles = [];
                 });
                 _buscar();
+                if (value != null) _cargarMeses(value);
               },
               itemBuilder: (BuildContext context) {
                 return [
@@ -403,6 +561,93 @@ class _RepositorioJurisprudenciaScreenState
               ),
             ),
           ),
+
+          // Mes (solo meses con sentencias)
+          if (_anioSeleccionado != null && _mesesDisponibles.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: PopupMenuButton<int?>(
+                initialValue: _mesSeleccionado,
+                onSelected: (int? value) {
+                  setState(() {
+                    _mesSeleccionado = value;
+                    _diaSeleccionado = null;
+                    _diasDisponibles = [];
+                  });
+                  _buscar();
+                  if (value != null && _anioSeleccionado != null) {
+                    _cargarDias(_anioSeleccionado!, value);
+                  }
+                },
+                itemBuilder: (context) => [
+                  const PopupMenuItem<int?>(
+                      value: null, child: Text('Mes (Todos)')),
+                  ..._mesesDisponibles.map((m) => PopupMenuItem<int?>(
+                        value: m,
+                        child: Text(_nombreMes(m)),
+                      )),
+                ],
+                child: Chip(
+                  label: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(_mesSeleccionado != null
+                          ? _nombreMes(_mesSeleccionado!)
+                          : 'Mes'),
+                      const SizedBox(width: 4),
+                      const Icon(Icons.arrow_drop_down,
+                          size: 16, color: Colors.white),
+                    ],
+                  ),
+                  backgroundColor: Colors.transparent,
+                  labelStyle: const TextStyle(color: Colors.white),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: const BorderSide(color: Colors.white),
+                  ),
+                  visualDensity: VisualDensity.compact,
+                ),
+              ),
+            ),
+
+          // Día (solo días con sentencias)
+          if (_mesSeleccionado != null && _diasDisponibles.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: PopupMenuButton<int?>(
+                initialValue: _diaSeleccionado,
+                onSelected: (int? value) {
+                  setState(() => _diaSeleccionado = value);
+                  _buscar();
+                },
+                itemBuilder: (context) => [
+                  const PopupMenuItem<int?>(
+                      value: null, child: Text('Día (Todos)')),
+                  ..._diasDisponibles.map((d) => PopupMenuItem<int?>(
+                        value: d,
+                        child: Text(d.toString()),
+                      )),
+                ],
+                child: Chip(
+                  label: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(_diaSeleccionado?.toString() ?? 'Día'),
+                      const SizedBox(width: 4),
+                      const Icon(Icons.arrow_drop_down,
+                          size: 16, color: Colors.white),
+                    ],
+                  ),
+                  backgroundColor: Colors.transparent,
+                  labelStyle: const TextStyle(color: Colors.white),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: const BorderSide(color: Colors.white),
+                  ),
+                  visualDensity: VisualDensity.compact,
+                ),
+              ),
+            ),
         ],
       ),
     );
@@ -414,11 +659,14 @@ class _RepositorioJurisprudenciaScreenState
       drawer: const AppDrawer(currentRoute: '/repositorio_jurisprudencia'),
       appBar: AppBar(
         title: const Text(
-          'Jurisprudencia TSJ',
-          style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 0.5),
+          'Sala de Sentencias',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            letterSpacing: 0.5,
+            color: dorado,
+          ),
         ),
         backgroundColor: azulMarino,
-        foregroundColor: dorado,
         elevation: 0,
         actions: [
           // ✅ Contador de resultados simple
@@ -612,6 +860,12 @@ class _RepositorioJurisprudenciaScreenState
     );
   }
 
+  String _etiquetaDelito(SentenciaModel s) {
+    if (s.delito.isNotEmpty && s.delito != 'null') return s.delito;
+    if (s.materia.isNotEmpty && s.materia != 'null') return s.materia;
+    return 'Jurisprudencia Penal';
+  }
+
   Widget _buildSentenciaCard(SentenciaModel sentencia, int index) {
     return TweenAnimationBuilder(
       duration: Duration(milliseconds: 200 + (index * 30)),
@@ -630,7 +884,8 @@ class _RepositorioJurisprudenciaScreenState
         elevation: 2,
         shadowColor: azulMarino.withOpacity(0.1),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(14),
+          side: BorderSide(color: dorado.withValues(alpha: 0.4), width: 1.2),
         ),
         child: InkWell(
           onTap: () => _verSentencia(sentencia),
@@ -650,7 +905,9 @@ class _RepositorioJurisprudenciaScreenState
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: Text(
-                        sentencia.sala,
+                        _etiquetaDelito(sentencia),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           color: dorado,
                           fontSize: 10,
@@ -698,11 +955,40 @@ class _RepositorioJurisprudenciaScreenState
                       ),
                     ),
                     Text(
-                      sentencia.fechaSentencia,
+                      '${sentencia.sala} • ${sentencia.fechaSentencia}',
                       style: TextStyle(
                         color: Colors.grey[600],
                         fontSize: 12,
                       ),
+                    ),
+                    IconButton(
+                      onPressed: () => _mostrarMetadata(sentencia),
+                      icon: Icon(Icons.info_outline,
+                          size: 20,
+                          color: azulMarino.withValues(alpha: 0.55)),
+                      tooltip: 'Ver metadata',
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(),
+                      visualDensity: VisualDensity.compact,
+                    ),
+                    // ⭐ Botón para marcar como favorita/importante
+                    IconButton(
+                      onPressed: () => _toggleFavorita(sentencia),
+                      icon: Icon(
+                        _idsFavoritos.contains(sentencia.id)
+                            ? Icons.star
+                            : Icons.star_border,
+                        size: 22,
+                        color: _idsFavoritos.contains(sentencia.id)
+                            ? Colors.amber
+                            : Colors.grey[500],
+                      ),
+                      tooltip: _idsFavoritos.contains(sentencia.id)
+                          ? 'Quitar de favoritas'
+                          : 'Agregar a favoritas',
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(),
+                      visualDensity: VisualDensity.compact,
                     ),
                   ],
                 ),
@@ -732,28 +1018,39 @@ class _RepositorioJurisprudenciaScreenState
                 ],
 
                 // ✅ Resumen limpio
-                if (sentencia.resumen.isNotEmpty)
+                if (sentencia.resumen.isNotEmpty || sentencia.extracto.isNotEmpty)
                   Text(
-                    sentencia.resumen,
-                    maxLines: 2,
+                    sentencia.resumen.isNotEmpty ? sentencia.resumen : sentencia.extracto,
+                    maxLines: 4,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 13,
-                      height: 1.4,
-                      color: Colors.grey[700],
+                      height: 1.45,
+                      color: Colors.grey[800],
                     ),
                   ),
 
-                // ✅ Acción simple
-                const SizedBox(height: 8),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'Ver detalles →',
-                    style: TextStyle(
-                      color: azulMarino,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12,
+                // ✅ Pie: ver sentencia completa
+                const SizedBox(height: 10),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: () => _verSentencia(sentencia),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: azulMarino,
+                      side: const BorderSide(color: dorado),
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.description_outlined, size: 16),
+                        SizedBox(width: 6),
+                        Text('Ver sentencia completa'),
+                      ],
                     ),
                   ),
                 ),
@@ -765,13 +1062,100 @@ class _RepositorioJurisprudenciaScreenState
     );
   }
 
-  void _verSentencia(SentenciaModel sentencia) {
-    Navigator.push(
+  void _mostrarMetadata(SentenciaModel s) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: const Color(0xFF1E293B),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return Container(
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: Colors.white24,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Sentencia Nº ${s.numeroSentencia}',
+                style: const TextStyle(
+                  color: dorado,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                ),
+              ),
+              const SizedBox(height: 14),
+              _filaMeta('Sala', s.sala),
+              _filaMeta('Ponente', s.ponente),
+              _filaMeta('Fecha', s.fechaSentencia),
+              _filaMeta('Delito', s.delito),
+              _filaMeta('Materia', s.materia),
+              _filaMeta('Partes', s.partes),
+              _filaMeta('Tipo', s.tipoSentencia),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _filaMeta(String etiqueta, String valor) {
+    if (valor.isEmpty) return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 90,
+            child: Text(
+              etiqueta,
+              style: TextStyle(
+                color: Colors.white.withValues(alpha: 0.5),
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              valor,
+              style: const TextStyle(color: Colors.white, fontSize: 14),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _verSentencia(SentenciaModel sentencia) async {
+    await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => DetalleSentenciaScreen(sentencia: sentencia),
       ),
     );
+    // ⭐ Refrescar favoritas por si cambiaron desde la pantalla de detalle
+    if (mounted) {
+      final ids = await _favoritosService.obtenerIdsFavoritas();
+      if (mounted) {
+        setState(() {
+          _idsFavoritos = ids;
+          if (_soloFavoritas) _aplicarFiltroFavoritas();
+        });
+      }
+    }
   }
 }
 
@@ -790,37 +1174,206 @@ class DetalleSentenciaScreen extends StatefulWidget {
 
 class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
   static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
+  static const Color dorado = Color(0xFFEAB308);
+
+  // ⭐ Favoritas / Importantes
+  final FavoritosService _favoritosService = FavoritosService();
+  bool _esFavorita = false;
   
   bool _mostrandoAnalisisIA = false;
   bool _analizando = false;
   AnalisisProfundoSentencia? _analisisProfundo;
 
-  Future<void> _analizarConIA() async {
-    setState(() {
-      _mostrandoAnalisisIA = true;
-      _analizando = true;
-    });
+  @override
+  void initState() {
+    super.initState();
+    _cargarEstadoFavorito();
+  }
+
+  Future<void> _cargarEstadoFavorito() async {
+    final favorita = await _favoritosService.estaFavorita(widget.sentencia.id);
+    if (mounted) setState(() => _esFavorita = favorita);
+  }
+
+  Future<void> _toggleFavorita() async {
+    await _favoritosService.toggleFavorita(widget.sentencia.id);
+    if (!mounted) return;
+    setState(() => _esFavorita = !_esFavorita);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          _esFavorita ? '⭐ Agregada a Favoritas' : 'Eliminada de Favoritas',
+        ),
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 1),
+      ),
+    );
+  }
+
+  /// Compartir la sentencia (resumen + enlace oficial).
+  /// Funciona en Android, iOS y Web (Web Share API).
+  Future<void> _compartirSentencia() async {
+    final s = widget.sentencia;
+    // Al compartir se cita la fuente oficial (TSJ) para no exponer el
+    // almacenamiento interno; solo se usa la copia propia como respaldo.
+    final fuente = (s.urlTSJ.isNotEmpty && s.urlTSJ != 'null')
+        ? s.urlTSJ
+        : (s.urlParaVer.isNotEmpty ? s.urlParaVer : 'No disponible');
+
+    final texto = '⚖️ Sentencia Nº ${s.numeroSentencia}\n'
+        'Sala: ${s.sala}\n'
+        'Fecha: ${s.fechaSentencia}\n'
+        'Delito: ${s.delito}\n\n'
+        '${s.resumen}\n\n'
+        'Fuente: $fuente';
 
     try {
+      await Share.share(texto, subject: 'Sentencia Nº ${s.numeroSentencia}');
+    } catch (e) {
+      _mostrarSnack('No se pudo compartir: $e');
+    }
+  }
+
+  /// Descargar la sentencia como PDF estructurado.
+  ///
+  /// Se genera a partir de la copia HTML en R2 (copia fiel del TSJ):
+  /// párrafos continuos y justificados, sin los saltos de línea del TXT.
+  /// En Web (sin `dart:io`) se abre la copia HTML en el navegador.
+  Future<void> _descargarSentencia() async {
+    final s = widget.sentencia;
+
+    // Web: no hay `dart:io` para generar el PDF; abrir la copia en R2.
+    if (kIsWeb) {
+      if (_esUrlValida(s.urlHTML)) {
+        await _abrirUrl(s.urlHTML);
+      } else if (_esUrlValida(s.urlTSJ)) {
+        await _abrirUrl(s.urlTSJ);
+      } else {
+        _mostrarSnack('No hay documento disponible');
+      }
+      return;
+    }
+
+    // Prioridad: PDF estructurado desde la copia HTML de R2.
+    if (_esUrlValida(s.urlHTML)) {
+      showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => const AlertDialog(
+          content: Row(
+            children: [
+              SizedBox(
+                width: 24,
+                height: 24,
+                child: CircularProgressIndicator(strokeWidth: 2.5),
+              ),
+              SizedBox(width: 16),
+              Expanded(
+                child: Text('Generando PDF estructurado...'),
+              ),
+            ],
+          ),
+        ),
+      );
+      try {
+        final exito = await SentenciaPdfService.exportarYAbrir(s);
+        if (!mounted) return;
+        _mostrarSnack(
+          exito ? 'PDF generado correctamente' : 'No se pudo generar el PDF',
+        );
+      } finally {
+        if (mounted) Navigator.of(context).pop();
+      }
+      return;
+    }
+
+    // Sin copia HTML en R2: abrir la página original del TSJ.
+    if (_esUrlValida(s.urlTSJ)) {
+      await _abrirUrl(s.urlTSJ);
+      return;
+    }
+
+    _mostrarSnack('No hay documento disponible para descargar');
+  }
+
+  bool _esUrlValida(String url) =>
+      url.isNotEmpty && url != 'null' && Uri.tryParse(url)?.hasScheme == true;
+
+  Future<void> _abrirUrl(String url) async {
+    final uri = Uri.parse(url);
+    try {
+      final abierto =
+          await launchUrl(uri, mode: LaunchMode.externalApplication);
+      if (!abierto) _mostrarSnack('No se pudo abrir el documento');
+    } catch (e) {
+      _mostrarSnack('Error al abrir documento: $e');
+    }
+  }
+
+  void _mostrarSnack(String mensaje) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(mensaje),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
+  Future<void> _analizarConIA() async {
+    // 1) Si ya existe análisis guardado, mostrarlo sin gastar tokens.
+    final guardado = widget.sentencia.analisisIa;
+    if (guardado.isNotEmpty && guardado != 'null') {
+      _mostrarAnalisisBottomSheet(guardado);
+      return;
+    }
+
+    setState(() => _analizando = true);
+    try {
       await AIService.inicializar();
-      
-      final analisis = await AIService.analizarSentenciaProfundo(
-        numeroSentencia: widget.sentencia.numeroSentencia,
-        sala: widget.sentencia.sala,
-        delito: widget.sentencia.delito,
-        ponente: widget.sentencia.ponente,
-        resumen: widget.sentencia.resumen,
-        decision: widget.sentencia.decision,
-        partes: widget.sentencia.partes,
-        contenidoCompleto: widget.sentencia.contenidoCompleto,
+
+      // 2) Texto plano desde url_txt (Cloudflare) como contexto adicional.
+      String textoCompleto = '';
+      final urlTxt = widget.sentencia.urlTXT;
+      if (urlTxt.isNotEmpty && urlTxt != 'null') {
+        try {
+          final resp = await http
+              .get(Uri.parse(urlTxt))
+              .timeout(const Duration(seconds: 15));
+          if (resp.statusCode == 200) {
+            textoCompleto = utf8.decode(resp.bodyBytes);
+          }
+        } catch (e) {
+          debugPrint('⚠️ No se pudo descargar url_txt: $e');
+        }
+      }
+
+      // 3) Generar el análisis estructurado con ratio_decidendi + texto.
+      final analisis = await AIService.generarAnalisisJurisprudencial(
+        widget.sentencia.ratioDecidendi,
+        textoCompleto.isNotEmpty
+            ? textoCompleto
+            : widget.sentencia.contenidoCompleto,
       );
 
+      if (analisis.isEmpty) {
+        if (mounted) setState(() => _analizando = false);
+        return;
+      }
+
+      // 4) Persistir en Supabase (costo cero de tokens en futuras consultas).
+      try {
+        await Supabase.instance.client
+            .from('documentos')
+            .update({'analisis_ia': analisis})
+            .eq('id', widget.sentencia.id);
+      } catch (e) {
+        debugPrint('⚠️ No se pudo guardar analisis_ia: $e');
+      }
+
       if (mounted) {
-        setState(() {
-          _analisisProfundo = analisis;
-          _analizando = false;
-        });
+        setState(() => _analizando = false);
+        _mostrarAnalisisBottomSheet(analisis);
       }
     } catch (e) {
       debugPrint('Error en análisis IA: $e');
@@ -836,6 +1389,88 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
     }
   }
 
+  void _mostrarAnalisisBottomSheet(String analisis) {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: const Color(0xFF1E293B),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.6,
+        maxChildSize: 0.92,
+        minChildSize: 0.35,
+        builder: (context, scrollController) => Container(
+          padding: const EdgeInsets.fromLTRB(20, 14, 20, 28),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: Colors.white24,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 14),
+              Row(
+                children: [
+                  const Icon(Icons.auto_awesome, color: dorado, size: 22),
+                  const SizedBox(width: 8),
+                  const Expanded(
+                    child: Text(
+                      'Análisis con IA',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.close, color: Colors.white70),
+                  ),
+                ],
+              ),
+              const Divider(color: Colors.white10, height: 1),
+              const SizedBox(height: 8),
+              Expanded(
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  child: MarkdownBody(
+                    data: analisis,
+                    styleSheet: MarkdownStyleSheet(
+                      h2: const TextStyle(
+                        color: dorado,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                      p: const TextStyle(
+                        color: Colors.white,
+                        height: 1.55,
+                        fontSize: 14,
+                      ),
+                      strong: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -845,32 +1480,43 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         backgroundColor: azulMarino,
-        foregroundColor: dorado,
         elevation: 0,
         actions: [
+          // ⭐ Marcar como favorita/importante
           IconButton(
-            icon: const Icon(Icons.share_outlined),
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Función de compartir próximamente'),
-                  behavior: SnackBarBehavior.floating,
-                ),
-              );
-            },
-            tooltip: 'Compartir',
+            icon: Icon(
+              _esFavorita ? Icons.star : Icons.star_border,
+              color: _esFavorita ? Colors.amber : null,
+            ),
+            onPressed: _toggleFavorita,
+            tooltip: _esFavorita ? 'Quitar de favoritas' : 'Agregar a favoritas',
+          ),
+          IconButton(
+            icon: const Icon(Icons.ios_share),
+            onPressed: _compartirSentencia,
+            tooltip: 'Compartir sentencia',
+          ),
+          IconButton(
+            icon: const Icon(Icons.picture_as_pdf_outlined),
+            onPressed: _descargarSentencia,
+            tooltip: 'Descargar PDF estructurado',
           ),
         ],
       ),
       body: Stack(
         children: [
-          // WebView con la sentencia
-          WebViewWidget(
-            controller: WebViewController()
-              ..setJavaScriptMode(JavaScriptMode.unrestricted)
-              ..setBackgroundColor(Colors.white)
-              ..loadRequest(Uri.parse(widget.sentencia.urlFichaPenalex)),
-          ),
+          // WebView con la sentencia (móvil) / vista simple (Web: no existe
+          // webview_flutter para web, así que mostramos los datos + enlace).
+          if (kIsWeb)
+            _buildContenidoWeb()
+          else
+            WebViewWidget(
+              controller: WebViewController()
+                ..setJavaScriptMode(JavaScriptMode.unrestricted)
+                ..setBackgroundColor(Colors.white)
+                // Abrir la copia en R2 cuando exista (más estable que el TSJ).
+                ..loadRequest(Uri.parse(widget.sentencia.urlParaVer)),
+            ),
 
           // Botón flotante de IA (esquina inferior derecha)
           Positioned(
@@ -1090,6 +1736,89 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                   ),
                 ),
               ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Vista alternativa para Web (webview_flutter no soporta navegadores):
+  /// muestra los datos de la sentencia y permite abrir el documento oficial.
+  Widget _buildContenidoWeb() {
+    final s = widget.sentencia;
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildWebDato('Sala', s.sala),
+          _buildWebDato('Nº de sentencia', s.numeroSentencia),
+          _buildWebDato('Fecha', s.fechaSentencia),
+          _buildWebDato('Ponente', s.ponente),
+          _buildWebDato('Delito', s.delito),
+          _buildWebDato('Decisión', s.decision),
+          _buildWebDato('Tipo', s.tipoSentencia),
+          const Divider(height: 32),
+          const Text(
+            '📋 Resumen',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: azulMarino,
+              fontSize: 15,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(s.resumen, style: const TextStyle(fontSize: 14, height: 1.5)),
+          const SizedBox(height: 24),
+          if (s.urlParaVer.isNotEmpty)
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: _descargarSentencia,
+                icon: const Icon(Icons.open_in_new),
+                label: const Text('Abrir documento completo en el navegador'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: azulMarino,
+                  foregroundColor: dorado,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildWebDato(String etiqueta, String valor) {
+    if (valor.isEmpty || valor == 'null') return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 110,
+            child: Text(
+              etiqueta,
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.grey[600],
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              valor,
+              style: const TextStyle(
+                fontSize: 14,
+                color: azulMarino,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         ],

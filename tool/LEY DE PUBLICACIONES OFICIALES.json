@@ -1,0 +1,228 @@
+{
+  "ley_nombre": "LEY DE PUBLICACIONES OFICIALES",
+  "estructura": [
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "1",
+          "encabezado": "Objeto",
+          "texto_principal": "Esta Ley tiene por objeto regular las publicaciones oficiales de los actos jurídicos del Estado a los fines de garantizar la seguridad jurídica, la transparencia de la actuación pública y el libre acceso del Pueblo al contenido de los mismos, en el marco del Estado Democrático y Social de Derecho y de Justicia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "2",
+          "encabezado": "Finalidad",
+          "texto_principal": "Esta Ley tiene por finalidad:",
+          "numerales_literales": [
+            "1. Contribuir a garantizar la seguridad jurídica a través de la publicación diaria, sencilla, uniforme, eficaz y eficiente de los actos jurídicos del Estado.",
+            "2. Garantizar a las personas el derecho a ser informados de forma oportuna y veraz de los actos jurídicos del Estado, para el ejercicio de la democracia participativa y protagónica.",
+            "3. Desarrollar los principios de honestidad, transparencia, rendición de cuentas y responsabilidad en el ejercicio de la función pública dotando de seguridad y publicidad a los actos jurídicos del Estado."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "3",
+          "encabezado": "Principios",
+          "texto_principal": "Las publicaciones oficiales de los actos jurídicos del Estado se rigen, entre otros, por los siguientes principios: celeridad, simplicidad, seguridad, uniformidad, eficacia, eficiencia, transparencia, rendición de cuentas y responsabilidad en el ejercicio de la función pública.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "4",
+          "encabezado": "Gaceta Oficial de la República Bolivariana de Venezuela",
+          "texto_principal": "La \"Gaceta Oficial\" creada por Decreto Ejecutivo de 11 de octubre de 1872 continuará con la denominación \"Gaceta Oficial de la República Bolivariana de Venezuela\".",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "5",
+          "encabezado": "Atribuciones para la publicación de actos jurídicos",
+          "texto_principal": "La Oficina de la Secretaría del Consejo de Ministros, recibirá oficialmente los actos y documentos susceptibles de publicación en la Gaceta Oficial de la República Bolivariana de Venezuela y ordenará la publicación de los Actos Administrativos entendidos como Leyes, Decretos, Resoluciones, Órdenes, Providencias y demás documentos que así lo requieran para su validez, en la Gaceta Oficial de la República Bolivariana de Venezuela.\n\nLa Vicepresidenta Ejecutiva o Vicepresidente Ejecutivo establecerá las normas para la recepción de actos y documentos enviados al Consejo de Ministros para su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela por los órganos y entes del Poder Público.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "6",
+          "encabezado": "Servicio Autónomo de Imprenta Nacional y Gaceta Oficial",
+          "texto_principal": "El Servicio Autónomo Imprenta Nacional y Gaceta Oficial será la encargada de la edición e impresión de la Gaceta Oficial de la República Bolivariana de Venezuela.\n\nLa Gaceta Oficial de la República Bolivariana de Venezuela se publicará de forma ordinaria todos los días hábiles, sin perjuicio que se publiquen números extraordinarios cuando sea necesario. Las ediciones ordinarias y extraordinarias tendrán numeraciones independientes.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "7",
+          "encabezado": "Actos objeto de publicación",
+          "texto_principal": "Deben publicarse en la Gaceta Oficial de la República Bolivariana de Venezuela los siguientes actos jurídicos del Estado:",
+          "numerales_literales": [
+            "1. Las leyes y acuerdos de la Asamblea Nacional, así como cualquier otro acto jurídico que sea ordenado publicar por su Junta Directiva.",
+            "2. Los actos administrativos de carácter general o que interesen a un número indeterminado de personas y actos administrativos de carácter particular cuando así lo exija la ley.",
+            "3. Los decretos de la Presidenta o Presidente de la República.",
+            "4. Las resoluciones y demás actos jurídicos de efectos generales de la Vicepresidenta Ejecutiva o Vicepresidente Ejecutivo, Procuradora o Procurador General de la República, de las Ministras o Ministros del Poder Popular, así como las providencias de sus entes y órganos.",
+            "5. Las sentencias del Tribunal Supremo de Justicia que requieren publicación de conformidad con la Constitución de la República Bolivariana de Venezuela y la Ley, así como cualquier otro acto jurídico que sea ordenado publicar por su Junta Directiva, así como las providencias de sus órganos y entes.",
+            "6. Los actos jurídicos del Consejo Moral Republicano que requieren publicación de conformidad con la Constitución de la República Bolivariana de Venezuela y la Ley, así como las providencias de sus órganos y entes.",
+            "7. Los actos jurídicos del Consejo Nacional Electoral que requieren publicación de conformidad con la Constitución de la República Bolivariana de Venezuela y la Ley, así como las providencias de sus entes y órganos.",
+            "8. Los actos jurídicos del Ministerio Público que requieren publicación de conformidad con la Constitución de la República Bolivariana de Venezuela y la Ley, así como las providencias de sus órganos y entes.",
+            "9. Los actos jurídicos de la Defensoría del Pueblo que requieren publicación de conformidad con la Constitución de la República Bolivariana de Venezuela y la Ley, así como las providencias de sus órganos y entes.",
+            "10. Los actos jurídicos de la Contraloría General de la República que requieren publicación de conformidad con la Constitución de la República Bolivariana de Venezuela y la Ley, así como las providencias de sus órganos y entes.",
+            "11. Los actos jurídicos de la Defensa Pública que requieren publicación de conformidad con la Constitución de la República Bolivariana de Venezuela y la Ley, así como las providencias de sus órganos y entes.",
+            "12. Los demás actos que se consideren convenientes en concordancia con el Reglamento que rige la materia."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "8",
+          "encabezado": "Efectos de la publicación",
+          "texto_principal": "La publicación de los actos jurídicos del Estado en la Gaceta Oficial de la República Bolivariana de Venezuela le otorga carácter público y con fuerza de documento público.\n\nPara que los actos jurídicos del Poder Electoral, Poder Judicial y otras publicaciones oficiales surtan efectos deben ser publicados en la Gaceta Oficial de la República Bolivariana de Venezuela, de conformidad con el Reglamento que rige la materia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "9",
+          "encabezado": "Publicación física y digital",
+          "texto_principal": "La publicación de la Gaceta Oficial de la República Bolivariana de Venezuela acoge el sistema mixto que comprenderá uno digital y automatizado, y otro físico. La publicación física deberá contener todo el contenido publicado en la versión digital y automatizada y generará los mismos efectos establecidos en esta Ley, incluyendo su carácter público y de documento público. La contravención de esta disposición generará responsabilidad civil, administrativa y penal, según corresponda.\n\nLa Vicepresidenta Ejecutiva o Vicepresidente Ejecutivo establecerá las normas y directrices para el desarrollo, manejo y funcionamiento de las publicaciones digitales y físicas de la Gaceta Oficial de la República Bolivariana de Venezuela, incluyendo el sistema informático de las publicaciones digitales.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "10",
+          "encabezado": "Vigencia y cita de los actos",
+          "texto_principal": "Las leyes y demás actos jurídicos del Estado de efectos generales entrarán en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela o, en su defecto, a partir de la fecha que en ellos establezcan.\n\nCuando sea necesario citar Leyes y demás actos jurídicos del Estado de efectos generales se indicará el número y fecha de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "11",
+          "encabezado": "Publicación de leyes de reforma",
+          "texto_principal": "La ley de reforma de otra ley deberá publicarse de forma íntegra con las modificaciones que hubieren sido aprobadas por la Asamblea Nacional, las cuales se insertarán en su texto suprimiendo las disposiciones reformadas de manera de conservar su unidad. Esta publicación en Gaceta Oficial de la República Bolivariana de Venezuela, deberá estar precedida por la Ley que hace la reforma.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "12",
+          "encabezado": "Reimpresión por errores en los originales",
+          "texto_principal": "Cuando exista discrepancia entre el original y el acto jurídico publicado se procederá a la reimpresión del mismo en la Gaceta Oficial de la República Bolivariana de Venezuela, indicando que se trata de una nueva publicación. En estos casos el acto jurídico generará efectos desde su publicación inicial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "13",
+          "encabezado": "Órganos de remisión de actos",
+          "texto_principal": "La remisión de actos a los fines de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela deberá ser efectuada por la máxima autoridad del organismo. La remisión de actos emitidos por los entes descentralizados y órganos o servicios desconcentrados, sólo podrá efectuarse a través de su órgano de adscripción o jerárquico. La remisión de actos a los fines de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela se hará mediante oficio enviado a la sede de la Oficina de la Secretaría del Consejo de Ministros. Dicha remisión se hará a la atención de la ciudadana Secretaria Permanente del Consejo de Ministros o del ciudadano Secretario Permanente del Consejo de Ministros.\n\nLa Vicepresidenta Ejecutiva o Vicepresidente Ejecutivo establecerá las normas sobre la remisión, contenido, trámite y recepción de actos y documentos enviados al Consejo de Ministros para su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela por los órganos y entes del Poder Público. No serán procesadas las solicitudes de publicación efectuadas sin cumplir con las disposiciones de la presente Ley, salvo instrucción de la Presidenta o Presidente de la República, la Vicepresidenta Ejecutiva o Vicepresidente Ejecutivo o de la Ministra o Ministro del Poder Popular del Despacho de la Presidencia y Seguimiento de la Gestión de Gobierno.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "14",
+          "encabezado": "Índice Legislativo",
+          "texto_principal": "Cada cierre del primer período de sesiones de la Asamblea Nacional y al cierre del segundo período de sesiones deberá publicarse en un número extraordinario de la Gaceta Oficial de la República Bolivariana de Venezuela que contenga un índice de todas las leyes y actos jurídicos de efectos generales publicados durante ese período. Este índice deberá contener el nombre del acto jurídico, junto al número y fecha de su publicación y serán ordenadas según su jerarquía.\n\nAsí mismo, la Asamblea Nacional en coordinación con la Oficina de la Secretaría del Consejo de Ministros deberá publicar durante los primeros quince días de cada año un número extraordinario de la Gaceta Oficial de la República Bolivariana de Venezuela que contenga el Índice de Leyes Vigentes ordenadas según su jerarquía. Esta publicación deberá indicar las leyes y actos con rango de Ley vigentes en la República Bolivariana de Venezuela con carácter meramente informativo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "15",
+          "encabezado": "Publicaciones oficiales",
+          "texto_principal": "El Servicio Autónomo Imprenta Nacional y Gaceta Oficial podrá dar carácter oficial a las publicaciones y ediciones físicas y digitales de los actos jurídicos publicados en la Gaceta Oficial de la República Bolivariana de Venezuela. A tal efecto, deberá dictar un acto que indique las características esenciales de estas publicaciones.\n\nAsí mismo, el Servicio Autónomo Imprenta Nacional y Gaceta Oficial dictará un acto en el cual establezca los precios de las publicaciones impresas de la Gaceta Oficial, su certificación y los servicios digitales de divulgación y suscripción, así como cualquier otro servicio asociados a sus funciones.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "16",
+          "encabezado": "Difusión con fines comerciales",
+          "texto_principal": "Quienes difundan con fines comerciales el contenido de la Gaceta Oficial de la República Bolivariana de Venezuela deberán obtener una autorización previa del Servicio Autónomo Imprenta Nacional y Gaceta Oficial y pagar el precio público que sea establecido por este servicio.\n\nSe prohíbe la alteración y modificación de la edición original de la Gaceta Oficial de la República Bolivariana de Venezuela; en tal sentido no se podrá incluir logos, nombres, identificación de particulares, ni menciones de cualquier otra naturaleza.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "17",
+          "encabezado": "Derogatoria",
+          "texto_principal": "Se deroga la Ley de Publicaciones Oficiales, publicada en la Gaceta Oficial de los Estados Unidos de Venezuela número 20.546, de fecha veintidós de julio de mil novecientos cuarenta y uno.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "18",
+          "encabezado": "Vigencia",
+          "texto_principal": "Esta Ley entrará en vigencia al momento de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.\n\nDada, firmada y sellada en el Palacio Federal Legislativo, sede de la Asamblea Nacional, en Caracas, a los quince días del mes de febrero del dos mil veintidós. Años 211 de la Independencia, 162 de la Federación y 23 de la Revolución Bolivariana.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    }
+  ]
+}

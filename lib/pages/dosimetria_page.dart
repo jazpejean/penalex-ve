@@ -7,6 +7,7 @@ import '../models/calculation_model.dart';
 import '../models/delito.dart';
 import '../services/calculation_service.dart';
 import '../widgets/app_drawer.dart';
+import '../widgets/buscador_articulos_sheet.dart';
 import 'concurso_page.dart';
 
 enum UnidadTiempo {
@@ -566,6 +567,11 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
         elevation: 0,
         centerTitle: false,
         actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.menu_book_outlined, color: dorado),
+            onPressed: () => mostrarBuscadorArticulos(context),
+            tooltip: "Consultar artículos de la ley",
+          ),
           IconButton(
             icon: const Icon(Icons.refresh_rounded, color: dorado),
             onPressed: _resetCalculation,

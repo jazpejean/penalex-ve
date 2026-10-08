@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
+import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 import '../services/document_chat_service.dart';
 import '../services/template_service.dart';
 import '../services/ocr_service.dart';
+import '../services/redactor_service.dart';
+import '../services/chat_legal_export_service.dart';
+import '../services/membrete_service.dart';
 import '../models/document_template.dart';
 import '../models/chat_attachment.dart';
 
 class RedactorDocumentosScreen extends StatefulWidget {
-  const RedactorDocumentosScreen({Key? key}) : super(key: key);
+  /// Instrucción inicial (en lenguaje natural) que se envía automáticamente,
+  /// p. ej. desde el comparador de estrategias.
+  final String? initialPrompt;
+
+  const RedactorDocumentosScreen({Key? key, this.initialPrompt})
+      : super(key: key);
 
   @override
   State<RedactorDocumentosScreen> createState() => _RedactorDocumentosScreenState();
@@ -33,6 +43,7 @@ class _RedactorDocumentosScreenState extends State<RedactorDocumentosScreen> {
   bool _isLoading = false;
   bool _isProcessingAttachments = false;
   String? _generatedDocument;
+  String? _conversationId;
 
   @override
   void initState() {
@@ -42,6 +53,9 @@ class _RedactorDocumentosScreenState extends State<RedactorDocumentosScreen> {
 
   Future<void> _initializeServices() async {
     await _templateService.initialize();
+    if (_conversationId == null) {
+      _conversationId = await RedactorService.crearConversacion();
+    }
     _addMessage(
       '¡Hola! Soy tu asistente de redacción de documentos penales.\n\n'
       '📄 ¿Qué documento deseas redactar?\n\n'
@@ -53,10 +67,20 @@ class _RedactorDocumentosScreenState extends State<RedactorDocumentosScreen> {
       '• Oposición a medida cautelar\n'
       '• Solicitud de nulidad',
       isUser: false,
+      persist: false,
     );
+
+    // Si viene una instrucción inicial (p. ej. desde el comparador de
+    // estrategias), se envía automáticamente.
+    if (widget.initialPrompt != null && widget.initialPrompt!.trim().isNotEmpty) {
+      _messageController.text = widget.initialPrompt!.trim();
+      Future.delayed(const Duration(milliseconds: 400), () {
+        if (mounted) _sendMessage();
+      });
+    }
   }
 
-  void _addMessage(String content, {required bool isUser}) {
+  void _addMessage(String content, {required bool isUser, bool persist = true}) {
     setState(() {
       _messages.add(ChatMessage(
         content: content,
@@ -65,6 +89,14 @@ class _RedactorDocumentosScreenState extends State<RedactorDocumentosScreen> {
       ));
     });
     _scrollToBottom();
+
+    if (persist && _conversationId != null) {
+      RedactorService.guardarMensaje(
+        conversationId: _conversationId!,
+        role: isUser ? 'user' : 'assistant',
+        contenido: content,
+      );
+    }
   }
 
   void _scrollToBottom() {
@@ -145,9 +177,15 @@ Analiza los documentos adjuntos y extrae información relevante para el document
 
       _addMessage(response, isUser: false);
 
-      // Si el documento fue generado, guardarlo
-      if (response.contains('Documento generado:')) {
+      // Si se generó un documento, guardarlo en el historial
+      final doc = _chatService.ultimoDocumento;
+      if (doc != null && doc.isNotEmpty) {
         _generatedDocument = response;
+        RedactorService.guardarDocumento(
+          titulo: _chatService.ultimoTitulo ?? 'Documento',
+          tipo: _chatService.ultimoTitulo,
+          contenido: doc,
+        );
       }
     } catch (e) {
       _addMessage(
@@ -280,35 +318,29 @@ Analiza los documentos adjuntos y extrae información relevante para el document
     }
   }
 
-  Future<void> _exportToPDF(String content) async {
+  Future<void> _exportToPDF(String content, {bool compartir = true}) async {
     try {
-      final pdf = pw.Document();
-      
-      // Limpiar el contenido para PDF
       final cleanContent = content
           .replaceAll('✅ Documento generado:', '')
           .replaceAll(RegExp(r'━+'), '')
           .replaceAll(RegExp(r'⚠️.*'), '')
           .trim();
 
-      pdf.addPage(
-        pw.MultiPage(
-          pageFormat: PdfPageFormat.letter,
-          margin: const pw.EdgeInsets.all(50),
-          build: (context) => [
-            pw.Text(
-              cleanContent,
-              style: pw.TextStyle(fontSize: 11, lineSpacing: 1.5),
-            ),
-          ],
-        ),
+      final config = await MembreteService.obtenerConfig();
+      final ruta = await ChatLegalExportService.exportarTextoAPDF(
+        cleanContent,
+        titulo: 'Documento Legal',
+        membreteUrl: config.url,
+        alineacion: config.alineacion,
+        tamano: config.tamano,
       );
+      if (ruta == null) throw Exception('No se pudo generar el PDF');
 
-      final output = await getTemporaryDirectory();
-      final file = File('${output.path}/documento_${DateTime.now().millisecondsSinceEpoch}.pdf');
-      await file.writeAsBytes(await pdf.save());
-
-      await Share.shareXFiles([XFile(file.path)], text: 'Documento Legal');
+      if (compartir) {
+        await Share.shareXFiles([XFile(ruta)], text: 'Documento Legal');
+      } else {
+        await ChatLegalExportService.abrir(ruta);
+      }
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -319,6 +351,208 @@ Analiza los documentos adjuntos y extrae información relevante para el document
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('❌ Error al generar PDF: $e')),
+        );
+      }
+    }
+  }
+
+  Future<void> _exportToWord(String content, {bool compartir = true}) async {
+    try {
+      final cleanContent = content
+          .replaceAll('✅ Documento generado:', '')
+          .replaceAll(RegExp(r'━+'), '')
+          .replaceAll(RegExp(r'⚠️.*'), '')
+          .trim();
+
+      final config = await MembreteService.obtenerConfig();
+      final ruta = await ChatLegalExportService.exportarTextoAWord(
+        cleanContent,
+        titulo: 'Documento Legal',
+        membreteUrl: config.url,
+        alineacion: config.alineacion,
+        tamano: config.tamano,
+      );
+      if (ruta == null) throw Exception('No se pudo generar el Word');
+
+      if (compartir) {
+        await Share.shareXFiles([XFile(ruta)], text: 'Documento Legal (Word)');
+      } else {
+        await ChatLegalExportService.abrir(ruta);
+      }
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('✅ Word generado exitosamente')),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('❌ Error al generar Word: $e')),
+        );
+      }
+    }
+  }
+
+  Future<void> _mostrarMembrete() async {
+    final config = await MembreteService.obtenerConfig();
+    if (!mounted) return;
+
+    var alineacion = config.alineacion;
+    var tamano = config.tamano;
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: const Color(0xFF1E1E1E),
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => StatefulBuilder(
+        builder: (context, setModalState) => SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Membrete / Logo',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  if (config.url != null)
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(config.url!, height: 100, fit: BoxFit.contain),
+                    )
+                  else
+                    Text(
+                      'Aún no has cargado un membrete.',
+                      style: TextStyle(color: Colors.white.withValues(alpha: 0.6)),
+                    ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Alineación',
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    children: [
+                      _chip('Izquierda', 'izquierda', alineacion, (v) => setModalState(() => alineacion = v)),
+                      _chip('Centro', 'centro', alineacion, (v) => setModalState(() => alineacion = v)),
+                      _chip('Derecha', 'derecha', alineacion, (v) => setModalState(() => alineacion = v)),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Tamaño',
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    children: [
+                      _chip('Pequeño', 'pequeno', tamano, (v) => setModalState(() => tamano = v)),
+                      _chip('Medio', 'medio', tamano, (v) => setModalState(() => tamano = v)),
+                      _chip('Grande', 'grande', tamano, (v) => setModalState(() => tamano = v)),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          _seleccionarMembrete();
+                        },
+                        icon: const Icon(Icons.upload),
+                        label: Text(config.url == null ? 'Subir' : 'Reemplazar'),
+                      ),
+                      if (config.url != null)
+                        OutlinedButton.icon(
+                          onPressed: () async {
+                            Navigator.pop(context);
+                            await MembreteService.eliminarMembrete();
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('✅ Membrete eliminado')),
+                              );
+                            }
+                          },
+                          icon: const Icon(Icons.delete),
+                          label: const Text('Quitar'),
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        await MembreteService.guardarAjustes(
+                          alineacion: alineacion,
+                          tamano: tamano,
+                        );
+                        if (context.mounted) {
+                          Navigator.pop(context);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('✅ Ajustes guardados')),
+                          );
+                        }
+                      },
+                      child: const Text('Guardar ajustes'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _chip(
+    String label,
+    String value,
+    String seleccionado,
+    ValueChanged<String> onTap,
+  ) {
+    final activo = value == seleccionado;
+    return ChoiceChip(
+      label: Text(label),
+      selected: activo,
+      onSelected: (_) => onTap(value),
+      selectedColor: const Color(0xFFC5A059),
+      backgroundColor: const Color(0xFF2C2C2C),
+      labelStyle: TextStyle(color: activo ? Colors.black : Colors.white),
+    );
+  }
+
+  Future<void> _seleccionarMembrete() async {
+    try {
+      final picked = await _imagePicker.pickImage(source: ImageSource.gallery);
+      if (picked == null) return;
+      final url = await MembreteService.subirMembrete(File(picked.path));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(url != null ? '✅ Membrete guardado' : '❌ Error al guardar el membrete'),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('❌ Error: $e')),
         );
       }
     }
@@ -482,9 +716,14 @@ Analiza los documentos adjuntos y extrae información relevante para el document
         title: const Text('Redactor de Documentos'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.view_list),
-            onPressed: _showTemplateSelector,
-            tooltip: 'Ver templates',
+            icon: const Icon(Icons.badge_outlined),
+            onPressed: _mostrarMembrete,
+            tooltip: 'Membrete / logo',
+          ),
+          IconButton(
+            icon: const Icon(Icons.history),
+            onPressed: _mostrarHistorial,
+            tooltip: 'Historial',
           ),
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -493,6 +732,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                 _chatService.reset();
                 _messages.clear();
                 _generatedDocument = null;
+                _conversationId = null;
               });
               _initializeServices();
             },
@@ -707,14 +947,54 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     : const Color(0xFF2C2C2C),
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Text(
-                message.content,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                  height: 1.4,
-                ),
-              ),
+              child: message.isUser
+                  ? Text(
+                      message.content,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        height: 1.4,
+                      ),
+                    )
+                  : MarkdownBody(
+                      data: message.content,
+                      selectable: true,
+                      styleSheet: MarkdownStyleSheet(
+                        p: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          height: 1.5,
+                        ),
+                        strong: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        h1: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                        h2: const TextStyle(
+                          color: Color(0xFFC5A059),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                        h3: const TextStyle(
+                          color: Color(0xFFC5A059),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                        listBullet: const TextStyle(color: Color(0xFFC5A059)),
+                        blockquote: TextStyle(
+                          color: Colors.white.withValues(alpha: 0.8),
+                          fontStyle: FontStyle.italic,
+                        ),
+                        code: const TextStyle(
+                          color: Color(0xFFFBBF24),
+                          backgroundColor: Color(0xFF0F172A),
+                        ),
+                      ),
+                    ),
             ),
             if (isDocument) ...[
               const SizedBox(height: 8),
@@ -747,6 +1027,26 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                         vertical: 8,
                       ),
                     ),
+                  ),
+                  const SizedBox(width: 8),
+                  ElevatedButton.icon(
+                    onPressed: () => _exportToWord(message.content),
+                    icon: const Icon(Icons.description, size: 16),
+                    label: const Text('Word'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue[700],
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () =>
+                        _exportToWord(message.content, compartir: false),
+                    icon: const Icon(Icons.download, color: Colors.grey),
+                    tooltip: 'Descargar',
                   ),
                 ],
               ),
@@ -908,6 +1208,266 @@ Analiza los documentos adjuntos y extrae información relevante para el document
   }
 
   // ✨ Mostrar documentos guardados en la app
+  Future<void> _mostrarHistorial() async {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: const Color(0xFF1E1E1E),
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.85,
+        minChildSize: 0.5,
+        maxChildSize: 0.95,
+        expand: false,
+        builder: (context, scrollController) {
+          return FutureBuilder<Map<String, dynamic>>(
+            future: _cargarHistorial(),
+            builder: (context, snapshot) {
+              final docs = (snapshot.data?['docs'] as List<DocumentoRedactado>?) ?? [];
+              final convs = (snapshot.data?['convs'] as List<Map<String, dynamic>>?) ?? [];
+
+              return Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    child: const Row(
+                      children: [
+                        Icon(Icons.history, color: Color(0xFFC5A059)),
+                        SizedBox(width: 12),
+                        Text(
+                          'Historial del Redactor',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Divider(color: Colors.grey, height: 1),
+                  Expanded(
+                    child: ListView(
+                      controller: scrollController,
+                      padding: const EdgeInsets.all(16),
+                      children: [
+                        const Text(
+                          'DOCUMENTOS GENERADOS',
+                          style: TextStyle(
+                            color: Color(0xFFC5A059),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        if (docs.isEmpty)
+                          Text(
+                            'Aún no has generado documentos.',
+                            style: TextStyle(
+                              color: Colors.white.withValues(alpha: 0.6),
+                            ),
+                          ),
+                        ...docs.map((d) => Card(
+                              color: const Color(0xFF2C2C2C),
+                              margin: const EdgeInsets.only(bottom: 8),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: ListTile(
+                                leading: const Icon(
+                                  Icons.description,
+                                  color: Color(0xFFC5A059),
+                                ),
+                                title: Text(
+                                  d.titulo,
+                                  style: const TextStyle(color: Colors.white),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                subtitle: Text(
+                                  _formatTimestamp(d.fechaCreacion),
+                                  style: TextStyle(
+                                    color: Colors.white.withValues(alpha: 0.5),
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                trailing: PopupMenuButton(
+                                  icon: Icon(
+                                    Icons.more_vert,
+                                    color: Colors.white.withValues(alpha: 0.7),
+                                  ),
+                                  itemBuilder: (context) => [
+                                    const PopupMenuItem(
+                                      value: 'ver',
+                                      child: Text('Ver / copiar / PDF'),
+                                    ),
+                                    const PopupMenuItem(
+                                      value: 'eliminar',
+                                      child: Text('Eliminar'),
+                                    ),
+                                  ],
+                                  onSelected: (v) {
+                                    if (v == 'eliminar') {
+                                      RedactorService.eliminarDocumento(d.id);
+                                      Navigator.pop(context);
+                                    } else {
+                                      _mostrarDocumentoGuardado(d);
+                                    }
+                                  },
+                                ),
+                                onTap: () => _mostrarDocumentoGuardado(d),
+                              ),
+                            )),
+                        const SizedBox(height: 20),
+                        const Text(
+                          'CONVERSACIONES',
+                          style: TextStyle(
+                            color: Color(0xFFC5A059),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        if (convs.isEmpty)
+                          Text(
+                            'No hay conversaciones guardadas.',
+                            style: TextStyle(
+                              color: Colors.white.withValues(alpha: 0.6),
+                            ),
+                          ),
+                        ...convs.map((c) => ListTile(
+                              leading: const Icon(
+                                Icons.chat_outlined,
+                                color: Color(0xFFC5A059),
+                              ),
+                              title: Text(
+                                c['title'] as String? ?? 'Redacción',
+                                style: const TextStyle(color: Colors.white),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              subtitle: Text(
+                                'Conversación guardada',
+                                style: TextStyle(
+                                  color: Colors.white.withValues(alpha: 0.5),
+                                  fontSize: 12,
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.pop(context);
+                                _cargarConversacion(c['id'] as String);
+                              },
+                            )),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+
+  Future<Map<String, dynamic>> _cargarHistorial() async {
+    final docs = await RedactorService.obtenerDocumentos();
+    final convs = await RedactorService.obtenerConversaciones();
+    return {'docs': docs, 'convs': convs};
+  }
+
+  Future<void> _cargarConversacion(String conversationId) async {
+    final mensajes = await RedactorService.obtenerMensajes(conversationId);
+    if (!mounted) return;
+    setState(() {
+      _conversationId = conversationId;
+      _messages = mensajes
+          .map((m) => ChatMessage(
+                content: m['content'] as String? ?? '',
+                isUser: m['role'] == 'user',
+                timestamp: DateTime.tryParse(m['timestamp'] as String? ?? '') ?? DateTime.now(),
+              ))
+          .toList();
+      _generatedDocument = null;
+    });
+    _scrollToBottom();
+  }
+
+  Future<void> _mostrarDocumentoGuardado(DocumentoRedactado doc) async {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: const Color(0xFF1E1E1E),
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.85,
+        minChildSize: 0.5,
+        maxChildSize: 0.95,
+        expand: false,
+        builder: (context, scrollController) => Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      doc.titulo,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.copy, color: Color(0xFFC5A059)),
+                    tooltip: 'Copiar',
+                    onPressed: () => _copyToClipboard(doc.contenido),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.picture_as_pdf, color: Colors.redAccent),
+                    tooltip: 'Exportar PDF',
+                    onPressed: () => _exportToPDF(doc.contenido),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.description, color: Colors.blueAccent),
+                    tooltip: 'Exportar Word',
+                    onPressed: () => _exportToWord(doc.contenido),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(color: Colors.grey, height: 1),
+            Expanded(
+              child: SingleChildScrollView(
+                controller: scrollController,
+                padding: const EdgeInsets.all(16),
+                child: MarkdownBody(
+                  data: doc.contenido,
+                  selectable: true,
+                  styleSheet: MarkdownStyleSheet(
+                    p: const TextStyle(color: Colors.white, fontSize: 15, height: 1.5),
+                    strong: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    h1: const TextStyle(color: Color(0xFFC5A059), fontWeight: FontWeight.bold, fontSize: 20),
+                    h2: const TextStyle(color: Color(0xFFC5A059), fontWeight: FontWeight.bold, fontSize: 18),
+                    listBullet: const TextStyle(color: Color(0xFFC5A059)),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Future<void> _mostrarDocumentosGuardados() async {
     showModalBottomSheet(
       context: context,

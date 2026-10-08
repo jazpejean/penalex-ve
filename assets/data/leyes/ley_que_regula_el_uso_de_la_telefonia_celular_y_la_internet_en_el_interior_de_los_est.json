@@ -1,0 +1,347 @@
+{
+ "id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est",
+ "codigo": "RTCII",
+ "nombre": "Ley que Regula el Uso de la Telefonía Celular y la Internet en el Interior de los Est",
+ "rama": "Derecho Penal y Criminológico",
+ "anio": null,
+ "archivo": "09. Ley que Regula el Uso de la Telefonía Celular y la Internet en el Interior de los Est.docx",
+ "orden": 21,
+ "num_articulos": 15,
+ "num_secciones": 10,
+ "preambulo": null,
+ "secciones": [
+  {
+   "id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S1",
+   "tipo": "TITULO",
+   "numero": "I",
+   "titulo": "DISPOSICIONES GENERALES",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 1,
+   "disposicion": false
+  },
+  {
+   "id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S2",
+   "tipo": "TITULO",
+   "numero": "II",
+   "titulo": "DE LA REGULACIÓN DE LAS TELECOMUNICACIONES EN LOS",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 2,
+   "disposicion": false
+  },
+  {
+   "id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S3",
+   "tipo": "CAPITULO",
+   "numero": "I",
+   "titulo": "De los equipos de bloqueo de señales",
+   "nivel": 3,
+   "parent_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S2",
+   "orden": 3,
+   "disposicion": false
+  },
+  {
+   "id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S4",
+   "tipo": "CAPITULO",
+   "numero": "II",
+   "titulo": "De la comunicación externa de los reclusos",
+   "nivel": 3,
+   "parent_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S2",
+   "orden": 4,
+   "disposicion": false
+  },
+  {
+   "id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S5",
+   "tipo": "CAPITULO",
+   "numero": "III",
+   "titulo": "De la cooperación de las empresas de telecomunicaciones",
+   "nivel": 3,
+   "parent_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S2",
+   "orden": 5,
+   "disposicion": false
+  },
+  {
+   "id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S6",
+   "tipo": "TITULO",
+   "numero": "III",
+   "titulo": "DE LAS SANCIONES",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 6,
+   "disposicion": false
+  },
+  {
+   "id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S7",
+   "tipo": "CAPITULO",
+   "numero": "I",
+   "titulo": "De los delitos",
+   "nivel": 3,
+   "parent_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S6",
+   "orden": 7,
+   "disposicion": false
+  },
+  {
+   "id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S8",
+   "tipo": "CAPITULO",
+   "numero": "II",
+   "titulo": "Sanción administrativa",
+   "nivel": 3,
+   "parent_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S6",
+   "orden": 8,
+   "disposicion": false
+  },
+  {
+   "id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S9",
+   "tipo": "TITULO",
+   "numero": "IV",
+   "titulo": "DISPOSICIONES TRANSITORIAS Y FINAL",
+   "nivel": 2,
+   "parent_id": null,
+   "orden": 9,
+   "disposicion": false
+  },
+  {
+   "id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S10",
+   "tipo": "CAPITULO",
+   "numero": "I",
+   "titulo": "Disposiciones Transitorias",
+   "nivel": 3,
+   "parent_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S9",
+   "orden": 10,
+   "disposicion": false
+  }
+ ],
+ "articulos": [
+  {
+   "numero_texto": "1",
+   "numero": 1,
+   "titulo": null,
+   "seccion_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Esta Ley tiene por objeto prevenir que desde el interior de los establecimientos penitenciarios del país se ejecuten delitos a través de la utilización de la telefonía celular, la internet y, en general, de todos los servicios de voz y datos que ofrecen las compañías de telecomunicaciones."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Centros de reclusión regidos por esta Ley"
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES"
+  },
+  {
+   "numero_texto": "2",
+   "numero": 2,
+   "titulo": null,
+   "seccion_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S1",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Esta Ley regirá en todos los establecimientos penitenciarios de régimen cerrado del país, destinados a procesados judiciales o a penados, así como también en los que coexistan procesados con penados."
+    }
+   ],
+   "seccion_label": "TITULO I: DISPOSICIONES GENERALES"
+  },
+  {
+   "numero_texto": "3",
+   "numero": 3,
+   "titulo": null,
+   "seccion_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio del Poder Popular para el Servicio Penitenciario deberá adquirir e instalar equipos destinados a inhibir, bloquear o anular de manera permanente la señal de telefonía celular y la Internet en el interior de los establecimientos penitenciarios del país."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "No afectación"
+    }
+   ],
+   "seccion_label": "TITULO II: DE LA REGULACIÓN DE LAS TELECOMUNICACIONES EN LOS · CAPITULO I: De los equipos de bloqueo de señales"
+  },
+  {
+   "numero_texto": "4",
+   "numero": 4,
+   "titulo": null,
+   "seccion_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "De ninguna manera los equipos y las acciones destinadas a inhibir, bloquear o anular la señal de telefonía celular y la internet en el interior de los centros de reclusión regidos por esta Ley podrán afectar a las comunidades aledañas."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Supervisión periódica"
+    }
+   ],
+   "seccion_label": "TITULO II: DE LA REGULACIÓN DE LAS TELECOMUNICACIONES EN LOS · CAPITULO I: De los equipos de bloqueo de señales"
+  },
+  {
+   "numero_texto": "5",
+   "numero": 5,
+   "titulo": null,
+   "seccion_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Periódicamente el Ministerio del Poder Popular para el Servicio Penitenciario y la Comisión Nacional de Telecomunicaciones (CONATEL) deberán verificar el correcto funcionamiento de los equipos destinados a bloquear o inhibir la telefonía celular y la internet en los establecimientos penitenciarios del país."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Actualización"
+    }
+   ],
+   "seccion_label": "TITULO II: DE LA REGULACIÓN DE LAS TELECOMUNICACIONES EN LOS · CAPITULO I: De los equipos de bloqueo de señales"
+  },
+  {
+   "numero_texto": "6",
+   "numero": 6,
+   "titulo": null,
+   "seccion_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S3",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "A los efectos de garantizar en el tiempo los objetivos de esta Ley, el Ministerio del Poder Popular para el Servicio Penitenciario, cuando se haga imprescindible por los avances tecnológicos, deberá hacer lo necesario para actualizar los equipos a los que se refiere este capítulo."
+    }
+   ],
+   "seccion_label": "TITULO II: DE LA REGULACIÓN DE LAS TELECOMUNICACIONES EN LOS · CAPITULO I: De los equipos de bloqueo de señales"
+  },
+  {
+   "numero_texto": "7",
+   "numero": 7,
+   "titulo": null,
+   "seccion_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "A solicitud del Ministerio del Poder Popular para el Servicio Penitenciario, se instalarán teléfonos públicos fijos alámbricos en todos los establecimientos penitenciarios del país a los fines de garantizar la posibilidad de comunicación externa de los reclusos. Esto se realizará a través de una central telefónica pública."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Programación"
+    }
+   ],
+   "seccion_label": "TITULO II: DE LA REGULACIÓN DE LAS TELECOMUNICACIONES EN LOS · CAPITULO II: De la comunicación externa de los reclusos"
+  },
+  {
+   "numero_texto": "8",
+   "numero": 8,
+   "titulo": null,
+   "seccion_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Los teléfonos públicos fijos alámbricos a los que se refiere el artículo anterior, deberán ser programados para reproducir, al principio de cada comunicación, un mensaje grabado en el cual se indicará el nombre y la ubicación del establecimiento penitenciario desde donde se origina la llamada."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Frecuencia y duración"
+    }
+   ],
+   "seccion_label": "TITULO II: DE LA REGULACIÓN DE LAS TELECOMUNICACIONES EN LOS · CAPITULO II: De la comunicación externa de los reclusos"
+  },
+  {
+   "numero_texto": "9",
+   "numero": 9,
+   "titulo": null,
+   "seccion_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "El Ministerio del Poder Popular para el Servicio Penitenciario determinará la frecuencia y el tiempo de duración de las llamadas que puedan realizar los reclusos."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Prohibición"
+    }
+   ],
+   "seccion_label": "TITULO II: DE LA REGULACIÓN DE LAS TELECOMUNICACIONES EN LOS · CAPITULO II: De la comunicación externa de los reclusos"
+  },
+  {
+   "numero_texto": "10",
+   "numero": 10,
+   "titulo": null,
+   "seccion_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Se prohíbe la instalación de redes alámbricas de comunicación destinadas a prestar los servicios de internet, voz y datos en los establecimientos penitenciarios del país."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Excepción"
+    }
+   ],
+   "seccion_label": "TITULO II: DE LA REGULACIÓN DE LAS TELECOMUNICACIONES EN LOS · CAPITULO II: De la comunicación externa de los reclusos"
+  },
+  {
+   "numero_texto": "11",
+   "numero": 11,
+   "titulo": null,
+   "seccion_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S4",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "A los fines de contribuir con la formación educativa y la capacitación para el trabajo de los privados de libertad, así como para facilitar las necesidades de comunicación del personal de los recintos carcelarios, las autoridades penitenciarias podrán contratar con las compañías de telecomunicaciones las redes alámbricas a las que se refiere el artículo anterior. La utilización de las mismas por parte de los reclusos se hará siempre bajo la estricta supervisión y control de las autoridades penitenciarias."
+    }
+   ],
+   "seccion_label": "TITULO II: DE LA REGULACIÓN DE LAS TELECOMUNICACIONES EN LOS · CAPITULO II: De la comunicación externa de los reclusos"
+  },
+  {
+   "numero_texto": "12",
+   "numero": 12,
+   "titulo": null,
+   "seccion_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S5",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las empresas de telecomunicaciones que prestan servicio en el país deberán brindar, cada vez que así sea requerido por el Ministerio del Poder Popular para el Servicio Penitenciario, la asesoría técnica necesaria para alcanzar los objetivos de esta Ley."
+    }
+   ],
+   "seccion_label": "TITULO II: DE LA REGULACIÓN DE LAS TELECOMUNICACIONES EN LOS · CAPITULO III: De la cooperación de las empresas de telecomunicaciones"
+  },
+  {
+   "numero_texto": "13",
+   "numero": 13,
+   "titulo": null,
+   "seccion_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Quien introduzca o facilite la introducción de teléfonos celulares u otros equipos tecnológicos de comunicación personal a los establecimientos penitenciarios con la finalidad de que sean utilizados por los reclusos, será sancionado con prisión de tres a cinco años. La pena será de cuatro a seis años de prisión cuando el autor del delito sea funcionario o empleado público."
+    },
+    {
+     "tipo": "parrafo",
+     "texto": "Afectación de equipos"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LAS SANCIONES · CAPITULO I: De los delitos"
+  },
+  {
+   "numero_texto": "14",
+   "numero": 14,
+   "titulo": null,
+   "seccion_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S7",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Quien intencionalmente dañe, apague o de alguna forma obstruya, aun de forma temporal, el funcionamiento ordinario de alguno de los equipos destinados a anular la señal de los teléfonos celulares y la internet en los establecimientos penitenciarios del país, será sancionado con prisión de cuatro a seis años. La pena será de seis a ocho años de prisión cuando el autor del delito sea funcionario o empleado público."
+    }
+   ],
+   "seccion_label": "TITULO III: DE LAS SANCIONES · CAPITULO I: De los delitos"
+  },
+  {
+   "numero_texto": "15",
+   "numero": 15,
+   "titulo": null,
+   "seccion_id": "ley_que_regula_el_uso_de_la_telefonia_celular_y_la_internet_en_el_interior_de_los_est_S8",
+   "parrafos": [
+    {
+     "tipo": "parrafo",
+     "texto": "Las personas jurídicas que en violación de esta Ley instalen en establecimientos penitenciarios del país redes alámbricas destinadas a prestar los servicios de voz y datos para la comunicación de los reclusos, serán sancionadas por la Comisión Nacional de Telecomunicaciones con multa de dos mil (2.000 U.T.) a tres mil Unidades Tributarias (3.000 U.T.) En caso de reincidencia la multa será de tres mil Unidades Tributarias (3.000 U.T.) a cinco mil Unidades Tributarias (5.000 U.T.)"
+    }
+   ],
+   "seccion_label": "TITULO III: DE LAS SANCIONES · CAPITULO II: Sanción administrativa"
+  }
+ ]
+}

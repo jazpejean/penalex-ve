@@ -14,6 +14,8 @@ class SentenciaModel {
   final String decision;
   final String resumen;
   final String extracto;
+  final String ratioDecidendi;
+  final String analisisIa;
   final String urlTSJ;
   final String urlHTML;
   final String urlTXT;
@@ -37,6 +39,8 @@ class SentenciaModel {
     required this.decision,
     required this.resumen,
     required this.extracto,
+    this.ratioDecidendi = '',
+    this.analisisIa = '',
     required this.urlTSJ,
     required this.urlHTML,
     required this.urlTXT,
@@ -46,6 +50,26 @@ class SentenciaModel {
     required this.tienePDF,
     this.timestamp,
   });
+
+  /// URL priorizada para ABRIR la sentencia completa.
+  ///
+  /// [urlTXT] NO se usa aquí: es exclusivo del RAG (contexto/IA). Para abrir
+  /// se prioriza la copia HTML propia alojada en R2, luego la ficha y por
+  /// último el servidor del TSJ.
+  String get urlParaVer {
+    if (urlHTML.isNotEmpty && urlHTML != 'null') return urlHTML;
+    if (urlFichaPenalex.isNotEmpty && urlFichaPenalex != 'null') {
+      return urlFichaPenalex;
+    }
+    if (urlTSJ.isNotEmpty && urlTSJ != 'null') return urlTSJ;
+    return '';
+  }
+
+  /// `true` si la sentencia tiene una copia HTML propia en R2.
+  bool get tieneCopiaR2 {
+    final html = urlHTML.trim();
+    return html.isNotEmpty && html != 'null';
+  }
 
   /// Constructor desde Supabase
   factory SentenciaModel.fromSupabase(Map<String, dynamic> data) {
@@ -63,9 +87,13 @@ class SentenciaModel {
       decision: data['decision'] ?? '',
       resumen: data['resumen_ia'] ?? '',
       extracto: data['extracto'] ?? '',
+      ratioDecidendi: data['ratio_decidendi'] ?? '',
+      analisisIa: data['analisis_ia'] ?? '',
       urlTSJ: data['url_tsj'] ?? '',
       urlHTML: data['url_html'] ?? '',
       urlTXT: data['url_txt'] ?? '',
+      // Priorizar la copia HTML propia (estable) antes que el servidor del TSJ.
+      // (El TXT queda solo para RAG, no para abrir la sentencia.)
       urlFichaPenalex: data['url_html'] ?? data['url_tsj'] ?? '',
       contenidoCompleto: data['extracto'] ?? '',
       esJurisprudencia: data['es_jurisprudencia'] ?? false,
@@ -94,6 +122,8 @@ class SentenciaModel {
       decision: data['decision'] ?? '',
       resumen: data['resumen'] ?? '',
       extracto: data['extracto'] ?? '',
+      ratioDecidendi: data['ratio_decidendi'] ?? '',
+      analisisIa: data['analisis_ia'] ?? '',
       urlTSJ: data['url_tsj_original'] ?? '',
       urlHTML: data['url_html'] ?? '',
       urlTXT: data['url_txt'] ?? '',
@@ -118,6 +148,8 @@ class SentenciaModel {
       'decision': decision,
       'resumen_ia': resumen,
       'extracto': extracto,
+      'ratio_decidendi': ratioDecidendi,
+      'analisis_ia': analisisIa,
       'url_tsj': urlTSJ,
       'url_html': urlHTML,
       'url_txt': urlTXT,

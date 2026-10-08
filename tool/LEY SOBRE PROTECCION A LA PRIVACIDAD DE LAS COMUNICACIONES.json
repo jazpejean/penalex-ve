@@ -1,0 +1,117 @@
+{
+  "ley_nombre": "LEY SOBRE PROTECCION A LA PRIVACIDAD DE LAS COMUNICACIONES",
+  "estructura": [
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "1",
+          "encabezado": null,
+          "texto_principal": "La presente Ley tiene por objeto proteger la privacidad, confidencialidad, inviolabilidad y secreto de las comunicaciones que se produzcan entre dos o más personas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "2",
+          "encabezado": null,
+          "texto_principal": "El que arbitraria, clandestina o fraudulentamente grabe o se imponga de una comunicación entre otras personas, la interrumpa o impida, será castigado con prisión de tres (3) a cinco (5) años.\n\nEn la misma pena incurrirá, salvo que el hecho constituya delito más grave, quien revele, en todo o en parte, mediante cualquier medio de información, el contenido de las comunicaciones indicadas en la primera parte de este artículo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "3",
+          "encabezado": null,
+          "texto_principal": "El que, sin estar autorizado, conforme a la presente Ley, instale aparatos o instrumentos con el fin de grabar o impedir las comunicaciones entre otras personas, será castigado por prisión de tres (3) a cinco (5) años.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "4",
+          "encabezado": null,
+          "texto_principal": "El que, con el fin de obtener alguna utilidad para si o para otro, o de ocasionar un daño, forje o altere el contenido de una comunicación, será castigado, siempre que haga uso de dicho contenido o deje que otros lo usen, con prisión de tres (3) a cinco (5) años.\n\nCon la misma pena será castigado quien haya hecho uso o se haya aprovechado del contenido de la comunicación forjada o alterada, aunque no haya tomado parte en la falsificación o la haya recibido de fuente anónima.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "5",
+          "encabezado": null,
+          "texto_principal": "El que perturbe la tranquilidad de otra persona mediante el uso de información obtenida por procedimientos condenados por esta Ley y creare estados de angustia, incertidumbre, temor o terror, será castigado con prisión de seis (6) a treinta (30) meses.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "6",
+          "encabezado": null,
+          "texto_principal": "Las autoridades de policía, como auxiliares de la administración de justicia, podrán impedir, interrumpir, interceptar o gravar comunicaciones, únicamente a los fines de la investigación de los siguientes hechos punibles:",
+          "numerales_literales": [
+            "a) Delitos contra la seguridad o independencia del Estado;",
+            "b) Delitos previstos en la Ley Orgánica de Salvaguarda del Patrimonio Público;",
+            "c) Delitos contemplados en la Ley Orgánica sobre Sustancias Estupefacientes y Psicotrópicas; y",
+            "d) Delitos de secuestro y extorsión."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "7",
+          "encabezado": null,
+          "texto_principal": "En los casos señalados en el artículo anterior, las autoridades de policía, como auxiliares de la administración de Justicia, solicitarán razonadamente al Juez de Primera Instancia en lo penal, que tenga competencia territorial en el lugar donde se realizaría la intervención, la correspondiente autorización, con expreso señalamiento del tiempo de duración, que no excederá de sesenta (60) días, pudiendo acordarse prórrogas sucesivas mediante el mismo procedimiento y por lapsos iguales de tiempo, lugares, medios y demás extremos pertinentes. El Juez notificará, de inmediato, de este procedimiento al Fiscal del Ministerio Público.\n\nExcepcionalmente, en casos de extrema necesidad y urgencia, los órganos de policía podrán actuar sin autorización judicial previa, notificando de inmediato al Juez de Primera Instancia en lo Penal, sobre esta actuación, en acta motivada que se acompañará a las notificaciones y a los efectos de la autorización que corresponda, en un lapso no mayor de ocho (8) horas.\n\nEn caso de inobservancia del procedimiento aquí previsto, la intervención, grabación o interceptación será ilícita y no surtirá efecto probatorio alguno y los responsables serán castigados con prisión de tres (3) a cinco (5) años.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "8",
+          "encabezado": null,
+          "texto_principal": "Toda grabación autorizada conforme a lo previsto en la presente Ley, será de uso exclusivo de las autoridades policiales y judiciales encargadas de su investigación y procesamiento, quedando en consecuencia prohibido a tales funcionarios divulgar la información obtenida.\n\nSi los funcionarios señalados en este artículo infringen la disposición antes señalada serán castigados con la pena establecida en el artículo 2 de esta Ley aumentada hasta las dos terceras (2/3) partes",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "9",
+          "encabezado": null,
+          "texto_principal": "La acción, para el enjuiciamiento de los delitos tipificados en la presente Ley, se ejercerá por acusación de parte agraviada.\n\nSe procederá de oficio si el presunto autor es o era el momento de la interceptación:\n\n1. Funcionario o empleado público.\n\n2. Funcionario o empleado de los servicios de teléfonos.\n\n3. Funcionario o empleado de los cuerpos Policiales o de seguridad del Estado.\n\nDada, firmada y sellada en el Palacio Federal Legislativo, en Caracas a los veintiocho días del mes de noviembre de mil novecientos noventa y uno. Años 181 de la Independencia y 132 de la Federación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    }
+  ]
+}
