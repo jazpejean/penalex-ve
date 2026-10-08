@@ -7,18 +7,25 @@ import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 
+import '../logic/dosimetria_engine.dart';
 import '../logic/report_generator.dart';
 import '../models/calculation_model.dart';
 import '../models/delito.dart';
 import '../services/pdf_service.dart';
+import '../utils/pena_utils.dart';
 import '../utils/storage_manager.dart';
 import '../widgets/app_drawer.dart';
 import 'dosimetria_page.dart';
 
 class ComputoPage extends StatefulWidget {
-
   const ComputoPage({
-    required this.delitos, required this.concurso, required this.admisionHechos, required this.fraccionAdmision, required this.penaTotal, this.articuloConcurso = '', super.key,
+    required this.delitos,
+    required this.concurso,
+    required this.admisionHechos,
+    required this.fraccionAdmision,
+    required this.penaTotal,
+    this.articuloConcurso = '',
+    super.key,
   });
   final List<Delito> delitos;
   final TipoConcurso concurso;
@@ -56,7 +63,8 @@ class _ComputoPageState extends State<ComputoPage> {
   String _tiempoRestante = '';
 
   // Controladores y validación
-  final TextEditingController _fechaDetencionController = TextEditingController();
+  final TextEditingController _fechaDetencionController =
+      TextEditingController();
   final TextEditingController _fechaCondenaController = TextEditingController();
   bool _fechaDetencionValida = true;
   bool _fechaCondenaValida = true;
@@ -111,7 +119,8 @@ class _ComputoPageState extends State<ComputoPage> {
     }
 
     final diferencia = _diferenciaComercial(_fechaDetencion!, hasta);
-    _tiempoDetenido = _formatearDuracion(diferencia[0], diferencia[1], diferencia[2]);
+    _tiempoDetenido =
+        _formatearDuracion(diferencia[0], diferencia[1], diferencia[2]);
 
     _fechaCumplimiento = _sumarPena(_fechaDetencion!, widget.penaTotal);
 
@@ -119,7 +128,8 @@ class _ComputoPageState extends State<ComputoPage> {
     if (hasta.isAfter(_fechaCumplimiento)) {
       _tiempoRestante = '0 años, 0 meses, 0 días';
     } else {
-      _tiempoRestante = _formatearDuracion(diferenciaRestante[0], diferenciaRestante[1], diferenciaRestante[2]);
+      _tiempoRestante = _formatearDuracion(
+          diferenciaRestante[0], diferenciaRestante[1], diferenciaRestante[2]);
     }
 
     setState(() {});
@@ -240,7 +250,8 @@ class _ComputoPageState extends State<ComputoPage> {
     String formateado = buffer.toString();
     if (formateado.length > 10) formateado = formateado.substring(0, 10);
     controller.text = formateado;
-    controller.selection = TextSelection.fromPosition(TextPosition(offset: controller.text.length));
+    controller.selection = TextSelection.fromPosition(
+        TextPosition(offset: controller.text.length));
   }
 
   Future<void> _seleccionarFecha(BuildContext context, bool esDetencion) async {
@@ -252,7 +263,8 @@ class _ComputoPageState extends State<ComputoPage> {
       builder: (context, child) {
         return Theme(
           data: ThemeData.light().copyWith(
-            colorScheme: const ColorScheme.light(primary: azulMarino), dialogTheme: const DialogThemeData(backgroundColor: Colors.white),
+            colorScheme: const ColorScheme.light(primary: azulMarino),
+            dialogTheme: const DialogThemeData(backgroundColor: Colors.white),
           ),
           child: child!,
         );
@@ -285,14 +297,14 @@ class _ComputoPageState extends State<ComputoPage> {
         fechaCondena: _usarFechaActual ? DateTime.now() : _fechaCondena,
       );
     }
-    
-    final expediente = _expedienteController.text.trim().isEmpty 
-        ? 'S/N' 
+
+    final expediente = _expedienteController.text.trim().isEmpty
+        ? 'S/N'
         : _expedienteController.text.trim();
-    final acusado = _acusadoController.text.trim().isEmpty 
-        ? 'No especificado' 
+    final acusado = _acusadoController.text.trim().isEmpty
+        ? 'No especificado'
         : _acusadoController.text.trim();
-    
+
     return await ReportGenerator.generarReportePDF(
       delitos: widget.delitos,
       concurso: widget.concurso,
@@ -301,8 +313,19 @@ class _ComputoPageState extends State<ComputoPage> {
       computo: computoData,
       expediente: expediente,
       acusado: acusado,
-      articuloConcurso: widget.articuloConcurso, // Pasar el artículo desde ConcursoPage
+      articuloConcurso:
+          widget.articuloConcurso, // Pasar el artículo desde ConcursoPage
     );
+  }
+
+  String _fracTexto(double v) {
+    const double e = 0.001;
+    if ((v - 1 / 6).abs() < e) return '1/6';
+    if ((v - 1 / 4).abs() < e) return '1/4';
+    if ((v - 1 / 3).abs() < e) return '1/3';
+    if ((v - 0.5).abs() < e) return '1/2';
+    if ((v - 2 / 3).abs() < e) return '2/3';
+    return v.toStringAsFixed(2);
   }
 
   String _generarReporte() {
@@ -310,24 +333,54 @@ class _ComputoPageState extends State<ComputoPage> {
     final StringBuffer buffer = StringBuffer();
     buffer.writeln('INFORME TÉCNICO DE DOSIMETRÍA JURÍDICA');
     buffer.writeln('=====================================\n');
-    
-    buffer.writeln('Expediente: ${_expedienteController.text.trim().isEmpty ? "S/N" : _expedienteController.text.trim()}');
-    buffer.writeln('Acusado(s): ${_acusadoController.text.trim().isEmpty ? "No especificado" : _acusadoController.text.trim()}\n');
-    
+
+    buffer.writeln(
+        'Expediente: ${_expedienteController.text.trim().isEmpty ? "S/N" : _expedienteController.text.trim()}');
+    buffer.writeln(
+        'Acusado(s): ${_acusadoController.text.trim().isEmpty ? "No especificado" : _acusadoController.text.trim()}\n');
+
     buffer.writeln('FECHA CUMPLIMIENTO ESTIMADA:');
-    buffer.writeln(_sinDetenido || _fechaDetencion == null 
-        ? 'Sin detención registrada' 
+    buffer.writeln(_sinDetenido || _fechaDetencion == null
+        ? 'Sin detención registrada'
         : _formatearFecha(_fechaCumplimiento));
     buffer.writeln();
-    
-    buffer.writeln('TIEMPO DETENIDO: ${_sinDetenido || _fechaDetencion == null ? "No aplica" : _tiempoDetenido}');
-    buffer.writeln('TIEMPO POR CUMPLIR: ${_sinDetenido || _fechaDetencion == null ? "No aplica" : _tiempoRestante}');
-    
+
+    buffer.writeln(
+        'TIEMPO DETENIDO: ${_sinDetenido || _fechaDetencion == null ? "No aplica" : _tiempoDetenido}');
+    buffer.writeln(
+        'TIEMPO POR CUMPLIR: ${_sinDetenido || _fechaDetencion == null ? "No aplica" : _tiempoRestante}');
+
+    // Delitos y cálculo individual
+    buffer.writeln();
+    buffer.writeln('DELITOS PROCESADOS:');
+    for (final Delito d in widget.delitos) {
+      buffer.writeln(
+          '- ${d.nombre.isEmpty ? "SIN ESPECIFICAR" : d.nombre}: pena ${PenaUtils.formatPena(d.penaMin)} - ${PenaUtils.formatPena(d.penaMax)} (término medio ${PenaUtils.formatPena(d.terminoMedio)}) -> ${PenaUtils.formatPena(d.calcularPenaIndividualizada())}');
+      for (final AjusteAdicional a in d.ajustesAdicionales) {
+        buffer.writeln(
+            '    Ajuste adicional (ley especial): ${a.esAgravante ? "Agravante" : "Atenuante"}${a.nombre.isEmpty ? "" : " (${a.nombre})"} ${_fracTexto(a.fraccion)}');
+      }
+    }
+
+    // Concurso, tope y admisión: mismo motor que el PDF.
+    final ResultadoConcurso res = DosimetriaEngine.calcularConcursoDetallado(
+      delitos: widget.delitos,
+      concurso: widget.concurso,
+      admisionHechos: widget.admisionHechos,
+      fraccionAdmision: widget.fraccionAdmision,
+    );
+    buffer.writeln();
+    buffer.writeln('CONCURSO APLICADO: ${res.articuloAplicado}');
+    for (final String paso in res.pasos) {
+      buffer.writeln('  - $paso');
+    }
+
     return buffer.toString();
   }
 
   Future<void> _guardarCalculo() async {
-    final nombre = await _mostrarDialogoNombre('Guardar cálculo', 'Nombre del cálculo');
+    final nombre =
+        await _mostrarDialogoNombre('Guardar cálculo', 'Nombre del cálculo');
     if (nombre == null || nombre.isEmpty) return;
     final calculation = CalculationModel(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -341,14 +394,16 @@ class _ComputoPageState extends State<ComputoPage> {
     await _storageManager.saveCalculation(calculation);
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('✅ Cálculo "$nombre" guardado'), backgroundColor: Colors.green),
+        SnackBar(
+            content: Text('✅ Cálculo "$nombre" guardado'),
+            backgroundColor: Colors.green),
       );
     }
   }
 
   Future<void> _descargarPDF() async {
     final pdfDoc = await _generarReportePDF();
-    
+
     unawaited(showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -363,14 +418,15 @@ class _ComputoPageState extends State<ComputoPage> {
         final docDir = await getApplicationDocumentsDirectory();
         directory = Directory('${docDir.path}/Penalex_VE');
       }
-      
+
       if (!directory.existsSync()) await directory.create(recursive: true);
-      final fileName = 'Dosimetria_${DateTime.now().millisecondsSinceEpoch}.pdf';
+      final fileName =
+          'Dosimetria_${DateTime.now().millisecondsSinceEpoch}.pdf';
       final file = File('${directory.path}/$fileName');
       await file.writeAsBytes(await pdfDoc.save());
-      
+
       if (mounted) Navigator.pop(context);
-      
+
       // Abrir PDF
       await PDFService.abrirPDF(file);
       if (mounted) {
@@ -393,7 +449,7 @@ class _ComputoPageState extends State<ComputoPage> {
 
   Future<void> _compartirPDF() async {
     final pdfDoc = await _generarReportePDF();
-    
+
     unawaited(showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -404,7 +460,7 @@ class _ComputoPageState extends State<ComputoPage> {
       final directory = await getTemporaryDirectory();
       final file = File('${directory.path}/computo_share.pdf');
       await file.writeAsBytes(await pdfDoc.save());
-      
+
       if (mounted) Navigator.pop(context);
       await PDFService.compartirPDF(file);
     } on Exception catch (e) {
@@ -423,13 +479,17 @@ class _ComputoPageState extends State<ComputoPage> {
       await Clipboard.setData(ClipboardData(text: reporte));
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('✅ Reporte copiado al portapapeles'), backgroundColor: Colors.green),
+          const SnackBar(
+              content: Text('✅ Reporte copiado al portapapeles'),
+              backgroundColor: Colors.green),
         );
       }
     } on Exception catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('❌ Error al copiar: $e'), backgroundColor: Colors.red),
+          SnackBar(
+              content: Text('❌ Error al copiar: $e'),
+              backgroundColor: Colors.red),
         );
       }
     }
@@ -440,15 +500,21 @@ class _ComputoPageState extends State<ComputoPage> {
     return showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(titulo, style: const TextStyle(fontWeight: FontWeight.bold)),
+        title:
+            Text(titulo, style: const TextStyle(fontWeight: FontWeight.bold)),
         content: TextField(
           controller: controller,
           autofocus: true,
-          decoration: InputDecoration(hintText: hint, border: const OutlineInputBorder()),
+          decoration: InputDecoration(
+              hintText: hint, border: const OutlineInputBorder()),
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancelar')),
-          ElevatedButton(onPressed: () => Navigator.pop(context, controller.text), child: const Text('Guardar')),
+          TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancelar')),
+          ElevatedButton(
+              onPressed: () => Navigator.pop(context, controller.text),
+              child: const Text('Guardar')),
         ],
       ),
     );
@@ -462,7 +528,11 @@ class _ComputoPageState extends State<ComputoPage> {
       drawer: const AppDrawer(currentRoute: '/computo'),
       backgroundColor: fondoPantalla,
       appBar: AppBar(
-        title: const Text('CÓMPUTO', style: TextStyle(color: dorado, fontWeight: FontWeight.w700, letterSpacing: 0.6)),
+        title: const Text('CÓMPUTO',
+            style: TextStyle(
+                color: dorado,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.6)),
         backgroundColor: azulMarino,
         foregroundColor: dorado,
         centerTitle: true,
@@ -489,7 +559,8 @@ class _ComputoPageState extends State<ComputoPage> {
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.folder_outlined, color: azulMarino.withValues(alpha: 0.7), size: 20),
+                        Icon(Icons.folder_outlined,
+                            color: azulMarino.withValues(alpha: 0.7), size: 20),
                         const SizedBox(width: 8),
                         Text(
                           'DATOS DEL CASO',
@@ -503,7 +574,7 @@ class _ComputoPageState extends State<ComputoPage> {
                       ],
                     ),
                     const SizedBox(height: 16),
-                    
+
                     // Campo Expediente
                     TextField(
                       controller: _expedienteController,
@@ -516,16 +587,18 @@ class _ComputoPageState extends State<ComputoPage> {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: azulMarino.withValues(alpha: 0.2)),
+                          borderSide: BorderSide(
+                              color: azulMarino.withValues(alpha: 0.2)),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: azulMarino, width: 2),
+                          borderSide:
+                              const BorderSide(color: azulMarino, width: 2),
                         ),
                       ),
                     ),
                     const SizedBox(height: 16),
-                    
+
                     // Campo Acusado
                     TextField(
                       controller: _acusadoController,
@@ -538,11 +611,13 @@ class _ComputoPageState extends State<ComputoPage> {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: azulMarino.withValues(alpha: 0.2)),
+                          borderSide: BorderSide(
+                              color: azulMarino.withValues(alpha: 0.2)),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: azulMarino, width: 2),
+                          borderSide:
+                              const BorderSide(color: azulMarino, width: 2),
                         ),
                       ),
                       textCapitalization: TextCapitalization.words,
@@ -561,7 +636,7 @@ class _ComputoPageState extends State<ComputoPage> {
               ),
             ),
             const SizedBox(height: 24),
-            
+
             // ==================== 1. TARJETA DE RESULTADOS ====================
             Container(
               decoration: BoxDecoration(
@@ -601,7 +676,7 @@ class _ComputoPageState extends State<ComputoPage> {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    
+
                     // Título
                     Text(
                       'FECHA CUMPLIMIENTO ESTIMADA',
@@ -614,14 +689,16 @@ class _ComputoPageState extends State<ComputoPage> {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 12),
-                    
+
                     // Fecha principal
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 12),
                       decoration: BoxDecoration(
                         color: Colors.white.withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: dorado.withValues(alpha: 0.3)),
+                        border:
+                            Border.all(color: dorado.withValues(alpha: 0.3)),
                       ),
                       child: Text(
                         _sinDetenido || _fechaDetencion == null
@@ -636,37 +713,48 @@ class _ComputoPageState extends State<ComputoPage> {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    
+
                     const SizedBox(height: 24),
-                    
+
                     // Divider decorativo
                     Row(
                       children: [
-                        Expanded(child: Divider(color: dorado.withValues(alpha: 0.3), thickness: 1)),
+                        Expanded(
+                            child: Divider(
+                                color: dorado.withValues(alpha: 0.3),
+                                thickness: 1)),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: Icon(Icons.timer_outlined, color: dorado.withValues(alpha: 0.7), size: 18),
+                          child: Icon(Icons.timer_outlined,
+                              color: dorado.withValues(alpha: 0.7), size: 18),
                         ),
-                        Expanded(child: Divider(color: dorado.withValues(alpha: 0.3), thickness: 1)),
+                        Expanded(
+                            child: Divider(
+                                color: dorado.withValues(alpha: 0.3),
+                                thickness: 1)),
                       ],
                     ),
-                    
+
                     const SizedBox(height: 20),
-                    
+
                     // Tiempo detenido
                     _buildInfoRow(
                       icon: Icons.lock_clock_rounded,
                       label: 'TIEMPO DETENIDO',
-                      value: _sinDetenido || _fechaDetencion == null ? 'No aplica' : _tiempoDetenido,
+                      value: _sinDetenido || _fechaDetencion == null
+                          ? 'No aplica'
+                          : _tiempoDetenido,
                     ),
-                    
+
                     const SizedBox(height: 16),
-                    
+
                     // Tiempo por cumplir
                     _buildInfoRow(
                       icon: Icons.hourglass_bottom_rounded,
                       label: 'TIEMPO POR CUMPLIR',
-                      value: _sinDetenido || _fechaDetencion == null ? 'No aplica' : _tiempoRestante,
+                      value: _sinDetenido || _fechaDetencion == null
+                          ? 'No aplica'
+                          : _tiempoRestante,
                       isHighlight: true,
                     ),
                   ],
@@ -704,7 +792,9 @@ class _ComputoPageState extends State<ComputoPage> {
                       children: [
                         Expanded(
                           child: CheckboxListTile(
-                            title: Text('Sin detenido', style: TextStyle(color: azulMarino.withValues(alpha: 0.86))),
+                            title: Text('Sin detenido',
+                                style: TextStyle(
+                                    color: azulMarino.withValues(alpha: 0.86))),
                             value: _sinDetenido,
                             onChanged: (value) {
                               setState(() {
@@ -739,16 +829,36 @@ class _ComputoPageState extends State<ComputoPage> {
                                     hintText: 'DD/MM/AAAA',
                                     filled: true,
                                     fillColor: fondoPantalla,
-                                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: BorderSide(color: azulMarino.withValues(alpha: 0.18))),
-                                    enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: BorderSide(color: azulMarino.withValues(alpha: 0.12))),
-                                    focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: BorderSide(color: azulMarino.withValues(alpha: 0.35), width: 1.2)),
-                                    errorText: _fechaDetencionValida ? null : 'Fecha inválida',
-                                    suffixIcon: Icon(Icons.calendar_today_rounded, color: azulMarino.withValues(alpha: 0.70)),
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(14),
+                                        borderSide: BorderSide(
+                                            color: azulMarino.withValues(
+                                                alpha: 0.18))),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(14),
+                                        borderSide: BorderSide(
+                                            color: azulMarino.withValues(
+                                                alpha: 0.12))),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(14),
+                                        borderSide: BorderSide(
+                                            color: azulMarino.withValues(
+                                                alpha: 0.35),
+                                            width: 1.2)),
+                                    errorText: _fechaDetencionValida
+                                        ? null
+                                        : 'Fecha inválida',
+                                    suffixIcon: Icon(
+                                        Icons.calendar_today_rounded,
+                                        color:
+                                            azulMarino.withValues(alpha: 0.70)),
                                   ),
                                   style: const TextStyle(color: azulMarino),
                                   onChanged: (value) {
-                                    _aplicarMascara(_fechaDetencionController, value);
-                                    _validarFecha(_fechaDetencionController.text, true);
+                                    _aplicarMascara(
+                                        _fechaDetencionController, value);
+                                    _validarFecha(
+                                        _fechaDetencionController.text, true);
                                   },
                                 ),
                               ),
@@ -788,7 +898,9 @@ class _ComputoPageState extends State<ComputoPage> {
                     ),
                     const SizedBox(height: 8),
                     SwitchListTile(
-                      title: Text('Usar fecha actual', style: TextStyle(color: azulMarino.withValues(alpha: 0.86))),
+                      title: Text('Usar fecha actual',
+                          style: TextStyle(
+                              color: azulMarino.withValues(alpha: 0.86))),
                       value: _usarFechaActual,
                       onChanged: (value) {
                         setState(() {
@@ -817,16 +929,36 @@ class _ComputoPageState extends State<ComputoPage> {
                                     hintText: 'DD/MM/AAAA',
                                     filled: true,
                                     fillColor: fondoPantalla,
-                                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: BorderSide(color: azulMarino.withValues(alpha: 0.18))),
-                                    enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: BorderSide(color: azulMarino.withValues(alpha: 0.12))),
-                                    focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: BorderSide(color: azulMarino.withValues(alpha: 0.35), width: 1.2)),
-                                    errorText: _fechaCondenaValida ? null : 'Fecha inválida',
-                                    suffixIcon: Icon(Icons.calendar_today_rounded, color: azulMarino.withValues(alpha: 0.70)),
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(14),
+                                        borderSide: BorderSide(
+                                            color: azulMarino.withValues(
+                                                alpha: 0.18))),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(14),
+                                        borderSide: BorderSide(
+                                            color: azulMarino.withValues(
+                                                alpha: 0.12))),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(14),
+                                        borderSide: BorderSide(
+                                            color: azulMarino.withValues(
+                                                alpha: 0.35),
+                                            width: 1.2)),
+                                    errorText: _fechaCondenaValida
+                                        ? null
+                                        : 'Fecha inválida',
+                                    suffixIcon: Icon(
+                                        Icons.calendar_today_rounded,
+                                        color:
+                                            azulMarino.withValues(alpha: 0.70)),
                                   ),
                                   style: const TextStyle(color: azulMarino),
                                   onChanged: (value) {
-                                    _aplicarMascara(_fechaCondenaController, value);
-                                    _validarFecha(_fechaCondenaController.text, false);
+                                    _aplicarMascara(
+                                        _fechaCondenaController, value);
+                                    _validarFecha(
+                                        _fechaCondenaController.text, false);
                                   },
                                 ),
                               ),
@@ -882,8 +1014,10 @@ class _ComputoPageState extends State<ComputoPage> {
                       backgroundColor: Colors.white,
                       foregroundColor: azulMarino,
                       fixedSize: const Size.fromHeight(48),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                      side: BorderSide(color: azulMarino.withValues(alpha: 0.18)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14)),
+                      side:
+                          BorderSide(color: azulMarino.withValues(alpha: 0.18)),
                       elevation: 0,
                     ),
                   ),
@@ -894,7 +1028,8 @@ class _ComputoPageState extends State<ComputoPage> {
                     onPressed: () {
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => const DosimetriaPage()),
+                        MaterialPageRoute(
+                            builder: (context) => const DosimetriaPage()),
                         (route) => false,
                       );
                     },
@@ -904,7 +1039,8 @@ class _ComputoPageState extends State<ComputoPage> {
                       backgroundColor: azulMarino,
                       foregroundColor: dorado,
                       fixedSize: const Size.fromHeight(48),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14)),
                     ),
                   ),
                 ),
@@ -931,8 +1067,10 @@ class _ComputoPageState extends State<ComputoPage> {
           backgroundColor: azulMarino.withValues(alpha: 0.08),
           foregroundColor: azulMarino,
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-          textStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13.5),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          textStyle:
+              const TextStyle(fontWeight: FontWeight.w600, fontSize: 13.5),
         ),
       ),
     );
@@ -947,12 +1085,12 @@ class _ComputoPageState extends State<ComputoPage> {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: isHighlight 
+        color: isHighlight
             ? dorado.withValues(alpha: 0.15)
             : Colors.white.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isHighlight 
+          color: isHighlight
               ? dorado.withValues(alpha: 0.4)
               : Colors.white.withValues(alpha: 0.15),
           width: 1.5,
@@ -973,7 +1111,7 @@ class _ComputoPageState extends State<ComputoPage> {
                 Text(
                   label,
                   style: TextStyle(
-                    color: isHighlight 
+                    color: isHighlight
                         ? dorado.withValues(alpha: 0.95)
                         : Colors.white.withValues(alpha: 0.70),
                     fontSize: 10,

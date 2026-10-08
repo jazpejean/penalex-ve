@@ -29,15 +29,6 @@ class ReportGenerator {
   static final PdfColor lightGray = PdfColor.fromHex('#F2F2F2');
   static final PdfColor footerGray = PdfColor.fromHex('#F9F9F9');
 
-  static String _getNombreConcurso(TipoConcurso c) {
-    switch (c) {
-      case TipoConcurso.real:
-        return 'REAL (Arts. 86-87 CP)';
-      case TipoConcurso.ideal:
-        return 'IDEAL (Art. 98 CP)';
-    }
-  }
-
   static String _fraccionTexto(double valor) {
     const double epsilon = 0.001;
     if ((valor - 1 / 6).abs() < epsilon) return '1/6';
@@ -127,37 +118,20 @@ class ReportGenerator {
   }) async {
     final pdf = pw.Document();
     final DateTime fecha = DateTime.now();
-    
+
     // Cargar logo
     final logo = await _cargarLogo();
-    
-    // Determinar la fracción de concurso según el artículo
-    double fraccionConcurso = 0.5; // Por defecto mitad
-    
-    if (articuloConcurso.contains('Art. 86')) {
-      // Solo presidios -> mitad
-      fraccionConcurso = 0.5;
-    } else if (articuloConcurso.contains('Art. 87')) {
-      // Presidio + Prisión (con conversión) -> mitad
-      fraccionConcurso = 0.5;
-    } else if (articuloConcurso.contains('Art. 88')) {
-      // Solo prisiones -> mitad
-      fraccionConcurso = 0.5;
-    }
 
-    // Calcular penas individualizadas
-    final List<double> penas = delitos
-        .map((d) => d.calcularPenaIndividualizada())
-        .toList();
-    penas.sort((a, b) => b.compareTo(a));
-    
-    // Usar el motor de dosimetría para calcular correctamente
-    final double penaConcurso = DosimetriaEngine.calcularConcurso(
+    // Usar el MISMO motor de dosimetría que la pantalla: el cálculo del PDF
+    // siempre coincide con el de la app y trae los pasos para el desglose.
+    final ResultadoConcurso resConcurso =
+        DosimetriaEngine.calcularConcursoDetallado(
       delitos: delitos,
       concurso: concurso,
       admisionHechos: admisionHechos,
       fraccionAdmision: fraccionAdmision,
     );
+    final double penaConcurso = resConcurso.total;
 
     pdf.addPage(
       pw.MultiPage(
@@ -233,7 +207,8 @@ class ReportGenerator {
 
           // TÍTULO
           pw.Container(
-            padding: const pw.EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+            padding:
+                const pw.EdgeInsets.symmetric(vertical: 12, horizontal: 20),
             decoration: pw.BoxDecoration(
               border: pw.Border(
                 top: pw.BorderSide(color: goldAccent, width: 2),
@@ -296,10 +271,12 @@ class ReportGenerator {
             return pw.Column(
               crossAxisAlignment: pw.CrossAxisAlignment.start,
               children: [
-                pw.Text('$i. ${d.nombre.isEmpty ? "SIN ESPECIFICAR" : d.nombre.toUpperCase()}',
+                pw.Text(
+                    '$i. ${d.nombre.isEmpty ? "SIN ESPECIFICAR" : d.nombre.toUpperCase()}',
                     style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
                 pw.SizedBox(height: 5),
-                pw.Text('Marco penal: ${PenaUtils.formatPena(d.penaMin)} - ${PenaUtils.formatPena(d.penaMax)}',
+                pw.Text(
+                    'Marco penal: ${PenaUtils.formatPena(d.penaMin)} - ${PenaUtils.formatPena(d.penaMax)}',
                     style: const pw.TextStyle(fontSize: 9)),
                 pw.Text(
                     'Término medio (Art. 37 CP): ${PenaUtils.formatPena(d.terminoMedio)}',
@@ -329,6 +306,11 @@ class ReportGenerator {
                       '- Delito continuado (Art. 99 CP): +${_fraccionTexto(d.fraccionContinuidad)}',
                       style: const pw.TextStyle(fontSize: 8)),
 
+                // Ajustes adicionales (leyes especiales, pueden superar los límites)
+                ...d.ajustesAdicionales.map((AjusteAdicional a) => pw.Text(
+                    '- Ajuste adicional (ley especial): ${a.esAgravante ? "Agravante" : "Atenuante"}${a.nombre.isEmpty ? "" : " (${a.nombre})"}: ${_fraccionTexto(a.fraccion)}',
+                    style: const pw.TextStyle(fontSize: 8))),
+
                 // Modificador manual (formato AA/MM/DD)
                 if (d.modificadorManual != 0)
                   pw.Text(
@@ -337,7 +319,8 @@ class ReportGenerator {
 
                 pw.SizedBox(height: 8),
                 pw.Container(
-                  padding: const pw.EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  padding: const pw.EdgeInsets.symmetric(
+                      vertical: 8, horizontal: 12),
                   decoration: pw.BoxDecoration(
                     color: PdfColors.white,
                     border: pw.Border.all(color: goldAccent, width: 1.5),
@@ -348,12 +331,12 @@ class ReportGenerator {
                     children: [
                       pw.Text('PENA INDIVIDUALIZADA:',
                           style: pw.TextStyle(
-                              fontWeight: pw.FontWeight.bold, 
+                              fontWeight: pw.FontWeight.bold,
                               fontSize: 9,
                               color: navyBlue)),
                       pw.Text(PenaUtils.formatPena(penaInd),
                           style: pw.TextStyle(
-                              fontWeight: pw.FontWeight.bold, 
+                              fontWeight: pw.FontWeight.bold,
                               fontSize: 10,
                               color: goldAccent)),
                     ],
@@ -371,61 +354,21 @@ class ReportGenerator {
                   color: navyBlue,
                   fontSize: 12)),
           pw.SizedBox(height: 10),
-          
-          // Mostrar el artículo aplicado
-          if (articuloConcurso.isNotEmpty) ...[
-            pw.Text('Artículo aplicable: $articuloConcurso',
-                style: pw.TextStyle(
-                    fontSize: 9,
-                    fontWeight: pw.FontWeight.bold,
-                    color: navyBlue)),
-            pw.SizedBox(height: 5),
-          ] else ...[
-            pw.Text('Tipo de concurso: ${_getNombreConcurso(concurso)}',
-                style: const pw.TextStyle(fontSize: 9)),
-            pw.SizedBox(height: 5),
-          ],
 
-          if (concurso == TipoConcurso.real && delitos.length > 1) ...[
-            // Nota sobre conversión si aplica Art. 87
-            if (articuloConcurso.contains('Art. 87')) ...[
-              pw.Container(
-                padding: const pw.EdgeInsets.all(8),
-                margin: const pw.EdgeInsets.only(bottom: 8),
-                decoration: pw.BoxDecoration(
-                  color: PdfColor.fromHex('#FEF3C7'),
-                  border: pw.Border.all(color: goldAccent, width: 1),
-                  borderRadius: pw.BorderRadius.circular(4),
-                ),
-                child: pw.Text(
-                  'NOTA: En aplicación del Art. 87 CP, las penas de prisión se convierten a presidio (1 año presidio = 2 años prisión) antes de aplicar la fórmula de concurso.',
-                  style: pw.TextStyle(
-                    fontSize: 8,
-                    color: navyBlue,
-                    fontStyle: pw.FontStyle.italic,
-                  ),
-                ),
-              ),
-            ],
-            
-            // Mostrar el cálculo
-            pw.Text('Cálculo aplicado:',
-                style: pw.TextStyle(fontSize: 9, fontWeight: pw.FontWeight.bold)),
-            pw.SizedBox(height: 3),
-            
-            pw.Text('Pena base (delito más grave): ${PenaUtils.formatPena(penas[0])}',
-                style: const pw.TextStyle(fontSize: 8)),
-            ...List.generate(penas.length - 1, (i) {
-              final inc = penas[i + 1] * fraccionConcurso;
-              final fraccionStr = fraccionConcurso == 2/3 ? '2/3' : '1/2';
-              return pw.Text(
-                  '+ $fraccionStr de ${PenaUtils.formatPena(penas[i + 1])} = ${PenaUtils.formatPena(inc)}',
-                  style: const pw.TextStyle(fontSize: 8));
-            }),
-          ] else if (concurso == TipoConcurso.ideal) ...[
-            pw.Text('Se aplica únicamente la pena más grave (Art. 98 CP)',
-                style: const pw.TextStyle(fontSize: 8)),
-          ],
+          // Tipo de concurso aplicado (Art. 86/87/88/98 CP o delito único)
+          pw.Text('Tipo de concurso aplicado: ${resConcurso.articuloAplicado}',
+              style: pw.TextStyle(
+                  fontSize: 9,
+                  fontWeight: pw.FontWeight.bold,
+                  color: navyBlue)),
+          pw.SizedBox(height: 6),
+
+          // Cálculo paso a paso del motor (idéntico al de la pantalla)
+          pw.Text('Cálculo aplicado:',
+              style: pw.TextStyle(fontSize: 9, fontWeight: pw.FontWeight.bold)),
+          pw.SizedBox(height: 3),
+          ...resConcurso.pasos.map((String paso) =>
+              pw.Text('- $paso', style: const pw.TextStyle(fontSize: 8))),
           pw.SizedBox(height: 15),
 
           // 4. ADMISIÓN DE HECHOS
@@ -495,7 +438,8 @@ class ReportGenerator {
                   pw.Padding(
                       padding: const pw.EdgeInsets.all(5),
                       child: pw.Text('Fecha de detención',
-                          style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                          style: pw.TextStyle(
+                              fontWeight: pw.FontWeight.bold, fontSize: 9))),
                   pw.Padding(
                       padding: const pw.EdgeInsets.all(5),
                       child: pw.Text(_formatearFecha(computo.fechaDetencion),
@@ -506,7 +450,8 @@ class ReportGenerator {
                     pw.Padding(
                         padding: const pw.EdgeInsets.all(5),
                         child: pw.Text('Fecha de condena',
-                            style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                            style: pw.TextStyle(
+                                fontWeight: pw.FontWeight.bold, fontSize: 9))),
                     pw.Padding(
                         padding: const pw.EdgeInsets.all(5),
                         child: pw.Text(_formatearFecha(computo.fechaCondena!),
@@ -516,7 +461,8 @@ class ReportGenerator {
                   pw.Padding(
                       padding: const pw.EdgeInsets.all(5),
                       child: pw.Text('Tiempo detenido',
-                          style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                          style: pw.TextStyle(
+                              fontWeight: pw.FontWeight.bold, fontSize: 9))),
                   pw.Padding(
                       padding: const pw.EdgeInsets.all(5),
                       child: pw.Text(computo.tiempoDetenidoTexto,
@@ -526,7 +472,8 @@ class ReportGenerator {
                   pw.Padding(
                       padding: const pw.EdgeInsets.all(5),
                       child: pw.Text('Tiempo restante',
-                          style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                          style: pw.TextStyle(
+                              fontWeight: pw.FontWeight.bold, fontSize: 9))),
                   pw.Padding(
                       padding: const pw.EdgeInsets.all(5),
                       child: pw.Text(computo.tiempoRestanteTexto,
@@ -536,7 +483,8 @@ class ReportGenerator {
                   pw.Padding(
                       padding: const pw.EdgeInsets.all(5),
                       child: pw.Text('Fecha de cumplimiento estimada',
-                          style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                          style: pw.TextStyle(
+                              fontWeight: pw.FontWeight.bold, fontSize: 9))),
                   pw.Padding(
                       padding: const pw.EdgeInsets.all(5),
                       child: pw.Text(_formatearFecha(computo.fechaCumplimiento),

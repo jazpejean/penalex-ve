@@ -6,8 +6,8 @@ enum TipoConcurso { real, ideal }
 
 // Tipos de pena según Código Penal Venezolano (Arts. 86-87)
 enum TipoPena {
-  presidio,      // Pena base con trabajos forzados
-  prision,       // Sin trabajos forzados (1 presidio = 2 prisión)
+  presidio, // Pena base con trabajos forzados
+  prision, // Sin trabajos forzados (1 presidio = 2 prisión)
 }
 
 // ==================== AJUSTE ADICIONAL (fracción) ====================
@@ -109,7 +109,7 @@ class Delito {
   double fraccionContinuidad;
   double modificadorManual;
   String modificadorUnidad;
-  
+
   // Nuevos campos para tipos de pena (Arts. 86-87 CP)
   TipoPena tipoPena;
   double montoMulta; // En Unidades Tributarias (solo para multas)
@@ -198,19 +198,19 @@ class Delito {
   // Convierte cualquier tipo de pena a su equivalente en presidio
   double convertirAPresidio() {
     final double penaIndividualizada = calcularPenaIndividualizada();
-    
+
     switch (tipoPena) {
       case TipoPena.presidio:
         // Ya es presidio, retornar tal cual
         return penaIndividualizada;
-        
+
       case TipoPena.prision:
         // 1 día presidio = 2 días prisión
         // Por tanto: prisión / 2 = presidio
         return penaIndividualizada / 2;
     }
   }
-  
+
   // Método auxiliar para obtener el nombre del tipo de pena
   String get nombreTipoPena {
     switch (tipoPena) {
@@ -230,27 +230,62 @@ class Delito {
       'pena_actual': pena,
     });
 
-    // 1. Ajustes adicionales (fracciones manuales)
+    // 1. Atenuantes/agravantes (Arts. 74 y 77 CP): potestativo del juez,
+    //    aplicados desde el término medio y limitados a los extremos del tipo
+    //    (la única condición es no pasar el límite mínimo ni el máximo).
+    if (modificadorManual != 0) {
+      final String tipo = modificadorManual > 0 ? 'AGRAVANTE' : 'ATENUANTE';
+      double nuevaPena = pena + modificadorManual;
+      if (nuevaPena > penaMax) {
+        pasosCalculo.add(<String, dynamic>{
+          'descripcion':
+              'Modificador $tipo (Arts. 74/77 CP) limitado al máximo legal',
+          'resultado': '+${DosimetriaEngine.formatNumero(penaMax - pena)} años',
+          'pena_actual': penaMax,
+        });
+        nuevaPena = penaMax;
+      } else if (nuevaPena < penaMin) {
+        pasosCalculo.add(<String, dynamic>{
+          'descripcion':
+              'Modificador $tipo (Arts. 74/77 CP) limitado al mínimo legal',
+          'resultado': '-${DosimetriaEngine.formatNumero(pena - penaMin)} años',
+          'pena_actual': penaMin,
+        });
+        nuevaPena = penaMin;
+      } else {
+        pasosCalculo.add(<String, dynamic>{
+          'descripcion': 'Modificador $tipo (Arts. 74/77 CP)',
+          'resultado':
+              '${modificadorManual > 0 ? '+' : '-'}${DosimetriaEngine.formatNumero(modificadorManual.abs())} años',
+          'pena_actual': nuevaPena,
+        });
+      }
+      pena = nuevaPena;
+    }
+
+    // 2. Ajustes adicionales: aumentos/reducciones fijados por leyes especiales
+    //    (ej. "con el aumento de 1/3" en la Ley de Drogas para la ocultación).
+    //    Son multiplicativos y PUEDEN superar los límites del tipo penal.
     for (final AjusteAdicional a in ajustesAdicionales) {
       final double cambio = pena * a.fraccion;
       if (a.esAgravante) {
         pena += cambio;
         pasosCalculo.add(<String, dynamic>{
-          'descripcion': 'Agravante: ${a.nombre}',
+          'descripcion': 'Ajuste legal (ley especial): ${a.nombre}',
           'resultado': '+${DosimetriaEngine.formatNumero(cambio)} años',
           'pena_actual': pena,
         });
       } else {
         pena -= cambio;
         pasosCalculo.add(<String, dynamic>{
-          'descripcion': 'Atenuante: ${a.nombre}',
+          'descripcion': 'Ajuste legal (ley especial): ${a.nombre}',
           'resultado': '-${DosimetriaEngine.formatNumero(cambio)} años',
           'pena_actual': pena,
         });
       }
     }
 
-    // 2. Grado de ejecución (NO se aplica límite mínimo aquí)
+    // 3. Grado de ejecución (Art. 82 CP): la rebaja puede bajar del mínimo.
     if (gradoEjecucion != GradoEjecucion.consumado) {
       final String tipo = gradoEjecucion == GradoEjecucion.frustrado
           ? 'FRUSTRADO'
@@ -264,7 +299,7 @@ class Delito {
       });
     }
 
-    // 3. Participación (solo Cómplice No Necesario)
+    // 4. Participación (Art. 84 CP, Cómplice No Necesario): puede bajar del mínimo.
     if (participacionEspecifica == 'Cómplice No Necesario') {
       final double rebaja = pena * 0.5;
       pena = pena * 0.5;
@@ -275,51 +310,13 @@ class Delito {
       });
     }
 
-    // 4. Delito continuado
+    // 5. Delito continuado (Art. 99 CP): el aumento PUEDE superar el máximo.
     if (delitoContinuado) {
       final double aumento = pena * fraccionContinuidad;
       pena = pena * (1 + fraccionContinuidad);
       pasosCalculo.add(<String, dynamic>{
         'descripcion': 'Aumento por delito continuado',
         'resultado': '+${DosimetriaEngine.formatNumero(aumento)} años',
-        'pena_actual': pena,
-      });
-    }
-
-    // 5. Modificador manual (atenuante/agravante numérico)
-    if (modificadorManual != 0) {
-      final String tipo = modificadorManual > 0 ? 'AGRAVANTE' : 'ATENUANTE';
-      final double nuevaPena = pena + modificadorManual;
-      pasosCalculo.add(<String, dynamic>{
-        'descripcion': 'Modificador $tipo',
-        'resultado':
-            '${modificadorManual > 0 ? '+' : '-'}${DosimetriaEngine.formatNumero(modificadorManual.abs())} años',
-        'pena_actual': nuevaPena,
-      });
-      pena = nuevaPena;
-    }
-
-    // 6. Límites mínimo y máximo
-    // IMPORTANTE: Solo aplicar límites si NO hay rebaja por ejecución imperfecta
-    // La jurisprudencia venezolana establece que la rebaja por frustrado/tentativa
-    // puede llevar la pena por debajo del mínimo legal
-    if (gradoEjecucion == GradoEjecucion.consumado) {
-      if (pena < penaMin) {
-        pena = penaMin;
-        pasosCalculo.add(<String, dynamic>{
-          'descripcion': 'Ajuste a pena mínima legal',
-          'resultado': DosimetriaEngine.formatNumero(pena),
-          'pena_actual': pena,
-        });
-      }
-    }
-    
-    // El límite máximo siempre se aplica
-    if (pena > penaMax) {
-      pena = penaMax;
-      pasosCalculo.add(<String, dynamic>{
-        'descripcion': 'Ajuste a pena máxima legal',
-        'resultado': DosimetriaEngine.formatNumero(pena),
         'pena_actual': pena,
       });
     }

@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';   // ← NECESARIO para DiagnosticPropertiesBuilder
+import 'package:flutter/foundation.dart'; // ← NECESARIO para DiagnosticPropertiesBuilder
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -26,7 +26,7 @@ class DosimetriaPage extends StatefulWidget {
 class _DosimetriaPageState extends State<DosimetriaPage> {
   List<Delito> delitos = <Delito>[];
   List<CalculationModel> savedCalculations = <CalculationModel>[];
-  
+
   // Mapa para rastrear el tipo seleccionado de atenuante/agravante por delito
   Map<String, String> tipoModificadorSeleccionado = <String, String>{};
 
@@ -44,7 +44,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
 
   Future<void> _loadCalculations() async {
     try {
-      final List<CalculationModel> list = await CalculationService.getSavedCalculations();
+      final List<CalculationModel> list =
+          await CalculationService.getSavedCalculations();
       setState(() => savedCalculations = list);
     } on Exception catch (e) {
       debugPrint('Error cargando cálculos guardados: $e');
@@ -54,7 +55,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
 
   void _loadCalculation(CalculationModel calc) {
     setState(() {
-      delitos = calc.delitos.map((Delito d) => Delito.fromMap(d.toMap())).toList();
+      delitos =
+          calc.delitos.map((Delito d) => Delito.fromMap(d.toMap())).toList();
     });
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -132,14 +134,16 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     ? Center(
                         child: Text(
                           'No hay cálculos guardados',
-                          style: TextStyle(color: grisTexto.withValues(alpha: 0.85)),
+                          style: TextStyle(
+                              color: grisTexto.withValues(alpha: 0.85)),
                         ),
                       )
                     : ListView.builder(
                         padding: const EdgeInsets.all(16),
                         itemCount: savedCalculations.length,
                         itemBuilder: (BuildContext context, int index) {
-                          final CalculationModel calc = savedCalculations[index];
+                          final CalculationModel calc =
+                              savedCalculations[index];
                           return Card(
                             margin: const EdgeInsets.only(bottom: 10),
                             elevation: 0,
@@ -174,9 +178,11 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                                         Icons.delete_outline_rounded,
                                         color: Colors.red),
                                     onPressed: () async {
-                                      await CalculationService.deleteCalculation(calc.id);
+                                      await CalculationService
+                                          .deleteCalculation(calc.id);
                                       await _loadCalculations();
-                                      if (context.mounted) Navigator.pop(context);
+                                      if (context.mounted)
+                                        Navigator.pop(context);
                                     },
                                   ),
                                 ],
@@ -255,7 +261,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
     required Function(String?) onChanged,
     required VoidCallback onInfo,
   }) {
-    final String? effectiveValue = items.contains(value) ? value : (items.isNotEmpty ? items.first : null);
+    final String? effectiveValue =
+        items.contains(value) ? value : (items.isNotEmpty ? items.first : null);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -263,7 +270,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
         Row(
           children: <Widget>[
             Text(label,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
             const SizedBox(width: 8),
             GestureDetector(
                 onTap: onInfo,
@@ -302,33 +310,34 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
     required double currentValue,
     required ValueChanged<double> onChanged,
     int? divisions,
-  }) => Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
-        const SizedBox(height: 8),
-        Row(
-          children: <Widget>[
-            Expanded(
-              child: Slider(
-                value: currentValue,
-                min: min,
-                max: max,
-                divisions: divisions,
-                label: _fraccionTexto(currentValue),
-                onChanged: onChanged,
-                activeColor: dorado,
+  }) =>
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
+          const SizedBox(height: 8),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Slider(
+                  value: currentValue,
+                  min: min,
+                  max: max,
+                  divisions: divisions,
+                  label: _fraccionTexto(currentValue),
+                  onChanged: onChanged,
+                  activeColor: dorado,
+                ),
               ),
-            ),
-            SizedBox(
-              width: 50,
-              child: Text(_fraccionTexto(currentValue),
-                  textAlign: TextAlign.center),
-            ),
-          ],
-        ),
-      ],
-    );
+              SizedBox(
+                width: 50,
+                child: Text(_fraccionTexto(currentValue),
+                    textAlign: TextAlign.center),
+              ),
+            ],
+          ),
+        ],
+      );
 
   String _fraccionTexto(double valor) {
     const double epsilon = 0.001;
@@ -383,30 +392,36 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
   }
 
   Widget _buildAjusteTile(int delitoIndex, AjusteAdicional ajuste) => Card(
-      margin: const EdgeInsets.symmetric(vertical: 4),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: const BorderSide(color: dorado),
-      ),
-      child: ListTile(
-        leading: Icon(ajuste.esAgravante ? Icons.trending_up : Icons.trending_down,
-            color: ajuste.esAgravante ? Colors.red : Colors.green),
-        title: Text(ajuste.nombre),
-        subtitle: Text('${ajuste.esAgravante ? 'Agravante (+)' : 'Atenuante (-)'} ${_fraccionTexto(ajuste.fraccion)}'),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            IconButton(icon: const Icon(Icons.edit), onPressed: () => _editarAjuste(delitoIndex, ajuste)),
-            IconButton(icon: const Icon(Icons.delete), onPressed: () {
-              setState(() {
-                delitos[delitoIndex].ajustesAdicionales.remove(ajuste);
-                _actualizarDelito(delitoIndex, delitos[delitoIndex]);
-              });
-            }),
-          ],
+        margin: const EdgeInsets.symmetric(vertical: 4),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: const BorderSide(color: dorado),
         ),
-      ),
-    );
+        child: ListTile(
+          leading: Icon(
+              ajuste.esAgravante ? Icons.trending_up : Icons.trending_down,
+              color: ajuste.esAgravante ? Colors.red : Colors.green),
+          title: Text(ajuste.nombre),
+          subtitle: Text(
+              '${ajuste.esAgravante ? 'Agravante (+)' : 'Atenuante (-)'} ${_fraccionTexto(ajuste.fraccion)}'),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              IconButton(
+                  icon: const Icon(Icons.edit),
+                  onPressed: () => _editarAjuste(delitoIndex, ajuste)),
+              IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () {
+                    setState(() {
+                      delitos[delitoIndex].ajustesAdicionales.remove(ajuste);
+                      _actualizarDelito(delitoIndex, delitos[delitoIndex]);
+                    });
+                  }),
+            ],
+          ),
+        ),
+      );
 
   Future<void> _mostrarDialogoAgregarAjuste(int delitoIndex) async {
     final TextEditingController nombreCtrl = TextEditingController();
@@ -417,58 +432,69 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
       context: context,
       builder: (BuildContext context) => StatefulBuilder(
         builder: (BuildContext context, setStateDialog) => AlertDialog(
-            title: const Text("Agregar ajuste de pena"),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                TextField(controller: nombreCtrl, decoration: const InputDecoration(labelText: "Nombre (ej: Aumento por autoridad)")),
-                const SizedBox(height: 16),
-                SegmentedButton<bool>(
-                  segments: const <ButtonSegment<bool>>[
-                    ButtonSegment(value: true, label: Text("Agravante (+ fracción)")),
-                    ButtonSegment(value: false, label: Text("Atenuante (- fracción)")),
-                  ],
-                  selected: <bool>{esAgravante},
-                  onSelectionChanged: (Set<bool> set) => setStateDialog(() => esAgravante = set.first),
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  decoration: const InputDecoration(labelText: "Fracción (ej: 1/3, 1/2, 1/4)"),
-                  onChanged: (String value) {
-                    fraccion = _parseFraccion(value);
-                    setStateDialog(() {});
-                  },
-                ),
-                const SizedBox(height: 8),
-                Text("Valor: ${_fraccionTexto(fraccion)}", style: const TextStyle(fontWeight: FontWeight.bold)),
-              ],
-            ),
-            actions: <Widget>[
-              TextButton(onPressed: () => Navigator.pop(context), child: const Text("Cancelar")),
-              ElevatedButton(
-                onPressed: () {
-                  if (nombreCtrl.text.isNotEmpty && fraccion != 0) {
-                    setState(() {
-                      delitos[delitoIndex].ajustesAdicionales.add(AjusteAdicional(
-                        nombre: nombreCtrl.text,
-                        esAgravante: esAgravante,
-                        fraccion: fraccion,
-                      ));
-                      _actualizarDelito(delitoIndex, delitos[delitoIndex]);
-                    });
-                  }
-                  Navigator.pop(context);
-                },
-                child: const Text("Agregar"),
+          title: const Text("Agregar ajuste de pena"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextField(
+                  controller: nombreCtrl,
+                  decoration: const InputDecoration(
+                      labelText: "Nombre (ej: Aumento por autoridad)")),
+              const SizedBox(height: 16),
+              SegmentedButton<bool>(
+                segments: const <ButtonSegment<bool>>[
+                  ButtonSegment(
+                      value: true, label: Text("Agravante (+ fracción)")),
+                  ButtonSegment(
+                      value: false, label: Text("Atenuante (- fracción)")),
+                ],
+                selected: <bool>{esAgravante},
+                onSelectionChanged: (Set<bool> set) =>
+                    setStateDialog(() => esAgravante = set.first),
               ),
+              const SizedBox(height: 16),
+              TextField(
+                decoration: const InputDecoration(
+                    labelText: "Fracción (ej: 1/3, 1/2, 1/4)"),
+                onChanged: (String value) {
+                  fraccion = _parseFraccion(value);
+                  setStateDialog(() {});
+                },
+              ),
+              const SizedBox(height: 8),
+              Text("Valor: ${_fraccionTexto(fraccion)}",
+                  style: const TextStyle(fontWeight: FontWeight.bold)),
             ],
           ),
+          actions: <Widget>[
+            TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text("Cancelar")),
+            ElevatedButton(
+              onPressed: () {
+                if (nombreCtrl.text.isNotEmpty && fraccion != 0) {
+                  setState(() {
+                    delitos[delitoIndex].ajustesAdicionales.add(AjusteAdicional(
+                          nombre: nombreCtrl.text,
+                          esAgravante: esAgravante,
+                          fraccion: fraccion,
+                        ));
+                    _actualizarDelito(delitoIndex, delitos[delitoIndex]);
+                  });
+                }
+                Navigator.pop(context);
+              },
+              child: const Text("Agregar"),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Future<void> _editarAjuste(int delitoIndex, AjusteAdicional ajuste) async {
-    final TextEditingController nombreCtrl = TextEditingController(text: ajuste.nombre);
+    final TextEditingController nombreCtrl =
+        TextEditingController(text: ajuste.nombre);
     bool esAgravante = ajuste.esAgravante;
     double fraccion = ajuste.fraccion;
 
@@ -476,49 +502,58 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
       context: context,
       builder: (BuildContext context) => StatefulBuilder(
         builder: (BuildContext context, setStateDialog) => AlertDialog(
-            title: const Text("Editar ajuste"),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                TextField(controller: nombreCtrl, decoration: const InputDecoration(labelText: "Nombre")),
-                const SizedBox(height: 16),
-                SegmentedButton<bool>(
-                  segments: const <ButtonSegment<bool>>[
-                    ButtonSegment(value: true, label: Text("Agravante (+ fracción)")),
-                    ButtonSegment(value: false, label: Text("Atenuante (- fracción)")),
-                  ],
-                  selected: <bool>{esAgravante},
-                  onSelectionChanged: (Set<bool> set) => setStateDialog(() => esAgravante = set.first),
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  decoration: const InputDecoration(labelText: "Fracción"),
-                  controller: TextEditingController(text: _fraccionTexto(fraccion)),
-                  onChanged: (String value) {
-                    fraccion = _parseFraccion(value);
-                    setStateDialog(() {});
-                  },
-                ),
-                const SizedBox(height: 8),
-                Text("Valor: ${_fraccionTexto(fraccion)}", style: const TextStyle(fontWeight: FontWeight.bold)),
-              ],
-            ),
-            actions: <Widget>[
-              TextButton(onPressed: () => Navigator.pop(context), child: const Text("Cancelar")),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    ajuste.nombre = nombreCtrl.text;
-                    ajuste.esAgravante = esAgravante;
-                    ajuste.fraccion = fraccion;
-                    _actualizarDelito(delitoIndex, delitos[delitoIndex]);
-                  });
-                  Navigator.pop(context);
-                },
-                child: const Text("Guardar"),
+          title: const Text("Editar ajuste"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextField(
+                  controller: nombreCtrl,
+                  decoration: const InputDecoration(labelText: "Nombre")),
+              const SizedBox(height: 16),
+              SegmentedButton<bool>(
+                segments: const <ButtonSegment<bool>>[
+                  ButtonSegment(
+                      value: true, label: Text("Agravante (+ fracción)")),
+                  ButtonSegment(
+                      value: false, label: Text("Atenuante (- fracción)")),
+                ],
+                selected: <bool>{esAgravante},
+                onSelectionChanged: (Set<bool> set) =>
+                    setStateDialog(() => esAgravante = set.first),
               ),
+              const SizedBox(height: 16),
+              TextField(
+                decoration: const InputDecoration(labelText: "Fracción"),
+                controller:
+                    TextEditingController(text: _fraccionTexto(fraccion)),
+                onChanged: (String value) {
+                  fraccion = _parseFraccion(value);
+                  setStateDialog(() {});
+                },
+              ),
+              const SizedBox(height: 8),
+              Text("Valor: ${_fraccionTexto(fraccion)}",
+                  style: const TextStyle(fontWeight: FontWeight.bold)),
             ],
           ),
+          actions: <Widget>[
+            TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text("Cancelar")),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  ajuste.nombre = nombreCtrl.text;
+                  ajuste.esAgravante = esAgravante;
+                  ajuste.fraccion = fraccion;
+                  _actualizarDelito(delitoIndex, delitos[delitoIndex]);
+                });
+                Navigator.pop(context);
+              },
+              child: const Text("Guardar"),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -537,173 +572,174 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      drawer: const AppDrawer(currentRoute: "/calculadora"),
-      backgroundColor: fondoGris,
-      appBar: AppBar(
-        title: const Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Icon(Icons.gavel_rounded, color: dorado, size: 26),
-            SizedBox(width: 8),
-            Text(
-              "PENALEX VE",
-              style: TextStyle(
-                color: dorado,
-                fontWeight: FontWeight.w800,
-                fontSize: 18,
-                letterSpacing: 1.2,
-                shadows: <Shadow>[
-                  Shadow(
-                      offset: Offset(0, 1),
-                      blurRadius: 2,
-                      color: Colors.black26),
-                ],
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: azulMarino,
-        iconTheme: const IconThemeData(color: dorado),
-        elevation: 0,
-        centerTitle: false,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.menu_book_outlined, color: dorado),
-            onPressed: () => mostrarBuscadorArticulos(context),
-            tooltip: "Consultar artículos de la ley",
-          ),
-          IconButton(
-            icon: const Icon(Icons.refresh_rounded, color: dorado),
-            onPressed: _resetCalculation,
-            tooltip: "Restablecer",
-          ),
-          IconButton(
-            icon: const Icon(Icons.folder_open_rounded, color: dorado),
-            onPressed: _showSavedCalculations,
-            tooltip: "Cargar cálculo",
-          ),
-        ],
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          child: Column(
+        drawer: const AppDrawer(currentRoute: "/calculadora"),
+        backgroundColor: fondoGris,
+        appBar: AppBar(
+          title: const Row(
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: delitos.length,
-                itemBuilder: (BuildContext context, int index) => _buildDelitoForm(index),
-              ),
-              const SizedBox(height: 16),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: fondoGris,
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.08),
-                      blurRadius: 18,
-                      offset: const Offset(0, -6),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Card(
-                      elevation: 0,
-                      color: azulMarino,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        side: const BorderSide(color: dorado, width: 1.5),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 14, horizontal: 16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            const Text(
-                              "SUMATORIA DE PENAS",
-                              style: TextStyle(
-                                  color: dorado,
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 13,
-                                  letterSpacing: 0.7),
-                            ),
-                            const SizedBox(height: 8),
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Text(
-                                DosimetriaEngine.formatYMD(_sumarPenas()),
-                                style: const TextStyle(
-                                    color: dorado,
-                                    fontWeight: FontWeight.w800,
-                                    fontSize: 14),
-                                textAlign: TextAlign.left,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: OutlinedButton.icon(
-                            onPressed: () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context, "/", (Route<dynamic> route) => false);
-                            },
-                            icon: const Icon(Icons.arrow_back),
-                            label: const Text("REGRESAR"),
-                            style: OutlinedButton.styleFrom(
-                              side: BorderSide(
-                                  color: azulMarino.withValues(alpha: 0.45)),
-                              foregroundColor: azulMarino,
-                              fixedSize: const Size.fromHeight(48),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14)),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: ElevatedButton.icon(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      ConcursoPage(delitos: delitos),
-                                ),
-                              );
-                            },
-                            icon: const Icon(Icons.arrow_forward),
-                            label: const Text("SIGUIENTE"),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: azulMarino,
-                              foregroundColor: dorado,
-                              fixedSize: const Size.fromHeight(48),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14),
-                                  side: const BorderSide(color: dorado)),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+              Icon(Icons.gavel_rounded, color: dorado, size: 26),
+              SizedBox(width: 8),
+              Text(
+                "PENALEX VE",
+                style: TextStyle(
+                  color: dorado,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 18,
+                  letterSpacing: 1.2,
+                  shadows: <Shadow>[
+                    Shadow(
+                        offset: Offset(0, 1),
+                        blurRadius: 2,
+                        color: Colors.black26),
                   ],
                 ),
               ),
             ],
           ),
+          backgroundColor: azulMarino,
+          iconTheme: const IconThemeData(color: dorado),
+          elevation: 0,
+          centerTitle: false,
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.menu_book_outlined, color: dorado),
+              onPressed: () => mostrarBuscadorArticulos(context),
+              tooltip: "Consultar artículos de la ley",
+            ),
+            IconButton(
+              icon: const Icon(Icons.refresh_rounded, color: dorado),
+              onPressed: _resetCalculation,
+              tooltip: "Restablecer",
+            ),
+            IconButton(
+              icon: const Icon(Icons.folder_open_rounded, color: dorado),
+              onPressed: _showSavedCalculations,
+              tooltip: "Cargar cálculo",
+            ),
+          ],
         ),
-      ),
-    );
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            child: Column(
+              children: <Widget>[
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: delitos.length,
+                  itemBuilder: (BuildContext context, int index) =>
+                      _buildDelitoForm(index),
+                ),
+                const SizedBox(height: 16),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: fondoGris,
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.08),
+                        blurRadius: 18,
+                        offset: const Offset(0, -6),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Card(
+                        elevation: 0,
+                        color: azulMarino,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          side: const BorderSide(color: dorado, width: 1.5),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 14, horizontal: 16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const Text(
+                                "SUMATORIA DE PENAS",
+                                style: TextStyle(
+                                    color: dorado,
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 13,
+                                    letterSpacing: 0.7),
+                              ),
+                              const SizedBox(height: 8),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Text(
+                                  DosimetriaEngine.formatYMD(_sumarPenas()),
+                                  style: const TextStyle(
+                                      color: dorado,
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: 14),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: OutlinedButton.icon(
+                              onPressed: () {
+                                Navigator.pushNamedAndRemoveUntil(context, "/",
+                                    (Route<dynamic> route) => false);
+                              },
+                              icon: const Icon(Icons.arrow_back),
+                              label: const Text("REGRESAR"),
+                              style: OutlinedButton.styleFrom(
+                                side: BorderSide(
+                                    color: azulMarino.withValues(alpha: 0.45)),
+                                foregroundColor: azulMarino,
+                                fixedSize: const Size.fromHeight(48),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(14)),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: ElevatedButton.icon(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        ConcursoPage(delitos: delitos),
+                                  ),
+                                );
+                              },
+                              icon: const Icon(Icons.arrow_forward),
+                              label: const Text("SIGUIENTE"),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: azulMarino,
+                                foregroundColor: dorado,
+                                fixedSize: const Size.fromHeight(48),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(14),
+                                    side: const BorderSide(color: dorado)),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
 
   Widget _buildDelitoForm(int index) {
     final Delito delito = delitos[index];
@@ -722,460 +758,468 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: TextFormField(
-                      initialValue: delito.nombre,
-                      decoration: InputDecoration(
-                        labelText: 'Nombre del delito',
-                        prefixIcon: const Icon(Icons.edit_note_rounded,
-                            color: dorado, size: 20),
-                        filled: true,
-                        fillColor: fondoGris,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(14),
-                            borderSide: BorderSide(
-                                color: azulMarino.withValues(alpha: 0.18))),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(14),
-                            borderSide: BorderSide(
-                                color: azulMarino.withValues(alpha: 0.12))),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(14),
-                            borderSide: BorderSide(
-                                color: azulMarino.withValues(alpha: 0.35),
-                                width: 1.2)),
-                      ),
-                      onChanged: (String value) {
-                        delito.nombre = value;
-                        _actualizarDelito(index, delito);
-                      },
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextFormField(
+                    initialValue: delito.nombre,
+                    decoration: InputDecoration(
+                      labelText: 'Nombre del delito',
+                      prefixIcon: const Icon(Icons.edit_note_rounded,
+                          color: dorado, size: 20),
+                      filled: true,
+                      fillColor: fondoGris,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(14),
+                          borderSide: BorderSide(
+                              color: azulMarino.withValues(alpha: 0.18))),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(14),
+                          borderSide: BorderSide(
+                              color: azulMarino.withValues(alpha: 0.12))),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(14),
+                          borderSide: BorderSide(
+                              color: azulMarino.withValues(alpha: 0.35),
+                              width: 1.2)),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  GestureDetector(
-                    onTap: () => _showInfoDialog(
-                      'Base legal del tipo penal',
-                      'Indique el nombre del delito conforme al Código Penal o leyes especiales.\n\nEjemplo: "Homicidio Calificado" (Art. 406 CPV).',
-                    ),
-                    child:
-                        const Icon(Icons.info_outline, color: dorado, size: 20),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-
-              // Selector de tipo de pena: Presidio o Prisión
-              _buildDropdownRow(
-                label: 'Tipo de pena',
-                value: _displayTipoPena(delito.tipoPena),
-                items: const <String>['Presidio', 'Prisión'],
-                onChanged: (String? val) {
-                  if (val != null) {
-                    delito.tipoPena = _parseTipoPena(val);
-                    _actualizarDelito(index, delito);
-                  }
-                },
-                onInfo: () {
-                  // Mostrar información contextual según el tipo seleccionado
-                  if (delito.tipoPena == TipoPena.presidio) {
-                    _showInfoDialog(
-                      'Presidio',
-                      'Pena privativa de libertad con trabajos forzados. Se caracteriza por imponer al condenado la obligación de realizar labores durante el cumplimiento de la condena.\n\nUtilizado para delitos graves en el Código Penal Venezolano.',
-                    );
-                  } else {
-                    _showInfoDialog(
-                      'Prisión',
-                      'Pena privativa de libertad sin trabajos forzados. El condenado cumple la pena sin obligación de realizar labores específicas.\n\nEn caso de concurso real con presidio, esta pena será convertida conforme al Art. 87 CP (1 año de presidio equivale a 2 años de prisión).',
-                    );
-                  }
-                },
-              ),
-              const SizedBox(height: 20),
-
-              _PenaInputRow(
-                label: 'PENA MÍNIMA',
-                valorNumerico: delito.minValorNumerico,
-                unidad: delito.minUnidad,
-                onChanged: (double valor, UnidadTiempo unidad) {
-                  delito.minValorNumerico = valor;
-                  delito.minUnidad = _unidadNombre(unidad);
-                  delito.actualizarPenaDesdeCampos();
-                  _actualizarDelito(index, delito);
-                },
-                onInfo: () => _showInfoDialog('Pena mínima',
-                    'Límite inferior de la pena establecida en la ley.'),
-              ),
-              const SizedBox(height: 16),
-
-              _PenaInputRow(
-                label: 'PENA MÁXIMA',
-                valorNumerico: delito.maxValorNumerico,
-                unidad: delito.maxUnidad,
-                onChanged: (double valor, UnidadTiempo unidad) {
-                  delito.maxValorNumerico = valor;
-                  delito.maxUnidad = _unidadNombre(unidad);
-                  delito.actualizarPenaDesdeCampos();
-                  _actualizarDelito(index, delito);
-                },
-                onInfo: () => _showInfoDialog('Pena máxima',
-                    'Límite superior de la pena establecida en la ley.'),
-              ),
-              const SizedBox(height: 16),
-
-              const SizedBox(height: 8),
-              const Text('AJUSTES ADICIONALES', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
-              const SizedBox(height: 8),
-              ...delito.ajustesAdicionales.map((AjusteAdicional ajuste) => _buildAjusteTile(index, ajuste)),
-              ElevatedButton.icon(
-                onPressed: () => _mostrarDialogoAgregarAjuste(index),
-                icon: const Icon(Icons.add),
-                label: const Text('Agregar ajuste'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey.shade200,
-                  side: const BorderSide(color: dorado),
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              Container(
-                width: double.infinity,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                decoration: BoxDecoration(
-                  color: dorado.withValues(alpha: 0.10),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: dorado.withValues(alpha: 0.22)),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const Text('Término medio (Art. 37 CP):',
-                        style: TextStyle(fontWeight: FontWeight.w500)),
-                    const SizedBox(height: 4),
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          DosimetriaEngine.formatYMD(delito.terminoMedio),
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: azulMarino.withValues(alpha: 0.85)),
-                        ),
-                        const SizedBox(width: 8),
-                        GestureDetector(
-                          onTap: () => _showInfoDialog(
-                            'Término Medio (Art. 37 CP)',
-                            'Punto de partida obligatorio para la dosimetría penal. Se obtiene sumando el límite mínimo y el máximo de la pena prevista para el delito y dividiendo el resultado entre dos. Sobre este valor se aplican las circunstancias atenuantes o agravantes que concurran en el caso.',
-                          ),
-                          child: const Icon(Icons.info_outline,
-                              color: dorado, size: 18),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              const Text('AJUSTES LEGALES',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              const SizedBox(height: 12),
-
-              _buildDropdownRow(
-                label: 'Grado de ejecución',
-                value: _displayGradoEjecucion(delito.gradoEjecucion),
-                items: const <String>['Consumado', 'Frustrado', 'Tentativa'],
-                onChanged: (String? val) {
-                  if (val != null) {
-                    delito.gradoEjecucion = _parseGradoEjecucion(val);
-                    delito.fraccionEjecucion =
-                        delito.gradoEjecucion == GradoEjecucion.frustrado
-                            ? 1 / 3
-                            : (delito.gradoEjecucion == GradoEjecucion.tentativa
-                                ? 0.5
-                                : 0);
-                    _actualizarDelito(index, delito);
-                  }
-                },
-                onInfo: () {
-                  String titulo = '';
-                  String mensaje = '';
-                  switch (delito.gradoEjecucion) {
-                    case GradoEjecucion.consumado:
-                      titulo = 'Delito Consumado';
-                      mensaje =
-                          'Se produce cuando el agente ha ejecutado la totalidad de los actos necesarios para la realización del tipo penal y se ha verificado el resultado lesivo. En este supuesto, la pena a aplicar es la que establece la ley para el delito en su extensión íntegra.';
-                      break;
-                    case GradoEjecucion.frustrado:
-                      titulo = 'Delito Frustrado (Arts. 80 y 82 CP)';
-                      mensaje =
-                          'Ocurre cuando el agente practica todo lo necesario para la consumación del delito, pero esta no se verifica por causas independientes a su voluntad. La pena aplicable será la del delito consumado rebajada en una tercera parte (1/3).';
-                      break;
-                    case GradoEjecucion.tentativa:
-                      titulo = 'Tentativa (Arts. 80 y 82 CP)';
-                      mensaje =
-                          'Se configura cuando el agente inicia la ejecución del delito mediante actos directos, pero no realiza todo lo necesario para su consumación por causas ajenas a su control. La pena se rebaja entre la mitad (1/2) y las dos terceras partes (2/3).';
-                      break;
-                  }
-                  _showInfoDialog(titulo, mensaje);
-                },
-              ),
-              const SizedBox(height: 16),
-
-              if (delito.gradoEjecucion == GradoEjecucion.tentativa)
-                _buildSliderRow(
-                  label: 'Rebaja (tentativa)',
-                  min: 0.5,
-                  max: 2 / 3,
-                  currentValue: delito.fraccionEjecucion,
-                  onChanged: (double val) {
-                    const List<double> targets = <double>[0.5, 2 / 3];
-                    final double newVal = targets.reduce((double a, double b) => (a - val).abs() < (b - val).abs() ? a : b);
-                    delito.fraccionEjecucion = newVal;
-                    _actualizarDelito(index, delito);
-                  },
-                  divisions: 1,
-                ),
-
-              _buildDropdownRow(
-                label: 'Grado de participación',
-                value: delito.participacionEspecifica,
-                items: const <String>[
-                  'Autor',
-                  'Coautor',
-                  'Cooperador Inmediato',
-                  'Cómplice Necesario',
-                  'Cómplice No Necesario',
-                ],
-                onChanged: (String? val) {
-                  if (val != null) {
-                    delito.participacionEspecifica = val;
-                    _actualizarDelito(index, delito);
-                  }
-                },
-                onInfo: () {
-                  if (delito.participacionEspecifica ==
-                      'Cómplice No Necesario') {
-                    _showInfoDialog(
-                      'Cómplice No Necesario (Art. 84 CP)',
-                      'Se refiere a quienes coadyuvan en la ejecución del delito mediante instrucciones, suministros o auxilio secundario no indispensable. La pena correspondiente al autor principal se rebajará a la mitad (1/2) para este grado de participación.',
-                    );
-                  } else {
-                    _showInfoDialog(
-                      'Autoría y Participación (Art. 83 CP)',
-                      'Se aplica la pena íntegra del delito al Autor, Coautor y Cooperador Inmediato, por ser piezas esenciales en la ejecución del hecho. Igualmente, el Cómplice Necesario recibe la misma pena al prestar un auxilio sin el cual no habría sido posible el acto.',
-                    );
-                  }
-                },
-              ),
-              const SizedBox(height: 16),
-
-              Row(
-                children: <Widget>[
-                  const Text('Delito continuado',
-                      style: TextStyle(fontWeight: FontWeight.w500)),
-                  const SizedBox(width: 8),
-                  GestureDetector(
-                    onTap: () => _showInfoDialog(
-                      'Delito Continuado (Art. 99 CP)',
-                      'Varias violaciones de la misma disposición legal, cometidas en diferentes fechas pero bajo una misma resolución criminal, se consideran un solo hecho punible. Se toma la pena del delito más grave (término medio) y se aumenta entre una sexta parte (1/6) y la mitad (1/2).',
-                    ),
-                    child:
-                        const Icon(Icons.info_outline, color: dorado, size: 18),
-                  ),
-                  const Spacer(),
-                  Switch(
-                    value: delito.delitoContinuado,
-                    onChanged: (bool val) {
-                      delito.delitoContinuado = val;
+                    onChanged: (String value) {
+                      delito.nombre = value;
                       _actualizarDelito(index, delito);
                     },
-                    activeThumbColor: dorado,
                   ),
-                ],
-              ),
-              if (delito.delitoContinuado) ...<Widget>[
-                const SizedBox(height: 12),
-                _buildSliderRow(
-                  label: 'Aumento',
-                  min: 1 / 6,
-                  max: 0.5,
-                  currentValue: delito.fraccionContinuidad,
-                  onChanged: (double val) {
-                    setState(() {
-                      const List<double> targets = <double>[1/6, 1/4, 1/3, 0.5];
-                      final double newVal = targets.reduce((double a, double b) => (a - val).abs() < (b - val).abs() ? a : b);
-                      delito.fraccionContinuidad = newVal;
-                      _actualizarDelito(index, delito);
-                    });
-                  },
-                  divisions: 3,
+                ),
+                const SizedBox(width: 8),
+                GestureDetector(
+                  onTap: () => _showInfoDialog(
+                    'Base legal del tipo penal',
+                    'Indique el nombre del delito conforme al Código Penal o leyes especiales.\n\nEjemplo: "Homicidio Calificado" (Art. 406 CPV).',
+                  ),
+                  child:
+                      const Icon(Icons.info_outline, color: dorado, size: 20),
                 ),
               ],
-              const SizedBox(height: 20),
+            ),
+            const SizedBox(height: 16),
 
-              const Text('ATENUANTES / AGRAVANTES (Arts. 74 y 77 CP)',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              const SizedBox(height: 8),
-              Row(
+            // Selector de tipo de pena: Presidio o Prisión
+            _buildDropdownRow(
+              label: 'Tipo de pena',
+              value: _displayTipoPena(delito.tipoPena),
+              items: const <String>['Presidio', 'Prisión'],
+              onChanged: (String? val) {
+                if (val != null) {
+                  delito.tipoPena = _parseTipoPena(val);
+                  _actualizarDelito(index, delito);
+                }
+              },
+              onInfo: () {
+                // Mostrar información contextual según el tipo seleccionado
+                if (delito.tipoPena == TipoPena.presidio) {
+                  _showInfoDialog(
+                    'Presidio',
+                    'Pena privativa de libertad con trabajos forzados. Se caracteriza por imponer al condenado la obligación de realizar labores durante el cumplimiento de la condena.\n\nUtilizado para delitos graves en el Código Penal Venezolano.',
+                  );
+                } else {
+                  _showInfoDialog(
+                    'Prisión',
+                    'Pena privativa de libertad sin trabajos forzados. El condenado cumple la pena sin obligación de realizar labores específicas.\n\nEn caso de concurso real con presidio, esta pena será convertida conforme al Art. 87 CP (1 año de presidio equivale a 2 años de prisión).',
+                  );
+                }
+              },
+            ),
+            const SizedBox(height: 20),
+
+            _PenaInputRow(
+              label: 'PENA MÍNIMA',
+              valorNumerico: delito.minValorNumerico,
+              unidad: delito.minUnidad,
+              onChanged: (double valor, UnidadTiempo unidad) {
+                delito.minValorNumerico = valor;
+                delito.minUnidad = _unidadNombre(unidad);
+                delito.actualizarPenaDesdeCampos();
+                _actualizarDelito(index, delito);
+              },
+              onInfo: () => _showInfoDialog('Pena mínima',
+                  'Límite inferior de la pena establecida en la ley.'),
+            ),
+            const SizedBox(height: 16),
+
+            _PenaInputRow(
+              label: 'PENA MÁXIMA',
+              valorNumerico: delito.maxValorNumerico,
+              unidad: delito.maxUnidad,
+              onChanged: (double valor, UnidadTiempo unidad) {
+                delito.maxValorNumerico = valor;
+                delito.maxUnidad = _unidadNombre(unidad);
+                delito.actualizarPenaDesdeCampos();
+                _actualizarDelito(index, delito);
+              },
+              onInfo: () => _showInfoDialog('Pena máxima',
+                  'Límite superior de la pena establecida en la ley.'),
+            ),
+            const SizedBox(height: 16),
+
+            const SizedBox(height: 8),
+            const Text('AJUSTES ADICIONALES',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+            const SizedBox(height: 8),
+            ...delito.ajustesAdicionales.map(
+                (AjusteAdicional ajuste) => _buildAjusteTile(index, ajuste)),
+            ElevatedButton.icon(
+              onPressed: () => _mostrarDialogoAgregarAjuste(index),
+              icon: const Icon(Icons.add),
+              label: const Text('Agregar ajuste'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.grey.shade200,
+                side: const BorderSide(color: dorado),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+              decoration: BoxDecoration(
+                color: dorado.withValues(alpha: 0.10),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: dorado.withValues(alpha: 0.22)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Expanded(
-                    child: SegmentedButton<String>(
-                      segments: const <ButtonSegment<String>>[
-                        ButtonSegment(
-                            value: 'atenuante', label: Text('Atenuante')),
-                        ButtonSegment(
-                            value: 'agravante', label: Text('Agravante')),
-                      ],
-                      selected: <String>{
-                        // Usar el tipo guardado en el mapa, o inferir del valor
-                        tipoModificadorSeleccionado[delito.id] ??
-                            (delito.modificadorManual < 0 ? "atenuante" : "agravante"),
-                      },
-                      onSelectionChanged: (Set<String> newSelection) {
-                        setState(() {
-                          final String tipo = newSelection.first;
-                          // Guardar el tipo seleccionado
-                          tipoModificadorSeleccionado[delito.id] = tipo;
-                          
-                          // Si ya hay un valor diferente de 0, aplicar el signo
-                          final double valorAbs = delito.modificadorManual.abs();
-                          if (valorAbs > 0) {
-                            delito.modificadorManual =
-                                tipo == 'agravante' ? valorAbs : -valorAbs;
-                            _actualizarDelito(index, delito);
-                          }
-                        });
-                      },
-                      style: ButtonStyle(
-                        backgroundColor:
-                            WidgetStateProperty.resolveWith((Set<WidgetState> states) {
-                          if (states.contains(WidgetState.selected)) {
-                            return azulMarino;
-                          }
-                          return fondoGris;
-                        }),
-                        foregroundColor:
-                            WidgetStateProperty.resolveWith((Set<WidgetState> states) {
-                          if (states.contains(WidgetState.selected)) {
-                            return dorado;
-                          }
-                          return azulMarino.withValues(alpha: 0.75);
-                        }),
-                        side: WidgetStatePropertyAll(
-                            BorderSide(color: azulMarino.withValues(alpha: 0.12))),
-                        shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14))),
+                  const Text('Término medio (Art. 37 CP):',
+                      style: TextStyle(fontWeight: FontWeight.w500)),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        DosimetriaEngine.formatYMD(delito.terminoMedio),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: azulMarino.withValues(alpha: 0.85)),
                       ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  GestureDetector(
-                    onTap: () => _showInfoDialog(
-                      'Atenuantes (Art. 74 CP) y Agravantes (Art. 77 CP)',
-                      'Atenuantes: circunstancias que reducen la responsabilidad penal (como la falta de intención proporcional al daño o la minoridad). Su presencia obliga al juez a mover la pena desde el término medio hacia el límite mínimo.\n\nAgravantes: circunstancias que aumentan la punibilidad debido a la mayor peligrosidad del agente o la forma de ejecución (alevosía, ensañamiento, reincidencia). Su presencia obliga al juez a mover la pena desde el término medio hacia el límite máximo.',
-                    ),
-                    child:
-                        const Icon(Icons.info_outline, color: dorado, size: 20),
+                      const SizedBox(width: 8),
+                      GestureDetector(
+                        onTap: () => _showInfoDialog(
+                          'Término Medio (Art. 37 CP)',
+                          'Punto de partida obligatorio para la dosimetría penal. Se obtiene sumando el límite mínimo y el máximo de la pena prevista para el delito y dividiendo el resultado entre dos. Sobre este valor se aplican las circunstancias atenuantes o agravantes que concurran en el caso.',
+                        ),
+                        child: const Icon(Icons.info_outline,
+                            color: dorado, size: 18),
+                      ),
+                    ],
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
-              _PenaInputRow(
-                label: 'Cantidad',
-                valorNumerico: delito.modificadorManual.abs(),
-                unidad: delito.modificadorUnidad,
-                onChanged: (double valor, UnidadTiempo unidad) {
-                  double valorEnAnios = valor;
-                  switch (unidad) {
-                    case UnidadTiempo.meses:
-                      valorEnAnios = valor / 12;
-                      break;
-                    case UnidadTiempo.dias:
-                      valorEnAnios = valor / 360;
-                      break;
-                    default:
-                      break;
-                  }
-                  // Usar el tipo seleccionado del mapa, o inferir del valor actual
-                  final String tipo = tipoModificadorSeleccionado[delito.id] ?? 
-                      (delito.modificadorManual < 0 ? 'atenuante' : 'agravante');
-                  final int signo = tipo == 'atenuante' ? -1 : 1;
-                  delito.modificadorManual = signo * valorEnAnios;
-                  delito.modificadorUnidad = _unidadNombre(unidad);
+            ),
+            const SizedBox(height: 20),
+
+            const Text('AJUSTES LEGALES',
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 12),
+
+            _buildDropdownRow(
+              label: 'Grado de ejecución',
+              value: _displayGradoEjecucion(delito.gradoEjecucion),
+              items: const <String>['Consumado', 'Frustrado', 'Tentativa'],
+              onChanged: (String? val) {
+                if (val != null) {
+                  delito.gradoEjecucion = _parseGradoEjecucion(val);
+                  delito.fraccionEjecucion =
+                      delito.gradoEjecucion == GradoEjecucion.frustrado
+                          ? 1 / 3
+                          : (delito.gradoEjecucion == GradoEjecucion.tentativa
+                              ? 0.5
+                              : 0);
+                  _actualizarDelito(index, delito);
+                }
+              },
+              onInfo: () {
+                String titulo = '';
+                String mensaje = '';
+                switch (delito.gradoEjecucion) {
+                  case GradoEjecucion.consumado:
+                    titulo = 'Delito Consumado';
+                    mensaje =
+                        'Se produce cuando el agente ha ejecutado la totalidad de los actos necesarios para la realización del tipo penal y se ha verificado el resultado lesivo. En este supuesto, la pena a aplicar es la que establece la ley para el delito en su extensión íntegra.';
+                    break;
+                  case GradoEjecucion.frustrado:
+                    titulo = 'Delito Frustrado (Arts. 80 y 82 CP)';
+                    mensaje =
+                        'Ocurre cuando el agente practica todo lo necesario para la consumación del delito, pero esta no se verifica por causas independientes a su voluntad. La pena aplicable será la del delito consumado rebajada en una tercera parte (1/3).';
+                    break;
+                  case GradoEjecucion.tentativa:
+                    titulo = 'Tentativa (Arts. 80 y 82 CP)';
+                    mensaje =
+                        'Se configura cuando el agente inicia la ejecución del delito mediante actos directos, pero no realiza todo lo necesario para su consumación por causas ajenas a su control. La pena se rebaja entre la mitad (1/2) y las dos terceras partes (2/3).';
+                    break;
+                }
+                _showInfoDialog(titulo, mensaje);
+              },
+            ),
+            const SizedBox(height: 16),
+
+            if (delito.gradoEjecucion == GradoEjecucion.tentativa)
+              _buildSliderRow(
+                label: 'Rebaja (tentativa)',
+                min: 0.5,
+                max: 2 / 3,
+                currentValue: delito.fraccionEjecucion,
+                onChanged: (double val) {
+                  const List<double> targets = <double>[0.5, 2 / 3];
+                  final double newVal = targets.reduce((double a, double b) =>
+                      (a - val).abs() < (b - val).abs() ? a : b);
+                  delito.fraccionEjecucion = newVal;
                   _actualizarDelito(index, delito);
                 },
-                onInfo: () {},
+                divisions: 1,
               ),
-              const SizedBox(height: 20),
 
-              Container(
-                width: double.infinity,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                decoration: BoxDecoration(
-                  color: azulMarino,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: dorado, width: 1.5),
+            _buildDropdownRow(
+              label: 'Grado de participación',
+              value: delito.participacionEspecifica,
+              items: const <String>[
+                'Autor',
+                'Coautor',
+                'Cooperador Inmediato',
+                'Cómplice Necesario',
+                'Cómplice No Necesario',
+              ],
+              onChanged: (String? val) {
+                if (val != null) {
+                  delito.participacionEspecifica = val;
+                  _actualizarDelito(index, delito);
+                }
+              },
+              onInfo: () {
+                if (delito.participacionEspecifica == 'Cómplice No Necesario') {
+                  _showInfoDialog(
+                    'Cómplice No Necesario (Art. 84 CP)',
+                    'Se refiere a quienes coadyuvan en la ejecución del delito mediante instrucciones, suministros o auxilio secundario no indispensable. La pena correspondiente al autor principal se rebajará a la mitad (1/2) para este grado de participación.',
+                  );
+                } else {
+                  _showInfoDialog(
+                    'Autoría y Participación (Art. 83 CP)',
+                    'Se aplica la pena íntegra del delito al Autor, Coautor y Cooperador Inmediato, por ser piezas esenciales en la ejecución del hecho. Igualmente, el Cómplice Necesario recibe la misma pena al prestar un auxilio sin el cual no habría sido posible el acto.',
+                  );
+                }
+              },
+            ),
+            const SizedBox(height: 16),
+
+            Row(
+              children: <Widget>[
+                const Text('Delito continuado',
+                    style: TextStyle(fontWeight: FontWeight.w500)),
+                const SizedBox(width: 8),
+                GestureDetector(
+                  onTap: () => _showInfoDialog(
+                    'Delito Continuado (Art. 99 CP)',
+                    'Varias violaciones de la misma disposición legal, cometidas en diferentes fechas pero bajo una misma resolución criminal, se consideran un solo hecho punible. Se toma la pena del delito más grave (término medio) y se aumenta entre una sexta parte (1/6) y la mitad (1/2).',
+                  ),
+                  child:
+                      const Icon(Icons.info_outline, color: dorado, size: 18),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const Text('PENA INDIVIDUALIZADA',
-                        style: TextStyle(
-                            color: dorado, fontWeight: FontWeight.w800)),
-                    const SizedBox(height: 8),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Text(
-                        DosimetriaEngine.formatYMD(
-                            delito.calcularPenaIndividualizada()),
-                        style: const TextStyle(
-                            color: dorado,
-                            fontWeight: FontWeight.w800,
-                            fontSize: 14),
-                        textAlign: TextAlign.left,
-                      ),
+                const Spacer(),
+                Switch(
+                  value: delito.delitoContinuado,
+                  onChanged: (bool val) {
+                    delito.delitoContinuado = val;
+                    _actualizarDelito(index, delito);
+                  },
+                  activeThumbColor: dorado,
+                ),
+              ],
+            ),
+            if (delito.delitoContinuado) ...<Widget>[
+              const SizedBox(height: 12),
+              const Text('Aumento (Art. 99 CP):',
+                  style: TextStyle(fontWeight: FontWeight.w500)),
+              const SizedBox(height: 6),
+              // Cuatro posiciones exactas: 1/6, 1/4, 1/3 y 1/2.
+              Wrap(
+                spacing: 8,
+                children: <double>[1 / 6, 1 / 4, 1 / 3, 1 / 2].map((double f) {
+                  final bool selected =
+                      (delito.fraccionContinuidad - f).abs() < 0.001;
+                  return ChoiceChip(
+                    label: Text(_fraccionTexto(f)),
+                    selected: selected,
+                    onSelected: (bool _) {
+                      setState(() {
+                        delito.fraccionContinuidad = f;
+                        _actualizarDelito(index, delito);
+                      });
+                    },
+                  );
+                }).toList(),
+              ),
+            ],
+            const SizedBox(height: 20),
+
+            const Text('ATENUANTES / AGRAVANTES (Arts. 74 y 77 CP)',
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: SegmentedButton<String>(
+                    segments: const <ButtonSegment<String>>[
+                      ButtonSegment(
+                          value: 'atenuante', label: Text('Atenuante')),
+                      ButtonSegment(
+                          value: 'agravante', label: Text('Agravante')),
+                    ],
+                    selected: <String>{
+                      // Usar el tipo guardado en el mapa, o inferir del valor
+                      tipoModificadorSeleccionado[delito.id] ??
+                          (delito.modificadorManual < 0
+                              ? "atenuante"
+                              : "agravante"),
+                    },
+                    onSelectionChanged: (Set<String> newSelection) {
+                      setState(() {
+                        final String tipo = newSelection.first;
+                        // Guardar el tipo seleccionado
+                        tipoModificadorSeleccionado[delito.id] = tipo;
+
+                        // Si ya hay un valor diferente de 0, aplicar el signo
+                        final double valorAbs = delito.modificadorManual.abs();
+                        if (valorAbs > 0) {
+                          delito.modificadorManual =
+                              tipo == 'agravante' ? valorAbs : -valorAbs;
+                          _actualizarDelito(index, delito);
+                        }
+                      });
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.resolveWith(
+                          (Set<WidgetState> states) {
+                        if (states.contains(WidgetState.selected)) {
+                          return azulMarino;
+                        }
+                        return fondoGris;
+                      }),
+                      foregroundColor: WidgetStateProperty.resolveWith(
+                          (Set<WidgetState> states) {
+                        if (states.contains(WidgetState.selected)) {
+                          return dorado;
+                        }
+                        return azulMarino.withValues(alpha: 0.75);
+                      }),
+                      side: WidgetStatePropertyAll(BorderSide(
+                          color: azulMarino.withValues(alpha: 0.12))),
+                      shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14))),
                     ),
-                  ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
+                const SizedBox(width: 8),
+                GestureDetector(
+                  onTap: () => _showInfoDialog(
+                    'Atenuantes (Art. 74 CP) y Agravantes (Art. 77 CP)',
+                    'Atenuantes: circunstancias que reducen la responsabilidad penal (como la falta de intención proporcional al daño o la minoridad). Su presencia obliga al juez a mover la pena desde el término medio hacia el límite mínimo.\n\nAgravantes: circunstancias que aumentan la punibilidad debido a la mayor peligrosidad del agente o la forma de ejecución (alevosía, ensañamiento, reincidencia). Su presencia obliga al juez a mover la pena desde el término medio hacia el límite máximo.',
+                  ),
+                  child:
+                      const Icon(Icons.info_outline, color: dorado, size: 20),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            _PenaInputRow(
+              label: 'Cantidad',
+              valorNumerico: delito.modificadorManual.abs(),
+              unidad: delito.modificadorUnidad,
+              onChanged: (double valor, UnidadTiempo unidad) {
+                double valorEnAnios = valor;
+                switch (unidad) {
+                  case UnidadTiempo.meses:
+                    valorEnAnios = valor / 12;
+                    break;
+                  case UnidadTiempo.dias:
+                    valorEnAnios = valor / 360;
+                    break;
+                  default:
+                    break;
+                }
+                // Usar el tipo seleccionado del mapa, o inferir del valor actual
+                final String tipo = tipoModificadorSeleccionado[delito.id] ??
+                    (delito.modificadorManual < 0 ? 'atenuante' : 'agravante');
+                final int signo = tipo == 'atenuante' ? -1 : 1;
+                delito.modificadorManual = signo * valorEnAnios;
+                delito.modificadorUnidad = _unidadNombre(unidad);
+                _actualizarDelito(index, delito);
+              },
+              onInfo: () {},
+            ),
+            const SizedBox(height: 20),
 
-              Row(
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              decoration: BoxDecoration(
+                color: azulMarino,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: dorado, width: 1.5),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Expanded(
-                    child: ElevatedButton.icon(
-                      onPressed: _agregarDelito,
-                      icon: const Icon(Icons.add),
-                      label: const Text('AGREGAR OTRO'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: azulMarino,
-                        foregroundColor: dorado,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14)),
-                        fixedSize: const Size.fromHeight(48),
-                        side: const BorderSide(color: dorado),
-                      ),
+                  const Text('PENA INDIVIDUALIZADA',
+                      style: TextStyle(
+                          color: dorado, fontWeight: FontWeight.w800)),
+                  const SizedBox(height: 8),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Text(
+                      DosimetriaEngine.formatYMD(
+                          delito.calcularPenaIndividualizada()),
+                      style: const TextStyle(
+                          color: dorado,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 14),
+                      textAlign: TextAlign.left,
                     ),
                   ),
                 ],
               ),
-              if (delitos.length > 1)
-                Padding(
-                  padding: const EdgeInsets.only(top: 12),
-                  child: TextButton.icon(
-                    onPressed: () => _eliminarDelito(index),
-                    icon: const Icon(Icons.delete_outline,
-                        color: Colors.redAccent),
-                    label: const Text('Eliminar este delito',
-                        style: TextStyle(color: Colors.redAccent)),
+            ),
+            const SizedBox(height: 16),
+
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: ElevatedButton.icon(
+                    onPressed: _agregarDelito,
+                    icon: const Icon(Icons.add),
+                    label: const Text('AGREGAR OTRO'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: azulMarino,
+                      foregroundColor: dorado,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14)),
+                      fixedSize: const Size.fromHeight(48),
+                      side: const BorderSide(color: dorado),
+                    ),
                   ),
                 ),
-            ],
-          ),
+              ],
+            ),
+            if (delitos.length > 1)
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: TextButton.icon(
+                  onPressed: () => _eliminarDelito(index),
+                  icon:
+                      const Icon(Icons.delete_outline, color: Colors.redAccent),
+                  label: const Text('Eliminar este delito',
+                      style: TextStyle(color: Colors.redAccent)),
+                ),
+              ),
+          ],
         ),
+      ),
     );
   }
 
@@ -1183,7 +1227,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(IterableProperty<Delito>('delitos', delitos));
-    properties.add(IterableProperty<CalculationModel>('savedCalculations', savedCalculations));
+    properties.add(IterableProperty<CalculationModel>(
+        'savedCalculations', savedCalculations));
   }
 }
 
@@ -1210,7 +1255,8 @@ class _PenaInputRow extends StatefulWidget {
     properties.add(StringProperty('label', label));
     properties.add(DoubleProperty('valorNumerico', valorNumerico));
     properties.add(StringProperty('unidad', unidad));
-    properties.add(ObjectFlagProperty<Function(double, UnidadTiempo)>.has('onChanged', onChanged));
+    properties.add(ObjectFlagProperty<Function(double, UnidadTiempo)>.has(
+        'onChanged', onChanged));
     properties.add(ObjectFlagProperty<VoidCallback>.has('onInfo', onInfo));
   }
 }
@@ -1238,15 +1284,16 @@ class _PenaInputRowState extends State<_PenaInputRow> {
   void didUpdateWidget(covariant _PenaInputRow oldWidget) {
     super.didUpdateWidget(oldWidget);
     // Solo actualizar si no estamos en medio de una edición del usuario
-    if (!_isUpdatingFromUser && 
+    if (!_isUpdatingFromUser &&
         (oldWidget.valorNumerico != widget.valorNumerico ||
-        oldWidget.unidad != widget.unidad)) {
+            oldWidget.unidad != widget.unidad)) {
       _updateControllers();
     }
   }
 
   void _updateControllers() {
-    final Map<String, int> ymd = DosimetriaEngine.convertToYMD(widget.valorNumerico);
+    final Map<String, int> ymd =
+        DosimetriaEngine.convertToYMD(widget.valorNumerico);
     _anosController.text = ymd['anos'] == 0 ? '' : ymd['anos']!.toString();
     _mesesController.text = ymd['meses'] == 0 ? '' : ymd['meses']!.toString();
     _diasController.text = ymd['dias'] == 0 ? '' : ymd['dias']!.toString();
@@ -1264,127 +1311,137 @@ class _PenaInputRowState extends State<_PenaInputRow> {
     required TextEditingController controller,
     required String label,
     required ValueChanged<String> onChanged,
-  }) => TextFormField(
-      controller: controller,
-      keyboardType: TextInputType.number,
-      inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
-      decoration: InputDecoration(
-        labelText: label,
-        filled: true,
-        fillColor: fondoGris,
-        border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
-            borderSide: BorderSide(color: azulMarino.withValues(alpha: 0.18))),
-        enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
-            borderSide: BorderSide(color: azulMarino.withValues(alpha: 0.12))),
-        focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
-            borderSide:
-                BorderSide(color: azulMarino.withValues(alpha: 0.35), width: 1.2)),
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-      ),
-      onChanged: onChanged,
-    );
+  }) =>
+      TextFormField(
+        controller: controller,
+        keyboardType: TextInputType.number,
+        inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.digitsOnly
+        ],
+        decoration: InputDecoration(
+          labelText: label,
+          filled: true,
+          fillColor: fondoGris,
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(14),
+              borderSide:
+                  BorderSide(color: azulMarino.withValues(alpha: 0.18))),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(14),
+              borderSide:
+                  BorderSide(color: azulMarino.withValues(alpha: 0.12))),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(14),
+              borderSide: BorderSide(
+                  color: azulMarino.withValues(alpha: 0.35), width: 1.2)),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+        ),
+        onChanged: onChanged,
+      );
 
   Map<String, int> _parseYMD(String anos, String meses, String dias) {
     final int a = int.tryParse(anos) ?? 0;
     final int m = int.tryParse(meses) ?? 0;
     final int d = int.tryParse(dias) ?? 0;
     final int totalDias = (a * 360) + (m * 30) + d;
-    return <String, int>{'anos': a, 'meses': m, 'dias': d, 'totalDias': totalDias};
+    return <String, int>{
+      'anos': a,
+      'meses': m,
+      'dias': d,
+      'totalDias': totalDias
+    };
   }
 
   @override
   Widget build(BuildContext context) => Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            Text(widget.label,
-                style: const TextStyle(fontWeight: FontWeight.bold)),
-            const SizedBox(width: 8),
-            GestureDetector(
-              onTap: widget.onInfo,
-              child: const Icon(Icons.info_outline, color: dorado, size: 18),
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Table(
-          columnWidths: const <int, TableColumnWidth>{
-            0: FlexColumnWidth(),
-            1: FlexColumnWidth(),
-            2: FlexColumnWidth(),
-          },
-          children: <TableRow>[
-            TableRow(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(right: 6),
-                  child: _buildTimeInputField(
-                    controller: _anosController,
-                    label: "Años",
-                    onChanged: (String value) {
-                      _isUpdatingFromUser = true;
-                      final Map<String, int> newYMD = _parseYMD(
-                        _anosController.text,
-                        _mesesController.text,
-                        _diasController.text,
-                      );
-                      widget.onChanged(
-                          newYMD["totalDias"]! / 360.0, UnidadTiempo.anos);
-                      Future.delayed(const Duration(milliseconds: 100), () {
-                        _isUpdatingFromUser = false;
-                      });
-                    },
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Text(widget.label,
+                  style: const TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(width: 8),
+              GestureDetector(
+                onTap: widget.onInfo,
+                child: const Icon(Icons.info_outline, color: dorado, size: 18),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Table(
+            columnWidths: const <int, TableColumnWidth>{
+              0: FlexColumnWidth(),
+              1: FlexColumnWidth(),
+              2: FlexColumnWidth(),
+            },
+            children: <TableRow>[
+              TableRow(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(right: 6),
+                    child: _buildTimeInputField(
+                      controller: _anosController,
+                      label: "Años",
+                      onChanged: (String value) {
+                        _isUpdatingFromUser = true;
+                        final Map<String, int> newYMD = _parseYMD(
+                          _anosController.text,
+                          _mesesController.text,
+                          _diasController.text,
+                        );
+                        widget.onChanged(
+                            newYMD["totalDias"]! / 360.0, UnidadTiempo.anos);
+                        Future.delayed(const Duration(milliseconds: 100), () {
+                          _isUpdatingFromUser = false;
+                        });
+                      },
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 6),
-                  child: _buildTimeInputField(
-                    controller: _mesesController,
-                    label: "Meses",
-                    onChanged: (String value) {
-                      _isUpdatingFromUser = true;
-                      final Map<String, int> newYMD = _parseYMD(
-                        _anosController.text,
-                        _mesesController.text,
-                        _diasController.text,
-                      );
-                      widget.onChanged(
-                          newYMD["totalDias"]! / 360.0, UnidadTiempo.meses);
-                      Future.delayed(const Duration(milliseconds: 100), () {
-                        _isUpdatingFromUser = false;
-                      });
-                    },
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    child: _buildTimeInputField(
+                      controller: _mesesController,
+                      label: "Meses",
+                      onChanged: (String value) {
+                        _isUpdatingFromUser = true;
+                        final Map<String, int> newYMD = _parseYMD(
+                          _anosController.text,
+                          _mesesController.text,
+                          _diasController.text,
+                        );
+                        widget.onChanged(
+                            newYMD["totalDias"]! / 360.0, UnidadTiempo.anos);
+                        Future.delayed(const Duration(milliseconds: 100), () {
+                          _isUpdatingFromUser = false;
+                        });
+                      },
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 6),
-                  child: _buildTimeInputField(
-                    controller: _diasController,
-                    label: "Días",
-                    onChanged: (String value) {
-                      _isUpdatingFromUser = true;
-                      final Map<String, int> newYMD = _parseYMD(
-                        _anosController.text,
-                        _mesesController.text,
-                        _diasController.text,
-                      );
-                      widget.onChanged(
-                          newYMD["totalDias"]! / 360.0, UnidadTiempo.dias);
-                      Future.delayed(const Duration(milliseconds: 100), () {
-                        _isUpdatingFromUser = false;
-                      });
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(left: 6),
+                    child: _buildTimeInputField(
+                      controller: _diasController,
+                      label: "Días",
+                      onChanged: (String value) {
+                        _isUpdatingFromUser = true;
+                        final Map<String, int> newYMD = _parseYMD(
+                          _anosController.text,
+                          _mesesController.text,
+                          _diasController.text,
+                        );
+                        widget.onChanged(
+                            newYMD["totalDias"]! / 360.0, UnidadTiempo.anos);
+                        Future.delayed(const Duration(milliseconds: 100), () {
+                          _isUpdatingFromUser = false;
+                        });
+                      },
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
-    );
+                ],
+              ),
+            ],
+          ),
+        ],
+      );
 }
