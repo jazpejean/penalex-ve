@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/ai_tool_stats_widget.dart';
+import '../widgets/app_drawer.dart';
 import 'chat_legal_screen.dart';
 import 'redactor_documentos_screen.dart';
 import 'escanear_documento_screen.dart';
@@ -40,6 +41,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(currentRoute: "/asistente_legal"),
       backgroundColor: const Color(0xFF0F172A), // Azul marino
       appBar: AppBar(
         title: const Row(
