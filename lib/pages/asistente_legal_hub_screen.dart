@@ -4,7 +4,6 @@ import '../widgets/app_drawer.dart';
 import 'chat_legal_screen.dart';
 import 'redactor_documentos_screen.dart';
 import 'escanear_documento_screen.dart';
-import 'comparador_estrategias_screen.dart';
 
 /// Hub principal del Asistente Legal con IA
 /// Agrupa las 4 herramientas principales potenciadas por IA
@@ -183,20 +182,6 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             ),
             const SizedBox(height: 16),
 
-            // ANÁLISIS DE OPCIONES PROCESALES (complementaria)
-            _buildToolCard(
-              context,
-              icon: Icons.compare_arrows,
-              iconColor: const Color(0xFFF59E0B),
-              title: 'Análisis de Opciones Procesales',
-              badge: null,
-              description:
-                  'Explora las vías procesales de un caso con base legal y '
-                  'jurisprudencia real. Sin porcentajes ni predicciones: '
-                  'la decisión la toma el abogado.',
-              stats: 'Base legal + jurisprudencia',
-              onTap: () => _navigateToComparador(context),
-            ),
             const SizedBox(height: 32),
 
             // Botón de Analytics
@@ -864,15 +849,6 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  void _navigateToComparador(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const ComparadorEstrategiasScreen(),
       ),
     );
   }
