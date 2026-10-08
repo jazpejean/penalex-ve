@@ -12,6 +12,7 @@ import '../services/chat_service.dart';
 import '../services/ocr_service.dart';
 import '../services/chat_legal_export_service.dart';
 import '../services/ulpiano_service.dart';
+import 'redactor_documentos_screen.dart' show RedactorDocumentosScreen;
 
 /// Modelo para archivos adjuntos
 class AttachedFile {
@@ -1224,6 +1225,15 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
           constraints: const BoxConstraints(),
           padding: const EdgeInsets.all(4),
         ),
+        if (!message.isUser)
+          IconButton(
+            onPressed: () => _abrirEnRedactor(message),
+            icon: Icon(Icons.edit_document, size: 16, color: colorBase),
+            tooltip: 'Redactar con esta respuesta',
+            visualDensity: VisualDensity.compact,
+            constraints: const BoxConstraints(),
+            padding: const EdgeInsets.all(4),
+          ),
         PopupMenuButton<String>(
           icon: Icon(Icons.download, size: 16, color: colorBase),
           tooltip: 'Descargar',
@@ -1248,6 +1258,42 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('✅ Texto copiado'),
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 1),
+        ),
+      );
+    }
+  }
+
+  /// Abre la respuesta del asistente en el Redactor como borrador editable.
+  void _abrirEnRedactor(ChatMessage message) {
+    final buffer = StringBuffer(message.content);
+    if (message.hasSources) {
+      buffer.write('\n\n**Fuentes citadas:**\n');
+      for (final s in message.sources) {
+        buffer.write('- ${s.title} — ${s.reference}\n');
+      }
+    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => RedactorDocumentosScreen(
+          initialPrompt: buffer.toString().trim(),
+        ),
+      ),
+    );
+  }
+
+  /// Copia una fuente en formato de cita verificable.
+  Future<void> _copiarFuente(MessageSource source) async {
+    final cita = source.url != null && source.url!.isNotEmpty
+        ? '${source.title} — ${source.reference}\n${source.url}'
+        : '${source.title} — ${source.reference}';
+    await Clipboard.setData(ClipboardData(text: cita));
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('✅ Cita copiada'),
           behavior: SnackBarBehavior.floating,
           duration: Duration(seconds: 1),
         ),
@@ -1311,6 +1357,18 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                         fontSize: 11,
                       ),
                     ),
+                  ),
+                  IconButton(
+                    onPressed: () => _copiarFuente(source),
+                    icon: Icon(
+                      Icons.content_copy,
+                      size: 13,
+                      color: Colors.white.withValues(alpha: 0.5),
+                    ),
+                    tooltip: 'Copiar cita',
+                    visualDensity: VisualDensity.compact,
+                    constraints: const BoxConstraints(),
+                    padding: const EdgeInsets.all(2),
                   ),
                 ],
               ),
