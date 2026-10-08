@@ -7,6 +7,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'config/theme.dart';
 import 'models/delito.dart';
 import 'pages/agenda_screen.dart';
 import 'pages/admin_glosario_screen.dart';
@@ -88,32 +89,7 @@ class DosimetriaPenalApp extends StatelessWidget {
           Locale('es', 'ES'),
         ],
         locale: const Locale('es', 'ES'),
-        theme: ThemeData(
-          useMaterial3: true,
-          primaryColor: const Color(0xFF0F172A),
-          scaffoldBackgroundColor: Colors.white,
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF0F172A),
-            primary: const Color(0xFF0F172A),
-            secondary: const Color(0xFFF59E0B),
-          ),
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Color(0xFF0F172A),
-            foregroundColor: Colors.white,
-            centerTitle: true,
-            titleTextStyle: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
-            ),
-          ),
-        ),
+        theme: AppTheme.lightTheme,
         initialRoute: '/',
         routes: {
           '/': (context) => const AuthWrapper(),

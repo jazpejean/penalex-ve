@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../config/app_colors.dart';
 import 'agenda_screen.dart';
 import 'asistente_legal_hub_screen.dart';
 import 'dosimetria_page.dart';
@@ -21,9 +22,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
-
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
 
   final List<Widget> _screens = const <Widget>[
     AgendaScreen(), // 0 - Agenda
@@ -50,8 +48,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget _buildBottomBar() {
     return Container(
       decoration: BoxDecoration(
-        color: azulMarino,
-        border: const Border(top: BorderSide(color: dorado, width: 1)),
+        color: AppColors.primary,
+        border: const Border(top: BorderSide(color: AppColors.secondary, width: 1)),
         boxShadow: <BoxShadow>[
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.33),
@@ -100,12 +98,14 @@ class _MainScreenState extends State<MainScreen> {
               padding: const EdgeInsets.all(7),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: isSelected ? dorado : dorado.withValues(alpha: 0.12),
+                color: isSelected
+                    ? AppColors.secondary
+                    : AppColors.secondary.withValues(alpha: 0.12),
               ),
               child: Icon(
                 icon,
                 size: 21,
-                color: isSelected ? azulMarino : dorado,
+                color: isSelected ? AppColors.primary : AppColors.secondary,
               ),
             ),
             const SizedBox(height: 5),
@@ -123,7 +123,7 @@ class _MainScreenState extends State<MainScreen> {
                     fontSize: 12,
                     fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
                     color: isSelected
-                        ? dorado
+                        ? AppColors.secondary
                         : Colors.white.withValues(alpha: 0.85),
                   ),
                 ),

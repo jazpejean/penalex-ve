@@ -16,10 +16,14 @@ class AppColors {
   static const Color surface = Color(0xFFFFFFFF); // Fondo de tarjetas y paneles
   static const Color surfaceLight = Color(0xFFE2E8F0); // Gris suave para capas
 
-  // Textos
-  static const Color textPrimary = Colors.white;
-  static const Color textSecondary = Colors.white70;
+  // Textos (sobre superficies claras: tarjetas, fondo gris claro)
+  static const Color textPrimary = Color(0xFF1E293B); // Slate-800, alto contraste
+  static const Color textSecondary = Color(0xFF475569); // Slate-600
   static const Color textMuted = Color(0xFF9CA3AF);
+
+  // Texto sobre superficies oscuras (azul marino)
+  static const Color onDarkPrimary = Colors.white;
+  static const Color onDarkSecondary = Colors.white70;
 
   // Estados
   static const Color success = Color(0xFF10B981);
