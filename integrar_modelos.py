@@ -31,6 +31,7 @@ PROCESADOS = os.path.join(ENTRADA, "procesados")
 ORIGINALES = os.path.join(ROOT, "ejemplos")
 TEXTO = os.path.join(ROOT, "ejemplos_texto")
 ESTILOS = os.path.join(ROOT, "ejemplos_estilos")
+ASSETS_ESTILOS = os.path.join(ROOT, "assets", "estilos")  # copia offline de la app
 
 RE_CEDULA = re.compile(r"\b[VEJ]-\s?\d{6,9}\b|\b[VEJ]-\s?\d{1,3}(?:\.\d{3}){2}\b")
 RE_CAUSA = re.compile(r"\b\dU-\d{4}-\d{2}\b|\b\dU-\d{4}-\d{2,4}\b")
@@ -121,9 +122,21 @@ def main() -> int:
         nuevos += 1
 
     regenerar_manifest()
+
+    # Sincroniza la copia offline de la app (assets/estilos) para que la
+    # biblioteca local no quede desfasada del banco de estilos.
+    for root, _, files in os.walk(ESTILOS):
+        rel = os.path.relpath(root, ESTILOS)
+        destino = os.path.join(ASSETS_ESTILOS, rel)
+        os.makedirs(destino, exist_ok=True)
+        for f in files:
+            if f.endswith(".txt") or f == "manifest.json":
+                shutil.copy2(os.path.join(root, f), os.path.join(destino, f))
+
     total = sum(len(v) for v in json.load(open(os.path.join(ESTILOS, "manifest.json"), encoding="utf-8")).values())
     print(f"\nListo: {nuevos} nuevo(s), {saltados} ya existente(s).")
     print(f"Banco de estilos total: {total} documentos (ver ejemplos_estilos/manifest.json)")
+    print("Siguiente paso: node upload_estilos_supabase.mjs  (actualiza el bucket 'estilos')")
     return 0
 
 
