@@ -31,7 +31,6 @@ class AppDrawer extends StatelessWidget {
     '/',
     '/asistente_legal',
     '/glosario',
-    '/jurisprudencia',
     '/repositorio_jurisprudencia',
     '/chat_legal',
     '/busqueda_semantica',

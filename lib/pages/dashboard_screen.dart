@@ -161,7 +161,7 @@ class DashboardScreen extends StatelessWidget {
               subtitle: 'Sentencias y doctrina',
               description: 'Consulta fallos relevantes de los tribunales venezolanos.',
               icon: Icons.account_balance,
-              route: '/jurisprudencia',
+              route: '/repositorio_jurisprudencia',
               actionText: 'Ver jurisprudencia',
             ),
             _buildCard(

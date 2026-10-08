@@ -24,7 +24,6 @@ import 'pages/computo_page.dart';
 import 'pages/dashboard_screen.dart';
 import 'pages/dosimetria_page.dart';
 import 'pages/glosario_screen.dart';
-import 'pages/leyes_screen.dart';
 import 'pages/main_screen.dart';
 import 'pages/login_page.dart'; // FIREBASE LOGIN
 import 'pages/quiz_lobby_screen.dart';
@@ -108,7 +107,6 @@ class DosimetriaPenalApp extends StatelessWidget {
           '/calculos': (context) => const CalculosGuardadosPage(),
           '/agenda': (context) => const AgendaScreen(),
           '/reportes': (context) => const ReportesGuardadosPage(),
-          '/leyes': (context) => const LeyesScreen(),
           '/glosario': (context) => const GlosarioScreen(),
           '/repositorio_jurisprudencia': (context) => const RepositorioJurisprudenciaScreen(),
           '/repositorio_leyes': (context) => const RepositorioLeyesScreen(),
