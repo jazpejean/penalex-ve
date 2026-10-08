@@ -120,7 +120,7 @@ class _MainScreenState extends State<MainScreen> {
                   textAlign: TextAlign.center,
                   maxLines: 1,
                   style: TextStyle(
-                    fontSize: 11.5,
+                    fontSize: 12,
                     fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
                     color: isSelected
                         ? dorado

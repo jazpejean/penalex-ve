@@ -70,7 +70,7 @@ class _SupabaseRegisterPageState extends State<SupabaseRegisterPage> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Entendido', style: TextStyle(color: dorado)),
+            child: const Text('Entendido', style: TextStyle(color: azulMarino)),
           ),
         ],
       ),
@@ -133,7 +133,7 @@ class _SupabaseRegisterPageState extends State<SupabaseRegisterPage> {
               Navigator.pop(context); // Volver a login
             },
             child: const Text('Ir a iniciar sesión',
-                style: TextStyle(color: dorado, fontWeight: FontWeight.bold)),
+                style: TextStyle(color: azulMarino, fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -326,7 +326,7 @@ class _SupabaseRegisterPageState extends State<SupabaseRegisterPage> {
                     onPressed: () => Navigator.pop(context),
                     child: const Text('Inicia sesión',
                         style: TextStyle(
-                            color: dorado, fontWeight: FontWeight.bold)),
+                            color: azulMarino, fontWeight: FontWeight.bold)),
                   ),
                 ],
               ),

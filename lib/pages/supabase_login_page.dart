@@ -117,7 +117,7 @@ class _SupabaseLoginPageState extends State<SupabaseLoginPage> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Entendido', style: TextStyle(color: dorado)),
+            child: const Text('Entendido', style: TextStyle(color: azulMarino)),
           ),
         ],
       ),
@@ -378,7 +378,7 @@ class _SupabaseLoginPageState extends State<SupabaseLoginPage> {
                           ),
                           child: const Text('Regístrate',
                               style: TextStyle(
-                                  color: dorado, fontWeight: FontWeight.bold)),
+                                  color: azulMarino, fontWeight: FontWeight.bold)),
                         ),
                       ],
                     ),

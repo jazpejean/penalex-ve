@@ -215,7 +215,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                           onPressed: _resendVerificationEmail,
                           child: const Text(
                             '¿No recibiste el correo? Reenviar verificación',
-                            style: TextStyle(color: dorado, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: azulMarino, fontWeight: FontWeight.bold),
                           ),
                         )
                       else

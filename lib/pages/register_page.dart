@@ -54,7 +54,7 @@ class _RegisterPageState extends State<RegisterPage> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Entendido', style: TextStyle(color: dorado)),
+            child: const Text('Entendido', style: TextStyle(color: azulMarino)),
           ),
         ],
       ),
@@ -203,7 +203,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   const Text('¿Ya tienes cuenta? ', style: TextStyle(color: grisTexto)),
                   TextButton(
                     onPressed: () => Navigator.pop(context),
-                    child: const Text('Inicia sesión', style: TextStyle(color: dorado, fontWeight: FontWeight.bold)),
+                    child: const Text('Inicia sesión', style: TextStyle(color: azulMarino, fontWeight: FontWeight.bold)),
                   ),
                 ],
               ),

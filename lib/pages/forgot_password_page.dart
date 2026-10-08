@@ -175,7 +175,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 onPressed: () =>
                     Navigator.pushNamed(context, '/reset-password'),
                 child: const Text("Ya tengo el código de restablecimiento",
-                    style: TextStyle(color: dorado)),
+                    style: TextStyle(color: azulMarino)),
               ),
               TextButton(
                 onPressed: () => Navigator.pop(context),
