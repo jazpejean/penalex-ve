@@ -130,19 +130,19 @@ class DashboardScreen extends StatelessWidget {
             // ASISTENTE LEGAL - Feature destacada
             _buildStarCard(
               context,
-              title: '🤖 Asistente Legal con IA',
+              title: 'Asistente Legal con IA',
               subtitle: 'Tu equipo de estrategas legales',
               description: 'Chat, Redactor, Escáner y Comparador de Estrategias. Todo en un solo lugar.',
               icon: Icons.auto_awesome,
               route: '/asistente_legal',
               actionText: 'Acceder al asistente',
-              badge: '⭐ NUEVO',
+              badge: 'NUEVO',
             ),
             
             // HERRAMIENTAS PRINCIPALES
             _buildCard(
               context,
-              title: '⚖️ Dosimetría Penal',
+              title: 'Dosimetría Penal',
               subtitle: 'Cálculo técnico de penas',
               description: 'Determina la pena individualizada, concurso de delitos y más.',
               icon: Icons.calculate,
@@ -151,7 +151,7 @@ class DashboardScreen extends StatelessWidget {
             ),
             _buildCard(
               context,
-              title: '📅 Agenda Judicial',
+              title: 'Agenda Judicial',
               subtitle: 'Organiza tus audiencias',
               description: 'Registro de actos procesales y recordatorios.',
               icon: Icons.calendar_month,
@@ -160,7 +160,7 @@ class DashboardScreen extends StatelessWidget {
             ),
             _buildCard(
               context,
-              title: '📚 Legislación Penal',
+              title: 'Legislación Penal',
               subtitle: 'Marco legal venezolano',
               description: 'Constitución, Código Penal, COPP y más.',
               icon: Icons.gavel,
@@ -169,7 +169,7 @@ class DashboardScreen extends StatelessWidget {
             ),
             _buildCard(
               context,
-              title: '⚖️ Jurisprudencia',
+              title: 'Jurisprudencia',
               subtitle: 'Sentencias y doctrina',
               description: 'Consulta fallos relevantes de los tribunales venezolanos.',
               icon: Icons.account_balance,
@@ -178,7 +178,7 @@ class DashboardScreen extends StatelessWidget {
             ),
             _buildCard(
               context,
-              title: '📖 Glosario Jurídico',
+              title: 'Glosario Jurídico',
               subtitle: 'Definiciones claras',
               description: 'Aclara términos y conceptos del derecho penal.',
               icon: Icons.menu_book,
@@ -187,7 +187,7 @@ class DashboardScreen extends StatelessWidget {
             ),
             _buildCard(
               context,
-              title: '🎯 Desafío Penal',
+              title: 'Desafío Penal',
               subtitle: 'Pon a prueba tus conocimientos',
               description: 'Responde preguntas sobre derecho penal venezolano.',
               icon: Icons.quiz,
@@ -272,14 +272,25 @@ class DashboardScreen extends StatelessWidget {
                                   color: const Color(0xFFFBBF24),
                                   borderRadius: BorderRadius.circular(6),
                                 ),
-                                child: Text(
-                                  badge,
-                                  style: const TextStyle(
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF0F172A),
-                                    letterSpacing: 0.5,
-                                  ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(
+                                      Icons.star_rounded,
+                                      size: 14,
+                                      color: Color(0xFF0F172A),
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      badge,
+                                      style: const TextStyle(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF0F172A),
+                                        letterSpacing: 0.5,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               const SizedBox(height: 8),

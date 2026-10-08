@@ -933,13 +933,20 @@ class _RepositorioJurisprudenciaScreenState
                             )
                           ],
                         ),
-                        child: const Text(
-                          '⚖️ Vinculante',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        child: const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.gavel, size: 12, color: Colors.white),
+                            SizedBox(width: 4),
+                            Text(
+                              'Vinculante',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -1603,27 +1610,27 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 _buildSeccionAnalisis(
-                                  '📋 RESUMEN EJECUTIVO',
+                                  'RESUMEN EJECUTIVO',
                                   _analisisProfundo!.resumenEjecutivo,
                                 ),
                                 const Divider(height: 24),
                                 _buildSeccionAnalisis(
-                                  '⚖️ RATIO DECIDENDI',
+                                  'RATIO DECIDENDI',
                                   _analisisProfundo!.ratioDecidendi,
                                 ),
                                 const Divider(height: 24),
                                 _buildSeccionAnalisis(
-                                  '🔑 PRECEDENTES Y CITAS CLAVE',
+                                  'PRECEDENTES Y CITAS CLAVE',
                                   _analisisProfundo!.precedentesClave,
                                 ),
                                 const Divider(height: 24),
                                 _buildSeccionAnalisis(
-                                  '💡 ARGUMENTOS LEGALES PRINCIPALES',
+                                  'ARGUMENTOS LEGALES PRINCIPALES',
                                   _analisisProfundo!.argumentosPrincipales,
                                 ),
                                 const Divider(height: 24),
                                 _buildSeccionAnalisis(
-                                  '📊 IMPACTO Y APLICABILIDAD',
+                                  'IMPACTO Y APLICABILIDAD',
                                   _analisisProfundo!.impactoAplicabilidad,
                                 ),
                                 const Divider(height: 24),
