@@ -1,17 +1,22 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../game/quiz_effects_game.dart';
 import '../services/quiz_certificate_service.dart';
 import '../services/quiz_rules.dart';
 import '../services/quiz_storage_service.dart';
+import '../widgets/quiz_pulso_widget.dart';
 
-const _navy = Color(0xFF0F172A);
-const _navy2 = Color(0xFF1E293B);
-const _gold = Color(0xFFC5A059);
-const _goldBright = Color(0xFFE9C86A);
+const _fondoProfundo = Color(0xFF190F38);
+const _card = Color(0xFF251A4D);
+const _oro = Color(0xFFC5A059);
+const _oroBrillante = Color(0xFFE9C86A);
 
-/// Galería de logros (certificados ganados en el quiz) + camino de hitos.
+/// Galería de logros: el camino de la carrera judicial como escalones-gema.
 class QuizLogrosScreen extends StatefulWidget {
   const QuizLogrosScreen({super.key});
 
@@ -19,17 +24,27 @@ class QuizLogrosScreen extends StatefulWidget {
   State<QuizLogrosScreen> createState() => _QuizLogrosScreenState();
 }
 
-class _QuizLogrosScreenState extends State<QuizLogrosScreen> {
+class _QuizLogrosScreenState extends State<QuizLogrosScreen>
+    with TickerProviderStateMixin {
   final QuizStorageService _service = QuizStorageService();
+  late final QuizEffectsGame _fx;
   Map<String, dynamic> _progreso = {};
   bool _cargando = true;
+  Timer? _ambiente;
 
   int get _xp => (_progreso['xp'] as num?)?.toInt() ?? 0;
 
   @override
   void initState() {
     super.initState();
+    _fx = QuizEffectsGame();
     _cargar();
+  }
+
+  @override
+  void dispose() {
+    _ambiente?.cancel();
+    super.dispose();
   }
 
   Future<void> _cargar() async {
@@ -38,6 +53,10 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen> {
     setState(() {
       _progreso = p;
       _cargando = false;
+    });
+    _ambiente = Timer.periodic(const Duration(milliseconds: 320), (_) {
+      final s = _fx.size;
+      if (s.x > 0) _fx.particulaAmbiente(s.x, s.y);
     });
   }
 
@@ -53,169 +72,299 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen> {
   Widget build(BuildContext context) {
     final hitos = QuizRules.hitosConCertificado;
     return Scaffold(
-      backgroundColor: _navy,
+      backgroundColor: _fondoProfundo,
       appBar: AppBar(
         title: const Text(
           'Mis Logros',
-          style: TextStyle(fontWeight: FontWeight.bold, color: _gold),
+          style: TextStyle(fontWeight: FontWeight.bold, color: _oro),
         ),
-        backgroundColor: _navy,
+        backgroundColor: _fondoProfundo,
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0,
       ),
-      body: _cargando
-          ? const Center(child: CircularProgressIndicator(color: _gold))
-          : ListView.builder(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
-              itemCount: hitos.length + 1,
-              itemBuilder: (context, i) {
-                if (i == 0) return _buildHeader(hitos);
-                final hito = hitos[i - 1];
-                return _buildLogroCard(hito, _logroDe(hito.nombre));
-              },
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: IgnorePointer(
+              child: GameWidget(
+                game: _fx,
+                backgroundColor: Colors.transparent,
+              ),
             ),
+          ),
+          _cargando
+              ? const Center(child: CircularProgressIndicator(color: _oro))
+              : ListView.builder(
+                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
+                  itemCount: hitos.length + 1,
+                  itemBuilder: (context, i) {
+                    if (i == 0) return _buildHeader(hitos);
+                    final hito = hitos[i - 1];
+                    return _buildEscalon(
+                      hito,
+                      _logroDe(hito.nombre),
+                      esUltimo: i == hitos.length,
+                    );
+                  },
+                ),
+        ],
+      ),
     );
   }
 
   Widget _buildHeader(List<({int xp, String nombre})> hitos) {
     final ganados = hitos.where((h) => _xp >= h.xp).length;
     return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.05),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: _gold.withValues(alpha: 0.25)),
+      padding: const EdgeInsets.only(bottom: 22),
+      child: TweenAnimationBuilder<double>(
+        tween: Tween(begin: 0, end: 1),
+        duration: const Duration(milliseconds: 700),
+        curve: Curves.easeOutCubic,
+        builder: (context, v, child) => Opacity(
+          opacity: v,
+          child: Transform.translate(
+            offset: Offset(0, 14 * (1 - v)),
+            child: child,
+          ),
         ),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                const Icon(Icons.workspace_premium, color: _goldBright, size: 34),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '$ganados de ${hitos.length} logros',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w800,
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: _card,
+            borderRadius: BorderRadius.circular(22),
+            border: Border.all(color: _oro.withValues(alpha: 0.35)),
+          ),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  const Icon(
+                    Icons.workspace_premium,
+                    color: _oroBrillante,
+                    size: 34,
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '$ganados de ${hitos.length} logros',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        '$_xp XP acumulados',
-                        style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.55),
-                          fontSize: 13,
+                        const SizedBox(height: 2),
+                        Text(
+                          '$_xp XP acumulados',
+                          style: TextStyle(
+                            color: Colors.white.withValues(alpha: 0.55),
+                            fontSize: 13,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              TweenAnimationBuilder<double>(
+                tween: Tween(begin: 0, end: ganados / hitos.length),
+                duration: const Duration(milliseconds: 900),
+                curve: Curves.easeOutCubic,
+                builder: (context, v, _) => ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: LinearProgressIndicator(
+                    value: v,
+                    minHeight: 10,
+                    backgroundColor: Colors.white12,
+                    valueColor: const AlwaysStoppedAnimation(_oro),
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: LinearProgressIndicator(
-                value: ganados / hitos.length,
-                minHeight: 10,
-                backgroundColor: Colors.white12,
-                valueColor: const AlwaysStoppedAnimation(_gold),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildLogroCard(
-      ({int xp, String nombre}) hito, Map<String, dynamic> logro) {
+  Widget _buildEscalon(
+    ({int xp, String nombre}) hito,
+    Map<String, dynamic> logro, {
+    required bool esUltimo,
+  }) {
     final desbloqueado = _xp >= hito.xp;
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: desbloqueado ? _navy2 : Colors.white.withValues(alpha: 0.03),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(
-          color: desbloqueado
-              ? _gold.withValues(alpha: 0.55)
-              : Colors.white.withValues(alpha: 0.12),
-          width: desbloqueado ? 1.4 : 1,
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: 1),
+      duration: const Duration(milliseconds: 450),
+      curve: Curves.easeOutCubic,
+      builder: (context, v, child) => Opacity(
+        opacity: v,
+        child: Transform.translate(
+          offset: Offset(0, 12 * (1 - v)),
+          child: child,
         ),
       ),
-      child: Row(
-        children: [
-          Container(
-            width: 52,
-            height: 52,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: desbloqueado
-                  ? _gold.withValues(alpha: 0.18)
-                  : Colors.white.withValues(alpha: 0.06),
-              border: Border.all(
-                color: desbloqueado ? _goldBright : Colors.white24,
-                width: 1.5,
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Riel con nodo-gema
+            SizedBox(
+              width: 34,
+              child: Column(
+                children: [
+                  Container(
+                    width: 3,
+                    height: 12,
+                    color: desbloqueado
+                        ? _oro.withValues(alpha: 0.7)
+                        : Colors.white12,
+                  ),
+                  Expanded(
+                    child: Container(
+                      width: 3,
+                      color: desbloqueado
+                          ? _oro.withValues(alpha: 0.35)
+                          : Colors.white10,
+                    ),
+                  ),
+                  if (!esUltimo)
+                    Container(
+                      width: 3,
+                      height: 12,
+                      color: desbloqueado
+                          ? _oro.withValues(alpha: 0.7)
+                          : Colors.white12,
+                    ),
+                ],
               ),
             ),
-            child: Icon(
-              desbloqueado ? Icons.military_tech : Icons.lock,
-              color: desbloqueado ? _goldBright : Colors.white38,
-              size: 26,
+            const SizedBox(width: 6),
+            // Nodo circular (gema)
+            Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: desbloqueado
+                  ? QuizPulso(
+                      maxScale: 1.12,
+                      periodo: const Duration(milliseconds: 1500),
+                      child: Container(
+                        width: 34,
+                        height: 34,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: const LinearGradient(
+                            colors: [_oroBrillante, _oro],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: _oro.withValues(alpha: 0.6),
+                              blurRadius: 16,
+                              spreadRadius: 1,
+                            ),
+                          ],
+                        ),
+                        child: const Icon(
+                          Icons.military_tech,
+                          size: 18,
+                          color: Color(0xFF0F172A),
+                        ),
+                      ),
+                    )
+                  : Container(
+                      width: 34,
+                      height: 34,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white.withValues(alpha: 0.06),
+                        border: Border.all(color: Colors.white24),
+                      ),
+                      child: const Icon(
+                        Icons.lock,
+                        size: 17,
+                        color: Colors.white38,
+                      ),
+                    ),
             ),
-          ),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  hito.nombre,
-                  style: TextStyle(
-                    color: desbloqueado ? Colors.white : Colors.white54,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 15,
+            const SizedBox(width: 12),
+            // Tarjeta del hito
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 12),
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: desbloqueado
+                      ? _card
+                      : Colors.white.withValues(alpha: 0.03),
+                  borderRadius: BorderRadius.circular(18),
+                  border: Border.all(
+                    color: desbloqueado
+                        ? _oro.withValues(alpha: 0.55)
+                        : Colors.white.withValues(alpha: 0.12),
+                    width: desbloqueado ? 1.4 : 1,
                   ),
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  desbloqueado
-                      ? (logro['fecha'] != null
-                          ? 'Obtenido el ${_fecha(logro['fecha'] as String)}'
-                          : 'Desbloqueado')
-                      : '${hito.xp} XP para desbloquear',
-                  style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.45),
-                    fontSize: 12,
-                  ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            hito.nombre,
+                            style: TextStyle(
+                              color:
+                                  desbloqueado ? Colors.white : Colors.white54,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 15,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            desbloqueado
+                                ? (logro['fecha'] != null
+                                    ? 'Obtenido el '
+                                        '${_fecha(logro['fecha'] as String)}'
+                                    : 'Desbloqueado')
+                                : '${hito.xp} XP para desbloquear',
+                            style: TextStyle(
+                              color: Colors.white.withValues(alpha: 0.45),
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    if (desbloqueado)
+                      IconButton(
+                        onPressed: () => _compartir(hito, logro),
+                        icon: const Icon(
+                          Icons.ios_share,
+                          color: _oroBrillante,
+                          size: 20,
+                        ),
+                        tooltip: 'Compartir certificado',
+                      )
+                    else
+                      Text(
+                        '${hito.xp} XP',
+                        style: TextStyle(
+                          color: _oro.withValues(alpha: 0.6),
+                          fontWeight: FontWeight.w700,
+                          fontSize: 13,
+                        ),
+                      ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-          if (desbloqueado)
-            IconButton(
-              onPressed: () => _compartir(hito, logro),
-              icon: const Icon(Icons.ios_share, color: _goldBright, size: 20),
-              tooltip: 'Compartir certificado',
-            )
-          else
-            Text(
-              '${hito.xp} XP',
-              style: TextStyle(
-                color: _gold.withValues(alpha: 0.6),
-                fontWeight: FontWeight.w700,
-                fontSize: 13,
               ),
             ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -234,8 +383,8 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen> {
           ? user!.displayName!
           : (user?.email?.split('@').first ?? 'Abogado Penalex');
       final uid = user?.uid ?? 'anon';
-      final codigo =
-          (logro['codigo'] as String?) ?? QuizCertificateService.generarCodigo(uid, hito.xp);
+      final codigo = (logro['codigo'] as String?) ??
+          QuizCertificateService.generarCodigo(uid, hito.xp);
 
       final ruta = await QuizCertificateService.generarCertificado(
         nombre: nombre,
