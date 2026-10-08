@@ -92,7 +92,7 @@ class _ComparadorEstrategiasScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Comparador de Estrategias'),
+        title: const Text('Análisis de Opciones Procesales'),
         actions: [
           if (_estrategias != null && _estrategias!.isNotEmpty)
             PopupMenuButton<String>(
@@ -129,7 +129,7 @@ class _ComparadorEstrategiasScreenState
           children: [
             CircularProgressIndicator(),
             SizedBox(height: 16),
-            Text('Generando estrategias con IA...'),
+            Text('Analizando opciones procesales...'),
             SizedBox(height: 8),
             Text(
               'Esto puede tomar 10-30 segundos',
@@ -194,7 +194,7 @@ class _ComparadorEstrategiasScreenState
                   Icon(Icons.psychology, size: 80, color: Colors.white),
                   SizedBox(height: 16),
                   Text(
-                    'Comparador de Estrategias Legales',
+                    'Análisis de Opciones Procesales',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 24,
@@ -204,7 +204,7 @@ class _ComparadorEstrategiasScreenState
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'Análisis estratégico con IA para tomar mejores decisiones',
+                    'Explora las vías procesales de tu caso con base legal y jurisprudencia',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14,
@@ -248,7 +248,8 @@ class _ComparadorEstrategiasScreenState
                       ),
                       const SizedBox(height: 8),
                       const Text(
-                        'Describe tu caso y comparte documentos para generar estrategias legales con IA',
+                        'Describe tu caso y comparte documentos para analizar '
+                        'las opciones procesales disponibles con su base legal',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 14,
@@ -291,39 +292,39 @@ class _ComparadorEstrategiasScreenState
           _buildCasoCard(),
           const SizedBox(height: 24),
           const Text(
-            '¿Qué es el Comparador de Estrategias?',
+            '¿Qué es el Análisis de Opciones Procesales?',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12),
           _buildInfoCard(
             icon: Icons.psychology,
-            title: 'Análisis Inteligente',
+            title: 'Análisis Objetivo',
             description:
-                'Genera múltiples estrategias legales usando IA avanzada, '
-                'cada una con enfoque y tácticas diferentes.',
+                'Explora las opciones procesales de tu caso, cada una con '
+                'su enfoque, fundamento legal y requisitos.',
           ),
           const SizedBox(height: 12),
           _buildInfoCard(
             icon: Icons.compare_arrows,
-            title: 'Comparación Detallada',
+            title: 'Base Legal y Jurisprudencia',
             description:
-                'Compara lado a lado probabilidades de éxito, beneficios, '
-                'riesgos y jurisprudencia de respaldo.',
+                'Cada opción se presenta con los artículos vigentes y la '
+                'jurisprudencia del TSJ que la respalda.',
           ),
           const SizedBox(height: 12),
           _buildInfoCard(
-            icon: Icons.trending_up,
-            title: 'Decisión Informada',
+            icon: Icons.gavel,
+            title: 'Decisión Profesional',
             description:
-                'Toma decisiones estratégicas basadas en análisis objetivo '
-                'con scores ponderados y métricas clave.',
+                'La IA presenta opciones con sus ventajas y riesgos '
+                'objetivos; la decisión final siempre corresponde al abogado.',
           ),
           const SizedBox(height: 32),
           Center(
             child: ElevatedButton.icon(
               onPressed: _generarEstrategias,
               icon: const Icon(Icons.auto_awesome),
-              label: const Text('Generar Estrategias con IA'),
+              label: const Text('Analizar opciones procesales'),
               style: ElevatedButton.styleFrom(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 48, vertical: 20),
@@ -407,9 +408,7 @@ class _ComparadorEstrategiasScreenState
   }
 
   Widget _buildComparacion() {
-    final estrategiasOrdenadas = List<EstrategiaLegal>.from(_estrategias!);
-    estrategiasOrdenadas
-        .sort((a, b) => b.scorePonderado.compareTo(a.scorePonderado));
+    final estrategias = _estrategias!;
 
     return Column(
       children: [
@@ -418,19 +417,13 @@ class _ComparadorEstrategiasScreenState
           color: Colors.purple.shade50,
           child: Row(
             children: [
-              const Icon(Icons.emoji_events, color: Colors.amber),
+              const Icon(Icons.info_outline, color: Colors.purple),
               const SizedBox(width: 8),
-              Expanded(
+              const Expanded(
                 child: Text(
-                  'Mejor estrategia: ${estrategiasOrdenadas.first.titulo}',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              Text(
-                'Score: ${(estrategiasOrdenadas.first.scorePonderado * 100).toStringAsFixed(0)}%',
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.purple,
+                  'Opciones presentadas de forma objetiva. La decisión final '
+                  'corresponde al criterio profesional del abogado.',
+                  style: TextStyle(fontWeight: FontWeight.w500),
                 ),
               ),
             ],
@@ -439,9 +432,9 @@ class _ComparadorEstrategiasScreenState
         Expanded(
           child: ListView.builder(
             padding: const EdgeInsets.all(16),
-            itemCount: estrategiasOrdenadas.length,
+            itemCount: estrategias.length,
             itemBuilder: (context, index) {
-              final estrategia = estrategiasOrdenadas[index];
+              final estrategia = estrategias[index];
               return _buildEstrategiaCard(estrategia, index + 1);
             },
           ),
@@ -455,13 +448,12 @@ class _ComparadorEstrategiasScreenState
       margin: const EdgeInsets.only(bottom: 16),
       child: ExpansionTile(
         leading: CircleAvatar(
-          backgroundColor:
-              ranking == 1 ? Colors.amber : Colors.purple.shade100,
+          backgroundColor: Colors.purple.shade100,
           child: Text(
             '#$ranking',
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: ranking == 1 ? Colors.black : Colors.purple,
+              color: Colors.purple,
             ),
           ),
         ),
@@ -480,14 +472,8 @@ class _ComparadorEstrategiasScreenState
                 Row(
                   children: [
                     _buildMetrica(
-                      'Éxito',
-                      '${(estrategia.probabilidadExito * 100).toStringAsFixed(0)}%',
-                      Colors.green,
-                    ),
-                    const SizedBox(width: 16),
-                    _buildMetrica(
-                      'Score',
-                      '${(estrategia.scorePonderado * 100).toStringAsFixed(0)}%',
+                      'Requisitos',
+                      '${estrategia.requisitos.length}',
                       Colors.purple,
                     ),
                     const SizedBox(width: 16),
@@ -540,13 +526,6 @@ class _ComparadorEstrategiasScreenState
                               color: Colors.green, size: 16),
                           const SizedBox(width: 8),
                           Expanded(child: Text(b.descripcion)),
-                          Text(
-                            '${(b.impacto * 100).toInt()}%',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.green,
-                            ),
-                          ),
                         ],
                       ),
                     )),
@@ -569,13 +548,9 @@ class _ComparadorEstrategiasScreenState
                           Icon(Icons.warning,
                               color: _getColorRiesgo(r.nivel), size: 16),
                           const SizedBox(width: 8),
-                          Expanded(child: Text(r.descripcion)),
-                          Text(
-                            '${(r.probabilidad * 100).toInt()}%',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: _getColorRiesgo(r.nivel),
-                            ),
+                          Expanded(
+                            child: Text('${r.descripcion} '
+                                '(${r.nivel.nombre})'),
                           ),
                         ],
                       ),
@@ -678,22 +653,17 @@ class _ComparadorEstrategiasScreenState
   String _construirMarkdownComparacion() {
     final estrategias = _estrategias ?? [];
     final buffer = StringBuffer();
-    buffer.writeln('# Comparación de Estrategias');
+    buffer.writeln('# Análisis de Opciones Procesales');
     if (_descripcionCaso.isNotEmpty) buffer.writeln('**Caso:** $_descripcionCaso');
     if (_delitos.isNotEmpty) buffer.writeln('**Delitos:** ${_delitos.join(', ')}');
     if (_etapaProcesal.isNotEmpty) buffer.writeln('**Etapa:** $_etapaProcesal');
     buffer.writeln();
 
-    final ordenadas = List<EstrategiaLegal>.from(estrategias)
-      ..sort((a, b) => b.scorePonderado.compareTo(a.scorePonderado));
-
-    for (var i = 0; i < ordenadas.length; i++) {
-      final e = ordenadas[i];
+    for (var i = 0; i < estrategias.length; i++) {
+      final e = estrategias[i];
       buffer.writeln('## ${i + 1}. ${e.titulo}');
       buffer.writeln('**Tipo:** ${e.tipo.nombre} · '
-          '**Éxito:** ${(e.probabilidadExito * 100).toStringAsFixed(0)}% · '
-          '**Score:** ${(e.scorePonderado * 100).toStringAsFixed(0)}%');
-      buffer.writeln('**Duración:** ${e.duracionEstimadaDias} días · '
+          '**Duración:** ${e.duracionEstimadaDias} días · '
           '**Costo:** ${e.costoEstimado}');
       buffer.writeln();
       buffer.writeln(e.descripcion);
@@ -701,14 +671,14 @@ class _ComparadorEstrategiasScreenState
       if (e.beneficios.isNotEmpty) {
         buffer.writeln('**Beneficios:**');
         for (final b in e.beneficios) {
-          buffer.writeln('- ${b.descripcion} (${(b.impacto * 100).toStringAsFixed(0)}%)');
+          buffer.writeln('- ${b.descripcion}');
         }
         buffer.writeln();
       }
       if (e.riesgos.isNotEmpty) {
         buffer.writeln('**Riesgos:**');
         for (final r in e.riesgos) {
-          buffer.writeln('- ${r.descripcion} (${r.nivel.nombre}, ${(r.probabilidad * 100).toStringAsFixed(0)}%)');
+          buffer.writeln('- ${r.descripcion} (${r.nivel.nombre})');
         }
         buffer.writeln();
       }
@@ -743,7 +713,7 @@ class _ComparadorEstrategiasScreenState
     if (formato == 'pdf') {
       ruta = await ChatLegalExportService.exportarTextoAPDF(
         markdown,
-        titulo: 'Comparación de Estrategias',
+        titulo: 'Análisis de Opciones Procesales',
         membreteUrl: config.url,
         alineacion: config.alineacion,
         tamano: config.tamano,
@@ -751,7 +721,7 @@ class _ComparadorEstrategiasScreenState
     } else {
       ruta = await ChatLegalExportService.exportarTextoAWord(
         markdown,
-        titulo: 'Comparación de Estrategias',
+        titulo: 'Análisis de Opciones Procesales',
         membreteUrl: config.url,
         alineacion: config.alineacion,
         tamano: config.tamano,
@@ -759,10 +729,10 @@ class _ComparadorEstrategiasScreenState
     }
 
     if (ruta != null) {
-      await Share.shareXFiles([XFile(ruta)], text: 'Comparación de Estrategias');
+      await Share.shareXFiles([XFile(ruta)], text: 'Análisis de Opciones Procesales');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('✅ Comparación exportada')),
+          const SnackBar(content: Text('✅ Análisis exportado')),
         );
       }
     }
@@ -1145,7 +1115,7 @@ class DetalleComparacionScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '${(estrategia.scorePonderado * 100).toStringAsFixed(0)}%',
+                          '${estrategia.duracionEstimadaDias}d',
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,

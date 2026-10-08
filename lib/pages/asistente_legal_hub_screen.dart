@@ -183,17 +183,18 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             ),
             const SizedBox(height: 16),
 
-            // COMPARADOR DE ESTRATEGIAS (complementaria)
+            // ANÁLISIS DE OPCIONES PROCESALES (complementaria)
             _buildToolCard(
               context,
               icon: Icons.compare_arrows,
               iconColor: const Color(0xFFF59E0B),
-              title: 'Comparador de Estrategias',
+              title: 'Análisis de Opciones Procesales',
               badge: null,
               description:
-                  'Genera múltiples estrategias legales con IA, compara '
-                  'probabilidades de éxito y elige la mejor táctica.',
-              stats: '3-5 estrategias',
+                  'Explora las vías procesales de un caso con base legal y '
+                  'jurisprudencia real. Sin porcentajes ni predicciones: '
+                  'la decisión la toma el abogado.',
+              stats: 'Base legal + jurisprudencia',
               onTap: () => _navigateToComparador(context),
             ),
             const SizedBox(height: 32),

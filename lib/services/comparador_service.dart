@@ -83,7 +83,7 @@ class ComparadorService {
             : '';
 
         final prompt = '''
-Eres un abogado penalista venezolano experto. Analiza el siguiente caso y genera $cantidadEstrategias estrategias legales DIFERENTES y VIABLES.
+Eres un abogado penalista venezolano experto. Analiza el caso y presenta $cantidadEstrategias OPCIONES PROCESALES DIFERENTES y VIABLES, de forma objetiva y educativa.
 
 **CASO:**
 - ID: $casoId
@@ -91,20 +91,20 @@ Eres un abogado penalista venezolano experto. Analiza el siguiente caso y genera
 - Delitos: ${delitos.join(', ')}
 - Etapa Procesal: $etapaProcesal$bloqueLeyes$bloqueJurisprudencia
 **INSTRUCCIONES:**
-1. Genera $cantidadEstrategias estrategias legales diferentes (ej: negociación, recurso apelación, medidas cautelares, etc.)
-2. Para CADA estrategia incluye:
-   - Tipo de estrategia (defensaTecnica, negociacion, recursoApelacion, accionTutela, medidasCautelares, libertadProvisional, nulidad, prescripcion, atenuantes, transaccionPenal)
+1. Presenta $cantidadEstrategias opciones procesales diferentes (ej: negociación, recurso de apelación, medidas cautelares, acuerdo reparatorio, etc.)
+2. Para CADA opción incluye:
+   - Tipo (defensaTecnica, negociacion, recursoApelacion, accionTutela, medidasCautelares, libertadProvisional, nulidad, prescripcion, atenuantes, transaccionPenal)
    - Título claro y específico
    - Descripción detallada (200-300 palabras)
-   - Probabilidad de éxito (0.0 a 1.0)
-   - 3-5 beneficios concretos con impacto (0.0 a 1.0)
-   - 2-4 riesgos con nivel (bajo/medio/alto/muyAlto) y probabilidad (0.0 a 1.0)
+   - 3-5 beneficios concretos (descriptivos, sin porcentajes)
+   - 2-4 riesgos con nivel objetivo (bajo/medio/alto/muyAlto), sin probabilidades numéricas
    - Requisitos legales necesarios (basados en las LEYES VIGENTES de arriba)
    - Pasos procedimentales (orden cronológico)
    - Duración estimada en días
    - Costo estimado (Bajo/Medio/Alto con rango en USD)
 3. Fundamento jurídico: usa SOLO los artículos vigentes listados en "LEYES VIGENTES APLICABLES" y SOLO las sentencias listadas en "JURISPRUDENCIA REAL DEL TSJ". No inventes artículos, números, ponentes ni fechas.
-4. Asegúrate que cada estrategia sea REALMENTE DIFERENTE en enfoque y táctica
+4. Asegúrate que cada opción sea REALMENTE DIFERENTE en enfoque y táctica.
+5. REGLA ÉTICA: NO asignes probabilidades de éxito, scores ni porcentajes de impacto. El resultado de un proceso depende de múltiples factores que no se pueden predecir con porcentajes. Presenta cada opción con su fundamento legal, requisitos, ventajas y riesgos objetivos, y deja la decisión final al criterio profesional del abogado.
 
 **FORMATO JSON ESTRICTO:**
 Responde SOLO con un array JSON válido, sin texto adicional:
@@ -112,14 +112,13 @@ Responde SOLO con un array JSON válido, sin texto adicional:
 [
   {
     "tipo": "negociacion",
-    "titulo": "Negociación con Fiscal para Reducción de Cargos",
-    "descripcion": "Estrategia de negociación...",
-    "probabilidadExito": 0.65,
+    "titulo": "Negociación con el Ministerio Público",
+    "descripcion": "Opción procesal...",
     "beneficios": [
-      {"descripcion": "Reducción de pena hasta 50%", "impacto": 0.8}
+      {"descripcion": "Posibilidad de acuerdo reparatorio conforme al COPP"}
     ],
     "riesgos": [
-      {"descripcion": "Fiscal podría rechazar oferta", "nivel": "medio", "probabilidad": 0.3}
+      {"descripcion": "Depende de la aceptación del Ministerio Público", "nivel": "medio"}
     ],
     "requisitos": ["Aceptación de hechos", "Reparación del daño"],
     "pasos": ["1. Reunión con fiscal", "2. Propuesta formal"],
