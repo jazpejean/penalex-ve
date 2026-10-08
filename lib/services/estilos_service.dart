@@ -126,4 +126,57 @@ class EstilosService {
         : '$_assetRoot/$categoria/${entrada.nombre}';
     return rootBundle.loadString(ruta);
   }
+
+  static const Set<String> _stopwords = {
+    'de', 'la', 'el', 'los', 'las', 'del', 'un', 'una', 'unos', 'unas',
+    'para', 'que', 'por', 'con', 'en', 'al', 'y', 'o', 'a', 'se', 'su',
+    'sus', 'este', 'esta', 'estos', 'estas', 'me', 'mi', 'tu', 'te', 'lo',
+  };
+
+  static String _sinAcentos(String s) {
+    const mapa = {
+      'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'ü': 'u', 'ñ': 'n',
+      'Á': 'a', 'É': 'e', 'Í': 'i', 'Ó': 'o', 'Ú': 'u', 'Ü': 'u', 'Ñ': 'n',
+    };
+    final sb = StringBuffer();
+    for (final ch in s.split('')) {
+      sb.write(mapa[ch] ?? ch);
+    }
+    return sb.toString().toLowerCase();
+  }
+
+  /// Busca los estilos más parecidos a la consulta por palabras clave
+  /// (nombres de categorías y de archivos). Útil para usar modelos reales
+  /// como referencia de estilo al redactar.
+  Future<List<({String categoria, EstiloEntrada entrada})>>
+      buscarEstilosRelevantes(String consulta, {int limite = 2}) async {
+    final manifest = await _cargarManifest();
+    final tokens = _sinAcentos(consulta)
+        .split(RegExp(r'[^a-z0-9]+'))
+        .where((t) => t.length >= 3 && !_stopwords.contains(t))
+        .toSet();
+    if (tokens.isEmpty) return const [];
+
+    final puntuados =
+        <({String categoria, EstiloEntrada entrada, int score})>[];
+    manifest.forEach((categoria, entradas) {
+      final catNorm = _sinAcentos(categoria);
+      for (final e in entradas) {
+        final nomNorm = _sinAcentos(e.nombre);
+        var score = 0;
+        for (final t in tokens) {
+          if (catNorm.contains(t)) score += 2;
+          if (nomNorm.contains(t)) score += 1;
+        }
+        if (score > 0) {
+          puntuados.add((categoria: categoria, entrada: e, score: score));
+        }
+      }
+    });
+    puntuados.sort((a, b) => b.score.compareTo(a.score));
+    return puntuados
+        .take(limite)
+        .map((s) => (categoria: s.categoria, entrada: s.entrada))
+        .toList();
+  }
 }

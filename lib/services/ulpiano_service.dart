@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../models/chat_message.dart';
 import 'ai_service.dart';
+import 'estilos_service.dart';
 import 'leyes_rag_service.dart';
 import 'rag_service.dart';
 
@@ -147,6 +148,7 @@ El usuario quiere información sobre ley, jurisprudencia o doctrina. Haz lo sigu
     required String contextoConversacion,
     required String contextoJurisprudencia,
     required String contextoNormativo,
+    String contextoEstilos = '',
   }) {
     final jurisprudenciaInstr = contextoJurisprudencia.isNotEmpty
         ? '''
@@ -173,6 +175,18 @@ INSTRUCCIONES SOBRE LAS NORMAS:
 '''
         : '';
 
+    final estilosInstr = contextoEstilos.isNotEmpty
+        ? '''
+MODELOS DE ESTILO (escritos reales del banco de estilos — guía de estructura y estilo):
+$contextoEstilos
+
+INSTRUCCIONES SOBRE LOS MODELOS:
+- Imita la estructura, el tono y el formato forense de estos modelos, adaptándolos al escrito solicitado.
+- Si el escrito solicitado no tiene un modelo exacto, combina las estructuras conservando el estilo forense venezolano.
+- NO copies nombres, expedientes, cédulas ni datos personales de los modelos.
+'''
+        : '';
+
     return '''
 Eres Ulpiano, el asistente jurídico de Penalex VE, especializado en derecho penal venezolano (Código Penal, COPP y jurisprudencia de la Sala de Casación Penal y la Sala Constitucional del TSJ).
 
@@ -183,6 +197,7 @@ $contextoConversacion
 
 $jurisprudenciaInstr
 $normasInstr
+$estilosInstr
 Nueva consulta del usuario:
 $consulta
 
@@ -251,12 +266,42 @@ FORMATO DE RESPUESTA (Markdown):
         debugPrint('⚠️ RAG leyes no disponible: $e');
       }
 
+      // Estilos de referencia (solo al redactar): modelos reales del banco
+      // como guía de estructura y estilo.
+      String contextoEstilos = '';
+      if (modo == UlpianoModo.redactar) {
+        try {
+          final estilos = await EstilosService()
+              .buscarEstilosRelevantes(consulta, limite: 2);
+          if (estilos.isNotEmpty) {
+            final buffer = StringBuffer();
+            for (final s in estilos) {
+              final texto =
+                  await EstilosService().cargarTexto(s.categoria, s.entrada);
+              final recorte = texto.length > 3500
+                  ? '${texto.substring(0, 3500)}…'
+                  : texto;
+              buffer.writeln('### "${s.entrada.nombre}" '
+                  '(${EstilosService.nombreLegibleCategoria(s.categoria)})');
+              buffer.writeln(recorte);
+              buffer.writeln();
+            }
+            contextoEstilos = buffer.toString().trim();
+            debugPrint(
+                '📄 Ulpiano estilos de referencia: ${estilos.length}');
+          }
+        } catch (e) {
+          debugPrint('⚠️ Estilos no disponibles: $e');
+        }
+      }
+
       final prompt = construirPrompt(
         consulta: consulta,
         modo: modo,
         contextoConversacion: contextoConversacion,
         contextoJurisprudencia: contextoJurisprudencia,
         contextoNormativo: contextoNormativo,
+        contextoEstilos: contextoEstilos,
       );
 
       final respuesta = await AIService.procesarConsultaGeneral(prompt);
