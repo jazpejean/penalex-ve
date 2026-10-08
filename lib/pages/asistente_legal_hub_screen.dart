@@ -49,7 +49,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             Icon(Icons.auto_awesome, color: Color(0xFFC5A059), size: 28),
             SizedBox(width: 12),
             Text(
-              'Asistente Legal',
+              'Ulpiano',
               style: TextStyle(
                 color: Color(0xFFC5A059),
                 fontWeight: FontWeight.bold,
@@ -86,22 +86,28 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
               _buildGlobalStats(),
             const SizedBox(height: 32),
 
-            // COMPARADOR - Feature estrella destacada
+            // ULPIANO - El asistente (feature estrella)
             _buildStarFeatureCard(
               context,
-              icon: Icons.compare_arrows,
-              title: 'Comparador de Estrategias',
-              badge: '⭐ EXTRAORDINARIO',
+              icon: Icons.auto_awesome,
+              title: 'Ulpiano — Asistente Legal',
+              badge: '⭐ EL ASISTENTE',
               description:
-                  'Genera múltiples estrategias legales con IA, compara probabilidades de éxito, '
-                  'analiza pros/contras y elige la mejor táctica con respaldo jurisprudencial.',
+                  'Pregúntale a Ulpiano: detecta si quieres consultar, redactar, '
+                  'analizar, calcular o citar, y responde siempre con fuentes '
+                  'verificables (artículos y sentencias del TSJ).',
               highlights: [
-                '🎯 3-5 estrategias generadas por IA',
-                '📊 Probabilidades de éxito calculadas',
-                '⚖️ Pros, contras y riesgos detallados',
-                '📚 Jurisprudencia TSJ de respaldo',
+                '🔍 Consulta con citas verificables',
+                '✍️ Redacta escritos con estilo forense',
+                '📄 Analiza documentos adjuntos',
+                '⚖️ Calcula dosimetría y lapsos',
               ],
-              onTap: () => _navigateToComparador(context),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ChatLegalScreen(),
+                ),
+              ),
             ),
             const SizedBox(height: 20),
 
@@ -174,6 +180,21 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                   builder: (context) => const EscanearDocumentoScreen(),
                 ),
               ),
+            ),
+            const SizedBox(height: 16),
+
+            // COMPARADOR DE ESTRATEGIAS (complementaria)
+            _buildToolCard(
+              context,
+              icon: Icons.compare_arrows,
+              iconColor: const Color(0xFFF59E0B),
+              title: 'Comparador de Estrategias',
+              badge: null,
+              description:
+                  'Genera múltiples estrategias legales con IA, compara '
+                  'probabilidades de éxito y elige la mejor táctica.',
+              stats: '3-5 estrategias',
+              onTap: () => _navigateToComparador(context),
             ),
             const SizedBox(height: 32),
 
@@ -443,9 +464,10 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
           ),
           const SizedBox(height: 12),
           Text(
-            'Herramientas potenciadas por IA para defensores públicos y privados. '
-            'Genera estrategias, consulta leyes, redacta documentos y digitaliza expedientes '
-            'con precisión profesional.',
+            'Ulpiano, tu asistente jurídico de IA: consulta la ley y la '
+            'jurisprudencia con fuentes verificables, redacta escritos con '
+            'estilo forense, analiza documentos y calcula penas con precisión '
+            'profesional.',
             style: TextStyle(
               fontSize: 14,
               color: Colors.white.withValues(alpha: 0.8),

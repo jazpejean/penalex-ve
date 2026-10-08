@@ -9,10 +9,9 @@ import 'package:intl/intl.dart';
 
 import '../models/chat_message.dart';
 import '../services/chat_service.dart';
-import '../services/ai_service.dart';
-import '../services/rag_service.dart';
 import '../services/ocr_service.dart';
 import '../services/chat_legal_export_service.dart';
+import '../services/ulpiano_service.dart';
 
 /// Modelo para archivos adjuntos
 class AttachedFile {
@@ -349,13 +348,17 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
         _messages.add(ChatMessage(
           id: 'welcome',
           role: MessageRole.assistant,
-          content: '¡Hola! Soy tu asistente legal especializado en derecho penal venezolano.\n\n'
-              '¿En qué puedo ayudarte hoy?\n\n'
+          content: '¡Hola! Soy **Ulpiano**, tu asistente jurídico especializado '
+              'en derecho penal venezolano.\n\n'
+              'Puedo **consultar** la ley y la jurisprudencia con fuentes '
+              'verificables, **redactar** escritos con estilo forense, '
+              '**analizar** documentos, **calcular** penas y **citar** '
+              'sentencias.\n\n'
               '**Ejemplos:**\n'
-              '- Consultar sobre un delito específico\n'
-              '- Calcular penas y atenuantes\n'
-              '- Interpretar artículos del código penal\n'
-              '- Analizar estrategias de defensa',
+              '- ¿Qué ha dicho la Sala sobre el art. 457 del COPP?\n'
+              '- Redacta una solicitud de medida cautelar sustitutiva\n'
+              '- Analiza este auto y dime sus debilidades\n'
+              '- ¿Cuántos años le corresponden por robo agravado?',
           timestamp: DateTime.now(),
         ));
       }
@@ -536,9 +539,8 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
     try {
       debugPrint('🤖 Generando respuesta con IA...');
       
-      // TODO: Cuando Supabase esté configurado, usar ChatService.generarRespuestaAsistente()
-      // Por ahora, generar respuesta directamente con AIService + RAG
-      // (RAG recupera jurisprudencia REAL del TSJ desde Supabase como contexto)
+      // Respuesta generada por el orquestador de Ulpiano
+      // (clasifica el modo y usa RAG de jurisprudencia + normas con citas)
       final resultado = await _generarRespuestaConIA(contenidoFinal);
 
       final assistantMessage = ChatMessage(
@@ -587,72 +589,25 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
     }
   }
 
-  /// Genera la respuesta con IA + RAG (jurisprudencia real del TSJ).
+  /// Genera la respuesta con el orquestador de Ulpiano (modo + RAG + citas).
   Future<({String respuesta, List<MessageSource> fuentes})> _generarRespuestaConIA(
       String consulta) async {
-    try {
-      await AIService.inicializar();
-
-      // 🔍 RAG: recuperar jurisprudencia real del TSJ relevante a la consulta
-      List<MessageSource> fuentes = [];
-      String contextoJurisprudencial = '';
-      try {
-        final rag = await RAGService.obtenerContextoYFuentes(
-          consulta: consulta,
-          limit: 5,
-        );
-        fuentes = rag.fuentes;
-        contextoJurisprudencial = rag.contexto;
-        debugPrint(
-            '⚖️ RAG: ${rag.sentencias.length} sentencias reales usadas como contexto');
-      } catch (e) {
-        debugPrint(
-            '⚠️ RAG no disponible, respondiendo sin jurisprudencia real: $e');
-      }
-      
-      // Construir contexto con últimos mensajes
-      String contexto = '';
-      if (_messages.length > 1) {
-        final ultimosMensajes = _messages.length > 10 
+    // Construir contexto con últimos mensajes
+    String contexto = '';
+    if (_messages.length > 1) {
+      final ultimosMensajes = _messages.length > 10
           ? _messages.sublist(_messages.length - 10)
           : _messages;
-        
-        for (final msg in ultimosMensajes) {
-          contexto += '${msg.isUser ? "Usuario" : "Asistente"}: ${msg.content}\n\n';
-        }
+
+      for (final msg in ultimosMensajes) {
+        contexto += '${msg.isUser ? "Usuario" : "Asistente"}: ${msg.content}\n\n';
       }
-      
-      final instruccionesJurisprudencia = contextoJurisprudencial.isNotEmpty
-          ? 'JURISPRUDENCIA REAL DISPONIBLE (recuperada de la base de datos del TSJ):\n$contextoJurisprudencial\n\nINSTRUCCIONES SOBRE LA JURISPRUDENCIA:\n- El usuario pidió un delito o artículo ESPECÍFICO. Cita SOLO las sentencias que traten EXACTAMENTE ese delito/artículo.\n- Si una sentencia recuperada trata de otro delito (ej. hurto en vez de homicidio), DESCÁRTALA y NO la cites.\n- Si ninguna sentencia trata el delito/artículo pedido, dilo claramente: "no encontré jurisprudencia específica sobre ese artículo".\n- Fundamenta tu respuesta en estas sentencias reales cuando sean pertinentes.\n- Cítalas por su número de sentencia, sala, ponente y fecha.\n- NO inventes sentencias que no estén listadas aquí.\n\n'
-          : '';
-
-      final prompt = '''Eres un asistente legal especializado en derecho penal venezolano.
-
-Contexto de la conversación:
-$contexto
-
-${instruccionesJurisprudencia}Nueva consulta del usuario:
-$consulta
-
-Responde de manera clara, profesional y basándote en el derecho penal venezolano vigente. Si mencionas artículos, cita la ley correspondiente.
-
-FORMATO DE RESPUESTA (Markdown):
-- Usa **negritas** para conceptos clave, artículos y penas (ej. **Artículo 406 del Código Penal**).
-- Usa encabezados (##) para separar secciones cuando la respuesta sea larga.
-- Usa listas con guiones (-) para enumerar puntos, requisitos o ejemplos.
-- Usa líneas en blanco entre párrafos.
-- No uses tablas ni bloques de código a menos que sea estrictamente necesario.''';
-
-      final respuesta = await AIService.procesarConsultaGeneral(prompt);
-      return (respuesta: respuesta, fuentes: fuentes);
-    } catch (e) {
-      debugPrint('❌ Error llamando a IA: $e');
-      return (
-        respuesta:
-            '❌ Lo siento, ocurrió un error al procesar tu consulta. Por favor, intenta de nuevo.\n\nError: $e',
-        fuentes: <MessageSource>[],
-      );
     }
+
+    return UlpianoService().generarRespuesta(
+      consulta: consulta,
+      contextoConversacion: contexto,
+    );
   }
 
   Future<void> _mostrarOpcionesAdjunto() async {
@@ -831,9 +786,16 @@ FORMATO DE RESPUESTA (Markdown):
       resizeToAvoidBottomInset: true,
       backgroundColor: azulMarino,
       appBar: AppBar(
-        title: const Text(
-          'Chat Legal',
-          style: TextStyle(color: dorado, fontWeight: FontWeight.bold),
+        title: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.auto_awesome, color: dorado, size: 22),
+            SizedBox(width: 8),
+            Text(
+              'Ulpiano',
+              style: TextStyle(color: dorado, fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
         backgroundColor: azulMarino,
         elevation: 0,

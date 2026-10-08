@@ -279,7 +279,7 @@ class AppDrawer extends StatelessWidget {
                   _buildMenuItem(
                     context,
                     icon: Icons.chat_bubble_outline,
-                    title: 'Chat Legal',
+                    title: 'Ulpiano (Chat)',
                     route: '/chat_legal',
                   ),
                   _buildMenuItem(

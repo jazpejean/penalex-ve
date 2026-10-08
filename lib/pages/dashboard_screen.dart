@@ -115,15 +115,15 @@ class DashboardScreen extends StatelessWidget {
             ),
             const SizedBox(height: 28),
             
-            // ASISTENTE LEGAL - Feature destacada
+            // ULPIANO - Feature destacada
             _buildStarCard(
               context,
-              title: 'Asistente Legal con IA',
+              title: 'Ulpiano — Asistente Legal',
               subtitle: 'Tu equipo de estrategas legales',
-              description: 'Chat, Redactor, Escáner y Comparador de Estrategias. Todo en un solo lugar.',
+              description: 'Consulta, redacta, analiza y calcula con IA. Todo con fuentes verificables.',
               icon: Icons.auto_awesome,
               route: '/asistente_legal',
-              actionText: 'Acceder al asistente',
+              actionText: 'Hablar con Ulpiano',
               badge: 'NUEVO',
             ),
             

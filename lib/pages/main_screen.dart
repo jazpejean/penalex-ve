@@ -67,7 +67,7 @@ class _MainScreenState extends State<MainScreen> {
             children: <Widget>[
               _buildNavItem(Icons.calendar_month, 'Agenda', 0),
               _buildNavItem(Icons.calculate, 'Dosimetría', 1),
-              _buildNavItem(Icons.auto_awesome, 'Asistente Legal', 2,
+              _buildNavItem(Icons.auto_awesome, 'Ulpiano', 2,
                   isCenter: true),
               _buildNavItem(Icons.gavel, 'Leyes', 3),
               _buildNavItem(Icons.account_balance, 'Sentencias', 4),
