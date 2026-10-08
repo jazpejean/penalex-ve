@@ -4,7 +4,6 @@ import '../models/user.dart';
 import '../models/user_progress.dart';
 import '../services/firestore_service.dart';
 import '../services/notification_service.dart';
-import '../data/venezuela_regions.dart';
 
 class GameState extends ChangeNotifier {
   int _currentLevel = 1;
@@ -40,7 +39,10 @@ class GameState extends ChangeNotifier {
     final DateTime now = DateTime.now();
     if (_apelaciones >= 5) return now;
     final DateTime lastRegen = _lastApelacionRegeneration ?? now;
-    final DateTime baseTime = lastRegen.isBefore(now.subtract(Duration(minutes: 30 * (5 - _apelaciones)))) ? now : lastRegen;
+    final DateTime baseTime = lastRegen
+            .isBefore(now.subtract(Duration(minutes: 30 * (5 - _apelaciones))))
+        ? now
+        : lastRegen;
     final int missingApelaciones = 5 - _apelaciones;
     final Duration duration = Duration(minutes: 30 * missingApelaciones);
     return baseTime.add(duration);
@@ -52,7 +54,8 @@ class GameState extends ChangeNotifier {
     if (_apelaciones < 5) {
       final DateTime targetTime = _calculateApelacionesFullTime();
       if (targetTime.isAfter(DateTime.now())) {
-        await notificationService.scheduleLivesFullReminder(scheduledTime: targetTime);
+        await notificationService.scheduleLivesFullReminder(
+            scheduledTime: targetTime);
       }
     }
   }
@@ -132,7 +135,7 @@ class GameState extends ChangeNotifier {
     );
     await FirestoreService.saveUser(user);
     final UserProgress progress = UserProgress(
-      apelaciones: _apelaciones, 
+      apelaciones: _apelaciones,
       ultimaRegeneracion: _lastApelacionRegeneration ?? DateTime.now(),
     );
     await FirestoreService.saveUserProgress(progress);
@@ -143,14 +146,18 @@ class GameState extends ChangeNotifier {
     if (level >= 2800) return 'Presidente del Tribunal Supremo de Justicia';
     if (level >= 2600) return 'Presidente de la Sala de Casación Penal';
     if (level >= 2400) return 'Vicepresidente de la Sala de Casación Penal';
-    if (level >= 2200) return 'Magistrado Principal de la Sala de Casación Penal';
+    if (level >= 2200)
+      return 'Magistrado Principal de la Sala de Casación Penal';
     if (level >= 2000) return 'Secretario de la Sala de Casación Penal';
-    if (level >= 1800) return 'Magistrado Suplente de la Sala de Casación Penal';
+    if (level >= 1800)
+      return 'Magistrado Suplente de la Sala de Casación Penal';
     if (level >= 1600) return 'Juez Presidente del Circuito Judicial Penal';
     if (level >= 1400) return 'Juez Titular de Corte de Apelaciones';
     if (level >= 1200) return 'Juez Provisorio de Corte de Apelaciones';
-    if (level >= 1050) return 'Juez de Primera Instancia con Competencia Nacional';
-    if (level >= 900) return 'Juez de Primera Instancia con Competencia Especial';
+    if (level >= 1050)
+      return 'Juez de Primera Instancia con Competencia Nacional';
+    if (level >= 900)
+      return 'Juez de Primera Instancia con Competencia Especial';
     if (level >= 750) return 'Juez Titular de Primera Instancia';
     if (level >= 600) return 'Juez Provisorio de Primera Instancia';
     if (level >= 450) return 'Juez Suplente de Primera Instancia';
@@ -164,10 +171,5 @@ class GameState extends ChangeNotifier {
     if (level >= 4) return 'Escribiente';
     if (level >= 2) return 'Asistente Jurídico';
     return 'Alguacil de Sala';
-  }
-
-  /// Obtener la región actual de Venezuela según el nivel
-  RegionVenezuela? getCurrentRegion() {
-    return getRegionForLevel(_currentLevel);
   }
 }
