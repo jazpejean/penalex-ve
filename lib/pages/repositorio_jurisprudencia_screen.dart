@@ -25,7 +25,8 @@ class RepositorioJurisprudenciaScreen extends StatefulWidget {
 }
 
 class _RepositorioJurisprudenciaScreenState
-    extends State<RepositorioJurisprudenciaScreen> with SingleTickerProviderStateMixin {
+    extends State<RepositorioJurisprudenciaScreen>
+    with SingleTickerProviderStateMixin {
   final JurisprudenciaService _service = JurisprudenciaService();
   final TextEditingController _searchController = TextEditingController();
 
@@ -38,23 +39,18 @@ class _RepositorioJurisprudenciaScreenState
   final FavoritosService _favoritosService = FavoritosService();
   Set<String> _idsFavoritos = {};
   bool _soloFavoritas = false;
-  
-  // ✅ Filtros nuevos
+
+  // ✅ Filtros
   String _tipoSeleccionado = 'Sentencias';
   String? _salaSeleccionada;
   int? _anioSeleccionado;
-  final Set<String> _resumenGenerado = {};
-  int? _mesSeleccionado;
-  int? _diaSeleccionado;
-  List<int> _mesesDisponibles = [];
-  List<int> _diasDisponibles = [];
-  
+
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
-  
+
   // Colores de la app
   static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFEAB308);
+  static const Color dorado = Color(0xFFC5A059);
   static const Color fondoGris = Color(0xFFF1F5F9);
 
   @override
@@ -79,49 +75,6 @@ class _RepositorioJurisprudenciaScreenState
     super.dispose();
   }
 
-  Future<void> _cargarMeses(int anio) async {
-    final meses = await _service.obtenerMesesDisponibles(anio);
-    if (mounted) setState(() => _mesesDisponibles = meses);
-  }
-
-  Future<void> _cargarDias(int anio, int mes) async {
-    final dias = await _service.obtenerDiasDisponibles(anio, mes);
-    if (mounted) setState(() => _diasDisponibles = dias);
-  }
-
-  String _nombreMes(int m) {
-    const nombres = [
-      'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
-    ];
-    return (m >= 1 && m <= 12) ? nombres[m - 1] : '$m';
-  }
-
-  Future<void> _rellenarResumenes() async {
-    if (_resultados.isEmpty) return;
-    for (final s in _resultados.take(5)) {
-      if (_resumenGenerado.contains(s.id)) continue;
-      if (s.resumen.isNotEmpty && s.resumen != 'null') continue;
-      final texto = s.ratioDecidendi.isNotEmpty
-          ? s.ratioDecidendi
-          : (s.extracto.isNotEmpty ? s.extracto : s.decision);
-      if (texto.isEmpty || texto == 'null') continue;
-      _resumenGenerado.add(s.id);
-      try {
-        final resumen = await AIService.generarTesisJurisprudencial(texto);
-        if (resumen.isNotEmpty) {
-          await Supabase.instance.client
-              .from('documentos')
-              .update({'resumen_ia': resumen})
-              .eq('id', s.id);
-          debugPrint('✅ Resumen generado y guardado: ${s.id}');
-        }
-      } catch (e) {
-        debugPrint('⚠️ Error generando resumen: $e');
-      }
-    }
-  }
-
   Future<void> _buscar() async {
     setState(() => _cargando = true);
     _animationController.forward();
@@ -129,8 +82,6 @@ class _RepositorioJurisprudenciaScreenState
     String tipoParam = 'sentencia';
     if (_tipoSeleccionado == 'Jurisprudencias') {
       tipoParam = 'jurisprudencia';
-    } else if (_tipoSeleccionado == 'Resoluciones') {
-      tipoParam = 'resoluciones';
     }
 
     // ✅ Búsqueda con filtros
@@ -139,8 +90,6 @@ class _RepositorioJurisprudenciaScreenState
       tipo: tipoParam,
       sala: _salaSeleccionada,
       anio: _anioSeleccionado,
-      mes: _mesSeleccionado,
-      dia: _diaSeleccionado,
       limit: 50,
     );
 
@@ -148,18 +97,11 @@ class _RepositorioJurisprudenciaScreenState
       setState(() {
         _todosResultados = resultados;
         _resultados = resultados; // Ya vienen ordenados por relevancia
-        
-        // ✅ Si Supabase está vacío, mostrar datos de ejemplo
-        if (_resultados.isEmpty && _searchController.text.isEmpty) {
-          _resultados = _obtenerSentenciasEjemplo();
-          _todosResultados = _resultados;
-        }
 
         // ⭐ Aplicar filtro de favoritas si está activo
         _aplicarFiltroFavoritas();
-        
+
         _cargando = false;
-        _rellenarResumenes();
       });
     }
   }
@@ -176,9 +118,8 @@ class _RepositorioJurisprudenciaScreenState
 
   void _aplicarFiltroFavoritas() {
     if (_soloFavoritas) {
-      _resultados = _todosResultados
-          .where((s) => _idsFavoritos.contains(s.id))
-          .toList();
+      _resultados =
+          _todosResultados.where((s) => _idsFavoritos.contains(s.id)).toList();
     } else {
       _resultados = _todosResultados;
     }
@@ -201,183 +142,12 @@ class _RepositorioJurisprudenciaScreenState
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          esFavorita
-              ? '⭐ Agregada a Favoritas'
-              : 'Eliminada de Favoritas',
+          esFavorita ? '⭐ Agregada a Favoritas' : 'Eliminada de Favoritas',
         ),
         behavior: SnackBarBehavior.floating,
         duration: const Duration(seconds: 1),
       ),
     );
-  }
-  
-  // Datos de ejemplo cuando Firebase está vacío
-  List<SentenciaModel> _obtenerSentenciasEjemplo() {
-    return [
-      SentenciaModel(
-        id: 'ejemplo_1',
-        tipo: 'sentencia',
-        numeroSentencia: '234-2023',
-        sala: 'Sala Penal',
-        fechaSentencia: '15/08/2023',
-        delito: 'Homicidio Calificado',
-        ponente: 'Magistrado Juan Pérez',
-        partes: 'Ministerio Público vs. Acusado',
-        resumen: 'Recurso de apelación contra sentencia condenatoria por homicidio calificado. Se reduce pena de 25 a 18 años por falta de pruebas de premeditación.',
-        extracto: 'Extracto de ejemplo de la sentencia...',
-        decision: 'REVOCA PARCIALMENTE',
-        contenidoCompleto: 'Sentencia de ejemplo...',
-        tipoSentencia: 'Definitiva',
-        materia: 'Penal',
-        urlFichaPenalex: 'https://www.tsj.gob.ve',
-        urlTSJ: 'https://www.tsj.gob.ve',
-        urlHTML: '',
-        urlTXT: '',
-        esJurisprudencia: false,
-        tienePDF: false,
-        timestamp: DateTime.now(),
-      ),
-      SentenciaModel(
-        id: 'ejemplo_2',
-        tipo: 'sentencia',
-        numeroSentencia: '156-2023',
-        sala: 'Sala Penal',
-        fechaSentencia: '22/07/2023',
-        delito: 'Hurto Agravado',
-        ponente: 'Magistrada María González',
-        partes: 'Ministerio Público vs. Imputado',
-        resumen: 'Recurso de casación por violación de garantías constitucionales. Tribunal anula proceso por violación del derecho a la defensa.',
-        extracto: 'Extracto de ejemplo de la sentencia...',
-        decision: 'DECLARA CON LUGAR',
-        contenidoCompleto: 'Sentencia de ejemplo...',
-        tipoSentencia: 'Definitiva',
-        materia: 'Penal',
-        urlFichaPenalex: 'https://www.tsj.gob.ve',
-        urlTSJ: 'https://www.tsj.gob.ve',
-        urlHTML: '',
-        urlTXT: '',
-        esJurisprudencia: true,
-        tienePDF: false,
-        timestamp: DateTime.now(),
-      ),
-      SentenciaModel(
-        id: 'ejemplo_3',
-        tipo: 'sentencia',
-        numeroSentencia: '089-2023',
-        sala: 'Sala de Casación Penal',
-        fechaSentencia: '10/06/2023',
-        delito: 'Violencia de Género',
-        ponente: 'Magistrado Carlos Ramírez',
-        partes: 'Víctima vs. Agresor',
-        resumen: 'Medida de protección a víctima de violencia de género. Se ordena alejamiento del agresor y custodia de menores.',
-        extracto: 'Extracto de ejemplo de la sentencia...',
-        decision: 'DECLARA CON LUGAR',
-        contenidoCompleto: 'Sentencia de ejemplo...',
-        tipoSentencia: 'Medida Cautelar',
-        materia: 'Penal',
-        urlFichaPenalex: 'https://www.tsj.gob.ve',
-        urlTSJ: 'https://www.tsj.gob.ve',
-        urlHTML: '',
-        urlTXT: '',
-        esJurisprudencia: false,
-        tienePDF: false,
-        timestamp: DateTime.now(),
-      ),
-      SentenciaModel(
-        id: 'ejemplo_4',
-        tipo: 'sentencia',
-        numeroSentencia: '312-2023',
-        sala: 'Sala Penal',
-        fechaSentencia: '03/09/2023',
-        delito: 'Estafa Calificada',
-        ponente: 'Magistrado Luis Fernández',
-        partes: 'Víctima vs. Estafador',
-        resumen: 'Condena por estafa calificada mediante engaño digital. Víctima perdió 50.000 USD en esquema piramidal. Pena de 8 años de prisión.',
-        extracto: 'Extracto de ejemplo de la sentencia...',
-        decision: 'CONDENA',
-        contenidoCompleto: 'Sentencia de ejemplo...',
-        tipoSentencia: 'Definitiva',
-        materia: 'Penal',
-        urlFichaPenalex: 'https://www.tsj.gob.ve',
-        urlTSJ: 'https://www.tsj.gob.ve',
-        urlHTML: '',
-        urlTXT: '',
-        esJurisprudencia: false,
-        tienePDF: false,
-        timestamp: DateTime.now(),
-      ),
-      SentenciaModel(
-        id: 'ejemplo_5',
-        tipo: 'sentencia',
-        numeroSentencia: '445-2023',
-        sala: 'Sala de Casación Penal',
-        fechaSentencia: '18/10/2023',
-        delito: 'Lesiones Graves',
-        ponente: 'Magistrada Ana López',
-        partes: 'Ministerio Público vs. Acusado',
-        resumen: 'Apelación por lesiones graves en riña callejera. Se confirma sentencia de 5 años por uso de arma blanca.',
-        extracto: 'Extracto de ejemplo de la sentencia...',
-        decision: 'CONFIRMA',
-        contenidoCompleto: 'Sentencia de ejemplo...',
-        tipoSentencia: 'Definitiva',
-        materia: 'Penal',
-        urlFichaPenalex: 'https://www.tsj.gob.ve',
-        urlTSJ: 'https://www.tsj.gob.ve',
-        urlHTML: '',
-        urlTXT: '',
-        esJurisprudencia: false,
-        tienePDF: false,
-        timestamp: DateTime.now(),
-      ),
-    ];
-  }
-
-  // Búsqueda ultra precisa con scoring
-  List<SentenciaModel> _busquedaPrecisa(List<SentenciaModel> sentencias, String query) {
-    if (query.isEmpty) return sentencias;
-
-    final queryLower = query.toLowerCase();
-    final palabras = queryLower.split(' ').where((p) => p.length > 2).toList();
-
-    // Calcular score para cada sentencia
-    final sentenciasConScore = sentencias.map((s) {
-      double score = 0.0;
-
-      // Coincidencia exacta en número (peso 100)
-      if (s.numeroSentencia.toLowerCase().contains(queryLower)) {
-        score += 100;
-      }
-
-      // Coincidencia exacta en delito (peso 80)
-      if (s.delito.toLowerCase().contains(queryLower)) {
-        score += 80;
-      }
-
-      // Coincidencia en resumen (peso 50)
-      if (s.resumen.toLowerCase().contains(queryLower)) {
-        score += 50;
-      }
-
-      // Coincidencia por palabras individuales
-      for (final palabra in palabras) {
-        if (s.numeroSentencia.toLowerCase().contains(palabra)) score += 20;
-        if (s.delito.toLowerCase().contains(palabra)) score += 15;
-        if (s.resumen.toLowerCase().contains(palabra)) score += 10;
-        if (s.contenidoCompleto.toLowerCase().contains(palabra)) score += 5;
-        if (s.partes.toLowerCase().contains(palabra)) score += 8;
-        if (s.decision.toLowerCase().contains(palabra)) score += 8;
-      }
-
-      return {'sentencia': s, 'score': score};
-    }).where((item) => (item['score'] as double) > 0).toList();
-
-    // Ordenar por score
-    sentenciasConScore.sort((a, b) => 
-      (b['score'] as double).compareTo(a['score'] as double));
-
-    return sentenciasConScore
-        .map((item) => item['sentencia'] as SentenciaModel)
-        .toList();
   }
 
   void _limpiarBusqueda() {
@@ -392,264 +162,117 @@ class _RepositorioJurisprudenciaScreenState
 
   Widget _buildFiltros() {
     final int currentYear = DateTime.now().year;
-    final List<int> years = List.generate(currentYear - 2000 + 1, (index) => currentYear - index);
-    final List<String> salas = ['Todas', 'Sala de Casación Penal', 'Sala Constitucional'];
+    final List<int> years =
+        List.generate(currentYear - 1999, (index) => currentYear - index);
 
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          // ⭐ Filtro solo favoritas
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: ChoiceChip(
-              avatar: Icon(
-                Icons.star,
-                size: 16,
-                color: _soloFavoritas ? azulMarino : Colors.amber,
-              ),
-              label: const Text('Favoritas'),
-              selected: _soloFavoritas,
-              onSelected: (selected) {
-                setState(() => _soloFavoritas = selected);
+    Widget chip(String label,
+        {required bool activo, required VoidCallback onTap}) {
+      return Padding(
+        padding: const EdgeInsets.only(right: 8),
+        child: ChoiceChip(
+          label: Text(label),
+          selected: activo,
+          onSelected: (_) => onTap(),
+          selectedColor: dorado,
+          backgroundColor: Colors.transparent,
+          labelStyle: TextStyle(
+            color: activo ? azulMarino : Colors.white,
+            fontWeight: activo ? FontWeight.bold : FontWeight.normal,
+            fontSize: 12.5,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+            side: BorderSide(
+                color: activo ? dorado : Colors.white.withValues(alpha: 0.5)),
+          ),
+          visualDensity: VisualDensity.compact,
+          showCheckmark: false,
+        ),
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Fila 1: favoritas + tipo
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              chip('⭐ Favoritas', activo: _soloFavoritas, onTap: () {
+                setState(() => _soloFavoritas = !_soloFavoritas);
                 _aplicarFiltroFavoritas();
-              },
-              selectedColor: dorado,
-              backgroundColor: Colors.transparent,
-              labelStyle: TextStyle(
-                color: _soloFavoritas ? azulMarino : Colors.white,
-                fontWeight: _soloFavoritas ? FontWeight.bold : FontWeight.normal,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-                side: BorderSide(
-                  color: _soloFavoritas ? dorado : Colors.white,
-                ),
-              ),
-              visualDensity: VisualDensity.compact,
-              showCheckmark: false,
-            ),
-          ),
-          const SizedBox(width: 8),
-
-          // Tipo (dropdown)
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: PopupMenuButton<String>(
-              initialValue: _tipoSeleccionado,
-              onSelected: (tipo) {
+              }),
+              chip('Sentencias', activo: _tipoSeleccionado == 'Sentencias',
+                  onTap: () {
+                setState(() => _tipoSeleccionado = 'Sentencias');
+                _buscar();
+              }),
+              chip('Jurisprudencias',
+                  activo: _tipoSeleccionado == 'Jurisprudencias', onTap: () {
                 setState(() {
-                  _tipoSeleccionado = tipo;
-                  if (tipo != 'Sentencias' && tipo != 'Jurisprudencias') {
-                    _salaSeleccionada = null;
-                  }
+                  _tipoSeleccionado = 'Jurisprudencias';
+                  _salaSeleccionada = null;
                 });
                 _buscar();
-              },
-              itemBuilder: (context) => [
-                'Sentencias',
-                'Jurisprudencias',
-                'Resoluciones',
-              ].map((tipo) => PopupMenuItem<String>(value: tipo, child: Text(tipo))).toList(),
-              child: Chip(
-                label: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(_tipoSeleccionado),
-                    const SizedBox(width: 4),
-                    const Icon(Icons.arrow_drop_down, size: 16, color: Colors.white),
-                  ],
-                ),
-                backgroundColor: Colors.transparent,
-                labelStyle: const TextStyle(color: Colors.white),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  side: const BorderSide(color: Colors.white),
-                ),
-                visualDensity: VisualDensity.compact,
-              ),
-            ),
+              }),
+            ],
           ),
-          const SizedBox(width: 8),
-          
-          // Sala
-          if (_tipoSeleccionado == 'Sentencias' || _tipoSeleccionado == 'Jurisprudencias')
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: PopupMenuButton<String>(
-                initialValue: _salaSeleccionada ?? 'Todas',
-                onSelected: (String value) {
-                  setState(() {
-                    _salaSeleccionada = value == 'Todas' ? null : value;
-                  });
-                  _buscar();
-                },
-                itemBuilder: (BuildContext context) {
-                  return salas.map((String sala) {
-                    return PopupMenuItem<String>(
-                      value: sala,
-                      child: Text(sala),
-                    );
-                  }).toList();
-                },
-                child: Chip(
-                  label: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(_salaSeleccionada ?? 'Sala (Todas)'),
-                      const SizedBox(width: 4),
-                      const Icon(Icons.arrow_drop_down, size: 16, color: Colors.white),
-                    ],
-                  ),
-                  backgroundColor: Colors.transparent,
-                  labelStyle: const TextStyle(color: Colors.white),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    side: const BorderSide(color: Colors.white),
-                  ),
-                  visualDensity: VisualDensity.compact,
-                ),
-              ),
-            ),
-            
-          // Año
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: PopupMenuButton<int?>(
-              initialValue: _anioSeleccionado,
-              onSelected: (int? value) {
-                setState(() {
-                  _anioSeleccionado = value;
-                  _mesSeleccionado = null;
-                  _diaSeleccionado = null;
-                  _mesesDisponibles = [];
-                  _diasDisponibles = [];
-                });
+        ),
+        const SizedBox(height: 8),
+        // Fila 2: sala + año
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              chip('Sala: Todas', activo: _salaSeleccionada == null, onTap: () {
+                setState(() => _salaSeleccionada = null);
                 _buscar();
-                if (value != null) _cargarMeses(value);
-              },
-              itemBuilder: (BuildContext context) {
-                return [
-                  const PopupMenuItem<int?>(
-                    value: null,
-                    child: Text('Todos los años'),
-                  ),
-                  ...years.map((int year) {
-                    return PopupMenuItem<int?>(
-                      value: year,
-                      child: Text(year.toString()),
-                    );
-                  }),
-                ];
-              },
-              child: Chip(
-                label: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(_anioSeleccionado?.toString() ?? 'Año (Todos)'),
-                    const SizedBox(width: 4),
-                    const Icon(Icons.arrow_drop_down, size: 16, color: Colors.white),
-                  ],
-                ),
-                backgroundColor: Colors.transparent,
-                labelStyle: const TextStyle(color: Colors.white),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  side: const BorderSide(color: Colors.white),
-                ),
-                visualDensity: VisualDensity.compact,
-              ),
-            ),
-          ),
-
-          // Mes (solo meses con sentencias)
-          if (_anioSeleccionado != null && _mesesDisponibles.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: PopupMenuButton<int?>(
-                initialValue: _mesSeleccionado,
-                onSelected: (int? value) {
-                  setState(() {
-                    _mesSeleccionado = value;
-                    _diaSeleccionado = null;
-                    _diasDisponibles = [];
-                  });
-                  _buscar();
-                  if (value != null && _anioSeleccionado != null) {
-                    _cargarDias(_anioSeleccionado!, value);
-                  }
-                },
-                itemBuilder: (context) => [
-                  const PopupMenuItem<int?>(
-                      value: null, child: Text('Mes (Todos)')),
-                  ..._mesesDisponibles.map((m) => PopupMenuItem<int?>(
-                        value: m,
-                        child: Text(_nombreMes(m)),
-                      )),
-                ],
-                child: Chip(
-                  label: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(_mesSeleccionado != null
-                          ? _nombreMes(_mesSeleccionado!)
-                          : 'Mes'),
-                      const SizedBox(width: 4),
-                      const Icon(Icons.arrow_drop_down,
-                          size: 16, color: Colors.white),
-                    ],
-                  ),
-                  backgroundColor: Colors.transparent,
-                  labelStyle: const TextStyle(color: Colors.white),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    side: const BorderSide(color: Colors.white),
-                  ),
-                  visualDensity: VisualDensity.compact,
-                ),
-              ),
-            ),
-
-          // Día (solo días con sentencias)
-          if (_mesSeleccionado != null && _diasDisponibles.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: PopupMenuButton<int?>(
-                initialValue: _diaSeleccionado,
-                onSelected: (int? value) {
-                  setState(() => _diaSeleccionado = value);
+              }),
+              chip('Penal',
+                  activo: _salaSeleccionada == 'Sala de Casación Penal',
+                  onTap: () {
+                setState(() => _salaSeleccionada = 'Sala de Casación Penal');
+                _buscar();
+              }),
+              chip('Constitucional',
+                  activo: _salaSeleccionada == 'Sala Constitucional',
+                  onTap: () {
+                setState(() => _salaSeleccionada = 'Sala Constitucional');
+                _buscar();
+              }),
+              // Año
+              PopupMenuButton<int?>(
+                initialValue: _anioSeleccionado,
+                onSelected: (value) {
+                  setState(() => _anioSeleccionado = value);
                   _buscar();
                 },
                 itemBuilder: (context) => [
                   const PopupMenuItem<int?>(
-                      value: null, child: Text('Día (Todos)')),
-                  ..._diasDisponibles.map((d) => PopupMenuItem<int?>(
-                        value: d,
-                        child: Text(d.toString()),
-                      )),
+                      value: null, child: Text('Todos los años')),
+                  ...years.map(
+                      (y) => PopupMenuItem<int?>(value: y, child: Text('$y'))),
                 ],
-                child: Chip(
-                  label: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(_diaSeleccionado?.toString() ?? 'Día'),
-                      const SizedBox(width: 4),
-                      const Icon(Icons.arrow_drop_down,
-                          size: 16, color: Colors.white),
-                    ],
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: Chip(
+                    avatar: Icon(Icons.calendar_month,
+                        size: 15, color: dorado.withValues(alpha: 0.8)),
+                    label: Text(_anioSeleccionado?.toString() ?? 'Año'),
+                    backgroundColor: Colors.transparent,
+                    labelStyle:
+                        const TextStyle(color: Colors.white, fontSize: 12.5),
+                    side:
+                        BorderSide(color: Colors.white.withValues(alpha: 0.5)),
+                    visualDensity: VisualDensity.compact,
                   ),
-                  backgroundColor: Colors.transparent,
-                  labelStyle: const TextStyle(color: Colors.white),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    side: const BorderSide(color: Colors.white),
-                  ),
-                  visualDensity: VisualDensity.compact,
                 ),
               ),
-            ),
-        ],
-      ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -659,7 +282,7 @@ class _RepositorioJurisprudenciaScreenState
       drawer: const AppDrawer(currentRoute: '/repositorio_jurisprudencia'),
       appBar: AppBar(
         title: const Text(
-          'Sala de Sentencias',
+          'Jurisprudencia',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             letterSpacing: 0.5,
@@ -714,10 +337,12 @@ class _RepositorioJurisprudenciaScreenState
                       color: Colors.white.withOpacity(0.5),
                       fontSize: 15,
                     ),
-                    prefixIcon: const Icon(Icons.search, color: dorado, size: 22),
+                    prefixIcon:
+                        const Icon(Icons.search, color: dorado, size: 22),
                     suffixIcon: _searchController.text.isNotEmpty
                         ? IconButton(
-                            icon: const Icon(Icons.clear, color: dorado, size: 20),
+                            icon: const Icon(Icons.clear,
+                                color: dorado, size: 20),
                             onPressed: () {
                               _searchController.clear();
                               setState(() {});
@@ -752,7 +377,8 @@ class _RepositorioJurisprudenciaScreenState
                 // ✅ Ayuda sutil con indicador de búsqueda semántica
                 Row(
                   children: [
-                    Icon(Icons.auto_awesome, size: 12, color: dorado.withOpacity(0.6)),
+                    Icon(Icons.auto_awesome,
+                        size: 12, color: dorado.withOpacity(0.6)),
                     const SizedBox(width: 4),
                     Text(
                       'Búsqueda inteligente: prueba "matar", "robar", "drogas"...',
@@ -799,7 +425,8 @@ class _RepositorioJurisprudenciaScreenState
                           padding: const EdgeInsets.all(16),
                           itemCount: _resultados.length,
                           itemBuilder: (context, index) {
-                            return _buildSentenciaCard(_resultados[index], index);
+                            return _buildSentenciaCard(
+                                _resultados[index], index);
                           },
                         ),
                       ),
@@ -848,7 +475,8 @@ class _RepositorioJurisprudenciaScreenState
               style: ElevatedButton.styleFrom(
                 backgroundColor: azulMarino,
                 foregroundColor: dorado,
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -867,203 +495,206 @@ class _RepositorioJurisprudenciaScreenState
   }
 
   Widget _buildSentenciaCard(SentenciaModel sentencia, int index) {
-    return TweenAnimationBuilder(
-      duration: Duration(milliseconds: 200 + (index * 30)),
-      tween: Tween<double>(begin: 0, end: 1),
-      builder: (context, double value, child) {
-        return Opacity(
-          opacity: value,
-          child: Transform.translate(
-            offset: Offset(0, 10 * (1 - value)),
-            child: child,
-          ),
-        );
-      },
-      child: Card(
-        margin: const EdgeInsets.only(bottom: 12),
-        elevation: 2,
-        shadowColor: azulMarino.withOpacity(0.1),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
-          side: BorderSide(color: dorado.withValues(alpha: 0.4), width: 1.2),
-        ),
-        child: InkWell(
-          onTap: () => _verSentencia(sentencia),
-          borderRadius: BorderRadius.circular(12),
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // ✅ Header simplificado
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: azulMarino,
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: Text(
-                        _etiquetaDelito(sentencia),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: dorado,
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                        ),
+    return Card(
+      margin: const EdgeInsets.only(bottom: 12),
+      elevation: 1,
+      shadowColor: azulMarino.withValues(alpha: 0.08),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(14),
+        side: BorderSide(color: azulMarino.withValues(alpha: 0.08), width: 1),
+      ),
+      child: InkWell(
+        onTap: () => _verSentencia(sentencia),
+        borderRadius: BorderRadius.circular(14),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Fila superior: delito + vinculante + favorita
+              Row(
+                children: [
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: azulMarino,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Text(
+                      _etiquetaDelito(sentencia),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 10.5,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.3,
                       ),
                     ),
+                  ),
+                  if (sentencia.esJurisprudencia) ...[
                     const SizedBox(width: 8),
-                    // ✅ Badge Vinculante
-                    if (_tipoSeleccionado == 'Sentencias' && sentencia.esJurisprudencia) ...[
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [Color(0xFFD4A843), Color(0xFFE8C547)],
-                          ),
-                          borderRadius: BorderRadius.circular(4),
-                          boxShadow: [
-                            BoxShadow(
-                              color: dorado.withOpacity(0.3),
-                              blurRadius: 4,
-                              offset: const Offset(0, 2),
-                            )
-                          ],
-                        ),
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.gavel, size: 12, color: Colors.white),
-                            SizedBox(width: 4),
-                            Text(
-                              'Vinculante',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6, vertical: 3),
+                      decoration: BoxDecoration(
+                        color: dorado,
+                        borderRadius: BorderRadius.circular(4),
                       ),
-                      const SizedBox(width: 8),
-                    ],
-                    Expanded(
-                      child: Text(
-                        'Nº ${sentencia.numeroSentencia}',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
+                      child: const Text(
+                        'Vinculante',
+                        style: TextStyle(
                           color: azulMarino,
+                          fontSize: 9.5,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                    Text(
-                      '${sentencia.sala} • ${sentencia.fechaSentencia}',
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                        fontSize: 12,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () => _mostrarMetadata(sentencia),
-                      icon: Icon(Icons.info_outline,
-                          size: 20,
-                          color: azulMarino.withValues(alpha: 0.55)),
-                      tooltip: 'Ver metadata',
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
-                      visualDensity: VisualDensity.compact,
-                    ),
-                    // ⭐ Botón para marcar como favorita/importante
-                    IconButton(
-                      onPressed: () => _toggleFavorita(sentencia),
-                      icon: Icon(
-                        _idsFavoritos.contains(sentencia.id)
-                            ? Icons.star
-                            : Icons.star_border,
-                        size: 22,
-                        color: _idsFavoritos.contains(sentencia.id)
-                            ? Colors.amber
-                            : Colors.grey[500],
-                      ),
-                      tooltip: _idsFavoritos.contains(sentencia.id)
-                          ? 'Quitar de favoritas'
-                          : 'Agregar a favoritas',
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
-                      visualDensity: VisualDensity.compact,
                     ),
                   ],
-                ),
-                const SizedBox(height: 12),
-
-                // ✅ Delito (si existe)
-                if (sentencia.delito.isNotEmpty) ...[
-                  Row(
-                    children: [
-                      Icon(Icons.gavel, size: 14, color: Colors.grey[600]),
-                      const SizedBox(width: 6),
-                      Expanded(
-                        child: Text(
-                          sentencia.delito,
-                          style: TextStyle(
-                            color: Colors.grey[800],
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () => _toggleFavorita(sentencia),
+                    icon: Icon(
+                      _idsFavoritos.contains(sentencia.id)
+                          ? Icons.star
+                          : Icons.star_border,
+                      size: 20,
+                      color: _idsFavoritos.contains(sentencia.id)
+                          ? Colors.amber
+                          : Colors.grey[400],
+                    ),
+                    tooltip: _idsFavoritos.contains(sentencia.id)
+                        ? 'Quitar de favoritas'
+                        : 'Agregar a favoritas',
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                    visualDensity: VisualDensity.compact,
                   ),
-                  const SizedBox(height: 8),
                 ],
-
-                // ✅ Resumen limpio
-                if (sentencia.resumen.isNotEmpty || sentencia.extracto.isNotEmpty)
-                  Text(
-                    sentencia.resumen.isNotEmpty ? sentencia.resumen : sentencia.extracto,
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 13,
-                      height: 1.45,
-                      color: Colors.grey[800],
+              ),
+              const SizedBox(height: 10),
+              // Número + sala · fecha
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Nº ${sentencia.numeroSentencia}',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: azulMarino,
+                      ),
                     ),
                   ),
-
-                // ✅ Pie: ver sentencia completa
-                const SizedBox(height: 10),
-                SizedBox(
-                  width: double.infinity,
-                  child: OutlinedButton(
+                  Text(
+                    '${sentencia.sala} · ${sentencia.fechaSentencia}',
+                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              // Resumen / extracto / ratio
+              if (_textoResumen(sentencia).isNotEmpty)
+                Text(
+                  _textoResumen(sentencia),
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 13,
+                    height: 1.45,
+                    color: Colors.grey[800],
+                  ),
+                ),
+              const SizedBox(height: 12),
+              // Pie: decisión + acciones
+              Row(
+                children: [
+                  if (sentencia.decision.isNotEmpty &&
+                      sentencia.decision != 'null')
+                    _chipDecision(sentencia.decision),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () => _mostrarMetadata(sentencia),
+                    icon: Icon(Icons.info_outline,
+                        size: 18, color: azulMarino.withValues(alpha: 0.45)),
+                    tooltip: 'Ver metadata',
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                    visualDensity: VisualDensity.compact,
+                  ),
+                  TextButton(
                     onPressed: () => _verSentencia(sentencia),
-                    style: OutlinedButton.styleFrom(
+                    style: TextButton.styleFrom(
                       foregroundColor: azulMarino,
-                      side: const BorderSide(color: dorado),
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      visualDensity: VisualDensity.compact,
                     ),
                     child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.description_outlined, size: 16),
-                        SizedBox(width: 6),
-                        Text('Ver sentencia completa'),
+                        Text('Ver',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        Icon(Icons.chevron_right, size: 18),
                       ],
                     ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+            ],
           ),
+        ),
+      ),
+    );
+  }
+
+  /// Texto de vista previa: prioriza ratio decidendi, luego resumen IA,
+  /// luego extracto.
+  String _textoResumen(SentenciaModel s) {
+    final texto = s.ratioDecidendi.isNotEmpty
+        ? s.ratioDecidendi
+        : (s.resumen.isNotEmpty ? s.resumen : s.extracto);
+    return (texto == 'null') ? '' : texto;
+  }
+
+  /// Chip de decisión con color según el sentido del fallo.
+  Widget _chipDecision(String decision) {
+    final d = decision.toUpperCase();
+    Color bg;
+    Color fg;
+    if (d.contains('CON LUGAR')) {
+      bg = const Color(0xFFDCFCE7);
+      fg = const Color(0xFF15803D);
+    } else if (d.contains('SIN LUGAR') ||
+        d.contains('IMPROCEDENTE') ||
+        d.contains('INADMISIBLE')) {
+      bg = const Color(0xFFFEE2E2);
+      fg = const Color(0xFFB91C1C);
+    } else if (d.contains('REVOCA') ||
+        d.contains('ANULA') ||
+        d.contains('NULIDAD')) {
+      bg = const Color(0xFFFFEDD5);
+      fg = const Color(0xFFC2410C);
+    } else {
+      bg = const Color(0xFFE2E8F0);
+      fg = const Color(0xFF334155);
+    }
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Text(
+        decision,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          color: fg,
+          fontSize: 10,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
@@ -1186,7 +817,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
   // ⭐ Favoritas / Importantes
   final FavoritosService _favoritosService = FavoritosService();
   bool _esFavorita = false;
-  
+
   bool _mostrandoAnalisisIA = false;
   bool _analizando = false;
   AnalisisProfundoSentencia? _analisisProfundo;
@@ -1372,8 +1003,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
       try {
         await Supabase.instance.client
             .from('documentos')
-            .update({'analisis_ia': analisis})
-            .eq('id', widget.sentencia.id);
+            .update({'analisis_ia': analisis}).eq('id', widget.sentencia.id);
       } catch (e) {
         debugPrint('⚠️ No se pudo guardar analisis_ia: $e');
       }
@@ -1484,7 +1114,10 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
       appBar: AppBar(
         title: Text(
           'Sentencia ${widget.sentencia.numeroSentencia}',
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: dorado,
+          ),
         ),
         backgroundColor: azulMarino,
         elevation: 0,
@@ -1496,7 +1129,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
               color: _esFavorita ? Colors.amber : null,
             ),
             onPressed: _toggleFavorita,
-            tooltip: _esFavorita ? 'Quitar de favoritas' : 'Agregar a favoritas',
+            tooltip:
+                _esFavorita ? 'Quitar de favoritas' : 'Agregar a favoritas',
           ),
           IconButton(
             icon: const Icon(Icons.ios_share),
@@ -1649,12 +1283,14 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                                     // TODO: Exportar análisis a PDF
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
-                                        content: Text('Exportar análisis próximamente'),
+                                        content: Text(
+                                            'Exportar análisis próximamente'),
                                         behavior: SnackBarBehavior.floating,
                                       ),
                                     );
                                   },
-                                  icon: const Icon(Icons.picture_as_pdf, size: 18),
+                                  icon: const Icon(Icons.picture_as_pdf,
+                                      size: 18),
                                   label: const Text('Exportar Análisis'),
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: azulMarino,
@@ -1874,7 +1510,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
     if (contenido.isEmpty || contenido == 'No disponible') {
       return const SizedBox.shrink();
     }
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
