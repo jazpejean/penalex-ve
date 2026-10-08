@@ -122,26 +122,6 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             ),
             const SizedBox(height: 16),
 
-            // CHAT LEGAL
-            _buildToolCard(
-              context,
-              icon: Icons.chat_bubble,
-              iconColor: const Color(0xFF10B981),
-              title: 'Chat Legal',
-              badge: '🔥 Popular',
-              description:
-                  'Conversa con IA especializada en derecho penal venezolano. '
-                  'Respuestas con citas del Código Penal, COPP y jurisprudencia.',
-              stats: 'Respuesta en <5 seg',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ChatLegalScreen(),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-
             // REDACTOR DE DOCUMENTOS
             _buildToolCard(
               context,
