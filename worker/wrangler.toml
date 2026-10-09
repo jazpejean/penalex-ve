@@ -1,0 +1,22 @@
+name = "penalex-quiz-generador"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+workers_dev = true
+
+# Workers AI: motor principal (cuota gratuita diaria de 10.000 neuronas).
+[ai]
+binding = "AI"
+
+# Sentencias en texto plano (R2).
+[[r2_buckets]]
+binding = "SENTENCIAS"
+bucket_name = "penalex-jurisprudencia"
+
+# Generación proactiva diaria (03:00 UTC): el banco se auto-repone.
+[triggers]
+crons = ["0 3 * * *"]
+
+# Modelos de Workers AI (se prueban en orden; el segundo es respaldo).
+[vars]
+AI_MODEL = "@cf/qwen/qwen2.5-72b-instruct"
+AI_MODEL_FALLBACK = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"

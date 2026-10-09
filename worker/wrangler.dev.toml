@@ -1,0 +1,13 @@
+# Config SOLO para desarrollo local (sin Workers AI ni cron:
+# sin el binding de AI, wrangler dev corre 100% local sin token de Cloudflare).
+name = "penalex-quiz-generador"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+[[r2_buckets]]
+binding = "SENTENCIAS"
+bucket_name = "penalex-jurisprudencia"
+
+[vars]
+AI_MODEL = "@cf/qwen/qwen2.5-72b-instruct"
+AI_MODEL_FALLBACK = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"

@@ -61,3 +61,6 @@ echo "output/" >> .gitignore
 echo "*.log" >> .gitignore
 echo ".DS_Store" >> .gitignore
 node_modules/
+# Worker de Cloudflare: secretos y estado local
+worker/.dev.vars
+worker/.wrangler/
