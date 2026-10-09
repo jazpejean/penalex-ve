@@ -99,18 +99,43 @@ class QuizSyncService {
   /// {secciones, articulos:[{numero_texto, parrafos}]}) — cacheado.
   static Future<List<LeyCorpus>> _cargarCorpusAssets() async {
     if (_corpusCache != null) return _corpusCache!;
-    final dir = 'assets/data/leyes';
-    final indice = await rootBundle.loadString('$dir/_indice.json');
-    final lista = (jsonDecode(indice) as List)
-        .map((e) => (e is Map ? e['archivo'] ?? e['file'] ?? e['nombre'] : e).toString())
-        .toList();
-    final nombres = lista.isEmpty
-        ? ['codigo_penal_2005.json', 'codigo_organico_procesal_penal_2021.json']
-        : lista;
+    const dir = 'assets/data/leyes';
+    // _indice.json es un dict con "leyes": [{"id": "codigo_penal_2005", ...}];
+    // el archivo JSON real es "<id>.json". Respaldo: lista de leyes críticas
+    // que el worker puede citar (si el índice fallara).
+    const criticas = [
+      'codigo_penal_2005.json',
+      'codigo_organico_procesal_penal_2021.json',
+      'ley_organica_de_drogas_2010.json',
+      'ley_organica_para_la_proteccion_de_ninos_ninas_y_adolescentes_2015.json',
+      'ley_contra_la_corrupcion_2022.json',
+      'ley_contra_el_secuestro_y_la_extorsion_2009.json',
+      'ley_especial_contra_los_delitos_informaticos_2001.json',
+      'ley_organica_contra_la_delincuencia_organizada_y_financiamiento_al_terrorismo_2012.json',
+      'ley_organica_sobre_el_derecho_de_las_mujeres_a_una_vida_libre_de_violencia_2021.json',
+    ];
+    var nombres = <String>[];
+    try {
+      final indice =
+          jsonDecode(await rootBundle.loadString('$dir/_indice.json'));
+      if (indice is Map<String, dynamic>) {
+        nombres = ((indice['leyes'] as List?) ?? const [])
+            .map((e) => '${(e as Map)['id']}.json')
+            .toList();
+      } else if (indice is List) {
+        nombres = indice.map((e) => e.toString()).toList();
+      }
+    } catch (e) {
+      debugPrint('⚠️ _indice.json no legible: $e');
+    }
+    for (final c in criticas) {
+      if (!nombres.contains(c)) nombres.add(c);
+    }
 
     final leyes = <LeyCorpus>[];
+    final vistos = <String>{};
     for (final nombre in nombres) {
-      if (!nombre.endsWith('.json')) continue;
+      if (!nombre.endsWith('.json') || !vistos.add(nombre)) continue;
       try {
         final raw = await rootBundle.loadString('$dir/$nombre');
         leyes.add(QuizValidadorService.cargarLey(
