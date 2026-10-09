@@ -88,7 +88,7 @@ class AIAnalyticsService {
         'p_days_ago': daysAgo,
       });
 
-      if (response == null || (response as List).isEmpty) {
+      if (response == null || response.isEmpty) {
         return AIToolStats(
           toolName: toolName,
           totalUses: 0,
@@ -99,7 +99,7 @@ class AIAnalyticsService {
         );
       }
 
-      final data = (response as List).first as Map<String, dynamic>;
+      final data = response.first as Map<String, dynamic>;
       return AIToolStats.fromMap(data);
     } catch (e) {
       debugPrint('❌ Error obteniendo stats: $e');
@@ -138,7 +138,7 @@ class AIAnalyticsService {
         'p_days_ago': daysAgo,
       });
 
-      if (response == null || (response as List).isEmpty) {
+      if (response == null || response.isEmpty) {
         return GlobalStats(
           totalUses: 0,
           successfulUses: 0,
@@ -150,7 +150,7 @@ class AIAnalyticsService {
       }
 
       final List<Map<String, dynamic>> data =
-          (response as List).cast<Map<String, dynamic>>();
+          response.cast<Map<String, dynamic>>();
 
       int totalUses = 0;
       int successfulUses = 0;
@@ -196,9 +196,9 @@ class AIAnalyticsService {
         'p_days_ago': daysAgo,
       });
 
-      if (response == null || (response as List).isEmpty) return null;
+      if (response == null || response.isEmpty) return null;
 
-      final data = (response as List).first as Map<String, dynamic>;
+      final data = response.first as Map<String, dynamic>;
       return MostUsedTool.fromMap(data);
     } catch (e) {
       debugPrint('❌ Error obteniendo herramienta más usada: $e');
@@ -219,9 +219,9 @@ class AIAnalyticsService {
         'p_days_ago': daysAgo,
       });
 
-      if (response == null || (response as List).isEmpty) return [];
+      if (response == null || response.isEmpty) return [];
 
-      return (response as List)
+      return response
           .map((item) => HourlyUsage.fromMap(item as Map<String, dynamic>))
           .toList();
     } catch (e) {
@@ -243,9 +243,9 @@ class AIAnalyticsService {
         'p_weeks': weeks,
       });
 
-      if (response == null || (response as List).isEmpty) return [];
+      if (response == null || response.isEmpty) return [];
 
-      return (response as List)
+      return response
           .map((item) => WeeklyUsage.fromMap(item as Map<String, dynamic>))
           .toList();
     } catch (e) {
@@ -289,7 +289,7 @@ class AIAnalyticsService {
           .order('created_at', ascending: false)
           .limit(limit);
 
-      return (response as List)
+      return response
           .map((item) => UsageRecord.fromMap(item as Map<String, dynamic>))
           .toList();
     } catch (e) {

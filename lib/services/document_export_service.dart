@@ -187,89 +187,6 @@ class DocumentExportService {
   
   // ==================== CONSTRUCCIÓN DE CONTENIDO ====================
   
-  static Map<String, dynamic> _construirContenidoDosimetria({
-    required List<Delito> delitos,
-    required double penaTotal,
-    String? nombreCaso,
-    String? nombreAbogado,
-    String? numeroCaso,
-    Map<String, String>? membretePersonalizado,
-  }) {
-    final ahora = DateTime.now();
-    final fecha = DateFormat('dd/MM/yyyy').format(ahora);
-    
-    return {
-      'titulo': nombreCaso ?? 'CÁLCULO DE DOSIMETRÍA PENAL',
-      'fecha': fecha,
-      'numero_caso': numeroCaso ?? 'N/A',
-      'abogado': nombreAbogado ?? '',
-      'bufete': membretePersonalizado?['bufete'] ?? '',
-      'direccion': membretePersonalizado?['direccion'] ?? '',
-      'telefono': membretePersonalizado?['telefono'] ?? '',
-      'email': membretePersonalizado?['email'] ?? '',
-      
-      'cantidad_delitos': delitos.length,
-      'delitos': delitos.asMap().entries.map((entry) {
-        final index = entry.key + 1;
-        final delito = entry.value;
-        final penaIndividual = delito.calcularPenaIndividualizada();
-        
-        return {
-          'numero': index,
-          'nombre': delito.nombre.isEmpty ? 'Delito $index' : delito.nombre,
-          'tipo_pena': _formatTipoPena(delito.tipoPena),
-          'pena_minima': _formatPena(delito.penaMin),
-          'pena_maxima': _formatPena(delito.penaMax),
-          'termino_medio': _formatPena(delito.terminoMedio),
-          'grado_ejecucion': _formatGradoEjecucion(delito.gradoEjecucion),
-          'participacion': delito.participacionEspecifica,
-          'pena_individualizada': _formatPena(penaIndividual),
-        };
-      }).toList(),
-      
-      'pena_total': _formatPena(penaTotal),
-      'pena_total_texto': _penaEnTexto(penaTotal),
-      
-      'generado_por': 'Penalex VE - Sistema de Dosimetría Penal',
-      'fecha_hora': DateFormat('dd/MM/yyyy HH:mm').format(ahora),
-      
-      'disclaimer': 'Este documento es generado automáticamente con fines informativos. '
-          'No sustituye el análisis jurídico profesional ni constituye asesoría legal.',
-    };
-  }
-  
-  static Map<String, dynamic> _construirContenidoInterpretacion({
-    required AIInterpretation interpretacion,
-    String? nombreAbogado,
-    String? bufete,
-  }) {
-    final ahora = DateTime.now();
-    
-    return {
-      'titulo': 'INTERPRETACIÓN LEGAL CON IA',
-      'subtitulo': interpretacion.titulo,
-      'fecha': DateFormat('dd/MM/yyyy').format(ahora),
-      'abogado': nombreAbogado ?? '',
-      'bufete': bufete ?? '',
-      
-      'tipo_interpretacion': _formatTipoInterpretacion(interpretacion.tipo),
-      
-      'texto_original_titulo': 'TEXTO ORIGINAL',
-      'texto_original': interpretacion.textoOriginal,
-      
-      'interpretacion_titulo': 'INTERPRETACIÓN',
-      'interpretacion': interpretacion.interpretacion,
-      
-      'modelo_ia': AIService.marcaIA,
-      'proveedor_ia': AIService.marcaIA,
-      
-      'timestamp': DateFormat('dd/MM/yyyy HH:mm:ss').format(interpretacion.timestamp),
-      
-      'disclaimer': 'Esta interpretación es generada por inteligencia artificial y tiene fines '
-          'orientativos. No sustituye el criterio profesional del abogado ni constituye opinión legal definitiva.',
-    };
-  }
-  
   static Map<String, dynamic> _construirContenidoJurisprudencia({
     required Jurisprudencia sentencia,
     AIInterpretation? analisisIA,
@@ -405,97 +322,6 @@ class DocumentExportService {
       return getApplicationDocumentsDirectory();
     }
   }
-  
-  static String _formatTipoPena(TipoPena tipo) {
-    switch (tipo) {
-      case TipoPena.presidio:
-        return 'Presidio';
-      case TipoPena.prision:
-        return 'Prisión';
-    }
-  }
-  
-  static String _formatGradoEjecucion(GradoEjecucion grado) {
-    switch (grado) {
-      case GradoEjecucion.consumado:
-        return 'Consumado';
-      case GradoEjecucion.frustrado:
-        return 'Frustrado';
-      case GradoEjecucion.tentativa:
-        return 'Tentativa';
-    }
-  }
-  
-  static String _formatPena(double anios) {
-    final Map<String, int> ymd = _convertToYMD(anios);
-    final partes = <String>[];
-    
-    if (ymd['anos']! > 0) {
-      partes.add('${ymd['anos']} año${ymd['anos'] == 1 ? '' : 's'}');
-    }
-    if (ymd['meses']! > 0) {
-      partes.add('${ymd['meses']} mes${ymd['meses'] == 1 ? '' : 'es'}');
-    }
-    if (ymd['dias']! > 0) {
-      partes.add('${ymd['dias']} día${ymd['dias'] == 1 ? '' : 's'}');
-    }
-    
-    return partes.isEmpty ? '0 días' : partes.join(', ');
-  }
-  
-  static Map<String, int> _convertToYMD(double anios) {
-    final totalDias = (anios * 360).round();
-    final anos = totalDias ~/ 360;
-    final meses = (totalDias % 360) ~/ 30;
-    final dias = totalDias % 30;
-    
-    return {'anos': anos, 'meses': meses, 'dias': dias};
-  }
-  
-  static String _penaEnTexto(double anios) {
-    // Convertir número a texto para documentos formales
-    final Map<String, int> ymd = _convertToYMD(anios);
-    final partes = <String>[];
-    
-    if (ymd['anos']! > 0) {
-      partes.add('${_numeroATexto(ymd['anos']!)} año${ymd['anos'] == 1 ? '' : 's'}');
-    }
-    if (ymd['meses']! > 0) {
-      partes.add('${_numeroATexto(ymd['meses']!)} mes${ymd['meses'] == 1 ? '' : 'es'}');
-    }
-    if (ymd['dias']! > 0) {
-      partes.add('${_numeroATexto(ymd['dias']!)} día${ymd['dias'] == 1 ? '' : 's'}');
-    }
-    
-    return partes.isEmpty ? 'cero días' : partes.join(', ');
-  }
-  
-  static String _numeroATexto(int num) {
-    const numeros = [
-      'cero', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve',
-      'diez', 'once', 'doce', 'trece', 'catorce', 'quince', 'dieciséis', 'diecisiete', 'dieciocho', 'diecinueve',
-      'veinte', 'veintiuno', 'veintidós', 'veintitrés', 'veinticuatro', 'veinticinco', 'veintiséis', 'veintisiete', 'veintiocho', 'veintinueve',
-      'treinta'
-    ];
-    
-    if (num <= 30) return numeros[num];
-    return num.toString(); // Para números mayores, usar dígitos
-  }
-  
-  static String _formatTipoInterpretacion(TipoInterpretacion tipo) {
-    switch (tipo) {
-      case TipoInterpretacion.ley:
-        return 'Interpretación de Ley';
-      case TipoInterpretacion.jurisprudencia:
-        return 'Interpretación de Jurisprudencia';
-      case TipoInterpretacion.comparacion:
-        return 'Comparación de Textos';
-      case TipoInterpretacion.pregunta:
-        return 'Pregunta y Respuesta';
-      case TipoInterpretacion.resumen:
-        return 'Resumen';
-    }
-  }
 
   /// Crea una plantilla base simple para DOCX
   static Future<List<int>> _crearPlantillaBase() async {
@@ -505,4 +331,5 @@ class DocumentExportService {
       0x50, 0x4B, 0x03, 0x04, // PK header
     ];
   }
+
 }

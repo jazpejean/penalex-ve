@@ -1,6 +1,7 @@
 // Validador de preguntas del quiz (CLI).
 //
 // Uso:
+// ignore_for_file: avoid_relative_lib_imports, avoid_print
 //   dart tool/validar_preguntas.dart <lote.json> [--corpus DIR] [--salida FILE]
 //
 // - <lote.json>: archivo con una lista de casos (o {"casos": [...]}).

@@ -176,37 +176,6 @@ class _SupabaseLoginPageState extends State<SupabaseLoginPage> {
     }
   }
 
-  Future<void> _loginWithGoogle() async {
-    setState(() {
-      _errorMessage = '';
-      _isLoading = true;
-    });
-
-    final SupabaseAuthService auth = context.read<SupabaseAuthService>();
-    try {
-      final success = await auth.signInWithGoogle();
-      
-      if (!success) {
-        _showSnackBar('No se pudo iniciar sesión con Google.', isError: true);
-        setState(() => _isLoading = false);
-        return;
-      }
-
-      // El flujo OAuth manejará la redirección automáticamente
-      _showSnackBar('Redirigiendo a Google...');
-    } on AuthException catch (e) {
-      final String errorMsg = _getSupabaseErrorMessage(e.message);
-      setState(() => _errorMessage = errorMsg);
-      _showSnackBar(errorMsg, isError: true);
-    } on Exception catch (e) {
-      final String errorMsg = _getSupabaseErrorMessage(e.toString());
-      setState(() => _errorMessage = errorMsg);
-      _showSnackBar(errorMsg, isError: true);
-    } finally {
-      if (mounted) setState(() => _isLoading = false);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -332,38 +301,7 @@ class _SupabaseLoginPageState extends State<SupabaseLoginPage> {
                         child: const Text('INICIAR SESIÓN',
                             style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
-                    // GOOGLE SIGN-IN TEMPORALMENTE DESHABILITADO
-                    // Para habilitarlo, configura Google OAuth en Supabase
-                    /* const SizedBox(height: 16),
-                    OutlinedButton(
-                      onPressed: _loginWithGoogle,
-                      style: OutlinedButton.styleFrom(
-                        side: BorderSide(
-                            color: dorado.withOpacity(0.85), width: 1.5),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)),
-                        minimumSize: const Size(double.infinity, 52),
-                        backgroundColor: Colors.white,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Image.asset(
-                            'assets/images/google_logo.png',
-                            height: 24,
-                            width: 24,
-                            errorBuilder: (BuildContext context, Object error,
-                                    StackTrace? stackTrace) =>
-                                const Icon(Icons.g_mobiledata,
-                                    size: 24, color: Color(0xFFDB4437)),
-                          ),
-                          const SizedBox(width: 12),
-                          const Text('Iniciar con Google',
-                              style:
-                                  TextStyle(color: azulMarino, fontSize: 16)),
-                        ],
-                      ),
-                    ), */
+
                     const SizedBox(height: 16),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

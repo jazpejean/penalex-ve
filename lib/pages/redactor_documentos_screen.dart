@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:path_provider/path_provider.dart';
-import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
@@ -15,7 +11,6 @@ import '../services/ocr_service.dart';
 import '../services/redactor_service.dart';
 import '../services/chat_legal_export_service.dart';
 import '../services/membrete_service.dart';
-import '../models/document_template.dart';
 import '../models/chat_attachment.dart';
 
 class RedactorDocumentosScreen extends StatefulWidget {
@@ -23,8 +18,7 @@ class RedactorDocumentosScreen extends StatefulWidget {
   /// p. ej. desde el comparador de estrategias.
   final String? initialPrompt;
 
-  const RedactorDocumentosScreen({Key? key, this.initialPrompt})
-      : super(key: key);
+  const RedactorDocumentosScreen({super.key, this.initialPrompt});
 
   @override
   State<RedactorDocumentosScreen> createState() => _RedactorDocumentosScreenState();
@@ -33,7 +27,6 @@ class RedactorDocumentosScreen extends StatefulWidget {
 class _RedactorDocumentosScreenState extends State<RedactorDocumentosScreen> {
   final DocumentChatService _chatService = DocumentChatService();
   final TemplateService _templateService = TemplateService();
-  final OCRService _ocrService = OCRService();
   final ImagePicker _imagePicker = ImagePicker();
   final TextEditingController _messageController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
@@ -41,8 +34,6 @@ class _RedactorDocumentosScreenState extends State<RedactorDocumentosScreen> {
   List<ChatMessage> _messages = [];
   final List<ChatAttachment> _attachments = []; // ✅ Sistema unificado
   bool _isLoading = false;
-  bool _isProcessingAttachments = false;
-  String? _generatedDocument;
   String? _conversationId;
 
   @override
@@ -53,9 +44,7 @@ class _RedactorDocumentosScreenState extends State<RedactorDocumentosScreen> {
 
   Future<void> _initializeServices() async {
     await _templateService.initialize();
-    if (_conversationId == null) {
-      _conversationId = await RedactorService.crearConversacion();
-    }
+    _conversationId ??= await RedactorService.crearConversacion();
     _addMessage(
       '¡Hola! Soy tu asistente de redacción de documentos penales.\n\n'
       '📄 ¿Qué documento deseas redactar?\n\n'
@@ -132,8 +121,6 @@ class _RedactorDocumentosScreenState extends State<RedactorDocumentosScreen> {
       
       // Si hay archivos adjuntos, procesarlos primero con OCR
       if (_attachments.isNotEmpty) {
-        setState(() => _isProcessingAttachments = true);
-        
         _addMessage(
           '📸 Analizando ${_attachments.length} documento(s) adjunto(s)...\n'
           'Extrayendo texto con OCR...',
@@ -167,8 +154,6 @@ Analiza los documentos adjuntos y extrae información relevante para el document
 
         response = await _chatService.processUserResponse(combinedMessage);
         
-        setState(() => _isProcessingAttachments = false);
-        
         // Limpiar adjuntos después de procesar
         setState(() => _attachments.clear());
       } else {
@@ -180,7 +165,6 @@ Analiza los documentos adjuntos y extrae información relevante para el document
       // Si se generó un documento, guardarlo en el historial
       final doc = _chatService.ultimoDocumento;
       if (doc != null && doc.isNotEmpty) {
-        _generatedDocument = response;
         RedactorService.guardarDocumento(
           titulo: _chatService.ultimoTitulo ?? 'Documento',
           tipo: _chatService.ultimoTitulo,
@@ -193,96 +177,10 @@ Analiza los documentos adjuntos y extrae información relevante para el document
         isUser: false,
       );
     } finally {
-      setState(() {
-        _isLoading = false;
-        _isProcessingAttachments = false;
-      });
+      setState(() => _isLoading = false);
     }
   }
 
-  Future<void> _pickMultipleImages() async {
-    try {
-      final List<XFile> images = await _imagePicker.pickMultipleMedia(
-        imageQuality: 85,
-      );
-
-      if (images.isNotEmpty) {
-        setState(() {
-          for (final image in images) {
-            _attachments.add(ChatAttachment(
-              id: DateTime.now().millisecondsSinceEpoch.toString(),
-              fileName: image.name,
-              filePath: image.path,
-              fileSize: File(image.path).lengthSync(),
-              type: _getFileType(image.path),
-            ));
-          }
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('❌ Error al seleccionar imágenes: $e')),
-        );
-      }
-    }
-  }
-
-  Future<void> _pickDocument() async {
-    try {
-      FilePickerResult? result = await FilePicker.platform.pickFiles(
-        type: FileType.custom,
-        allowedExtensions: ['pdf', 'doc', 'docx', 'txt'],
-        allowMultiple: true,
-      );
-
-      if (result != null) {
-        setState(() {
-          for (final file in result.files) {
-            if (file.path != null) {
-              _attachments.add(ChatAttachment(
-                id: DateTime.now().millisecondsSinceEpoch.toString(),
-                fileName: file.name,
-                filePath: file.path!,
-                fileSize: file.size,
-                type: _getFileType(file.path!),
-              ));
-            }
-          }
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('❌ Error al seleccionar archivo: $e')),
-        );
-      }
-    }
-  }
-
-  void _removeAttachment(int index) {
-    setState(() {
-      _attachments.removeAt(index);
-    });
-  }
-
-  AttachmentType _getFileType(String path) {
-    final extension = path.split('.').last.toLowerCase();
-    switch (extension) {
-      case 'pdf':
-        return AttachmentType.pdf;
-      case 'doc':
-      case 'docx':
-        return AttachmentType.document;
-      case 'jpg':
-      case 'jpeg':
-      case 'png':
-      case 'gif':
-        return AttachmentType.image;
-      default:
-        return AttachmentType.other;
-    }
-  }
 
   IconData _getFileIcon(AttachmentType type) {
     switch (type) {
@@ -574,138 +472,6 @@ Analiza los documentos adjuntos y extrae información relevante para el document
     }
   }
 
-  void _showTemplateSelector() {
-    final templates = _templateService.getAllTemplates();
-    
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Container(
-        height: MediaQuery.of(context).size.height * 0.7,
-        decoration: const BoxDecoration(
-          color: Color(0xFF1E1E1E),
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        ),
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(20),
-              child: Row(
-                children: [
-                  const Icon(Icons.description, color: Colors.white),
-                  const SizedBox(width: 10),
-                  const Text(
-                    'Seleccionar Template',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const Spacer(),
-                  IconButton(
-                    icon: const Icon(Icons.close, color: Colors.white),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                ],
-              ),
-            ),
-            const Divider(color: Colors.grey),
-            Expanded(
-              child: templates.isEmpty
-                  ? const Center(
-                      child: Text(
-                        'No hay templates disponibles.\nAgrega templates en assets/templates/',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    )
-                  : ListView.builder(
-                      itemCount: templates.length,
-                      itemBuilder: (context, index) {
-                        final template = templates[index];
-                        return ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor: _getCategoryColor(template.category),
-                            child: Icon(
-                              _getCategoryIcon(template.category),
-                              color: Colors.white,
-                              size: 20,
-                            ),
-                          ),
-                          title: Text(
-                            template.name,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              if (template.description != null)
-                                Text(
-                                  template.description!,
-                                  style: const TextStyle(color: Colors.grey),
-                                ),
-                              const SizedBox(height: 4),
-                              Text(
-                                '${template.fields.length} campos • Fase: ${template.category}',
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                          onTap: () {
-                            Navigator.pop(context);
-                            _startTemplateConversation(template);
-                          },
-                        );
-                      },
-                    ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void _startTemplateConversation(DocumentTemplate template) {
-    _chatService.reset();
-    _messageController.text = 'Quiero redactar un ${template.name}';
-    _sendMessage();
-  }
-
-  Color _getCategoryColor(String category) {
-    switch (category.toLowerCase()) {
-      case 'control':
-        return Colors.blue;
-      case 'juicio':
-        return Colors.orange;
-      case 'ejecucion':
-      case 'ejecución':
-        return Colors.green;
-      default:
-        return Colors.purple;
-    }
-  }
-
-  IconData _getCategoryIcon(String category) {
-    switch (category.toLowerCase()) {
-      case 'control':
-        return Icons.shield;
-      case 'juicio':
-        return Icons.gavel;
-      case 'ejecucion':
-      case 'ejecución':
-        return Icons.check_circle;
-      default:
-        return Icons.description;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -731,7 +497,6 @@ Analiza los documentos adjuntos y extrae información relevante para el document
               setState(() {
                 _chatService.reset();
                 _messages.clear();
-                _generatedDocument = null;
                 _conversationId = null;
               });
               _initializeServices();
@@ -1390,7 +1155,6 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                 timestamp: DateTime.tryParse(m['timestamp'] as String? ?? '') ?? DateTime.now(),
               ))
           .toList();
-      _generatedDocument = null;
     });
     _scrollToBottom();
   }

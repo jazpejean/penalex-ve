@@ -775,7 +775,7 @@ RESUMEN:
 $resumen
 
 CONTENIDO COMPLETO:
-${contenidoCompleto.length > 3000 ? contenidoCompleto.substring(0, 3000) + '...' : contenidoCompleto}
+${contenidoCompleto.length > 3000 ? '${contenidoCompleto.substring(0, 3000)}...' : contenidoCompleto}
 
 GENERA UN ANÁLISIS ESTRUCTURADO CON:
 

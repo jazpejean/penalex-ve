@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import '../models/document_template.dart';
 
@@ -28,14 +29,14 @@ class TemplateService {
           final templateJson = json.decode(content);
           _templates.add(DocumentTemplate.fromJson(templateJson));
         } catch (e) {
-          print('Error cargando template $path: $e');
+          debugPrint('Error cargando template $path: $e');
         }
       }
 
       _initialized = true;
-      print('Templates cargados: ${_templates.length}');
+      debugPrint('Templates cargados: ${_templates.length}');
     } catch (e) {
-      print('Error inicializando templates: $e');
+      debugPrint('Error inicializando templates: $e');
     }
   }
 

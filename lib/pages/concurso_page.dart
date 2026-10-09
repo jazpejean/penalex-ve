@@ -187,15 +187,17 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                 backgroundColor:
                                     WidgetStateProperty.resolveWith(
                                         (Set<WidgetState> states) {
-                                  if (states.contains(WidgetState.selected))
+                                  if (states.contains(WidgetState.selected)) {
                                     return azulMarino;
+                                  }
                                   return fondoGris;
                                 }),
                                 foregroundColor:
                                     WidgetStateProperty.resolveWith(
                                         (Set<WidgetState> states) {
-                                  if (states.contains(WidgetState.selected))
+                                  if (states.contains(WidgetState.selected)) {
                                     return dorado;
+                                  }
                                   return azulMarino.withValues(alpha: 0.80);
                                 }),
                                 side: WidgetStatePropertyAll(BorderSide(
@@ -655,8 +657,9 @@ class _ConcursoPageState extends State<ConcursoPage> {
                             onPressed: () {
                               final List<Delito> seleccionados = <Delito>[];
                               for (int i = 0; i < widget.delitos.length; i++) {
-                                if (_selectedDelitos[i])
+                                if (_selectedDelitos[i]) {
                                   seleccionados.add(widget.delitos[i]);
+                                }
                               }
                               Navigator.push(
                                 context,

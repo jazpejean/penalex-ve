@@ -20,7 +20,6 @@ class DocumentChatService {
   // Flujo por catálogo (lenguaje natural + requisitos legales)
   TipoDocumentoLegal? _tipoActivo;
   List<int> _datosPendientes = [];
-  int _datoIndex = 0;
   String _requisitosTexto = '';
 
   /// Último documento generado (para guardarlo en el historial).
@@ -434,7 +433,6 @@ class DocumentChatService {
     // Reiniciar estado del catálogo
     _tipoActivo = null;
     _datosPendientes.clear();
-    _datoIndex = 0;
     _requisitosTexto = '';
     _collectedData.clear();
 
@@ -686,7 +684,6 @@ class DocumentChatService {
     _currentFieldIndex = 0;
     _tipoActivo = null;
     _datosPendientes.clear();
-    _datoIndex = 0;
     _requisitosTexto = '';
     _ultimoDocumento = null;
     _ultimoTitulo = null;

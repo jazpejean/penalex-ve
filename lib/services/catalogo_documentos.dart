@@ -669,7 +669,7 @@ class CatalogoDocumentos {
         'comision', 'deprecado',
       ],
       baseLegal: [
-        ReferenciaLegal(leySlug: _copp, leyNombre: 'COPP', articulos: const []),
+        ReferenciaLegal(leySlug: _copp, leyNombre: 'COPP', articulos: []),
       ],
       datosRequeridos: [
         'Tribunal requerido', 'Tribunal requirente', 'Número de causa',

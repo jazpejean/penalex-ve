@@ -324,10 +324,6 @@ Puedo ayudarte a:
     }
   }
 
-  Future<void> _exportAsPDF(ChatMessage message) async {
-    await _exportarMensajeAPDF(message);
-  }
-
   Future<void> _exportarConversacionCompletaAWord() async {
     if (_messages.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(

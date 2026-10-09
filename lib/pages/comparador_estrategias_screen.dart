@@ -684,12 +684,16 @@ class _ComparadorEstrategiasScreenState
       }
       if (e.requisitos.isNotEmpty) {
         buffer.writeln('**Requisitos:**');
-        for (final r in e.requisitos) buffer.writeln('- $r');
+        for (final r in e.requisitos) {
+          buffer.writeln('- $r');
+        }
         buffer.writeln();
       }
       if (e.pasos.isNotEmpty) {
         buffer.writeln('**Pasos:**');
-        for (final p in e.pasos) buffer.writeln('- $p');
+        for (final p in e.pasos) {
+          buffer.writeln('- $p');
+        }
         buffer.writeln();
       }
       if (e.jurisprudencia.isNotEmpty) {

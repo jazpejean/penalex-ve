@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
@@ -284,6 +283,7 @@ class OptionButtonComponent extends PositionComponent with HasGameRef<QuizQuesti
     size = Vector2(gameRef.size.x - 32, 75);
   }
 
+  @override
   bool containsPoint(Vector2 point) {
     return point.x >= position.x &&
         point.x <= position.x + size.x &&

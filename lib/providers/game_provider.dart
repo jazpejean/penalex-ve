@@ -146,18 +146,22 @@ class GameState extends ChangeNotifier {
     if (level >= 2800) return 'Presidente del Tribunal Supremo de Justicia';
     if (level >= 2600) return 'Presidente de la Sala de Casación Penal';
     if (level >= 2400) return 'Vicepresidente de la Sala de Casación Penal';
-    if (level >= 2200)
+    if (level >= 2200) {
       return 'Magistrado Principal de la Sala de Casación Penal';
+    }
     if (level >= 2000) return 'Secretario de la Sala de Casación Penal';
-    if (level >= 1800)
+    if (level >= 1800) {
       return 'Magistrado Suplente de la Sala de Casación Penal';
+    }
     if (level >= 1600) return 'Juez Presidente del Circuito Judicial Penal';
     if (level >= 1400) return 'Juez Titular de Corte de Apelaciones';
     if (level >= 1200) return 'Juez Provisorio de Corte de Apelaciones';
-    if (level >= 1050)
+    if (level >= 1050) {
       return 'Juez de Primera Instancia con Competencia Nacional';
-    if (level >= 900)
+    }
+    if (level >= 900) {
       return 'Juez de Primera Instancia con Competencia Especial';
+    }
     if (level >= 750) return 'Juez Titular de Primera Instancia';
     if (level >= 600) return 'Juez Provisorio de Primera Instancia';
     if (level >= 450) return 'Juez Suplente de Primera Instancia';

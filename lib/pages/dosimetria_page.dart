@@ -182,8 +182,9 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                                       await CalculationService
                                           .deleteCalculation(calc.id);
                                       await _loadCalculations();
-                                      if (context.mounted)
+                                      if (context.mounted) {
                                         Navigator.pop(context);
+                                      }
                                     },
                                   ),
                                 ],

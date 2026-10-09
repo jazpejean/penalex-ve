@@ -1,6 +1,7 @@
 // Calibración: imprime los tokens distintivos de artículos clave del CP
 // para ajustar los umbrales del validador con datos reales.
 // Uso: dart tool/calibrar_tokens.dart
+// ignore_for_file: avoid_relative_lib_imports, avoid_print
 import 'dart:convert';
 import 'dart:io';
 
