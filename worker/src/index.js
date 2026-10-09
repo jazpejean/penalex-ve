@@ -556,18 +556,21 @@ function prepararLey(ley) {
 /** Busca la ley del corpus para una cita ("Art. 405 Código Penal"). */
 function leyParaCita(leyes, citaSinNumero) {
   const norm = normalizarTexto(citaSinNumero);
+  // La comparación ignora guiones/espacios (el worker usa codigo-penal.json y
+  // el corpus local de la app usa codigo_penal_2005.json).
+  const squash = (t) => normalizarTexto(t).replace(/[^a-z0-9]/g, '');
   const busca = (frag) => {
-    const f = normalizarTexto(frag);
-    return leyes.find((l) => normalizarTexto(l.nombre).includes(f) || normalizarTexto(l.archivo).includes(f));
+    const f = squash(frag);
+    return leyes.find((l) => squash(l.nombre).includes(f) || squash(l.archivo).includes(f));
   };
-  if (norm.includes('procesal penal') || norm.includes('copp')) return busca('copp');
-  if (norm.includes('penal') && norm.includes('codigo')) return busca('codigo-penal');
+  if (norm.includes('procesal penal') || norm.includes('copp')) return busca('copp') ?? busca('procesal');
+  if (norm.includes('penal') && norm.includes('codigo')) return busca('codigopenal');
   if (norm.includes('drogas')) return busca('drogas');
-  if (norm.includes('nino') || norm.includes('adolescente')) return busca('proteccion-de-ninos');
+  if (norm.includes('nino') || norm.includes('adolescente')) return busca('protecciondeninos');
   if (norm.includes('corrupcion')) return busca('corrupcion');
   if (norm.includes('secuestro')) return busca('secuestro');
   if (norm.includes('informatico')) return busca('informaticos');
-  if (norm.includes('delincuencia organizada')) return busca('delincuencia-organizada');
+  if (norm.includes('delincuencia organizada')) return busca('delincuenciaorganizada');
   if (norm.includes('violencia')) return busca('violencia');
   return busca(citaSinNumero.trim().split(' ')[0]);
 }

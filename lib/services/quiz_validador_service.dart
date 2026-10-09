@@ -170,30 +170,31 @@ class QuizValidadorService {
   ) {
     final norm = normalizar(citaLey);
     if (norm.contains('procesal penal') || norm.contains('copp')) {
-      return _buscar(corpus, 'copp');
+      return _buscar(corpus, 'copp') ?? _buscar(corpus, 'procesal');
     }
     if (norm.contains('penal') && norm.contains('codigo')) {
-      return _buscar(corpus, 'codigo-penal');
+      return _buscar(corpus, 'codigopenal');
     }
     if (norm.contains('drogas')) return _buscar(corpus, 'drogas');
     if (norm.contains('nino') || norm.contains('adolescente')) {
-      return _buscar(corpus, 'proteccion-de-ninos');
+      return _buscar(corpus, 'protecciondeninos');
     }
     if (norm.contains('corrupcion')) return _buscar(corpus, 'corrupcion');
     if (norm.contains('secuestro')) return _buscar(corpus, 'secuestro');
     if (norm.contains('informatico')) return _buscar(corpus, 'informaticos');
     if (norm.contains('delincuencia organizada')) {
-      return _buscar(corpus, 'delincuencia-organizada');
+      return _buscar(corpus, 'delincuenciaorganizada');
     }
     if (norm.contains('violencia')) return _buscar(corpus, 'violencia');
     return _buscar(corpus, normalizar(citaLey).split(' ').first);
   }
 
   static LeyCorpus? _buscar(List<LeyCorpus> corpus, String fragmento) {
-    final f = normalizar(fragmento);
+    final f = normalizar(fragmento).replaceAll(RegExp(r'[^a-z0-9]'), '');
     for (final ley in corpus) {
-      if (normalizar(ley.nombre).contains(f) ||
-          normalizar(ley.archivo).contains(f)) {
+      final nombre = normalizar(ley.nombre).replaceAll(RegExp(r'[^a-z0-9]'), '');
+      final archivo = normalizar(ley.archivo).replaceAll(RegExp(r'[^a-z0-9]'), '');
+      if (nombre.contains(f) || archivo.contains(f)) {
         return ley;
       }
     }

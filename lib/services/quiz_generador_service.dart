@@ -6,6 +6,7 @@ import '../models/caso_quiz.dart';
 import 'ai_service.dart';
 import 'leyes_repositorio_service.dart';
 import 'quiz_storage_service.dart';
+import 'quiz_sync_service.dart';
 import 'rag_service.dart';
 
 /// Genera casos hipotéticos del quiz con IA (DeepSeek), fundamentados en el
@@ -22,6 +23,14 @@ class QuizGeneradorService {
     try {
       final casos = await QuizStorageService().listarCasos();
       if (casos.length >= umbral) return;
+      // 1º) Importar los lotes YA VALIDADOS del worker (cero error por
+      // construcción; sin revisión humana). El cron del worker genera 20/día.
+      final importados = await QuizSyncService.sincronizarPendientes();
+      if (importados > 0) {
+        final trasSync = await QuizStorageService().listarCasos();
+        if (trasSync.length >= umbral) return;
+      }
+      // 2º) Respaldo local (DeepSeek) SOLO si no hay lotes pendientes.
       // TODO: round-robin entre tramos a medida que el usuario sube de nivel.
       final lote = await generarLote(cantidad: cantidad, tramo: 1, dificultad: 2);
       await QuizStorageService().guardarBatch(lote);
