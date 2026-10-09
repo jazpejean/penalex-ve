@@ -6,7 +6,11 @@ compatibility_date = "2026-09-01"
 
 [[r2_buckets]]
 binding = "SENTENCIAS"
-bucket_name = "penalex-jurisprudencia"
+bucket_name = "penalex-ve-v2"
+
+[[r2_buckets]]
+binding = "SENTENCIAS_ANTERIORES"
+bucket_name = "penalex-ve"
 
 [vars]
 AI_MODEL = "@cf/qwen/qwen2.5-72b-instruct"

@@ -7,10 +7,15 @@ workers_dev = true
 [ai]
 binding = "AI"
 
-# Sentencias en texto plano (R2) — bucket real verificado (penalex-ve,
-# con copias HTML de jurisprudencia; sin binding el worker no puede listar).
+# Sentencias (R2) — buckets verificados vía API de Cloudflare:
+#  - penalex-ve-v2: scrapeo NUEVO (html/scon/...) → primario.
+#  - penalex-ve:    scrapeo anterior (html/jurisprudencias/...) → respaldo.
 [[r2_buckets]]
 binding = "SENTENCIAS"
+bucket_name = "penalex-ve-v2"
+
+[[r2_buckets]]
+binding = "SENTENCIAS_ANTERIORES"
 bucket_name = "penalex-ve"
 
 # Generación proactiva diaria (03:00 UTC): el banco se auto-repone.

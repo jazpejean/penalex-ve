@@ -172,25 +172,33 @@ async function cargarLeyes(env, tramo) {
 }
 
 /** Muestra 1-2 sentencias del R2 como referencia de estilo jurisprudencial.
- * El bucket real (penalex-ve) guarda copias HTML fieles del TSJ
- * (html/jurisprudencias/...); se extrae texto plano quitando etiquetas. */
+ * Primero el scrapeo nuevo (penalex-ve-v2, html/scon/...) y si está vacío,
+ * el anterior (penalex-ve, html/jurisprudencias/...). Ambos son copias HTML
+ * fieles del TSJ; se extrae texto plano quitando etiquetas. */
 async function cargarSentencias(env) {
   try {
-    const lista = await env.SENTENCIAS.list({ limit: 60 });
-    const htmls = (lista.objects ?? [])
-      .filter((o) => o.key.endsWith('.html'))
-      .slice(0, 2);
     let out = '';
-    for (const o of htmls) {
-      const obj = await env.SENTENCIAS.get(o.key);
-      if (obj) {
-        const crudo = await obj.text();
-        const texto = crudo
-          .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-          .replace(/<[^>]+>/g, ' ')
-          .replace(/\s+/g, ' ')
-          .trim();
-        out += `[${o.key}]\n${texto.slice(0, 700)}\n---\n`;
+    const fuentes = [
+      { binding: env.SENTENCIAS, nombre: 'v2' },
+      { binding: env.SENTENCIAS_ANTERIORES, nombre: 'v1' },
+    ];
+    for (const fuente of fuentes) {
+      if (!fuente.binding || out) continue;
+      const lista = await fuente.binding.list({ limit: 60 });
+      const htmls = (lista.objects ?? [])
+        .filter((o) => o.key.endsWith('.html'))
+        .slice(0, 2);
+      for (const o of htmls) {
+        const obj = await fuente.binding.get(o.key);
+        if (obj) {
+          const crudo = await obj.text();
+          const texto = crudo
+            .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+            .replace(/<[^>]+>/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+          out += `[${fuente.nombre}: ${o.key}]\n${texto.slice(0, 700)}\n---\n`;
+        }
       }
     }
     return out || '(corpus de sentencias sin muestras disponibles)';
