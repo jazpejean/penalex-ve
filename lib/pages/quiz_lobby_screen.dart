@@ -6,12 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../game/quiz_effects_game.dart';
+import '../services/misiones_diarias_service.dart';
 import '../services/quiz_certificate_service.dart';
 import '../services/quiz_generador_service.dart';
+import '../services/quiz_progresion_service.dart';
 import '../services/quiz_ranking_service.dart';
 import '../services/quiz_rules.dart';
 import '../services/quiz_storage_service.dart';
 import '../utils/quiz_seed.dart';
+import '../widgets/quiz_insignia_widget.dart';
 import '../widgets/quiz_pulso_widget.dart';
 import 'quiz_game_screen.dart';
 import 'quiz_logros_screen.dart';
@@ -46,6 +49,9 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
   int get _xp => (_progreso['xp'] as num?)?.toInt() ?? 0;
   int get _apelaciones => (_progreso['apelaciones'] as num?)?.toInt() ?? 5;
   int get _racha => (_progreso['racha_actual'] as num?)?.toInt() ?? 0;
+  int get _rachaDias => (_progreso['racha_dias'] as num?)?.toInt() ?? 0;
+
+  List<MisionEstado> _misiones = [];
 
   @override
   void initState() {
@@ -75,8 +81,29 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
     final ranking = await QuizRankingService.top(limit: 5);
 
     if (!mounted) return;
+    // Progresión diaria: racha de días + bono por volver (una vez al día).
+    final hoy = DateTime.now();
+    final preparado = QuizProgresionService.prepararDia(p, hoy);
+    final pFinal = preparado.progreso;
+    if (preparado.bono > 0) {
+      _misiones = QuizProgresionService.estadoMisiones(pFinal, hoy);
+      await _service.guardarProgreso(pFinal);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: _card,
+          content: Text(
+            '🔥 ¡Racha de ${pFinal['racha_dias']} días! +${preparado.bono} XP por volver',
+            style: const TextStyle(color: _oroBrillante),
+          ),
+        ));
+      }
+    } else {
+      _misiones = QuizProgresionService.estadoMisiones(pFinal, hoy);
+    }
+
+    if (!mounted) return;
     setState(() {
-      _progreso = p;
+      _progreso = pFinal;
       _totalCasos = casos.length;
       _ranking = ranking;
       _cargando = false;
@@ -133,14 +160,16 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                         _entradaAnim(0, _buildHero()),
                         const SizedBox(height: 26),
                         _entradaAnim(1, _buildRankCard()),
+                        const SizedBox(height: 20),
+                        _entradaAnim(2, _buildMisiones()),
                         const SizedBox(height: 26),
-                        _entradaAnim(2, _buildJugar()),
+                        _entradaAnim(3, _buildJugar()),
                         const SizedBox(height: 12),
-                        _entradaAnim(3, _buildCertificado()),
+                        _entradaAnim(4, _buildCertificado()),
                         const SizedBox(height: 12),
-                        _entradaAnim(4, _buildMisLogros()),
+                        _entradaAnim(5, _buildMisLogros()),
                         const SizedBox(height: 30),
-                        _entradaAnim(5, _buildRanking()),
+                        _entradaAnim(6, _buildRanking()),
                       ],
                     ),
                   ),
@@ -204,6 +233,9 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
   Widget _buildRankCard() {
     final sig = QuizRules.siguienteRango(_xp);
     final progreso = QuizRules.progresoRango(_xp);
+    final indice = QuizRules.indiceRango(_xp);
+    final estrellas = (indice / QuizRules.totalRangos * 5).round();
+    final brillo = indice >= QuizRules.totalRangos * 0.6;
     return Container(
       padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(
@@ -240,10 +272,11 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                         valueColor: const AlwaysStoppedAnimation(_oro),
                       ),
                     ),
-                    const Icon(
-                      Icons.military_tech,
-                      color: _oroBrillante,
-                      size: 32,
+                    QuizInsignia(
+                      rango: QuizRules.rangoParaXp(_xp),
+                      tamano: 58,
+                      estrellas: estrellas,
+                      brillo: brillo,
                     ),
                   ],
                 ),
@@ -292,6 +325,8 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
             children: [
               _stat(Icons.local_fire_department, '$_racha', 'Racha',
                   const Color(0xFFFF8A65)),
+              _stat(Icons.whatshot, '$_rachaDias', 'Días',
+                  const Color(0xFFFFB74D)),
               _stat(
                   Icons.balance, '$_apelaciones', 'Apelaciones', _oroBrillante),
               _stat(Icons.library_books, '$_totalCasos', 'Casos',
@@ -335,6 +370,159 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
         ],
       ),
     );
+  }
+
+  Widget _buildMisiones() {
+    if (_misiones.isEmpty) return const SizedBox.shrink();
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: _card,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: _oro.withValues(alpha: 0.25)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.flag, color: _oroBrillante, size: 20),
+              const SizedBox(width: 8),
+              const Text(
+                'MISIONES DEL DÍA',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 1.2,
+                ),
+              ),
+              const Spacer(),
+              Text(
+                'renuevan mañana',
+                style: TextStyle(
+                  color: Colors.white.withValues(alpha: 0.45),
+                  fontSize: 11,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          ..._misiones.map(_buildMisionCard),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMisionCard(MisionEstado e) {
+    final m = e.mision;
+    final pct = (e.progreso / m.meta).clamp(0.0, 1.0);
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: _fondoProfundo.withValues(alpha: 0.55),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: _oro.withValues(alpha: 0.22)),
+      ),
+      child: Row(
+        children: [
+          Text(m.icono, style: const TextStyle(fontSize: 24)),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  m.descripcion,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: LinearProgressIndicator(
+                    value: pct,
+                    minHeight: 6,
+                    backgroundColor: Colors.white12,
+                    valueColor: const AlwaysStoppedAnimation(_oro),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  '${e.progreso}/${m.meta} · +${m.recompensa} XP',
+                  style: TextStyle(
+                    color: Colors.white.withValues(alpha: 0.5),
+                    fontSize: 11,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 10),
+          if (e.reclamada)
+            const Icon(Icons.check_circle, color: Color(0xFF81C784), size: 26)
+          else if (e.completa)
+            GestureDetector(
+              onTap: () => _reclamarMision(m),
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [_oroBrillante, _oro],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const Text(
+                  'RECLAMAR',
+                  style: TextStyle(
+                    color: Color(0xFF0F172A),
+                    fontSize: 11,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+            )
+          else
+            Text(
+              '${(pct * 100).round()}%',
+              style: TextStyle(
+                color: Colors.white.withValues(alpha: 0.4),
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _reclamarMision(MisionDiaria m) async {
+    final hoy = DateTime.now();
+    final antes = _xp;
+    final nuevo = MisionesDiariasService.reclamar(_progreso, m, hoy);
+    final despues = (nuevo['xp'] as num?)?.toInt() ?? 0;
+    if (despues == antes) return; // aún no completada
+    setState(() {
+      _progreso = nuevo;
+      _misiones = QuizProgresionService.estadoMisiones(nuevo, hoy);
+    });
+    await _service.guardarProgreso(nuevo);
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: _card,
+        content: Text(
+          '✅ ${m.descripcion} — +${m.recompensa} XP',
+          style: const TextStyle(color: _oroBrillante),
+        ),
+      ));
+    }
   }
 
   Widget _stat(IconData icon, String valor, String label, Color color) {

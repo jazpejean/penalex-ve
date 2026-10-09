@@ -9,6 +9,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../game/quiz_effects_game.dart';
 import '../models/caso_quiz.dart';
+import '../services/misiones_diarias_service.dart';
 import '../services/quiz_certificate_service.dart';
 import '../services/quiz_rules.dart';
 import '../services/quiz_ranking_service.dart';
@@ -167,6 +168,13 @@ class _QuizGameScreenState extends State<QuizGameScreen>
       _racha++;
       _xp += xpGanado;
       nuevo = _service.registrarAcierto(nuevo, _caso!.id);
+      // Progresión diaria: alimenta los contadores de las misiones del día.
+      nuevo = MisionesDiariasService.registrarAcierto(
+        nuevo,
+        DateTime.now(),
+        rachaActual: _racha,
+        xpGanado: xpGanado,
+      );
 
       final c = _fx.size;
       _fx.explosion(centro: Offset(c.x / 2, c.y / 2), cantidad: 46);

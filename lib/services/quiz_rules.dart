@@ -92,6 +92,18 @@ class QuizRules {
     return ((xp - ant) / (sig.xp - ant)).clamp(0.0, 1.0);
   }
 
+  /// Índice (0-based) del rango actual en la escalera.
+  static int indiceRango(int xp) {
+    var idx = 0;
+    for (var i = 0; i < _rangos.length; i++) {
+      if (xp >= _rangos[i].xp) idx = i;
+    }
+    return idx;
+  }
+
+  /// Total de rangos en la escalera.
+  static int get totalRangos => _rangos.length;
+
   /// Hito con certificado más alto alcanzado (o null si ninguno).
   static ({int xp, String nombre})? certificadoActual(int xp) {
     ({int xp, String nombre})? actual;
