@@ -1,0 +1,40 @@
+[
+  {
+    "id": "test-homicidio-405",
+    "tramo": 2,
+    "delito_base": "Homicidio simple",
+    "contexto": "Juan le disparó intencionalmente a Pedro durante una discusión y le dio muerte en el acto. No medió premeditación ni ninguna circunstancia que calificara el hecho.",
+    "opciones": [
+      "Presidio de 12 a 18 años (art. 405 CP)",
+      "Presidio de 8 a 12 años (art. 406 CP)",
+      "Presidio de 20 a 30 años (art. 406 CP)",
+      "Prisión de 4 a 8 años (art. 453 CP)"
+    ],
+    "respuesta_correcta": 0,
+    "dificultad": 2,
+    "fundamentacion": "El que intencionalmente haya dado muerte a alguna persona será penado con presidio de doce a dieciocho años (Art. 405 Código Penal). En el caso, Juan dio muerte a Pedro intencionalmente y sin circunstancias calificantes, por lo que responde por homicidio simple consumado.",
+    "articulos": ["Art. 405 Código Penal"],
+    "sentencias": [],
+    "variables": {"nombre": ["Juan", "Carlos"], "lugar": ["barrio", "avenida"]},
+    "parametro_umbral": null
+  },
+  {
+    "id": "test-hurto-453",
+    "tramo": 3,
+    "delito_base": "Hurto agravado (abuso de confianza)",
+    "contexto": "Luis, empleado de confianza de un local comercial, se apoderó abusando de esa confianza de mercancía ajena del establecimiento por valor de 3.000 bolívares, sin violencia. Al salir fue detenido con la mercancía en su poder.",
+    "opciones": [
+      "Hurto agravado (art. 453 CP): prisión de 4 a 8 años",
+      "Hurto simple (art. 451 CP): prisión de 2 a 6 años",
+      "Robo (art. 458 CP): presidio de 8 a 16 años",
+      "Apropiación indebida (art. 468 CP): prisión de 1 a 3 años"
+    ],
+    "respuesta_correcta": 0,
+    "dificultad": 2,
+    "fundamentacion": "La pena de prisión para el delito de hurto será de cuatro años a ocho años en los casos siguientes: 1. Si el hecho se ha cometido abusando de la confianza depositada en el culpable (Art. 453 Código Penal). Luis se apoderó de la mercancía abusando de la confianza que el local había depositado en él, sin violencia, por lo que responde por hurto agravado del artículo 453.",
+    "articulos": ["Art. 453 Código Penal"],
+    "sentencias": [],
+    "variables": {"nombre": ["Luis", "Ana"], "monto": [3000, 4500]},
+    "parametro_umbral": null
+  }
+]

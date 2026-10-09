@@ -64,3 +64,5 @@ node_modules/
 # Worker de Cloudflare: secretos y estado local
 worker/.dev.vars
 worker/.wrangler/
+tool/corpus/
+tool/test/lote_real.json
