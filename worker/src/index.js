@@ -26,6 +26,13 @@ REGLAS OBLIGATORIAS:
 5. La "fundamentacion" DEBE citar artículos EXACTOS que existan en el corpus de leyes adjunto (números correctos). Si el caso admite jurisprudencia, cita sentencias del corpus de referencia con su número y sala.
 6. "dificultad": 1 = identificación directa; 2 = un matiz (tentativa, participación, atenuante, pena); 3 = análisis complejo (concurso, agravantes, contraste jurisprudencial).
 7. "tramo" es un número del 1 al 5 según el corpus adjunto.
+8. TEMAS POR TRAMO (el escenario DEBE pertenecer al tema del tramo solicitado):
+   - tramo 1: teoría del delito APLICADA a delitos del Código Penal (tentativa, participación, concurso, penas, prescripción, agravantes/atenuantes).
+   - tramo 2: delitos contra las personas (homicidio, lesiones, amenazas, abuso sexual...).
+   - tramo 3: delitos contra la propiedad (hurto, robo, estafa, apropiación...).
+   - tramo 4: COPP (proceso penal: audiencias, medidas cautelares, recursos, nulidades).
+   - tramo 5: leyes especiales (drogas, armas, niños/niñas/adolescentes, corrupción, secuestro, delitos informáticos).
+   Los escenarios de drogas pertenecen SIEMPRE al tramo 5; los escenarios procesales al tramo 4.
 
 RESPONDE ÚNICAMENTE JSON con esta forma EXACTA:
 {"casos": [{"contextoNarrativo": "...", "opciones": ["a","b","c","d"], "respuestaCorrecta": 0, "fundamentacion": "...", "articulos": ["Art. 405 Código Penal"], "sentencias": [], "dificultad": 2, "tramo": 1, "variables": {"nombre": ["...", "..."], "gramos": [4800, 5200]}, "parametro_umbral": null}]}`;
@@ -269,11 +276,22 @@ async function llamarWorkersAI(env, prompt) {
         ],
         response_format: { type: 'json_object' },
         temperature: 0.85,
+        // Workers AI trunca la salida por defecto (256 tokens) — se necesita
+        // máximo para que el JSON de N casos complete.
+        max_tokens: 8000,
       });
+      // Workers AI (qwen/llama) responde en formato OpenAI-compatible:
+      // { choices: [{ message: { content } }] }. Se soportan varias formas.
       const texto =
-        typeof res === 'string' ? res : (res?.response ?? res?.output ?? JSON.stringify(res));
+        typeof res === 'string'
+          ? res
+          : res?.choices?.[0]?.message?.content ??
+            res?.response ??
+            res?.output ??
+            '';
       if (texto && texto.length > 50) return { texto, modelo };
-      ultimo = new Error('respuesta vacía');
+      // Diagnóstico: la llamada "funcionó" pero la respuesta es vacía/corta.
+      throw new Error(`respuesta vacía de ${modelo}: ${JSON.stringify(res).slice(0, 300)}`);
     } catch (e) {
       ultimo = e;
     }
@@ -296,6 +314,7 @@ async function llamarDeepSeek(env, prompt) {
       ],
       response_format: { type: 'json_object' },
       temperature: 0.85,
+      max_tokens: 8000,
     }),
   });
   if (!res.ok) throw new Error(`DeepSeek HTTP ${res.status}`);
@@ -317,7 +336,7 @@ function extraerJson(texto) {
 // Validación (cero margen): estructura + citas contra el corpus + heurísticas
 // ---------------------------------------------------------------------------
 
-function validarCaso(c, corpusText) {
+function validarCaso(c, corpusText, tramo) {
   const errores = [];
   if (!c || typeof c !== 'object') return { valido: false, errores: ['no es objeto'] };
   if (!c.contextoNarrativo || c.contextoNarrativo.length < 40) errores.push('contexto corto');
@@ -329,6 +348,17 @@ function validarCaso(c, corpusText) {
   ) errores.push('respuestaCorrecta inválida');
   if (!c.fundamentacion || c.fundamentacion.length < 25) errores.push('fundamentación corta');
   if (!Array.isArray(c.articulos) || c.articulos.length === 0) errores.push('sin artículos');
+
+  // Tema del escenario vs tramo (evita casos de drogas en tramo 1, etc.).
+  const tema = `${c.contextoNarrativo ?? ''} ${c.opciones?.join(' ') ?? ''}`.toLowerCase();
+  const temaDrogas = /drog|estupefaciente|gramos de|psicotróp|narco/.test(tema);
+  const temaProcesal = /audiencia|recurso de|medida cautelar|imputado|acusaci|juicio oral|detención preventiva|nulidad/.test(tema);
+  const temaPatrimonial = /hurto|robo|estafa|apropiac|fraude|abigeato/.test(tema);
+  const temaPersonas = /homicidio|lesiones|amenaz|violaci|abuso sexual|integridad/.test(tema);
+  if (temaDrogas && tramo !== 5) errores.push('tema de drogas pero tramo != 5');
+  if (temaProcesal && tramo !== 4) errores.push('tema procesal pero tramo != 4');
+  if (temaPatrimonial && tramo === 2) errores.push('delito patrimonial pero tramo 2 (personas)');
+  if (temaPersonas && tramo === 3) errores.push('delito contra personas pero tramo 3 (propiedad)');
 
   // Las citas deben existir en el corpus de leyes.
   // TODO (validador Dart, Fase 2): validar la cita por LEY concreta (ej. si el
@@ -380,17 +410,39 @@ SENTENCIAS DE REFERENCIA (estilo jurisprudencial; cita solo si existe):
 ${sentenciasCtx.slice(0, 2000)}`;
 
   let resultado;
+  let errorAi = null;
   try {
     resultado = await llamarWorkersAI(env, prompt);
   } catch (e) {
-    resultado = await llamarDeepSeek(env, prompt);
+    errorAi = e.message;
+    try {
+      resultado = await llamarDeepSeek(env, prompt);
+    } catch (e2) {
+      return {
+        error: 'Workers AI y DeepSeek fallaron',
+        ai_error: errorAi,
+        deepseek_error: e2.message,
+      };
+    }
   }
 
-  const casos = extraerJson(resultado.texto);
+  let casos;
+  try {
+    casos = extraerJson(resultado.texto);
+  } catch (e) {
+    // El modelo respondió con JSON inválido: devolver el fragmento ayuda al
+    // diagnóstico (p. ej. salida truncada por max_tokens).
+    return {
+      error: `JSON inválido del modelo: ${e.message}`,
+      modelo: resultado.modelo,
+      ai_error: errorAi,
+      fragmento: (resultado.texto ?? '').slice(0, 300),
+    };
+  }
   const validos = [];
   const rechazados = [];
   for (const c of casos) {
-    const r = validarCaso(c, leyes.completo);
+    const r = validarCaso(c, leyes.completo, tramoOk);
     if (r.valido) {
       c.tramo = tramoOk;
       validos.push(c);
@@ -408,6 +460,7 @@ ${sentenciasCtx.slice(0, 2000)}`;
   return {
     tramo: tramoOk,
     modelo: resultado.modelo,
+    ai_error: errorAi,
     generados: casos.length,
     validados: validos.length,
     rechazados: rechazados.length,

@@ -15,7 +15,7 @@ cd "$(dirname "$0")/worker"
 # "source", porque valores como "Penalex VE" romperían el parsing).
 get_env() {
   grep -E "^${1}=" ../.env | head -1 | cut -d= -f2- \
-    | sed -e 's/^["'\'']//' -e 's/["'\'']$//' -e 's/\r$//'
+    | sed -e 's/^["'\'']//' -e 's/["'\'']$//' -e 's/\r$//' || true
 }
 
 CLOUDFLARE_API_TOKEN="$(get_env CLOUDFLARE_API_TOKEN)"
