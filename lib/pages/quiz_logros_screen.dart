@@ -88,8 +88,7 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
             child: IgnorePointer(
               child: GameWidget(
                 game: _fx,
-                backgroundColor: Colors.transparent,
-              ),
+                              ),
             ),
           ),
           _cargando

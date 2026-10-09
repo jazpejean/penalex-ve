@@ -274,8 +274,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
                 child: IgnorePointer(
                   child: GameWidget(
                     game: _fx,
-                    backgroundColor: Colors.transparent,
-                  ),
+                                      ),
                 ),
               ),
               // Destello dorado al acertar

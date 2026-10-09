@@ -145,8 +145,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
             child: IgnorePointer(
               child: GameWidget(
                 game: _fx,
-                backgroundColor: Colors.transparent,
-              ),
+                              ),
             ),
           ),
           SafeArea(
