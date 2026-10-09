@@ -7,10 +7,11 @@ workers_dev = true
 [ai]
 binding = "AI"
 
-# Sentencias en texto plano (R2).
+# Sentencias en texto plano (R2) — bucket real verificado (penalex-ve,
+# con copias HTML de jurisprudencia; sin binding el worker no puede listar).
 [[r2_buckets]]
 binding = "SENTENCIAS"
-bucket_name = "penalex-jurisprudencia"
+bucket_name = "penalex-ve"
 
 # Generación proactiva diaria (03:00 UTC): el banco se auto-repone.
 [triggers]

@@ -11,9 +11,20 @@
 set -euo pipefail
 cd "$(dirname "$0")/worker"
 
-set -a
-source ../.env
-set +a
+# Lectura segura del .env: extrae solo las claves que necesitamos (sin
+# "source", porque valores como "Penalex VE" romperían el parsing).
+get_env() {
+  grep -E "^${1}=" ../.env | head -1 | cut -d= -f2- \
+    | sed -e 's/^["'\'']//' -e 's/["'\'']$//' -e 's/\r$//'
+}
+
+CLOUDFLARE_API_TOKEN="$(get_env CLOUDFLARE_API_TOKEN)"
+CLOUDFLARE_ACCOUNT_ID="$(get_env CLOUDFLARE_ACCOUNT_ID)"
+SUPABASE_URL="$(get_env SUPABASE_URL)"
+SUPABASE_ANON_KEY="$(get_env SUPABASE_ANON_KEY)"
+SUPABASE_SERVICE_KEY="$(get_env SUPABASE_SERVICE_KEY)"
+DEEPSEEK_API_KEY="$(get_env DEEPSEEK_API_KEY)"
+QUIZ_API_KEY="$(get_env QUIZ_API_KEY)"
 
 : "${CLOUDFLARE_API_TOKEN:?Falta CLOUDFLARE_API_TOKEN en .env}"
 : "${CLOUDFLARE_ACCOUNT_ID:?Falta CLOUDFLARE_ACCOUNT_ID en .env}"

@@ -171,15 +171,27 @@ async function cargarLeyes(env, tramo) {
   }
 }
 
-/** Muestra 1-2 sentencias del R2 como referencia de estilo jurisprudencial. */
+/** Muestra 1-2 sentencias del R2 como referencia de estilo jurisprudencial.
+ * El bucket real (penalex-ve) guarda copias HTML fieles del TSJ
+ * (html/jurisprudencias/...); se extrae texto plano quitando etiquetas. */
 async function cargarSentencias(env) {
   try {
     const lista = await env.SENTENCIAS.list({ limit: 60 });
-    const txts = (lista.objects ?? []).filter((o) => o.key.endsWith('.txt')).slice(0, 2);
+    const htmls = (lista.objects ?? [])
+      .filter((o) => o.key.endsWith('.html'))
+      .slice(0, 2);
     let out = '';
-    for (const o of txts) {
+    for (const o of htmls) {
       const obj = await env.SENTENCIAS.get(o.key);
-      if (obj) out += `[${o.key}]\n${(await obj.text()).slice(0, 700)}\n---\n`;
+      if (obj) {
+        const crudo = await obj.text();
+        const texto = crudo
+          .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+          .replace(/<[^>]+>/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim();
+        out += `[${o.key}]\n${texto.slice(0, 700)}\n---\n`;
+      }
     }
     return out || '(corpus de sentencias sin muestras disponibles)';
   } catch (e) {
