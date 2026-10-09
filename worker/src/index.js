@@ -33,6 +33,8 @@ REGLAS OBLIGATORIAS:
    - tramo 4: COPP (proceso penal: audiencias, medidas cautelares, recursos, nulidades).
    - tramo 5: leyes especiales (drogas, armas, niños/niñas/adolescentes, corrupción, secuestro, delitos informáticos).
    Los escenarios de drogas pertenecen SIEMPRE al tramo 5; los escenarios procesales al tramo 4.
+9. "contextoNarrativo" DEBE contener los términos clave del artículo citado tal como aparecen en el corpus (p. ej. art. 405: "intencionalmente"; art. 453: "abusando de la confianza"). Usa esas palabras EN EL ESCENARIO, no solo en la fundamentación.
+10. La opción correcta debe declarar la pena EXACTA del artículo citado según el corpus ("de doce a dieciocho años" → "12 a 18 años"; "de cuatro años a ocho años" → "4 a 8 años"). Los distractores con penas deben usar valores DIFERENTES de la pena legal del artículo.
 
 RESPONDE ÚNICAMENTE JSON con esta forma EXACTA:
 {"casos": [{"contextoNarrativo": "...", "opciones": ["a","b","c","d"], "respuestaCorrecta": 0, "fundamentacion": "...", "articulos": ["Art. 405 Código Penal"], "sentencias": [], "dificultad": 2, "tramo": 1, "variables": {"nombre": ["...", "..."], "gramos": [4800, 5200]}, "parametro_umbral": null}]}`;
@@ -165,17 +167,68 @@ async function cargarLeyes(env, tramo) {
 
     let contexto = '';
     let completo = '';
+    const leyesParseadas = [];
     for (const nombre of nombres) {
       const ley = JSON.parse(await descargarObjeto(env, 'leyes', nombre));
       const textoCompleto = articulosTexto(ley, 500000);
       completo += `\n=== ${ley.nombre ?? nombre} ===\n` + textoCompleto;
       contexto += `\n=== ${ley.nombre ?? nombre} ===\n` + textoCompleto.slice(0, 6000);
+      leyesParseadas.push({
+        nombre: ley.nombre ?? nombre,
+        archivo: nombre,
+        articulos: extraerArticulos(ley),
+      });
     }
-    return { contexto: contexto.slice(0, 12000), completo: completo.slice(0, 500000) };
+    // Precomputar tokens distintivos por ley UNA sola vez (evita O(n²) por
+    // caso, que excede el límite de CPU de Workers → error 1102).
+    for (const l of leyesParseadas) {
+      prepararLey(l);
+    }
+    return {
+      contexto: contexto.slice(0, 12000),
+      completo: completo.slice(0, 500000),
+      leyes: leyesParseadas,
+    };
   } catch (e) {
     const err = `(no se pudo cargar el corpus de leyes: ${e.message})`;
-    return { contexto: err, completo: err };
+    return { contexto: err, completo: err, leyes: [] };
   }
+}
+
+/** Lista plana de artículos {numero, texto} (esquema agnóstico). */
+function extraerArticulos(ley) {
+  const out = [];
+  const aTexto = (x) => (typeof x === 'string' ? x : (x?.texto ?? x?.texto_principal ?? ''));
+  if (Array.isArray(ley.estructura)) {
+    for (const bloque of ley.estructura) {
+      for (const a of bloque.articulos ?? []) {
+        const cuerpo = [
+          a.encabezado,
+          a.texto_principal,
+          ...(a.numerales_literales ?? []),
+          ...(a.paragrafos ?? []),
+        ]
+          .map(aTexto)
+          .filter(Boolean)
+          .join(' ');
+        out.push({
+          numero: String(a.identificador ?? ''),
+          texto: normalizarEspacios(cuerpo),
+          nota: a.nota_jurisprudencial ? aTexto(a.nota_jurisprudencial) : null,
+        });
+      }
+    }
+  } else {
+    for (const a of ley.articulos ?? []) {
+      const parrafos = (a.parrafos ?? []).map(aTexto).join(' ');
+      out.push({
+        numero: String(a.numero_texto ?? ''),
+        texto: normalizarEspacios(parrafos),
+        nota: null,
+      });
+    }
+  }
+  return out;
 }
 
 /** Muestra 1-2 sentencias del R2 como referencia de estilo jurisprudencial.
@@ -354,7 +407,7 @@ function validarCaso(c, corpusText, tramo) {
   const temaDrogas = /drog|estupefaciente|gramos de|psicotróp|narco/.test(tema);
   const temaProcesal = /audiencia|recurso de|medida cautelar|imputado|acusaci|juicio oral|detención preventiva|nulidad/.test(tema);
   const temaPatrimonial = /hurto|robo|estafa|apropiac|fraude|abigeato/.test(tema);
-  const temaPersonas = /homicidio|lesiones|amenaz|violaci|abuso sexual|integridad/.test(tema);
+  const temaPersonas = /homicidio|lesion(es)?|violaci|abuso sexual|integridad fisica|amenaza de muerte/.test(tema);
   if (temaDrogas && tramo !== 5) errores.push('tema de drogas pero tramo != 5');
   if (temaProcesal && tramo !== 4) errores.push('tema procesal pero tramo != 4');
   if (temaPatrimonial && tramo === 2) errores.push('delito patrimonial pero tramo 2 (personas)');
@@ -393,21 +446,363 @@ function validarCaso(c, corpusText, tramo) {
 }
 
 // ---------------------------------------------------------------------------
-// Flujo principal
+// Validación FUERTE (port del validador Dart — mismas reglas, cero error):
+// fundamentación literal, firma de elementos, ambigüedad y penas desde el
+// corpus. Solo pasan los casos que el gate Dart aprobaría.
 // ---------------------------------------------------------------------------
+
+const ACENTOS = { 'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'ü': 'u', 'ñ': 'n' };
+const STOPWORDS = new Set([
+  'de', 'la', 'el', 'los', 'las', 'del', 'para', 'por', 'con', 'sin', 'que',
+  'se', 'su', 'sus', 'un', 'una', 'unos', 'unas', 'al', 'lo', 'le', 'les',
+  'en', 'es', 'y', 'o', 'a', 'no', 'si', 'como', 'pero', 'cual', 'cuales',
+  'cuando', 'donde', 'este', 'esta', 'estos', 'estas', 'todo', 'toda',
+  'todos', 'todas', 'cada', 'entre', 'sobre', 'hasta', 'desde', 'contra',
+  'durante', 'solo', 'sola', 'segundo', 'segunda', 'primer', 'primera',
+  'tercer', 'tercera', 'tambien', 'asi', 'aun', 'ya', 'muy', 'ser', 'estar',
+  'haber', 'tener', 'hacer', 'podra', 'podran', 'sera', 'seran', 'debe',
+  'deben', 'debera', 'deberan', 'puede', 'pueden', 'pudiera', 'pudieran',
+  'responde', 'responden', 'aplica', 'aplican', 'sanciona', 'sancionan',
+  'establece', 'establecen', 'dispone', 'disponen', 'previene', 'previenen',
+  'comete', 'cometen', 'incurre', 'incurren', 'art', 'articulo', 'articulos',
+  'correspondera', 'corresponde', 'corresponden', 'anos', 'anios',
+]);
+
+const NUMEROS = {
+  cero: 0, uno: 1, dos: 2, tres: 3, cuatro: 4, cinco: 5, seis: 6, siete: 7,
+  ocho: 8, nueve: 9, diez: 10, once: 11, doce: 12, trece: 13, catorce: 14,
+  quince: 15, dieciseis: 16, diecisiete: 17, dieciocho: 18, diecinueve: 19,
+  veinte: 20, veintiuno: 21, veintidos: 22, veintitres: 23, veinticuatro: 24,
+  veinticinco: 25, veintiseis: 26, veintisiete: 27, veintiocho: 28,
+  veintinueve: 29, treinta: 30, cuarenta: 40, cincuenta: 50, sesenta: 60,
+  setenta: 70, ochenta: 80, noventa: 90,
+};
+
+function normalizarTexto(t) {
+  return t.toLowerCase().replace(/[áéíóúüñ]/g, (c) => ACENTOS[c] ?? c);
+}
+function normalizarEspacios(t) {
+  return String(t ?? '').replace(/\s+/g, ' ').trim();
+}
+function tokenizar(t) {
+  return normalizarTexto(t)
+    .split(/[^a-z0-9]+/)
+    .filter((w) => w.length >= 4 && !STOPWORDS.has(w));
+}
+function numerosADigitos(t) {
+  return normalizarTexto(t).replace(/\b(cero|uno|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce|trece|catorce|quince|dieciseis|diecisiete|dieciocho|diecinueve|veinte|veintiuno|veintidos|veintitres|veinticuatro|veinticinco|veintiseis|veintisiete|veintiocho|veintinueve|treinta|cuarenta|cincuenta|sesenta|setenta|ochenta|noventa)\b/g, (w) => String(NUMEROS[w] ?? w));
+}
+function rangosDePena(texto) {
+  const norm = numerosADigitos(texto);
+  const resultados = [];
+  const vistos = new Set();
+  for (const p of [
+    /de\s+(\d{1,3})\s*(?:anos|anios)?\s+(?:a|y)\s+(\d{1,3})\s*(?:anos|anios)/g,
+    /(?<!\d)(\d{1,3})\s*(?:anos|anios)?\s+(?:a|y)\s+(\d{1,3})\s*(?:anos|anios)/g,
+  ]) {
+    for (const m of norm.matchAll(p)) {
+      const par = [parseInt(m[1], 10), parseInt(m[2], 10)];
+      const clave = par.join('-');
+      if (!vistos.has(clave)) {
+        vistos.add(clave);
+        resultados.push(par);
+      }
+    }
+  }
+  return resultados;
+}
+function rangoCoincide(a, b, tol = 1) {
+  return Math.abs(a[0] - b[0]) <= tol && Math.abs(a[1] - b[1]) <= tol;
+}
+
+/** Tokens distintivos de un artículo dentro de su ley (frecuencia documental).
+ * Con prepararLey() se precomputan una vez y se guardan en ley.distintivos. */
+function tokensDistintivos(ley, articulo) {
+  const cached = ley.distintivos?.get(articulo.numero);
+  if (cached) return cached;
+  const tokensArt = new Set(tokenizar(articulo.texto));
+  if (tokensArt.size === 0) return new Set();
+  const total = ley.articulos.length;
+  const umbral = Math.min(20, Math.max(2, Math.ceil(total * 0.08)));
+  const presentes = {};
+  for (const a of ley.articulos) {
+    for (const t of new Set(tokenizar(a.texto))) {
+      presentes[t] = (presentes[t] ?? 0) + 1;
+    }
+  }
+  return new Set([...tokensArt].filter((t) => (presentes[t] ?? 0) < umbral));
+}
+
+/** Precomputa la tabla de frecuencia documental y los tokens distintivos. */
+function prepararLey(ley) {
+  const presentes = {};
+  for (const a of ley.articulos) {
+    for (const t of new Set(tokenizar(a.texto))) {
+      presentes[t] = (presentes[t] ?? 0) + 1;
+    }
+  }
+  const umbral = Math.min(20, Math.max(2, Math.ceil(ley.articulos.length * 0.08)));
+  const distintivos = new Map();
+  for (const a of ley.articulos) {
+    const tokensArt = new Set(tokenizar(a.texto));
+    distintivos.set(
+      a.numero,
+      new Set([...tokensArt].filter((t) => (presentes[t] ?? 0) < umbral)),
+    );
+  }
+  ley.distintivos = distintivos;
+}
+
+/** Busca la ley del corpus para una cita ("Art. 405 Código Penal"). */
+function leyParaCita(leyes, citaSinNumero) {
+  const norm = normalizarTexto(citaSinNumero);
+  const busca = (frag) => {
+    const f = normalizarTexto(frag);
+    return leyes.find((l) => normalizarTexto(l.nombre).includes(f) || normalizarTexto(l.archivo).includes(f));
+  };
+  if (norm.includes('procesal penal') || norm.includes('copp')) return busca('copp');
+  if (norm.includes('penal') && norm.includes('codigo')) return busca('codigo-penal');
+  if (norm.includes('drogas')) return busca('drogas');
+  if (norm.includes('nino') || norm.includes('adolescente')) return busca('proteccion-de-ninos');
+  if (norm.includes('corrupcion')) return busca('corrupcion');
+  if (norm.includes('secuestro')) return busca('secuestro');
+  if (norm.includes('informatico')) return busca('informaticos');
+  if (norm.includes('delincuencia organizada')) return busca('delincuencia-organizada');
+  if (norm.includes('violencia')) return busca('violencia');
+  return busca(citaSinNumero.trim().split(' ')[0]);
+}
+
+/**
+ * Refuerza un caso generado: (1) fundamentación 100% literal del corpus
+ * (se descarta la paráfrasis de la IA), (2) verifica firma de elementos,
+ * (3) ambigüedad contra alternativas relevantes, (4) penas vs corpus.
+ * Devuelve { ok, errores, caso } — caso ya reforzado si ok.
+ */
+function reforzarCaso(caso, leyes) {
+  const errores = [];
+  const contexto = caso.contextoNarrativo ?? '';
+  // La firma y la ambigüedad se evalúan sobre el ESCENARIO (lo que ve el
+  // usuario), nunca sobre las opciones (que se construyen después).
+  const tokensEscenario = new Set(tokenizar(contexto));
+  let fundamentacionFinal = '';
+  let opcionesFinales = null;
+  let respuestaFinal = null;
+
+  for (const cita of caso.articulos ?? []) {
+    const m = String(cita).match(/art\.?\s*([\d\-\.]+)/i);
+    if (!m) {
+      errores.push(`cita sin número: "${cita}"`);
+      continue;
+    }
+    const numCita = m[1].split(/[-.]/)[0];
+    const sinNumero = String(cita).replace(/art\.?\s*[\d\-\.]+/i, '');
+    const ley = leyParaCita(leyes, sinNumero);
+    if (!ley) {
+      errores.push(`ley no encontrada: "${cita}"`);
+      continue;
+    }
+    const articulo = ley.articulos.find((a) => a.numero === numCita);
+    if (!articulo) {
+      errores.push(`art. ${numCita} no existe en ${ley.nombre}`);
+      continue;
+    }
+
+    // 1. Fundamentación literal (se construye DESDE el corpus).
+    let citaLiteral = `Artículo ${articulo.numero} ${ley.nombre}: ${articulo.texto}`;
+    if (articulo.nota) citaLiteral += `\n\nNota jurisprudencial: ${articulo.nota}`;
+    fundamentacionFinal += (fundamentacionFinal ? '\n\n' : '') + citaLiteral;
+
+    // 2. Firma de elementos (≥1 token distintivo del artículo en el escenario).
+    const distintivos = tokensDistintivos(ley, articulo);
+    const coinciden = [...distintivos].filter((t) => tokensEscenario.has(t)).length;
+    if (coinciden < 1) {
+      errores.push(`firma insuficiente para art. ${numCita}: 0 tokens distintivos en el escenario`);
+    }
+
+    // 3. Pregunta Tipo A (el artículo declara una pena): las opciones se
+    //    CONSTRUYEN desde el corpus — la correcta es el rango legal del
+    //    artículo y los distractores son rangos REALES de otros artículos.
+    //    Cero error por construcción: la IA no escribe ninguna opción.
+    const rangosArt = rangosDePena(articulo.texto);
+    if (rangosArt.length && !opcionesFinales) {
+      const construidas = construirOpcionesPena(ley, articulo, rangosArt[0]);
+      if (construidas) {
+        opcionesFinales = construidas.opciones;
+        respuestaFinal = construidas.respuestaCorrecta;
+      }
+    }
+
+    // 4. Ambigüedad (contra alternativas relevantes, con las opciones FINALES).
+    const opcionesTexto = (opcionesFinales ?? caso.opciones ?? []).join(' ');
+    const rangosOpcionesTodos = (opcionesFinales ?? caso.opciones ?? [])
+      .flatMap(rangosDePena);
+    for (const otro of ley.articulos) {
+      if (otro.numero === articulo.numero) continue;
+      const rangosOtro = rangosDePena(otro.texto);
+      const esRelevante =
+        opcionesTexto.includes(otro.numero) ||
+        rangosOpcionesTodos.some((r) => (rangosOtro.length ? [rangosOtro[0]] : []).some((e) => rangoCoincide(r, e)));
+      if (!esRelevante) continue;
+      const d = tokensDistintivos(ley, otro);
+      const match = [...d].filter((t) => tokensEscenario.has(t)).length;
+      if (match >= 3) {
+        errores.push(`escenario ambiguo: también encaja con art. ${otro.numero} (${ley.nombre})`);
+        break;
+      }
+    }
+
+    // 5. Tipo B (sin pena, p. ej. COPP): se conservan las opciones del modelo
+    //    y se verifican contra el artículo (rango si lo hubiera).
+    if (!rangosArt.length) {
+      const opciones = caso.opciones ?? [];
+      const respuesta = caso.respuestaCorrecta;
+      const rangosOpciones = opciones.map(rangosDePena);
+      for (let i = 0; i < opciones.length; i++) {
+        if (i === respuesta) continue;
+        for (const r of rangosOpciones[i]) {
+          if (rangosArt.some((e) => rangoCoincide(r, e))) {
+            errores.push(`distractor ${i} repite la pena legal del art. ${numCita}`);
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  if (errores.length === 0) {
+    caso.fundamentacion = fundamentacionFinal.slice(0, 1200);
+    if (opcionesFinales) {
+      caso.opciones = opcionesFinales;
+      caso.respuestaCorrecta = respuestaFinal;
+    }
+  }
+  return { ok: errores.length === 0, errores, caso };
+}
+
+/** Construye las 4 opciones de pena desde el corpus: la correcta es el rango
+ * del artículo; los distractores son rangos reales de otros artículos de la
+ * misma ley (ordenados: 1 cercano, 1 lejano, 1 intermedio). Devuelve
+ * { opciones, respuestaCorrecta } o null si no hay suficientes rangos. */
+function construirOpcionesPena(ley, articulo, correcto) {
+  const tipo = /presidio/i.test(articulo.texto) ? 'Presidio' : 'Prisión';
+  const vistos = new Set([correcto.join('-')]);
+  const pool = [];
+  for (const a of ley.articulos) {
+    if (a.numero === articulo.numero) continue;
+    const r = rangosDePena(a.texto);
+    // Excluir también los rangos a ±1 año del correcto (indistinguibles para
+    // el usuario; el gate Dart los rechaza con la misma tolerancia).
+    if (r.length && !rangoCoincide(r[0], correcto) && !vistos.has(r[0].join('-'))) {
+      vistos.add(r[0].join('-'));
+      pool.push(r[0]);
+    }
+  }
+  const dist = (r) => Math.abs(r[0] - correcto[0]) + Math.abs(r[1] - correcto[1]);
+  pool.sort((x, y) => dist(x) - dist(y));
+  const distractores = [];
+  if (pool.length) distractores.push(pool[0]);
+  if (pool.length > 2) distractores.push(pool[pool.length - 1]);
+  if (pool.length > 3) distractores.push(pool[Math.floor(pool.length / 2)]);
+  let fallback = 1;
+  while (distractores.length < 3) {
+    const v = [
+      Math.max(0, correcto[0] - fallback * 2),
+      Math.max(1, correcto[1] - fallback * 2),
+    ];
+    if (!vistos.has(v.join('-')) && !rangoCoincide(v, correcto)) {
+      vistos.add(v.join('-'));
+      distractores.push(v);
+    }
+    fallback++;
+  }
+  const texto = (r) => `${tipo} de ${r[0]} a ${r[1]} años`;
+  const opciones = [texto(correcto), ...distractores.map(texto)];
+  // Barajar con semilla del día (el usuario recibe las opciones en distinto
+  // orden cada día; el índice correcto se conserva).
+  const idx = [0, 1, 2, 3];
+  const dia = Math.floor(Date.now() / 86400000);
+  for (let i = 3; i > 0; i--) {
+    const j = (i + dia) % (i + 1);
+    [idx[i], idx[j]] = [idx[j], idx[i]];
+  }
+  return {
+    opciones: idx.map((i) => opciones[i]),
+    respuestaCorrecta: idx.indexOf(0),
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Selección PREVIA de artículos (inversión "respuesta primero"): el worker
+// elige el fundamento legal verificable; la IA solo escribe el escenario.
+// ---------------------------------------------------------------------------
+
+const TEMAS_POR_TRAMO = {
+  1: null, // cualquier delito del CP con pena (teoría del delito)
+  2: /homicidio|muerte|lesion|amenaza|abuso sexual|violencia|integridad/i,
+  3: /hurto|robo|estafa|apropiac|fraude|abigeato/i,
+  4: null, // COPP: cualquier artículo procesal
+  5: /droga|estupefaciente|trafico|tenencia|gramos/i,
+};
+
+/** Selecciona artículos candidatos verificables para el tramo. */
+function seleccionarCandidatos(leyes, tramo, cantidad) {
+  const tema = TEMAS_POR_TRAMO[tramo] ?? null;
+  const ley = leyes[0]; // la ley principal del tramo (CP / COPP / LOD)
+  if (!ley) return [];
+  const candidatos = [];
+  const dia = Math.floor(Date.now() / 86400000);
+  for (let i = 0; i < ley.articulos.length; i++) {
+    const a = ley.articulos[i];
+    if (!a.texto || a.texto.length < 80) continue;
+    const distintivos = ley.distintivos?.get(a.numero) ?? new Set();
+    if (distintivos.size < 3) continue; // sin firma suficiente, no es verificable
+    if (tema && !tema.test(a.texto)) continue;
+    if (tramo === 4 && rangosDePena(a.texto).length > 0) continue; // COPP no es penas
+    if (tramo !== 4 && tramo !== 5 && rangosDePena(a.texto).length === 0) {
+      continue; // sustantivo: preferir artículos con pena (pregunta Tipo A)
+    }
+    candidatos.push({ ley, articulo: a, cita: `Art. ${a.numero} ${ley.nombre}` });
+  }
+  // Barajar con semilla del día (variedad sin repetir el mismo orden).
+  for (let i = candidatos.length - 1; i > 0; i--) {
+    const j = (i + dia) % (i + 1);
+    [candidatos[i], candidatos[j]] = [candidatos[j], candidatos[i]];
+  }
+  return candidatos.slice(0, Math.min(cantidad, candidatos.length));
+}
+
+/** Prompt v3: un artículo fijo por caso; la IA solo decora el escenario. */
+function construirPromptPorArticulos(candidatos, sentenciasCtx) {
+  const bloques = candidatos
+    .map((c, i) => {
+      const d = c.ley.distintivos?.get(c.articulo.numero) ?? new Set();
+      const tokens = [...d].slice(0, 8).join(', ');
+      const rangos = rangosDePena(c.articulo.texto);
+      const penalidad = rangos.length
+        ? `Penalidad legal (la opción correcta DEBE declararla exactamente, p. ej. "12 a 18 años"): ${rangos.map((r) => `${r[0]} a ${r[1]} años`).join(' o ')}`
+        : 'La opción correcta DEBE declarar la regla exacta del artículo (sin penas).';
+      return `CASO ${i + 1} — aplica EXACTAMENTE este artículo:\n` +
+        `Artículo ${c.articulo.numero} ${c.ley.nombre}: ${c.articulo.texto.slice(0, 260)}\n` +
+        `Términos clave que DEBEN aparecer en el escenario: ${tokens}\n` +
+        penalidad;
+    })
+    .join('\n\n');
+
+  return `Genera EXACTAMENTE ${candidatos.length} casos hipotéticos. CADA caso aplica ÚNICAMENTE el artículo asignado a su número de CASO (el CASO 1 aplica el artículo del CASO 1, el CASO 2 el del CASO 2, etc.; no cites ningún otro artículo: el sistema lo fija). El escenario debe ser una aplicación fáctica concreta del artículo y DEBE contener sus términos clave. Las opciones: la correcta con la pena/regla exacta del artículo; los distractores con penas/reglas CLARAMENTE diferentes.
+
+${bloques}
+
+SENTENCIAS DE REFERENCIA (opcional, solo si el artículo admite cita jurisprudencial):
+${(sentenciasCtx ?? '').slice(0, 1500)}`;
+}
 
 async function generarLote(env, { cantidad, tramo, dificultad }) {
   const tramoOk = [1, 2, 3, 4, 5].includes(tramo) ? tramo : 1;
   const leyes = await cargarLeyes(env, tramoOk);
   const sentenciasCtx = await cargarSentencias(env);
+  const candidatos = seleccionarCandidatos(leyes.leyes, tramoOk, cantidad);
 
-  const prompt = `Genera EXACTAMENTE ${cantidad} casos hipotéticos para el TRAMO ${tramoOk} (${tramoOk === 4 ? 'procesal penal — COPP' : tramoOk === 5 ? 'leyes especiales' : 'derecho penal sustantivo'})${dificultad ? ` con dificultad ${dificultad}` : ' con dificultades variadas (1-3)'}.
-
-CORPUS DE LEYES (solo de aquí puedes citar artículos):
-${leyes.contexto}
-
-SENTENCIAS DE REFERENCIA (estilo jurisprudencial; cita solo si existe):
-${sentenciasCtx.slice(0, 2000)}`;
+  const prompt = construirPromptPorArticulos(candidatos, sentenciasCtx);
 
   let resultado;
   let errorAi = null;
@@ -441,13 +836,23 @@ ${sentenciasCtx.slice(0, 2000)}`;
   }
   const validos = [];
   const rechazados = [];
-  for (const c of casos) {
+  for (let i = 0; i < casos.length; i++) {
+    const c = casos[i];
     const r = validarCaso(c, leyes.completo, tramoOk);
-    if (r.valido) {
-      c.tramo = tramoOk;
-      validos.push(c);
-    } else {
+    if (!r.valido) {
       rechazados.push({ contexto: (c.contextoNarrativo ?? '').slice(0, 60), errores: r.errores });
+      continue;
+    }
+    // El artículo ES el candidato pre-seleccionado (respuesta primero).
+    c.articulos = [candidatos[i]?.cita ?? c.articulos?.[0] ?? ''];
+    // Validación FUERTE (mismas reglas que el gate Dart): literal + firma +
+    // ambigüedad + penas. Solo lo que aprueba llega a pendientes/.
+    const fuerte = reforzarCaso(c, leyes.leyes);
+    if (fuerte.ok) {
+      c.tramo = tramoOk;
+      validos.push(fuerte.caso);
+    } else {
+      rechazados.push({ contexto: (c.contextoNarrativo ?? '').slice(0, 60), errores: fuerte.errores });
     }
   }
 
