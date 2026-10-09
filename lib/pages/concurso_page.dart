@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../logic/dosimetria_engine.dart';
 import '../models/delito.dart';
 import '../widgets/app_drawer.dart';
+import '../widgets/dosimetria_stepper.dart';
 import 'computo_page.dart';
 
 class ConcursoPage extends StatefulWidget {
@@ -28,6 +29,8 @@ class _ConcursoPageState extends State<ConcursoPage> {
   double _penaTotal = 0;
   bool _topeAplicado = false;
   String _articuloConcursoAplicado = '';
+  List<String> _pasosConcurso = <String>[];
+  bool _mostrarDesglose = false;
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
@@ -51,6 +54,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
         _penaTotal = 0.0;
         _topeAplicado = false;
         _articuloConcursoAplicado = '';
+        _pasosConcurso = <String>[];
       });
       return;
     }
@@ -66,6 +70,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
       _penaTotal = res.total;
       _topeAplicado = res.topeAplicado;
       _articuloConcursoAplicado = res.articuloAplicado;
+      _pasosConcurso = List<String>.from(res.pasos);
     });
   }
 
@@ -115,6 +120,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    const DosimetriaStepper(pasoActual: 2),
                     Card(
                       elevation: 0,
                       color: Colors.white,
@@ -481,7 +487,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 const Text(
-                                  "PENA TOTAL ACUMULADA",
+                                  "PENA DEFINITIVA",
                                   style: TextStyle(
                                       color: dorado,
                                       fontWeight: FontWeight.w800,
@@ -510,9 +516,118 @@ class _ConcursoPageState extends State<ConcursoPage> {
                               style: const TextStyle(
                                   color: dorado,
                                   fontWeight: FontWeight.w800,
-                                  fontSize: 20),
+                                  fontSize: 24),
                               textAlign: TextAlign.center,
                             ),
+                            const SizedBox(height: 10),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 5),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(14),
+                                border: Border.all(
+                                    color: dorado.withValues(alpha: 0.6)),
+                              ),
+                              child: Text(
+                                _articuloConcursoAplicado.isEmpty
+                                    ? 'Delito único (sin concurso)'
+                                    : _articuloConcursoAplicado,
+                                style: const TextStyle(
+                                    color: dorado,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w700),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            const SizedBox(height: 6),
+                            if (_topeAplicado)
+                              const Text(
+                                'TOPE DE 30 AÑOS APLICADO (Art. 94 CP)',
+                                style: TextStyle(
+                                    color: Colors.orangeAccent,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w800,
+                                    letterSpacing: 0.6),
+                              ),
+                            const SizedBox(height: 8),
+                            GestureDetector(
+                              onTap: () => setState(
+                                  () => _mostrarDesglose = !_mostrarDesglose),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Text(
+                                    _mostrarDesglose
+                                        ? 'OCULTAR DESGLOSE'
+                                        : 'VER DESGLOSE PASO A PASO',
+                                    style: const TextStyle(
+                                        color: Color(0xFFE9C86A),
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w800,
+                                        letterSpacing: 0.5),
+                                  ),
+                                  Icon(
+                                    _mostrarDesglose
+                                        ? Icons.keyboard_arrow_up_rounded
+                                        : Icons.keyboard_arrow_down_rounded,
+                                    color: const Color(0xFFE9C86A),
+                                    size: 16,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            if (_mostrarDesglose) ...[
+                              const SizedBox(height: 10),
+                              Container(
+                                width: double.infinity,
+                                constraints:
+                                    const BoxConstraints(maxHeight: 180),
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withValues(alpha: 0.07),
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                      color: dorado.withValues(alpha: 0.25)),
+                                ),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: _pasosConcurso.isEmpty
+                                        ? const <Widget>[
+                                            Text('Sin pasos',
+                                                style: TextStyle(
+                                                    color: Colors.white70,
+                                                    fontSize: 11)),
+                                          ]
+                                        : _pasosConcurso
+                                            .asMap()
+                                            .entries
+                                            .map((MapEntry<int, String> e) {
+                                            final bool esFinal = e.key ==
+                                                _pasosConcurso.length - 1;
+                                            return Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 2),
+                                              child: Text(
+                                                '- ${e.value}',
+                                                style: TextStyle(
+                                                  color: esFinal
+                                                      ? const Color(0xFFE9C86A)
+                                                      : Colors.white,
+                                                  fontSize: 11,
+                                                  fontWeight: esFinal
+                                                      ? FontWeight.w800
+                                                      : FontWeight.w400,
+                                                ),
+                                              ),
+                                            );
+                                          }).toList(),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ],
                         ),
                       ),

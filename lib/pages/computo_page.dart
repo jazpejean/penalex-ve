@@ -15,6 +15,7 @@ import '../services/pdf_service.dart';
 import '../utils/pena_utils.dart';
 import '../utils/storage_manager.dart';
 import '../widgets/app_drawer.dart';
+import '../widgets/dosimetria_stepper.dart';
 import 'dosimetria_page.dart';
 
 class ComputoPage extends StatefulWidget {
@@ -543,6 +544,8 @@ class _ComputoPageState extends State<ComputoPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const DosimetriaStepper(pasoActual: 3),
+
             // ==================== 0. DATOS DEL CASO ====================
             Card(
               elevation: 0,
@@ -760,6 +763,15 @@ class _ComputoPageState extends State<ComputoPage> {
                   ],
                 ),
               ),
+            ),
+            const SizedBox(height: 24),
+
+            // ==================== 1.5 LÍNEA DE TIEMPO DEL CÓMPUTO ====================
+            _TimelineComputo(
+              fechaDetencion: _fechaDetencion,
+              fechaCondena: _usarFechaActual ? DateTime.now() : _fechaCondena,
+              fechaCumplimiento: _fechaCumplimiento,
+              sinDetenido: _sinDetenido || _fechaDetencion == null,
             ),
             const SizedBox(height: 24),
 
@@ -1129,6 +1141,154 @@ class _ComputoPageState extends State<ComputoPage> {
                   ),
                 ),
               ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Línea de tiempo visual del cómputo: detención → condena → cumplimiento.
+class _TimelineComputo extends StatelessWidget {
+  const _TimelineComputo({
+    required this.fechaDetencion,
+    required this.fechaCondena,
+    required this.fechaCumplimiento,
+    required this.sinDetenido,
+  });
+
+  final DateTime? fechaDetencion;
+  final DateTime? fechaCondena;
+  final DateTime fechaCumplimiento;
+  final bool sinDetenido;
+
+  static const Color azulMarino = Color(0xFF0F172A);
+  static const Color dorado = Color(0xFFC5A059);
+
+  static String _fmt(DateTime d) => '${d.day.toString().padLeft(2, '0')}/'
+      '${d.month.toString().padLeft(2, '0')}/${d.year}';
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(18),
+        side: const BorderSide(color: dorado),
+      ),
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.all(18),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const Text(
+              'LÍNEA DE TIEMPO DEL CÓMPUTO',
+              style: TextStyle(
+                  color: azulMarino,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 0.8),
+            ),
+            const SizedBox(height: 22),
+            Row(
+              children: <Widget>[
+                _Nodo(
+                  etiqueta: 'DETENCIÓN',
+                  fecha: sinDetenido
+                      ? '—'
+                      : (fechaDetencion != null ? _fmt(fechaDetencion!) : '—'),
+                  gris: sinDetenido,
+                ),
+                _Linea(gris: sinDetenido),
+                _Nodo(
+                  etiqueta: 'CONDENA',
+                  fecha: fechaCondena != null ? _fmt(fechaCondena!) : '—',
+                  gris: fechaCondena == null,
+                ),
+                _Linea(gris: sinDetenido),
+                _Nodo(
+                  etiqueta: 'CUMPLIMIENTO',
+                  fecha: sinDetenido ? '—' : _fmt(fechaCumplimiento),
+                  gris: sinDetenido,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _Linea extends StatelessWidget {
+  const _Linea({required this.gris});
+
+  final bool gris;
+
+  static const Color azulMarino = Color(0xFF0F172A);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        height: 2,
+        margin: const EdgeInsets.only(bottom: 24),
+        color: gris ? Colors.grey.shade300 : azulMarino.withValues(alpha: 0.35),
+      ),
+    );
+  }
+}
+
+class _Nodo extends StatelessWidget {
+  const _Nodo({
+    required this.etiqueta,
+    required this.fecha,
+    required this.gris,
+  });
+
+  final String etiqueta;
+  final String fecha;
+  final bool gris;
+
+  static const Color azulMarino = Color(0xFF0F172A);
+  static const Color dorado = Color(0xFFC5A059);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Column(
+        children: <Widget>[
+          Container(
+            width: 14,
+            height: 14,
+            decoration: BoxDecoration(
+              color: gris ? Colors.grey.shade300 : azulMarino,
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: gris ? Colors.grey.shade400 : dorado,
+                width: 2,
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            etiqueta,
+            style: TextStyle(
+              fontSize: 9,
+              fontWeight: FontWeight.w800,
+              letterSpacing: 0.5,
+              color: gris ? Colors.grey.shade500 : azulMarino,
+            ),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            fecha,
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w800,
+              color: gris ? Colors.grey.shade500 : dorado,
             ),
           ),
         ],
