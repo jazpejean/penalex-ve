@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/ai_tool_stats_widget.dart';
 import '../widgets/app_drawer.dart';
 import 'chat_legal_screen.dart';
 import 'redactor_documentos_screen.dart';
@@ -16,27 +15,12 @@ class AsistenteLegalHubScreen extends StatefulWidget {
 }
 
 class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
-  Map<String, AIToolStats>? _stats;
-  bool _loadingStats = true;
 
   @override
   void initState() {
     super.initState();
-    _loadStats();
   }
 
-  Future<void> _loadStats() async {
-    try {
-      final stats = await AIToolStatsService.getAllStats();
-      setState(() {
-        _stats = stats;
-        _loadingStats = false;
-      });
-    } catch (e) {
-      setState(() => _loadingStats = false);
-      debugPrint('Error cargando estadísticas: $e');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,24 +52,6 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header descriptivo
-            _buildHeader(),
-            const SizedBox(height: 24),
-
-            // Estadísticas globales
-            if (_loadingStats)
-              const Center(
-                child: Padding(
-                  padding: EdgeInsets.all(20),
-                  child: CircularProgressIndicator(
-                    color: Color(0xFFC5A059),
-                  ),
-                ),
-              )
-            else if (_stats != null)
-              _buildGlobalStats(),
-            const SizedBox(height: 32),
-
             // ULPIANO - El asistente (feature estrella)
             _buildStarFeatureCard(
               context,
@@ -184,283 +150,8 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             ),
             const SizedBox(height: 32),
 
-            // Botón de Analytics
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0xFF6366F1).withValues(alpha: 0.3),
-                    blurRadius: 12,
-                    offset: const Offset(0, 6),
-                  ),
-                ],
-              ),
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  onTap: () => Navigator.pushNamed(context, '/ai_analytics'),
-                  borderRadius: BorderRadius.circular(16),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.2),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Icon(
-                            Icons.analytics,
-                            color: Colors.white,
-                            size: 28,
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        const Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Ver Analytics Completo',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              SizedBox(height: 4),
-                              Text(
-                                'Métricas detalladas, tendencias y reportes',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Colors.white70,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            // Footer informativo
-            _buildFooter(),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildGlobalStats() {
-    if (_stats == null) return const SizedBox.shrink();
-
-    final totalUses = _stats!.values.fold<int>(
-      0,
-      (sum, stat) => sum + stat.totalUses,
-    );
-
-    final avgResponseTime = _stats!.values.fold<double>(
-      0,
-      (sum, stat) => sum + stat.averageResponseTime,
-    ) / _stats!.length;
-
-    final avgSuccessRate = _stats!.values.fold<double>(
-      0,
-      (sum, stat) => sum + stat.successRate,
-    ) / _stats!.length;
-
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            const Color(0xFF1E293B).withValues(alpha: 0.8),
-            const Color(0xFF0F172A).withValues(alpha: 0.8),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: const Color(0xFFC5A059).withValues(alpha: 0.3),
-          width: 1,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              const Icon(
-                Icons.analytics,
-                color: Color(0xFFC5A059),
-                size: 20,
-              ),
-              const SizedBox(width: 8),
-              const Text(
-                'Estadísticas Globales',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              Expanded(
-                child: _buildStatCard(
-                  icon: Icons.bar_chart,
-                  label: 'Total Usos',
-                  value: totalUses.toString(),
-                  color: Colors.blue,
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _buildStatCard(
-                  icon: Icons.speed,
-                  label: 'Tiempo Promedio',
-                  value: '${avgResponseTime.toStringAsFixed(1)}s',
-                  color: Colors.orange,
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _buildStatCard(
-                  icon: Icons.check_circle,
-                  label: 'Tasa de Éxito',
-                  value: '${(avgSuccessRate * 100).toStringAsFixed(0)}%',
-                  color: Colors.green,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildStatCard({
-    required IconData icon,
-    required String label,
-    required String value,
-    required Color color,
-  }) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: color.withValues(alpha: 0.2),
-          width: 1,
-        ),
-      ),
-      child: Column(
-        children: [
-          Icon(
-            icon,
-            color: color,
-            size: 18,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: color,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 10,
-              color: Colors.white.withValues(alpha: 0.7),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            const Color(0xFFC5A059).withValues(alpha: 0.15),
-            const Color(0xFFC5A059).withValues(alpha: 0.05),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: const Color(0xFFC5A059).withValues(alpha: 0.3),
-          width: 1,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Row(
-            children: [
-              Icon(
-                Icons.psychology,
-                color: Color(0xFFC5A059),
-                size: 32,
-              ),
-              SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  'Inteligencia Artificial Legal',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Text(
-            'Ulpiano, tu asistente jurídico de IA: consulta la ley y la '
-            'jurisprudencia con fuentes verificables, redacta escritos con '
-            'estilo forense, analiza documentos y calcula penas con precisión '
-            'profesional.',
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.white.withValues(alpha: 0.8),
-              height: 1.5,
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -805,51 +496,5 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
     );
   }
 
-  Widget _buildFooter() {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1E293B).withValues(alpha: 0.5),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.1),
-          width: 1,
-        ),
-      ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Icon(
-                Icons.info_outline,
-                color: const Color(0xFFC5A059).withValues(alpha: 0.8),
-                size: 20,
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  'Impulsado por Ulpiano',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white.withValues(alpha: 0.9),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Todas las herramientas utilizan modelos de IA avanzados especializados '
-            'en derecho penal venezolano para garantizar precisión y confiabilidad.',
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.white.withValues(alpha: 0.6),
-              height: 1.5,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+
 }

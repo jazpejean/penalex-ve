@@ -39,11 +39,17 @@ class _AgendaScreenState extends State<AgendaScreen> {
 
   Future<void> _loadNonWorkingDays() async {
     setState(() => _isLoading = true);
-    final List<NonWorkingDay> loadedDays = await NonWorkingDayService.loadUserNonWorkingDays();
-    setState(() {
-      _userNonWorkingDays = loadedDays;
-      _isLoading = false;
-    });
+    try {
+      final List<NonWorkingDay> loadedDays =
+          await NonWorkingDayService.loadUserNonWorkingDays();
+      setState(() {
+        _userNonWorkingDays = loadedDays;
+      });
+    } catch (e) {
+      debugPrint('⚠️ Error cargando días sin despacho: $e');
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
   }
 
   DateTime _normalizeDay(DateTime date) =>
@@ -51,19 +57,26 @@ class _AgendaScreenState extends State<AgendaScreen> {
 
   Future<void> _cargarAudiencias() async {
     setState(() => _isLoading = true);
-    final List<Audiencia> audiencias = await AgendaService.cargarAudiencias(_focusedDay);
-    final Map<DateTime, List<Audiencia>> tempMap = <DateTime, List<Audiencia>>{};
-    for (final Audiencia aud in audiencias) {
-      final DateTime fechaSinHora = _normalizeDay(aud.fecha);
-      tempMap.putIfAbsent(fechaSinHora, () => <Audiencia>[]);
-      tempMap[fechaSinHora]!.add(aud);
+    try {
+      final List<Audiencia> audiencias =
+          await AgendaService.cargarAudiencias(_focusedDay);
+      final Map<DateTime, List<Audiencia>> tempMap =
+          <DateTime, List<Audiencia>>{};
+      for (final Audiencia aud in audiencias) {
+        final DateTime fechaSinHora = _normalizeDay(aud.fecha);
+        tempMap.putIfAbsent(fechaSinHora, () => <Audiencia>[]);
+        tempMap[fechaSinHora]!.add(aud);
+      }
+      setState(() {
+        _audienciasPorDia = tempMap;
+        _audienciasDelDia =
+            _audienciasPorDia[_normalizeDay(_selectedDay!)] ?? <Audiencia>[];
+      });
+    } catch (e) {
+      debugPrint('⚠️ Error cargando audiencias: $e');
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
     }
-    setState(() {
-      _audienciasPorDia = tempMap;
-      _audienciasDelDia =
-          _audienciasPorDia[_normalizeDay(_selectedDay!)] ?? <Audiencia>[];
-      _isLoading = false;
-    });
   }
 
   Future<void> _eliminarAudiencia(Audiencia audiencia) async {
