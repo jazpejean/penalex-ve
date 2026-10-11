@@ -903,13 +903,6 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
             ),
             const SizedBox(height: 16),
 
-            const SizedBox(height: 8),
-            _ReglaDosimetrica(
-              penaMin: delito.penaMin,
-              penaMax: delito.penaMax,
-              terminoMedio: delito.terminoMedio,
-              penaFinal: delito.calcularPenaIndividualizada(),
-            ),
             const SizedBox(height: 16),
             const Text('AJUSTES ADICIONALES',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
@@ -1084,26 +1077,21 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
             ),
             if (delito.delitoContinuado) ...<Widget>[
               const SizedBox(height: 12),
-              const Text('Aumento (Art. 99 CP):',
-                  style: TextStyle(fontWeight: FontWeight.w500)),
-              const SizedBox(height: 6),
-              // Cuatro posiciones exactas: 1/6, 1/4, 1/3 y 1/2.
-              Wrap(
-                spacing: 8,
-                children: <double>[1 / 6, 1 / 4, 1 / 3, 1 / 2].map((double f) {
-                  final bool selected =
-                      (delito.fraccionContinuidad - f).abs() < 0.001;
-                  return ChoiceChip(
-                    label: Text(_fraccionTexto(f)),
-                    selected: selected,
-                    onSelected: (bool _) {
-                      setState(() {
-                        delito.fraccionContinuidad = f;
-                        _actualizarDelito(index, delito);
-                      });
-                    },
-                  );
-                }).toList(),
+              _buildSliderRow(
+                label: 'Aumento (Art. 99 CP)',
+                min: 1 / 6,
+                max: 0.5,
+                currentValue: delito.fraccionContinuidad,
+                onChanged: (double val) {
+                  setState(() {
+                    const List<double> targets = <double>[1 / 6, 1 / 4, 1 / 3, 0.5];
+                    final double newVal = targets.reduce((double a, double b) =>
+                        (a - val).abs() < (b - val).abs() ? a : b);
+                    delito.fraccionContinuidad = newVal;
+                    _actualizarDelito(index, delito);
+                  });
+                },
+                divisions: 3,
               ),
             ],
             const SizedBox(height: 20),
@@ -1494,176 +1482,4 @@ class _PenaInputRowState extends State<_PenaInputRow> {
           ),
         ],
       );
-}
-
-/// Regla dosimétrica visual: muestra dónde queda la pena dentro del tipo.
-class _ReglaDosimetrica extends StatelessWidget {
-  const _ReglaDosimetrica({
-    required this.penaMin,
-    required this.penaMax,
-    required this.terminoMedio,
-    required this.penaFinal,
-  });
-
-  final double penaMin;
-  final double penaMax;
-  final double terminoMedio;
-  final double penaFinal;
-
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
-  static Color get grisTexto => TemaGlobal.textoSecundario;
-
-  static String _compacto(double v) {
-    final Map<String, int> ymd = DosimetriaEngine.convertToYMD(v);
-    final int anios = ymd['anos'] ?? 0;
-    final int meses = ymd['meses'] ?? 0;
-    final int dias = ymd['dias'] ?? 0;
-    final StringBuffer b = StringBuffer();
-    if (anios > 0) b.write('$anios año${anios == 1 ? '' : 's'}');
-    if (meses > 0) {
-      if (b.isNotEmpty) b.write(' ');
-      b.write('$meses mes${meses == 1 ? '' : 'es'}');
-    }
-    if (dias > 0) {
-      if (b.isNotEmpty) b.write(' ');
-      b.write('$dias día${dias == 1 ? '' : 's'}');
-    }
-    return b.isEmpty ? '0 años' : b.toString();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final double span = penaMax - penaMin;
-    double pos(double v) =>
-        span <= 0 ? 0.5 : ((v - penaMin) / span).clamp(0.0, 1.0).toDouble();
-    final bool fuera = penaFinal > penaMax || penaFinal < penaMin;
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        final double w = constraints.maxWidth;
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'REGLA DOSIMÉTRICA',
-              style: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.85),
-                  fontWeight: FontWeight.w800,
-                  fontSize: 12,
-                  letterSpacing: 0.8),
-            ),
-            const SizedBox(height: 16),
-            // Altura fija: un Stack con Positioned necesita constraints acotados;
-            // sin esto la página explota en build (pantalla blanca en release).
-            SizedBox(
-              height: 36,
-              child: Stack(
-                children: <Widget>[
-                // Pista base
-                Positioned(
-                  top: 4,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    height: 6,
-                    decoration: BoxDecoration(
-                      color: grisTexto.withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(3),
-                    ),
-                  ),
-                ),
-                // Marca del término medio
-                Positioned(
-                  left: (pos(terminoMedio) * w - 6).clamp(0.0, w - 12),
-                  top: 0,
-                  child: Container(
-                    width: 12,
-                    height: 12,
-                    decoration: BoxDecoration(
-                      color: TemaGlobal.texto,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 2),
-                      boxShadow: <BoxShadow>[
-                        BoxShadow(
-                            color: azulMarino.withValues(alpha: 0.4),
-                            blurRadius: 4),
-                      ],
-                    ),
-                  ),
-                ),
-                // Marca de la pena final
-                Positioned(
-                  left: (pos(penaFinal) * w - 8).clamp(0.0, w - 16),
-                  top: 14,
-                  child: Container(
-                    width: 16,
-                    height: 16,
-                    decoration: BoxDecoration(
-                      color: dorado,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 2),
-                      boxShadow: <BoxShadow>[
-                        BoxShadow(
-                            color: dorado.withValues(alpha: 0.5),
-                            blurRadius: 5),
-                      ],
-                    ),
-                  ),
-                ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'Mín ${_compacto(penaMin)}',
-                  style: TextStyle(
-                      color: grisTexto.withValues(alpha: 0.75),
-                      fontSize: 10,
-                      fontWeight: FontWeight.w600),
-                ),
-                Text(
-                  'Término medio ${_compacto(terminoMedio)}',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                      fontWeight: FontWeight.w800),
-                ),
-                Text(
-                  'Máx ${_compacto(penaMax)}',
-                  style: TextStyle(
-                      color: grisTexto.withValues(alpha: 0.75),
-                      fontSize: 10,
-                      fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
-            const SizedBox(height: 6),
-            Row(
-              children: <Widget>[
-                Icon(
-                  fuera ? Icons.trending_up_rounded : Icons.gavel_rounded,
-                  color: dorado,
-                  size: 14,
-                ),
-                const SizedBox(width: 6),
-                Flexible(
-                  child: Text(
-                    'Pena final: ${_compacto(penaFinal)}'
-                    '${fuera ? ' (fuera del rango por aumento legal o continuidad)' : ''}',
-                    style: TextStyle(
-                        color: fuera ? dorado : azulMarino,
-                        fontSize: 11,
-                        fontWeight: FontWeight.w800),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        );
-      },
-    );
-  }
 }

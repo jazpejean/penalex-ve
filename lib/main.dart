@@ -83,6 +83,9 @@ class DosimetriaPenalApp extends StatelessWidget {
       child: ValueListenableBuilder<bool>(
         valueListenable: TemaGlobal.oscuro,
         builder: (context, oscuro, _) => MaterialApp(
+        // key: al alternar el modo se remonta TODO el árbol — cada widget
+        // re-evalúa los getters de TemaGlobal (evita modo a medias).
+        key: ValueKey('tema_${oscuro}'),
         title: 'Dosimetría Penal Venezolana',
         debugShowCheckedModeBanner: false,
         localizationsDelegates: const [

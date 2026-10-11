@@ -42,7 +42,8 @@ class _AgendaScreenState extends State<AgendaScreen> {
     setState(() => _isLoading = true);
     try {
       final List<NonWorkingDay> loadedDays =
-          await NonWorkingDayService.loadUserNonWorkingDays();
+          await NonWorkingDayService.loadUserNonWorkingDays()
+              .timeout(const Duration(seconds: 4));
       setState(() {
         _userNonWorkingDays = loadedDays;
       });
@@ -60,7 +61,8 @@ class _AgendaScreenState extends State<AgendaScreen> {
     setState(() => _isLoading = true);
     try {
       final List<Audiencia> audiencias =
-          await AgendaService.cargarAudiencias(_focusedDay);
+          await AgendaService.cargarAudiencias(_focusedDay)
+              .timeout(const Duration(seconds: 4));
       final Map<DateTime, List<Audiencia>> tempMap =
           <DateTime, List<Audiencia>>{};
       for (final Audiencia aud in audiencias) {
@@ -370,7 +372,11 @@ class _AgendaScreenState extends State<AgendaScreen> {
   @override
   Widget build(BuildContext context) => Scaffold(
       drawer: const AppDrawer(currentRoute: "/agenda"),
-      appBar: AppBar(title: const Text("Agenda Judicial")),
+      appBar: AppBar(
+        title: const Text("Agenda Judicial"),
+        backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
+      ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : Padding(
