@@ -13,6 +13,7 @@ import '../services/misiones_diarias_service.dart';
 import '../services/quiz_certificate_service.dart';
 import '../services/quiz_rules.dart';
 import '../services/quiz_ranking_service.dart';
+import '../services/sfx_service.dart';
 import '../services/quiz_storage_service.dart';
 import '../utils/quiz_seed.dart';
 import '../widgets/quiz_pulso_widget.dart';
@@ -185,14 +186,14 @@ class _QuizGameScreenState extends State<QuizGameScreen>
       _destelloTimer = Timer(const Duration(milliseconds: 140), () {
         if (mounted) setState(() => _destello = false);
       });
-      HapticFeedback.mediumImpact();
+      SfxService.instance.correcta();
       await Future.delayed(const Duration(milliseconds: 300));
     } else {
       _apelaciones = (_apelaciones - 1).clamp(0, 999);
       _racha = 0;
       nuevo = _service.registrarFallo(nuevo, _caso!.id);
       _shake.forward(from: 0);
-      HapticFeedback.heavyImpact();
+      SfxService.instance.incorrecta();
     }
 
     nuevo['xp'] = _xp;
@@ -224,6 +225,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
   }
 
   void _mostrarAscenso(String rango, int xpGanado) {
+    SfxService.instance.victoria();
     final c = _fx.size;
     _fx.explosion(centro: Offset(c.x / 2, c.y / 2), cantidad: 60, fuerza: 780);
     showGeneralDialog(
@@ -537,6 +539,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
                         ? null
                         : () {
                             HapticFeedback.selectionClick();
+                            SfxService.instance.tap();
                             _resolver(indice: e.key);
                           },
                   ),
@@ -831,6 +834,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
   }
 
   Future<void> _mostrarLogro(String rango, int xpGanado) async {
+    SfxService.instance.victoria();
     final c = _fx.size;
     _fx.explosion(centro: Offset(c.x / 2, c.y / 2), cantidad: 70, fuerza: 820);
     String? ruta;
