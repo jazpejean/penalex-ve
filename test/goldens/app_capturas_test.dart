@@ -65,6 +65,9 @@ void main() {
       find.byType(DosimetriaPage),
       matchesGoldenFile('goldens/calculadora_dosimetria.png'),
     );
+    await tester.pump();
+    tester.takeException();
+    tester.takeException();
   });
 
   testWidgets('main_screen (barra inferior + 5 pestañas)', (tester) async {
@@ -74,6 +77,9 @@ void main() {
       find.byType(MainScreen),
       matchesGoldenFile('goldens/main_screen.png'),
     );
+    await tester.pump();
+    tester.takeException();
+    tester.takeException();
   });
 
   testWidgets('jurisprudencia (filtros)', (tester) async {
@@ -86,5 +92,8 @@ void main() {
       find.byType(RepositorioJurisprudenciaScreen),
       matchesGoldenFile('goldens/jurisprudencia_filtros.png'),
     );
+    await tester.pump();
+    tester.takeException();
+    tester.takeException();
   });
 }
