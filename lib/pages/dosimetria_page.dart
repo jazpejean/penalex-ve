@@ -1550,8 +1550,12 @@ class _ReglaDosimetrica extends StatelessWidget {
                   letterSpacing: 0.8),
             ),
             const SizedBox(height: 16),
-            Stack(
-              children: <Widget>[
+            // Altura fija: un Stack con Positioned necesita constraints acotados;
+            // sin esto la página explota en build (pantalla blanca en release).
+            SizedBox(
+              height: 36,
+              child: Stack(
+                children: <Widget>[
                 // Pista base
                 Positioned(
                   top: 4,
@@ -1603,7 +1607,8 @@ class _ReglaDosimetrica extends StatelessWidget {
                     ),
                   ),
                 ),
-              ],
+                ],
+              ),
             ),
             const SizedBox(height: 10),
             Row(
