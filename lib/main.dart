@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'config/theme.dart';
+import 'config/app_theme.dart';
 import 'models/delito.dart';
 import 'pages/agenda_screen.dart';
 import 'pages/admin_glosario_screen.dart';
@@ -59,6 +60,9 @@ void main() async {
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
   
+  // Cargar el modo oscuro guardado (suiche del drawer)
+  await TemaGlobal.cargar();
+
   runApp(const DosimetriaPenalApp());
 }
 
@@ -76,7 +80,9 @@ class DosimetriaPenalApp extends StatelessWidget {
         ChangeNotifierProvider<GameState>(create: (_) => GameState()),
         ChangeNotifierProvider<UserState>(create: (_) => UserState()),
       ],
-      child: MaterialApp(
+      child: ValueListenableBuilder<bool>(
+        valueListenable: TemaGlobal.oscuro,
+        builder: (context, oscuro, _) => MaterialApp(
         title: 'Dosimetría Penal Venezolana',
         debugShowCheckedModeBanner: false,
         localizationsDelegates: const [
@@ -89,6 +95,8 @@ class DosimetriaPenalApp extends StatelessWidget {
         ],
         locale: const Locale('es', 'ES'),
         theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: oscuro ? ThemeMode.dark : ThemeMode.light,
         initialRoute: '/',
         routes: {
           '/': (context) => const AuthWrapper(),
@@ -140,6 +148,7 @@ class DosimetriaPenalApp extends StatelessWidget {
           }
           return null;
         },
+      ),
       ),
     );
   }

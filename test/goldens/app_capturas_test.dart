@@ -14,6 +14,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:penalex_ve/pages/dosimetria_page.dart';
 import 'package:penalex_ve/pages/main_screen.dart';
 import 'package:penalex_ve/pages/repositorio_jurisprudencia_screen.dart';
+import 'package:penalex_ve/config/app_theme.dart';
 
 void main() {
   setUpAll(() async {
@@ -65,6 +66,20 @@ void main() {
       find.byType(DosimetriaPage),
       matchesGoldenFile('goldens/calculadora_dosimetria.png'),
     );
+    await tester.pump();
+    tester.takeException();
+    tester.takeException();
+  });
+
+  testWidgets('calculadora MODO OSCURO (suiche activado)', (tester) async {
+    TemaGlobal.oscuro.value = true;
+    await pumpPage(tester, const DosimetriaPage());
+    tester.takeException();
+    await expectLater(
+      find.byType(DosimetriaPage),
+      matchesGoldenFile('goldens/calculadora_dosimetria_oscura.png'),
+    );
+    TemaGlobal.oscuro.value = false;
     await tester.pump();
     tester.takeException();
     tester.takeException();

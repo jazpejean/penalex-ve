@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 
 import '../config/app_colors.dart';
 import '../services/auth_service.dart';
+import '../config/app_theme.dart';
 import '../services/user_profile_service.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -439,6 +440,23 @@ class AppDrawer extends StatelessWidget {
                         style: TextStyle(fontSize: 12, color: Colors.white54)),
                   ),
                 ],
+              ),
+            ),
+            ValueListenableBuilder<bool>(
+              valueListenable: TemaGlobal.oscuro,
+              builder: (context, oscuro, _) => SwitchListTile(
+                secondary: const Icon(Icons.dark_mode,
+                    color: Color(0xFFC5A059), size: 22),
+                title: const Text('Modo oscuro',
+                    style: TextStyle(color: Colors.white, fontSize: 14)),
+                subtitle: Text(oscuro ? 'Activado' : 'Desactivado',
+                    style: const TextStyle(
+                        color: Colors.white54, fontSize: 11)),
+                value: oscuro,
+                activeTrackColor: const Color(0xFFC5A059),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 20),
+                onChanged: (v) => TemaGlobal.guardar(v),
               ),
             ),
           ],

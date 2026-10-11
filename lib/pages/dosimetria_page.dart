@@ -6,6 +6,7 @@ import '../logic/dosimetria_engine.dart';
 import '../models/calculation_model.dart';
 import '../models/delito.dart';
 import '../services/calculation_service.dart';
+import '../config/app_theme.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/buscador_articulos_sheet.dart';
 import '../widgets/dosimetria_stepper.dart';
@@ -33,8 +34,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFF1E293B);
-  static const Color grisTexto = Color(0xFF94A3B8);
+  static Color get fondoGris => TemaGlobal.superficie;
+  static Color get grisTexto => TemaGlobal.textoSecundario;
 
   @override
   void initState() {
@@ -94,8 +95,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
           children: <Widget>[
             Container(
               padding: const EdgeInsets.all(16),
-              decoration: const BoxDecoration(
-                color: Colors.white,
+              decoration: BoxDecoration(
+                color: TemaGlobal.tarjeta,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
               ),
               child: Row(
@@ -127,7 +128,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
             ),
             Expanded(
               child: Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: fondoGris,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                 ),
@@ -155,8 +156,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                                   color: azulMarino.withValues(alpha: 0.10)),
                             ),
                             child: ListTile(
-                              leading: const Icon(Icons.calculate_rounded,
-                                  color: azulMarino),
+                              leading: Icon(Icons.calculate_rounded,
+                                  color: TemaGlobal.texto),
                               title: Text(calc.nombre,
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold)),
@@ -653,7 +654,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     children: <Widget>[
                       Card(
                         elevation: 0,
-                        color: Colors.white,
+                        color: TemaGlobal.tarjeta,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                           side: const BorderSide(color: dorado, width: 1.5),
@@ -753,8 +754,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
         borderRadius: BorderRadius.circular(16),
         side: const BorderSide(color: dorado),
       ),
-      color: Color(0xFF1E293B),
-      surfaceTintColor: Color(0xFF1E293B),
+      color: TemaGlobal.tarjeta,
+      surfaceTintColor: TemaGlobal.tarjeta,
       shadowColor: Colors.black.withValues(alpha: 0.06),
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -1208,7 +1209,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: TemaGlobal.tarjeta,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: dorado, width: 1.5),
               ),
@@ -1318,7 +1319,7 @@ class _PenaInputRowState extends State<_PenaInputRow> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFF1E293B);
+  static Color get fondoGris => TemaGlobal.superficie;
 
   @override
   void initState() {
@@ -1511,7 +1512,7 @@ class _ReglaDosimetrica extends StatelessWidget {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color grisTexto = Color(0xFF94A3B8);
+  static Color get grisTexto => TemaGlobal.textoSecundario;
 
   static String _compacto(double v) {
     final Map<String, int> ymd = DosimetriaEngine.convertToYMD(v);
@@ -1579,7 +1580,7 @@ class _ReglaDosimetrica extends StatelessWidget {
                     width: 12,
                     height: 12,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: TemaGlobal.texto,
                       shape: BoxShape.circle,
                       border: Border.all(color: Colors.white, width: 2),
                       boxShadow: <BoxShadow>[
