@@ -52,7 +52,7 @@ class MostUsedToolWidget extends StatelessWidget {
                 ),
                 child: const Icon(
                   Icons.emoji_events,
-                  color: Color(0xFFFBBF24),
+                  color: Color(0xFFC5A059),
                   size: 24,
                 ),
               ),
@@ -81,7 +81,7 @@ class MostUsedToolWidget extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFFFBBF24),
+                        color: Color(0xFFC5A059),
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -101,10 +101,10 @@ class MostUsedToolWidget extends StatelessWidget {
                   vertical: 12,
                 ),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFBBF24).withValues(alpha: 0.2),
+                  color: const Color(0xFFC5A059).withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: const Color(0xFFFBBF24).withValues(alpha: 0.3),
+                    color: const Color(0xFFC5A059).withValues(alpha: 0.3),
                     width: 1,
                   ),
                 ),
@@ -113,7 +113,7 @@ class MostUsedToolWidget extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFFFBBF24),
+                    color: Color(0xFFC5A059),
                   ),
                 ),
               ),
@@ -446,7 +446,7 @@ class ToolUsageBarChart extends StatelessWidget {
       case AIToolName.redactorDocumentos:
         return const Color(0xFF3B82F6);
       case AIToolName.comparadorEstrategias:
-        return const Color(0xFFFBBF24);
+        return const Color(0xFFC5A059);
       case AIToolName.escanerDocumentos:
         return const Color(0xFF8B5CF6);
     }
@@ -696,7 +696,7 @@ class WeeklyTrendWidget extends StatelessWidget {
       case AIToolName.redactorDocumentos:
         return const Color(0xFF3B82F6);
       case AIToolName.comparadorEstrategias:
-        return const Color(0xFFFBBF24);
+        return const Color(0xFFC5A059);
       case AIToolName.escanerDocumentos:
         return const Color(0xFF8B5CF6);
     }

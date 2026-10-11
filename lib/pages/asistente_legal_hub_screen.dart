@@ -537,7 +537,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                               vertical: 4,
                             ),
                             decoration: BoxDecoration(
-                              color: const Color(0xFFFBBF24),
+                              color: const Color(0xFFC5A059),
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: Text(

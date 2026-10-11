@@ -239,7 +239,7 @@ class AIToolBadge extends StatelessWidget {
     super.key,
     required this.label,
     this.count,
-    this.color = const Color(0xFFFBBF24),
+    this.color = const Color(0xFFC5A059),
   });
 
   @override

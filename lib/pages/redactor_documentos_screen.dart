@@ -755,7 +755,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                           fontStyle: FontStyle.italic,
                         ),
                         code: const TextStyle(
-                          color: Color(0xFFFBBF24),
+                          color: Color(0xFFC5A059),
                           backgroundColor: Color(0xFF0F172A),
                         ),
                       ),

@@ -32,7 +32,7 @@ class DelitoCard extends StatelessWidget {
             children: <Widget>[
               Text(
                 "DELITO ${index + 1} de $totalDelitos",
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF1A237E)),
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
               ),
               const Spacer(),
               if (totalDelitos > 1)
@@ -130,7 +130,7 @@ class DelitoCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          const Text("AJUSTES LEGALES", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF1A237E))),
+          const Text("AJUSTES LEGALES", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF0F172A))),
           const SizedBox(height: 12),
           _buildDropdownRow(
             label: "Grado de ejecución",
@@ -219,7 +219,7 @@ class DelitoCard extends StatelessWidget {
             ),
           ],
           const SizedBox(height: 16),
-          const Text("ATENUANTES / AGRAVANTES", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF1A237E))),
+          const Text("ATENUANTES / AGRAVANTES", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF0F172A))),
           const SizedBox(height: 8),
           SegmentedButton<String>(
             segments: const <ButtonSegment<String>>[
@@ -309,7 +309,7 @@ class DelitoCard extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: const Color(0xFF1A237E),
+              color: const Color(0xFF0F172A),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Row(
@@ -366,7 +366,7 @@ class DelitoCard extends StatelessWidget {
                   icon: const Icon(Icons.add),
                   label: const Text("AGREGAR OTRO DELITO"),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF1A237E),
+                    backgroundColor: const Color(0xFF0F172A),
                     foregroundColor: const Color(0xFFC5A059),
                   ),
                 ),

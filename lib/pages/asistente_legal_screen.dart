@@ -528,7 +528,7 @@ Puedo ayudarte a:
                 Container(
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
-                      colors: [dorado, Color(0xFFD4AF37)],
+                      colors: [dorado, Color(0xFFC5A059)],
                     ),
                     shape: BoxShape.circle,
                     boxShadow: [

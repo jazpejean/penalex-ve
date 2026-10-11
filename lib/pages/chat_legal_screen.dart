@@ -941,7 +941,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                       Container(
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
-                            colors: [dorado, Color(0xFFD4AF37)],
+                            colors: [dorado, Color(0xFFC5A059)],
                           ),
                           shape: BoxShape.circle,
                           boxShadow: [
@@ -1160,7 +1160,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                           fontStyle: FontStyle.italic,
                         ),
                         code: const TextStyle(
-                          color: Color(0xFFFBBF24),
+                          color: Color(0xFFC5A059),
                           backgroundColor: Color(0xFF0F172A),
                         ),
                       ),

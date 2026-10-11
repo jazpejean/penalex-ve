@@ -576,7 +576,7 @@ class _AIAnalyticsScreenState extends State<AIAnalyticsScreen>
       case AIToolName.redactorDocumentos:
         return const Color(0xFF3B82F6);
       case AIToolName.comparadorEstrategias:
-        return const Color(0xFFFBBF24);
+        return const Color(0xFFC5A059);
       case AIToolName.escanerDocumentos:
         return const Color(0xFF8B5CF6);
     }
