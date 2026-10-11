@@ -10,6 +10,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../models/sentencia_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../config/app_theme.dart';
 import '../services/jurisprudencia_service.dart';
 import '../services/ai_service.dart';
 import '../services/sentencia_pdf_service.dart';
@@ -51,7 +52,7 @@ class _RepositorioJurisprudenciaScreenState
   // Colores de la app
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFFF1F5F9);
+  static Color get fondoGris => TemaGlobal.superficie;
 
   @override
   void initState() {
@@ -316,7 +317,7 @@ class _RepositorioJurisprudenciaScreenState
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: azulMarino,
+              color: TemaGlobal.texto,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.1),
@@ -410,7 +411,7 @@ class _RepositorioJurisprudenciaScreenState
                         Text(
                           'Buscando sentencias...',
                           style: TextStyle(
-                            color: azulMarino.withOpacity(0.6),
+                            color: TemaGlobal.texto.withValues(alpha: 0.6),
                             fontSize: 14,
                           ),
                         ),
@@ -454,7 +455,7 @@ class _RepositorioJurisprudenciaScreenState
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: azulMarino.withOpacity(0.7),
+                color: TemaGlobal.texto.withValues(alpha: 0.7),
               ),
               textAlign: TextAlign.center,
             ),
@@ -463,7 +464,7 @@ class _RepositorioJurisprudenciaScreenState
               'Intenta con otros términos de búsqueda',
               style: TextStyle(
                 fontSize: 14,
-                color: azulMarino.withOpacity(0.5),
+                color: TemaGlobal.texto.withValues(alpha: 0.5),
               ),
               textAlign: TextAlign.center,
             ),
@@ -518,7 +519,7 @@ class _RepositorioJurisprudenciaScreenState
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: azulMarino,
+                      color: TemaGlobal.texto,
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -542,10 +543,10 @@ class _RepositorioJurisprudenciaScreenState
                         color: dorado,
                         borderRadius: BorderRadius.circular(4),
                       ),
-                      child: const Text(
+                      child: Text(
                         'Vinculante',
                         style: TextStyle(
-                          color: azulMarino,
+                          color: TemaGlobal.texto,
                           fontSize: 9.5,
                           fontWeight: FontWeight.bold,
                         ),
@@ -562,7 +563,7 @@ class _RepositorioJurisprudenciaScreenState
                       size: 20,
                       color: _idsFavoritos.contains(sentencia.id)
                           ? Colors.amber
-                          : Colors.grey[400],
+                          : TemaGlobal.textoTenue,
                     ),
                     tooltip: _idsFavoritos.contains(sentencia.id)
                         ? 'Quitar de favoritas'
@@ -582,16 +583,13 @@ class _RepositorioJurisprudenciaScreenState
                   Expanded(
                     child: Text(
                       'Nº ${sentencia.numeroSentencia}',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: azulMarino,
+                      style: TextStyle(color: TemaGlobal.texto,
                       ),
                     ),
                   ),
                   Text(
                     '${sentencia.sala} · ${sentencia.fechaSentencia}',
-                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                    style: TextStyle(color: TemaGlobal.textoSecundario, fontSize: 12),
                   ),
                 ],
               ),
@@ -605,7 +603,7 @@ class _RepositorioJurisprudenciaScreenState
                   style: TextStyle(
                     fontSize: 13,
                     height: 1.45,
-                    color: Colors.grey[800],
+                    color: TemaGlobal.texto,
                   ),
                 ),
               const SizedBox(height: 12),
@@ -812,7 +810,7 @@ class DetalleSentenciaScreen extends StatefulWidget {
 
 class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
   static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFEAB308);
+  static const Color dorado = Color(0xFFC5A059);
 
   // ⭐ Favoritas / Importantes
   final FavoritosService _favoritosService = FavoritosService();
@@ -1203,13 +1201,13 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                               ),
                             ),
                             const SizedBox(width: 12),
-                            const Expanded(
+                            Expanded(
                               child: Text(
                                 'Análisis con IA',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
-                                  color: azulMarino,
+                                  color: TemaGlobal.texto,
                                 ),
                               ),
                             ),
@@ -1218,7 +1216,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                               onPressed: () {
                                 setState(() => _mostrandoAnalisisIA = false);
                               },
-                              color: Colors.grey[600],
+                              color: TemaGlobal.textoSecundario,
                               padding: EdgeInsets.zero,
                               constraints: const BoxConstraints(),
                             ),
@@ -1226,14 +1224,14 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                         ),
                         const SizedBox(height: 16),
                         if (_analizando)
-                          const Center(
+                          Center(
                             child: Column(
                               children: [
                                 CircularProgressIndicator(color: dorado),
                                 SizedBox(height: 12),
                                 Text(
                                   'Analizando sentencia con IA...',
-                                  style: TextStyle(color: Colors.grey),
+                                  style: TextStyle(color: TemaGlobal.textoTenue),
                                 ),
                               ],
                             ),
@@ -1327,11 +1325,11 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                                 'Sentencia relacionada con ${widget.sentencia.delito}',
                               ),
                               const Divider(height: 24),
-                              const Text(
+                              Text(
                                 '💡 Resumen:',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  color: azulMarino,
+                                  color: TemaGlobal.texto,
                                 ),
                               ),
                               const SizedBox(height: 8),
@@ -1403,11 +1401,11 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
           _buildWebDato('Decisión', s.decision),
           _buildWebDato('Tipo', s.tipoSentencia),
           const Divider(height: 32),
-          const Text(
+          Text(
             '📋 Resumen',
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: azulMarino,
+              color: TemaGlobal.texto,
               fontSize: 15,
             ),
           ),
@@ -1449,7 +1447,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
               etiqueta,
               style: TextStyle(
                 fontSize: 12,
-                color: Colors.grey[600],
+                color: TemaGlobal.textoSecundario,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -1457,9 +1455,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
           Expanded(
             child: Text(
               valor,
-              style: const TextStyle(
-                fontSize: 14,
-                color: azulMarino,
+              style: TextStyle(color: TemaGlobal.texto,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -1485,16 +1481,14 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                   label,
                   style: TextStyle(
                     fontSize: 12,
-                    color: Colors.grey[600],
+                    color: TemaGlobal.textoSecundario,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   value,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: azulMarino,
+                  style: TextStyle(color: TemaGlobal.texto,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -1516,10 +1510,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
       children: [
         Text(
           titulo,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: azulMarino,
+          style: TextStyle(color: TemaGlobal.texto,
           ),
         ),
         const SizedBox(height: 8),

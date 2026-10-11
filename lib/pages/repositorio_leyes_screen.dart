@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/ley_estructurada.dart';
+import '../config/app_theme.dart';
 import '../services/leyes_repositorio_service.dart';
 import '../widgets/app_drawer.dart';
 import 'ley_estructura_screen.dart';
@@ -22,7 +23,7 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFFF1F5F9);
+  static Color get fondoGris => TemaGlobal.superficie;
 
   List<LeyMeta> _leyes = [];
   List<ResultadoLey> _resultados = [];
@@ -233,7 +234,7 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
               _progresoIndice.isEmpty
                   ? 'Buscando en las leyes...'
                   : _progresoIndice,
-              style: TextStyle(color: azulMarino.withOpacity(0.6), fontSize: 14),
+              style: TextStyle(color: TemaGlobal.texto.withValues(alpha: 0.6), fontSize: 14),
             ),
           ],
         ),
@@ -298,17 +299,17 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
                       ley.nombre,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 14,
-                        color: azulMarino,
+                        color: TemaGlobal.texto,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       '${ley.articulos} artículos',
                       style: TextStyle(
-                        color: Colors.grey[600],
+                        color: TemaGlobal.textoSecundario,
                         fontSize: 12,
                       ),
                     ),
@@ -359,10 +360,10 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
                   Expanded(
                     child: Text(
                       r.tituloCorto,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 15,
-                        color: azulMarino,
+                        color: TemaGlobal.texto,
                       ),
                     ),
                   ),
@@ -375,7 +376,7 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.right,
                         style: TextStyle(
-                          color: Colors.grey[600],
+                          color: TemaGlobal.textoSecundario,
                           fontSize: 12,
                         ),
                       ),
@@ -390,16 +391,16 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
                 style: TextStyle(
                   fontSize: 13,
                   height: 1.4,
-                  color: Colors.grey[700],
+                  color: TemaGlobal.texto,
                 ),
               ),
               const SizedBox(height: 8),
-              const Align(
+              Align(
                 alignment: Alignment.centerRight,
                 child: Text(
                   'Ver artículo →',
                   style: TextStyle(
-                    color: azulMarino,
+                    color: TemaGlobal.texto,
                     fontWeight: FontWeight.w600,
                     fontSize: 12,
                   ),

@@ -6,6 +6,7 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '../config/app_colors.dart';
 import '../models/audiencia.dart';
+import '../config/app_theme.dart';
 import '../services/agenda_service.dart';
 import '../services/non_working_day_service.dart';
 import '../services/notification_service.dart';
@@ -358,7 +359,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
         decoration: InputDecoration(
           labelText: label,
           hintText: hint,
-          hintStyle: const TextStyle(color: Colors.grey, fontSize: 13),
+          hintStyle: TextStyle(color: TemaGlobal.textoTenue, fontSize: 13),
           prefixIcon: Icon(icon, color: AppColors.primary),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
           isDense: true,
@@ -380,7 +381,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                   Text(
                     "Agenda Judicial",
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: AppColors.primary,
+                          color: TemaGlobal.texto,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
@@ -430,23 +431,23 @@ class _AgendaScreenState extends State<AgendaScreen> {
                           });
                         },
                         eventLoader: (DateTime day) => _audienciasPorDia[_normalizeDay(day)] ?? <dynamic>[],
-                        headerStyle: const HeaderStyle(
+                        headerStyle: HeaderStyle(
                           formatButtonVisible: false,
                           formatButtonShowsNext: false,
                           titleCentered: true,
-                          titleTextStyle: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700),
-                          leftChevronIcon: Icon(Icons.chevron_left, color: AppColors.primary),
-                          rightChevronIcon: Icon(Icons.chevron_right, color: AppColors.primary),
+                          titleTextStyle: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.w700),
+                          leftChevronIcon: Icon(Icons.chevron_left, color: TemaGlobal.texto),
+                          rightChevronIcon: Icon(Icons.chevron_right, color: TemaGlobal.texto),
                         ),
-                        daysOfWeekStyle: const DaysOfWeekStyle(
-                          weekdayStyle: TextStyle(color: AppColors.primary),
-                          weekendStyle: TextStyle(color: AppColors.primary),
+                        daysOfWeekStyle: DaysOfWeekStyle(
+                          weekdayStyle: TextStyle(color: TemaGlobal.texto),
+                          weekendStyle: TextStyle(color: TemaGlobal.texto),
                         ),
                         calendarStyle: CalendarStyle(
                           selectedDecoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(8)),
                           todayDecoration: BoxDecoration(color: AppColors.primary.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(8)),
                           selectedTextStyle: const TextStyle(color: AppColors.secondary, fontWeight: FontWeight.bold),
-                          todayTextStyle: const TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700),
+                          todayTextStyle: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.w700),
                           markerDecoration: const BoxDecoration(color: AppColors.secondary, shape: BoxShape.circle),
                         ),
                         calendarBuilders: CalendarBuilders(
@@ -476,7 +477,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                 color: AppColors.primary.withValues(alpha: 0.12),
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              child: Text('${day.day}', style: const TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700)),
+                              child: Text('${day.day}', style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.w700)),
                             ),
                           selectedBuilder: (BuildContext context, DateTime day, DateTime focusedDay) => Container(
                               margin: const EdgeInsets.all(6),
@@ -496,12 +497,12 @@ class _AgendaScreenState extends State<AgendaScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(12),
                         child: _audienciasDelDia.isEmpty
-                            ? const Column(
+                            ? Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Icon(Icons.calendar_month, color: AppColors.primary, size: 48),
-                                  SizedBox(height: 12),
-                                  Text("No hay audiencias fijadas.", textAlign: TextAlign.center),
+                                  Icon(Icons.calendar_month, color: TemaGlobal.texto, size: 48),
+                                  const SizedBox(height: 12),
+                                  const Text("No hay audiencias fijadas.", textAlign: TextAlign.center),
                                 ],
                               )
                             : ListView.builder(

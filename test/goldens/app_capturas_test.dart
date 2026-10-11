@@ -14,6 +14,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:penalex_ve/pages/dosimetria_page.dart';
 import 'package:penalex_ve/pages/main_screen.dart';
 import 'package:penalex_ve/pages/repositorio_jurisprudencia_screen.dart';
+import 'package:penalex_ve/pages/repositorio_leyes_screen.dart';
 import 'package:penalex_ve/config/app_theme.dart';
 
 void main() {
@@ -46,7 +47,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           debugShowCheckedModeBanner: false,
-          theme: ThemeData.dark(useMaterial3: true),
+          theme: TemaGlobal.isDark
+              ? ThemeData.dark(useMaterial3: true)
+              : ThemeData.light(useMaterial3: true),
           home: page,
         ),
       );
@@ -83,6 +86,30 @@ void main() {
     await tester.pump();
     tester.takeException();
     tester.takeException();
+  });
+
+  Future<void> capturaOscura(WidgetTester tester, Widget page, String archivo) async {
+    TemaGlobal.oscuro.value = true;
+    await pumpPage(tester, page);
+    tester.takeException();
+    await expectLater(
+      find.byType(page.runtimeType),
+      matchesGoldenFile('goldens/$archivo.png'),
+    );
+    TemaGlobal.oscuro.value = false;
+    await tester.pump();
+    tester.takeException();
+    tester.takeException();
+  }
+
+  testWidgets('jurisprudencia MODO OSCURO', (tester) async {
+    await capturaOscura(tester, const RepositorioJurisprudenciaScreen(),
+        'jurisprudencia_filtros_oscura');
+  });
+
+  testWidgets('leyes MODO OSCURO', (tester) async {
+    await capturaOscura(tester, const RepositorioLeyesScreen(),
+        'leyes_oscura');
   });
 
   testWidgets('main_screen (barra inferior + 5 pestañas)', (tester) async {
