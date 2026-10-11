@@ -51,6 +51,12 @@ class QuizEffectsGame extends FlameGame {
   final Random _rnd = Random();
   final List<_Particula> _particulas = [];
 
+  /// Fondo transparente: flame 1.38 usa [Game.backgroundColor] (negro por
+  /// defecto) para el lienzo; antes se pasaba por GameWidget y el parámetro
+  /// fue eliminado. Sin esto, las capas de efectos tapan el diseño con negro.
+  @override
+  Color backgroundColor() => const Color(0x00000000);
+
   /// Explosión de confeti/chispas en un punto de la pantalla.
   void explosion({
     required Offset centro,
