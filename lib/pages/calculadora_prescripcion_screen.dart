@@ -451,7 +451,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: prescrita
-                ? const Color(0xFF7F1D1D).withValues(alpha: 0.85)
+                ? const Color(0xFFB91C1C).withValues(alpha: 0.85)
                 : grisOscuro,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(

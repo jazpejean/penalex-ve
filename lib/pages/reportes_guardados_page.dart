@@ -245,7 +245,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
                           height: 50,
                           decoration: BoxDecoration(
                             gradient: const LinearGradient(
-                              colors: [Color(0xFFEF4444), Color(0xFFDC2626)],
+                              colors: [Color(0xFFEF4444), Color(0xFFB91C1C)],
                             ),
                             borderRadius: BorderRadius.circular(10),
                           ),

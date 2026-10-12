@@ -563,7 +563,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                         ? 'OCULTAR DESGLOSE'
                                         : 'VER DESGLOSE PASO A PASO',
                                     style: const TextStyle(
-                                        color: Color(0xFFE9C86A),
+                                        color: Color(0xFFC5A059),
                                         fontSize: 10,
                                         fontWeight: FontWeight.w800,
                                         letterSpacing: 0.5),
@@ -572,7 +572,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     _mostrarDesglose
                                         ? Icons.keyboard_arrow_up_rounded
                                         : Icons.keyboard_arrow_down_rounded,
-                                    color: const Color(0xFFE9C86A),
+                                    color: const Color(0xFFC5A059),
                                     size: 16,
                                   ),
                                 ],
@@ -616,7 +616,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                                 '- ${e.value}',
                                                 style: TextStyle(
                                                   color: esFinal
-                                                      ? const Color(0xFFE9C86A)
+                                                      ? const Color(0xFFC5A059)
                                                       : Colors.white,
                                                   fontSize: 11,
                                                   fontWeight: esFinal

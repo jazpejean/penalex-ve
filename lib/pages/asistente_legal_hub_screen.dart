@@ -93,7 +93,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             _buildToolCard(
               context,
               icon: Icons.edit_document,
-              iconColor: const Color(0xFF3B82F6),
+              iconColor: const Color(0xFFC5A059),
               title: 'Redactor de Documentos',
               badge: '⚡ Ahorra tiempo',
               description:
@@ -113,7 +113,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             _buildToolCard(
               context,
               icon: Icons.document_scanner,
-              iconColor: const Color(0xFF8B5CF6),
+              iconColor: const Color(0xFFC5A059),
               title: 'Escáner de Documentos',
               badge: null,
               description:
@@ -133,7 +133,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             _buildToolCard(
               context,
               icon: Icons.hourglass_bottom,
-              iconColor: const Color(0xFFEF4444),
+              iconColor: const Color(0xFFC5A059),
               title: 'Calculadora de Prescripción',
               badge: '⚖️ Art. 108 y 112 CP',
               description:

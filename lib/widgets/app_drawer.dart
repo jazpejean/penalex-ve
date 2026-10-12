@@ -117,7 +117,7 @@ class AppDrawer extends StatelessWidget {
         messenger.showSnackBar(
           const SnackBar(
             content: Text('Foto de perfil actualizada correctamente'),
-            backgroundColor: Color(0xFF16A34A),
+            backgroundColor: Color(0xFF10B981),
           ),
         );
       } else {

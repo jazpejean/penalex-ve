@@ -74,7 +74,7 @@ class _ChipPaso extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           if (completado)
-            const Icon(Icons.check_rounded, size: 14, color: Color(0xFFE9C86A))
+            const Icon(Icons.check_rounded, size: 14, color: Color(0xFFC5A059))
           else
             Text(
               '$numero',
