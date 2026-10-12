@@ -14,6 +14,8 @@ import '../services/quiz_ranking_service.dart';
 import '../services/quiz_rules.dart';
 import '../services/quiz_storage_service.dart';
 import '../utils/quiz_seed.dart';
+import '../utils/transiciones.dart';
+import '../widgets/liquid_gold_background.dart';
 import '../widgets/quiz_insignia_widget.dart';
 import '../widgets/penalex_logo.dart';
 import '../widgets/quiz_icon.dart';
@@ -23,7 +25,6 @@ import 'quiz_logros_screen.dart';
 
 /// Paleta propia del quiz: "Noche de Juego" (violeta índigo + oro de victoria).
 const _fondoProfundo = Color(0xFF190F38);
-const _fondoBrillo = Color(0xFF3A2870);
 const _card = Color(0xFF251A4D);
 const _oro = Color(0xFFC5A059);
 const _oroBrillante = Color(0xFFE9C86A);
@@ -142,7 +143,9 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
       backgroundColor: _fondoProfundo,
       body: Stack(
         children: [
-          const Positioned.fill(child: _FondoLobby()),
+          const Positioned.fill(
+            child: LiquidGoldBackground(child: SizedBox.expand()),
+          ),
           Positioned.fill(
             child: IgnorePointer(
               child: GameWidget(
@@ -582,10 +585,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
           child: InkWell(
             borderRadius: BorderRadius.circular(22),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const QuizGameScreen()),
-              );
+              Navigator.push(context, cortinaDorada(const QuizGameScreen()));
             },
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 20),
@@ -640,10 +640,8 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
         padding: const EdgeInsets.symmetric(vertical: 15),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
-      onPressed: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const QuizLogrosScreen()),
-      ),
+      onPressed: () =>
+          Navigator.push(context, cortinaDorada(const QuizLogrosScreen())),
       icon: const QuizIcon('laurel'),
       label: const Text('Mis Logros'),
     );
@@ -763,52 +761,6 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
           ),
         ),
       ],
-    );
-  }
-}
-
-/// Fondo del lobby: gradiente violeta índigo con resplandores.
-class _FondoLobby extends StatelessWidget {
-  const _FondoLobby();
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: RadialGradient(
-          center: const Alignment(0, -0.85),
-          radius: 1.4,
-          colors: [_fondoBrillo, _fondoProfundo],
-        ),
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            top: 90,
-            right: -50,
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _oro.withValues(alpha: 0.06),
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: -90,
-            left: -60,
-            child: Container(
-              width: 250,
-              height: 250,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: const Color(0xFF7C4DFF).withValues(alpha: 0.09),
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

@@ -3,7 +3,18 @@ import 'dart:math';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
-/// Partícula con física simple (gravedad, fricción, rotación, vida).
+/// Formas disponibles para las partículas del quiz.
+enum FormaParticula { circulo, rombo, estrella, gema, pluma, chispa }
+
+/// Paleta oficial del quiz (navy + oro, sin violeta).
+const _oro = Color(0xFFC5A059);
+const _oroBrillante = Color(0xFFE9C86A);
+const _ambar = Color(0xFFF59E0B);
+const _esmeralda = Color(0xFF10B981);
+
+/// Partícula con física simple (gravedad, fricción, rotación, vida) y una
+/// forma propia; conserva un pequeño historial de posiciones para dibujar
+/// estelas (trails) con opacidad decreciente.
 class _Particula {
   double x;
   double y;
@@ -15,7 +26,8 @@ class _Particula {
   final double vidaMax;
   final double tam;
   final Color color;
-  final bool circulo;
+  final FormaParticula forma;
+  final List<Offset> historial;
 
   _Particula({
     required this.x,
@@ -27,12 +39,17 @@ class _Particula {
     required this.vida,
     required this.tam,
     required this.color,
-    required this.circulo,
-  }) : vidaMax = vida;
+    this.forma = FormaParticula.circulo,
+  })  : vidaMax = vida,
+        historial = <Offset>[];
 
   bool get viva => vida > 0;
 
   void update(double dt) {
+    // Historial: últimas 3 posiciones (para las estelas).
+    historial.add(Offset(x, y));
+    if (historial.length > 3) historial.removeAt(0);
+
     vy += 950 * dt; // gravedad
     vx *= max(0.0, 1 - 1.4 * dt); // fricción
     x += vx * dt;
@@ -57,21 +74,18 @@ class QuizEffectsGame extends FlameGame {
   @override
   Color backgroundColor() => const Color(0x00000000);
 
-  /// Explosión de confeti/chispas en un punto de la pantalla.
+  /// Explosión ceremonial de partículas en un punto de la pantalla.
+  ///
+  /// Distribución por defecto: 35% estrella, 25% gema, 20% chispa, 15% pluma,
+  /// 5% rombo. [cantidad] por defecto 80 (150 para ascensos).
   void explosion({
     required Offset centro,
-    int cantidad = 42,
+    int cantidad = 80,
     double fuerza = 620,
     List<Color>? colores,
   }) {
     final cols = colores ??
-        const [
-          Color(0xFFE9C86A),
-          Color(0xFFC5A059),
-          Color(0xFFFFFFFF),
-          Color(0xFF81C784),
-          Color(0xFFFFB74D),
-        ];
+        const [_oroBrillante, _oro, Color(0xFFFFFFFF), _ambar, _esmeralda];
     for (var i = 0; i < cantidad; i++) {
       final ang = _rnd.nextDouble() * 2 * pi;
       final vel = (0.25 + _rnd.nextDouble()) * fuerza;
@@ -85,9 +99,18 @@ class QuizEffectsGame extends FlameGame {
         vida: 0.9 + _rnd.nextDouble(),
         tam: 3.5 + _rnd.nextDouble() * 6,
         color: cols[_rnd.nextInt(cols.length)],
-        circulo: _rnd.nextBool(),
+        forma: _formaAzar(),
       ));
     }
+  }
+
+  FormaParticula _formaAzar() {
+    final r = _rnd.nextDouble();
+    if (r < 0.35) return FormaParticula.estrella;
+    if (r < 0.60) return FormaParticula.gema;
+    if (r < 0.80) return FormaParticula.chispa;
+    if (r < 0.95) return FormaParticula.pluma;
+    return FormaParticula.rombo;
   }
 
   /// Partícula ambiental dorada que sube flotando desde abajo (lobby).
@@ -102,8 +125,7 @@ class QuizEffectsGame extends FlameGame {
       vr: (_rnd.nextDouble() - 0.5) * 1.2,
       vida: 5 + _rnd.nextDouble() * 4,
       tam: 2 + _rnd.nextDouble() * 3.5,
-      color: const Color(0xFFE9C86A),
-      circulo: true,
+      color: _oroBrillante,
     ));
   }
 
@@ -121,26 +143,108 @@ class QuizEffectsGame extends FlameGame {
     super.render(canvas);
     for (final p in _particulas) {
       final alpha = (p.vida / p.vidaMax).clamp(0.0, 1.0);
-      final paint = Paint()..color = p.color.withValues(alpha: alpha);
+      final color = p.color.withValues(alpha: alpha);
+
+      // Estelas: líneas hacia las últimas posiciones (0.3 / 0.2 / 0.1).
+      _dibujarTrails(canvas, p, color);
+
       canvas.save();
       canvas.translate(p.x, p.y);
       canvas.rotate(p.rot);
-      if (p.circulo) {
-        canvas.drawCircle(Offset.zero, p.tam, paint);
-      } else {
-        canvas.drawRRect(
-          RRect.fromRectAndRadius(
-            Rect.fromCenter(
-              center: Offset.zero,
-              width: p.tam * 2.1,
-              height: p.tam * 1.15,
-            ),
-            const Radius.circular(2),
-          ),
-          paint,
-        );
+      final paint = Paint()..color = color;
+      switch (p.forma) {
+        case FormaParticula.circulo:
+          canvas.drawCircle(Offset.zero, p.tam, paint);
+        case FormaParticula.rombo:
+          _drawRombo(canvas, p.tam, paint);
+        case FormaParticula.estrella:
+          _drawEstrella(canvas, p.tam, paint);
+        case FormaParticula.gema:
+          _drawGema(canvas, p.tam, paint);
+        case FormaParticula.pluma:
+          _drawPluma(canvas, p.tam, paint);
+        case FormaParticula.chispa:
+          _drawChispa(canvas, p.tam, paint);
       }
       canvas.restore();
     }
+  }
+
+  void _dibujarTrails(Canvas canvas, _Particula p, Color color) {
+    if (p.historial.isEmpty) return;
+    final paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.4
+      ..strokeCap = StrokeCap.round;
+    final puntos = [Offset(p.x, p.y), ...p.historial];
+    for (var i = 0; i < puntos.length - 1; i++) {
+      paint.color = color.withValues(alpha: (0.3 - i * 0.1));
+      canvas.drawLine(puntos[i], puntos[i + 1], paint);
+    }
+  }
+
+  /// Estrella de 5 puntas.
+  void _drawEstrella(Canvas canvas, double t, Paint paint) {
+    final path = Path();
+    final exterior = t * 2.0;
+    final interior = t * 0.95;
+    for (var i = 0; i < 10; i++) {
+      final r = i.isEven ? exterior : interior;
+      final a = -pi / 2 + i * pi / 5;
+      final pto = Offset(cos(a) * r, sin(a) * r);
+      i == 0 ? path.moveTo(pto.dx, pto.dy) : path.lineTo(pto.dx, pto.dy);
+    }
+    path.close();
+    canvas.drawPath(path, paint);
+  }
+
+  /// Gema: rombo con facetas.
+  void _drawGema(Canvas canvas, double t, Paint paint) {
+    final path = Path()
+      ..moveTo(0, -t * 1.7)
+      ..lineTo(t * 0.85, 0)
+      ..lineTo(0, t * 1.5)
+      ..lineTo(-t * 0.85, 0)
+      ..close();
+    canvas.drawPath(path, paint);
+    final facetas = Paint()
+      ..color = paint.color.withValues(alpha: 0.35)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 0.8;
+    canvas.drawLine(Offset(0, -t * 1.7), Offset(0, t * 1.5), facetas);
+  }
+
+  /// Pluma: gota alargada (teardrop).
+  void _drawPluma(Canvas canvas, double t, Paint paint) {
+    final path = Path()
+      ..moveTo(0, -t * 1.6)
+      ..quadraticBezierTo(t * 0.7, -t * 0.2, 0, t * 1.4)
+      ..quadraticBezierTo(-t * 0.7, -t * 0.2, 0, -t * 1.6)
+      ..close();
+    canvas.drawPath(path, paint);
+  }
+
+  /// Chispa: estrella de 4 puntas fina (asterisco).
+  void _drawChispa(Canvas canvas, double t, Paint paint) {
+    final path = Path();
+    for (var i = 0; i < 8; i++) {
+      final r = i.isEven ? t * 1.8 : t * 0.35;
+      final a = i * pi / 4;
+      final pto = Offset(cos(a) * r, sin(a) * r);
+      i == 0 ? path.moveTo(pto.dx, pto.dy) : path.lineTo(pto.dx, pto.dy);
+    }
+    path.close();
+    canvas.drawPath(path, paint);
+  }
+
+  /// Rombo: diamante simple (la rotación la aporta `canvas.rotate`).
+  void _drawRombo(Canvas canvas, double t, Paint paint) {
+    final path = Path()
+      ..moveTo(0, -t)
+      ..lineTo(t, 0)
+      ..lineTo(0, t)
+      ..lineTo(-t, 0)
+      ..close();
+    canvas.drawPath(path, paint);
   }
 }
