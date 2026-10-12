@@ -9,6 +9,9 @@ import 'package:share_plus/share_plus.dart';
 
 import '../game/quiz_effects_game.dart';
 import '../models/caso_quiz.dart';
+import '../utils/transiciones.dart';
+import '../widgets/racha_overlay.dart';
+import 'quiz_resumen_screen.dart';
 import '../services/misiones_diarias_service.dart';
 import '../services/quiz_certificate_service.dart';
 import '../services/quiz_rules.dart';
@@ -44,16 +47,26 @@ class _QuizGameScreenState extends State<QuizGameScreen>
   late final QuizEffectsGame _fx;
   late final AnimationController _arc;
   late final AnimationController _shake;
+  late final AnimationController _latido;
 
   Map<String, dynamic> _progreso = {};
   CasoQuiz? _caso;
   bool _cargando = true;
   bool _respondida = false;
+  bool _revelando = false;
   int? _seleccionada;
   int _racha = 0;
   int _apelaciones = 5;
   int _xp = 0;
   int _nivelActual = 1;
+
+  // Estadísticas de la sesión (para la pantalla de resumen).
+  int _casosResueltos = 0;
+  int _aciertosSesion = 0;
+  int _fallosSesion = 0;
+  int _xpSesion = 0;
+  int _rachaMaxSesion = 0;
+  int _tiempoTotal = 0;
 
   int _tiempoRestante = 30;
   Timer? _timer;
@@ -77,6 +90,10 @@ class _QuizGameScreenState extends State<QuizGameScreen>
       vsync: this,
       duration: const Duration(milliseconds: 450),
     );
+    _latido = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 400),
+    );
     _inicializar();
   }
 
@@ -86,6 +103,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
     _destelloTimer?.cancel();
     _arc.dispose();
     _shake.dispose();
+    _latido.dispose();
     super.dispose();
   }
 
@@ -154,13 +172,27 @@ class _QuizGameScreenState extends State<QuizGameScreen>
     setState(() {
       _respondida = true;
       _seleccionada = tiempoAgotado ? null : indice;
+      _revelando = true;
     });
     _timer?.cancel();
     _arc.stop();
 
+    // 1) Marca la opción con borde dorado pulsante + sonido + latido sutil.
+    SfxService.instance.tap();
+    HapticFeedback.selectionClick();
+    _latido.forward(from: 0);
+
+    // 2) Pausa de 400 ms (escala 1 → 1.03 → 1) antes de revelar el resultado.
+    await Future.delayed(const Duration(milliseconds: 400));
+    if (!mounted) return;
+    setState(() => _revelando = false);
+
     var nuevo = Map<String, dynamic>.from(_progreso);
     final rangoAnterior = QuizRules.rangoParaXp(_xp);
     int xpGanado = 0;
+
+    _casosResueltos++;
+    _tiempoTotal += (30 - _tiempoRestante).clamp(0, 30);
 
     if (correcta) {
       xpGanado = QuizRules.xpPorAcierto(
@@ -168,8 +200,12 @@ class _QuizGameScreenState extends State<QuizGameScreen>
         racha: _racha,
       );
       _racha++;
+      _aciertosSesion++;
+      _xpSesion += xpGanado;
+      if (_racha > _rachaMaxSesion) _rachaMaxSesion = _racha;
       if (_racha >= 5 && _racha % 5 == 0) {
         SfxService.instance.racha(_racha);
+        _mostrarRacha(_racha);
       }
       _xp += xpGanado;
       nuevo = _service.registrarAcierto(nuevo, _caso!.id);
@@ -182,7 +218,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
       );
 
       final c = _fx.size;
-      _fx.explosion(centro: Offset(c.x / 2, c.y / 2), cantidad: 46);
+      _fx.explosion(centro: Offset(c.x / 2, c.y / 2), cantidad: 80);
       _xpFlotante = xpGanado;
       _xpNonce++;
       _destello = true;
@@ -194,6 +230,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
       await Future.delayed(const Duration(milliseconds: 300));
     } else {
       _apelaciones = (_apelaciones - 1).clamp(0, 999);
+      _fallosSesion++;
       _racha = 0;
       nuevo = _service.registrarFallo(nuevo, _caso!.id);
       _shake.forward(from: 0);
@@ -226,12 +263,62 @@ class _QuizGameScreenState extends State<QuizGameScreen>
         }
       }
     }
+
+    // Apelaciones agotadas → pantalla de resumen de la sesión.
+    if (_apelaciones <= 0 && mounted) {
+      await Future.delayed(const Duration(milliseconds: 700));
+      if (!mounted) return;
+      Navigator.pushReplacement(
+        context,
+        cortinaDorada(QuizResumenScreen(
+          casosResueltos: _casosResueltos,
+          aciertos: _aciertosSesion,
+          fallos: _fallosSesion,
+          xpGanado: _xpSesion,
+          rachaMaxima: _rachaMaxSesion,
+          tiempoTotal: _tiempoTotal,
+        )),
+      );
+    }
+  }
+
+  /// Overlay "¡RACHA xN!" al cruzar múltiplos de 5, con partículas desde el
+  /// centro; se desvanece solo a los 1.5 s.
+  Future<void> _mostrarRacha(int racha) async {
+    final c = _fx.size;
+    if (c.x > 0) {
+      _fx.explosion(
+        centro: Offset(c.x / 2, c.y / 2),
+        cantidad: 40,
+        fuerza: 520,
+        colores: const [
+          Color(0xFFE9C86A),
+          Color(0xFFC5A059),
+          Color(0xFFF59E0B),
+        ],
+      );
+    }
+    if (!mounted) return;
+    await showGeneralDialog(
+      context: context,
+      barrierColor: Colors.transparent,
+      barrierDismissible: false,
+      transitionDuration: const Duration(milliseconds: 250),
+      transitionBuilder: (context, anim, _, child) => ScaleTransition(
+        scale: CurvedAnimation(parent: anim, curve: Curves.elasticOut),
+        child: FadeTransition(opacity: anim, child: child),
+      ),
+      pageBuilder: (context, _, __) => RachaOverlay(
+        racha: racha,
+        onDone: () => Navigator.of(context).pop(),
+      ),
+    );
   }
 
   void _mostrarAscenso(String rango, int xpGanado) {
     SfxService.instance.victoria();
     final c = _fx.size;
-    _fx.explosion(centro: Offset(c.x / 2, c.y / 2), cantidad: 60, fuerza: 780);
+    _fx.explosion(centro: Offset(c.x / 2, c.y / 2), cantidad: 150, fuerza: 780);
     showGeneralDialog(
       context: context,
       barrierDismissible: false,
@@ -530,15 +617,11 @@ class _QuizGameScreenState extends State<QuizGameScreen>
                     texto: e.value,
                     indice: e.key,
                     respondida: _respondida,
+                    revelando: _revelando,
                     esCorrecta: e.key == _caso!.respuestaCorrecta,
                     esSeleccionada: e.key == _seleccionada,
-                    onTap: _respondida
-                        ? null
-                        : () {
-                            HapticFeedback.selectionClick();
-                            SfxService.instance.tap();
-                            _resolver(indice: e.key);
-                          },
+                    onTap:
+                        _respondida ? null : () => _resolver(indice: e.key),
                   ),
                 ),
             if (_respondida) ...[
@@ -611,7 +694,14 @@ class _QuizGameScreenState extends State<QuizGameScreen>
   }
 
   Widget _buildPreguntaCard() {
-    return Container(
+    // Latido sutil (escala 1 → 1.03 → 1) durante la pausa de revelación.
+    return AnimatedBuilder(
+      animation: _latido,
+      builder: (context, child) {
+        final t = _latido.value;
+        return Transform.scale(scale: 1 + 0.03 * sin(t * pi), child: child);
+      },
+      child: Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: _card,
@@ -655,6 +745,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
           ),
         ],
       ),
+    ),
     );
   }
 
@@ -832,7 +923,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
   Future<void> _mostrarLogro(String rango, int xpGanado) async {
     SfxService.instance.victoria();
     final c = _fx.size;
-    _fx.explosion(centro: Offset(c.x / 2, c.y / 2), cantidad: 70, fuerza: 820);
+    _fx.explosion(centro: Offset(c.x / 2, c.y / 2), cantidad: 150, fuerza: 820);
     String? ruta;
     try {
       final user = FirebaseAuth.instance.currentUser;
@@ -1001,6 +1092,7 @@ class _OpcionTarjeta extends StatefulWidget {
   final String texto;
   final int indice;
   final bool respondida;
+  final bool revelando;
   final bool esCorrecta;
   final bool esSeleccionada;
   final VoidCallback? onTap;
@@ -1009,6 +1101,7 @@ class _OpcionTarjeta extends StatefulWidget {
     required this.texto,
     required this.indice,
     required this.respondida,
+    required this.revelando,
     required this.esCorrecta,
     required this.esSeleccionada,
     this.onTap,
@@ -1022,6 +1115,7 @@ class _OpcionTarjetaState extends State<_OpcionTarjeta>
     with TickerProviderStateMixin {
   bool _presionada = false;
   AnimationController? _shake;
+  AnimationController? _pulso;
 
   @override
   void didUpdateWidget(covariant _OpcionTarjeta oldWidget) {
@@ -1035,11 +1129,25 @@ class _OpcionTarjetaState extends State<_OpcionTarjeta>
         duration: const Duration(milliseconds: 520),
       )..forward();
     }
+    // Pulso dorado mientras se revela la respuesta seleccionada.
+    final quierePulso = widget.respondida &&
+        widget.revelando &&
+        widget.esSeleccionada;
+    if (quierePulso && _pulso == null) {
+      _pulso = AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 400),
+      )..repeat(reverse: true);
+    } else if (!quierePulso && _pulso != null) {
+      _pulso!.dispose();
+      _pulso = null;
+    }
   }
 
   @override
   void dispose() {
     _shake?.dispose();
+    _pulso?.dispose();
     super.dispose();
   }
 
@@ -1053,7 +1161,13 @@ class _OpcionTarjetaState extends State<_OpcionTarjeta>
     String? iconoFin;
 
     if (widget.respondida) {
-      if (widget.esCorrecta) {
+      if (widget.revelando && widget.esSeleccionada) {
+        // Borde dorado pulsante durante la pausa de revelación.
+        borde = _oro;
+        fondo = _oro.withValues(alpha: 0.12);
+        letraFondo = _oro;
+        letraColor = const Color(0xFF0F172A);
+      } else if (widget.esCorrecta) {
         borde = _acierto;
         fondo = _acierto.withValues(alpha: 0.16);
         letraFondo = _acierto;
@@ -1159,6 +1273,16 @@ class _OpcionTarjetaState extends State<_OpcionTarjeta>
     // Las no elegidas se apagan.
     if (widget.respondida && !widget.esCorrecta && !widget.esSeleccionada) {
       tarjeta = Opacity(opacity: 0.35, child: tarjeta);
+    }
+
+    // Escala pulsante (latido) mientras se revela la seleccionada.
+    if (widget.respondida && widget.revelando && widget.esSeleccionada) {
+      tarjeta = AnimatedBuilder(
+        animation: _pulso!,
+        builder: (context, child) =>
+            Transform.scale(scale: 1 + 0.025 * _pulso!.value, child: child),
+        child: tarjeta,
+      );
     }
 
     return Padding(
