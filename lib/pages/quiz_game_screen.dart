@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flame/game.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
@@ -22,17 +23,15 @@ import '../utils/quiz_seed.dart';
 import '../widgets/quiz_icon.dart';
 import '../widgets/quiz_pulso_widget.dart';
 
-/// Paleta propia del quiz: "Noche de Juego".
-/// Violeta índigo profundo (distinto al navy de la app), gemas vivas y
-/// el oro reservado para victorias y ascensos.
-const _fondoProfundo = Color(0xFF190F38);
-const _fondoBrillo = Color(0xFF3A2870);
-const _card = Color(0xFF251A4D);
+/// Paleta oficial del quiz: navy + oro (alineada al resto de la app).
+const _fondoProfundo = Color(0xFF0A0E1A);
+const _fondoBrillo = Color(0xFF1E2A4A);
+const _card = Color(0xFF141B2E);
 const _oro = Color(0xFFC5A059);
 const _oroBrillante = Color(0xFFE9C86A);
-const _acierto = Color(0xFF2EE6A8);
-const _fallo = Color(0xFFFF5252);
-const _ambar = Color(0xFFFFB74D);
+const _acierto = Color(0xFF10B981);
+const _fallo = Color(0xFFB91C1C);
+const _ambar = Color(0xFFF59E0B);
 
 class QuizGameScreen extends StatefulWidget {
   const QuizGameScreen({super.key});
@@ -223,7 +222,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
       _xpNonce++;
       _destello = true;
       _destelloTimer?.cancel();
-      _destelloTimer = Timer(const Duration(milliseconds: 140), () {
+      _destelloTimer = Timer(const Duration(milliseconds: 300), () {
         if (mounted) setState(() => _destello = false);
       });
       SfxService.instance.correcta();
@@ -303,7 +302,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
       context: context,
       barrierColor: Colors.transparent,
       barrierDismissible: false,
-      transitionDuration: const Duration(milliseconds: 250),
+      transitionDuration: const Duration(milliseconds: 300),
       transitionBuilder: (context, anim, _, child) => ScaleTransition(
         scale: CurvedAnimation(parent: anim, curve: Curves.elasticOut),
         child: FadeTransition(opacity: anim, child: child),
@@ -341,7 +340,12 @@ class _QuizGameScreenState extends State<QuizGameScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Theme(
+      data: Theme.of(context).copyWith(
+        textTheme: GoogleFonts.interTextTheme(
+            Theme.of(context).textTheme),
+      ),
+      child: Scaffold(
       backgroundColor: _fondoProfundo,
       body: SafeArea(
         child: AnimatedBuilder(
@@ -375,7 +379,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
                 child: IgnorePointer(
                   child: AnimatedOpacity(
                     opacity: _destello ? 1 : 0,
-                    duration: const Duration(milliseconds: 120),
+                    duration: const Duration(milliseconds: 300),
                     child: const ColoredBox(color: Color(0xFFFFF3C4)),
                   ),
                 ),
@@ -457,12 +461,13 @@ class _QuizGameScreenState extends State<QuizGameScreen>
           ),
         ),
       ),
+      ),
     );
   }
 
   Widget _buildTopBar() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 4),
+      padding: const EdgeInsets.fromLTRB(24, 12, 24, 4),
       child: Row(
         children: [
           Expanded(
@@ -480,10 +485,10 @@ class _QuizGameScreenState extends State<QuizGameScreen>
                   child: Text(
                     QuizRules.rangoParaXp(_xp),
                     key: ValueKey(QuizRules.rangoParaXp(_xp)),
-                    style: const TextStyle(
+                    style: GoogleFonts.cinzel(
                       color: _oroBrillante,
                       fontSize: 15,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
                 ),
@@ -491,10 +496,10 @@ class _QuizGameScreenState extends State<QuizGameScreen>
             ),
           ),
           _buildRacha(),
-          const SizedBox(width: 14),
+          const SizedBox(width: 16),
           _stat(QuizIcon('scales_calc', size: 18, color: _oro), '$_apelaciones', _oro),
-          const SizedBox(width: 14),
-          _stat(QuizIcon('star_shield', size: 18, color: Colors.amber), '$_xp', Colors.amber),
+          const SizedBox(width: 16),
+          _stat(QuizIcon('star_shield', size: 18, color: _oroBrillante), '$_xp', _oroBrillante),
         ],
       ),
     );
@@ -503,8 +508,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
   Widget _buildRacha() {
     final fuerte = _racha >= 5;
     final media = _racha >= 3;
-    final color =
-        fuerte ? const Color(0xFFFF6B35) : (media ? _ambar : Colors.white70);
+    final color = fuerte ? _oroBrillante : (media ? _ambar : Colors.white70);
     return QuizPulso(
       maxScale: fuerte ? 1.18 : (media ? 1.08 : 1.0),
       periodo: fuerte
@@ -553,7 +557,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
     final sig = QuizRules.siguienteRango(_xp);
     final progreso = QuizRules.progresoRango(_xp);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -604,7 +608,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
       ),
       child: SingleChildScrollView(
         key: ValueKey('q_${_caso!.id}'),
-        padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+        padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -627,7 +631,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
             if (_respondida) ...[
               const SizedBox(height: 16),
               _buildFundamentacion(),
-              const SizedBox(height: 20),
+              const SizedBox(height: 24),
               _buildSiguiente(),
             ],
           ],
@@ -674,7 +678,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
                     ),
                   ),
                 AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 250),
+                  duration: const Duration(milliseconds: 300),
                   child: Text(
                     '$_tiempoRestante',
                     key: ValueKey(_tiempoRestante),
@@ -702,10 +706,10 @@ class _QuizGameScreenState extends State<QuizGameScreen>
         return Transform.scale(scale: 1 + 0.03 * sin(t * pi), child: child);
       },
       child: Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: _card,
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(16),
         border: Border.all(color: _oro.withValues(alpha: 0.35), width: 1.2),
         boxShadow: [
           BoxShadow(
@@ -719,10 +723,10 @@ class _QuizGameScreenState extends State<QuizGameScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
             decoration: BoxDecoration(
               color: _ambar.withValues(alpha: 0.16),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(999),
               border: Border.all(color: _ambar.withValues(alpha: 0.5)),
             ),
             child: Text(
@@ -734,7 +738,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
               ),
             ),
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: 16),
           Text(
             _caso!.contextoNarrativo,
             style: const TextStyle(
@@ -767,7 +771,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: _acierto.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(16),
           border: Border.all(color: _acierto.withValues(alpha: 0.45)),
         ),
         child: Column(
@@ -804,9 +808,9 @@ class _QuizGameScreenState extends State<QuizGameScreen>
                 ),
               ),
             if (_caso!.articulos.isNotEmpty) ...[
-              const SizedBox(height: 10),
+              const SizedBox(height: 8),
               ..._caso!.articulos.map((a) => Text(
-                    '📜 $a',
+                    '$a',
                     style: const TextStyle(
                       color: Color(0xFFBFD7EA),
                       fontSize: 13,
@@ -814,9 +818,9 @@ class _QuizGameScreenState extends State<QuizGameScreen>
                   )),
             ],
             if (_caso!.sentencias.isNotEmpty) ...[
-              const SizedBox(height: 10),
+              const SizedBox(height: 8),
               ..._caso!.sentencias.map((s) => Text(
-                    '⚖️ $s',
+                    '$s',
                     style: const TextStyle(
                       color: Color(0xFFBFD7EA),
                       fontSize: 13,
@@ -837,7 +841,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
 
     final boton = Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(12),
         gradient: const LinearGradient(
           colors: [_oroBrillante, _oro],
           begin: Alignment.topLeft,
@@ -854,7 +858,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(12),
           onTap: habilitado ? _cargarCaso : null,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
@@ -880,12 +884,12 @@ class _QuizGameScreenState extends State<QuizGameScreen>
           child: habilitado ? boton : Opacity(opacity: 0.45, child: boton),
         ),
         if (restante != null) ...[
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const QuizIcon('hourglass_gold', size: 18, color: _oroBrillante),
-              const SizedBox(width: 6),
+              const SizedBox(width: 8),
               Text(
                 'Próxima apelación en ${restante.inMinutes}m '
                 '${(restante.inSeconds % 60).toString().padLeft(2, '0')}s',
@@ -960,9 +964,9 @@ class _QuizGameScreenState extends State<QuizGameScreen>
       ),
       pageBuilder: (context, _, __) => Dialog(
         backgroundColor: _card,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: Padding(
-          padding: const EdgeInsets.all(28),
+          padding: const EdgeInsets.all(32),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -977,7 +981,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
                   letterSpacing: 1.5,
                 ),
               ),
-              const SizedBox(height: 14),
+              const SizedBox(height: 16),
               Text(
                 rango,
                 textAlign: TextAlign.center,
@@ -1040,7 +1044,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
   }
 }
 
-/// Fondo del quiz: gradiente violeta índigo con dos resplandores suaves.
+/// Fondo del quiz: gradiente navy con dos resplandores dorados suaves.
 class _FondoQuiz extends StatelessWidget {
   const _FondoQuiz();
 
@@ -1076,7 +1080,7 @@ class _FondoQuiz extends StatelessWidget {
               height: 260,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: const Color(0xFF7C4DFF).withValues(alpha: 0.08),
+                color: _oro.withValues(alpha: 0.08),
               ),
             ),
           ),
@@ -1187,7 +1191,7 @@ class _OpcionTarjetaState extends State<_OpcionTarjeta>
       curve: Curves.easeOut,
       decoration: BoxDecoration(
         color: fondo,
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(16),
         border: Border.all(color: borde, width: 1.5),
         boxShadow: widget.esCorrecta && widget.respondida
             ? [
@@ -1205,7 +1209,7 @@ class _OpcionTarjetaState extends State<_OpcionTarjeta>
           borderRadius: BorderRadius.circular(18),
           onTap: widget.onTap,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Row(
               children: [
                 AnimatedContainer(
@@ -1293,7 +1297,7 @@ class _OpcionTarjetaState extends State<_OpcionTarjeta>
         onTapCancel: () => setState(() => _presionada = false),
         child: AnimatedScale(
           scale: _presionada ? 0.97 : 1.0,
-          duration: const Duration(milliseconds: 90),
+          duration: const Duration(milliseconds: 300),
           child: tarjeta,
         ),
       ),
@@ -1339,10 +1343,10 @@ class _AscensoOverlayState extends State<_AscensoOverlay>
           final brillo = 0.3 + 0.25 * _glow.value;
           return Container(
             width: 310,
-            padding: const EdgeInsets.all(28),
+            padding: const EdgeInsets.all(32),
             decoration: BoxDecoration(
               color: _card,
-              borderRadius: BorderRadius.circular(28),
+              borderRadius: BorderRadius.circular(16),
               border: Border.all(color: _oro, width: 1.6),
               boxShadow: [
                 BoxShadow(
@@ -1383,21 +1387,21 @@ class _AscensoOverlayState extends State<_AscensoOverlay>
                         size: 48, color: Color(0xFF0F172A)),
                   ),
                 ),
-                const SizedBox(height: 18),
-                const Text(
+                const SizedBox(height: 16),
+                Text(
                   '¡ASCENSO!',
-                  style: TextStyle(
+                  style: GoogleFonts.cinzel(
                     color: _oroBrillante,
-                    fontSize: 18,
+                    fontSize: 22,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 3,
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 8),
                 Text(
                   widget.rango,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
+                  style: GoogleFonts.cinzel(
                     color: Colors.white,
                     fontSize: 24,
                     fontWeight: FontWeight.w800,

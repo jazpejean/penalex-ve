@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flame/game.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -12,8 +13,8 @@ import '../services/quiz_storage_service.dart';
 import '../widgets/quiz_icon.dart';
 import '../widgets/quiz_pulso_widget.dart';
 
-const _fondoProfundo = Color(0xFF190F38);
-const _card = Color(0xFF251A4D);
+const _fondoProfundo = Color(0xFF0A0E1A);
+const _card = Color(0xFF141B2E);
 const _oro = Color(0xFFC5A059);
 const _oroBrillante = Color(0xFFE9C86A);
 
@@ -72,7 +73,12 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
   @override
   Widget build(BuildContext context) {
     final hitos = QuizRules.hitosConCertificado;
-    return Scaffold(
+    return Theme(
+      data: Theme.of(context).copyWith(
+        textTheme: GoogleFonts.interTextTheme(
+            Theme.of(context).textTheme),
+      ),
+      child: Scaffold(
       backgroundColor: _fondoProfundo,
       appBar: AppBar(
         title: const Text(
@@ -109,6 +115,7 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                 ),
         ],
       ),
+      ),
     );
   }
 
@@ -128,10 +135,10 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
           ),
         ),
         child: Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
             color: _card,
-            borderRadius: BorderRadius.circular(22),
+            borderRadius: BorderRadius.circular(16),
             border: Border.all(color: _oro.withValues(alpha: 0.35)),
           ),
           child: Column(
@@ -153,7 +160,7 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                             fontWeight: FontWeight.w800,
                           ),
                         ),
-                        const SizedBox(height: 2),
+                        const SizedBox(height: 4),
                         Text(
                           '$_xp XP acumulados',
                           style: TextStyle(
@@ -172,7 +179,7 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                 duration: const Duration(milliseconds: 900),
                 curve: Curves.easeOutCubic,
                 builder: (context, v, _) => ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                   child: LinearProgressIndicator(
                     value: v,
                     minHeight: 10,
@@ -240,7 +247,7 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                 ],
               ),
             ),
-            const SizedBox(width: 6),
+            const SizedBox(width: 8),
             // Nodo circular (gema)
             Padding(
               padding: const EdgeInsets.only(top: 16),
@@ -287,12 +294,12 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(bottom: 12),
-                padding: const EdgeInsets.all(14),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: desbloqueado
                       ? _card
                       : Colors.white.withValues(alpha: 0.03),
-                  borderRadius: BorderRadius.circular(18),
+                  borderRadius: BorderRadius.circular(16),
                   border: Border.all(
                     color: desbloqueado
                         ? _oro.withValues(alpha: 0.55)
@@ -308,10 +315,10 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                         children: [
                           Text(
                             hito.nombre,
-                            style: TextStyle(
+                            style: GoogleFonts.cinzel(
                               color:
                                   desbloqueado ? Colors.white : Colors.white54,
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.w800,
                               fontSize: 15,
                             ),
                           ),
