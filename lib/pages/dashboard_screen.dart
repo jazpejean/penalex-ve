@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../config/app_colors.dart';
 import '../services/auth_service.dart';
 import '../config/app_theme.dart';
-import '../widgets/app_drawer.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -16,34 +14,13 @@ class DashboardScreen extends StatelessWidget {
     final String nombreUsuario = user?.displayName ?? 'Usuario';
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Row(
-          children: <Widget>[
-            Icon(Icons.gavel, color: AppColors.secondary, size: 28),
-            SizedBox(width: 8),
-            Text(
-              'PENALEX VE',
-              style: TextStyle(
-                color: AppColors.secondary,
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                letterSpacing: 1.5,
-                shadows: <Shadow>[Shadow(offset: Offset(0, 1), blurRadius: 2, color: Colors.black26)],
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: AppColors.primary,
-        iconTheme: const IconThemeData(color: AppColors.secondary),
-        elevation: 0,
-      ),
-      drawer: const AppDrawer(currentRoute: '/dashboard'),
       backgroundColor: TemaGlobal.superficie,
-      body: SingleChildScrollView(
+      body: SafeArea(
+        child: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
-            // Header institucional
+            // Header institucional (tarjeta de bienvenida con el logo de la app)
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
@@ -65,6 +42,23 @@ class DashboardScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  // Logo de Penalex (movido del AppBar a la tarjeta de bienvenida)
+                  const Row(
+                    children: <Widget>[
+                      Icon(Icons.gavel, color: Color(0xFFC5A059), size: 28),
+                      SizedBox(width: 8),
+                      Text(
+                        'PENALEX VE',
+                        style: TextStyle(
+                          color: Color(0xFFC5A059),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          letterSpacing: 1.5,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
                   Row(
                     children: <Widget>[
                       Container(
@@ -184,6 +178,7 @@ class DashboardScreen extends StatelessWidget {
               actionText: 'Comenzar desafío',
             ),
           ],
+        ),
         ),
       ),
     );

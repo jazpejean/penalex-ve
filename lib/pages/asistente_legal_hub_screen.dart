@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
-import '../widgets/app_drawer.dart';
 import 'chat_legal_screen.dart';
 import 'redactor_documentos_screen.dart';
 import 'escanear_documento_screen.dart';
@@ -26,29 +25,9 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const AppDrawer(currentRoute: "/asistente_legal"),
       backgroundColor: TemaGlobal.superficie,
-      appBar: AppBar(
-        title: const Row(
-          children: [
-            Icon(Icons.auto_awesome, color: Color(0xFFC5A059), size: 28),
-            SizedBox(width: 12),
-            Text(
-              'Ulpiano',
-              style: TextStyle(
-                color: Color(0xFFC5A059),
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-                letterSpacing: 0.5,
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: const Color(0xFF0F172A),
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Color(0xFFC5A059)),
-      ),
-      body: SingleChildScrollView(
+      body: SafeArea(
+        child: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,6 +131,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             const SizedBox(height: 32),
 
           ],
+        ),
         ),
       ),
     );

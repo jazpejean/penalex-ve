@@ -12,7 +12,6 @@ import '../services/non_working_day_service.dart';
 import '../services/notification_service.dart';
 import '../utils/date_utils.dart';
 import '../utils/non_working_days.dart';
-import '../widgets/app_drawer.dart';
 
 class AgendaScreen extends StatefulWidget {
   const AgendaScreen({super.key});
@@ -371,13 +370,8 @@ class _AgendaScreenState extends State<AgendaScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      drawer: const AppDrawer(currentRoute: "/agenda"),
-      appBar: AppBar(
-        title: const Text("Agenda Judicial"),
-        backgroundColor: AppColors.primary,
-        foregroundColor: Colors.white,
-      ),
-      body: _isLoading
+      body: SafeArea(
+        child: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -552,6 +546,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 ],
               ),
             ),
+        ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 12, right: 12),
         child: Row(

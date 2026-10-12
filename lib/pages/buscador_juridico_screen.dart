@@ -8,7 +8,6 @@ import '../models/ley_estructurada.dart';
 import '../models/sentencia_model.dart';
 import '../services/jurisprudencia_service.dart';
 import '../services/leyes_repositorio_service.dart';
-import '../widgets/app_drawer.dart';
 import 'asistente_legal_screen.dart';
 import 'glosario_screen.dart';
 import 'ley_estructura_screen.dart';
@@ -192,7 +191,6 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(currentRoute: '/jurisprudencia'),
       backgroundColor: TemaGlobal.superficie,
       body: SafeArea(
         child: Column(

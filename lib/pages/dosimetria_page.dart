@@ -7,7 +7,6 @@ import '../models/calculation_model.dart';
 import '../models/delito.dart';
 import '../services/calculation_service.dart';
 import '../config/app_theme.dart';
-import '../widgets/app_drawer.dart';
 import '../widgets/buscador_articulos_sheet.dart';
 import '../widgets/dosimetria_stepper.dart';
 import 'concurso_page.dart';
@@ -575,58 +574,34 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        drawer: const AppDrawer(currentRoute: "/calculadora"),
         backgroundColor: fondoGris,
-        appBar: AppBar(
-          title: const Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Icon(Icons.gavel_rounded, color: dorado, size: 26),
-              SizedBox(width: 8),
-              Text(
-                "PENALEX VE",
-                style: TextStyle(
-                  color: dorado,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 18,
-                  letterSpacing: 1.2,
-                  shadows: <Shadow>[
-                    Shadow(
-                        offset: Offset(0, 1),
-                        blurRadius: 2,
-                        color: Colors.black26),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          backgroundColor: azulMarino,
-          iconTheme: const IconThemeData(color: dorado),
-          elevation: 0,
-          centerTitle: false,
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.menu_book_outlined, color: dorado),
-              onPressed: () => mostrarBuscadorArticulos(context),
-              tooltip: "Consultar artículos de la ley",
-            ),
-            IconButton(
-              icon: const Icon(Icons.refresh_rounded, color: dorado),
-              onPressed: _resetCalculation,
-              tooltip: "Restablecer",
-            ),
-            IconButton(
-              icon: const Icon(Icons.folder_open_rounded, color: dorado),
-              onPressed: _showSavedCalculations,
-              tooltip: "Cargar cálculo",
-            ),
-          ],
-        ),
         body: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Column(
               children: <Widget>[
+                // Acciones que estaban en el AppBar: artículos, restablecer y cargar cálculo.
+                // Se conservan para no perder funcionalidad al eliminar el AppBar.
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    IconButton(
+                      icon: const Icon(Icons.menu_book_outlined, color: dorado),
+                      onPressed: () => mostrarBuscadorArticulos(context),
+                      tooltip: "Consultar artículos de la ley",
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.refresh_rounded, color: dorado),
+                      onPressed: _resetCalculation,
+                      tooltip: "Restablecer",
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.folder_open_rounded, color: dorado),
+                      onPressed: _showSavedCalculations,
+                      tooltip: "Cargar cálculo",
+                    ),
+                  ],
+                ),
                 const DosimetriaStepper(pasoActual: 1),
                 ListView.builder(
                   shrinkWrap: true,
