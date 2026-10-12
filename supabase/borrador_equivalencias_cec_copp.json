@@ -1,0 +1,82 @@
+{
+  "_meta": {
+    "descripcion": "Borrador de equivalencias de artículos derogados (Código de Enjuiciamiento Criminal, derogado 1999) -> vigentes (COPP). Generado el 2026-10-12 a partir de los artículos REALMENTE citados en las doctrinas de la base (36 citas). Requiere validación jurídica del usuario antes de cargar en la tabla equivalencias_articulos.",
+    "fuente_citas": "tabla doctrinas (instrumento ilike '%njuiciamiento%'), 36 registros",
+    "citas_por_articulo": {"42": 23, "330": 3, "333": 1, "68": 1, "331": 1, "47": 1, "339": 1, "302": 1},
+    "estado": "BORRADOR — pendiente de validación (verificado_por)"
+  },
+  "equivalencias": [
+    {
+      "instrumento_derogado": "Código de Enjuiciamiento Criminal",
+      "articulo_derogado": "42",
+      "instrumento_vigente": "Código Orgánico Procesal Penal",
+      "articulo_vigente": "364",
+      "nota": "El art. 42 CEC exigía que la sentencia contuviera el resumen, análisis y valoración de las pruebas y los fundamentos de hecho y de derecho. El COPP 364 (requisitos de la sentencia, ord. 4º) conserva ese deber (exposición concisa de los fundamentos de hecho y de derecho). Es la cita más frecuente en las doctrinas (23/36).",
+      "confianza": "alta",
+      "verificado_por": null
+    },
+    {
+      "instrumento_derogado": "Código de Enjuiciamiento Criminal",
+      "articulo_derogado": "330",
+      "instrumento_vigente": "Código Orgánico Procesal Penal",
+      "articulo_vigente": "236",
+      "nota": "Detención judicial (CEC) -> privación judicial preventiva de libertad (COPP 236). VERIFICAR el texto exacto del CEC 330 antes de confirmar.",
+      "confianza": "media",
+      "verificado_por": null
+    },
+    {
+      "instrumento_derogado": "Código de Enjuiciamiento Criminal",
+      "articulo_derogado": "331",
+      "instrumento_vigente": "Código Orgánico Procesal Penal",
+      "articulo_vigente": "237",
+      "nota": "Condiciones para mantener la detención judicial (peligro de fuga / obstaculización) -> COPP 237 (peligro de fuga) y 238 (obstaculización). VERIFICAR texto exacto.",
+      "confianza": "media",
+      "verificado_por": null
+    },
+    {
+      "instrumento_derogado": "Código de Enjuiciamiento Criminal",
+      "articulo_derogado": "68",
+      "instrumento_vigente": "Código Orgánico Procesal Penal",
+      "articulo_vigente": "181",
+      "nota": "Principio de legalidad de la prueba (CEC 68) -> libertad de prueba (COPP 181). VERIFICAR redacción de ambos.",
+      "confianza": "media",
+      "verificado_por": null
+    },
+    {
+      "instrumento_derogado": "Código de Enjuiciamiento Criminal",
+      "articulo_derogado": "333",
+      "instrumento_vigente": null,
+      "articulo_vigente": null,
+      "nota": "Cita en doctrina: 1. POR VERIFICAR texto del CEC 333 y su equivalente COPP (posible: cese/revocatoria de la detención).",
+      "confianza": "baja",
+      "verificado_por": null
+    },
+    {
+      "instrumento_derogado": "Código de Enjuiciamiento Criminal",
+      "articulo_derogado": "339",
+      "instrumento_vigente": null,
+      "articulo_vigente": null,
+      "nota": "Cita en doctrina: 1. POR VERIFICAR texto del CEC 339 y su equivalente COPP.",
+      "confianza": "baja",
+      "verificado_por": null
+    },
+    {
+      "instrumento_derogado": "Código de Enjuiciamiento Criminal",
+      "articulo_derogado": "47",
+      "instrumento_vigente": null,
+      "articulo_vigente": null,
+      "nota": "Cita en doctrina: 1. POR VERIFICAR texto del CEC 47 y su equivalente COPP.",
+      "confianza": "baja",
+      "verificado_por": null
+    },
+    {
+      "instrumento_derogado": "Código de Enjuiciamiento Criminal",
+      "articulo_derogado": "302",
+      "instrumento_vigente": null,
+      "articulo_vigente": null,
+      "nota": "Cita en doctrina: 1. POR VERIFICAR texto del CEC 302 y su equivalente COPP.",
+      "confianza": "baja",
+      "verificado_por": null
+    }
+  ]
+}
