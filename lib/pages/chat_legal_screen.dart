@@ -1,4 +1,6 @@
 import 'dart:io';
+import '../pages/main_screen.dart';
+import '../utils/main_tab_controller.dart';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -822,6 +824,18 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             onPressed: _confirmarEliminarConversacion,
             tooltip: 'Eliminar conversación',
           ),
+            IconButton(
+              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
+              tooltip: 'Ir al inicio',
+              onPressed: () {
+                mainTabIndex.value = 0;
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => const MainScreen()),
+                  (r) => false,
+                );
+              },
+            ),
         ],
       ),
       body: SafeArea(

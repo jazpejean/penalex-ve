@@ -1,4 +1,6 @@
 import 'dart:io';
+import '../pages/main_screen.dart';
+import '../utils/main_tab_controller.dart';
 
 import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
@@ -196,6 +198,18 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
             onPressed: _cargarReportes,
             tooltip: 'Actualizar',
           ),
+            IconButton(
+              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
+              tooltip: 'Ir al inicio',
+              onPressed: () {
+                mainTabIndex.value = 0;
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => const MainScreen()),
+                  (r) => false,
+                );
+              },
+            ),
         ],
       ),
       body: _cargando

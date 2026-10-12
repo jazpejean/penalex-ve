@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../pages/main_screen.dart';
+import '../utils/main_tab_controller.dart';
 import '../services/busqueda_semantica_service.dart';
 import '../models/sentencia.dart';
 import '../models/ley.dart';
@@ -87,6 +89,18 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
             onPressed: () => _mostrarAyuda(),
             tooltip: 'Ayuda',
           ),
+            IconButton(
+              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
+              tooltip: 'Ir al inicio',
+              onPressed: () {
+                mainTabIndex.value = 0;
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => const MainScreen()),
+                  (r) => false,
+                );
+              },
+            ),
         ],
       ),
       body: Column(

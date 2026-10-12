@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../pages/main_screen.dart';
+import '../utils/main_tab_controller.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:open_file/open_file.dart';
 import '../services/ai_analytics_service.dart';
@@ -118,6 +120,18 @@ class _AIAnalyticsScreenState extends State<AIAnalyticsScreen>
             onPressed: _exportPDF,
             tooltip: 'Exportar PDF',
           ),
+            IconButton(
+              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
+              tooltip: 'Ir al inicio',
+              onPressed: () {
+                mainTabIndex.value = 0;
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => const MainScreen()),
+                  (r) => false,
+                );
+              },
+            ),
         ],
         bottom: TabBar(
           controller: _tabController,

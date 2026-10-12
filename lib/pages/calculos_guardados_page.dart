@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../pages/main_screen.dart';
+import '../utils/main_tab_controller.dart';
 import '../config/app_theme.dart';
 
 import '../models/calculation_model.dart';
@@ -105,6 +107,20 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
         foregroundColor: dorado,
         centerTitle: true,
         elevation: 0,
+        actions: [
+            IconButton(
+              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
+              tooltip: 'Ir al inicio',
+              onPressed: () {
+                mainTabIndex.value = 0;
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => const MainScreen()),
+                  (r) => false,
+                );
+              },
+            ),
+        ],
       ),
       body: _cargando
           ? const Center(child: CircularProgressIndicator())

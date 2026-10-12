@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../utils/main_tab_controller.dart';
 import '../widgets/app_drawer.dart';
 import 'dashboard_screen.dart';
 import 'agenda_screen.dart';
@@ -20,7 +21,10 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 0;
+  // Arranca en la pestaña global: si otra pantalla pidió un tab (p. ej.
+  // el drawer navegó a 'Agenda' y reemplazó la pila), la nueva instancia
+  // del MainScreen abre directamente esa pestaña.
+  int _currentIndex = mainTabIndex.value;
 
   static const _fondoProfundo = Color(0xFF0F172A);
   static const _oro = Color(0xFFC5A059);
@@ -36,6 +40,26 @@ class _MainScreenState extends State<MainScreen> {
         _ => '/jurisprudencia',
       };
 
+  @override
+  void initState() {
+    super.initState();
+    mainTabIndex.addListener(_onExternalTabChange);
+  }
+
+  @override
+  void dispose() {
+    mainTabIndex.removeListener(_onExternalTabChange);
+    super.dispose();
+  }
+
+  /// Cambio externo de pestaña (drawer, botón "Ir al inicio" de otras
+  /// pantallas): sincroniza el tab interno sin perder el estado del stack.
+  void _onExternalTabChange() {
+    final int nuevo = mainTabIndex.value;
+    if (_currentIndex == nuevo) return;
+    setState(() => _currentIndex = nuevo);
+  }
+
   final List<Widget> _screens = const <Widget>[
     DashboardScreen(), // 0 - Inicio
     AgendaScreen(), // 1 - Agenda
@@ -45,8 +69,17 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
+    return PopScope(
+      // En la pestaña Inicio, atrás sale de la app; en cualquier otra,
+      // atrás vuelve a Inicio ("home en 1 tap").
+      canPop: _currentIndex == 0,
+      onPopInvokedWithResult: (bool didPop, Object? result) {
+        if (didPop) return;
+        mainTabIndex.value = 0;
+        setState(() => _currentIndex = 0);
+      },
+      child: Scaffold(
+        key: _scaffoldKey,
       resizeToAvoidBottomInset: false,
       drawer: AppDrawer(currentRoute: _currentRoute),
       body: IndexedStack(
@@ -54,6 +87,7 @@ class _MainScreenState extends State<MainScreen> {
         children: _screens,
       ),
       bottomNavigationBar: _buildBottomBar(),
+      ),
     );
   }
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../pages/main_screen.dart';
+import '../utils/main_tab_controller.dart';
 import '../config/app_theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -134,6 +136,20 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
         foregroundColor: dorado,
         elevation: 0,
         centerTitle: true,
+        actions: [
+            IconButton(
+              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
+              tooltip: 'Ir al inicio',
+              onPressed: () {
+                mainTabIndex.value = 0;
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => const MainScreen()),
+                  (r) => false,
+                );
+              },
+            ),
+        ],
       ),
       backgroundColor: fondoGris,
       body: Column(

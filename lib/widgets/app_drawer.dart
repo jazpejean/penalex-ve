@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../config/app_colors.dart';
+import '../utils/main_tab_controller.dart';
 import '../services/auth_service.dart';
 import '../config/app_theme.dart';
 import '../services/user_profile_service.dart';
@@ -40,13 +41,16 @@ class AppDrawer extends StatelessWidget {
   };
 
   void _navigate(BuildContext context, String route, {Object? arguments}) {
-    Navigator.pop(context);
+    Navigator.pop(context); // cierra el drawer
 
-    if (route == '/dashboard') {
-      // Se apila sobre la navegación principal: el botón "atrás" del sistema
-      // devuelve a las pestañas. (Antes usaba pushNamedAndRemoveUntil, que
-      // reemplazaba toda la pila y dejaba la app sin la barra inferior.)
-      Navigator.pushNamed(context, '/dashboard');
+    // Pestañas principales del bottom nav: cambian la pestaña del
+    // MainScreen y reemplazan toda la pila (sin apilar pantallas).
+    // Nota: se navega por nombre de ruta '/main' (registrada en main.dart)
+    // para NO crear un ciclo de imports main_screen <-> app_drawer.
+    final int? tabIndex = kRutaATab[route];
+    if (tabIndex != null && arguments == null) {
+      mainTabIndex.value = tabIndex;
+      Navigator.pushNamedAndRemoveUntil(context, '/main', (r) => false);
       return;
     }
 

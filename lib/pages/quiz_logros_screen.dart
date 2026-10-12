@@ -1,4 +1,6 @@
 import 'dart:async';
+import '../pages/main_screen.dart';
+import '../utils/main_tab_controller.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flame/game.dart';
@@ -88,6 +90,20 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
         backgroundColor: _fondoProfundo,
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0,
+        actions: [
+            IconButton(
+              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
+              tooltip: 'Ir al inicio',
+              onPressed: () {
+                mainTabIndex.value = 0;
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => const MainScreen()),
+                  (r) => false,
+                );
+              },
+            ),
+        ],
       ),
       body: Stack(
         children: [

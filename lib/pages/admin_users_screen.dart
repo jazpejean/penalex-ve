@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../pages/main_screen.dart';
+import '../utils/main_tab_controller.dart';
 
 import '../config/app_colors.dart';
 import '../services/role_service.dart';
@@ -167,6 +169,18 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
               icon: const Icon(Icons.refresh),
               onPressed: _loadUsers,
               tooltip: 'Recargar',
+            ),
+            IconButton(
+              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
+              tooltip: 'Ir al inicio',
+              onPressed: () {
+                mainTabIndex.value = 0;
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => const MainScreen()),
+                  (r) => false,
+                );
+              },
             ),
           ],
         ),

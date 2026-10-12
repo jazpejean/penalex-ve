@@ -1,4 +1,6 @@
 import 'dart:async';
+import '../pages/main_screen.dart';
+import '../utils/main_tab_controller.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flame/game.dart';
@@ -172,7 +174,14 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
               padding: const EdgeInsets.only(top: 8, right: 8),
               child: Align(
                 alignment: Alignment.topRight,
-                child: _buildMuteToggle(),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _buildMuteToggle(),
+                    const SizedBox(width: 10),
+                    _buildHomeButton(),
+                  ],
+                ),
               ),
             ),
           ),
@@ -203,6 +212,32 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
           ),
         ],
       ),
+      ),
+    );
+  }
+
+  Widget _buildHomeButton() {
+    return Material(
+      color: _card.withValues(alpha: 0.75),
+      shape: const CircleBorder(),
+      child: InkWell(
+        customBorder: const CircleBorder(),
+        onTap: () {
+          mainTabIndex.value = 0;
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (_) => const MainScreen()),
+            (r) => false,
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Icon(
+            Icons.home_outlined,
+            size: 22,
+            color: _oroBrillante,
+          ),
+        ),
       ),
     );
   }
