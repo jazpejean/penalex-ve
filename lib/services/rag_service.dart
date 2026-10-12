@@ -9,6 +9,7 @@ library;
 import 'package:flutter/foundation.dart';
 import '../models/chat_message.dart';
 import '../models/sentencia_model.dart';
+import '../pages/glosario_screen.dart';
 import 'jurisprudencia_service.dart';
 
 class RAGService {
@@ -87,15 +88,140 @@ class RAGService {
     int limit = 5,
     String? salaFiltro,
   }) async {
-    final sentencias = await buscarJurisprudenciaRelevante(
+    // Ahora incluye doctrinas + glosario (toda la base como fundamento).
+    final completo = await obtenerContextoCompleto(
       consulta: consulta,
       limit: limit,
       salaFiltro: salaFiltro,
     );
     return (
+      sentencias: completo.sentencias,
+      contexto: completo.contexto,
+      fuentes: completo.fuentes,
+    );
+  }
+
+
+  /// Busca doctrinas (criterios de la Sala extraídos por IA) relevantes.
+  /// Nunca lanza: ante cualquier error devuelve una lista vacía.
+  static Future<List<Map<String, dynamic>>> buscarDoctrinasRelevantes({
+    required String consulta,
+    int limit = 5,
+  }) async {
+    if (consulta.trim().isEmpty) return [];
+    try {
+      return await _jurisprudenciaService.buscarDoctrinas(
+        textoBusqueda: consulta.trim(),
+        limit: limit,
+      );
+    } catch (e) {
+      debugPrint('❌ RAGService.buscarDoctrinasRelevantes: $e');
+      return [];
+    }
+  }
+
+  /// Formatea doctrinas como bloque de contexto para prompts.
+  static String construirContextoDoctrinal(List<Map<String, dynamic>> doctrinas) {
+    if (doctrinas.isEmpty) return '';
+    final buffer = StringBuffer();
+    for (var i = 0; i < doctrinas.length; i++) {
+      final d = doctrinas[i];
+      final texto = _limpio((d['texto_ratio'] ?? '').toString());
+      final evidencia = _limpio((d['parrafo_evidencia'] ?? '').toString());
+      final instrumento = _limpio((d['instrumento'] ?? '').toString());
+      final art = _limpio((d['articulo_numero'] ?? '').toString());
+      final tipo = _limpio((d['tipo'] ?? '').toString());
+      buffer
+        ..writeln('DOCTRINA ${i + 1}:')
+        ..writeln('- Criterio: $texto')
+        ..writeln('- Instrumento: ${instrumento}${art.isNotEmpty ? ' · Art. $art' : ''}');
+      if (tipo.isNotEmpty) buffer.writeln('- Tipo: $tipo');
+      if (evidencia.isNotEmpty) {
+        final corta = evidencia.length > 700 ? '${evidencia.substring(0, 700)}...' : evidencia;
+        buffer.writeln('- Cita textual: "$corta"');
+      }
+      buffer.writeln('- Sentencia origen: ${d['sentencia_id']}');
+    }
+    return buffer.toString().trim();
+  }
+
+  /// Convierte doctrinas en fuentes citables para el chat.
+  static List<MessageSource> construirFuentesDoctrinas(
+      List<Map<String, dynamic>> doctrinas) {
+    return doctrinas.map((d) {
+      final texto = _limpio((d['texto_ratio'] ?? '').toString());
+      final instrumento = _limpio((d['instrumento'] ?? '').toString());
+      final art = _limpio((d['articulo_numero'] ?? '').toString());
+      return MessageSource(
+        type: SourceType.doctrina,
+        title: 'Criterio de la Sala${art.isNotEmpty ? ' · Art. $art' : ''}',
+        reference:
+            '${instrumento.isNotEmpty ? '$instrumento · ' : ''}Sentencia ${d['sentencia_id']}',
+        excerpt: texto.length > 300 ? '${texto.substring(0, 300)}...' : texto,
+      );
+    }).toList();
+  }
+
+  /// Términos del glosario que coinciden con la consulta (definiciones).
+  static List<Map<String, String>> buscarGlosarioRelevante(String consulta) {
+    if (consulta.trim().isEmpty) return [];
+    final lower = consulta.toLowerCase();
+    final terminos = GlosarioScreen.terminos;
+    return terminos
+        .where((t) =>
+            (t['term'] ?? '').toLowerCase().contains(lower) ||
+            lower.contains((t['term'] ?? '').toLowerCase()) ||
+            (t['definition'] ?? '').toLowerCase().contains(lower))
+        .take(4)
+        .toList();
+  }
+
+  /// Bloque de contexto con definiciones del glosario que aplican.
+  static String construirContextoGlosario(List<Map<String, String>> terminos) {
+    if (terminos.isEmpty) return '';
+    final buffer = StringBuffer();
+    for (var i = 0; i < terminos.length; i++) {
+      buffer.writeln(
+          'GLOSARIO ${i + 1}: ${terminos[i]['term']} — ${terminos[i]['definition']}');
+    }
+    return buffer.toString().trim();
+  }
+
+  /// Conveniencia: contexto y fuentes de la consulta usando TODA la base:
+  /// jurisprudencia (sentencias) + doctrinas + glosario.
+  static Future<
+      ({
+        List<SentenciaModel> sentencias,
+        List<Map<String, dynamic>> doctrinas,
+        String contexto,
+        List<MessageSource> fuentes,
+      })> obtenerContextoCompleto({
+    required String consulta,
+    int limit = 5,
+    String? salaFiltro,
+  }) async {
+    final sentencias = await buscarJurisprudenciaRelevante(
+      consulta: consulta,
+      limit: limit,
+      salaFiltro: salaFiltro,
+    );
+    final doctrinas = await buscarDoctrinasRelevantes(
+      consulta: consulta,
+      limit: limit,
+    );
+    final glosario = buscarGlosarioRelevante(consulta);
+
+    final bloques = <String>[
+      construirContextoJurisprudencial(sentencias),
+      construirContextoDoctrinal(doctrinas),
+      construirContextoGlosario(glosario),
+    ].where((b) => b.isNotEmpty);
+
+    return (
       sentencias: sentencias,
-      contexto: construirContextoJurisprudencial(sentencias),
-      fuentes: construirFuentes(sentencias),
+      doctrinas: doctrinas,
+      contexto: bloques.join('\n\n'),
+      fuentes: [...construirFuentes(sentencias), ...construirFuentesDoctrinas(doctrinas)],
     );
   }
 

@@ -105,6 +105,69 @@ class JurisprudenciaService {
     }
   }
 
+  /// Busca doctrinas (criterios de la Sala extraídos por IA) relevantes.
+  ///
+  /// La tabla `doctrinas` tiene search_vector propio (spanish) + texto_ratio,
+  /// parrafo_evidencia e instrumento. Usa el mismo patrón que sentencias:
+  /// expansión semántica -> fulltext -> fallback ilike en columnas reales.
+  Future<List<Map<String, dynamic>>> buscarDoctrinas({
+    String? textoBusqueda,
+    int limit = 6,
+  }) async {
+    if (textoBusqueda == null || textoBusqueda.trim().isEmpty) return [];
+    try {
+      var query = _supabase
+          .from('doctrinas')
+          .select('id, sentencia_id, tipo, texto_ratio, parrafo_evidencia, '
+              'instrumento, articulo_numero, resumen');
+
+      final terminosExpandidos = await _expandirConsultaSemantica(textoBusqueda);
+      final tsQuery = terminosExpandidos
+          .map((t) => t.trim())
+          .where((t) => t.isNotEmpty)
+          .join(' OR ');
+      if (tsQuery.isNotEmpty) {
+        query = query.textSearch(
+          'search_vector',
+          tsQuery,
+          config: 'spanish',
+          type: TextSearchType.websearch,
+        );
+      }
+      final response = await query.limit(limit);
+      final data = (response as List<dynamic>)
+          .cast<Map<String, dynamic>>();
+
+      // Fallback ilike si el fulltext no dio suficientes resultados
+      if (data.length < 3) {
+        final orConditions = <String>[];
+        for (final termino in terminosExpandidos) {
+          orConditions.add('texto_ratio.ilike.%$termino%');
+          orConditions.add('parrafo_evidencia.ilike.%$termino%');
+          orConditions.add('instrumento.ilike.%$termino%');
+        }
+        var q2 = _supabase
+            .from('doctrinas')
+            .select('id, sentencia_id, tipo, texto_ratio, parrafo_evidencia, '
+                'instrumento, articulo_numero, resumen');
+        if (orConditions.isNotEmpty) {
+          q2 = q2.or(orConditions.join(','));
+        }
+        final extra = await q2.limit(limit);
+        final extraMaps = (extra as List<dynamic>).cast<Map<String, dynamic>>();
+        final idsVistos = data.map((d) => d['id']).toSet();
+        for (final d in extraMaps) {
+          if (!idsVistos.contains(d['id'])) data.add(d);
+          if (data.length >= limit) break;
+        }
+      }
+      return data;
+    } catch (e) {
+      debugPrint('⚠️ buscarDoctrinas: $e');
+      return [];
+    }
+  }
+
   /// Conteo del corpus completo (sentencias + jurisprudencias + resoluciones)
   Future<int> contarSentencias() async {
     try {
