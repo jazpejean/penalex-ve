@@ -1,357 +1,366 @@
 {
-  "generado": "2026-08-25T07:45:42.156Z",
-  "total": 39,
-  "leyes": [
-    {
-      "slug": "crbv",
-      "archivo": "crbv.json",
-      "nombre": "CONSTITUCIÓN DE LA REPÚBLICA BOLIVARIANA DE VENEZUELA",
-      "orden": 1,
-      "articulos": 362,
-      "tamano": 379726,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/crbv.json"
-    },
-    {
-      "slug": "copp",
-      "archivo": "copp.json",
-      "nombre": "CÓDIGO ORGÁNICO PROCESAL PENAL",
-      "orden": 2,
-      "articulos": 521,
-      "tamano": 524253,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/copp.json"
-    },
-    {
-      "slug": "codigo-penal",
-      "archivo": "codigo-penal.json",
-      "nombre": "CÓDIGO PENAL",
-      "orden": 3,
-      "articulos": 549,
-      "tamano": 488181,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/codigo-penal.json"
-    },
-    {
-      "slug": "ley-de-violencia",
-      "archivo": "ley-de-violencia.json",
-      "nombre": "LEY ORGÁNICA SOBRE EL DERECHO DE LAS MUJERES A UNA VIDA LIBRE DE VIOLENCIA",
-      "orden": 4,
-      "articulos": 149,
-      "tamano": 186185,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-de-violencia.json"
-    },
-    {
-      "slug": "ley-organica-para-la-proteccion-de-ninos-ninas-y-adolescentes",
-      "archivo": "ley-organica-para-la-proteccion-de-ninos-ninas-y-adolescentes.json",
-      "nombre": "LEY ORGÁNICA PARA LA PROTECCIÓN DE NIÑOS, NIÑAS Y ADOLESCENTES",
-      "orden": 5,
-      "articulos": 756,
-      "tamano": 778176,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-para-la-proteccion-de-ninos-ninas-y-adolescentes.json"
-    },
-    {
-      "slug": "ley-organica-de-drogas",
-      "archivo": "ley-organica-de-drogas.json",
-      "nombre": "LEY ORGÁNICA DE DROGAS",
-      "orden": 6,
-      "articulos": 216,
-      "tamano": 257202,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-de-drogas.json"
-    },
-    {
-      "slug": "ley-organica-contra-la-delincuencia-organizada-y-financiamiento-al-terrorismo",
-      "archivo": "ley-organica-contra-la-delincuencia-organizada-y-financiamiento-al-terrorismo.json",
-      "nombre": "LEY ORGÁNICA CONTRA LA DELINCUENCIA ORGANIZADA Y FINANCIAMIENTO AL TERRORISMO",
-      "orden": 7,
-      "articulos": 96,
-      "tamano": 121505,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-contra-la-delincuencia-organizada-y-financiamiento-al-terrorismo.json"
-    },
-    {
-      "slug": "ley-contra-el-secuestro-y-la-extorsion",
-      "archivo": "ley-contra-el-secuestro-y-la-extorsion.json",
-      "nombre": "LEY CONTRA EL SECUESTRO Y LA EXTORSIÓN",
-      "orden": 8,
-      "articulos": 32,
-      "tamano": 34905,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-contra-el-secuestro-y-la-extorsion.json"
-    },
-    {
-      "slug": "ley-especial-contra-los-delitos-informaticos",
-      "archivo": "ley-especial-contra-los-delitos-informaticos.json",
-      "nombre": "LEY ESPECIAL CONTRA LOS DELITOS INFORMÁTICOS",
-      "orden": 9,
-      "articulos": 33,
-      "tamano": 33182,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-especial-contra-los-delitos-informaticos.json"
-    },
-    {
-      "slug": "ley-contra-la-corrupcion",
-      "archivo": "ley-contra-la-corrupcion.json",
-      "nombre": "LEY CONTRA LA CORRUPCIÓN",
-      "orden": 10,
-      "articulos": 108,
-      "tamano": 115662,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-contra-la-corrupcion.json"
-    },
-    {
-      "slug": "ley-organica-contra-la-discriminacion-racial",
-      "archivo": "ley-organica-contra-la-discriminacion-racial.json",
-      "nombre": "LEY ORGÁNICA CONTRA LA DISCRIMINACIÓN RACIAL",
-      "orden": 11,
-      "articulos": 46,
-      "tamano": 48921,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-contra-la-discriminacion-racial.json"
-    },
-    {
-      "slug": "ley-especial-para-prevenir-y-sancionar-la-tortura-y-otros-tratos-crueles-inhumanos-o-degradantes",
-      "archivo": "ley-especial-para-prevenir-y-sancionar-la-tortura-y-otros-tratos-crueles-inhumanos-o-degradantes.json",
-      "nombre": "LEY ESPECIAL PARA PREVENIR Y SANCIONAR LA TORTURA Y OTROS TRATOS CRUELES, INHUMANOS O DEGRADANTES",
-      "orden": 12,
-      "articulos": 38,
-      "tamano": 44424,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-especial-para-prevenir-y-sancionar-la-tortura-y-otros-tratos-crueles-inhumanos-o-degradantes.json"
-    },
-    {
-      "slug": "ley-para-el-desarme-y-control-de-armas-y-municiones",
-      "archivo": "ley-para-el-desarme-y-control-de-armas-y-municiones.json",
-      "nombre": "LEY PARA EL DESARME Y CONTROL DE ARMAS Y MUNICIONES",
-      "orden": 13,
-      "articulos": 135,
-      "tamano": 137134,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-para-el-desarme-y-control-de-armas-y-municiones.json"
-    },
-    {
-      "slug": "ley-penal-del-ambiente",
-      "archivo": "ley-penal-del-ambiente.json",
-      "nombre": "LEY PENAL DEL AMBIENTE",
-      "orden": 14,
-      "articulos": 113,
-      "tamano": 109772,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-penal-del-ambiente.json"
-    },
-    {
-      "slug": "ley-contra-la-estafa-inmobiliaria",
-      "archivo": "ley-contra-la-estafa-inmobiliaria.json",
-      "nombre": "LEY CONTRA LA ESTAFA INMOBILIARIA",
-      "orden": 15,
-      "articulos": 49,
-      "tamano": 59861,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-contra-la-estafa-inmobiliaria.json"
-    },
-    {
-      "slug": "ley-para-la-prevencion-y-erradicacion-del-abuso-sexual-contra-ninas-ninos-y-adolescentes",
-      "archivo": "ley-para-la-prevencion-y-erradicacion-del-abuso-sexual-contra-ninas-ninos-y-adolescentes.json",
-      "nombre": "LEY PARA LA PREVENCIÓN Y ERRADICACIÓN DEL ABUSO SEXUAL CONTRA NIÑAS, NIÑOS Y ADOLESCENTES",
-      "orden": 16,
-      "articulos": 21,
-      "tamano": 28040,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-para-la-prevencion-y-erradicacion-del-abuso-sexual-contra-ninas-ninos-y-adolescentes.json"
-    },
-    {
-      "slug": "ley-para-sancionar-los-crimenes-desapariciones-torturas-y-otras-violaciones-de-los-derechos-humanos-por-razones-politicas-en-el-periodo-1958-1998",
-      "archivo": "ley-para-sancionar-los-crimenes-desapariciones-torturas-y-otras-violaciones-de-los-derechos-humanos-por-razones-politicas-en-el-periodo-1958-1998.json",
-      "nombre": "LEY PARA SANCIONAR LOS CRÍMENES, DESAPARICIONES, TORTURAS Y OTRAS VIOLACIONES DE LOS DERECHOS HUMANOS POR RAZONES POLÍTICAS EN EL PERÍODO 1958-1998",
-      "orden": 17,
-      "articulos": 33,
-      "tamano": 51355,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-para-sancionar-los-crimenes-desapariciones-torturas-y-otras-violaciones-de-los-derechos-humanos-por-razones-politicas-en-el-periodo-1958-1998.json"
-    },
-    {
-      "slug": "ley-constitucional-contra-el-odio-por-la-convivencia-pacifica-y-la-tolerancia",
-      "archivo": "ley-constitucional-contra-el-odio-por-la-convivencia-pacifica-y-la-tolerancia.json",
-      "nombre": "LEY CONSTITUCIONAL CONTRA EL ODIO, POR LA CONVIVENCIA PACÍFICA Y LA TOLERANCIA",
-      "orden": 18,
-      "articulos": 28,
-      "tamano": 32553,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-constitucional-contra-el-odio-por-la-convivencia-pacifica-y-la-tolerancia.json"
-    },
-    {
-      "slug": "ley-sobre-proteccion-a-la-privacidad-de-las-comunicaciones",
-      "archivo": "ley-sobre-proteccion-a-la-privacidad-de-las-comunicaciones.json",
-      "nombre": "LEY SOBRE PROTECCION A LA PRIVACIDAD DE LAS COMUNICACIONES",
-      "orden": 19,
-      "articulos": 9,
-      "tamano": 7701,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-sobre-proteccion-a-la-privacidad-de-las-comunicaciones.json"
-    },
-    {
-      "slug": "ley-de-registro-de-antecedentes-penales",
-      "archivo": "ley-de-registro-de-antecedentes-penales.json",
-      "nombre": "LEY DE REGISTRO DE ANTECEDENTES PENALES",
-      "orden": 20,
-      "articulos": 20,
-      "tamano": 17603,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-de-registro-de-antecedentes-penales.json"
-    },
-    {
-      "slug": "ley-que-regula-el-uso-de-la-telefonia-celular-y-la-internet-en-el-interior-de-los-establecimientos-penitenciarios",
-      "archivo": "ley-que-regula-el-uso-de-la-telefonia-celular-y-la-internet-en-el-interior-de-los-establecimientos-penitenciarios.json",
-      "nombre": "LEY QUE REGULA EL USO DE LA TELEFONÍA CELULAR Y LA INTERNET EN EL INTERIOR DE LOS ESTABLECIMIENTOS PENITENCIARIOS",
-      "orden": 21,
-      "articulos": 18,
-      "tamano": 13918,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-que-regula-el-uso-de-la-telefonia-celular-y-la-internet-en-el-interior-de-los-establecimientos-penitenciarios.json"
-    },
-    {
-      "slug": "ley-organica-de-extinsion-de-dominio",
-      "archivo": "ley-organica-de-extinsion-de-dominio.json",
-      "nombre": "LEY ORGÁNICA DE EXTINCIÓN DE DOMINIO",
-      "orden": 22,
-      "articulos": 53,
-      "tamano": 59714,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-de-extinsion-de-dominio.json"
-    },
-    {
-      "slug": "ley-organica-de-amparo-a-la-libertad",
-      "archivo": "ley-organica-de-amparo-a-la-libertad.json",
-      "nombre": "LEY ORGÁNICA DE AMPARO A LA LIBERTAD Y SEGURIDAD PERSONAL",
-      "orden": 23,
-      "articulos": 21,
-      "tamano": 17147,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-de-amparo-a-la-libertad.json"
-    },
-    {
-      "slug": "ley-organica-de-amparo-sobre-derechos-y-garantias-constitucionales",
-      "archivo": "ley-organica-de-amparo-sobre-derechos-y-garantias-constitucionales.json",
-      "nombre": "LEY ORGÁNICA DE AMPARO SOBRE DERECHOS Y GARANTÍAS CONSTITUCIONALES",
-      "orden": 24,
-      "articulos": 49,
-      "tamano": 39648,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-de-amparo-sobre-derechos-y-garantias-constitucionales.json"
-    },
-    {
-      "slug": "codigo-organico-penitenciario",
-      "archivo": "codigo-organico-penitenciario.json",
-      "nombre": "Código Orgánico Penitenciario",
-      "orden": 25,
-      "articulos": 176,
-      "tamano": 182527,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/codigo-organico-penitenciario.json"
-    },
-    {
-      "slug": "codigo-organico-de-justicia-militar",
-      "archivo": "codigo-organico-de-justicia-militar.json",
-      "nombre": "CÓDIGO ORGÁNICO DE JUSTICIA MILITAR",
-      "orden": 26,
-      "articulos": 589,
-      "tamano": 417412,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/codigo-organico-de-justicia-militar.json"
-    },
-    {
-      "slug": "ley-de-proteccion-de-victimas-testigos-y-demas-sujetos-procesales",
-      "archivo": "ley-de-proteccion-de-victimas-testigos-y-demas-sujetos-procesales.json",
-      "nombre": "LEY DE PROTECCIÓN DE VÍCTIMAS, TESTIGOS Y DEMÁS SUJETOS PROCESALES",
-      "orden": 27,
-      "articulos": 50,
-      "tamano": 54765,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-de-proteccion-de-victimas-testigos-y-demas-sujetos-procesales.json"
-    },
-    {
-      "slug": "ley-del-estatuto-de-la-funcion-policial",
-      "archivo": "ley-del-estatuto-de-la-funcion-policial.json",
-      "nombre": "LEY DEL ESTATUTO DE LA FUNCIÓN POLICIAL",
-      "orden": 28,
-      "articulos": 112,
-      "tamano": 141941,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-del-estatuto-de-la-funcion-policial.json"
-    },
-    {
-      "slug": "ley-del-estatuto-de-la-funcion-publica",
-      "archivo": "ley-del-estatuto-de-la-funcion-publica.json",
-      "nombre": "LEY DEL ESTATUTO DE LA FUNCIÓN PÚBLICA",
-      "orden": 29,
-      "articulos": 118,
-      "tamano": 112750,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-del-estatuto-de-la-funcion-publica.json"
-    },
-    {
-      "slug": "ley-del-estatuto-de-la-funcion-de-la-policia-de-investigacion",
-      "archivo": "ley-del-estatuto-de-la-funcion-de-la-policia-de-investigacion.json",
-      "nombre": "LEY DEL ESTATUTO DE LA FUNCIÓN DE LA POLICÍA DE INVESTIGACIÓN",
-      "orden": 30,
-      "articulos": 142,
-      "tamano": 183823,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-del-estatuto-de-la-funcion-de-la-policia-de-investigacion.json"
-    },
-    {
-      "slug": "ley-organica-del-servicio-de-policia-de-investigacion-el-cuerpo-de-investigaciones-cientificas-penales-y-criminalisticas-y-el-servicio-nacional-de-medicina-y-ciencias-forenses",
-      "archivo": "ley-organica-del-servicio-de-policia-de-investigacion-el-cuerpo-de-investigaciones-cientificas-penales-y-criminalisticas-y-el-servicio-nacional-de-medicina-y-ciencias-forenses.json",
-      "nombre": "DECRETO CON RANGO, VALOR Y FUERZA DE LEY ORGÁNICA DEL SERVICIO DE POLICÍA DE INVESTIGACIÓN, EL CUERPO DE INVESTIGACIONES CIENTÍFICAS, PENALES Y CRIMINALÍSTICAS Y EL SERVICIO NACIONAL DE MEDICINA Y CIENCIAS FORENSES",
-      "orden": 31,
-      "articulos": 106,
-      "tamano": 113119,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-del-servicio-de-policia-de-investigacion-el-cuerpo-de-investigaciones-cientificas-penales-y-criminalisticas-y-el-servicio-nacional-de-medicina-y-ciencias-forenses.json"
-    },
-    {
-      "slug": "ley-organica-del-ministerio-publico",
-      "archivo": "ley-organica-del-ministerio-publico.json",
-      "nombre": "LEY ORGÁNICA DEL MINISTERIO PÚBLICO",
-      "orden": 32,
-      "articulos": 128,
-      "tamano": 148332,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-del-ministerio-publico.json"
-    },
-    {
-      "slug": "ley-organica-de-la-defensa-publica",
-      "archivo": "ley-organica-de-la-defensa-publica.json",
-      "nombre": "LEY ORGÁNICA DE LA DEFENSA PÚBLICA",
-      "orden": 33,
-      "articulos": 155,
-      "tamano": 196454,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-de-la-defensa-publica.json"
-    },
-    {
-      "slug": "ley-organica-del-tribunal-supremo-de-justicia",
-      "archivo": "ley-organica-del-tribunal-supremo-de-justicia.json",
-      "nombre": "LEY ORGÁNICA DEL TRIBUNAL SUPREMO DE JUSTICIA",
-      "orden": 34,
-      "articulos": 197,
-      "tamano": 200774,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-del-tribunal-supremo-de-justicia.json"
-    },
-    {
-      "slug": "ley-organica-de-la-jurisdiccion-contencioso-administrativa",
-      "archivo": "ley-organica-de-la-jurisdiccion-contencioso-administrativa.json",
-      "nombre": "LEY ORGÁNICA DE LA JURISDICCIÓN CONTENCIOSO ADMINISTRATIVA",
-      "orden": 35,
-      "articulos": 119,
-      "tamano": 109683,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-de-la-jurisdiccion-contencioso-administrativa.json"
-    },
-    {
-      "slug": "ley-de-abogados",
-      "archivo": "ley-de-abogados.json",
-      "nombre": "LEY DE ABOGADOS",
-      "orden": 36,
-      "articulos": 93,
-      "tamano": 82200,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-de-abogados.json"
-    },
-    {
-      "slug": "ley-de-juramento-publico",
-      "archivo": "ley-de-juramento-publico.json",
-      "nombre": "LEY DE JURAMENTO PÚBLICO",
-      "orden": 37,
-      "articulos": 8,
-      "tamano": 6638,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-de-juramento-publico.json"
-    },
-    {
-      "slug": "ley-de-publicaciones-oficiales",
-      "archivo": "ley-de-publicaciones-oficiales.json",
-      "nombre": "LEY DE PUBLICACIONES OFICIALES",
-      "orden": 38,
-      "articulos": 18,
-      "tamano": 18466,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-de-publicaciones-oficiales.json"
-    },
-    {
-      "slug": "ley-para-el-respeto-de-los-derechos-humanos-en-el-ejercicio-de-la-funcion-publica",
-      "archivo": "ley-para-el-respeto-de-los-derechos-humanos-en-el-ejercicio-de-la-funcion-publica.json",
-      "nombre": "LEY PARA EL RESPETO DE LOS DERECHOS HUMANOS EN EL EJERCICIO DE LA FUNCIÓN PÚBLICA",
-      "orden": 39,
-      "articulos": 23,
-      "tamano": 19891,
-      "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-para-el-respeto-de-los-derechos-humanos-en-el-ejercicio-de-la-funcion-publica.json"
-    }
-  ]
+ "generado": "2026-10-12T04:47:04.388Z",
+ "total": 40,
+ "leyes": [
+  {
+   "slug": "crbv",
+   "archivo": "crbv.json",
+   "nombre": "CONSTITUCIÓN DE LA REPÚBLICA BOLIVARIANA DE VENEZUELA",
+   "orden": 1,
+   "articulos": 370,
+   "tamano": 357797,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/crbv.json"
+  },
+  {
+   "slug": "copp",
+   "archivo": "copp.json",
+   "nombre": "CÓDIGO ORGÁNICO PROCESAL PENAL",
+   "orden": 2,
+   "articulos": 521,
+   "tamano": 491400,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/copp.json"
+  },
+  {
+   "slug": "codigo-penal",
+   "archivo": "codigo-penal.json",
+   "nombre": "CÓDIGO PENAL",
+   "orden": 3,
+   "articulos": 549,
+   "tamano": 452857,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/codigo-penal.json"
+  },
+  {
+   "slug": "ley-de-violencia",
+   "archivo": "ley-de-violencia.json",
+   "nombre": "LEY ORGÁNICA SOBRE EL DERECHO DE LAS MUJERES A UNA VIDA LIBRE DE VIOLENCIA",
+   "orden": 4,
+   "articulos": 149,
+   "tamano": 177187,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-de-violencia.json"
+  },
+  {
+   "slug": "ley-organica-para-la-proteccion-de-ninos-ninas-y-adolescentes",
+   "archivo": "ley-organica-para-la-proteccion-de-ninos-ninas-y-adolescentes.json",
+   "nombre": "LEY ORGÁNICA PARA LA PROTECCIÓN DE NIÑOS, NIÑAS Y ADOLESCENTES",
+   "orden": 5,
+   "articulos": 758,
+   "tamano": 731560,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-para-la-proteccion-de-ninos-ninas-y-adolescentes.json"
+  },
+  {
+   "slug": "ley-organica-de-drogas",
+   "archivo": "ley-organica-de-drogas.json",
+   "nombre": "LEY ORGÁNICA DE DROGAS",
+   "orden": 6,
+   "articulos": 216,
+   "tamano": 245567,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-de-drogas.json"
+  },
+  {
+   "slug": "ley-organica-contra-la-delincuencia-organizada-y-financiamiento-al-terrorismo",
+   "archivo": "ley-organica-contra-la-delincuencia-organizada-y-financiamiento-al-terrorismo.json",
+   "nombre": "LEY ORGÁNICA CONTRA LA DELINCUENCIA ORGANIZADA Y FINANCIAMIENTO AL TERRORISMO",
+   "orden": 7,
+   "articulos": 99,
+   "tamano": 119050,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-contra-la-delincuencia-organizada-y-financiamiento-al-terrorismo.json"
+  },
+  {
+   "slug": "ley-contra-el-secuestro-y-la-extorsion",
+   "archivo": "ley-contra-el-secuestro-y-la-extorsion.json",
+   "nombre": "LEY CONTRA EL SECUESTRO Y LA EXTORSIÓN",
+   "orden": 8,
+   "articulos": 32,
+   "tamano": 32466,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-contra-el-secuestro-y-la-extorsion.json"
+  },
+  {
+   "slug": "ley-especial-contra-los-delitos-informaticos",
+   "archivo": "ley-especial-contra-los-delitos-informaticos.json",
+   "nombre": "LEY ESPECIAL CONTRA LOS DELITOS INFORMÁTICOS",
+   "orden": 9,
+   "articulos": 34,
+   "tamano": 32384,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-especial-contra-los-delitos-informaticos.json"
+  },
+  {
+   "slug": "ley-contra-la-corrupcion",
+   "archivo": "ley-contra-la-corrupcion.json",
+   "nombre": "LEY CONTRA LA CORRUPCIÓN",
+   "orden": 10,
+   "articulos": 108,
+   "tamano": 109653,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-contra-la-corrupcion.json"
+  },
+  {
+   "slug": "ley-organica-contra-la-discriminacion-racial",
+   "archivo": "ley-organica-contra-la-discriminacion-racial.json",
+   "nombre": "LEY ORGÁNICA CONTRA LA DISCRIMINACIÓN RACIAL",
+   "orden": 11,
+   "articulos": 46,
+   "tamano": 45709,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-contra-la-discriminacion-racial.json"
+  },
+  {
+   "slug": "ley-especial-para-prevenir-y-sancionar-la-tortura-y-otros-tratos-crueles-inhumanos-o-degradantes",
+   "archivo": "ley-especial-para-prevenir-y-sancionar-la-tortura-y-otros-tratos-crueles-inhumanos-o-degradantes.json",
+   "nombre": "LEY ESPECIAL PARA PREVENIR Y SANCIONAR LA TORTURA Y OTROS TRATOS CRUELES, INHUMANOS O DEGRADANTES",
+   "orden": 12,
+   "articulos": 38,
+   "tamano": 42466,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-especial-para-prevenir-y-sancionar-la-tortura-y-otros-tratos-crueles-inhumanos-o-degradantes.json"
+  },
+  {
+   "slug": "ley-para-el-desarme-y-control-de-armas-y-municiones",
+   "archivo": "ley-para-el-desarme-y-control-de-armas-y-municiones.json",
+   "nombre": "LEY PARA EL DESARME Y CONTROL DE ARMAS Y MUNICIONES",
+   "orden": 13,
+   "articulos": 135,
+   "tamano": 129779,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-para-el-desarme-y-control-de-armas-y-municiones.json"
+  },
+  {
+   "slug": "ley-penal-del-ambiente",
+   "archivo": "ley-penal-del-ambiente.json",
+   "nombre": "LEY PENAL DEL AMBIENTE",
+   "orden": 14,
+   "articulos": 113,
+   "tamano": 104072,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-penal-del-ambiente.json"
+  },
+  {
+   "slug": "ley-penal-de-proteccion-a-la-actividad-ganadera",
+   "archivo": "ley-penal-de-proteccion-a-la-actividad-ganadera.json",
+   "nombre": "LEY PENAL DE PROTECCIÓN A LA ACTIVIDAD GANADERA",
+   "orden": 15,
+   "articulos": 33,
+   "tamano": 22772,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-penal-de-proteccion-a-la-actividad-ganadera.json"
+  },
+  {
+   "slug": "ley-contra-la-estafa-inmobiliaria",
+   "archivo": "ley-contra-la-estafa-inmobiliaria.json",
+   "nombre": "LEY CONTRA LA ESTAFA INMOBILIARIA",
+   "orden": 16,
+   "articulos": 49,
+   "tamano": 56026,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-contra-la-estafa-inmobiliaria.json"
+  },
+  {
+   "slug": "ley-para-la-prevencion-y-erradicacion-del-abuso-sexual-contra-ninas-ninos-y-adolescentes",
+   "archivo": "ley-para-la-prevencion-y-erradicacion-del-abuso-sexual-contra-ninas-ninos-y-adolescentes.json",
+   "nombre": "LEY PARA LA PREVENCIÓN Y ERRADICACIÓN DEL ABUSO SEXUAL CONTRA NIÑAS, NIÑOS Y ADOLESCENTES",
+   "orden": 17,
+   "articulos": 21,
+   "tamano": 26716,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-para-la-prevencion-y-erradicacion-del-abuso-sexual-contra-ninas-ninos-y-adolescentes.json"
+  },
+  {
+   "slug": "ley-para-sancionar-los-crimenes-desapariciones-torturas-y-otras-violaciones-de-los-derechos-humanos-por-razones-politicas-en-el-periodo-1958-1998",
+   "archivo": "ley-para-sancionar-los-crimenes-desapariciones-torturas-y-otras-violaciones-de-los-derechos-humanos-por-razones-politicas-en-el-periodo-1958-1998.json",
+   "nombre": "LEY PARA SANCIONAR LOS CRÍMENES, DESAPARICIONES, TORTURAS Y OTRAS VIOLACIONES DE LOS DERECHOS HUMANOS POR RAZONES POLÍTICAS EN EL PERÍODO 1958-1998",
+   "orden": 18,
+   "articulos": 33,
+   "tamano": 48871,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-para-sancionar-los-crimenes-desapariciones-torturas-y-otras-violaciones-de-los-derechos-humanos-por-razones-politicas-en-el-periodo-1958-1998.json"
+  },
+  {
+   "slug": "ley-constitucional-contra-el-odio-por-la-convivencia-pacifica-y-la-tolerancia",
+   "archivo": "ley-constitucional-contra-el-odio-por-la-convivencia-pacifica-y-la-tolerancia.json",
+   "nombre": "LEY CONSTITUCIONAL CONTRA EL ODIO, POR LA CONVIVENCIA PACÍFICA Y LA TOLERANCIA",
+   "orden": 19,
+   "articulos": 28,
+   "tamano": 30695,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-constitucional-contra-el-odio-por-la-convivencia-pacifica-y-la-tolerancia.json"
+  },
+  {
+   "slug": "ley-sobre-proteccion-a-la-privacidad-de-las-comunicaciones",
+   "archivo": "ley-sobre-proteccion-a-la-privacidad-de-las-comunicaciones.json",
+   "nombre": "LEY SOBRE PROTECCION A LA PRIVACIDAD DE LAS COMUNICACIONES",
+   "orden": 20,
+   "articulos": 9,
+   "tamano": 6923,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-sobre-proteccion-a-la-privacidad-de-las-comunicaciones.json"
+  },
+  {
+   "slug": "ley-de-registro-de-antecedentes-penales",
+   "archivo": "ley-de-registro-de-antecedentes-penales.json",
+   "nombre": "LEY DE REGISTRO DE ANTECEDENTES PENALES",
+   "orden": 21,
+   "articulos": 20,
+   "tamano": 16246,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-de-registro-de-antecedentes-penales.json"
+  },
+  {
+   "slug": "ley-que-regula-el-uso-de-la-telefonia-celular-y-la-internet-en-el-interior-de-los-establecimientos-penitenciarios",
+   "archivo": "ley-que-regula-el-uso-de-la-telefonia-celular-y-la-internet-en-el-interior-de-los-establecimientos-penitenciarios.json",
+   "nombre": "LEY QUE REGULA EL USO DE LA TELEFONÍA CELULAR Y LA INTERNET EN EL INTERIOR DE LOS ESTABLECIMIENTOS PENITENCIARIOS",
+   "orden": 22,
+   "articulos": 18,
+   "tamano": 12518,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-que-regula-el-uso-de-la-telefonia-celular-y-la-internet-en-el-interior-de-los-establecimientos-penitenciarios.json"
+  },
+  {
+   "slug": "ley-organica-de-extinsion-de-dominio",
+   "archivo": "ley-organica-de-extinsion-de-dominio.json",
+   "nombre": "LEY ORGÁNICA DE EXTINCIÓN DE DOMINIO",
+   "orden": 23,
+   "articulos": 53,
+   "tamano": 55898,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-de-extinsion-de-dominio.json"
+  },
+  {
+   "slug": "ley-organica-de-amparo-a-la-libertad",
+   "archivo": "ley-organica-de-amparo-a-la-libertad.json",
+   "nombre": "LEY ORGÁNICA DE AMPARO A LA LIBERTAD Y SEGURIDAD PERSONAL",
+   "orden": 24,
+   "articulos": 21,
+   "tamano": 15601,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-de-amparo-a-la-libertad.json"
+  },
+  {
+   "slug": "ley-organica-de-amparo-sobre-derechos-y-garantias-constitucionales",
+   "archivo": "ley-organica-de-amparo-sobre-derechos-y-garantias-constitucionales.json",
+   "nombre": "LEY ORGÁNICA DE AMPARO SOBRE DERECHOS Y GARANTÍAS CONSTITUCIONALES",
+   "orden": 25,
+   "articulos": 49,
+   "tamano": 36096,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-de-amparo-sobre-derechos-y-garantias-constitucionales.json"
+  },
+  {
+   "slug": "codigo-organico-penitenciario",
+   "archivo": "codigo-organico-penitenciario.json",
+   "nombre": "Código Orgánico Penitenciario",
+   "orden": 26,
+   "articulos": 176,
+   "tamano": 170183,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/codigo-organico-penitenciario.json"
+  },
+  {
+   "slug": "codigo-organico-de-justicia-militar",
+   "archivo": "codigo-organico-de-justicia-militar.json",
+   "nombre": "CÓDIGO ORGÁNICO DE JUSTICIA MILITAR",
+   "orden": 27,
+   "articulos": 589,
+   "tamano": 379389,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/codigo-organico-de-justicia-militar.json"
+  },
+  {
+   "slug": "ley-de-proteccion-de-victimas-testigos-y-demas-sujetos-procesales",
+   "archivo": "ley-de-proteccion-de-victimas-testigos-y-demas-sujetos-procesales.json",
+   "nombre": "LEY DE PROTECCIÓN DE VÍCTIMAS, TESTIGOS Y DEMÁS SUJETOS PROCESALES",
+   "orden": 28,
+   "articulos": 50,
+   "tamano": 51527,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-de-proteccion-de-victimas-testigos-y-demas-sujetos-procesales.json"
+  },
+  {
+   "slug": "ley-del-estatuto-de-la-funcion-policial",
+   "archivo": "ley-del-estatuto-de-la-funcion-policial.json",
+   "nombre": "LEY DEL ESTATUTO DE LA FUNCIÓN POLICIAL",
+   "orden": 29,
+   "articulos": 112,
+   "tamano": 134836,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-del-estatuto-de-la-funcion-policial.json"
+  },
+  {
+   "slug": "ley-del-estatuto-de-la-funcion-publica",
+   "archivo": "ley-del-estatuto-de-la-funcion-publica.json",
+   "nombre": "LEY DEL ESTATUTO DE LA FUNCIÓN PÚBLICA",
+   "orden": 30,
+   "articulos": 118,
+   "tamano": 104491,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-del-estatuto-de-la-funcion-publica.json"
+  },
+  {
+   "slug": "ley-del-estatuto-de-la-funcion-de-la-policia-de-investigacion",
+   "archivo": "ley-del-estatuto-de-la-funcion-de-la-policia-de-investigacion.json",
+   "nombre": "LEY DEL ESTATUTO DE LA FUNCIÓN DE LA POLICÍA DE INVESTIGACIÓN",
+   "orden": 31,
+   "articulos": 142,
+   "tamano": 175310,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-del-estatuto-de-la-funcion-de-la-policia-de-investigacion.json"
+  },
+  {
+   "slug": "ley-organica-del-servicio-de-policia-de-investigacion-el-cuerpo-de-investigaciones-cientificas-penales-y-criminalisticas-y-el-servicio-nacional-de-medicina-y-ciencias-forenses",
+   "archivo": "ley-organica-del-servicio-de-policia-de-investigacion-el-cuerpo-de-investigaciones-cientificas-penales-y-criminalisticas-y-el-servicio-nacional-de-medicina-y-ciencias-forenses.json",
+   "nombre": "DECRETO CON RANGO, VALOR Y FUERZA DE LEY ORGÁNICA DEL SERVICIO DE POLICÍA DE INVESTIGACIÓN, EL CUERPO DE INVESTIGACIONES CIENTÍFICAS, PENALES Y CRIMINALÍSTICAS Y EL SERVICIO NACIONAL DE MEDICINA Y CIENCIAS FORENSES",
+   "orden": 32,
+   "articulos": 106,
+   "tamano": 107103,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-del-servicio-de-policia-de-investigacion-el-cuerpo-de-investigaciones-cientificas-penales-y-criminalisticas-y-el-servicio-nacional-de-medicina-y-ciencias-forenses.json"
+  },
+  {
+   "slug": "ley-organica-del-ministerio-publico",
+   "archivo": "ley-organica-del-ministerio-publico.json",
+   "nombre": "LEY ORGÁNICA DEL MINISTERIO PÚBLICO",
+   "orden": 33,
+   "articulos": 128,
+   "tamano": 139754,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-del-ministerio-publico.json"
+  },
+  {
+   "slug": "ley-organica-de-la-defensa-publica",
+   "archivo": "ley-organica-de-la-defensa-publica.json",
+   "nombre": "LEY ORGÁNICA DE LA DEFENSA PÚBLICA",
+   "orden": 34,
+   "articulos": 155,
+   "tamano": 185330,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-de-la-defensa-publica.json"
+  },
+  {
+   "slug": "ley-organica-del-tribunal-supremo-de-justicia",
+   "archivo": "ley-organica-del-tribunal-supremo-de-justicia.json",
+   "nombre": "LEY ORGÁNICA DEL TRIBUNAL SUPREMO DE JUSTICIA",
+   "orden": 35,
+   "articulos": 197,
+   "tamano": 188568,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-del-tribunal-supremo-de-justicia.json"
+  },
+  {
+   "slug": "ley-organica-de-la-jurisdiccion-contencioso-administrativa",
+   "archivo": "ley-organica-de-la-jurisdiccion-contencioso-administrativa.json",
+   "nombre": "LEY ORGÁNICA DE LA JURISDICCIÓN CONTENCIOSO ADMINISTRATIVA",
+   "orden": 36,
+   "articulos": 119,
+   "tamano": 101613,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-organica-de-la-jurisdiccion-contencioso-administrativa.json"
+  },
+  {
+   "slug": "ley-de-abogados",
+   "archivo": "ley-de-abogados.json",
+   "nombre": "LEY DE ABOGADOS",
+   "orden": 37,
+   "articulos": 93,
+   "tamano": 76151,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-de-abogados.json"
+  },
+  {
+   "slug": "ley-de-juramento-publico",
+   "archivo": "ley-de-juramento-publico.json",
+   "nombre": "LEY DE JURAMENTO PÚBLICO",
+   "orden": 38,
+   "articulos": 8,
+   "tamano": 6287,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-de-juramento-publico.json"
+  },
+  {
+   "slug": "ley-de-publicaciones-oficiales",
+   "archivo": "ley-de-publicaciones-oficiales.json",
+   "nombre": "LEY DE PUBLICACIONES OFICIALES",
+   "orden": 39,
+   "articulos": 18,
+   "tamano": 17105,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-de-publicaciones-oficiales.json"
+  },
+  {
+   "slug": "ley-para-el-respeto-de-los-derechos-humanos-en-el-ejercicio-de-la-funcion-publica",
+   "archivo": "ley-para-el-respeto-de-los-derechos-humanos-en-el-ejercicio-de-la-funcion-publica.json",
+   "nombre": "LEY PARA EL RESPETO DE LOS DERECHOS HUMANOS EN EL EJERCICIO DE LA FUNCIÓN PÚBLICA",
+   "orden": 40,
+   "articulos": 23,
+   "tamano": 18615,
+   "url": "https://efxzcglhyosrxtafirhs.supabase.co/storage/v1/object/public/leyes/ley-para-el-respeto-de-los-derechos-humanos-en-el-ejercicio-de-la-funcion-publica.json"
+  }
+ ]
 }
