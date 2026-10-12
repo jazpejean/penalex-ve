@@ -27,8 +27,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_markdown: ^0.6.18
+  google_fonts: ^6.2.1
   markdown: ^7.3.1
   file_picker: ^8.0.0+1
+  flutter_svg: ^2.0.10
   google_mlkit_text_recognition: ^0.11.0
   google_sign_in: ^6.1.5
   http: ^1.2.0
@@ -49,6 +51,7 @@ dependencies:
   pdf: ^3.10.4
   permission_handler: ^11.0.1
   provider: ^6.0.5
+  screenshot: ^3.0.0
   share_plus: ^7.2.1
   shared_preferences: ^2.2.2
   table_calendar: ^3.0.9
@@ -69,4 +72,8 @@ flutter:
     - assets/data/
     - assets/templates/
     - assets/audio/
+    - assets/icons/quiz/
+    - assets/logos/
     - .env
+  shaders:
+    - assets/shaders/liquid_gold.frag

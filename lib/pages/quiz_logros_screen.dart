@@ -9,6 +9,7 @@ import '../game/quiz_effects_game.dart';
 import '../services/quiz_certificate_service.dart';
 import '../services/quiz_rules.dart';
 import '../services/quiz_storage_service.dart';
+import '../widgets/quiz_icon.dart';
 import '../widgets/quiz_pulso_widget.dart';
 
 const _fondoProfundo = Color(0xFF190F38);
@@ -137,11 +138,8 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
             children: [
               Row(
                 children: [
-                  const Icon(
-                    Icons.workspace_premium,
-                    color: _oroBrillante,
-                    size: 34,
-                  ),
+                  const QuizIcon('scroll_seal',
+                      size: 34, color: _oroBrillante),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
@@ -268,11 +266,8 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                             ),
                           ],
                         ),
-                        child: const Icon(
-                          Icons.military_tech,
-                          size: 18,
-                          color: Color(0xFF0F172A),
-                        ),
+                        child: const QuizIcon('medal_ornate',
+                            size: 18, color: Color(0xFF0F172A)),
                       ),
                     )
                   : Container(
@@ -283,11 +278,8 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                         color: Colors.white.withValues(alpha: 0.06),
                         border: Border.all(color: Colors.white24),
                       ),
-                      child: const Icon(
-                        Icons.lock,
-                        size: 17,
-                        color: Colors.white38,
-                      ),
+                      child: const QuizIcon('lock_ornate',
+                          size: 17, color: Colors.white38),
                     ),
             ),
             const SizedBox(width: 12),
@@ -342,11 +334,8 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                     if (desbloqueado)
                       IconButton(
                         onPressed: () => _compartir(hito, logro),
-                        icon: const Icon(
-                          Icons.ios_share,
-                          color: _oroBrillante,
-                          size: 20,
-                        ),
+                        icon: const QuizIcon('share_ornate',
+                            size: 20, color: _oroBrillante),
                         tooltip: 'Compartir certificado',
                       )
                     else

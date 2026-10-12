@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import '../widgets/quiz_icon.dart';
 import 'package:flutter/material.dart';
 
 class QuizTimerWidget extends StatelessWidget {
@@ -79,8 +80,8 @@ class QuizTimerWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(
-                    Icons.timer_outlined,
+                  QuizIcon(
+                    'hourglass_gold',
                     color: textColor,
                     size: 20,
                   ),

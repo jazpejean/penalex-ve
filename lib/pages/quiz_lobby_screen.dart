@@ -15,6 +15,8 @@ import '../services/quiz_rules.dart';
 import '../services/quiz_storage_service.dart';
 import '../utils/quiz_seed.dart';
 import '../widgets/quiz_insignia_widget.dart';
+import '../widgets/penalex_logo.dart';
+import '../widgets/quiz_icon.dart';
 import '../widgets/quiz_pulso_widget.dart';
 import 'quiz_game_screen.dart';
 import 'quiz_logros_screen.dart';
@@ -202,8 +204,12 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                 ),
               ],
             ),
-            child:
-                const Icon(Icons.balance, size: 48, color: Color(0xFF0F172A)),
+            child: PenalexLogo(
+              variant: PenalexLogoVariant.logo,
+              size: 56,
+              color: const Color(0xFF0F172A),
+              animate: false,
+            ),
           ),
         ),
         const SizedBox(height: 20),
@@ -322,14 +328,14 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
           const SizedBox(height: 16),
           Row(
             children: [
-              _stat(Icons.local_fire_department, '$_racha', 'Racha',
-                  const Color(0xFFFF8A65)),
-              _stat(Icons.whatshot, '$_rachaDias', 'Días',
-                  const Color(0xFFFFB74D)),
-              _stat(
-                  Icons.balance, '$_apelaciones', 'Apelaciones', _oroBrillante),
-              _stat(Icons.library_books, '$_totalCasos', 'Casos',
-                  const Color(0xFF81C784)),
+              _stat(QuizIcon('flame_legal', size: 22,
+                  color: const Color(0xFFFF8A65)), '$_racha', 'Racha'),
+              _stat(QuizIcon('calendar_court', size: 22,
+                  color: const Color(0xFFFFB74D)), '$_rachaDias', 'Días'),
+              _stat(QuizIcon('scales_calc', size: 22, color: _oroBrillante),
+                  '$_apelaciones', 'Apelaciones'),
+              _stat(QuizIcon('book_law', size: 22,
+                  color: const Color(0xFF81C784)), '$_totalCasos', 'Casos'),
             ],
           ),
           if (_apelaciones < 5) ...[
@@ -356,7 +362,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.timer_outlined, color: _oroBrillante, size: 18),
+          const QuizIcon('hourglass_gold', size: 18, color: _oroBrillante),
           const SizedBox(width: 8),
           Text(
             'Próxima apelación en ${m}m ${seg.toString().padLeft(2, '0')}s',
@@ -385,7 +391,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
         children: [
           Row(
             children: [
-              const Icon(Icons.flag, color: _oroBrillante, size: 20),
+              const QuizIcon('flag_ornate', size: 20, color: _oroBrillante),
               const SizedBox(width: 8),
               const Text(
                 'MISIONES DEL DÍA',
@@ -463,7 +469,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
           ),
           const SizedBox(width: 10),
           if (e.reclamada)
-            const Icon(Icons.check_circle, color: Color(0xFF81C784), size: 26)
+            const QuizIcon('check_seal', size: 26, color: Color(0xFF81C784))
           else if (e.completa)
             GestureDetector(
               onTap: () => _reclamarMision(m),
@@ -524,11 +530,11 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
     }
   }
 
-  Widget _stat(IconData icon, String valor, String label, Color color) {
+  Widget _stat(Widget icon, String valor, String label) {
     return Expanded(
       child: Column(
         children: [
-          Icon(icon, color: color, size: 22),
+          icon,
           const SizedBox(height: 6),
           Text(
             valor,
@@ -586,7 +592,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.play_arrow_rounded,
+                  QuizIcon('play_ornate',
                       color: Color(0xFF0F172A), size: 32),
                   SizedBox(width: 8),
                   Text(
@@ -617,7 +623,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
       onPressed: _descargarCertificado,
-      icon: const Icon(Icons.workspace_premium_outlined),
+      icon: const QuizIcon('scroll_seal'),
       label: const Text(
         'Descargar certificado',
         style: TextStyle(fontWeight: FontWeight.w600),
@@ -638,7 +644,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
         context,
         MaterialPageRoute(builder: (context) => const QuizLogrosScreen()),
       ),
-      icon: const Icon(Icons.emoji_events_outlined),
+      icon: const QuizIcon('laurel'),
       label: const Text('Mis Logros'),
     );
   }

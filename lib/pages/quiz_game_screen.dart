@@ -16,6 +16,7 @@ import '../services/quiz_ranking_service.dart';
 import '../services/sfx_service.dart';
 import '../services/quiz_storage_service.dart';
 import '../utils/quiz_seed.dart';
+import '../widgets/quiz_icon.dart';
 import '../widgets/quiz_pulso_widget.dart';
 
 /// Paleta propia del quiz: "Noche de Juego".
@@ -401,9 +402,9 @@ class _QuizGameScreenState extends State<QuizGameScreen>
           ),
           _buildRacha(),
           const SizedBox(width: 14),
-          _stat(Icons.balance, '$_apelaciones', _oro),
+          _stat(QuizIcon('scales_calc', size: 18, color: _oro), '$_apelaciones', _oro),
           const SizedBox(width: 14),
-          _stat(Icons.star, '$_xp', Colors.amber),
+          _stat(QuizIcon('star_shield', size: 18, color: Colors.amber), '$_xp', Colors.amber),
         ],
       ),
     );
@@ -421,18 +422,11 @@ class _QuizGameScreenState extends State<QuizGameScreen>
           : const Duration(milliseconds: 1000),
       child: Row(
         children: [
-          Icon(
-            Icons.local_fire_department,
+          QuizIcon(
+            'flame_legal',
             color: color,
             size: 22,
-            shadows: media
-                ? [
-                    Shadow(
-                      color: color.withValues(alpha: 0.8),
-                      blurRadius: 12,
-                    ),
-                  ]
-                : null,
+            withGlow: media,
           ),
           const SizedBox(width: 4),
           Text(
@@ -448,10 +442,10 @@ class _QuizGameScreenState extends State<QuizGameScreen>
     );
   }
 
-  Widget _stat(IconData icon, String valor, Color color) {
+  Widget _stat(Widget icon, String valor, Color color) {
     return Row(
       children: [
-        Icon(icon, color: color, size: 18),
+        icon,
         const SizedBox(width: 4),
         Text(
           valor,
@@ -687,7 +681,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
           children: [
             const Row(
               children: [
-                Icon(Icons.gavel, color: _acierto, size: 18),
+                QuizIcon('gavel_refined', color: _acierto, size: 18),
                 SizedBox(width: 8),
                 Text(
                   'FUNDAMENTACIÓN',
@@ -796,7 +790,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.timer_outlined, color: _oroBrillante, size: 18),
+              const QuizIcon('hourglass_gold', size: 18, color: _oroBrillante),
               const SizedBox(width: 6),
               Text(
                 'Próxima apelación en ${restante.inMinutes}m '
@@ -817,8 +811,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.inventory_2_outlined,
-                size: 64, color: Colors.white24),
+            const QuizIcon('scroll_seal', size: 64, color: Colors.white24),
             const SizedBox(height: 16),
             const Text('No hay casos disponibles aún',
                 style: TextStyle(color: Colors.white70, fontSize: 16)),
@@ -879,7 +872,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.military_tech, size: 72, color: _oroBrillante),
+              const QuizIcon('medal_ornate', size: 72, color: _oroBrillante),
               const SizedBox(height: 12),
               const Text(
                 '¡LOGRO DESBLOQUEADO!',
@@ -934,7 +927,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
                               text: 'Certificado Penalex: $rango');
                         }
                       },
-                      icon: const Icon(Icons.ios_share, size: 18),
+                      icon: const QuizIcon('share_ornate', size: 18),
                       label: const Text('Compartir'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: _oro,
@@ -1054,7 +1047,7 @@ class _OpcionTarjetaState extends State<_OpcionTarjeta>
     Color fondo = Colors.white.withValues(alpha: 0.05);
     Color letraFondo = _oro.withValues(alpha: 0.18);
     Color letraColor = _oro;
-    IconData? iconoFin;
+    String? iconoFin;
 
     if (widget.respondida) {
       if (widget.esCorrecta) {
@@ -1062,13 +1055,13 @@ class _OpcionTarjetaState extends State<_OpcionTarjeta>
         fondo = _acierto.withValues(alpha: 0.16);
         letraFondo = _acierto;
         letraColor = Colors.black;
-        iconoFin = Icons.check_rounded;
+        iconoFin = 'check_seal';
       } else if (widget.esSeleccionada) {
         borde = _fallo;
         fondo = _fallo.withValues(alpha: 0.15);
         letraFondo = _fallo;
         letraColor = Colors.black;
-        iconoFin = Icons.close_rounded;
+        iconoFin = 'close_ornate';
       }
     }
 
@@ -1127,7 +1120,8 @@ class _OpcionTarjetaState extends State<_OpcionTarjeta>
                     ),
                   ),
                 ),
-                if (iconoFin != null) Icon(iconoFin, color: borde, size: 22),
+                if (iconoFin != null)
+                  QuizIcon(iconoFin, size: 22, color: borde),
               ],
             ),
           ),
@@ -1258,11 +1252,8 @@ class _AscensoOverlayState extends State<_AscensoOverlay>
                         ),
                       ],
                     ),
-                    child: const Icon(
-                      Icons.military_tech,
-                      size: 48,
-                      color: Color(0xFF0F172A),
-                    ),
+                    child: const QuizIcon('medal_ornate',
+                        size: 48, color: Color(0xFF0F172A)),
                   ),
                 ),
                 const SizedBox(height: 18),
