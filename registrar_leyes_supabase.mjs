@@ -98,6 +98,16 @@ function validarEstructura(raw, nombreArchivo) {
     ? data.ley_nombre.trim()
     : nombreArchivo.replace(/\.json$/i, '');
 
+  // Metadatos de vigencia (opcionales): las leyes derogadas entran al corpus
+  // con vigencia='derogada' + fecha_derogacion + sustituida_por (ej. el
+  // Código de Enjuiciamiento Criminal, sustituido por el COPP en 1999).
+  let vigencia = null;
+  if (data.vigencia === 'derogada' || data.vigencia === 'vigente') vigencia = data.vigencia;
+  const fechaDerogacion = typeof data.fecha_derogacion === 'string' ? data.fecha_derogacion : null;
+  const sustituidaPor = typeof data.sustituida_por === 'string' ? data.sustituida_por : null;
+  if (data.vigencia !== undefined && !vigencia) problemas.push(`vigencia inválida: ${data.vigencia}`);
+  if (vigencia === 'derogada' && !sustituidaPor) problemas.push('vigencia=derogada requiere sustituida_por');
+
   if (!Array.isArray(data.estructura)) {
     return { ok: false, problemas: ['falta estructura[] (esperado: array de bloques)'], nombre, articulos: 0 };
   }
@@ -115,7 +125,7 @@ function validarEstructura(raw, nombreArchivo) {
       if (!tieneTexto) problemas.push(`art. ${a.identificador || '?'} sin texto`);
     }
   }
-  return { ok: problemas.length === 0, problemas: problemas.slice(0, 10), nombre, articulos: n };
+  return { ok: problemas.length === 0, problemas: problemas.slice(0, 10), nombre, articulos: n, vigencia, fechaDerogacion, sustituidaPor };
 }
 
 // --- Flujo principal --------------------------------------------------------
@@ -150,6 +160,13 @@ for (const o of archivos) {
     articulos: v.articulos,
     tamano: (o.metadata?.size) ?? Buffer.byteLength(texto),
     url: `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${o.name}`,
+    // Solo se incluyen cuando la ley declara vigencia (las vigentes actuales
+    // conservan exactamente la forma anterior del manifest).
+    ...(v.vigencia ? {
+      vigencia: v.vigencia,
+      fecha_derogacion: v.fechaDerogacion,
+      sustituida_por: v.sustituidaPor,
+    } : {}),
     _ok: v.ok,
   });
 }
