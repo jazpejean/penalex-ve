@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _introController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1400),
+      duration: const Duration(milliseconds: 900),
     );
     _logoOpacity = CurvedAnimation(
       parent: _introController,
@@ -49,10 +49,7 @@ class _SplashScreenState extends State<SplashScreen>
     _sparkles = _SparkleField.generate(28);
 
     _introController.forward();
-    Future.delayed(const Duration(milliseconds: 3200), () {
-      if (!mounted) return;
-      Navigator.pushReplacementNamed(context, '/');
-    });
+    // El SplashScreen ya NO navega: su padre (AuthWrapper) decide qué mostrar.
   }
 
   @override

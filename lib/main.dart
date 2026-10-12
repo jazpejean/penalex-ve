@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
@@ -33,7 +34,6 @@ import 'pages/buscador_juridico_screen.dart';
 
 import 'pages/reportes_guardados_page.dart';
 import 'pages/reset_password_page.dart';
-import 'pages/splash_screen.dart';
 import 'pages/verify_email_page.dart';
 import 'providers/game_provider.dart';
 import 'providers/user_provider.dart';
@@ -42,26 +42,20 @@ import 'firebase_options.dart'; // Asegúrate de tener este archivo
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  // Cargar variables de entorno
+
+  // CRÍTICO antes de runApp: sin esto, la app no funciona.
   await dotenv.load(fileName: ".env");
-  
-  // Inicializar datos de localización para español
-  await initializeDateFormatting('es_ES', null);
-  
-  // Inicializar Firebase (para autenticación)
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  
-  // Inicializar Supabase (para datos: jurisprudencias, documentos, etc.)
   await Supabase.initialize(
     url: dotenv.env['SUPABASE_URL']!,
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
-  
-  // Cargar el modo oscuro guardado (suiche del drawer)
-  await TemaGlobal.cargar();
+
+  // NO CRÍTICO: se ejecuta en paralelo, no bloquea el arranque.
+  unawaited(initializeDateFormatting('es_ES', null));
+  unawaited(TemaGlobal.cargar());
 
   runApp(const DosimetriaPenalApp());
 }
@@ -165,26 +159,29 @@ class AuthWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Chequeo SÍNCRONO: si Firebase tiene usuario cacheado en memoria,
+    // no esperamos absolutamente nada. Retornamos MainScreen directo.
+    final currentUser = firebase_auth.FirebaseAuth.instance.currentUser;
+
+    if (currentUser != null && currentUser.emailVerified) {
+      return const MainScreen();
+    }
+
+    // Si no hay usuario cacheado, escuchamos el stream para login/logout en vivo.
     final authService = Provider.of<AuthService>(context, listen: false);
 
     return StreamBuilder<firebase_auth.User?>(
       stream: authService.authStateChanges,
       builder: (context, snapshot) {
+        // Mientras Firebase resuelve el estado inicial (milisegundos),
+        // mostramos un fondo navy plano. NUNCA el SplashScreen animado.
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const SplashScreen();
+          return const ColoredBox(color: Color(0xFF0F172A));
         }
-        
+
         final user = snapshot.data;
-        
-        // Si no hay usuario, mostrar login
         if (user == null) return const LoginPage();
-
-        // Si el email no está verificado, mostrar pantalla de verificación
-        if (!user.emailVerified) {
-          return const VerifyEmailPage();
-        }
-
-        // Usuario autenticado y verificado, ir a MainScreen
+        if (!user.emailVerified) return const VerifyEmailPage();
         return const MainScreen();
       },
     );
