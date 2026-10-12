@@ -17,7 +17,16 @@ import '../models/caso_quiz.dart';
 class QuizStorageService {
   static final _supabase = Supabase.instance.client;
   static final _firebaseAuth = firebase_auth.FirebaseAuth.instance;
-  static String? get _uid => _firebaseAuth.currentUser?.uid;
+  /// UID de sesión; si Firebase no está disponible (arranque, red caída) se
+  /// devuelve null: el quiz continúa con el progreso por defecto en vez de
+  /// romper la inicialización de la pantalla.
+  static String? get _uid {
+    try {
+      return _firebaseAuth.currentUser?.uid;
+    } catch (_) {
+      return null;
+    }
+  }
   static const String bucket = 'quiz';
   static const Duration _cooldown = Duration(hours: 24);
 
