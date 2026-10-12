@@ -105,6 +105,19 @@ class JurisprudenciaService {
     }
   }
 
+  /// Conteo del corpus completo (sentencias + jurisprudencias + resoluciones)
+  Future<int> contarSentencias() async {
+    try {
+      final res = await _supabase
+          .from('documentos')
+          .select('id')
+          .count(CountOption.exact);
+      return res.count;
+    } catch (e) {
+      return 0;
+    }
+  }
+
   /// Alias para compatibilidad con pantallas existentes
   Future<List<SentenciaModel>> buscarDocumentos({
     String? textoBusqueda,

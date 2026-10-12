@@ -7,6 +7,9 @@ import '../widgets/app_drawer.dart';
 class GlosarioScreen extends StatefulWidget {
   const GlosarioScreen({super.key});
 
+  /// Términos del glosario (compartidos con el Buscador Jurídico)
+  static List<Map<String, String>> get terminos => _GlosarioScreenState.terminos;
+
   @override
   State<GlosarioScreen> createState() => _GlosarioScreenState();
 }
@@ -15,7 +18,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
   final TextEditingController _searchController = TextEditingController();
   
   // Glosario ampliado con más de 150 términos (RESPALDO)
-  final List<Map<String, String>> _glossary = const <Map<String, String>>[
+  static const List<Map<String, String>> terminos = <Map<String, String>>[
     // A
     <String, String>{'term': 'Abogado', 'definition': 'Profesional del derecho que asesora, representa y defiende a las partes en un proceso judicial.'},
     <String, String>{'term': 'Absolución', 'definition': 'Declaración judicial que libera a una persona de la responsabilidad penal por el hecho imputado.'},
@@ -200,7 +203,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
   void initState() {
     super.initState();
     // Usar glosario local directamente
-    _filteredGlossary = List.from(_glossary);
+    _filteredGlossary = List.from(terminos);
   }
 
   @override
@@ -221,7 +224,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
 
   void _filterGlossary(String value) {
     final String normalized = _normalize(value.trim());
-    final List<Map<String, String>> results = _glossary.where((Map<String, String> entry) {
+    final List<Map<String, String>> results = terminos.where((Map<String, String> entry) {
       final String term = _normalize(entry['term'] ?? '');
       final String definition = _normalize(entry['definition'] ?? '');
       final bool matchesSearch = normalized.isEmpty || term.contains(normalized) || definition.contains(normalized);
@@ -264,7 +267,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                   ],
                 ),
                 child: Text(
-                  '${_glossary.length} términos',
+                  '${terminos.length} términos',
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,

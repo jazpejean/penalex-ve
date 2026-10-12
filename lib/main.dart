@@ -24,13 +24,13 @@ import 'pages/chat_legal_screen.dart';
 import 'pages/computo_page.dart';
 import 'pages/dashboard_screen.dart';
 import 'pages/dosimetria_page.dart';
-import 'pages/glosario_screen.dart';
+
 import 'pages/main_screen.dart';
 import 'pages/login_page.dart'; // FIREBASE LOGIN
 import 'pages/quiz_lobby_screen.dart';
 import 'pages/quiz_logros_screen.dart';
-import 'pages/repositorio_jurisprudencia_screen.dart';
-import 'pages/repositorio_leyes_screen.dart';
+import 'pages/buscador_juridico_screen.dart';
+
 import 'pages/reportes_guardados_page.dart';
 import 'pages/reset_password_page.dart';
 import 'pages/splash_screen.dart';
@@ -118,9 +118,12 @@ class DosimetriaPenalApp extends StatelessWidget {
           '/calculos': (context) => const CalculosGuardadosPage(),
           '/agenda': (context) => const AgendaScreen(),
           '/reportes': (context) => const ReportesGuardadosPage(),
-          '/glosario': (context) => const GlosarioScreen(),
-          '/repositorio_jurisprudencia': (context) => const RepositorioJurisprudenciaScreen(),
-          '/repositorio_leyes': (context) => const RepositorioLeyesScreen(),
+          '/glosario': (context) =>
+              const BuscadorJuridicoScreen(alcanceInicial: AlcanceBusqueda.glosario),
+          '/repositorio_jurisprudencia': (context) =>
+              const BuscadorJuridicoScreen(alcanceInicial: AlcanceBusqueda.sentencias),
+          '/repositorio_leyes': (context) =>
+              const BuscadorJuridicoScreen(alcanceInicial: AlcanceBusqueda.leyes),
           '/ai_analytics': (context) => const AIAnalyticsScreen(),
           '/quiz': (context) => const QuizLobbyScreen(),
           '/quiz_lobby': (context) => const QuizLobbyScreen(),

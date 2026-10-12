@@ -13,6 +13,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:penalex_ve/pages/dosimetria_page.dart';
 import 'package:penalex_ve/pages/main_screen.dart';
+import 'package:penalex_ve/pages/buscador_juridico_screen.dart';
 import 'package:penalex_ve/pages/repositorio_jurisprudencia_screen.dart';
 import 'package:penalex_ve/pages/repositorio_leyes_screen.dart';
 import 'package:penalex_ve/config/app_theme.dart';
@@ -122,6 +123,23 @@ void main() {
     await tester.pump();
     tester.takeException();
     tester.takeException();
+  });
+
+  testWidgets('buscador jurídico (nivel Venley, claro)', (tester) async {
+    await pumpPage(tester, const BuscadorJuridicoScreen());
+    tester.takeException();
+    await expectLater(
+      find.byType(BuscadorJuridicoScreen),
+      matchesGoldenFile('goldens/buscador_juridico.png'),
+    );
+    await tester.pump();
+    tester.takeException();
+    tester.takeException();
+  });
+
+  testWidgets('buscador jurídico MODO OSCURO', (tester) async {
+    await capturaOscura(tester, const BuscadorJuridicoScreen(),
+        'buscador_juridico_oscura');
   });
 
   testWidgets('jurisprudencia (filtros)', (tester) async {

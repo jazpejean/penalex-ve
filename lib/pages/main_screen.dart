@@ -4,8 +4,7 @@ import '../config/app_colors.dart';
 import 'agenda_screen.dart';
 import 'asistente_legal_hub_screen.dart';
 import 'dosimetria_page.dart';
-import 'repositorio_jurisprudencia_screen.dart';
-import 'repositorio_leyes_screen.dart';
+import 'buscador_juridico_screen.dart';
 
 /// Navegación principal de Penalex VE.
 ///
@@ -27,8 +26,7 @@ class _MainScreenState extends State<MainScreen> {
     AgendaScreen(), // 0 - Agenda
     DosimetriaPage(), // 1 - Dosimetría
     AsistenteLegalHubScreen(), // 2 - Asistente Legal (centro)
-    RepositorioLeyesScreen(), // 3 - Leyes
-    RepositorioJurisprudenciaScreen(), // 4 - Sentencias
+    BuscadorJuridicoScreen(), // 3 - Buscador Jurídico (Sentencias/Leyes/Glosario)
   ];
 
   @override
@@ -69,8 +67,7 @@ class _MainScreenState extends State<MainScreen> {
               _buildNavItem(Icons.calculate, 'Dosimetría', 1),
               _buildNavItem(Icons.auto_awesome, 'Ulpiano', 2,
                   isCenter: true),
-              _buildNavItem(Icons.gavel, 'Leyes', 3),
-              _buildNavItem(Icons.account_balance, 'Sentencias', 4),
+              _buildNavItem(Icons.search, 'Buscar', 3),
             ],
           ),
         ),
