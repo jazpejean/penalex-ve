@@ -1,0 +1,10 @@
+name = "penalex-auth-bridge"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+workers_dev = true
+
+# Identidad: traduce la sesión de Firebase a un JWT de Supabase.
+[vars]
+FIREBASE_PROJECT_ID = "penalex-ve"
+
+# Se configura por `wrangler secret put SUPABASE_JWT_SECRET` (no en el repo).

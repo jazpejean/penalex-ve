@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'device_id_helper.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'supabase_identity_bridge.dart';
 
 class AuthService {
   final firebase_auth.FirebaseAuth _auth = firebase_auth.FirebaseAuth.instance;
@@ -12,6 +13,14 @@ class AuthService {
   final SupabaseClient _supabase = Supabase.instance.client;
   final DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  AuthService() {
+    // Puente Firebase -> Supabase: cada cambio de sesión de Firebase
+    // sincroniza la identidad en Supabase para que el RLS aplique por usuario.
+    _auth.authStateChanges().listen((user) {
+      SupabaseIdentityBridge.sincronizar(user);
+    });
+  }
 
   Stream<firebase_auth.User?> get authStateChanges => _auth.authStateChanges();
   firebase_auth.User? get currentUser => _auth.currentUser;
