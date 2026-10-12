@@ -168,6 +168,9 @@ class _QuizGameScreenState extends State<QuizGameScreen>
         racha: _racha,
       );
       _racha++;
+      if (_racha >= 5 && _racha % 5 == 0) {
+        SfxService.instance.racha(_racha);
+      }
       _xp += xpGanado;
       nuevo = _service.registrarAcierto(nuevo, _caso!.id);
       // Progresión diaria: alimenta los contadores de las misiones del día.

@@ -13,6 +13,7 @@ import '../services/quiz_progresion_service.dart';
 import '../services/quiz_ranking_service.dart';
 import '../services/quiz_rules.dart';
 import '../services/quiz_storage_service.dart';
+import '../services/sfx_service.dart';
 import '../utils/quiz_seed.dart';
 import '../utils/transiciones.dart';
 import '../widgets/liquid_gold_background.dart';
@@ -46,6 +47,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
   int _totalCasos = 0;
   List<Map<String, dynamic>> _ranking = [];
   bool _cargando = true;
+  bool _muted = false;
   Timer? _tick;
   Timer? _ambiente;
 
@@ -72,12 +74,16 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
     _tick?.cancel();
     _ambiente?.cancel();
     _entrada.dispose();
+    SfxService.instance.ambienteStop();
     super.dispose();
   }
 
   Future<void> _inicializar() async {
     await sembrarCasosIniciales();
     QuizGeneradorService.recargarBanco();
+    await SfxService.instance.init();
+    await SfxService.instance.ambienteStart();
+    if (mounted) setState(() => _muted = SfxService.instance.muted);
 
     final p = await _service.cargarProgreso();
     final casos = await _service.listarCasos();
@@ -154,6 +160,15 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
             ),
           ),
           SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8, right: 8),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: _buildMuteToggle(),
+              ),
+            ),
+          ),
+          SafeArea(
             child: _cargando
                 ? const Center(child: CircularProgressIndicator(color: _oro))
                 : SingleChildScrollView(
@@ -179,6 +194,29 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                   ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildMuteToggle() {
+    return Material(
+      color: _card.withValues(alpha: 0.75),
+      shape: const CircleBorder(),
+      child: InkWell(
+        customBorder: const CircleBorder(),
+        onTap: () async {
+          final nuevo = !_muted;
+          await SfxService.instance.mute(nuevo);
+          if (mounted) setState(() => _muted = nuevo);
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: QuizIcon(
+            _muted ? 'sound_off_ornate' : 'sound_on_ornate',
+            size: 22,
+            color: _muted ? Colors.white54 : _oroBrillante,
+          ),
+        ),
       ),
     );
   }
