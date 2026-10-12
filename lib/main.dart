@@ -28,6 +28,7 @@ import 'pages/dosimetria_page.dart';
 
 import 'pages/main_screen.dart';
 import 'pages/login_page.dart'; // FIREBASE LOGIN
+import 'pages/splash_screen.dart';
 import 'pages/quiz_lobby_screen.dart';
 import 'pages/quiz_logros_screen.dart';
 import 'pages/buscador_juridico_screen.dart';
@@ -39,6 +40,14 @@ import 'providers/game_provider.dart';
 import 'providers/user_provider.dart';
 import 'services/auth_service.dart'; // FIREBASE AUTH SERVICE
 import 'firebase_options.dart'; // Asegúrate de tener este archivo
+
+/// Bandera global de arranque en frío.
+///
+/// El SplashScreen animado se muestra SOLO cuando se abre la app (proceso
+/// nuevo). Vive fuera del árbol de widgets: sobrevive a los remontes por
+/// cambio de tema (MaterialApp con ValueKey) y a la reanudación desde
+/// segundo plano, de modo que ahí NUNCA vuelve a aparecer.
+bool _splashArranquePendiente = true;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -154,29 +163,49 @@ class DosimetriaPenalApp extends StatelessWidget {
   }
 }
 
-class AuthWrapper extends StatelessWidget {
+class AuthWrapper extends StatefulWidget {
   const AuthWrapper({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // Chequeo SÍNCRONO: si Firebase tiene usuario cacheado en memoria,
-    // no esperamos absolutamente nada. Retornamos MainScreen directo.
-    final currentUser = firebase_auth.FirebaseAuth.instance.currentUser;
+  State<AuthWrapper> createState() => _AuthWrapperState();
+}
 
-    if (currentUser != null && currentUser.emailVerified) {
-      return const MainScreen();
+class _AuthWrapperState extends State<AuthWrapper> {
+  Timer? _timerSplash;
+
+  @override
+  void initState() {
+    super.initState();
+    // Duración mínima del splash (deja terminar la intro de 900ms) SOLO
+    // en el arranque en frío. Al reanudar desde segundo plano o al cambiar
+    // de tema la bandera global ya es false y no se vuelve a programar.
+    if (_splashArranquePendiente) {
+      _timerSplash = Timer(const Duration(milliseconds: 1300), () {
+        _splashArranquePendiente = false;
+        if (mounted) setState(() {});
+      });
     }
+  }
 
-    // Si no hay usuario cacheado, escuchamos el stream para login/logout en vivo.
+  @override
+  void dispose() {
+    _timerSplash?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context, listen: false);
 
     return StreamBuilder<firebase_auth.User?>(
       stream: authService.authStateChanges,
       builder: (context, snapshot) {
-        // Mientras Firebase resuelve el estado inicial (milisegundos),
-        // mostramos un fondo navy plano. NUNCA el SplashScreen animado.
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const ColoredBox(color: Color(0xFF0F172A));
+        // Arranque en frío (o mientras Firebase resuelve en ms): splash.
+        // Al reanudar desde segundo plano el árbol persiste y este branch
+        // nunca se cumple, así que el usuario vuelve directo a su pantalla.
+        if (_splashArranquePendiente ||
+            snapshot.connectionState == ConnectionState.waiting) {
+          return const SplashScreen();
         }
 
         final user = snapshot.data;
