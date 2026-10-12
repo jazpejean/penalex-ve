@@ -49,7 +49,8 @@ if (!SUPABASE_URL || !SERVICE_KEY) {
 const ORDEN = [
   'crbv', 'copp', 'codigo-penal', 'ley-de-violencia',
   'proteccion-de-ninos-ninas-y-adolescentes', 'organica-de-drogas',
-  'delincuencia-organizada', 'secuestro-y-la-extorsion', 'delitos-informaticos',
+  'hurto-y-robo-de-vehiculos', 'delincuencia-organizada',
+  'secuestro-y-la-extorsion', 'delitos-informaticos',
   'contra-la-corrupcion', 'discriminacion-racial', 'prevenir-y-sancionar-la-tortura',
   'desarme-y-control-de-armas', 'penal-del-ambiente', 'ganadera', 'estafa-inmobiliaria',
   'abuso-sexual', 'crimenes-desapariciones', 'contra-el-odio',

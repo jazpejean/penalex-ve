@@ -21,6 +21,7 @@ const ORDEN = [
   'ley-de-violencia',
   'proteccion-de-ninos-ninas-y-adolescentes',
   'organica-de-drogas',
+  'hurto-y-robo-de-vehiculos',
   'delincuencia-organizada',
   'secuestro-y-la-extorsion',
   'delitos-informaticos',
