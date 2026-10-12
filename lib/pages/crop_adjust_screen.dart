@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
 import '../config/app_colors.dart';
+import '../config/app_theme.dart';
 import '../services/document_scanner_service_pro.dart';
 import 'filter_preview_screen.dart';
 
@@ -55,16 +56,16 @@ class _CropAdjustScreenState extends State<CropAdjustScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: TemaGlobal.superficie,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: TemaGlobal.superficie,
         leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white),
+          icon: Icon(Icons.close, color: TemaGlobal.texto),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
+        title: Text(
           'Ajustar Bordes',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: TemaGlobal.texto),
         ),
         actions: [
           if (_isProcessing)
@@ -100,7 +101,7 @@ class _CropAdjustScreenState extends State<CropAdjustScreen> {
           // Instrucciones
           Container(
             padding: const EdgeInsets.all(16),
-            color: Colors.black87,
+            color: TemaGlobal.tarjeta,
             child: Row(
               children: [
                 const Icon(
@@ -113,7 +114,7 @@ class _CropAdjustScreenState extends State<CropAdjustScreen> {
                   child: Text(
                     'Arrastra las esquinas para ajustar el área del documento',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.9),
+                      color: TemaGlobal.textoSecundario,
                       fontSize: 14,
                     ),
                   ),
@@ -157,7 +158,7 @@ class _CropAdjustScreenState extends State<CropAdjustScreen> {
           // Botones de acción
           Container(
             padding: const EdgeInsets.all(16),
-            color: Colors.black87,
+            color: TemaGlobal.tarjeta,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -192,12 +193,12 @@ class _CropAdjustScreenState extends State<CropAdjustScreen> {
       icon: Icon(icon, size: 20),
       label: Text(label),
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF1E293B),
-        foregroundColor: Colors.white,
+        backgroundColor: TemaGlobal.capa,
+        foregroundColor: TemaGlobal.texto,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
-          side: BorderSide(color: Colors.white.withOpacity(0.2)),
+          side: BorderSide(color: TemaGlobal.texto.withOpacity(0.2)),
         ),
       ),
     );

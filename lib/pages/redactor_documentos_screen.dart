@@ -11,6 +11,7 @@ import '../services/ocr_service.dart';
 import '../services/redactor_service.dart';
 import '../services/chat_legal_export_service.dart';
 import '../services/membrete_service.dart';
+import '../config/app_theme.dart';
 import '../models/chat_attachment.dart';
 
 class RedactorDocumentosScreen extends StatefulWidget {
@@ -301,7 +302,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFF1E1E1E),
+      backgroundColor: TemaGlobal.tarjeta,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -315,10 +316,10 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Membrete / Logo',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: TemaGlobal.texto,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -332,12 +333,12 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                   else
                     Text(
                       'Aún no has cargado un membrete.',
-                      style: TextStyle(color: Colors.white.withValues(alpha: 0.6)),
+                      style: TextStyle(color: TemaGlobal.textoSecundario),
                     ),
                   const SizedBox(height: 20),
-                  const Text(
+                  Text(
                     'Alineación',
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
                   Wrap(
@@ -349,9 +350,9 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     ],
                   ),
                   const SizedBox(height: 16),
-                  const Text(
+                  Text(
                     'Tamaño',
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
                   Wrap(
@@ -430,8 +431,8 @@ Analiza los documentos adjuntos y extrae información relevante para el document
       selected: activo,
       onSelected: (_) => onTap(value),
       selectedColor: const Color(0xFFC5A059),
-      backgroundColor: const Color(0xFF2C2C2C),
-      labelStyle: TextStyle(color: activo ? Colors.black : Colors.white),
+      backgroundColor: TemaGlobal.capa,
+      labelStyle: TextStyle(color: activo ? Colors.black : TemaGlobal.texto),
     );
   }
 
@@ -476,9 +477,9 @@ Analiza los documentos adjuntos y extrae información relevante para el document
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: TemaGlobal.superficie,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1E1E1E),
+        backgroundColor: TemaGlobal.azulMarino,
         title: const Text('Redactor de Documentos'),
         actions: [
           IconButton(
@@ -522,7 +523,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
               
               return Container(
                 padding: const EdgeInsets.all(12),
-                color: const Color(0xFF1E1E1E),
+                color: TemaGlobal.tarjeta,
                 child: Column(
                   children: [
                     Row(
@@ -531,14 +532,14 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                         const SizedBox(width: 8),
                         Text(
                           'Completando documento: $progress/$total campos',
-                          style: const TextStyle(color: Colors.white),
+                          style: TextStyle(color: TemaGlobal.texto),
                         ),
                       ],
                     ),
                     const SizedBox(height: 8),
                     LinearProgressIndicator(
                       value: progress / total,
-                      backgroundColor: Colors.grey[800],
+                      backgroundColor: TemaGlobal.capa,
                       valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
                     ),
                   ],
@@ -564,18 +565,18 @@ Analiza los documentos adjuntos y extrae información relevante para el document
           if (_isLoading)
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                     height: 20,
                     child: CircularProgressIndicator(strokeWidth: 2),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Text(
                     'Procesando...',
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: TemaGlobal.textoTenue),
                   ),
                 ],
               ),
@@ -585,7 +586,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFF1E1E1E),
+              color: TemaGlobal.tarjeta,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.3),
@@ -606,8 +607,8 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                       runSpacing: 8,
                       children: _attachments.map((attachment) {
                         return Chip(
-                          backgroundColor: const Color(0xFF2C2C2C),
-                          deleteIconColor: Colors.white,
+                          backgroundColor: TemaGlobal.capa,
+                          deleteIconColor: TemaGlobal.textoSecundario,
                           label: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -622,8 +623,8 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                                 child: Text(
                                   attachment.fileName,
                                   overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    color: Colors.white,
+                                  style: TextStyle(
+                                    color: TemaGlobal.texto,
                                     fontSize: 13,
                                   ),
                                 ),
@@ -645,7 +646,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                   children: [
                     // ✅ Botón de adjuntar (clip)
                     IconButton(
-                      icon: const Icon(Icons.attach_file, color: Colors.grey),
+                      icon: Icon(Icons.attach_file, color: TemaGlobal.textoTenue),
                       onPressed: _pickFiles,
                       tooltip: 'Adjuntar archivos',
                     ),
@@ -653,13 +654,13 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     Expanded(
                       child: TextField(
                         controller: _messageController,
-                        style: const TextStyle(color: Colors.white),
+                        style: TextStyle(color: TemaGlobal.texto),
                         maxLines: null,
                         decoration: InputDecoration(
                           hintText: 'Escribe tu respuesta...',
-                          hintStyle: TextStyle(color: Colors.grey[600]),
+                          hintStyle: TextStyle(color: TemaGlobal.textoSecundario),
                           filled: true,
-                          fillColor: const Color(0xFF2C2C2C),
+                          fillColor: TemaGlobal.campoTexto,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25),
                             borderSide: BorderSide.none,
@@ -709,7 +710,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
               decoration: BoxDecoration(
                 color: message.isUser
                     ? Colors.blue
-                    : const Color(0xFF2C2C2C),
+                    : TemaGlobal.tarjeta,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: message.isUser
@@ -725,17 +726,17 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                       data: message.content,
                       selectable: true,
                       styleSheet: MarkdownStyleSheet(
-                        p: const TextStyle(
-                          color: Colors.white,
+                        p: TextStyle(
+                          color: TemaGlobal.texto,
                           fontSize: 15,
                           height: 1.5,
                         ),
-                        strong: const TextStyle(
-                          color: Colors.white,
+                        strong: TextStyle(
+                          color: TemaGlobal.texto,
                           fontWeight: FontWeight.bold,
                         ),
-                        h1: const TextStyle(
-                          color: Colors.white,
+                        h1: TextStyle(
+                          color: TemaGlobal.texto,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
@@ -751,7 +752,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                         ),
                         listBullet: const TextStyle(color: Color(0xFFC5A059)),
                         blockquote: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.8),
+                          color: TemaGlobal.textoSecundario,
                           fontStyle: FontStyle.italic,
                         ),
                         code: const TextStyle(
@@ -771,8 +772,8 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: const Icon(Icons.copy, size: 16),
                     label: const Text('Copiar'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey[800],
-                      foregroundColor: Colors.white,
+                      backgroundColor: TemaGlobal.capa,
+                      foregroundColor: TemaGlobal.texto,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 12,
                         vertical: 8,
@@ -810,7 +811,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                   IconButton(
                     onPressed: () =>
                         _exportToWord(message.content, compartir: false),
-                    icon: const Icon(Icons.download, color: Colors.grey),
+                    icon: Icon(Icons.download, color: TemaGlobal.textoTenue),
                     tooltip: 'Descargar',
                   ),
                 ],
@@ -820,7 +821,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
             Text(
               _formatTimestamp(message.timestamp),
               style: TextStyle(
-                color: Colors.grey[600],
+                color: TemaGlobal.textoSecundario,
                 fontSize: 11,
               ),
             ),
@@ -845,7 +846,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
     // Mostrar modal con opciones
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFF1E1E1E),
+      backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -860,10 +861,10 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                 children: [
                   const Icon(Icons.attach_file, color: Colors.blue),
                   const SizedBox(width: 12),
-                  const Text(
+                  Text(
                     'Adjuntar archivo',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: TemaGlobal.texto,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -871,18 +872,18 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                 ],
               ),
             ),
-            const Divider(color: Colors.grey, height: 1),
+            Divider(color: TemaGlobal.capa, height: 1),
             
             // Archivos externos
             ListTile(
               leading: const Icon(Icons.insert_drive_file, color: Colors.blue),
-              title: const Text(
+              title: Text(
                 'Archivo Externo',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: TemaGlobal.texto),
               ),
-              subtitle: const Text(
+              subtitle: Text(
                 'PDF, DOC, TXT, imágenes',
-                style: TextStyle(color: Colors.grey, fontSize: 12),
+                style: TextStyle(color: TemaGlobal.textoSecundario, fontSize: 12),
               ),
               onTap: () async {
                 Navigator.pop(context);
@@ -890,20 +891,20 @@ Analiza los documentos adjuntos y extrae información relevante para el document
               },
             ),
             
-            const Divider(color: Colors.grey, height: 1),
+            Divider(color: TemaGlobal.capa, height: 1),
             
             // ✨ Documentos guardados
             ListTile(
               leading: const Icon(Icons.folder_special, color: Colors.blue),
-              title: const Text(
+              title: Text(
                 'Documentos Guardados',
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),
               ),
-              subtitle: const Text(
+              subtitle: Text(
                 'Escaneados, reportes, comparaciones, favoritos',
-                style: TextStyle(color: Colors.grey, fontSize: 12),
+                style: TextStyle(color: TemaGlobal.textoSecundario, fontSize: 12),
               ),
-              trailing: const Icon(Icons.arrow_forward_ios, color: Colors.grey, size: 16),
+              trailing: Icon(Icons.arrow_forward_ios, color: TemaGlobal.textoTenue, size: 16),
               onTap: () {
                 Navigator.pop(context);
                 _mostrarDocumentosGuardados();
@@ -976,7 +977,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
   Future<void> _mostrarHistorial() async {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFF1E1E1E),
+      backgroundColor: TemaGlobal.tarjeta,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -997,14 +998,14 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                 children: [
                   Container(
                     padding: const EdgeInsets.all(16),
-                    child: const Row(
+                    child: Row(
                       children: [
-                        Icon(Icons.history, color: Color(0xFFC5A059)),
-                        SizedBox(width: 12),
+                        const Icon(Icons.history, color: Color(0xFFC5A059)),
+                        const SizedBox(width: 12),
                         Text(
                           'Historial del Redactor',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: TemaGlobal.texto,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
@@ -1012,7 +1013,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                       ],
                     ),
                   ),
-                  const Divider(color: Colors.grey, height: 1),
+                  Divider(color: TemaGlobal.capa, height: 1),
                   Expanded(
                     child: ListView(
                       controller: scrollController,
@@ -1031,11 +1032,11 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                           Text(
                             'Aún no has generado documentos.',
                             style: TextStyle(
-                              color: Colors.white.withValues(alpha: 0.6),
+                              color: TemaGlobal.textoSecundario,
                             ),
                           ),
                         ...docs.map((d) => Card(
-                              color: const Color(0xFF2C2C2C),
+                              color: TemaGlobal.capa,
                               margin: const EdgeInsets.only(bottom: 8),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
@@ -1047,21 +1048,21 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                                 ),
                                 title: Text(
                                   d.titulo,
-                                  style: const TextStyle(color: Colors.white),
+                                  style: TextStyle(color: TemaGlobal.texto),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 subtitle: Text(
                                   _formatTimestamp(d.fechaCreacion),
                                   style: TextStyle(
-                                    color: Colors.white.withValues(alpha: 0.5),
+                                    color: TemaGlobal.textoTenue,
                                     fontSize: 12,
                                   ),
                                 ),
                                 trailing: PopupMenuButton(
                                   icon: Icon(
                                     Icons.more_vert,
-                                    color: Colors.white.withValues(alpha: 0.7),
+                                    color: TemaGlobal.textoSecundario,
                                   ),
                                   itemBuilder: (context) => [
                                     const PopupMenuItem(
@@ -1099,7 +1100,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                           Text(
                             'No hay conversaciones guardadas.',
                             style: TextStyle(
-                              color: Colors.white.withValues(alpha: 0.6),
+                              color: TemaGlobal.textoSecundario,
                             ),
                           ),
                         ...convs.map((c) => ListTile(
@@ -1109,14 +1110,14 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                               ),
                               title: Text(
                                 c['title'] as String? ?? 'Redacción',
-                                style: const TextStyle(color: Colors.white),
+                                style: TextStyle(color: TemaGlobal.texto),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               subtitle: Text(
                                 'Conversación guardada',
                                 style: TextStyle(
-                                  color: Colors.white.withValues(alpha: 0.5),
+                                  color: TemaGlobal.textoTenue,
                                   fontSize: 12,
                                 ),
                               ),
@@ -1162,7 +1163,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
   Future<void> _mostrarDocumentoGuardado(DocumentoRedactado doc) async {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFF1E1E1E),
+      backgroundColor: TemaGlobal.tarjeta,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -1181,8 +1182,8 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                   Expanded(
                     child: Text(
                       doc.titulo,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: TemaGlobal.texto,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -1208,7 +1209,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                 ],
               ),
             ),
-            const Divider(color: Colors.grey, height: 1),
+            Divider(color: TemaGlobal.capa, height: 1),
             Expanded(
               child: SingleChildScrollView(
                 controller: scrollController,
@@ -1217,8 +1218,8 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                   data: doc.contenido,
                   selectable: true,
                   styleSheet: MarkdownStyleSheet(
-                    p: const TextStyle(color: Colors.white, fontSize: 15, height: 1.5),
-                    strong: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    p: TextStyle(color: TemaGlobal.texto, fontSize: 15, height: 1.5),
+                    strong: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),
                     h1: const TextStyle(color: Color(0xFFC5A059), fontWeight: FontWeight.bold, fontSize: 20),
                     h2: const TextStyle(color: Color(0xFFC5A059), fontWeight: FontWeight.bold, fontSize: 18),
                     listBullet: const TextStyle(color: Color(0xFFC5A059)),
@@ -1235,7 +1236,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
   Future<void> _mostrarDocumentosGuardados() async {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFF1E1E1E),
+      backgroundColor: TemaGlobal.tarjeta,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -1250,26 +1251,26 @@ Analiza los documentos adjuntos y extrae información relevante para el document
             // Header
             Container(
               padding: const EdgeInsets.all(16),
-              decoration: const BoxDecoration(
-                color: Color(0xFF2C2C2C),
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+              decoration: BoxDecoration(
+                color: TemaGlobal.capa,
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
               ),
               child: Row(
                 children: [
                   const Icon(Icons.folder_special, color: Colors.blue),
                   const SizedBox(width: 12),
-                  const Expanded(
+                  Expanded(
                     child: Text(
                       'Documentos Guardados',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: TemaGlobal.texto,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.close, color: Colors.white),
+                    icon: Icon(Icons.close, color: TemaGlobal.texto),
                     onPressed: () => Navigator.pop(context),
                   ),
                 ],
@@ -1360,7 +1361,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: const Color(0xFF2C2C2C),
+            color: TemaGlobal.capa,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: color.withValues(alpha: 0.3),
@@ -1384,8 +1385,8 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: TemaGlobal.texto,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -1394,7 +1395,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     Text(
                       subtitle,
                       style: TextStyle(
-                        color: Colors.grey[400],
+                        color: TemaGlobal.textoTenue,
                         fontSize: 13,
                       ),
                     ),
@@ -1403,7 +1404,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
               ),
               Icon(
                 Icons.arrow_forward_ios,
-                color: Colors.grey[600],
+                color: TemaGlobal.textoSecundario,
                 size: 16,
               ),
             ],

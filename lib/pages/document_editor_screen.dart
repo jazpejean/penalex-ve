@@ -7,6 +7,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:share_plus/share_plus.dart';
 
+import '../config/app_theme.dart';
 import '../services/documentos_service.dart';
 import '../services/document_scanner_service_pro.dart';
 import '../services/escaneo_service.dart';
@@ -159,7 +160,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
   Future<void> _reordenar() async {
     final reordenadas = await showModalBottomSheet<List<String>>(
       context: context,
-      backgroundColor: grisOscuro,
+      backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -203,7 +204,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: grisOscuro,
+      backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -217,32 +218,32 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
                 children: [
                   const Icon(Icons.text_fields, color: dorado),
                   const SizedBox(width: 12),
-                  const Expanded(
+                  Expanded(
                     child: Text(
                       'Texto extraído (OCR)',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: TemaGlobal.texto,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.close, color: Colors.white),
+                    icon: Icon(Icons.close, color: TemaGlobal.texto),
                     onPressed: () => Navigator.pop(context),
                   ),
                 ],
               ),
             ),
-            const Divider(color: Colors.white10, height: 1),
+            Divider(color: TemaGlobal.capa, height: 1),
             Expanded(
               child: SingleChildScrollView(
                 controller: scrollController,
                 padding: const EdgeInsets.all(16),
                 child: SelectableText(
                   _textoOcr ?? 'No se extrajo texto',
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    color: TemaGlobal.texto,
                     fontSize: 14,
                     height: 1.5,
                   ),
@@ -503,7 +504,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
 
   Widget _buildBarraAcciones() {
     return Container(
-      color: grisOscuro,
+      color: TemaGlobal.tarjeta,
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -534,7 +535,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
             const SizedBox(height: 2),
             Text(
               etiqueta,
-              style: const TextStyle(color: Colors.white70, fontSize: 10),
+              style: TextStyle(color: TemaGlobal.textoSecundario, fontSize: 10),
             ),
           ],
         ),
@@ -545,7 +546,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
   void _mostrarFiltros() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: grisOscuro,
+      backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -555,10 +556,10 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(
+              Text(
                 'Filtros',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: TemaGlobal.texto,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -591,7 +592,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
           children: [
             Icon(icono, color: dorado, size: 32),
             const SizedBox(height: 8),
-            Text(etiqueta, style: const TextStyle(color: Colors.white70)),
+            Text(etiqueta, style: TextStyle(color: TemaGlobal.textoSecundario)),
           ],
         ),
       ),
@@ -629,10 +630,10 @@ class _ReordenarPaginasSheetState extends State<_ReordenarPaginasSheet> {
             padding: const EdgeInsets.all(16),
             child: Row(
               children: [
-                const Text(
+                Text(
                   'Reordenar páginas',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: TemaGlobal.texto,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -669,7 +670,7 @@ class _ReordenarPaginasSheetState extends State<_ReordenarPaginasSheet> {
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF0F172A),
+                    color: TemaGlobal.capa,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Row(
@@ -681,9 +682,9 @@ class _ReordenarPaginasSheetState extends State<_ReordenarPaginasSheet> {
                           width: 48,
                           height: 60,
                           fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) => const Icon(
+                          errorBuilder: (_, __, ___) => Icon(
                             Icons.description,
-                            color: Colors.white54,
+                            color: TemaGlobal.textoTenue,
                           ),
                         ),
                       ),
@@ -691,10 +692,10 @@ class _ReordenarPaginasSheetState extends State<_ReordenarPaginasSheet> {
                       Expanded(
                         child: Text(
                           'Página ${index + 1}',
-                          style: const TextStyle(color: Colors.white),
+                          style: TextStyle(color: TemaGlobal.texto),
                         ),
                       ),
-                      const Icon(Icons.drag_handle, color: Colors.white54),
+                      Icon(Icons.drag_handle, color: TemaGlobal.textoTenue),
                     ],
                   ),
                 );

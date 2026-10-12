@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../config/app_theme.dart';
 import '../models/documento_legal.dart';
 import '../services/documento_legal_service.dart';
 import '../services/pdf_service.dart';
@@ -147,7 +148,7 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
   Future<void> _cambiarEstado() async {
     final nuevoEstado = await showModalBottomSheet<EstadoDocumento>(
       context: context,
-      backgroundColor: const Color(0xFF1E293B),
+      backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -174,7 +175,7 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
                 ),
                 title: Text(
                   estado.nombre,
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: TemaGlobal.texto),
                 ),
                 selected: estado == _documentoActual.estado,
                 onTap: () => Navigator.pop(context, estado),
@@ -199,14 +200,14 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
     final salir = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF1E293B),
-        title: const Text(
+        backgroundColor: TemaGlobal.tarjeta,
+        title: Text(
           '¿Guardar cambios?',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: TemaGlobal.texto),
         ),
-        content: const Text(
+        content: Text(
           'Tienes cambios sin guardar',
-          style: TextStyle(color: Colors.white70),
+          style: TextStyle(color: TemaGlobal.textoSecundario),
         ),
         actions: [
           TextButton(
@@ -246,7 +247,7 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
         }
       },
       child: Scaffold(
-        backgroundColor: const Color(0xFF0F172A),
+        backgroundColor: TemaGlobal.superficie,
         appBar: AppBar(
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -337,11 +338,11 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
           ],
         ),
         body: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [Color(0xFF0F172A), Color(0xFF1E293B)],
+              colors: [TemaGlobal.superficie, TemaGlobal.tarjeta],
             ),
           ),
           child: Column(
@@ -375,7 +376,7 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
                                   ? 'Creado desde imagen escaneada'
                                   : 'Generado con IA',
                               style: TextStyle(
-                                color: Colors.white.withValues(alpha: 0.9),
+                                color: TemaGlobal.texto.withValues(alpha: 0.9),
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -384,7 +385,8 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
                               Text(
                                 'Modelo: ${_documentoActual.modeloIA}',
                                 style: TextStyle(
-                                  color: Colors.white.withValues(alpha: 0.6),
+                                  color: TemaGlobal.textoSecundario
+                                      .withValues(alpha: 0.6),
                                   fontSize: 10,
                                 ),
                               ),
@@ -400,8 +402,8 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: TextField(
                   controller: _tituloController,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    color: TemaGlobal.texto,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -411,7 +413,7 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
                       color: const Color(0xFFC5A059).withValues(alpha: 0.7),
                     ),
                     filled: true,
-                    fillColor: const Color(0xFF1E293B).withValues(alpha: 0.5),
+                    fillColor: TemaGlobal.campoTexto,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
@@ -429,10 +431,10 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
                   child: Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF1E293B).withValues(alpha: 0.5),
+                      color: TemaGlobal.tarjeta,
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: Colors.white.withValues(alpha: 0.1),
+                        color: TemaGlobal.capa,
                       ),
                     ),
                     child: _vistaPrevia
@@ -588,7 +590,7 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
               Text(
                 'Modo Edición',
                 style: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.9),
+                  color: TemaGlobal.texto.withValues(alpha: 0.9),
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
                 ),
@@ -597,7 +599,7 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
               Text(
                 'Presiona 👁️ para ver formato',
                 style: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.6),
+                  color: TemaGlobal.textoSecundario.withValues(alpha: 0.6),
                   fontSize: 11,
                 ),
               ),
@@ -611,15 +613,15 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
             maxLines: null,
             expands: true,
             textAlignVertical: TextAlignVertical.top,
-            style: const TextStyle(
-              color: Colors.white,
+            style: TextStyle(
+              color: TemaGlobal.texto,
               fontSize: 14,
               height: 1.6,
             ),
             decoration: InputDecoration(
               hintText: 'Contenido del documento...',
               hintStyle: TextStyle(
-                color: Colors.white.withValues(alpha: 0.3),
+                color: TemaGlobal.textoTenue,
               ),
               border: InputBorder.none,
             ),
@@ -666,7 +668,7 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
               Text(
                 'Vista Previa',
                 style: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.9),
+                  color: TemaGlobal.texto.withValues(alpha: 0.9),
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
                 ),
@@ -675,7 +677,7 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
               Text(
                 'Presiona ✏️ para editar',
                 style: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.6),
+                  color: TemaGlobal.textoSecundario.withValues(alpha: 0.6),
                   fontSize: 11,
                 ),
               ),
@@ -690,8 +692,8 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               styleSheet: MarkdownStyleSheet(
-                h1: const TextStyle(
-                  color: Colors.white,
+                h1: TextStyle(
+                  color: TemaGlobal.texto,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   height: 1.5,
@@ -703,18 +705,18 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
                   height: 1.5,
                 ),
                 h3: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.9),
+                  color: TemaGlobal.texto.withValues(alpha: 0.9),
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                   height: 1.5,
                 ),
                 p: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.9),
+                  color: TemaGlobal.texto.withValues(alpha: 0.9),
                   fontSize: 14,
                   height: 1.6,
                 ),
-                strong: const TextStyle(
-                  color: Colors.white,
+                strong: TextStyle(
+                  color: TemaGlobal.texto,
                   fontWeight: FontWeight.bold,
                 ),
                 em: const TextStyle(
@@ -724,12 +726,12 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
                   color: Color(0xFFC5A059),
                 ),
                 code: TextStyle(
-                  backgroundColor: const Color(0xFF0F172A).withValues(alpha: 0.5),
+                  backgroundColor: TemaGlobal.capa,
                   color: const Color(0xFFC5A059),
                   fontFamily: 'monospace',
                 ),
                 blockquote: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.8),
+                  color: TemaGlobal.textoSecundario,
                   fontStyle: FontStyle.italic,
                 ),
               ),
@@ -746,13 +748,13 @@ class _EditorDocumentoScreenState extends State<EditorDocumentoScreen> {
         Icon(
           icon,
           size: 14,
-          color: Colors.white.withValues(alpha: 0.5),
+          color: TemaGlobal.textoTenue,
         ),
         const SizedBox(width: 4),
         Text(
           label,
           style: TextStyle(
-            color: Colors.white.withValues(alpha: 0.5),
+            color: TemaGlobal.textoTenue,
             fontSize: 11,
           ),
         ),

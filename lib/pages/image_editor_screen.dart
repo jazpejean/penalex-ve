@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
 
+import '../config/app_theme.dart';
+
 class ImageEditorScreen extends StatefulWidget {
   final String imagePath;
 
@@ -127,7 +129,7 @@ class _ImageEditorScreenState extends State<ImageEditorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0F172A),
+      backgroundColor: TemaGlobal.superficie,
       appBar: AppBar(
         title: const Text('Editar Imagen'),
         backgroundColor: const Color(0xFF0F172A),
@@ -181,10 +183,10 @@ class _ImageEditorScreenState extends State<ImageEditorScreen> {
                   child: Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF1E293B),
+                      color: TemaGlobal.tarjeta,
                       borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
                       border: Border.all(
-                        color: Colors.white.withValues(alpha: 0.1),
+                        color: TemaGlobal.texto.withValues(alpha: 0.1),
                       ),
                     ),
                     child: SingleChildScrollView(
@@ -293,8 +295,8 @@ class _ImageEditorScreenState extends State<ImageEditorScreen> {
         const SizedBox(height: 8),
         Text(
           label,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: TemaGlobal.texto,
             fontSize: 12,
           ),
         ),
@@ -327,7 +329,7 @@ class _ImageEditorScreenState extends State<ImageEditorScreen> {
             Text(
               value.toStringAsFixed(2),
               style: TextStyle(
-                color: Colors.white.withValues(alpha: 0.7),
+                color: TemaGlobal.textoSecundario,
                 fontSize: 12,
               ),
             ),
@@ -337,7 +339,7 @@ class _ImageEditorScreenState extends State<ImageEditorScreen> {
         SliderTheme(
           data: SliderThemeData(
             activeTrackColor: const Color(0xFFC5A059),
-            inactiveTrackColor: Colors.white.withValues(alpha: 0.2),
+            inactiveTrackColor: TemaGlobal.capa,
             thumbColor: const Color(0xFFC5A059),
             overlayColor: const Color(0xFFC5A059).withValues(alpha: 0.2),
           ),

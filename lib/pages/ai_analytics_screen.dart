@@ -3,6 +3,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:open_file/open_file.dart';
 import '../services/ai_analytics_service.dart';
 import '../services/ai_report_service.dart';
+import '../config/app_theme.dart';
 import '../widgets/analytics_metrics_widgets.dart';
 
 /// Pantalla de Analytics detallada del Asistente Legal
@@ -29,7 +30,7 @@ class _AIAnalyticsScreenState extends State<AIAnalyticsScreen>
   
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color grisOscuro = Color(0xFF1E293B);
+
 
   @override
   void initState() {
@@ -71,7 +72,7 @@ class _AIAnalyticsScreenState extends State<AIAnalyticsScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: azulMarino,
+      backgroundColor: TemaGlobal.superficie,
       appBar: AppBar(
         title: const Row(
           children: [
@@ -181,16 +182,16 @@ class _AIAnalyticsScreenState extends State<AIAnalyticsScreen>
             hourlyTrend: _hourlyTrend,
             isLoading: false,
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
 
           // Resumen rápido por herramienta
           if (_globalStats != null) ...[
-            const Text(
+            Text(
               'Resumen por Herramienta',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: TemaGlobal.texto,
               ),
             ),
             const SizedBox(height: 16),
@@ -296,7 +297,7 @@ class _AIAnalyticsScreenState extends State<AIAnalyticsScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: grisOscuro,
+        color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: color.withValues(alpha: 0.3),
@@ -334,7 +335,7 @@ class _AIAnalyticsScreenState extends State<AIAnalyticsScreen>
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: grisOscuro,
+        color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: Colors.white.withValues(alpha: 0.1),
@@ -362,10 +363,10 @@ class _AIAnalyticsScreenState extends State<AIAnalyticsScreen>
               children: [
                 Text(
                   tool.displayName,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                    color: TemaGlobal.texto,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -407,16 +408,16 @@ class _AIAnalyticsScreenState extends State<AIAnalyticsScreen>
               toolsStats: _globalStats!.toolsStats,
               isLoading: false,
             ),
-          const SizedBox(height: 32),
+          SizedBox(height: 32),
           
           // Detalles por herramienta
           if (_globalStats != null) ...[
-            const Text(
+            Text(
               'Detalles por Herramienta',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: TemaGlobal.texto,
               ),
             ),
             const SizedBox(height: 16),
@@ -433,7 +434,7 @@ class _AIAnalyticsScreenState extends State<AIAnalyticsScreen>
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: grisOscuro,
+        color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: _getColorForTool(tool).withValues(alpha: 0.3),
@@ -455,10 +456,10 @@ class _AIAnalyticsScreenState extends State<AIAnalyticsScreen>
         ),
         title: Text(
           tool.displayName,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: TemaGlobal.texto,
           ),
         ),
         subtitle: Text(

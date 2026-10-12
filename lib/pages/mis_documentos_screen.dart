@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../config/app_theme.dart';
 import '../models/documento_legal.dart';
 import '../services/documento_legal_service.dart';
 import 'editor_documento_screen.dart';
@@ -19,13 +20,7 @@ class _MisDocumentosScreenState extends State<MisDocumentosScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(0xFF0F172A), Color(0xFF1E293B)],
-        ),
-      ),
+      color: TemaGlobal.superficie,
       child: Column(
         children: [
           // Filtros y búsqueda
@@ -35,13 +30,13 @@ class _MisDocumentosScreenState extends State<MisDocumentosScreen> {
               children: [
                 // Barra de búsqueda
                 TextField(
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: TemaGlobal.texto),
                   decoration: InputDecoration(
                     hintText: 'Buscar documentos...',
-                    hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.3)),
+                    hintStyle: TextStyle(color: TemaGlobal.textoTenue),
                     prefixIcon: const Icon(Icons.search, color: Color(0xFFC5A059)),
                     filled: true,
-                    fillColor: const Color(0xFF1E293B),
+                    fillColor: TemaGlobal.campoTexto,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
@@ -114,7 +109,7 @@ class _MisDocumentosScreenState extends State<MisDocumentosScreen> {
                         const SizedBox(height: 16),
                         Text(
                           'Error: ${snapshot.error}',
-                          style: const TextStyle(color: Colors.white),
+                          style: TextStyle(color: TemaGlobal.texto),
                         ),
                       ],
                     ),
@@ -145,13 +140,13 @@ class _MisDocumentosScreenState extends State<MisDocumentosScreen> {
                         Icon(
                           Icons.folder_open,
                           size: 80,
-                          color: Colors.white.withValues(alpha: 0.3),
+                          color: TemaGlobal.textoTenue,
                         ),
                         const SizedBox(height: 16),
                         Text(
                           'No hay documentos',
                           style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.6),
+                            color: TemaGlobal.textoSecundario,
                             fontSize: 18,
                           ),
                         ),
@@ -159,7 +154,7 @@ class _MisDocumentosScreenState extends State<MisDocumentosScreen> {
                         Text(
                           'Crea tu primer documento legal',
                           style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.4),
+                            color: TemaGlobal.textoTenue,
                             fontSize: 14,
                           ),
                         ),
@@ -187,10 +182,10 @@ class _MisDocumentosScreenState extends State<MisDocumentosScreen> {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E293B).withValues(alpha: 0.8),
+        color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: Colors.white.withValues(alpha: 0.1),
+          color: TemaGlobal.textoTenue.withValues(alpha: 0.3),
         ),
         boxShadow: [
           BoxShadow(
@@ -243,8 +238,8 @@ class _MisDocumentosScreenState extends State<MisDocumentosScreen> {
                         children: [
                           Text(
                             documento.titulo,
-                            style: const TextStyle(
-                              color: Colors.white,
+                            style: TextStyle(
+                              color: TemaGlobal.texto,
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
@@ -291,7 +286,7 @@ class _MisDocumentosScreenState extends State<MisDocumentosScreen> {
                 Text(
                   documento.contenido,
                   style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.7),
+                    color: TemaGlobal.textoSecundario,
                     fontSize: 13,
                   ),
                   maxLines: 3,
@@ -388,12 +383,12 @@ class _MisDocumentosScreenState extends State<MisDocumentosScreen> {
         decoration: BoxDecoration(
           color: selected 
               ? const Color(0xFFC5A059).withValues(alpha: 0.2)
-              : const Color(0xFF1E293B),
+              : TemaGlobal.capa,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: selected 
                 ? const Color(0xFFC5A059)
-                : Colors.white.withValues(alpha: 0.2),
+                : TemaGlobal.textoTenue.withValues(alpha: 0.3),
           ),
         ),
         child: Row(
@@ -402,13 +397,13 @@ class _MisDocumentosScreenState extends State<MisDocumentosScreen> {
             Icon(
               icon,
               size: 16,
-              color: selected ? const Color(0xFFC5A059) : Colors.white70,
+              color: selected ? const Color(0xFFC5A059) : TemaGlobal.textoSecundario,
             ),
             const SizedBox(width: 6),
             Text(
               label,
               style: TextStyle(
-                color: selected ? const Color(0xFFC5A059) : Colors.white70,
+                color: selected ? const Color(0xFFC5A059) : TemaGlobal.textoSecundario,
                 fontSize: 12,
                 fontWeight: selected ? FontWeight.bold : FontWeight.normal,
               ),
@@ -422,7 +417,7 @@ class _MisDocumentosScreenState extends State<MisDocumentosScreen> {
   void _mostrarFiltroTipo() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFF1E293B),
+      backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -449,7 +444,7 @@ class _MisDocumentosScreenState extends State<MisDocumentosScreen> {
                 ),
                 title: Text(
                   tipo.nombre,
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: TemaGlobal.texto),
                 ),
                 onTap: () {
                   setState(() => _filtroTipo = tipo);
@@ -466,7 +461,7 @@ class _MisDocumentosScreenState extends State<MisDocumentosScreen> {
   void _mostrarFiltroEstado() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFF1E293B),
+      backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -493,7 +488,7 @@ class _MisDocumentosScreenState extends State<MisDocumentosScreen> {
                 ),
                 title: Text(
                   estado.nombre,
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: TemaGlobal.texto),
                 ),
                 onTap: () {
                   setState(() => _filtroEstado = estado);
@@ -511,14 +506,14 @@ class _MisDocumentosScreenState extends State<MisDocumentosScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF1E293B),
-        title: const Text(
+        backgroundColor: TemaGlobal.tarjeta,
+        title: Text(
           '¿Eliminar documento?',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: TemaGlobal.texto),
         ),
         content: Text(
           'Se eliminará "${documento.titulo}" permanentemente.',
-          style: const TextStyle(color: Colors.white70),
+          style: TextStyle(color: TemaGlobal.textoSecundario),
         ),
         actions: [
           TextButton(
