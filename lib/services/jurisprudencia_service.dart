@@ -28,7 +28,7 @@ class JurisprudenciaService {
     try {
       debugPrint('🔍 Búsqueda en Supabase: tipo=$tipoFiltro, sala=$salaFiltro, año=$anioFiltro, texto=$textoBusqueda');
 
-      var query = _supabase.from('documentos').select();
+      var query = _supabase.from('sentencias').select();
 
       // Filtro por tipo
       if (tipoFiltro == 'sentencias') {
@@ -109,7 +109,7 @@ class JurisprudenciaService {
   Future<int> contarSentencias() async {
     try {
       final res = await _supabase
-          .from('documentos')
+          .from('sentencias')
           .select('id')
           .count(CountOption.exact);
       return res.count;
@@ -153,7 +153,7 @@ class JurisprudenciaService {
   Future<List<int>> obtenerMesesDisponibles(int anio) async {
     try {
       final resp = await _supabase
-          .from('documentos')
+          .from('sentencias')
           .select('fecha')
           .ilike('fecha', '$anio-%')
           .limit(10000);
@@ -177,7 +177,7 @@ class JurisprudenciaService {
     try {
       final prefijo = '$anio-${mes.toString().padLeft(2, '0')}-';
       final resp = await _supabase
-          .from('documentos')
+          .from('sentencias')
           .select('fecha')
           .ilike('fecha', '$prefijo%')
           .limit(10000);
@@ -311,7 +311,7 @@ class JurisprudenciaService {
         orConditions.add('ponente.ilike.%$termino%');
       }
 
-      var query = _supabase.from('documentos').select();
+      var query = _supabase.from('sentencias').select();
 
       // Aplicar filtros de tipo
       if (tipoFiltro == 'sentencias') {
@@ -355,7 +355,7 @@ class JurisprudenciaService {
   Future<List<String>> obtenerSalasDisponibles() async {
     try {
       final response = await _supabase
-          .from('documentos')
+          .from('sentencias')
           .select('sala')
           .not('sala', 'is', null)
           .order('sala');
@@ -411,7 +411,7 @@ class JurisprudenciaService {
 
       // Guardar en Supabase para caché
       await _supabase
-          .from('documentos')
+          .from('sentencias')
           .update({'resumen_ia': resumen})
           .eq('id', sentencia.id);
 

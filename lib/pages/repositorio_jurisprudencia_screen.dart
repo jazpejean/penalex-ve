@@ -1000,8 +1000,9 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
       // 4) Persistir en Supabase (costo cero de tokens en futuras consultas).
       try {
         await Supabase.instance.client
-            .from('documentos')
-            .update({'analisis_ia': analisis}).eq('id', widget.sentencia.id);
+            .from('sentencias')
+            .update({'analyzed_at': DateTime.now().toIso8601String()})
+            .eq('id', widget.sentencia.id);
       } catch (e) {
         debugPrint('⚠️ No se pudo guardar analisis_ia: $e');
       }
