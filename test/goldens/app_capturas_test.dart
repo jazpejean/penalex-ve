@@ -16,7 +16,17 @@ import 'package:penalex_ve/pages/main_screen.dart';
 import 'package:penalex_ve/pages/buscador_juridico_screen.dart';
 import 'package:penalex_ve/pages/repositorio_jurisprudencia_screen.dart';
 import 'package:penalex_ve/pages/repositorio_leyes_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:penalex_ve/config/app_theme.dart';
+import 'package:penalex_ve/services/auth_service.dart';
+
+/// AuthService falso para capturas: implementa toda la interfaz vía
+/// noSuchMethod (cualquier getter/método devuelve null -> currentUser null
+/// -> el Dashboard muestra "¡Bienvenido, Usuario!" sin Firebase).
+class _FakeAuthService implements AuthService {
+  @override
+  dynamic noSuchMethod(Invocation invocation) => null;
+}
 
 void main() {
   setUpAll(() async {
@@ -114,7 +124,15 @@ void main() {
   });
 
   testWidgets('main_screen (barra inferior + 5 pestañas)', (tester) async {
-    await pumpPage(tester, const MainScreen());
+    await pumpPage(
+      tester,
+      MultiProvider(
+        providers: [
+          Provider<AuthService>(create: (_) => _FakeAuthService()),
+        ],
+        child: const MainScreen(),
+      ),
+    );
     tester.takeException();
     await expectLater(
       find.byType(MainScreen),
