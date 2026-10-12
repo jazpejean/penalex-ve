@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
 
 import '../services/auth_service.dart';
@@ -21,7 +22,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFFF1F5F9);
+  static Color get fondoGris => TemaGlobal.superficie;
   static const Color grisTexto = Color(0xFF4A5568);
 
   @override
@@ -213,9 +214,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                       if (_canResend)
                         TextButton(
                           onPressed: _resendVerificationEmail,
-                          child: const Text(
+                          child: Text(
                             '¿No recibiste el correo? Reenviar verificación',
-                            style: TextStyle(color: azulMarino, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),
                           ),
                         )
                       else

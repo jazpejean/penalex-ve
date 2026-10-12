@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 
 import '../logic/dosimetria_engine.dart';
 import '../models/delito.dart';
@@ -34,7 +35,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFFF1F5F9);
+  static Color get fondoGris => TemaGlobal.superficie;
   static const Color grisTexto = Color(0xFF4A5568);
 
   @override
@@ -139,7 +140,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                   "TIPO DE CONCURSO",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w800,
-                                      color: azulMarino.withValues(alpha: 0.85),
+                                      color: TemaGlobal.texto.withValues(alpha: 0.85),
                                       letterSpacing: 0.8,
                                       fontSize: 12),
                                 ),
@@ -307,7 +308,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                               "DELITOS PARTICIPANTES",
                               style: TextStyle(
                                   fontWeight: FontWeight.w800,
-                                  color: azulMarino.withValues(alpha: 0.85),
+                                  color: TemaGlobal.texto.withValues(alpha: 0.85),
                                   letterSpacing: 0.8,
                                   fontSize: 12),
                             ),
@@ -475,7 +476,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                   children: <Widget>[
                     Card(
                       elevation: 0,
-                      color: azulMarino,
+                      color: TemaGlobal.texto,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                         side: const BorderSide(color: dorado, width: 1.5),

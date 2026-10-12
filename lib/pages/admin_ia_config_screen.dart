@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 import 'package:flutter/services.dart';
 
 import '../services/ai_service.dart';
@@ -15,7 +16,7 @@ class AdminIAConfigScreen extends StatefulWidget {
 class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFFF1F5F9);
+  static Color get fondoGris => TemaGlobal.superficie;
   
   AIModel _modeloSeleccionado = AIService.getModeloActivo();
   
@@ -128,7 +129,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
                     'Respuesta:',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: azulMarino,
+                      color: TemaGlobal.texto,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -137,7 +138,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
                   Text(
                     'Costo estimado: \$${_modeloSeleccionado.costoEstimadoPorInterpretacion.toStringAsFixed(4)}',
                     style: TextStyle(
-                      color: Colors.grey[600],
+                      color: TemaGlobal.textoSecundario,
                       fontSize: 12,
                     ),
                   ),
@@ -214,12 +215,11 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
             const SizedBox(height: 24),
             
             // Selector de modelos
-            const Text(
-              'SELECCIONAR MODELO',
+            Text(              'SELECCIONAR MODELO',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
-                color: azulMarino,
+                color: TemaGlobal.texto,
                 letterSpacing: 1,
               ),
             ),
@@ -256,12 +256,11 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
             const SizedBox(height: 24),
             
             // API Keys
-            const Text(
-              'API KEYS',
+            Text(              'API KEYS',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
-                color: azulMarino,
+                color: TemaGlobal.texto,
                 letterSpacing: 1,
               ),
             ),
@@ -307,10 +306,10 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: _probarModelo,
-                    icon: const Icon(Icons.play_arrow),
-                    label: const Text('Probar modelo'),
+                    icon: Icon(Icons.play_arrow),
+                    label: Text('Probar modelo'),
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: azulMarino, width: 1.5),
+                      side: BorderSide(color: TemaGlobal.texto, width: 1.5),
                       foregroundColor: azulMarino,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
@@ -560,12 +559,12 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
                         ),
                     ],
                   ),
-                  const SizedBox(height: 2),
+                  SizedBox(height: 2),
                   Text(
                     modelo.descripcion,
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.grey[600],
+                      color: TemaGlobal.textoSecundario,
                     ),
                   ),
                   const SizedBox(height: 4),

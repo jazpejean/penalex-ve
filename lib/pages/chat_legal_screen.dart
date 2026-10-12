@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../models/chat_message.dart';
+import '../config/app_theme.dart';
 import '../services/chat_service.dart';
 import '../services/ocr_service.dart';
 import '../services/chat_legal_export_service.dart';
@@ -1580,7 +1581,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: azulMarino,
+      backgroundColor: TemaGlobal.superficie,
       appBar: AppBar(
         title: const Text(
           'Conversaciones',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 
 import '../config/app_colors.dart';
 import '../widgets/app_drawer.dart';
@@ -276,7 +277,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
           ),
         ],
       ),
-      backgroundColor: AppColors.background,
+      backgroundColor: TemaGlobal.superficie,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -290,7 +291,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
               decoration: InputDecoration(
                 hintText: "Buscar término o definición...",
                 hintStyle: TextStyle(color: Colors.grey.shade600),
-                prefixIcon: const Icon(Icons.search, color: AppColors.primary),
+                prefixIcon: Icon(Icons.search, color: TemaGlobal.texto),
                 filled: true,
                 fillColor: Colors.white,
                 border: OutlineInputBorder(
@@ -315,7 +316,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: AppColors.primary.withValues(alpha: 0.8),
+                color: TemaGlobal.texto.withValues(alpha: 0.8),
               ),
             ),
             const SizedBox(height: 8),
@@ -355,7 +356,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                       child: Text(
                         letter,
                         style: TextStyle(
-                          color: selected ? AppColors.primary : AppColors.primary,
+                          color: selected ? AppColors.primary : TemaGlobal.texto,
                           fontWeight: selected ? FontWeight.bold : FontWeight.w500,
                           fontSize: 16,
                         ),
@@ -375,7 +376,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: AppColors.primary.withValues(alpha: 0.7),
+                    color: TemaGlobal.texto.withValues(alpha: 0.7),
                   ),
                 ),
                 if (_selectedLetter != "Todos" || _searchController.text.isNotEmpty)
@@ -411,7 +412,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
-                              color: AppColors.primary.withValues(alpha: 0.6),
+                              color: TemaGlobal.texto.withValues(alpha: 0.6),
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -419,7 +420,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                             "Prueba con otra palabra o letra",
                             style: TextStyle(
                               fontSize: 14,
-                              color: AppColors.primary.withValues(alpha: 0.5),
+                              color: TemaGlobal.texto.withValues(alpha: 0.5),
                             ),
                           ),
                         ],
@@ -432,7 +433,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                         final String term = item["term"] ?? "";
                         final String definition = item["definition"] ?? "";
                         return Card(
-                          color: Colors.white,
+                          color: TemaGlobal.tarjeta,
                           elevation: 2,
                           shadowColor: AppColors.secondary.withValues(alpha: 0.1),
                           margin: const EdgeInsets.only(bottom: 12),

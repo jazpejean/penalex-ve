@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
 
@@ -32,7 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFFF1F5F9);
+  static Color get fondoGris => TemaGlobal.superficie;
   static const Color grisTexto = Color(0xFF4A5568);
 
   @override
@@ -49,7 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: Text(titulo, style: const TextStyle(color: azulMarino, fontWeight: FontWeight.bold)),
+        title: Text(titulo, style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
         content: Text(mensaje, style: TextStyle(color: isError ? Colors.red : azulMarino)),
         actions: [
           TextButton(
@@ -200,10 +201,10 @@ class _RegisterPageState extends State<RegisterPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('¿Ya tienes cuenta? ', style: TextStyle(color: grisTexto)),
+                  Text('¿Ya tienes cuenta? ', style: TextStyle(color: grisTexto)),
                   TextButton(
                     onPressed: () => Navigator.pop(context),
-                    child: const Text('Inicia sesión', style: TextStyle(color: azulMarino, fontWeight: FontWeight.bold)),
+                    child: Text('Inicia sesión', style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
                   ),
                 ],
               ),

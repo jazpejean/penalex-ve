@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import '../models/estrategia_legal.dart';
+import '../config/app_theme.dart';
 import '../services/comparador_service.dart';
 import 'redactor_documentos_screen.dart';
 import '../services/chat_legal_export_service.dart';
@@ -637,7 +638,7 @@ class _ComparadorEstrategiasScreenState
                     icon: const Icon(Icons.description_outlined),
                     label: const Text('Redactar escrito'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF0F172A),
+                      backgroundColor: TemaGlobal.superficie,
                       foregroundColor: const Color(0xFFC5A059),
                     ),
                   ),

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
 
 import '../services/auth_service.dart';
@@ -31,7 +32,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFFF1F5F9);
+  static Color get fondoGris => TemaGlobal.superficie;
   static const Color grisTexto = Color(0xFF4A5568);
 
   @override
@@ -136,13 +137,13 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Icon(Icons.lock_reset, size: 80, color: azulMarino),
-                const SizedBox(height: 20),
-                const Text(
+                SizedBox(height: 20),
+                Text(
                   'Restablecer contraseña',
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
-                    color: azulMarino,
+                    color: TemaGlobal.texto,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -174,13 +175,13 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   decoration: InputDecoration(
                     labelText: 'Nueva contraseña',
                     prefixIcon:
-                        const Icon(Icons.lock_outline, color: azulMarino),
+                        Icon(Icons.lock_outline, color: azulMarino),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscurePassword
                             ? Icons.visibility_off
                             : Icons.visibility,
-                        color: azulMarino,
+                        color: TemaGlobal.texto,
                       ),
                       onPressed: () => setState(
                           () => _obscurePassword = !_obscurePassword),
@@ -200,13 +201,13 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   decoration: InputDecoration(
                     labelText: 'Confirmar contraseña',
                     prefixIcon:
-                        const Icon(Icons.lock_outline, color: azulMarino),
+                        Icon(Icons.lock_outline, color: azulMarino),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscureConfirm
                             ? Icons.visibility_off
                             : Icons.visibility,
-                        color: azulMarino,
+                        color: TemaGlobal.texto,
                       ),
                       onPressed: () =>
                           setState(() => _obscureConfirm = !_obscureConfirm),

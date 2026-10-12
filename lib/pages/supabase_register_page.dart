@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../services/supabase_auth_service.dart';
@@ -45,7 +46,7 @@ class _SupabaseRegisterPageState extends State<SupabaseRegisterPage> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFFF1F5F9);
+  static Color get fondoGris => TemaGlobal.superficie;
   static const Color grisTexto = Color(0xFF4A5568);
 
   @override
@@ -63,8 +64,7 @@ class _SupabaseRegisterPageState extends State<SupabaseRegisterPage> {
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: Text(titulo,
-            style: const TextStyle(
-                color: azulMarino, fontWeight: FontWeight.bold)),
+            style: TextStyle(                color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
         content: Text(mensaje,
             style: TextStyle(color: isError ? Colors.red : azulMarino)),
         actions: [
@@ -86,19 +86,19 @@ class _SupabaseRegisterPageState extends State<SupabaseRegisterPage> {
         title: Row(
           children: [
             Icon(Icons.check_circle_outline, color: Colors.green, size: 32),
-            const SizedBox(width: 12),
-            const Text('¡Registro exitoso!',
+            SizedBox(width: 12),
+            Text('¡Registro exitoso!',
                 style: TextStyle(
-                    color: azulMarino, fontWeight: FontWeight.bold)),
+                    color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
           ],
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'Te hemos enviado un correo de verificación.',
-              style: TextStyle(color: azulMarino, fontSize: 16),
+              style: TextStyle(color: TemaGlobal.texto, fontSize: 16),
             ),
             const SizedBox(height: 16),
             Container(
@@ -132,8 +132,8 @@ class _SupabaseRegisterPageState extends State<SupabaseRegisterPage> {
               Navigator.pop(context); // Cerrar diálogo
               Navigator.pop(context); // Volver a login
             },
-            child: const Text('Ir a iniciar sesión',
-                style: TextStyle(color: azulMarino, fontWeight: FontWeight.bold)),
+            child: Text('Ir a iniciar sesión',
+                style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -320,13 +320,13 @@ class _SupabaseRegisterPageState extends State<SupabaseRegisterPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('¿Ya tienes cuenta? ',
+                  Text('¿Ya tienes cuenta? ',
                       style: TextStyle(color: grisTexto)),
                   TextButton(
                     onPressed: () => Navigator.pop(context),
-                    child: const Text('Inicia sesión',
+                    child: Text('Inicia sesión',
                         style: TextStyle(
-                            color: azulMarino, fontWeight: FontWeight.bold)),
+                            color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
                   ),
                 ],
               ),

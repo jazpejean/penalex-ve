@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../services/supabase_auth_service.dart';
@@ -48,7 +49,7 @@ class _SupabaseLoginPageState extends State<SupabaseLoginPage> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFFF1F5F9);
+  static Color get fondoGris => TemaGlobal.superficie;
   static const Color grisTexto = Color(0xFF4A5568);
 
   @override
@@ -79,9 +80,9 @@ class _SupabaseLoginPageState extends State<SupabaseLoginPage> {
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text(
+        title: Text(
           'Correo no verificado',
-          style: TextStyle(color: azulMarino, fontWeight: FontWeight.bold),
+          style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -312,11 +313,11 @@ class _SupabaseLoginPageState extends State<SupabaseLoginPage> {
                           onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (_) => const SupabaseRegisterPage()),
+                                builder: (_) => SupabaseRegisterPage()),
                           ),
-                          child: const Text('Regístrate',
+                          child: Text('Regístrate',
                               style: TextStyle(
-                                  color: azulMarino, fontWeight: FontWeight.bold)),
+                                  color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
                         ),
                       ],
                     ),

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
 
 import '../services/auth_service.dart';
@@ -47,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFFF1F5F9);
+  static Color get fondoGris => TemaGlobal.superficie;
   static const Color grisTexto = Color(0xFF4A5568);
 
   @override
@@ -78,9 +79,9 @@ class _LoginPageState extends State<LoginPage> {
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text(
+        title: Text(
           'Correo no verificado',
-          style: TextStyle(color: azulMarino, fontWeight: FontWeight.bold),
+          style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -359,12 +360,12 @@ class _LoginPageState extends State<LoginPage> {
                         height: 24,
                         width: 24,
                         errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) =>
-                            const Icon(Icons.g_mobiledata,
+                            Icon(Icons.g_mobiledata,
                                 size: 24, color: Color(0xFFDB4437)),
                       ),
-                      const SizedBox(width: 12),
-                      const Text('Iniciar con Google',
-                          style: TextStyle(color: azulMarino, fontSize: 16)),
+                      SizedBox(width: 12),
+                      Text('Iniciar con Google',
+                          style: TextStyle(color: TemaGlobal.texto, fontSize: 16)),
                     ],
                   ),
                 ),
@@ -378,11 +379,11 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (_) => const RegisterPage()),
+                            builder: (_) => RegisterPage()),
                       ),
-                      child: const Text('Regístrate',
+                      child: Text('Regístrate',
                           style: TextStyle(
-                              color: azulMarino, fontWeight: FontWeight.bold)),
+                              color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
                     ),
                   ],
                 ),

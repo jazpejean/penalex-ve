@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 
 import '../models/calculation_model.dart';
 import '../utils/storage_manager.dart';
@@ -15,7 +16,7 @@ class CalculosGuardadosPage extends StatefulWidget {
 class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFFF1F5F9);
+  static Color get fondoGris => TemaGlobal.superficie;
 
   final StorageManager _storageManager = StorageManager();
   List<CalculationModel> _calculos = [];
@@ -122,7 +123,7 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
                         'No hay cálculos guardados',
                         style: TextStyle(
                           fontSize: 18,
-                          color: Colors.grey[600],
+                          color: TemaGlobal.textoSecundario,
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -156,9 +157,9 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
                             color: azulMarino.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Icon(
+                          child: Icon(
                             Icons.calculate,
-                            color: azulMarino,
+                            color: TemaGlobal.texto,
                           ),
                         ),
                         title: Text(
@@ -176,14 +177,14 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
                               'Fecha: ${_formatearFecha(calculo.fecha)}',
                               style: TextStyle(
                                 fontSize: 13,
-                                color: Colors.grey[600],
+                                color: TemaGlobal.textoSecundario,
                               ),
                             ),
                             Text(
                               '${calculo.delitos.length} delito(s)',
                               style: TextStyle(
                                 fontSize: 13,
-                                color: Colors.grey[600],
+                                color: TemaGlobal.textoSecundario,
                               ),
                             ),
                           ],

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../config/app_colors.dart';
 import '../services/auth_service.dart';
+import '../config/app_theme.dart';
 import '../widgets/app_drawer.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -37,7 +38,7 @@ class DashboardScreen extends StatelessWidget {
         elevation: 0,
       ),
       drawer: const AppDrawer(currentRoute: '/dashboard'),
-      backgroundColor: const Color(0xFFF1F5F9), // Fondo gris muy claro
+      backgroundColor: TemaGlobal.superficie,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -263,18 +264,18 @@ class DashboardScreen extends StatelessWidget {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    const Icon(
+                                    Icon(
                                       Icons.star_rounded,
                                       size: 14,
-                                      color: Color(0xFF0F172A),
+                                      color: TemaGlobal.texto,
                                     ),
                                     const SizedBox(width: 4),
                                     Text(
                                       badge,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 11,
                                         fontWeight: FontWeight.bold,
-                                        color: Color(0xFF0F172A),
+                                        color: TemaGlobal.texto,
                                         letterSpacing: 0.5,
                                       ),
                                     ),
@@ -338,18 +339,18 @@ class DashboardScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          const Icon(
+                          Icon(
                             Icons.auto_awesome,
-                            color: Color(0xFF0F172A),
+                            color: TemaGlobal.texto,
                             size: 20,
                           ),
                           const SizedBox(width: 8),
                           Text(
                             actionText,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF0F172A),
+                              color: TemaGlobal.texto,
                               letterSpacing: 0.5,
                             ),
                           ),

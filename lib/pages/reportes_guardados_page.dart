@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../services/pdf_service.dart';
@@ -17,7 +18,7 @@ class ReportesGuardadosPage extends StatefulWidget {
 class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFFF1F5F9);
+  static Color get fondoGris => TemaGlobal.superficie;
 
   List<File> _reportes = [];
   bool _cargando = true;
@@ -212,7 +213,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
                       const SizedBox(height: 16),
                       Text(
                         'No hay reportes guardados',
-                        style: TextStyle(fontSize: 18, color: Colors.grey[600]),
+                        style: TextStyle(fontSize: 18, color: TemaGlobal.textoSecundario),
                       ),
                       const SizedBox(height: 8),
                       Text(
@@ -271,7 +272,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
                             Text(
                               fecha,
                               style: TextStyle(
-                                  fontSize: 12, color: Colors.grey[600]),
+                                  fontSize: 12, color: TemaGlobal.textoSecundario),
                             ),
                             Text(
                               tamano,

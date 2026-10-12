@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -76,7 +77,7 @@ class _TextExtractionScreenState extends State<TextExtractionScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: TemaGlobal.superficie,
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.secondary,
@@ -445,10 +446,10 @@ class _TextExtractionScreenState extends State<TextExtractionScreen>
                     controller: controller,
                     maxLines: null,
                     expands: true,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 14,
                       height: 1.5,
-                      color: AppColors.primary,
+                      color: TemaGlobal.texto,
                     ),
                     decoration: const InputDecoration(
                       contentPadding: EdgeInsets.all(16),

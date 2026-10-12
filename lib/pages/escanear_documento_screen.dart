@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 
 import '../models/documento_escaneado.dart';
 import '../services/documentos_service.dart';
@@ -21,7 +22,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFFF1F5F9);
+  static Color get fondoGris => TemaGlobal.superficie;
 
   List<DocumentoEscaneado> _documentos = [];
   bool _cargando = true;
@@ -116,19 +117,18 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
         onPressed: _escaneando ? null : _iniciarEscaneo,
         backgroundColor: dorado,
         icon: _escaneando
-            ? const SizedBox(
-                width: 18,
+            ? SizedBox(                width: 18,
                 height: 18,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: azulMarino,
+                  color: TemaGlobal.texto,
                 ),
               )
-            : const Icon(Icons.document_scanner, color: azulMarino),
+            : Icon(Icons.document_scanner, color: azulMarino),
         label: Text(
           _escaneando ? 'Abriendo...' : 'Escanear',
-          style: const TextStyle(
-            color: azulMarino,
+          style: TextStyle(
+            color: TemaGlobal.texto,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -201,7 +201,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
                             progress == null
                                 ? child
                                 : Container(
-                                    color: const Color(0xFFF1F5F9),
+                                    color: TemaGlobal.superficie,
                                     child: const Center(
                                       child: CircularProgressIndicator(
                                         strokeWidth: 2,
@@ -210,20 +210,18 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
                                     ),
                                   ),
                         errorBuilder: (_, __, ___) => Container(
-                          color: const Color(0xFFF1F5F9),
-                          child: const Icon(
-                            Icons.description,
+                          color: TemaGlobal.superficie,
+                          child: Icon(                            Icons.description,
                             size: 40,
-                            color: azulMarino,
+                            color: TemaGlobal.texto,
                           ),
                         ),
                       )
                     : Container(
-                        color: const Color(0xFFF1F5F9),
-                        child: const Icon(
-                          Icons.description,
+                        color: TemaGlobal.superficie,
+                        child: Icon(                          Icons.description,
                           size: 40,
-                          color: azulMarino,
+                          color: TemaGlobal.texto,
                         ),
                       ),
               ),
@@ -237,8 +235,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
                     doc.titulo,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: azulMarino,
+                    style: TextStyle(                      color: TemaGlobal.texto,
                       fontWeight: FontWeight.w600,
                       fontSize: 13,
                     ),
@@ -248,7 +245,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
                     '${doc.numeroPaginas} pág${doc.numeroPaginas != 1 ? 's' : ''} · '
                     '${_fechaCorta(doc.fechaCreacion)}',
                     style: TextStyle(
-                      color: Colors.grey[600],
+                      color: TemaGlobal.textoSecundario,
                       fontSize: 11,
                     ),
                   ),
@@ -282,7 +279,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
               width: 120,
               height: 120,
               decoration: BoxDecoration(
-                color: azulMarino,
+                color: TemaGlobal.texto,
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
@@ -298,11 +295,10 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
                 color: dorado,
               ),
             ),
-            const SizedBox(height: 28),
-            const Text(
-              'No tienes documentos escaneados',
+            SizedBox(height: 28),
+            Text(              'No tienes documentos escaneados',
               style: TextStyle(
-                color: azulMarino,
+                color: TemaGlobal.texto,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),

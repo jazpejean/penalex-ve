@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 
 import '../config/app_colors.dart';
 import '../services/document_scanner_service_pro.dart';
@@ -52,7 +53,7 @@ class _PageManagerScreenState extends State<PageManagerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: TemaGlobal.superficie,
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.secondary,
@@ -294,9 +295,9 @@ class _PageManagerScreenState extends State<PageManagerScreen> {
         ),
         title: Text(
           'Página ${page.pageNumber}',
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: AppColors.primary,
+            color: TemaGlobal.texto,
           ),
         ),
         subtitle: Text(
@@ -405,10 +406,10 @@ class _PageManagerScreenState extends State<PageManagerScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
                 'Página ${page.pageNumber}',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: AppColors.primary,
+                  color: TemaGlobal.texto,
                 ),
               ),
             ),

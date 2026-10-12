@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../config/app_theme.dart';
 import '../services/auth_service.dart';
 
 class DeviceLockScreen extends StatelessWidget {
@@ -7,13 +8,13 @@ class DeviceLockScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      backgroundColor: const Color(0xFF0F172A),
+      backgroundColor: TemaGlobal.superficie,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Icon(Icons.lock_person, size: 80, color: Colors.red),
-            const Text("DISPOSITIVO NO AUTORIZADO", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+            Text("DISPOSITIVO NO AUTORIZADO", style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
             TextButton(
               onPressed: () async {
                 final authService = context.read<AuthService>();

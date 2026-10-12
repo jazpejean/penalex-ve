@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 import 'package:intl/intl.dart';
 
 import '../models/jurisprudencia.dart';
@@ -28,7 +29,7 @@ class _JurisprudenciaScreenState extends State<JurisprudenciaScreen> {
   
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFFF1F5F9);
+  static Color get fondoGris => TemaGlobal.superficie;
 
   @override
   void initState() {
@@ -215,15 +216,15 @@ class _JurisprudenciaScreenState extends State<JurisprudenciaScreen> {
       ),
       backgroundColor: fondoGris,
       body: _isLoading
-          ? const Center(
+          ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircularProgressIndicator(color: dorado),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Text(
                     'Cargando jurisprudencia...',
-                    style: TextStyle(color: azulMarino, fontSize: 16),
+                    style: TextStyle(color: TemaGlobal.texto, fontSize: 16),
                   ),
                 ],
               ),
@@ -301,7 +302,7 @@ class _JurisprudenciaScreenState extends State<JurisprudenciaScreen> {
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: azulMarino.withValues(alpha: 0.7),
+                          color: TemaGlobal.texto.withValues(alpha: 0.7),
                         ),
                       ),
                       if (_salaSeleccionada != null || _relevanciaMinima > 1)
@@ -336,7 +337,7 @@ class _JurisprudenciaScreenState extends State<JurisprudenciaScreen> {
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
-                                  color: azulMarino.withValues(alpha: 0.6),
+                                  color: TemaGlobal.texto.withValues(alpha: 0.6),
                                 ),
                               ),
                             ],
@@ -381,8 +382,7 @@ class _JurisprudenciaScreenState extends State<JurisprudenciaScreen> {
                   Expanded(
                     child: Text(
                       sentencia.numero,
-                      style: const TextStyle(
-                        color: azulMarino,
+                      style: TextStyle(                        color: TemaGlobal.texto,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -403,21 +403,20 @@ class _JurisprudenciaScreenState extends State<JurisprudenciaScreen> {
                 ),
                 child: Text(
                   sentencia.delito,
-                  style: const TextStyle(
-                    color: azulMarino,
+                  style: TextStyle(                    color: TemaGlobal.texto,
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
               
-              const SizedBox(height: 8),
+              SizedBox(height: 8),
               
               // Resumen
               Text(
                 sentencia.resumen,
                 style: TextStyle(
-                  color: Colors.grey[800],
+                  color: TemaGlobal.texto,
                   fontSize: 14,
                   height: 1.4,
                 ),
@@ -425,29 +424,29 @@ class _JurisprudenciaScreenState extends State<JurisprudenciaScreen> {
                 overflow: TextOverflow.ellipsis,
               ),
               
-              const SizedBox(height: 12),
+              SizedBox(height: 12),
               
               // Footer: Magistrado y fecha
               Row(
                 children: [
-                  Icon(Icons.person_outline, size: 14, color: Colors.grey[600]),
-                  const SizedBox(width: 4),
+                  Icon(Icons.person_outline, size: 14, color: TemaGlobal.textoSecundario),
+                  SizedBox(width: 4),
                   Expanded(
                     child: Text(
                       sentencia.magistradoPonente,
                       style: TextStyle(
                         fontSize: 12,
-                        color: Colors.grey[600],
+                        color: TemaGlobal.textoSecundario,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  Icon(Icons.calendar_today, size: 14, color: Colors.grey[600]),
-                  const SizedBox(width: 4),
+                  Icon(Icons.calendar_today, size: 14, color: TemaGlobal.textoSecundario),
+                  SizedBox(width: 4),
                   Text(
                     dateFormat.format(sentencia.fecha),
-                    style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                    style: TextStyle(fontSize: 12, color: TemaGlobal.textoSecundario),
                   ),
                 ],
               ),
@@ -495,12 +494,11 @@ class _JurisprudenciaScreenState extends State<JurisprudenciaScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Filtros',
+            Text(              'Filtros',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: azulMarino,
+                color: TemaGlobal.texto,
               ),
             ),
             const SizedBox(height: 24),
@@ -527,7 +525,7 @@ class _JurisprudenciaScreenState extends State<JurisprudenciaScreen> {
                   },
                   selectedColor: dorado.withValues(alpha: 0.3),
                   labelStyle: TextStyle(
-                    color: _salaSeleccionada == sala ? azulMarino : Colors.grey[700],
+                    color: _salaSeleccionada == sala ? azulMarino : TemaGlobal.texto,
                   ),
                 );
               }).toList(),
@@ -639,10 +637,9 @@ class _DetallesSentenciaSheet extends StatelessWidget {
                       // Número
                       Text(
                         sentencia.numero,
-                        style: const TextStyle(
-                          fontSize: 20,
+                        style: TextStyle(                          fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: azulMarino,
+                          color: TemaGlobal.texto,
                         ),
                       ),
                       
@@ -660,12 +657,12 @@ class _DetallesSentenciaSheet extends StatelessWidget {
                       const Divider(height: 32),
                       
                       // Artículos citados
-                      const Text(
+                      Text(
                         'Artículos Citados',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: azulMarino,
+                          color: TemaGlobal.texto,
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -683,10 +680,9 @@ class _DetallesSentenciaSheet extends StatelessWidget {
                             ),
                             child: Text(
                               art,
-                              style: const TextStyle(
-                                fontSize: 13,
+                              style: TextStyle(                                fontSize: 13,
                                 fontWeight: FontWeight.w600,
-                                color: azulMarino,
+                                color: TemaGlobal.texto,
                               ),
                             ),
                           );
@@ -696,33 +692,33 @@ class _DetallesSentenciaSheet extends StatelessWidget {
                       const Divider(height: 32),
                       
                       // Resumen
-                      const Text(
+                      Text(
                         'Resumen',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: azulMarino,
+                          color: TemaGlobal.texto,
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8),
                       Text(
                         sentencia.resumen,
                         style: TextStyle(
                           fontSize: 14,
                           height: 1.6,
-                          color: Colors.grey[800],
+                          color: TemaGlobal.texto,
                         ),
                       ),
                       
                       const Divider(height: 32),
                       
                       // Doctrina
-                      const Text(
+                      Text(
                         'Doctrina',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: azulMarino,
+                          color: TemaGlobal.texto,
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -738,7 +734,7 @@ class _DetallesSentenciaSheet extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 14,
                             height: 1.6,
-                            color: Colors.grey[800],
+                            color: TemaGlobal.texto,
                           ),
                         ),
                       ),
@@ -747,12 +743,12 @@ class _DetallesSentenciaSheet extends StatelessWidget {
                       
                       // Tags
                       if (sentencia.tags.isNotEmpty) ...[
-                        const Text(
+                        Text(
                           'Etiquetas',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: azulMarino,
+                            color: TemaGlobal.texto,
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -834,7 +830,7 @@ class _DetallesSentenciaSheet extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(icon, size: 20, color: dorado),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -843,16 +839,16 @@ class _DetallesSentenciaSheet extends StatelessWidget {
                   label,
                   style: TextStyle(
                     fontSize: 12,
-                    color: Colors.grey[600],
+                    color: TemaGlobal.textoSecundario,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 2),
+                SizedBox(height: 2),
                 Text(
                   value,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
-                    color: azulMarino,
+                    color: TemaGlobal.texto,
                     fontWeight: FontWeight.w600,
                   ),
                 ),

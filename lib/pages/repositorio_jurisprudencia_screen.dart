@@ -317,7 +317,7 @@ class _RepositorioJurisprudenciaScreenState
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: TemaGlobal.texto,
+              color: azulMarino,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.1),
@@ -519,7 +519,7 @@ class _RepositorioJurisprudenciaScreenState
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: TemaGlobal.texto,
+                      color: azulMarino,
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(

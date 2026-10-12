@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 import '../widgets/app_drawer.dart';
 import 'chat_legal_screen.dart';
 import 'redactor_documentos_screen.dart';
@@ -26,7 +27,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const AppDrawer(currentRoute: "/asistente_legal"),
-      backgroundColor: const Color(0xFF0F172A), // Azul marino
+      backgroundColor: TemaGlobal.superficie,
       appBar: AppBar(
         title: const Row(
           children: [
@@ -78,12 +79,12 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             const SizedBox(height: 20),
 
             // Título de herramientas complementarias
-            const Text(
+            Text(
               'Herramientas Complementarias',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFC5A059),
+                color: TemaGlobal.texto,
                 letterSpacing: 0.5,
               ),
             ),
@@ -356,10 +357,10 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
   }) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFF1E293B),
+        color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: Colors.white.withValues(alpha: 0.1),
+          color: TemaGlobal.dorado.withValues(alpha: 0.18),
           width: 1,
         ),
         boxShadow: [
@@ -410,10 +411,10 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                           Expanded(
                             child: Text(
                               title,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: TemaGlobal.texto,
                                 letterSpacing: 0.3,
                               ),
                             ),
@@ -424,7 +425,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                               badge,
                               style: TextStyle(
                                 fontSize: 11,
-                                color: Colors.white.withValues(alpha: 0.6),
+                                color: TemaGlobal.textoSecundario,
                               ),
                             ),
                           ],
@@ -437,7 +438,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                         description,
                         style: TextStyle(
                           fontSize: 13,
-                          color: Colors.white.withValues(alpha: 0.7),
+                          color: TemaGlobal.textoSecundario,
                           height: 1.5,
                         ),
                       ),
@@ -485,7 +486,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                 // Flecha
                 Icon(
                   Icons.arrow_forward_ios,
-                  color: Colors.white.withValues(alpha: 0.4),
+                  color: TemaGlobal.textoTenue,
                   size: 16,
                 ),
               ],

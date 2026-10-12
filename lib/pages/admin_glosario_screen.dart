@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../services/glosario_service.dart';
@@ -13,7 +14,7 @@ class AdminGlosarioScreen extends StatefulWidget {
 class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color fondoGris = Color(0xFFF1F5F9);
+  static Color get fondoGris => TemaGlobal.superficie;
 
   final TextEditingController _terminoController = TextEditingController();
   final TextEditingController _definicionController = TextEditingController();
@@ -144,12 +145,11 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'AGREGAR NUEVO TÉRMINO',
+                Text(                  'AGREGAR NUEVO TÉRMINO',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
-                    color: azulMarino,
+                    color: TemaGlobal.texto,
                     letterSpacing: 1,
                   ),
                 ),
@@ -353,11 +353,11 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
+                                Text(
                                   'Definición:',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: azulMarino,
+                                    color: TemaGlobal.texto,
                                   ),
                                 ),
                                 const SizedBox(height: 8),
