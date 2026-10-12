@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import '../services/haptics_service.dart';
 import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
@@ -127,12 +128,14 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> _login() async {
+    Haptics.light();
     setState(() {
       _errorMessage = '';
       _isLoading = true;
     });
 
     if (_emailController.text.isEmpty || !_emailController.text.contains('@')) {
+      Haptics.error();
       setState(() {
         _errorMessage = 'Ingresa un correo electrónico válido';
         _isLoading = false;
@@ -184,6 +187,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> _loginWithGoogle() async {
+    Haptics.light();
     setState(() {
       _errorMessage = '';
       _isLoading = true;

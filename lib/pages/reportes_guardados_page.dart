@@ -1,4 +1,5 @@
 import 'dart:io';
+import '../services/haptics_service.dart';
 import '../pages/main_screen.dart';
 import '../utils/main_tab_controller.dart';
 
@@ -69,6 +70,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
         _reportes = pdfs;
         _cargando = false;
       });
+      Haptics.light();
     } catch (e) {
       setState(() => _cargando = false);
       if (mounted) {
@@ -137,6 +139,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
 
     if (confirmar == true) {
       try {
+        Haptics.heavy();
         await file.delete();
         await _cargarReportes();
         if (mounted) {

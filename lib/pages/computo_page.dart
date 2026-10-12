@@ -1,4 +1,5 @@
 import 'dart:async';
+import '../services/haptics_service.dart';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -204,6 +205,7 @@ class _ComputoPageState extends State<ComputoPage> {
 
     final fecha = _parsearFecha(texto);
     if (fecha == null) {
+      Haptics.error();
       if (esDetencion) {
         _fechaDetencionValida = false;
         _fechaDetencion = null;
@@ -216,6 +218,7 @@ class _ComputoPageState extends State<ComputoPage> {
     }
 
     if (fecha.isAfter(DateTime.now())) {
+      Haptics.error();
       if (esDetencion) {
         _fechaDetencionValida = false;
         _fechaDetencion = null;
@@ -393,6 +396,7 @@ class _ComputoPageState extends State<ComputoPage> {
       fraccionAdmision: widget.fraccionAdmision,
     );
     await _storageManager.saveCalculation(calculation);
+    Haptics.medium();
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

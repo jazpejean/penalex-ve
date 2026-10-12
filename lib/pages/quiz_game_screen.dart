@@ -1,11 +1,11 @@
 import 'dart:async';
+import '../services/haptics_service.dart';
 import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flame/game.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../game/quiz_effects_game.dart';
@@ -178,7 +178,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
 
     // 1) Marca la opción con borde dorado pulsante + sonido + latido sutil.
     SfxService.instance.tap();
-    HapticFeedback.selectionClick();
+    Haptics.tap();
     _latido.forward(from: 0);
 
     // 2) Pausa de 400 ms (escala 1 → 1.03 → 1) antes de revelar el resultado.
@@ -226,6 +226,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
         if (mounted) setState(() => _destello = false);
       });
       SfxService.instance.correcta();
+      Haptics.medium();
       await Future.delayed(const Duration(milliseconds: 300));
     } else {
       _apelaciones = (_apelaciones - 1).clamp(0, 999);
@@ -234,6 +235,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
       nuevo = _service.registrarFallo(nuevo, _caso!.id);
       _shake.forward(from: 0);
       SfxService.instance.incorrecta();
+      Haptics.heavy();
     }
 
     nuevo['xp'] = _xp;

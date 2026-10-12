@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/haptics_service.dart';
 import '../pages/main_screen.dart';
 import '../utils/main_tab_controller.dart';
 import '../config/app_theme.dart';
@@ -72,6 +73,7 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
     );
 
     if (confirmar == true) {
+      Haptics.heavy();
       await _storageManager.deleteCalculation(id);
       await _cargarCalculos();
       if (mounted) {

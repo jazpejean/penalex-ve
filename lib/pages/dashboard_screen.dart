@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/haptics_service.dart';
 import 'package:provider/provider.dart';
 
 import '../services/auth_service.dart';
@@ -195,7 +196,10 @@ class DashboardScreen extends StatelessWidget {
     required String badge,
   }) =>
       GestureDetector(
-        onTap: () => Navigator.pushNamed(context, route),
+        onTap: () {
+          Haptics.tap();
+          Navigator.pushNamed(context, route);
+        },
         child: Container(
           margin: const EdgeInsets.only(bottom: 20),
           decoration: BoxDecoration(
@@ -220,7 +224,10 @@ class DashboardScreen extends StatelessWidget {
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () => Navigator.pushNamed(context, route),
+              onTap: () {
+                Haptics.tap();
+                Navigator.pushNamed(context, route);
+              },
               borderRadius: BorderRadius.circular(20),
               splashColor: const Color(0xFFC5A059).withValues(alpha: 0.2),
               child: Padding(

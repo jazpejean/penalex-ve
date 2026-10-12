@@ -1,4 +1,5 @@
 import 'dart:io';
+import '../services/haptics_service.dart';
 import '../pages/main_screen.dart';
 import '../utils/main_tab_controller.dart';
 
@@ -466,6 +467,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
   }
 
   Future<void> _enviarMensaje() async {
+    Haptics.light();
     final contenido = _messageController.text.trim();
     if ((contenido.isEmpty && _attachedFiles.isEmpty) ||
         _currentConversationId == null) {
@@ -559,6 +561,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
         _messages.add(assistantMessage);
         _isGeneratingResponse = false;
       });
+      Haptics.tap();
 
       debugPrint('✅ Respuesta generada');
       _scrollToBottom();

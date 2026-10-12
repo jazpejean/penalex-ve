@@ -1,4 +1,5 @@
 import 'dart:async';
+import '../services/haptics_service.dart';
 import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
@@ -66,9 +67,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   }
 
   Future<void> _sendResetEmail() async {
+    Haptics.light();
     if (_isCooldown) return;
 
     if (_emailController.text.isEmpty || !_emailController.text.contains('@')) {
+      Haptics.error();
       _showDialog('Correo inválido', 'Ingresa un correo electrónico válido.', isError: true);
       return;
     }

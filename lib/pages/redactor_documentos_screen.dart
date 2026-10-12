@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/haptics_service.dart';
 import '../pages/main_screen.dart';
 import '../utils/main_tab_controller.dart';
 import 'package:flutter/services.dart';
@@ -173,6 +174,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
           tipo: _chatService.ultimoTitulo,
           contenido: doc,
         );
+        Haptics.medium();
       }
     } catch (e) {
       _addMessage(
@@ -381,6 +383,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                         OutlinedButton.icon(
                           onPressed: () async {
                             Navigator.pop(context);
+                            Haptics.heavy();
                             await MembreteService.eliminarMembrete();
                             if (context.mounted) {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -402,6 +405,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                           alineacion: alineacion,
                           tamano: tamano,
                         );
+                        Haptics.medium();
                         if (context.mounted) {
                           Navigator.pop(context);
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -1090,6 +1094,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                                   ],
                                   onSelected: (v) {
                                     if (v == 'eliminar') {
+                                      Haptics.heavy();
                                       RedactorService.eliminarDocumento(d.id);
                                       Navigator.pop(context);
                                     } else {

@@ -1,4 +1,5 @@
 import 'dart:async';
+import '../services/haptics_service.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -103,6 +104,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
     );
     if (confirm != true) return;
 
+    Haptics.heavy();
     setState(() => _isLoading = true);
     final bool exito = await AgendaService.eliminarAudiencia(audiencia.id);
     if (exito) {
@@ -170,7 +172,9 @@ class _AgendaScreenState extends State<AgendaScreen> {
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary, foregroundColor: Colors.white),
             onPressed: () async {
+              Haptics.light();
               if (expedienteCtrl.text.isEmpty || imputadoCtrl.text.isEmpty || fechaCtrl.text.isEmpty || horaCtrl.text.isEmpty) {
+                Haptics.error();
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text('Expediente, Imputado, Fecha y Hora son obligatorios'),
                   backgroundColor: Colors.red,

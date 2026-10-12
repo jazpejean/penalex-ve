@@ -1,4 +1,5 @@
 import 'dart:async';
+import '../services/haptics_service.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -64,24 +65,29 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   }
 
   Future<void> _handleReset() async {
+    Haptics.light();
     setState(() => _errorMessage = '');
 
     final String oobCode = _extractOobCode(_codeController.text);
     if (oobCode.isEmpty) {
+      Haptics.error();
       setState(() => _errorMessage =
           'Pega el enlace del correo o el código oobCode para continuar.');
       return;
     }
     if (_passController.text.isEmpty) {
+      Haptics.error();
       setState(() => _errorMessage = 'Ingresa una nueva contraseña');
       return;
     }
     if (_passController.text.length < 6) {
+      Haptics.error();
       setState(() =>
           _errorMessage = 'La contraseña debe tener al menos 6 caracteres');
       return;
     }
     if (_passController.text != _confirmController.text) {
+      Haptics.error();
       setState(() => _errorMessage = 'Las contraseñas no coinciden');
       return;
     }

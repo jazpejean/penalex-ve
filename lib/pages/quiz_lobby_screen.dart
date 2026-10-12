@@ -1,4 +1,5 @@
 import 'dart:async';
+import '../services/haptics_service.dart';
 import '../pages/main_screen.dart';
 import '../utils/main_tab_controller.dart';
 
@@ -249,6 +250,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
       child: InkWell(
         customBorder: const CircleBorder(),
         onTap: () async {
+          Haptics.tap();
           final nuevo = !_muted;
           await SfxService.instance.mute(nuevo);
           if (mounted) setState(() => _muted = nuevo);
@@ -557,7 +559,10 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
             const QuizIcon('check_seal', size: 26, color: _esmeralda)
           else if (e.completa)
             GestureDetector(
-              onTap: () => _reclamarMision(m),
+              onTap: () {
+                Haptics.tap();
+                _reclamarMision(m);
+              },
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -667,6 +672,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
           child: InkWell(
             borderRadius: BorderRadius.circular(12),
             onTap: () {
+              Haptics.light();
               Navigator.push(context, cortinaDorada(const QuizGameScreen()));
             },
             child: const Padding(

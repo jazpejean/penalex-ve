@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart'; // ← NECESARIO para DiagnosticPropertiesBuilder
+import '../services/haptics_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -544,6 +545,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                 child: const Text("Cancelar")),
             ElevatedButton(
               onPressed: () {
+                Haptics.light();
                 setState(() {
                   ajuste.nombre = nombreCtrl.text;
                   ajuste.esAgravante = esAgravante;
@@ -587,17 +589,26 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                   children: <Widget>[
                     IconButton(
                       icon: const Icon(Icons.menu_book_outlined, color: dorado),
-                      onPressed: () => mostrarBuscadorArticulos(context),
+                      onPressed: () {
+                        Haptics.tap();
+                        mostrarBuscadorArticulos(context);
+                      },
                       tooltip: "Consultar artículos de la ley",
                     ),
                     IconButton(
                       icon: const Icon(Icons.refresh_rounded, color: dorado),
-                      onPressed: _resetCalculation,
+                      onPressed: () {
+                        Haptics.tap();
+                        _resetCalculation();
+                      },
                       tooltip: "Restablecer",
                     ),
                     IconButton(
                       icon: const Icon(Icons.folder_open_rounded, color: dorado),
-                      onPressed: _showSavedCalculations,
+                      onPressed: () {
+                        Haptics.tap();
+                        _showSavedCalculations();
+                      },
                       tooltip: "Cargar cálculo",
                     ),
                   ],

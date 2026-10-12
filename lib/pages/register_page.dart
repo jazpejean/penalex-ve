@@ -1,4 +1,5 @@
 import 'dart:async';
+import '../services/haptics_service.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -63,26 +64,32 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future<void> _register() async {
+    Haptics.light();
     FocusScope.of(context).unfocus();
 
     if (_nameController.text.trim().isEmpty) {
       _showDialog('Nombre requerido', 'Por favor, ingresa tu nombre completo.', isError: true);
+      Haptics.error();
       return;
     }
     if (_emailController.text.trim().isEmpty || !_emailController.text.contains('@')) {
       _showDialog('Correo inválido', 'Ingresa un correo electrónico válido.', isError: true);
+      Haptics.error();
       return;
     }
     if (_passwordController.text.isEmpty) {
       _showDialog('Contraseña requerida', 'La contraseña no puede estar vacía.', isError: true);
+      Haptics.error();
       return;
     }
     if (_passwordController.text.length < 6) {
       _showDialog('Contraseña débil', 'La contraseña debe tener al menos 6 caracteres.', isError: true);
+      Haptics.error();
       return;
     }
     if (_passwordController.text != _confirmController.text) {
       _showDialog('Contraseñas no coinciden', 'Las contraseñas ingresadas no son iguales.', isError: true);
+      Haptics.error();
       return;
     }
 
