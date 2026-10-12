@@ -231,13 +231,13 @@ class _RepositorioJurisprudenciaScreenState
                 _buscar();
               }),
               chip('Penal',
-                  activo: _salaSeleccionada == 'Sala de Casación Penal',
+                  activo: _salaSeleccionada == 'scp',
                   onTap: () {
                 setState(() => _salaSeleccionada = 'Sala de Casación Penal');
                 _buscar();
               }),
               chip('Constitucional',
-                  activo: _salaSeleccionada == 'Sala Constitucional',
+                  activo: _salaSeleccionada == 'scon',
                   onTap: () {
                 setState(() => _salaSeleccionada = 'Sala Constitucional');
                 _buscar();

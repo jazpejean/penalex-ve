@@ -1072,13 +1072,13 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                           setSheetState(() => _salaSeleccionada = null);
                         }),
                         chip('Penal',
-                            activo: _salaSeleccionada == 'Sala de Casación Penal',
+                            activo: _salaSeleccionada == 'scp',
                             onTap: () {
                           setSheetState(() =>
                               _salaSeleccionada = 'Sala de Casación Penal');
                         }),
                         chip('Constitucional',
-                            activo: _salaSeleccionada == 'Sala Constitucional',
+                            activo: _salaSeleccionada == 'scon',
                             onTap: () {
                           setSheetState(() =>
                               _salaSeleccionada = 'Sala Constitucional');
