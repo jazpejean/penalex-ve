@@ -301,13 +301,13 @@ class JurisprudenciaService {
 
       // Construir filtro OR con ilike para múltiples columnas y términos
       // Usamos la función or() de Supabase con ilike en delito, resumen, extracto, partes, decision
+      // Columnas reales de la tabla `sentencias` (delito/resumen_ia no existen:
+      // una columna inexistente en or() hace fallar TODA la búsqueda ampliada).
       final List<String> orConditions = [];
       for (final termino in terminos) {
-        orConditions.add('delito.ilike.%$termino%');
-        orConditions.add('resumen_ia.ilike.%$termino%');
-        orConditions.add('extracto.ilike.%$termino%');
-        orConditions.add('partes.ilike.%$termino%');
         orConditions.add('decision.ilike.%$termino%');
+        orConditions.add('partes.ilike.%$termino%');
+        orConditions.add('extracto.ilike.%$termino%');
         orConditions.add('ponente.ilike.%$termino%');
       }
 
