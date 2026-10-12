@@ -4,13 +4,11 @@
 // Supabase se inicializa con un httpClient mock (package:http/testing) que
 // responde '[]' al instante: evita que las llamadas reales (Storage del banco
 // de preguntas y del ranking) cuelguen el fake-async. El audio se desactiva de
-// fábrica (audioplayers no tiene canal en tests). El lobby NO se captura: su
-// _inicializar depende de FirebaseAuth (pigeon) y quedaría en el estado de
-// carga; las 4 pantallas restantes renderizan su contenido completo.
+// fábrica (audioplayers no tiene canal en tests). El lobby renderiza porque
+// QuizStorageService._uid tolera la ausencia de Firebase (progreso por defecto).
 import 'dart:async';
 import 'dart:io';
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -21,6 +19,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:penalex_ve/pages/quiz_game_screen.dart';
+import 'package:penalex_ve/pages/quiz_lobby_screen.dart';
 import 'package:penalex_ve/pages/quiz_logros_screen.dart';
 import 'package:penalex_ve/pages/quiz_resumen_screen.dart';
 import 'package:penalex_ve/services/sfx_service.dart';
@@ -35,49 +34,6 @@ void main() {
     SharedPreferences.setMockInitialValues(
         <String, Object>{'quiz_sfx_muted': true});
     GoogleFonts.config.allowRuntimeFetching = false;
-    // Firebase falso: QuizStorageService lee _uid de FirebaseAuth en
-    // cargarProgreso; sin el mock, FirebaseException rompe la inicialización
-    // del lobby. Los canales responden al instante (usuario anónimo: null).
-    final messenger =
-        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
-    messenger.setMockMethodCallHandler(
-      const MethodChannel('plugins.flutter.io/firebase_core'),
-      (MethodCall call) async {
-        if (call.method == 'Firebase#initializeCore') return <Object?>[];
-        if (call.method == 'Firebase#initializeApp') {
-          return <String, dynamic>{
-            'name': call.arguments['name'] ?? '[DEFAULT]',
-            'options': <String, dynamic>{
-              'apiKey': 'AIzaSyA-test-key',
-              'appId': '1:123:android:test',
-              'messagingSenderId': '123',
-              'projectId': 'test-project',
-              'storageBucket': 'test.appspot.com',
-            },
-          };
-        }
-        if (call.method == 'Firebase#app') {
-          return <String, dynamic>{
-            'name': '[DEFAULT]',
-            'options': <String, dynamic>{
-              'apiKey': 'AIzaSyA-test-key',
-              'appId': '1:123:android:test',
-              'messagingSenderId': '123',
-              'projectId': 'test-project',
-              'storageBucket': 'test.appspot.com',
-            },
-          };
-        }
-        return null;
-      },
-    );
-    messenger.setMockMethodCallHandler(
-      const MethodChannel('plugins.flutter.io/firebase_auth'),
-      (MethodCall call) async => null,
-    );
-    try {
-      await Firebase.initializeApp();
-    } catch (_) {}
     try {
       await Supabase.initialize(
         url: 'https://example.supabase.co',
@@ -98,8 +54,8 @@ void main() {
   });
 
   Future<void> pumpPage(WidgetTester tester, Widget page) async {
-    tester.view.physicalSize = const Size(1170, 2532);
-    tester.view.devicePixelRatio = 3.0;
+    tester.view.physicalSize = const Size(780, 1688);
+    tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.reset);
     await runZonedGuarded(() async {
       // Sin audio en tests: audioplayers no tiene canal de plataforma y su
@@ -131,6 +87,20 @@ void main() {
     await tester.pump();
     tester.takeException();
   }
+
+  testWidgets('quiz lobby rediseñado', (tester) async {
+    await pumpPage(tester, const QuizLobbyScreen());
+    expect(find.text('JUGAR'), findsOneWidget,
+        reason: 'el lobby debe salir del estado de carga');
+    // Cierra el SnackBar de primera visita (4s) para que la captura muestre
+    // solo el lobby: hero, rango, misiones, JUGAR, certificado y logros.
+    await tester.pump(const Duration(seconds: 5));
+    await expectLater(
+      find.byType(QuizLobbyScreen),
+      matchesGoldenFile('goldens/quiz_lobby_rediseno.png'),
+    );
+    await desmontar(tester);
+  });
 
   testWidgets('quiz juego rediseñado (pregunta + opciones)', (tester) async {
     await pumpPage(tester, const QuizGameScreen());
@@ -172,7 +142,13 @@ void main() {
   });
 
   testWidgets('racha overlay rediseñado', (tester) async {
-    await pumpPage(tester, RachaOverlay(racha: 10, onDone: () {}));
+    await pumpPage(
+      tester,
+      Scaffold(
+        backgroundColor: const Color(0xFF0A0E1A),
+        body: Center(child: RachaOverlay(racha: 10, onDone: () {})),
+      ),
+    );
     await expectLater(
       find.byType(RachaOverlay),
       matchesGoldenFile('goldens/quiz_racha_rediseno.png'),
