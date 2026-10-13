@@ -604,4 +604,40 @@ class JurisprudenciaService {
       return '';
     }
   }
+
+  /// Doctrinas (criterios) de UNA sentencia, para la ficha técnica.
+  ///
+  /// Devuelve los criterios de la Sala para esa sentencia — tanto los
+  /// extractos OFICIALES de la página de jurisprudencias del TSJ
+  /// (tipo = 'jurisprudencia') como los extraídos por IA. Ordenados por tipo
+  /// (oficiales primero) y fecha de creación.
+  Future<List<Map<String, dynamic>>> doctrinasDeSentencia(
+    String sentenciaId, {
+    int limit = 20,
+  }) async {
+    try {
+      final res = await _supabase
+          .from('doctrinas')
+          .select(
+            'id, sentencia_id, tipo, texto_ratio, parrafo_evidencia, '
+            'instrumento, articulo_numero, resumen, referencia_citada',
+          )
+          .eq('sentencia_id', sentenciaId)
+          .order('created_at', ascending: true)
+          .limit(limit);
+      final data = (res as List<dynamic>)
+          .cast<Map<String, dynamic>>()
+          .toList();
+      // Oficiales (jurisprudencia) primero, luego el resto.
+      data.sort((a, b) {
+        final aOff = (a['tipo'] ?? '') == 'jurisprudencia' ? 0 : 1;
+        final bOff = (b['tipo'] ?? '') == 'jurisprudencia' ? 0 : 1;
+        return aOff.compareTo(bOff);
+      });
+      return data;
+    } catch (e) {
+      debugPrint('⚠️ doctrinasDeSentencia: $e');
+      return [];
+    }
+  }
 }

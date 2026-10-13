@@ -708,38 +708,103 @@ class _RepositorioJurisprudenciaScreenState
       builder: (context) {
         return Container(
           padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: Colors.white24,
-                    borderRadius: BorderRadius.circular(2),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Container(
+                    width: 40,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: Colors.white24,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'Sentencia Nº ${s.numeroSentencia}',
-                style: const TextStyle(
-                  color: dorado,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17,
+                const SizedBox(height: 16),
+                Text(
+                  'Sentencia Nº ${s.numeroSentencia}',
+                  style: const TextStyle(
+                    color: dorado,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 14),
-              _filaMeta('Sala', s.sala),
-              _filaMeta('Ponente', s.ponente),
-              _filaMeta('Fecha', s.fechaSentencia),
-              _filaMeta('Delito', s.delito),
-              _filaMeta('Materia', s.materia),
-              _filaMeta('Partes', s.partes),
-              _filaMeta('Tipo', s.tipoSentencia),
-            ],
+                const SizedBox(height: 14),
+                _filaMeta('Sala', s.sala),
+                _filaMeta('Ponente', s.ponente),
+                _filaMeta('Fecha', s.fechaSentencia),
+                _filaMeta('Delito', s.delito),
+                _filaMeta('Materia', s.materia),
+                _filaMeta('Partes', s.partes),
+                _filaMeta('Tipo', s.tipoSentencia),
+                // ⚖️ Criterios jurisprudenciales de la sentencia
+                if (_criterios.isNotEmpty) ...[
+                  const SizedBox(height: 18),
+                  const Divider(color: Colors.white12, height: 1),
+                  const SizedBox(height: 12),
+                  Text(
+                    '⚖️ Criterios jurisprudenciales (${_criterios.length})',
+                    style: const TextStyle(
+                      color: dorado,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  for (final c in _criterios)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.white10,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              (c['tipo'] ?? '') == 'jurisprudencia'
+                                  ? '★ Criterio oficial de la Sala'
+                                  : 'Criterio de la Sala',
+                              style: const TextStyle(
+                                color: dorado,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 11.5,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              _textoCriterio(c),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 13,
+                                height: 1.45,
+                              ),
+                            ),
+                            if (_citaCriterio(c).isNotEmpty) ...[
+                              const SizedBox(height: 6),
+                              Text(
+                                '«${_citaCriterio(c)}»',
+                                style: TextStyle(
+                                  color: Colors.white.withValues(alpha: 0.6),
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: 12,
+                                  height: 1.4,
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ),
+                ],
+              ],
+            ),
           ),
         );
       },
@@ -816,6 +881,11 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
   final FavoritosService _favoritosService = FavoritosService();
   bool _esFavorita = false;
 
+  // ⚖️ Criterios jurisprudenciales (ficha técnica)
+  final JurisprudenciaService _jurisService = JurisprudenciaService();
+  List<Map<String, dynamic>> _criterios = [];
+  bool _cargandoCriterios = false;
+
   bool _mostrandoAnalisisIA = false;
   bool _analizando = false;
   AnalisisProfundoSentencia? _analisisProfundo;
@@ -824,6 +894,19 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
   void initState() {
     super.initState();
     _cargarEstadoFavorito();
+    _cargarCriterios();
+  }
+
+  Future<void> _cargarCriterios() async {
+    if (_cargandoCriterios) return;
+    setState(() => _cargandoCriterios = true);
+    final criterios = await _jurisService
+        .doctrinasDeSentencia(widget.sentencia.id);
+    if (!mounted) return;
+    setState(() {
+      _criterios = criterios;
+      _cargandoCriterios = false;
+    });
   }
 
   Future<void> _cargarEstadoFavorito() async {
@@ -1141,6 +1224,12 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
             onPressed: _descargarSentencia,
             tooltip: 'Descargar PDF estructurado',
           ),
+          // 📋 Ficha técnica (metadatos + criterios jurisprudenciales)
+          IconButton(
+            icon: const Icon(Icons.info_outline),
+            onPressed: () => _mostrarMetadata(widget.sentencia),
+            tooltip: 'Ficha técnica',
+          ),
         ],
       ),
       body: Stack(
@@ -1413,6 +1502,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
           const SizedBox(height: 8),
           Text(s.resumen, style: const TextStyle(fontSize: 14, height: 1.5)),
           const SizedBox(height: 24),
+          _buildSeccionCriterios(),
+          const SizedBox(height: 24),
           if (s.urlParaVer.isNotEmpty)
             SizedBox(
               width: double.infinity,
@@ -1525,5 +1616,118 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
         ),
       ],
     );
+  }
+
+  /// Sección "⚖️ Criterios jurisprudenciales" de la ficha técnica.
+  ///
+  /// Muestra los criterios de la Sala para esta sentencia: extractos OFICIALES
+  /// de la página de jurisprudencias del TSJ (tipo 'jurisprudencia') y, si no
+  /// los hay, los extraídos por IA. Cada criterio con su cita textual.
+  Widget _buildSeccionCriterios() {
+    if (_cargandoCriterios) {
+      return const Padding(
+        padding: EdgeInsets.symmetric(vertical: 8),
+        child: Center(
+          child: SizedBox(
+            width: 22,
+            height: 22,
+            child: CircularProgressIndicator(strokeWidth: 2.5),
+          ),
+        ),
+      );
+    }
+    if (_criterios.isEmpty) return const SizedBox.shrink();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          '⚖️ Criterios jurisprudenciales (${_criterios.length})',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: TemaGlobal.texto,
+            fontSize: 15,
+          ),
+        ),
+        const SizedBox(height: 10),
+        for (final c in _criterios) ...[
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: const Color(0xFF0F172A).withValues(alpha: 0.04),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: const Color(0xFFC5A059).withValues(alpha: 0.4),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const Icon(Icons.gavel, size: 16, color: Color(0xFFC5A059)),
+                    const SizedBox(width: 6),
+                    Expanded(
+                      child: Text(
+                        (c['tipo'] ?? '') == 'jurisprudencia'
+                            ? 'Criterio oficial de la Sala'
+                            : 'Criterio de la Sala',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.5,
+                          color: Color(0xFF0F172A),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  _textoCriterio(c),
+                  style: const TextStyle(fontSize: 13.5, height: 1.5),
+                ),
+                if (_citaCriterio(c).isNotEmpty) ...[
+                  const SizedBox(height: 8),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Text(
+                      '«${_citaCriterio(c)}»',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontStyle: FontStyle.italic,
+                        color: TemaGlobal.textoSecundario,
+                        height: 1.45,
+                      ),
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+        ],
+      ],
+    );
+  }
+
+  String _textoCriterio(Map<String, dynamic> c) {
+    final texto = (c['texto_ratio'] ?? '').toString().trim();
+    if (texto.isNotEmpty && texto != 'null') return texto;
+    return (c['resumen'] ?? '').toString().trim();
+  }
+
+  String _citaCriterio(Map<String, dynamic> c) {
+    final ev = (c['parrafo_evidencia'] ?? '').toString().trim();
+    if (ev.isEmpty || ev == 'null') return '';
+    final texto = _textoCriterio(c);
+    // Si la cita es casi el mismo texto que el criterio, no duplicar.
+    if (texto.isNotEmpty && ev == texto) return '';
+    if (ev.length > 600) return '${ev.substring(0, 600)}…';
+    return ev;
   }
 }

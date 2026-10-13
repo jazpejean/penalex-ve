@@ -12,6 +12,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:share_plus/share_plus.dart';
 
 import '../models/sentencia_model.dart';
+import 'jurisprudencia_service.dart';
 
 /// Convierte la copia HTML alojada en R2 (copia fiel del TSJ) en un PDF
 /// perfectamente estructurado:
@@ -50,8 +51,21 @@ class SentenciaPdfService {
         return null;
       }
 
+      // ⚖️ Criterios jurisprudenciales de la sentencia (oficiales + IA)
+      List<Map<String, dynamic>> criterios = const [];
+      try {
+        criterios = await JurisprudenciaService()
+            .doctrinasDeSentencia(sentencia.id);
+      } catch (e) {
+        debugPrint('⚠️ No se pudieron cargar criterios para el PDF: $e');
+      }
+
       final pdf = pw.Document();
-      pdf.addPage(_construirPaginas(sentencia, bloques));
+      pdf.addPage(_construirPaginas(
+        sentencia,
+        bloques,
+        criterios: criterios,
+      ));
 
       final dir = await getApplicationDocumentsDirectory();
       final ruta = path.join(dir.path, _nombreArchivo(sentencia));
@@ -265,8 +279,9 @@ class SentenciaPdfService {
 
   static pw.MultiPage _construirPaginas(
     SentenciaModel sentencia,
-    List<_Bloque> bloques,
-  ) {
+    List<_Bloque> bloques, {
+    List<Map<String, dynamic>> criterios = const [],
+  }) {
     final veces = pw.Font.times();
     final vecesBold = pw.Font.timesBold();
     final vecesItalic = pw.Font.timesItalic();
@@ -324,6 +339,12 @@ class SentenciaPdfService {
         if (filasFicha.isNotEmpty) ...[
           pw.SizedBox(height: 4),
           _fichaTecnica(filasFicha, veces, vecesBold),
+          pw.SizedBox(height: 16),
+        ],
+
+        // ── Criterios jurisprudenciales (si la sentencia los tiene) ──
+        if (criterios.isNotEmpty) ...[
+          _seccionCriteriosPdf(criterios, veces, vecesBold, vecesItalic),
           pw.SizedBox(height: 16),
         ],
 
@@ -423,6 +444,125 @@ class SentenciaPdfService {
                 ],
               ),
             ),
+        ],
+      ),
+    );
+  }
+
+  /// Sección "CRITERIOS JURISPRUDENCIALES" del PDF: los criterios de la Sala
+  /// para esta sentencia (extractos OFICIALES de la página de jurisprudencias
+  /// del TSJ cuando existen — tipo 'jurisprudencia' —, o los extraídos por IA).
+  static pw.Widget _seccionCriteriosPdf(
+    List<Map<String, dynamic>> criterios,
+    pw.Font veces,
+    pw.Font vecesBold,
+    pw.Font vecesItalic,
+  ) {
+    return pw.Column(
+      crossAxisAlignment: pw.CrossAxisAlignment.start,
+      children: [
+        pw.Text(
+          '⚖️ CRITERIOS JURISPRUDENCIALES (${criterios.length})',
+          style: pw.TextStyle(
+            font: vecesBold,
+            fontSize: 11,
+            color: PdfColors.grey900,
+          ),
+        ),
+        pw.SizedBox(height: 6),
+        for (var i = 0; i < criterios.length; i++) ...[
+          _widgetCriterioPdf(i + 1, criterios[i], veces, vecesBold, vecesItalic),
+          if (i < criterios.length - 1) pw.SizedBox(height: 8),
+        ],
+      ],
+    );
+  }
+
+  static pw.Widget _widgetCriterioPdf(
+    int indice,
+    Map<String, dynamic> c,
+    pw.Font veces,
+    pw.Font vecesBold,
+    pw.Font vecesItalic,
+  ) {
+    final texto = (c['texto_ratio'] ?? '').toString().trim();
+    final evidencia = (c['parrafo_evidencia'] ?? '').toString().trim();
+    final tipo = (c['tipo'] ?? '').toString();
+    final esOficial = tipo == 'jurisprudencia';
+    final cita =
+        (evidencia.isNotEmpty && evidencia != 'null' && evidencia != texto)
+            ? evidencia
+            : '';
+
+    return pw.Container(
+      width: double.infinity,
+      padding: const pw.EdgeInsets.all(8),
+      decoration: pw.BoxDecoration(
+        border: pw.Border.all(
+          color: esOficial ? PdfColors.amber : PdfColors.grey400,
+          width: 0.6,
+        ),
+        borderRadius: pw.BorderRadius.circular(3),
+      ),
+      child: pw.Column(
+        crossAxisAlignment: pw.CrossAxisAlignment.start,
+        children: [
+          pw.Row(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              pw.SizedBox(
+                width: 16,
+                child: pw.Text(
+                  '$indice.',
+                  style: pw.TextStyle(
+                    font: vecesBold,
+                    fontSize: 9,
+                    color: PdfColors.grey700,
+                  ),
+                ),
+              ),
+              pw.Expanded(
+                child: pw.Text(
+                  esOficial
+                      ? 'Criterio oficial de la Sala'
+                      : 'Criterio de la Sala',
+                  style: pw.TextStyle(
+                    font: vecesBold,
+                    fontSize: 8.5,
+                    color: esOficial ? PdfColors.amber : PdfColors.grey600,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          pw.SizedBox(height: 3),
+          pw.Padding(
+            padding: const pw.EdgeInsets.only(left: 16),
+            child: pw.Text(
+              texto,
+              style: pw.TextStyle(
+                font: veces,
+                fontSize: 9.5,
+                color: PdfColors.black,
+                lineSpacing: 1.2,
+              ),
+            ),
+          ),
+          if (cita.isNotEmpty) ...[
+            pw.SizedBox(height: 4),
+            pw.Padding(
+              padding: const pw.EdgeInsets.only(left: 16),
+              child: pw.Text(
+                '«${cita.length > 900 ? cita.substring(0, 900) + '…' : cita}»',
+                style: pw.TextStyle(
+                  font: vecesItalic,
+                  fontSize: 8.5,
+                  color: PdfColors.grey600,
+                  lineSpacing: 1.15,
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );
