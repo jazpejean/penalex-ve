@@ -16,6 +16,36 @@ class JurisprudenciaService {
   static String get _deepseekApiKey => dotenv.env['DEEPSEEK_API_KEY'] ?? '';
 
   /// Buscar documentos en Supabase con filtros
+  /// Detección de referencia EXACTA de sentencia en la consulta del usuario
+  /// (número, expediente o id completo). Si el usuario conoce la sentencia,
+  /// debe encontrarse SIEMPRE — nunca depender del fulltext para eso.
+  /// Devuelve el filtro a aplicar o null si la consulta no es una referencia.
+  Map<String, dynamic>? _detectarReferenciaExacta(String consulta) {
+    final q = consulta.trim();
+    if (q.isEmpty) return null;
+
+    // Patrón de id completo: NNN-DDMMAA-código (ej: 315-090904-C040292,
+    // 0001-070103-02-3004, 999-20709-2009-09-0597). El número de sentencia
+    // + fecha (4-6 dígitos) + cualquier código alfanumérico con guiones.
+    final idMatch = RegExp(r'^\d{1,4}-\d{4,6}-[A-Za-z0-9\-]+$').hasMatch(q);
+    if (idMatch) return {'id': q};
+
+    // Patrón de expediente: letras+números con guiones (ej: C04-0292, A24-385,
+    // AA01-V-2004-000123). Un abogado lo conoce y lo teclea tal cual.
+    final expMatch = RegExp(
+        r'^[A-Za-z]{1,4}[\d]{1,4}-[A-Za-z]{0,2}[\d-]{2,12}$').hasMatch(q);
+    if (expMatch) return {'expediente': q};
+
+    // Número de sentencia solo (ej: "142", "sentencia 142"): lo combinamos
+    // con sala/año si el usuario los menciona, si no, filtro por número a secas.
+    final numMatch = RegExp(r'(?:sentencia\s*(?:n[°ºo]?|numero|núm\.?)?\s*)?(\d{1,4})',
+        caseSensitive: false).firstMatch(q);
+    if (numMatch != null && q.replaceAll(RegExp(r'\d|\s|sentencia|n[°ºo]|numero|núm|de|del|la|el|sala|casación|constitucional|penal|año|de\s', caseSensitive: false), '').isEmpty) {
+      return {'num_sentencia': numMatch.group(1)};
+    }
+    return null;
+  }
+
   Future<List<SentenciaModel>> buscarEnSupabase({
     String? textoBusqueda,
     required String tipoFiltro, // 'sentencias', 'jurisprudencias', 'resoluciones'
@@ -58,6 +88,33 @@ class JurisprudenciaService {
 
       // Búsqueda semántica inteligente (si hay texto)
       if (textoBusqueda != null && textoBusqueda.isNotEmpty) {
+        // PRIMERO: si el usuario conoce la sentencia (número/expediente/id),
+        // búsqueda EXACTA — nunca debe fallar por depender del fulltext.
+        final ref = _detectarReferenciaExacta(textoBusqueda);
+        if (ref != null) {
+          debugPrint('🔎 Referencia exacta detectada: $ref');
+          for (final entry in ref.entries) {
+            query = query.eq(entry.key, entry.value);
+          }
+          // Si el usuario menciona un año ("142 de 2011"), filtrarlo también.
+          final anioEnTexto = RegExp(r'\b(19\d{2}|20\d{2})\b')
+              .firstMatch(textoBusqueda)
+              ?.group(1);
+          if (anioEnTexto != null) {
+            query = query.ilike('fecha', '%$anioEnTexto%');
+            debugPrint('📅 Año detectado en la consulta: $anioEnTexto');
+          }
+          // Si hay sala/año además, se respetan (ya aplicados arriba).
+          final response = await query
+              .order('fecha', ascending: false)
+              .limit(limit);
+          final List<dynamic> data = response as List<dynamic>;
+          debugPrint('✅ Referencia exacta: ${data.length} resultado(s)');
+          return data
+              .map((json) => SentenciaModel.fromSupabase(json))
+              .toList();
+        }
+
         // Expandir la consulta con términos relacionados usando DeepSeek
         final terminosExpandidos = await _expandirConsultaSemantica(textoBusqueda);
         debugPrint('🧠 Términos expandidos: $terminosExpandidos');
@@ -116,10 +173,16 @@ class JurisprudenciaService {
   }) async {
     if (textoBusqueda == null || textoBusqueda.trim().isEmpty) return [];
     try {
+      // Select base (referencia_citada incluida: la migración ya aplicada en
+      // la BD o pendiente — por eso el fallback de abajo es resiliente).
+      const selectConRef = 'id, sentencia_id, tipo, texto_ratio, parrafo_evidencia, '
+          'instrumento, articulo_numero, resumen, referencia_citada';
+      const selectSinRef = 'id, sentencia_id, tipo, texto_ratio, parrafo_evidencia, '
+          'instrumento, articulo_numero, resumen';
+
       var query = _supabase
           .from('doctrinas')
-          .select('id, sentencia_id, tipo, texto_ratio, parrafo_evidencia, '
-              'instrumento, articulo_numero, resumen');
+          .select(selectConRef);
 
       final terminosExpandidos = await _expandirConsultaSemantica(textoBusqueda);
       final tsQuery = terminosExpandidos
@@ -134,9 +197,24 @@ class JurisprudenciaService {
           type: TextSearchType.websearch,
         );
       }
-      final response = await query.limit(limit);
-      final data = (response as List<dynamic>)
+      var response = await query.limit(limit);
+      var data = (response as List<dynamic>)
           .cast<Map<String, dynamic>>();
+      if (data.isEmpty) {
+        // Migración pendiente (columna referencia_citada inexistente): reintentar
+        // sin ella para no romper el RAG.
+        var q0 = _supabase.from('doctrinas').select(selectSinRef);
+        if (tsQuery.isNotEmpty) {
+          q0 = q0.textSearch(
+            'search_vector',
+            tsQuery,
+            config: 'spanish',
+            type: TextSearchType.websearch,
+          );
+        }
+        response = await q0.limit(limit);
+        data = (response as List<dynamic>).cast<Map<String, dynamic>>();
+      }
 
       // Fallback ilike si el fulltext no dio suficientes resultados
       if (data.length < 3) {

@@ -131,11 +131,17 @@ class RAGService {
       final instrumento = _limpio((d['instrumento'] ?? '').toString());
       final art = _limpio((d['articulo_numero'] ?? '').toString());
       final tipo = _limpio((d['tipo'] ?? '').toString());
+      final refCitada = _limpio((d['referencia_citada'] ?? '').toString());
       buffer
         ..writeln('DOCTRINA ${i + 1}:')
         ..writeln('- Criterio: $texto')
         ..writeln('- Instrumento: ${instrumento}${art.isNotEmpty ? ' · Art. $art' : ''}');
       if (tipo.isNotEmpty) buffer.writeln('- Tipo: $tipo');
+      // Referencia EXACTA de la sentencia citada (verificada en el scraper):
+      // el redactor debe citarla TAL CUAL, sin inventar número/fecha/ponente.
+      if (refCitada.isNotEmpty) {
+        buffer.writeln('- Sentencia citada (fuente del criterio): $refCitada');
+      }
       if (evidencia.isNotEmpty) {
         final corta = evidencia.length > 700 ? '${evidencia.substring(0, 700)}...' : evidencia;
         buffer.writeln('- Cita textual: "$corta"');
