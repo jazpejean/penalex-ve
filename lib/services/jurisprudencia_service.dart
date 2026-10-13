@@ -24,6 +24,21 @@ class JurisprudenciaService {
     final q = consulta.trim();
     if (q.isEmpty) return null;
 
+    // URL del historico del TSJ: extraer el id = nombre del archivo sin
+    // extensión (la regla idDe del worker, igual a como quedó en la BD).
+    // Ej: https://historico.tsj.gob.ve/decisiones/scp/enero/02-190100-9918.HTM
+    //     -> id 02-190100-9918. Un abogado pega la URL tal cual la copia
+    //     del portal de jurisprudencias; la sentencia DEBE encontrarse.
+    final urlMatch = RegExp(
+        r'https?://historico\.tsj\.gob\.ve/decisiones/[^/\s]+/[^/\s]+/([^/\s]+)\.(?:HTM|HTML|htm|html)\b',
+        caseSensitive: false).firstMatch(q);
+    if (urlMatch != null) {
+      final idUrl = urlMatch.group(1)!.replaceAll(RegExp(r'[\s.]+$'), '');
+      if (RegExp(r'^[A-Za-z0-9][A-Za-z0-9\-]{2,40}$').hasMatch(idUrl)) {
+        return {'id': idUrl};
+      }
+    }
+
     // Patrón de id completo: NNN-DDMMAA-código (ej: 315-090904-C040292,
     // 0001-070103-02-3004, 999-20709-2009-09-0597). El número de sentencia
     // + fecha (4-6 dígitos) + cualquier código alfanumérico con guiones.
