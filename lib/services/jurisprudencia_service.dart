@@ -565,10 +565,10 @@ class JurisprudenciaService {
         textoCompleto: textoCompleto.substring(0, textoCompleto.length > 4000 ? 4000 : textoCompleto.length),
       );
 
-      // Guardar en Supabase para caché
+      // Guardar en Supabase para caché (columna real: extracto; resumen_ia no existe)
       await _supabase
           .from('sentencias')
-          .update({'resumen_ia': resumen})
+          .update({'extracto': resumen})
           .eq('id', sentencia.id);
 
       debugPrint('✅ Resumen generado y guardado');

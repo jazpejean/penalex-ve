@@ -85,7 +85,7 @@ class SentenciaModel {
       partes: data['partes'] ?? '',
       delito: data['delito'] ?? '',
       decision: data['decision'] ?? '',
-      resumen: data['resumen_ia'] ?? '',
+      resumen: data['resumen_ia'] ?? data['extracto'] ?? '',
       extracto: data['extracto'] ?? '',
       ratioDecidendi: data['ratio_decidendi'] ?? '',
       analisisIa: data['analisis_ia'] ?? '',

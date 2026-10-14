@@ -943,7 +943,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
         'Sala: ${s.sala}\n'
         'Fecha: ${s.fechaSentencia}\n'
         'Delito: ${s.delito}\n\n'
-        '${s.resumen}\n\n'
+        '${_textoResumen(s)}\n\n'
         'Fuente: $fuente';
 
     try {
@@ -1500,7 +1500,9 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
             ),
           ),
           const SizedBox(height: 8),
-          Text(s.resumen, style: const TextStyle(fontSize: 14, height: 1.5)),
+          // ratio decidendi > resumen IA > extracto (nunca vacío si hay datos)
+          Text(_textoResumen(s),
+              style: const TextStyle(fontSize: 14, height: 1.5)),
           const SizedBox(height: 24),
           _buildSeccionCriterios(),
           const SizedBox(height: 24),
