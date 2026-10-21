@@ -42,7 +42,8 @@ android {
                 storeFile = keystoreFile
                 storePassword = System.getenv("KEYSTORE_PASSWORD") ?: ""
                 keyAlias = System.getenv("KEY_ALIAS") ?: "penalex"
-                keyPassword = System.getenv("KEY_PASSWORD") ?: ""
+                // Keystore PKCS12: store y key usan la MISMA contraseña
+                keyPassword = System.getenv("KEYSTORE_PASSWORD") ?: ""
             }
         }
     }
