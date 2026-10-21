@@ -44,6 +44,21 @@
                 android:resource="@xml/file_paths" />
         </provider>
         
+        <!-- Client ID de Google Sign-In (inyectado normalmente por google-services plugin;
+             lo declaramos explícito porque el proyecto no aplica ese plugin) -->
+        <meta-data
+            android:name="com.google.android.gms.auth.API_KEY"
+            android:value="AIzaSyABl-uOPiV8BFcrw5YHOD-CqFtK89AWnGc" />
+        <meta-data
+            android:name="com.google.android.gms.games.APP_ID"
+            android:value="653489758174" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="default_web_client_id"
+            android:value="653489758174-ruq2tjfs6fdhq3pafut36cfqmi5hthmo.apps.googleusercontent.com" />
+
         <meta-data android:name="flutterEmbedding" android:value="2"/>
     </application>
 </manifest>

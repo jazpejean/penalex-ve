@@ -30,21 +30,28 @@ android {
     // Configuración de signing para release
     signingConfigs {
         create("release") {
-            // TODO: Para producción, configurar con keystore real
-            // Descomentar y configurar las siguientes líneas:
-            // storeFile = file("path/to/keystore.jks")
-            // storePassword = System.getenv("KEYSTORE_PASSWORD")
-            // keyAlias = System.getenv("KEY_ALIAS")
-            // keyPassword = System.getenv("KEY_PASSWORD")
+            // Keystore de release: en CI se inyecta desde secrets (KEYSTORE_BASE64),
+            // en local se usa el archivo android/app/keystore/penalex-release.jks
+            val storeFileEnv = System.getenv("KEYSTORE_FILE")
+            val keystoreFile = if (storeFileEnv != null && storeFileEnv.isNotEmpty()) {
+                file(storeFileEnv)
+            } else {
+                file("keystore/penalex-release.jks")
+            }
+            if (keystoreFile.exists()) {
+                storeFile = keystoreFile
+                storePassword = System.getenv("KEYSTORE_PASSWORD") ?: ""
+                keyAlias = System.getenv("KEY_ALIAS") ?: "penalex"
+                keyPassword = System.getenv("KEY_PASSWORD") ?: ""
+            }
         }
     }
 
     buildTypes {
         getByName("release") {
-            // Comentado temporalmente - usar debug signing para desarrollo
-            // Para producción, descomentar y configurar signing release:
-            // signingConfig = signingConfigs.getByName("release")
-            
+            // Firmar release con el keystore propio (CI inyecta el keystore desde secrets)
+            signingConfig = signingConfigs.getByName("release")
+
             // Optimizaciones para release
             isMinifyEnabled = false
             isShrinkResources = false

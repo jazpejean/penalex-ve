@@ -79,3 +79,6 @@ ejemplos/
 tool/corpus/
 penalex-web/
 penalex-blog/
+
+# Keystore de release (secreto)
+android/app/keystore/
