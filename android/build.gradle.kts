@@ -34,21 +34,23 @@ subprojects {
     }
 }
 
-// Alinear JVM targets de Java y Kotlin en todos los subproyectos para evitar
-// "Inconsistent JVM Target Compatibility" (edge_detection y flutter_doc_scanner).
+// Alinear el jvmTarget de Kotlin al target de Java que cada subproyecto defina,
+// evitando "Inconsistent JVM Target Compatibility" (edge_detection 1.8,
+// flutter_doc_scanner 17, audioplayers_android 1.8, etc.). Se aplica tras la
+// evaluación para que los build.gradle propios de cada plugin no lo sobrescriban.
 subprojects {
-    plugins.withId("com.android.library") {
-        extensions.configure<com.android.build.gradle.LibraryExtension> {
-            compileOptions {
-                sourceCompatibility = JavaVersion.VERSION_17
-                targetCompatibility = JavaVersion.VERSION_17
-            }
-        }
-    }
-    plugins.withId("org.jetbrains.kotlin.android") {
-        tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-            compilerOptions {
-                jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+    afterEvaluate {
+        if (extensions.findByName("android") != null) {
+            val android = extensions.getByName("android") as com.android.build.gradle.LibraryExtension
+            val javaTarget = android.compileOptions.targetCompatibility
+            plugins.withId("org.jetbrains.kotlin.android") {
+                tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+                    compilerOptions {
+                        jvmTarget.set(
+                            org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(javaTarget.toString())
+                        )
+                    }
+                }
             }
         }
     }
