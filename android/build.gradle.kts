@@ -17,12 +17,18 @@ subprojects {
 }
 
 // AGP 8+ exige namespace en todos los módulos. Los plugins de Flutter antiguos
-// (p. ej. edge_detection 1.1.3) no lo declaran: se lo asignamos automáticamente.
+// (p. ej. edge_detection 1.1.3) no lo declaran: usamos su group (package
+// original) para que el R generado coincida con los paquetes de su código.
 subprojects {
     plugins.withId("com.android.library") {
         extensions.configure<com.android.build.gradle.LibraryExtension> {
             if (namespace == null) {
-                namespace = "com.penalex.ve.${project.name.replace("-", "")}"
+                val grupo = project.group.toString()
+                namespace = if (grupo.isNotEmpty() && grupo != "unspecified") {
+                    grupo
+                } else {
+                    "com.penalex.ve.${project.name.replace("-", "")}"
+                }
             }
         }
     }
