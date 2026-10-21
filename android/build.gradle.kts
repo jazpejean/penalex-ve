@@ -41,7 +41,7 @@ subprojects {
 subprojects {
     afterEvaluate {
         if (extensions.findByName("android") != null) {
-            val android = extensions.getByName("android") as com.android.build.gradle.LibraryExtension
+            val android = extensions.getByName("android") as com.android.build.gradle.BaseExtension
             val javaTarget = android.compileOptions.targetCompatibility
             plugins.withId("org.jetbrains.kotlin.android") {
                 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
