@@ -553,7 +553,7 @@ class SentenciaPdfService {
             pw.Padding(
               padding: const pw.EdgeInsets.only(left: 16),
               child: pw.Text(
-                '«${cita.length > 900 ? cita.substring(0, 900) + '…' : cita}»',
+                '«${cita.length > 900 ? '${cita.substring(0, 900)}…' : cita}»',
                 style: pw.TextStyle(
                   font: vecesItalic,
                   fontSize: 8.5,

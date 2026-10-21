@@ -495,7 +495,7 @@ class PDFService {
       );
 
       debugPrint('✅ Informe Técnico generado exitosamente');
-      return pdf.save();
+      return await pdf.save();
     } on Exception catch (e, stack) {
       debugPrint('❌ Error generando Informe Técnico: $e');
       debugPrint('Stack: $stack');
