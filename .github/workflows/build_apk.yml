@@ -32,6 +32,13 @@ jobs:
       - name: Dependencias
         run: flutter pub get
 
+      - name: Parchear edge_detection (AGP 8: quitar package= del manifest)
+        run: |
+          MANIFEST="$HOME/.pub-cache/hosted/pub.dev/edge_detection-1.1.3/android/src/main/AndroidManifest.xml"
+          sed -i 's/ package="com.sample.edgedetection"//' "$MANIFEST"
+          echo "manifest parcheado:"
+          head -2 "$MANIFEST"
+
       - name: Generar .env desde secrets (necesario para analyze y build)
         run: |
           cat > .env <<'ENVEOF'
