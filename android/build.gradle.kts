@@ -47,6 +47,10 @@ gradle.projectsEvaluated {
     subprojects {
         if (extensions.findByName("android") != null) {
             val android = extensions.getByName("android") as com.android.build.gradle.BaseExtension
+            // Forzar compileSdk 36 en todos los módulos: google_mlkit_commons
+            // trae compileSdkVersion 29 hardcodeado, y sus dependencias (material)
+            // usan android:attr/lStar (API 33+) → falla verifyReleaseResources.
+            android.compileSdkVersion(36)
             val javaTarget = android.compileOptions.targetCompatibility.toString()
             tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
                 compilerOptions {
