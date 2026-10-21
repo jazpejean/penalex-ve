@@ -34,14 +34,21 @@ subprojects {
     }
 }
 
-// Plugins antiguos (edge_detection) compilan Java a 1.8 pero Kotlin a 17:
-// alineamos el jvmTarget de Kotlin con el de Java para evitar el error
-// "Inconsistent JVM Target Compatibility".
+// Alinear JVM targets de Java y Kotlin en todos los subproyectos para evitar
+// "Inconsistent JVM Target Compatibility" (edge_detection y flutter_doc_scanner).
 subprojects {
+    plugins.withId("com.android.library") {
+        extensions.configure<com.android.build.gradle.LibraryExtension> {
+            compileOptions {
+                sourceCompatibility = JavaVersion.VERSION_17
+                targetCompatibility = JavaVersion.VERSION_17
+            }
+        }
+    }
     plugins.withId("org.jetbrains.kotlin.android") {
         tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
             compilerOptions {
-                jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_1_8)
+                jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
             }
         }
     }
