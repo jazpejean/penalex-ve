@@ -63,9 +63,11 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
   // ✨ MÚLTIPLES archivos adjuntos estilo IA moderna
   final List<AttachedFile> _attachedFiles = [];
 
+  // Marca institucional (fija en ambos modos; idéntica a TemaGlobal.dorado/
+  // azulMarino). El resto de superficies/textos leen de TemaGlobal.
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color grisOscuro = Color(0xFF1E293B);
+  static Color get grisOscuro => TemaGlobal.tarjeta;
 
   @override
   void initState() {
@@ -135,7 +137,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     icon: Icons.document_scanner,
                     title: 'Documentos Escaneados',
                     subtitle: 'Textos extraídos con OCR',
-                    color: Colors.blue,
+                    color: dorado,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarDocumentosEscaneados();
@@ -146,7 +148,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     icon: Icons.calculate,
                     title: 'Reportes de Calculadora',
                     subtitle: 'Dosimetrías y cómputos guardados',
-                    color: Colors.green,
+                    color: dorado,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarReportesCalculadora();
@@ -157,7 +159,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     icon: Icons.edit_document,
                     title: 'Documentos del Redactor',
                     subtitle: 'Escritos legales generados',
-                    color: Colors.purple,
+                    color: dorado,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarDocumentosRedactor();
@@ -165,21 +167,10 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                   ),
                   const SizedBox(height: 12),
                   _buildCategoriaDocumentos(
-                    icon: Icons.compare_arrows,
-                    title: 'Comparaciones de Estrategias',
-                    subtitle: 'Análisis comparativos guardados',
-                    color: Colors.orange,
-                    onTap: () {
-                      Navigator.pop(context);
-                      _cargarComparaciones();
-                    },
-                  ),
-                  const SizedBox(height: 12),
-                  _buildCategoriaDocumentos(
                     icon: Icons.star,
                     title: 'Sentencias Favoritas',
                     subtitle: 'Jurisprudencias marcadas',
-                    color: Colors.amber,
+                    color: dorado,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarSentenciasFavoritas();
@@ -209,7 +200,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: azulMarino,
+            color: TemaGlobal.tarjeta,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: color.withValues(alpha: 0.3),
@@ -233,8 +224,8 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: TemaGlobal.texto,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -243,7 +234,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     Text(
                       subtitle,
                       style: TextStyle(
-                        color: Colors.grey[400],
+                        color: TemaGlobal.textoSecundario,
                         fontSize: 13,
                       ),
                     ),
@@ -252,7 +243,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
               ),
               Icon(
                 Icons.arrow_forward_ios,
-                color: Colors.grey[600],
+                color: TemaGlobal.textoTenue,
                 size: 16,
               ),
             ],
@@ -303,19 +294,6 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
     );
   }
 
-  Future<void> _cargarComparaciones() async {
-    // TODO: Implementar carga desde Supabase Storage + Database
-    // final client = Supabase.instance.client;
-    // 1. Obtener lista desde tabla 'comparaciones'
-    // 2. Para cada comparación, obtener URL desde Storage bucket 'comparaciones/{userId}/'
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('⚖️ Cargando comparaciones desde Supabase...'),
-        duration: Duration(seconds: 2),
-      ),
-    );
-  }
-
   Future<void> _cargarSentenciasFavoritas() async {
     // TODO: Implementar carga desde Supabase Database + Storage
     // final client = Supabase.instance.client;
@@ -337,16 +315,10 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
         _currentConversationId = widget.conversationId;
         _messages = await ChatService.obtenerMensajes(widget.conversationId!);
       } else {
-        // Crear una conversación real en Supabase (para persistir el historial)
-        ChatConversation? conv;
-        try {
-          conv = await ChatService.crearConversacion();
-        } catch (e) {
-          debugPrint('⚠️ No se pudo crear conversación en Supabase: $e');
-        }
-
-        _currentConversationId = conv?.id ??
-            'local_${DateTime.now().millisecondsSinceEpoch}';
+        // ✅ Creación perezosa: NO se crea la conversación en Supabase hasta
+        // que el usuario envíe su primer mensaje real. Esto evita que el
+        // historial se llene de conversaciones vacías.
+        _currentConversationId = null;
         _messages = [];
 
         // Mensaje de bienvenida (solo local, no se persiste para no duplicarlo)
@@ -433,8 +405,8 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                 Flexible(
                   child: Text(
                     file.name,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: TemaGlobal.texto,
                       fontSize: 13,
                     ),
                     maxLines: 1,
@@ -454,7 +426,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     child: Icon(
                       Icons.close,
                       size: 16,
-                      color: Colors.white.withValues(alpha: 0.7),
+                      color: TemaGlobal.textoTenue,
                     ),
                   ),
                 ),
@@ -527,6 +499,19 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
     });
 
     _scrollToBottom();
+
+    // ✅ Creación perezosa: si aún no hay conversación real en Supabase,
+    // se crea en este momento (primer mensaje real del usuario). Así el
+    // historial nunca guarda conversaciones vacías.
+    if (_currentConversationId == null) {
+      try {
+        final conv = await ChatService.crearConversacion();
+        _currentConversationId = conv.id;
+        debugPrint('✅ Conversación creada al primer mensaje: ${conv.id}');
+      } catch (e) {
+        debugPrint('⚠️ No se pudo crear conversación en Supabase: $e');
+      }
+    }
 
     // Persistir el mensaje del usuario en Supabase
     if (_currentConversationId != null &&
@@ -620,7 +605,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
   Future<void> _mostrarOpcionesAdjunto() async {
     showModalBottomSheet(
       context: context,
-      backgroundColor: grisOscuro,
+      backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -635,10 +620,10 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                 children: [
                   const Icon(Icons.attach_file, color: dorado),
                   const SizedBox(width: 12),
-                  const Text(
+                  Text(
                     'Adjuntar archivo',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: TemaGlobal.texto,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -646,18 +631,18 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                 ],
               ),
             ),
-            const Divider(color: Colors.grey, height: 1),
+            Divider(color: TemaGlobal.capa, height: 1),
             
             // Archivos externos
             ListTile(
               leading: const Icon(Icons.photo_library, color: dorado),
-              title: const Text(
+              title: Text(
                 'Galería',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: TemaGlobal.texto),
               ),
-              subtitle: const Text(
+              subtitle: Text(
                 'Seleccionar imagen de galería',
-                style: TextStyle(color: Colors.grey, fontSize: 12),
+                style: TextStyle(color: TemaGlobal.textoSecundario, fontSize: 12),
               ),
               onTap: () {
                 Navigator.pop(context);
@@ -666,13 +651,13 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             ),
             ListTile(
               leading: const Icon(Icons.camera_alt, color: dorado),
-              title: const Text(
+              title: Text(
                 'Cámara',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: TemaGlobal.texto),
               ),
-              subtitle: const Text(
+              subtitle: Text(
                 'Tomar foto con cámara',
-                style: TextStyle(color: Colors.grey, fontSize: 12),
+                style: TextStyle(color: TemaGlobal.textoSecundario, fontSize: 12),
               ),
               onTap: () {
                 Navigator.pop(context);
@@ -681,13 +666,13 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             ),
             ListTile(
               leading: const Icon(Icons.insert_drive_file, color: dorado),
-              title: const Text(
+              title: Text(
                 'Documento',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: TemaGlobal.texto),
               ),
-              subtitle: const Text(
+              subtitle: Text(
                 'Archivo PDF, DOC, TXT externo',
-                style: TextStyle(color: Colors.grey, fontSize: 12),
+                style: TextStyle(color: TemaGlobal.textoSecundario, fontSize: 12),
               ),
               onTap: () {
                 Navigator.pop(context);
@@ -695,20 +680,20 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
               },
             ),
             
-            const Divider(color: Colors.grey, height: 1),
+            Divider(color: TemaGlobal.capa, height: 1),
             
             // ✨ NUEVO: Documentos guardados en la app
             ListTile(
               leading: const Icon(Icons.folder_special, color: dorado),
-              title: const Text(
+              title: Text(
                 'Documentos Guardados',
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),
               ),
-              subtitle: const Text(
-                'Escaneados, reportes, escritos, comparaciones',
-                style: TextStyle(color: Colors.grey, fontSize: 12),
+              subtitle: Text(
+                'Escaneados, reportes, escritos, favoritos',
+                style: TextStyle(color: TemaGlobal.textoSecundario, fontSize: 12),
               ),
-              trailing: const Icon(Icons.arrow_forward_ios, color: Colors.grey, size: 16),
+              trailing: Icon(Icons.arrow_forward_ios, color: TemaGlobal.textoTenue, size: 16),
               onTap: () {
                 Navigator.pop(context);
                 _mostrarDocumentosGuardados();
@@ -791,7 +776,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: azulMarino,
+      backgroundColor: TemaGlobal.superficie,
       appBar: AppBar(
         title: const Row(
           mainAxisSize: MainAxisSize.min,
@@ -847,7 +832,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             // Banner informativo
             Container(
               padding: const EdgeInsets.all(12),
-              color: grisOscuro,
+              color: TemaGlobal.capa,
               child: Row(
                 children: [
                   const Icon(Icons.info_outline, color: dorado, size: 20),
@@ -856,7 +841,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     child: Text(
                       'Asistente legal con IA. Las respuestas son orientativas.',
                       style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.8),
+                        color: TemaGlobal.textoSecundario,
                         fontSize: 12,
                       ),
                     ),
@@ -890,7 +875,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                color: grisOscuro,
+                color: TemaGlobal.tarjeta,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.2),
@@ -934,14 +919,14 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                             controller: _messageController,
                             maxLines: null,
                             textCapitalization: TextCapitalization.sentences,
-                            style: const TextStyle(color: Colors.white),
+                            style: TextStyle(color: TemaGlobal.texto),
                             decoration: InputDecoration(
                               hintText: 'Escribe tu consulta legal...',
                               hintStyle: TextStyle(
-                                color: Colors.white.withValues(alpha: 0.5),
+                                color: TemaGlobal.textoTenue,
                               ),
                               filled: true,
-                              fillColor: azulMarino,
+                              fillColor: TemaGlobal.campoTexto,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(24),
                                 borderSide: BorderSide.none,
@@ -996,7 +981,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             width: 120,
             height: 120,
             decoration: BoxDecoration(
-              color: grisOscuro,
+              color: TemaGlobal.tarjeta,
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
@@ -1013,10 +998,10 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             ),
           ),
           const SizedBox(height: 24),
-          const Text(
+          Text(
             '¡Hola! Soy tu asistente legal',
             style: TextStyle(
-              color: Colors.white,
+              color: TemaGlobal.texto,
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
@@ -1025,7 +1010,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
           Text(
             'Pregúntame sobre derecho penal venezolano',
             style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.7),
+              color: TemaGlobal.textoSecundario,
               fontSize: 16,
             ),
           ),
@@ -1049,8 +1034,8 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
   Widget _buildSuggestionChip(String text) {
     return ActionChip(
       label: Text(text),
-      labelStyle: const TextStyle(color: Colors.white, fontSize: 12),
-      backgroundColor: grisOscuro,
+      labelStyle: TextStyle(color: TemaGlobal.texto, fontSize: 12),
+      backgroundColor: TemaGlobal.tarjeta,
       side: BorderSide(color: dorado.withValues(alpha: 0.3)),
       onPressed: () {
         _messageController.text = text;
@@ -1102,7 +1087,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                       decoration: BoxDecoration(
                         color: isUser
                             ? azulMarino.withValues(alpha: 0.2)
-                            : Colors.white.withValues(alpha: 0.1),
+                            : TemaGlobal.capa.withValues(alpha: 0.6),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Row(
@@ -1121,7 +1106,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                                   ? 'Imagen adjunta'
                                   : 'Documento adjunto',
                               style: TextStyle(
-                                color: isUser ? azulMarino : Colors.white,
+                                color: isUser ? azulMarino : TemaGlobal.texto,
                                 fontSize: 12,
                               ),
                             ),
@@ -1144,21 +1129,21 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                       data: message.content,
                       selectable: true,
                       styleSheet: MarkdownStyleSheet(
-                        p: const TextStyle(
-                          color: Colors.white,
+                        p: TextStyle(
+                          color: TemaGlobal.texto,
                           fontSize: 15,
                           height: 1.5,
                         ),
-                        strong: const TextStyle(
-                          color: Colors.white,
+                        strong: TextStyle(
+                          color: TemaGlobal.texto,
                           fontWeight: FontWeight.bold,
                         ),
-                        em: const TextStyle(
-                          color: Colors.white,
+                        em: TextStyle(
+                          color: TemaGlobal.texto,
                           fontStyle: FontStyle.italic,
                         ),
-                        h1: const TextStyle(
-                          color: Colors.white,
+                        h1: TextStyle(
+                          color: TemaGlobal.texto,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
@@ -1174,7 +1159,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                         ),
                         listBullet: const TextStyle(color: dorado),
                         blockquote: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.8),
+                          color: TemaGlobal.textoSecundario,
                           fontStyle: FontStyle.italic,
                         ),
                         code: const TextStyle(
@@ -1191,7 +1176,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                         style: TextStyle(
                           color: isUser
                               ? azulMarino.withValues(alpha: 0.6)
-                              : Colors.white.withValues(alpha: 0.5),
+                              : TemaGlobal.textoTenue,
                           fontSize: 11,
                         ),
                       ),
@@ -1200,7 +1185,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                         Icon(
                           Icons.link,
                           size: 14,
-                          color: Colors.white.withValues(alpha: 0.5),
+                          color: TemaGlobal.textoTenue,
                         ),
                       ],
                       const Spacer(),
@@ -1218,7 +1203,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
           if (isUser) ...[
             const SizedBox(width: 12),
             CircleAvatar(
-              backgroundColor: grisOscuro,
+              backgroundColor: TemaGlobal.capa,
               radius: 20,
               child: const Icon(Icons.person, color: dorado, size: 20),
             ),
@@ -1231,7 +1216,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
   Widget _buildAccionesMensaje(ChatMessage message) {
     final colorBase = message.isUser
         ? azulMarino.withValues(alpha: 0.5)
-        : Colors.white.withValues(alpha: 0.5);
+        : TemaGlobal.textoSecundario;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -1350,7 +1335,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
         Text(
           'Fuentes:',
           style: TextStyle(
-            color: Colors.white.withValues(alpha: 0.7),
+            color: TemaGlobal.textoSecundario,
             fontSize: 12,
             fontWeight: FontWeight.bold,
           ),
@@ -1371,7 +1356,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     child: Text(
                       '${source.title} - ${source.reference}',
                       style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.8),
+                        color: TemaGlobal.textoSecundario,
                         fontSize: 11,
                       ),
                     ),
@@ -1381,7 +1366,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     icon: Icon(
                       Icons.content_copy,
                       size: 13,
-                      color: Colors.white.withValues(alpha: 0.5),
+                      color: TemaGlobal.textoTenue,
                     ),
                     tooltip: 'Copiar cita',
                     visualDensity: VisualDensity.compact,
@@ -1423,7 +1408,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: grisOscuro,
+              color: TemaGlobal.tarjeta,
               borderRadius: BorderRadius.circular(16),
             ),
             child: Row(
@@ -1434,16 +1419,14 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                   height: 16,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      Colors.white.withValues(alpha: 0.5),
-                    ),
+                    valueColor: AlwaysStoppedAnimation<Color>(dorado),
                   ),
                 ),
                 const SizedBox(width: 12),
                 Text(
                   'Analizando...',
                   style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.7),
+                    color: TemaGlobal.textoSecundario,
                     fontSize: 14,
                   ),
                 ),
@@ -1509,14 +1492,11 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
 
     if (!mounted) return;
 
-    // ✅ Nueva conversación solicitada
+    // ✅ Nueva conversación solicitada (creación perezosa: se creará en
+    // Supabase solo cuando el usuario envíe su primer mensaje).
     if (result == '__NEW_CONVERSATION__') {
-      setState(() => _isLoading = true);
-      
-      final newConv = await ChatService.crearConversacion();
-      
       setState(() {
-        _currentConversationId = newConv.id;
+        _currentConversationId = null;
         _messages = [];
         _isLoading = false;
       });
@@ -1579,9 +1559,10 @@ class ChatHistoryScreen extends StatefulWidget {
 }
 
 class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
+  // Marca institucional (fija; idéntica a TemaGlobal). Superficies/textos
+  // leen de TemaGlobal.
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color grisOscuro = Color(0xFF1E293B);
 
   late Future<List<ChatConversation>> _future;
 
@@ -1629,7 +1610,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
                   Text(
                     'No hay conversaciones',
                     style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.7),
+                      color: TemaGlobal.textoSecundario,
                       fontSize: 16,
                     ),
                   ),
@@ -1650,8 +1631,8 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Navigator.pop(context, '__NEW_CONVERSATION__'),
         backgroundColor: dorado,
-        icon: const Icon(Icons.add, color: azulMarino),
-        label: const Text(
+        icon: Icon(Icons.add, color: azulMarino),
+        label: Text(
           'Nueva conversación',
           style: TextStyle(color: azulMarino, fontWeight: FontWeight.bold),
         ),
@@ -1661,7 +1642,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
 
   Widget _buildConversationCard(BuildContext context, ChatConversation conv) {
     return Card(
-      color: grisOscuro,
+      color: TemaGlobal.tarjeta,
       margin: const EdgeInsets.only(bottom: 12),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
@@ -1675,8 +1656,8 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
         ),
         title: Text(
           conv.title,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: TemaGlobal.texto,
             fontWeight: FontWeight.w600,
           ),
           maxLines: 1,
@@ -1685,13 +1666,13 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
         subtitle: Text(
           '${conv.messageCount} mensajes · ${_formatDate(conv.updatedAt)}',
           style: TextStyle(
-            color: Colors.white.withValues(alpha: 0.6),
+            color: TemaGlobal.textoSecundario,
             fontSize: 12,
           ),
         ),
         trailing: PopupMenuButton(
-          icon: Icon(Icons.more_vert, color: Colors.white.withValues(alpha: 0.7)),
-          color: grisOscuro,
+          icon: Icon(Icons.more_vert, color: TemaGlobal.textoSecundario),
+          color: TemaGlobal.tarjeta,
           itemBuilder: (context) => [
             PopupMenuItem(
               onTap: () => _togglePin(conv),
@@ -1704,18 +1685,18 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
                   const SizedBox(width: 12),
                   Text(
                     conv.isPinned ? 'Desfijar' : 'Fijar',
-                    style: const TextStyle(color: Colors.white),
+                    style: TextStyle(color: TemaGlobal.texto),
                   ),
                 ],
               ),
             ),
             PopupMenuItem(
               onTap: () => _renombrar(conv),
-              child: const Row(
+              child: Row(
                 children: [
                   Icon(Icons.edit, color: dorado),
-                  SizedBox(width: 12),
-                  Text('Renombrar', style: TextStyle(color: Colors.white)),
+                  const SizedBox(width: 12),
+                  Text('Renombrar', style: TextStyle(color: TemaGlobal.texto)),
                 ],
               ),
             ),

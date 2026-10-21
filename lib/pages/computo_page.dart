@@ -12,6 +12,7 @@ import '../logic/dosimetria_engine.dart';
 import '../logic/report_generator.dart';
 import '../models/calculation_model.dart';
 import '../models/delito.dart';
+import '../config/app_theme.dart';
 import '../services/pdf_service.dart';
 import '../utils/pena_utils.dart';
 import '../utils/storage_manager.dart';
@@ -72,11 +73,11 @@ class _ComputoPageState extends State<ComputoPage> {
   bool _fechaCondenaValida = true;
 
   // Colores
-  static const Color fondoPantalla = Color(0xFFF1F5F9);
+  static Color get fondoPantalla => TemaGlobal.superficie;
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color grisTexto = Color(0xFF4A5568);
-  static const Color borde = Color(0x1A0F172A); // azul marino con baja opacidad
+  static Color get grisTexto => TemaGlobal.textoSecundario;
+  static Color get borde => TemaGlobal.capa;
 
   final StorageManager _storageManager = StorageManager();
 
@@ -268,7 +269,7 @@ class _ComputoPageState extends State<ComputoPage> {
         return Theme(
           data: ThemeData.light().copyWith(
             colorScheme: const ColorScheme.light(primary: azulMarino),
-            dialogTheme: const DialogThemeData(backgroundColor: Colors.white),
+            dialogTheme: DialogThemeData(backgroundColor: TemaGlobal.tarjeta),
           ),
           child: child!,
         );
@@ -555,10 +556,10 @@ class _ComputoPageState extends State<ComputoPage> {
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18),
-                side: const BorderSide(color: borde),
+                side: BorderSide(color: borde),
               ),
-              color: Colors.white,
-              surfaceTintColor: Colors.white,
+              color: TemaGlobal.tarjeta,
+              surfaceTintColor: TemaGlobal.tarjeta,
               child: Padding(
                 padding: const EdgeInsets.all(18),
                 child: Column(
@@ -567,7 +568,7 @@ class _ComputoPageState extends State<ComputoPage> {
                     Row(
                       children: [
                         Icon(Icons.folder_outlined,
-                            color: azulMarino.withValues(alpha: 0.7), size: 20),
+                            color: dorado, size: 20),
                         const SizedBox(width: 8),
                         Text(
                           'DATOS DEL CASO',
@@ -594,8 +595,7 @@ class _ComputoPageState extends State<ComputoPage> {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(
-                              color: azulMarino.withValues(alpha: 0.2)),
+                          borderSide: BorderSide(color: TemaGlobal.capa),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -618,8 +618,7 @@ class _ComputoPageState extends State<ComputoPage> {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(
-                              color: azulMarino.withValues(alpha: 0.2)),
+                          borderSide: BorderSide(color: TemaGlobal.capa),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -785,10 +784,10 @@ class _ComputoPageState extends State<ComputoPage> {
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18),
-                side: const BorderSide(color: borde),
+                side: BorderSide(color: borde),
               ),
-              color: Colors.white,
-              surfaceTintColor: Colors.white,
+              color: TemaGlobal.tarjeta,
+              surfaceTintColor: TemaGlobal.tarjeta,
               child: Padding(
                 padding: const EdgeInsets.all(18),
                 child: Column(
@@ -797,7 +796,7 @@ class _ComputoPageState extends State<ComputoPage> {
                     Text(
                       'FECHA DE DETENCIÓN',
                       style: TextStyle(
-                        color: azulMarino.withValues(alpha: 0.85),
+                        color: TemaGlobal.texto,
                         fontSize: 12,
                         fontWeight: FontWeight.w800,
                         letterSpacing: 0.8,
@@ -810,7 +809,7 @@ class _ComputoPageState extends State<ComputoPage> {
                           child: CheckboxListTile(
                             title: Text('Sin detenido',
                                 style: TextStyle(
-                                    color: azulMarino.withValues(alpha: 0.86))),
+                                    color: TemaGlobal.texto)),
                             value: _sinDetenido,
                             onChanged: (value) {
                               setState(() {
@@ -844,32 +843,28 @@ class _ComputoPageState extends State<ComputoPage> {
                                   decoration: InputDecoration(
                                     hintText: 'DD/MM/AAAA',
                                     filled: true,
-                                    fillColor: fondoPantalla,
+                                    fillColor: TemaGlobal.campoTexto,
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(14),
                                         borderSide: BorderSide(
-                                            color: azulMarino.withValues(
-                                                alpha: 0.18))),
+                                            color: TemaGlobal.capa)),
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(14),
                                         borderSide: BorderSide(
-                                            color: azulMarino.withValues(
-                                                alpha: 0.12))),
+                                            color: TemaGlobal.capa)),
                                     focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(14),
                                         borderSide: BorderSide(
-                                            color: azulMarino.withValues(
-                                                alpha: 0.35),
+                                            color: TemaGlobal.dorado,
                                             width: 1.2)),
                                     errorText: _fechaDetencionValida
                                         ? null
                                         : 'Fecha inválida',
                                     suffixIcon: Icon(
                                         Icons.calendar_today_rounded,
-                                        color:
-                                            azulMarino.withValues(alpha: 0.70)),
+                                        color: dorado),
                                   ),
-                                  style: const TextStyle(color: azulMarino),
+                                  style: TextStyle(color: TemaGlobal.texto),
                                   onChanged: (value) {
                                     _aplicarMascara(
                                         _fechaDetencionController, value);
@@ -894,10 +889,10 @@ class _ComputoPageState extends State<ComputoPage> {
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18),
-                side: const BorderSide(color: borde),
+                side: BorderSide(color: borde),
               ),
-              color: Colors.white,
-              surfaceTintColor: Colors.white,
+              color: TemaGlobal.tarjeta,
+              surfaceTintColor: TemaGlobal.tarjeta,
               child: Padding(
                 padding: const EdgeInsets.all(18),
                 child: Column(
@@ -906,7 +901,7 @@ class _ComputoPageState extends State<ComputoPage> {
                     Text(
                       'FECHA DE CONDENA',
                       style: TextStyle(
-                        color: azulMarino.withValues(alpha: 0.85),
+                        color: TemaGlobal.texto,
                         fontSize: 12,
                         fontWeight: FontWeight.w800,
                         letterSpacing: 0.8,
@@ -916,7 +911,7 @@ class _ComputoPageState extends State<ComputoPage> {
                     SwitchListTile(
                       title: Text('Usar fecha actual',
                           style: TextStyle(
-                              color: azulMarino.withValues(alpha: 0.86))),
+                              color: TemaGlobal.texto)),
                       value: _usarFechaActual,
                       onChanged: (value) {
                         setState(() {
@@ -944,32 +939,28 @@ class _ComputoPageState extends State<ComputoPage> {
                                   decoration: InputDecoration(
                                     hintText: 'DD/MM/AAAA',
                                     filled: true,
-                                    fillColor: fondoPantalla,
+                                    fillColor: TemaGlobal.campoTexto,
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(14),
                                         borderSide: BorderSide(
-                                            color: azulMarino.withValues(
-                                                alpha: 0.18))),
+                                            color: TemaGlobal.capa)),
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(14),
                                         borderSide: BorderSide(
-                                            color: azulMarino.withValues(
-                                                alpha: 0.12))),
+                                            color: TemaGlobal.capa)),
                                     focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(14),
                                         borderSide: BorderSide(
-                                            color: azulMarino.withValues(
-                                                alpha: 0.35),
+                                            color: TemaGlobal.dorado,
                                             width: 1.2)),
                                     errorText: _fechaCondenaValida
                                         ? null
                                         : 'Fecha inválida',
                                     suffixIcon: Icon(
                                         Icons.calendar_today_rounded,
-                                        color:
-                                            azulMarino.withValues(alpha: 0.70)),
+                                        color: dorado),
                                   ),
-                                  style: const TextStyle(color: azulMarino),
+                                  style: TextStyle(color: TemaGlobal.texto),
                                   onChanged: (value) {
                                     _aplicarMascara(
                                         _fechaCondenaController, value);
@@ -1027,13 +1018,12 @@ class _ComputoPageState extends State<ComputoPage> {
                     icon: const Icon(Icons.arrow_back),
                     label: const Text('REGRESAR'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: azulMarino,
+                      backgroundColor: TemaGlobal.tarjeta,
+                      foregroundColor: TemaGlobal.texto,
                       fixedSize: const Size.fromHeight(48),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14)),
-                      side:
-                          BorderSide(color: azulMarino.withValues(alpha: 0.18)),
+                      side: BorderSide(color: TemaGlobal.capa),
                       elevation: 0,
                     ),
                   ),
@@ -1080,8 +1070,8 @@ class _ComputoPageState extends State<ComputoPage> {
         icon: Icon(icon, size: 18),
         label: Text(label),
         style: FilledButton.styleFrom(
-          backgroundColor: azulMarino.withValues(alpha: 0.08),
-          foregroundColor: azulMarino,
+          backgroundColor: TemaGlobal.capa,
+          foregroundColor: TemaGlobal.texto,
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -1167,7 +1157,6 @@ class _TimelineComputo extends StatelessWidget {
   final DateTime fechaCumplimiento;
   final bool sinDetenido;
 
-  static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
 
   static String _fmt(DateTime d) => '${d.day.toString().padLeft(2, '0')}/'
@@ -1181,16 +1170,16 @@ class _TimelineComputo extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
         side: const BorderSide(color: dorado),
       ),
-      color: Colors.white,
+      color: TemaGlobal.tarjeta,
       child: Padding(
         padding: const EdgeInsets.all(18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text(
+            Text(
               'LÍNEA DE TIEMPO DEL CÓMPUTO',
               style: TextStyle(
-                  color: azulMarino,
+                  color: TemaGlobal.texto,
                   fontSize: 12,
                   fontWeight: FontWeight.w800,
                   letterSpacing: 0.8),
@@ -1239,7 +1228,7 @@ class _Linea extends StatelessWidget {
       child: Container(
         height: 2,
         margin: const EdgeInsets.only(bottom: 24),
-        color: gris ? Colors.grey.shade300 : azulMarino.withValues(alpha: 0.35),
+        color: gris ? TemaGlobal.capa : azulMarino.withValues(alpha: 0.35),
       ),
     );
   }
@@ -1268,10 +1257,10 @@ class _Nodo extends StatelessWidget {
             width: 14,
             height: 14,
             decoration: BoxDecoration(
-              color: gris ? Colors.grey.shade300 : azulMarino,
+              color: gris ? TemaGlobal.capa : azulMarino,
               shape: BoxShape.circle,
               border: Border.all(
-                color: gris ? Colors.grey.shade400 : dorado,
+                color: gris ? TemaGlobal.capa : dorado,
                 width: 2,
               ),
             ),
@@ -1283,7 +1272,7 @@ class _Nodo extends StatelessWidget {
               fontSize: 9,
               fontWeight: FontWeight.w800,
               letterSpacing: 0.5,
-              color: gris ? Colors.grey.shade500 : azulMarino,
+              color: gris ? TemaGlobal.textoTenue : azulMarino,
             ),
           ),
           const SizedBox(height: 3),
@@ -1292,7 +1281,7 @@ class _Nodo extends StatelessWidget {
             style: TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.w800,
-              color: gris ? Colors.grey.shade500 : dorado,
+              color: gris ? TemaGlobal.textoTenue : dorado,
             ),
           ),
         ],

@@ -157,7 +157,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
           // Formulario para agregar término
           Container(
             padding: const EdgeInsets.all(16),
-            color: Colors.white,
+            color: TemaGlobal.tarjeta,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -230,7 +230,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
           // Búsqueda
           Container(
             padding: const EdgeInsets.all(16),
-            color: Colors.white,
+            color: TemaGlobal.tarjeta,
             child: TextField(
               controller: _busquedaController,
               decoration: InputDecoration(
@@ -291,16 +291,16 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
                         Icon(
                           _filtro.isEmpty ? Icons.book_outlined : Icons.search_off,
                           size: 64,
-                          color: Colors.grey,
+                          color: TemaGlobal.textoTenue,
                         ),
                         const SizedBox(height: 16),
                         Text(
                           _filtro.isEmpty
                               ? 'No hay términos en el glosario'
                               : 'No se encontraron términos',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
-                            color: Colors.grey,
+                            color: TemaGlobal.textoSecundario,
                           ),
                         ),
                       ],

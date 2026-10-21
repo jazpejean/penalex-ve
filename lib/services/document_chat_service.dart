@@ -409,7 +409,15 @@ class DocumentChatService {
               '- Si NO hay sentencia citada en el contexto, NO inventes número, '
               'fecha ni ponente: cita el criterio sin atribución a sentencia '
               'específica.\n'
-              '- NO inventes sentencias, números, fechas, ponentes ni criterios.'
+              '- NO inventes sentencias, números, fechas, ponentes ni criterios.\n'
+               'INSTRUCCIONES DE DOCTRINA ACADÉMICA (CRÍTICAS — cero margen de error):\n'
+               '- Si el contexto incluye "DOCTRINA ACADÉMICA", puedes fundamentar '
+               'con esas obras: cita SOLO el autor, la obra y la página que '
+               'aparezcan EXACTAMENTE en el contexto.\n'
+               '- Formato de cita: "Autor, Nombre de la Obra, p. X" (usa la página '
+               'solo si el contexto la indica; si dice "(no indicada)", omite la página).\n'
+               '- NO inventes autores, obras ni páginas que no estén en el contexto '
+               'de doctrina académica.'
         : '';
 
     final requisitosSection = _requisitosTexto.isNotEmpty
@@ -654,10 +662,10 @@ class DocumentChatService {
   }
 
   Future<String> _askAI(String prompt) async {
-    // Track con cronómetro automático
+    // Telemetría silenciosa (cronómetro automático + registro de uso)
     return await AIAnalyticsService.trackOperation(
-      toolName: AIToolName.redactorDocumentos,
-      actionType: AIActionType.generation,
+      toolName: AIAnalyticsService.redactorDocumentos,
+      actionType: AIAnalyticsService.generation,
       operation: () async {
         try {
           // Inicializar AIService si no está inicializado

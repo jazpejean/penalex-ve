@@ -149,11 +149,10 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                           return Card(
                             margin: const EdgeInsets.only(bottom: 10),
                             elevation: 0,
-                            color: Colors.white,
+                            color: TemaGlobal.tarjeta,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16),
-                              side: BorderSide(
-                                  color: azulMarino.withValues(alpha: 0.10)),
+                              side: BorderSide(color: TemaGlobal.capa),
                             ),
                             child: ListTile(
                               leading: Icon(Icons.calculate_rounded,
@@ -285,8 +284,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
-            color: fondoGris,
-            border: Border.all(color: azulMarino.withValues(alpha: 0.12)),
+            color: TemaGlobal.campoTexto,
+            border: Border.all(color: TemaGlobal.capa),
             borderRadius: BorderRadius.circular(14),
           ),
           child: DropdownButtonHideUnderline(
@@ -753,7 +752,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                 Text(
                   'DELITO ${index + 1}',
                   style: TextStyle(
-                      color: Colors.white,
+                      color: TemaGlobal.texto,
                       fontWeight: FontWeight.w800,
                       fontSize: 13,
                       letterSpacing: 0.8),
@@ -763,7 +762,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: TemaGlobal.capa,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(
@@ -790,27 +789,24 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                 Expanded(
                   child: TextFormField(
                     initialValue: delito.nombre,
-                    style: const TextStyle(color: Colors.white),
+                    style: TextStyle(color: TemaGlobal.texto),
                     decoration: InputDecoration(
                       labelText: 'Nombre del delito',
-                      labelStyle: const TextStyle(color: Colors.white70),
+                      labelStyle: TextStyle(color: TemaGlobal.textoSecundario),
                       prefixIcon: const Icon(Icons.edit_note_rounded,
                           color: dorado, size: 20),
                       filled: true,
-                      fillColor: fondoGris,
+                      fillColor: TemaGlobal.campoTexto,
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(14),
-                          borderSide: BorderSide(
-                              color: azulMarino.withValues(alpha: 0.18))),
+                          borderSide: BorderSide(color: TemaGlobal.capa)),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(14),
-                          borderSide: BorderSide(
-                              color: azulMarino.withValues(alpha: 0.12))),
+                          borderSide: BorderSide(color: TemaGlobal.capa)),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(14),
                           borderSide: BorderSide(
-                              color: azulMarino.withValues(alpha: 0.35),
-                              width: 1.2)),
+                              color: TemaGlobal.dorado, width: 1.2)),
                     ),
                     onChanged: (String value) {
                       delito.nombre = value;
@@ -900,7 +896,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
               icon: const Icon(Icons.add),
               label: const Text('Agregar ajuste'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.grey.shade200,
+                backgroundColor: TemaGlobal.capa,
                 side: const BorderSide(color: dorado),
               ),
             ),
@@ -926,7 +922,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                         DosimetriaEngine.formatYMD(delito.terminoMedio),
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: azulMarino.withValues(alpha: 0.85)),
+                            color: TemaGlobal.texto),
                       ),
                       const SizedBox(width: 8),
                       GestureDetector(
@@ -1123,17 +1119,17 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                         if (states.contains(WidgetState.selected)) {
                           return azulMarino;
                         }
-                        return fondoGris;
+                        return TemaGlobal.capa;
                       }),
                       foregroundColor: WidgetStateProperty.resolveWith(
                           (Set<WidgetState> states) {
                         if (states.contains(WidgetState.selected)) {
                           return dorado;
                         }
-                        return azulMarino.withValues(alpha: 0.75);
+                        return TemaGlobal.texto;
                       }),
                       side: WidgetStatePropertyAll(BorderSide(
-                          color: azulMarino.withValues(alpha: 0.12))),
+                          color: TemaGlobal.capa)),
                       shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14))),
                     ),
@@ -1291,9 +1287,7 @@ class _PenaInputRowState extends State<_PenaInputRow> {
   late TextEditingController _diasController;
   bool _isUpdatingFromUser = false;
 
-  static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static Color get fondoGris => TemaGlobal.superficie;
 
   @override
   void initState() {
@@ -1345,19 +1339,17 @@ class _PenaInputRowState extends State<_PenaInputRow> {
         decoration: InputDecoration(
           labelText: label,
           filled: true,
-          fillColor: fondoGris,
+          fillColor: TemaGlobal.campoTexto,
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14),
-              borderSide:
-                  BorderSide(color: azulMarino.withValues(alpha: 0.18))),
+              borderSide: BorderSide(color: TemaGlobal.capa)),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14),
-              borderSide:
-                  BorderSide(color: azulMarino.withValues(alpha: 0.12))),
+              borderSide: BorderSide(color: TemaGlobal.capa)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14),
               borderSide: BorderSide(
-                  color: azulMarino.withValues(alpha: 0.35), width: 1.2)),
+                  color: TemaGlobal.dorado, width: 1.2)),
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
         ),

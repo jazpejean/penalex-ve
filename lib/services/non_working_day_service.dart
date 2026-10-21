@@ -1,36 +1,38 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:flutter/foundation.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../utils/non_working_days.dart';
 
+/// Días sin despacho del usuario — respaldo en Supabase.
+///
+/// Tabla: `dias_no_despacho` (user_id = UID de Firebase, RLS por usuario).
+/// Reemplaza la estructura anterior en Firestore (`userNonWorkingDays`).
 class NonWorkingDayService {
-  static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  static final FirebaseAuth _auth = FirebaseAuth.instance;
+  static final SupabaseClient _supabase = Supabase.instance.client;
 
-  static String? get _userId => _auth.currentUser?.uid;
+  static String? get _userId {
+    try {
+      return fb.FirebaseAuth.instance.currentUser?.uid;
+    } catch (_) {
+      return null;
+    }
+  }
 
   static Future<bool> saveNonWorkingDay(NonWorkingDay nonWorkingDay) async {
     final String? userId = _userId;
     if (userId == null) return false;
 
     try {
-      // Estructura correcta: /userNonWorkingDays/{userId}/days/{dayId}
-      await _firestore
-          .collection('userNonWorkingDays')
-          .doc(userId)
-          .collection('days')
-          .add(<String, dynamic>{
-        'date': Timestamp.fromDate(nonWorkingDay.date),
-        'reason': nonWorkingDay.reason,
-        'createdAt': FieldValue.serverTimestamp(),
-      });
+      // ON CONFLICT (user_id, fecha): ya existe → se ignora (idempotente).
+      await _supabase.from('dias_no_despacho').upsert(<String, dynamic>{
+        'user_id': userId,
+        'fecha': nonWorkingDay.date.toUtc().toIso8601String(),
+        'motivo': nonWorkingDay.reason,
+      }, onConflict: 'user_id,fecha');
       return true;
-    } on FirebaseException catch (e) {
-      debugPrint('Error saving non-working day to Firestore: $e');
-      return false;
     } on Exception catch (e) {
-      debugPrint('Error saving non-working day to Firestore: $e');
+      debugPrint('Error guardando día sin despacho: $e');
       return false;
     }
   }
@@ -40,27 +42,41 @@ class NonWorkingDayService {
     if (userId == null) return <NonWorkingDay>[];
 
     try {
-      // Estructura correcta: /userNonWorkingDays/{userId}/days/{dayId}
-      final snapshot = await _firestore
-          .collection('userNonWorkingDays')
-          .doc(userId)
-          .collection('days')
-          .orderBy('date')
-          .get();
-
-      return snapshot.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
-        final Map<String, dynamic> data = doc.data();
-        return NonWorkingDay(
-          date: (data['date'] as Timestamp).toDate(),
-          reason: data['reason'] ?? 'Motivo desconocido',
-        );
-      }).toList();
-    } on FirebaseException catch (e) {
-      debugPrint('Error loading user non-working days: $e');
-      return <NonWorkingDay>[];
+      final resp = await _supabase
+          .from('dias_no_despacho')
+          .select('fecha,motivo')
+          .eq('user_id', userId)
+          .order('fecha');
+      return (resp as List<dynamic>)
+          .map((e) => NonWorkingDay(
+                date: DateTime.tryParse(
+                        (e as Map<String, dynamic>)['fecha']?.toString() ??
+                            '') ??
+                    DateTime.now(),
+                reason:
+                    (e['motivo']?.toString() ?? 'Motivo desconocido'),
+              ))
+          .toList();
     } on Exception catch (e) {
-      debugPrint('Error loading user non-working days: $e');
+      debugPrint('Error cargando días sin despacho: $e');
       return <NonWorkingDay>[];
+    }
+  }
+
+  static Future<bool> deleteNonWorkingDay(DateTime fecha) async {
+    final String? userId = _userId;
+    if (userId == null) return false;
+
+    try {
+      final resp = await _supabase
+          .from('dias_no_despacho')
+          .delete()
+          .eq('user_id', userId)
+          .eq('fecha', fecha.toUtc().toIso8601String());
+      return resp.error == null;
+    } on Exception catch (e) {
+      debugPrint('Error eliminando día sin despacho: $e');
+      return false;
     }
   }
 }

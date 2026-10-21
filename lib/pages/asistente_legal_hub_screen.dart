@@ -148,14 +148,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
   }) {
     return Container(
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [
-            Color(0xFF1E293B),
-            Color(0xFF0F172A),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: const Color(0xFFC5A059),
@@ -225,10 +218,10 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                           const SizedBox(height: 8),
                           Text(
                             title,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: TemaGlobal.texto,
                               letterSpacing: 0.3,
                             ),
                           ),
@@ -249,7 +242,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                   description,
                   style: TextStyle(
                     fontSize: 14,
-                    color: Colors.white.withValues(alpha: 0.85),
+                    color: TemaGlobal.textoSecundario,
                     height: 1.6,
                   ),
                 ),
@@ -271,7 +264,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                               highlight.substring(3),
                               style: TextStyle(
                                 fontSize: 13,
-                                color: Colors.white.withValues(alpha: 0.9),
+                                color: TemaGlobal.textoSecundario,
                                 height: 1.4,
                               ),
                             ),

@@ -655,4 +655,90 @@ class JurisprudenciaService {
       return [];
     }
   }
+
+  /// Citas a DOCTRINA ACADÉMICA (autor/obra) de UNA sentencia.
+  ///
+  /// Tabla `doctrinas_academicas` (extraídas por IA con cita textual literal).
+  /// Si la tabla aún no existe en la BD (migración pendiente), devuelve [].
+  Future<List<Map<String, dynamic>>> citasDoctrinalesDeSentencia(
+    String sentenciaId, {
+    int limit = 12,
+  }) async {
+    try {
+      final res = await _supabase
+          .from('doctrinas_academicas')
+          .select(
+            'id, sentencia_id, autor, obra, pagina, parrafo_evidencia',
+          )
+          .eq('sentencia_id', sentenciaId)
+          .order('created_at', ascending: true)
+          .limit(limit);
+      return (res as List<dynamic>)
+          .cast<Map<String, dynamic>>()
+          .toList();
+    } catch (e) {
+      // Migración pendiente (tabla inexistente): no romper la ficha técnica.
+      debugPrint('⚠️ citasDoctrinalesDeSentencia: $e');
+      return [];
+    }
+  }
+
+  /// Busca citas a DOCTRINA ACADÉMICA (autor/obra/página) relevantes a una
+  /// consulta, para el RAG del redactor y del chat legal.
+  ///
+  /// Estrategia: expansión semántica (DeepSeek) → fulltext sobre search_vector
+  /// → fallback ilike sobre autor/obra/parrafo_evidencia. Resiliente: ante
+  /// cualquier error devuelve [] (no rompe el RAG).
+  Future<List<Map<String, dynamic>>> buscarDoctrinasAcademicas({
+    String? textoBusqueda,
+    int limit = 6,
+  }) async {
+    if (textoBusqueda == null || textoBusqueda.trim().isEmpty) return [];
+    try {
+      const select = 'id, sentencia_id, autor, obra, pagina, parrafo_evidencia';
+
+      var query = _supabase.from('doctrinas_academicas').select(select);
+
+      final terminosExpandidos = await _expandirConsultaSemantica(textoBusqueda);
+      final tsQuery = terminosExpandidos
+          .map((t) => t.trim())
+          .where((t) => t.isNotEmpty)
+          .join(' OR ');
+      if (tsQuery.isNotEmpty) {
+        query = query.textSearch(
+          'search_vector',
+          tsQuery,
+          config: 'spanish',
+          type: TextSearchType.websearch,
+        );
+      }
+      var response = await query.limit(limit);
+      var data = (response as List<dynamic>).cast<Map<String, dynamic>>();
+
+      // Fallback ilike si el fulltext no dio suficientes resultados.
+      if (data.length < 3) {
+        final orConditions = <String>[];
+        for (final termino in terminosExpandidos) {
+          orConditions.add('autor.ilike.%$termino%');
+          orConditions.add('obra.ilike.%$termino%');
+          orConditions.add('parrafo_evidencia.ilike.%$termino%');
+        }
+        var q2 = _supabase.from('doctrinas_academicas').select(select);
+        if (orConditions.isNotEmpty) {
+          q2 = q2.or(orConditions.join(','));
+        }
+        final extra = await q2.limit(limit);
+        final extraMaps = (extra as List<dynamic>).cast<Map<String, dynamic>>();
+        final idsVistos = data.map((d) => d['id']).toSet();
+        for (final d in extraMaps) {
+          if (!idsVistos.contains(d['id'])) data.add(d);
+          if (data.length >= limit) break;
+        }
+      }
+      return data;
+    } catch (e) {
+      debugPrint('⚠️ buscarDoctrinasAcademicas: $e');
+      return [];
+    }
+  }
 }

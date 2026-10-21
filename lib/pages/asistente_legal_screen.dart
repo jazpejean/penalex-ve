@@ -3,6 +3,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:share_plus/share_plus.dart';
+import '../config/app_theme.dart';
 import '../services/ai_service.dart';
 import '../services/document_text_extraction_service.dart';
 import '../services/chat_export_service.dart';
@@ -27,7 +28,7 @@ class _AsistenteLegalScreenState extends State<AsistenteLegalScreen> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color grisOscuro = Color(0xFF1E293B);
+  static Color get grisOscuro => TemaGlobal.tarjeta;
 
   @override
   void initState() {
@@ -185,7 +186,7 @@ Puedo ayudarte a:
   void _showAttachmentOptions() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: grisOscuro,
+      backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -195,7 +196,7 @@ Puedo ayudarte a:
           children: [
             ListTile(
               leading: const Icon(Icons.image, color: dorado),
-              title: const Text('Imagen', style: TextStyle(color: Colors.white)),
+              title: Text('Imagen', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
                 _attachImage();
@@ -203,7 +204,7 @@ Puedo ayudarte a:
             ),
             ListTile(
               leading: const Icon(Icons.insert_drive_file, color: dorado),
-              title: const Text('Documento', style: TextStyle(color: Colors.white)),
+              title: Text('Documento', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
                 _attachDocument();
@@ -219,7 +220,7 @@ Puedo ayudarte a:
   void _exportConversation(ChatMessage message) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: grisOscuro,
+      backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -229,7 +230,7 @@ Puedo ayudarte a:
           children: [
             ListTile(
               leading: const Icon(Icons.picture_as_pdf, color: dorado),
-              title: const Text('Exportar mensaje como PDF', style: TextStyle(color: Colors.white)),
+              title: Text('Exportar mensaje como PDF', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
                 _exportarMensajeAPDF(message);
@@ -237,10 +238,10 @@ Puedo ayudarte a:
             ),
             ListTile(
               leading: const Icon(Icons.picture_as_pdf, color: dorado),
-              title: const Text('Exportar conversación completa', style: TextStyle(color: Colors.white)),
-              subtitle: const Text(
+              title: Text('Exportar conversación completa', style: TextStyle(color: TemaGlobal.texto)),
+              subtitle: Text(
                 'Todos los mensajes en un PDF',
-                style: TextStyle(color: Colors.white70, fontSize: 12),
+                style: TextStyle(color: TemaGlobal.textoSecundario, fontSize: 12),
               ),
               onTap: () {
                 Navigator.pop(context);
@@ -249,7 +250,7 @@ Puedo ayudarte a:
             ),
             ListTile(
               leading: const Icon(Icons.description, color: dorado),
-              title: const Text('Exportar mensaje como Word', style: TextStyle(color: Colors.white)),
+              title: Text('Exportar mensaje como Word', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
                 _exportAsWord(message);
@@ -257,10 +258,10 @@ Puedo ayudarte a:
             ),
             ListTile(
               leading: const Icon(Icons.description, color: dorado),
-              title: const Text('Exportar conversación completa Word', style: TextStyle(color: Colors.white)),
-              subtitle: const Text(
+              title: Text('Exportar conversación completa Word', style: TextStyle(color: TemaGlobal.texto)),
+              subtitle: Text(
                 'Todos los mensajes en formato Word',
-                style: TextStyle(color: Colors.white70, fontSize: 12),
+                style: TextStyle(color: TemaGlobal.textoSecundario, fontSize: 12),
               ),
               onTap: () {
                 Navigator.pop(context);
@@ -269,7 +270,7 @@ Puedo ayudarte a:
             ),
             ListTile(
               leading: const Icon(Icons.share, color: dorado),
-              title: const Text('Compartir texto', style: TextStyle(color: Colors.white)),
+              title: Text('Compartir texto', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
                 Share.share(message.text);
@@ -369,7 +370,7 @@ Puedo ayudarte a:
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: azulMarino,
+      backgroundColor: TemaGlobal.superficie,
       appBar: AppBar(
         title: const Text(
           'Asistente Legal IA',
@@ -401,7 +402,7 @@ Puedo ayudarte a:
           // Banner informativo
           Container(
             padding: const EdgeInsets.all(12),
-            color: grisOscuro,
+            color: TemaGlobal.capa,
             child: Row(
               children: [
                 const Icon(Icons.auto_awesome, color: dorado, size: 20),
@@ -410,7 +411,7 @@ Puedo ayudarte a:
                   child: Text(
                     'IA integrada con Ulpiano • Adjunta documentos para análisis',
                     style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.8),
+                      color: TemaGlobal.textoSecundario,
                       fontSize: 12,
                     ),
                   ),
@@ -438,14 +439,14 @@ Puedo ayudarte a:
           if (_attachedFiles.isNotEmpty)
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              color: grisOscuro.withValues(alpha: 0.5),
+              color: TemaGlobal.tarjeta,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'Adjuntos:',
                     style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.7),
+                      color: TemaGlobal.textoSecundario,
                       fontSize: 12,
                     ),
                   ),
@@ -479,7 +480,7 @@ Puedo ayudarte a:
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
-              color: grisOscuro,
+              color: TemaGlobal.tarjeta,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withValues(alpha: 0.2),
@@ -503,14 +504,14 @@ Puedo ayudarte a:
                       controller: _messageController,
                       maxLines: null,
                       textCapitalization: TextCapitalization.sentences,
-                      style: const TextStyle(color: Colors.white),
+                      style: TextStyle(color: TemaGlobal.texto),
                       decoration: InputDecoration(
                         hintText: 'Escribe tu consulta o solicitud...',
                         hintStyle: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.5),
+                          color: TemaGlobal.textoTenue,
                         ),
                         filled: true,
-                        fillColor: azulMarino,
+                        fillColor: TemaGlobal.campoTexto,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(24),
                           borderSide: BorderSide.none,
@@ -599,7 +600,7 @@ Puedo ayudarte a:
                                 size: 16,
                                 color: message.isUser
                                     ? azulMarino
-                                    : Colors.white.withValues(alpha: 0.7),
+                                    : TemaGlobal.textoSecundario,
                               ),
                               const SizedBox(width: 8),
                               Expanded(
@@ -608,7 +609,7 @@ Puedo ayudarte a:
                                   style: TextStyle(
                                     color: message.isUser
                                         ? azulMarino
-                                        : Colors.white.withValues(alpha: 0.7),
+                                        : TemaGlobal.textoSecundario,
                                     fontSize: 12,
                                   ),
                                 ),
@@ -623,7 +624,9 @@ Puedo ayudarte a:
                     data: message.text,
                     styleSheet: MarkdownStyleSheet(
                       p: TextStyle(
-                        color: message.isUser ? azulMarino : Colors.white,
+                        color: message.isUser
+                            ? azulMarino
+                            : TemaGlobal.texto,
                         fontSize: 15,
                         height: 1.4,
                       ),
@@ -666,7 +669,7 @@ Puedo ayudarte a:
           if (message.isUser) ...[
             const SizedBox(width: 12),
             CircleAvatar(
-              backgroundColor: grisOscuro,
+              backgroundColor: TemaGlobal.capa,
               radius: 20,
               child: const Icon(Icons.person, color: dorado, size: 20),
             ),
@@ -691,7 +694,7 @@ Puedo ayudarte a:
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: grisOscuro,
+              color: TemaGlobal.tarjeta,
               borderRadius: BorderRadius.circular(16),
             ),
             child: Row(
@@ -702,16 +705,14 @@ Puedo ayudarte a:
                   height: 16,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      Colors.white.withValues(alpha: 0.5),
-                    ),
+                    valueColor: AlwaysStoppedAnimation<Color>(dorado),
                   ),
                 ),
                 const SizedBox(width: 12),
                 Text(
                   'Generando respuesta...',
                   style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.7),
+                    color: TemaGlobal.textoSecundario,
                     fontSize: 14,
                   ),
                 ),

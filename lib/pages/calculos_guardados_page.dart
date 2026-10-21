@@ -134,7 +134,7 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
                       Icon(
                         Icons.folder_open,
                         size: 80,
-                        color: Colors.grey[400],
+                        color: TemaGlobal.textoTenue,
                       ),
                       const SizedBox(height: 16),
                       Text(
@@ -149,7 +149,7 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
                         'Guarda tus cálculos desde la calculadora',
                         style: TextStyle(
                           fontSize: 14,
-                          color: Colors.grey[500],
+                          color: TemaGlobal.textoTenue,
                         ),
                       ),
                     ],

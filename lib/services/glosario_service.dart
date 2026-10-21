@@ -1,8 +1,44 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class GlosarioService {
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  /// Carga los términos aprobados desde Supabase (tabla `glosario_terminos`).
+  ///
+  /// Devuelve lista con 'term', 'definition' y, si existe, 'reference'
+  /// (ley — artículo de la definición legal). Ante cualquier error devuelve []
+  /// (los llamadores usan la lista local como respaldo).
+  static Future<List<Map<String, String>>> cargarDesdeSupabase() async {
+    try {
+      final supabase = Supabase.instance.client;
+      final res = await supabase
+          .from('glosario_terminos')
+          .select('termino, definicion, referencias')
+          .eq('aprobado', true)
+          .order('termino', ascending: true);
+      final rows = (res as List<dynamic>).cast<Map<String, dynamic>>();
+      final out = <Map<String, String>>[];
+      for (final row in rows) {
+        final termino = (row['termino'] ?? '').toString().trim();
+        final definicion = (row['definicion'] ?? '').toString().trim();
+        if (termino.isEmpty || definicion.isEmpty) continue;
+        final refs = (row['referencias'] as List<dynamic>?) ?? const [];
+        final ref = refs.isNotEmpty ? refs.first.toString() : '';
+        out.add({
+          'term': termino,
+          'definition': definicion,
+          if (ref.isNotEmpty) 'reference': ref,
+        });
+      }
+      debugPrint('📚 Glosario cargado desde Supabase: ${out.length} términos');
+      return out;
+    } catch (e) {
+      debugPrint('❌ Error cargando glosario desde Supabase: $e');
+      return [];
+    }
+  }
 
   /// Obtiene todos los términos del glosario desde Firebase
   static Future<List<Map<String, String>>> getTerminos() async {

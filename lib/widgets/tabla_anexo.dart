@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../config/app_theme.dart';
 import '../models/ley_estructurada.dart';
 
 /// Renderiza una tabla/anexo de un artículo (campo `tablas` del JSON de la ley)
@@ -43,7 +44,7 @@ class TablaAnexoView extends StatelessWidget {
             Text(
               tabla.tabla!,
               style: TextStyle(
-                color: Colors.white.withOpacity(0.7),
+                color: TemaGlobal.textoSecundario,
                 fontStyle: FontStyle.italic,
                 fontSize: 12,
               ),

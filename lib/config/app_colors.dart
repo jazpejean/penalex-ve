@@ -1,51 +1,66 @@
 import 'package:flutter/material.dart';
+import 'app_theme.dart';
 
+/// Paleta unificada de Penalex VE.
+///
+/// Desde esta refactorización, [AppColors] es SOLO una capa de compatibilidad:
+/// la fuente única de verdad es [TemaGlobal]. Los colores de marca
+/// ([primary]/[secondary]/[accent]) son constantes institucionales (iguales en
+/// modo claro y oscuro) y los colores de superficie/texto son getters que
+/// delegan en [TemaGlobal] para respetar el modo claro/oscuro.
 class AppColors {
-  // Paleta principal - Gris claro de fondo para la app y azul/dorado en detalles
-  static const Color primary = Color(0xFF0F172A); // Azul marino uniforme
-  static const Color secondary = Color(0xFFC5A059); // Dorado clásico
-  static const Color accent = Color(0xFFF4D03F); // Amarillo dorado
+  // --- Marca (constantes institucionales, iguales en ambos modos) ---
+  /// Azul marino institucional (idéntico a [TemaGlobal.azulMarino]).
+  static const Color primary = Color(0xFF0F172A);
+  /// Dorado institucional (idéntico a [TemaGlobal.dorado]).
+  static const Color secondary = Color(0xFFC5A059);
+  /// Amarillo dorado de acento.
+  static const Color accent = Color(0xFFF4D03F);
 
-  // Nombres institucionales
-  static const Color azulMarino = Color(0xFF0F172A); // Alias para primary
-  static const Color dorado = Color(0xFFC5A059); // Alias para secondary
+  // Alias institucionales
+  static const Color azulMarino = Color(0xFF0F172A);
+  static const Color dorado = Color(0xFFC5A059);
 
-  // Fondos
-  static const Color splashBackground = Color(0xFF0F172A); // Azul splash
-  static const Color background = Color(0xFFF1F5F9); // Gris claro para la app
-  static const Color surface = Color(0xFFFFFFFF); // Fondo de tarjetas y paneles
-  static const Color surfaceLight = Color(0xFFE2E8F0); // Gris suave para capas
+  // --- Fondos (delegan en TemaGlobal → respetan modo claro/oscuro) ---
+  /// Fondo de página.
+  static Color get background => TemaGlobal.superficie;
+  /// Fondo de tarjetas y paneles.
+  static Color get surface => TemaGlobal.tarjeta;
+  /// Capa intermedia (gris suave).
+  static Color get surfaceLight => TemaGlobal.capa;
+  /// Fondo de pantalla de splash (siempre azul marino, por diseño de marca).
+  static Color get splashBackground => azulMarino;
 
-  // Textos (sobre superficies claras: tarjetas, fondo gris claro)
-  static const Color textPrimary = Color(0xFF1E293B); // Slate-800, alto contraste
-  static const Color textSecondary = Color(0xFF475569); // Slate-600
-  static const Color textMuted = Color(0xFF9CA3AF);
+  // --- Textos (delegan en TemaGlobal) ---
+  static Color get textPrimary => TemaGlobal.texto;
+  static Color get textSecondary => TemaGlobal.textoSecundario;
+  static Color get textMuted => TemaGlobal.textoTenue;
 
   // Texto sobre superficies oscuras (azul marino)
   static const Color onDarkPrimary = Colors.white;
   static const Color onDarkSecondary = Colors.white70;
 
-  // Estados
+  // --- Estados (semánticos, constantes) ---
   static const Color success = Color(0xFF10B981);
   static const Color error = Color(0xFFEF4444);
   static const Color warning = Color(0xFFF59E0B);
   static const Color info = Color(0xFF3B82F6);
 
-  // Gradientes para efectos premium
+  // --- Gradientes para efectos premium ---
   static const LinearGradient primaryGradient = LinearGradient(
     colors: <Color>[primary, secondary],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
 
-  static const RadialGradient backgroundGradient = RadialGradient(
-    center: Alignment(-0.3, -0.4),
-    radius: 1.1,
-    colors: <Color>[surface, background],
-    stops: <double>[0, 1],
-  );
+  static RadialGradient get backgroundGradient => RadialGradient(
+        center: const Alignment(-0.3, -0.4),
+        radius: 1.1,
+        colors: <Color>[surface, background],
+        stops: const <double>[0, 1],
+      );
 
-  // Sombras y efectos
+  // --- Sombras y efectos ---
   static const BoxShadow primaryShadow = BoxShadow(
     color: secondary,
     blurRadius: 20,

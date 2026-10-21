@@ -66,3 +66,16 @@ worker/.dev.vars
 worker/.wrangler/
 tool/corpus/
 tool/test/lote_real.json
+
+# Carpetas temporales / herramientas de migración (no son parte de la app)
+tmp_har/
+tmp_*.txt
+.session_restore/
+reports/
+ejemplos_*/
+tool_upload_*/
+tool/test/*.json
+ejemplos/
+tool/corpus/
+penalex-web/
+penalex-blog/

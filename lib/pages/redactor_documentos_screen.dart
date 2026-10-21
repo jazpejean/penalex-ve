@@ -16,10 +16,11 @@ import '../services/chat_legal_export_service.dart';
 import '../services/membrete_service.dart';
 import '../config/app_theme.dart';
 import '../models/chat_attachment.dart';
+import 'word_editor_screen.dart';
 
 class RedactorDocumentosScreen extends StatefulWidget {
-  /// Instrucción inicial (en lenguaje natural) que se envía automáticamente,
-  /// p. ej. desde el comparador de estrategias.
+  /// Instrucción inicial (en lenguaje natural) que se envía automáticamente
+  /// desde otras herramientas de la app.
   final String? initialPrompt;
 
   const RedactorDocumentosScreen({super.key, this.initialPrompt});
@@ -48,7 +49,9 @@ class _RedactorDocumentosScreenState extends State<RedactorDocumentosScreen> {
 
   Future<void> _initializeServices() async {
     await _templateService.initialize();
-    _conversationId ??= await RedactorService.crearConversacion();
+    // ✅ Creación perezosa: la conversación se crea en Supabase solo cuando
+    // el usuario envía su primer mensaje real (evita historial lleno de
+    // conversaciones vacías).
     _addMessage(
       '¡Hola! Soy tu asistente de redacción de documentos penales.\n\n'
       '📄 ¿Qué documento deseas redactar?\n\n'
@@ -63,8 +66,8 @@ class _RedactorDocumentosScreenState extends State<RedactorDocumentosScreen> {
       persist: false,
     );
 
-    // Si viene una instrucción inicial (p. ej. desde el comparador de
-    // estrategias), se envía automáticamente.
+    // Si viene una instrucción inicial desde otra herramienta, se envía
+    // automáticamente.
     if (widget.initialPrompt != null && widget.initialPrompt!.trim().isNotEmpty) {
       _messageController.text = widget.initialPrompt!.trim();
       Future.delayed(const Duration(milliseconds: 400), () {
@@ -83,7 +86,22 @@ class _RedactorDocumentosScreenState extends State<RedactorDocumentosScreen> {
     });
     _scrollToBottom();
 
-    if (persist && _conversationId != null) {
+    if (persist) {
+      _persistirMensaje(content, isUser);
+    }
+  }
+
+  /// ✅ Persiste un mensaje creando la conversación en Supabase en el primer
+  /// mensaje real (creación perezosa: no hay conversaciones vacías).
+  Future<void> _persistirMensaje(String content, bool isUser) async {
+    if (_conversationId == null) {
+      try {
+        _conversationId = await RedactorService.crearConversacion();
+      } catch (e) {
+        debugPrint('⚠️ No se pudo crear conversación del redactor: $e');
+      }
+    }
+    if (_conversationId != null) {
       RedactorService.guardarMensaje(
         conversationId: _conversationId!,
         role: isUser ? 'user' : 'assistant',
@@ -205,20 +223,8 @@ Analiza los documentos adjuntos y extrae información relevante para el document
   }
 
   Color _getFileColor(AttachmentType type) {
-    switch (type) {
-      case AttachmentType.image:
-        return Colors.green;
-      case AttachmentType.pdf:
-        return Colors.red;
-      case AttachmentType.document:
-        return Colors.blue;
-      case AttachmentType.audio:
-        return Colors.purple;
-      case AttachmentType.video:
-        return Colors.orange;
-      case AttachmentType.other:
-        return Colors.grey;
-    }
+    // Acentos unificados en dorado institucional (uniformidad TemaGlobal).
+    return const Color(0xFFC5A059);
   }
 
   Future<void> _exportToPDF(String content, {bool compartir = true}) async {
@@ -294,6 +300,69 @@ Analiza los documentos adjuntos y extrae información relevante para el document
           SnackBar(content: Text('❌ Error al generar Word: $e')),
         );
       }
+    }
+  }
+
+  /// Extrae el Markdown limpio del documento generado (sin los adornos del
+  /// mensaje: "✅ Documento generado:", líneas ━━━ y el aviso final).
+  String _limpiarContenidoDocumento(String content) {
+    return content
+        .replaceAll('✅ Documento generado:', '')
+        .replaceAll(RegExp(r'━+'), '')
+        .replaceAll(RegExp(r'⚠️.*'), '')
+        .trim();
+  }
+
+  /// Abre el editor Word (Quill) con el documento generado; al guardar,
+  /// actualiza el mensaje en el chat y persiste la versión editada.
+  Future<void> _editarDocumento(ChatMessage message) async {
+    final contenido = _limpiarContenidoDocumento(message.content);
+    if (contenido.isEmpty) return;
+
+    final editado = await Navigator.of(context).push<String>(
+      MaterialPageRoute(
+        builder: (_) => WordEditorScreen(
+          contenidoInicial: contenido,
+          titulo: 'Documento Legal',
+        ),
+      ),
+    );
+
+    if (editado == null || !mounted) return;
+
+    // Reconstruir el mensaje del chat con el documento editado.
+    final nuevoContenido = '✅ Documento generado:\n\n'
+        '━━━━━━━━━━━━━━━━━━━━━━\n\n'
+        '$editado\n\n'
+        '━━━━━━━━━━━━━━━━━━━━━━\n\n'
+        '✏️ Editado en el redactor.';
+
+    setState(() {
+      final idx = _messages.indexWhere(
+        (m) => identical(m, message),
+      );
+      if (idx != -1) {
+        _messages[idx] = ChatMessage(
+          content: nuevoContenido,
+          isUser: message.isUser,
+          timestamp: message.timestamp,
+        );
+      }
+    });
+
+    // Persistir la versión editada en el historial de la conversación.
+    if (_conversationId != null) {
+      RedactorService.guardarMensaje(
+        conversationId: _conversationId!,
+        role: 'assistant',
+        contenido: nuevoContenido,
+      );
+    }
+
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('✅ Documento actualizado')),
+      );
     }
   }
 
@@ -546,7 +615,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                   children: [
                     Row(
                       children: [
-                        const Icon(Icons.edit_document, color: Colors.blue, size: 20),
+                        const Icon(Icons.edit_document, color: Color(0xFFC5A059), size: 20),
                         const SizedBox(width: 8),
                         Text(
                           'Completando documento: $progress/$total campos',
@@ -558,7 +627,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     LinearProgressIndicator(
                       value: progress / total,
                       backgroundColor: TemaGlobal.capa,
-                      valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
+                      valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFFC5A059)),
                     ),
                   ],
                 ),
@@ -694,9 +763,9 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     const SizedBox(width: 8),
                     FloatingActionButton(
                       onPressed: _isLoading ? null : _sendMessage,
-                      backgroundColor: Colors.blue,
+                      backgroundColor: const Color(0xFFC5A059),
                       mini: true,
-                      child: const Icon(Icons.send),
+                      child: const Icon(Icons.send, color: Color(0xFF0F172A)),
                     ),
                   ],
                 ),
@@ -727,7 +796,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 color: message.isUser
-                    ? Colors.blue
+                    ? const Color(0xFF0F172A)
                     : TemaGlobal.tarjeta,
                 borderRadius: BorderRadius.circular(16),
               ),
@@ -786,6 +855,20 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ElevatedButton.icon(
+                    onPressed: () => _editarDocumento(message),
+                    icon: const Icon(Icons.edit, size: 16),
+                    label: const Text('Editar'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFC5A059),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  ElevatedButton.icon(
                     onPressed: () => _copyToClipboard(message.content),
                     icon: const Icon(Icons.copy, size: 16),
                     label: const Text('Copiar'),
@@ -818,7 +901,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: const Icon(Icons.description, size: 16),
                     label: const Text('Word'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue[700],
+                      backgroundColor: const Color(0xFF0F172A),
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 12,
@@ -877,7 +960,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
               padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
-                  const Icon(Icons.attach_file, color: Colors.blue),
+                  const Icon(Icons.attach_file, color: Color(0xFFC5A059)),
                   const SizedBox(width: 12),
                   Text(
                     'Adjuntar archivo',
@@ -894,7 +977,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
             
             // Archivos externos
             ListTile(
-              leading: const Icon(Icons.insert_drive_file, color: Colors.blue),
+              leading: const Icon(Icons.insert_drive_file, color: Color(0xFFC5A059)),
               title: Text(
                 'Archivo Externo',
                 style: TextStyle(color: TemaGlobal.texto),
@@ -913,13 +996,13 @@ Analiza los documentos adjuntos y extrae información relevante para el document
             
             // ✨ Documentos guardados
             ListTile(
-              leading: const Icon(Icons.folder_special, color: Colors.blue),
+              leading: const Icon(Icons.folder_special, color: Color(0xFFC5A059)),
               title: Text(
                 'Documentos Guardados',
                 style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),
               ),
               subtitle: Text(
-                'Escaneados, reportes, comparaciones, favoritos',
+                'Escaneados, reportes, escritos, favoritos',
                 style: TextStyle(color: TemaGlobal.textoSecundario, fontSize: 12),
               ),
               trailing: Icon(Icons.arrow_forward_ios, color: TemaGlobal.textoTenue, size: 16),
@@ -1221,7 +1304,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     onPressed: () => _exportToPDF(doc.contenido),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.description, color: Colors.blueAccent),
+                    icon: const Icon(Icons.description, color: Color(0xFFC5A059)),
                     tooltip: 'Exportar Word',
                     onPressed: () => _exportToWord(doc.contenido),
                   ),
@@ -1276,7 +1359,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.folder_special, color: Colors.blue),
+                  const Icon(Icons.folder_special, color: Color(0xFFC5A059)),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
@@ -1306,7 +1389,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: Icons.document_scanner,
                     title: 'Documentos Escaneados',
                     subtitle: 'Textos extraídos con OCR',
-                    color: Colors.blue,
+                    color: const Color(0xFFC5A059),
                     onTap: () {
                       Navigator.pop(context);
                       _cargarDocumentosEscaneados();
@@ -1317,7 +1400,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: Icons.calculate,
                     title: 'Reportes de Calculadora',
                     subtitle: 'Dosimetrías y cómputos guardados',
-                    color: Colors.green,
+                    color: const Color(0xFFC5A059),
                     onTap: () {
                       Navigator.pop(context);
                       _cargarReportesCalculadora();
@@ -1328,7 +1411,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: Icons.chat,
                     title: 'Conversaciones del Chat Legal',
                     subtitle: 'Historial de consultas',
-                    color: Colors.purple,
+                    color: const Color(0xFFC5A059),
                     onTap: () {
                       Navigator.pop(context);
                       _cargarConversacionesChatLegal();
@@ -1336,21 +1419,10 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                   ),
                   const SizedBox(height: 12),
                   _buildCategoriaDocumentosRedactor(
-                    icon: Icons.compare_arrows,
-                    title: 'Comparaciones de Estrategias',
-                    subtitle: 'Análisis comparativos guardados',
-                    color: Colors.orange,
-                    onTap: () {
-                      Navigator.pop(context);
-                      _cargarComparaciones();
-                    },
-                  ),
-                  const SizedBox(height: 12),
-                  _buildCategoriaDocumentosRedactor(
                     icon: Icons.star,
                     title: 'Sentencias Favoritas',
                     subtitle: 'Jurisprudencias marcadas',
-                    color: Colors.amber,
+                    color: const Color(0xFFC5A059),
                     onTap: () {
                       Navigator.pop(context);
                       _cargarSentenciasFavoritas();
@@ -1449,12 +1521,6 @@ Analiza los documentos adjuntos y extrae información relevante para el document
   Future<void> _cargarConversacionesChatLegal() async {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('💬 Función en desarrollo...')),
-    );
-  }
-
-  Future<void> _cargarComparaciones() async {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('⚖️ Función en desarrollo...')),
     );
   }
 

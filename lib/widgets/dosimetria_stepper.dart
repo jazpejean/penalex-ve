@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../config/app_theme.dart';
+
 /// Indicador de progreso de 3 pasos de la calculadora de dosimetría:
 /// 1. Delitos → 2. Concurso → 3. Cómputo.
 class DosimetriaStepper extends StatelessWidget {
@@ -24,7 +26,7 @@ class DosimetriaStepper extends StatelessWidget {
                 child: Container(
                   height: 2,
                   margin: const EdgeInsets.symmetric(horizontal: 6),
-                  color: i < pasoActual ? azulMarino : Colors.grey.shade300,
+                  color: i < pasoActual ? azulMarino : TemaGlobal.capa,
                 ),
               ),
             _ChipPaso(
@@ -57,16 +59,16 @@ class _ChipPaso extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool resaltado = completado || activo;
     final Color bg =
-        resaltado ? DosimetriaStepper.azulMarino : const Color(0xFFE2E8F0);
+        resaltado ? DosimetriaStepper.azulMarino : TemaGlobal.capa;
     final Color fg =
-        resaltado ? DosimetriaStepper.dorado : Colors.grey.shade600;
+        resaltado ? DosimetriaStepper.dorado : TemaGlobal.textoSecundario;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         color: bg,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: resaltado ? DosimetriaStepper.dorado : Colors.grey.shade400,
+          color: resaltado ? DosimetriaStepper.dorado : TemaGlobal.capa,
           width: 1,
         ),
       ),

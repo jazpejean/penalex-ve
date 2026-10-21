@@ -3,6 +3,7 @@ import '../pages/main_screen.dart';
 import '../utils/main_tab_controller.dart';
 
 import '../config/app_colors.dart';
+import '../config/app_theme.dart';
 import '../services/role_service.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/role_guard.dart';
@@ -197,7 +198,7 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   filled: true,
-                  fillColor: Colors.grey[100],
+                  fillColor: TemaGlobal.campoTexto,
                 ),
                 onChanged: (value) => setState(() => _searchQuery = value),
               ),
@@ -215,7 +216,7 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
                               Icon(
                                 Icons.people_outline,
                                 size: 64,
-                                color: Colors.grey[400],
+                                color: TemaGlobal.textoTenue,
                               ),
                               const SizedBox(height: 16),
                               Text(
@@ -224,7 +225,7 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
                                     : 'No se encontraron usuarios',
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: Colors.grey[600],
+                                  color: TemaGlobal.textoSecundario,
                                 ),
                               ),
                             ],
@@ -266,7 +267,7 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
                                     Text(
                                       user['email'] ?? 'Sin email',
                                       style: TextStyle(
-                                        color: Colors.grey[600],
+                                        color: TemaGlobal.textoSecundario,
                                         fontSize: 14,
                                       ),
                                     ),

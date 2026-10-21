@@ -11,8 +11,10 @@ import '../config/app_theme.dart';
 import '../services/agenda_service.dart';
 import '../services/non_working_day_service.dart';
 import '../services/notification_service.dart';
+import '../services/tribunales_service.dart';
 import '../utils/date_utils.dart';
 import '../utils/non_working_days.dart';
+import 'tribunal_detail_screen.dart';
 
 class AgendaScreen extends StatefulWidget {
   const AgendaScreen({super.key});
@@ -135,6 +137,8 @@ class _AgendaScreenState extends State<AgendaScreen> {
     final TextEditingController horaCtrl = TextEditingController();
     final TextEditingController tipoCtrl = TextEditingController();
     final TextEditingController notasCtrl = TextEditingController();
+    // Tribunal del catálogo seleccionado (se guarda como tribunal_id).
+    Tribunal? tribunalSel;
 
     if (_selectedDay != null) {
       fechaCtrl.text =
@@ -158,7 +162,15 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 _buildModernField(cedulaCtrl, 'Cédula de Identidad', Icons.badge_outlined, numeric: true),
                 _buildModernField(fechaCtrl, 'Fecha de Audiencia (DD/MM/AAAA) *', Icons.calendar_today, isDate: true, hint: 'Ej: 24/12/2026'),
                 _buildModernField(horaCtrl, 'Hora (HH:MM) *', Icons.access_time, isTime: true, hint: 'Ej: 0230 (Aplica PM automáticamente)'),
-                _buildModernField(tribunalCtrl, 'Tribunal competente', Icons.account_balance),
+                _buildModernField(tribunalCtrl, 'Tribunal competente', Icons.account_balance,
+                    onTap: () async {
+                      final Tribunal? elegido = await _seleccionarTribunal(
+                          context, tribunalCtrl.text);
+                      if (elegido != null && context.mounted) {
+                        tribunalSel = elegido;
+                        tribunalCtrl.text = elegido.nombreLimpio;
+                      }
+                    }),
                 _buildModernField(fiscaliaCtrl, 'Fiscalía', Icons.shield),
                 _buildModernField(delitosCtrl, 'Delitos imputados', Icons.gavel, maxLines: 2),
                 _buildModernField(tipoCtrl, 'Tipo de Audiencia', Icons.merge_type),
@@ -193,6 +205,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 id: DateTime.now().millisecondsSinceEpoch.toString(),
                 expediente: expedienteCtrl.text,
                 tribunal: tribunalCtrl.text.isNotEmpty ? tribunalCtrl.text : null,
+                tribunalId: tribunalSel?.id,
                 imputado: imputadoCtrl.text,
                 cedula: cedulaCtrl.text.isNotEmpty ? cedulaCtrl.text : null,
                 fiscalia: fiscaliaCtrl.text.isNotEmpty ? fiscaliaCtrl.text : null,
@@ -234,6 +247,123 @@ class _AgendaScreenState extends State<AgendaScreen> {
               }
             },
             child: const Text('Guardar'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Abre la ficha del tribunal (foto, mapa, ruta) desde una audiencia.
+  void _abrirTribunal(String tribunalId) async {
+    final List<Tribunal> todos = await TribunalesService.listar();
+    final Tribunal t = todos.firstWhere(
+      (x) => x.id == tribunalId,
+      orElse: () => Tribunal(
+        id: tribunalId,
+        codigo: '',
+        nombre: tribunalId,
+        estado: '',
+      ),
+    );
+    if (!mounted) return;
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => TribunalDetailScreen(tribunal: t),
+      ),
+    );
+  }
+
+  /// Selector de tribunal con búsqueda semántica (catálogo de 868).
+  /// Abre un modal con un campo de texto; cada búsqueda consulta
+  /// [TribunalesService.buscarSemantico] (pgvector + bge-m3) y muestra los
+  /// resultados. Si el worker de embeddings está caído o no hay coincidencias
+  /// relevantes, cae al filtro tradicional por texto.
+  Future<Tribunal?> _seleccionarTribunal(
+      BuildContext context, String inicial) async {
+    final TextEditingController buscadorCtrl =
+        TextEditingController(text: inicial);
+    List<Tribunal> resultados = <Tribunal>[];
+    bool buscando = false;
+
+    Future<void> buscar() async {
+      final q = buscadorCtrl.text.trim();
+      if (q.isEmpty) {
+        resultados = <Tribunal>[];
+        return;
+      }
+      buscando = true;
+      // Semántica primero (limite 12); si devuelve null → fallback substring.
+      final sem = await TribunalesService.buscarSemantico(q, limite: 12);
+      if (sem == null || sem.isEmpty) {
+        resultados = sem ?? <Tribunal>[];
+        buscando = false;
+        return;
+      }
+      // Filtra por umbral de distancia (0 = idéntico; relevantes < 0.52).
+      const umbral = 0.52;
+      final relevantes = sem
+          .where((t) => t.distancia != null && t.distancia! < umbral)
+          .toList();
+      resultados = relevantes.isNotEmpty ? relevantes : sem;
+      buscando = false;
+    }
+
+    await buscar();
+
+    return showDialog<Tribunal>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Buscar tribunal', style: TextStyle(fontWeight: FontWeight.bold)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        content: SizedBox(
+          width: MediaQuery.of(dialogContext).size.width * 0.92,
+          height: 420,
+          child: Column(
+            children: <Widget>[
+              TextField(
+                controller: buscadorCtrl,
+                autofocus: true,
+                decoration: InputDecoration(
+                  hintText: 'Ej: juicio de Maracaibo, control de Caracas...',
+                  prefixIcon: const Icon(Icons.search, color: AppColors.primary),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  isDense: true,
+                ),
+                onChanged: (_) => buscar(),
+              ),
+              const SizedBox(height: 12),
+              Expanded(
+                child: buscando
+                    ? const Center(child: CircularProgressIndicator())
+                    : resultados.isEmpty
+                        ? const Center(
+                            child: Text('Escribe para buscar tribunales',
+                                style: TextStyle(color: Colors.grey)))
+                        : ListView.builder(
+                            itemCount: resultados.length,
+                            itemBuilder: (_, i) {
+                              final t = resultados[i];
+                              return ListTile(
+                                title: Text(t.nombreLimpio,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(fontSize: 14)),
+                                subtitle: Text(
+                                    '${t.codigo} · ${t.estado}${t.funcion != null ? ' · ${t.etiquetaFuncion}' : ''}',
+                                    style: const TextStyle(fontSize: 12)),
+                                trailing: const Icon(Icons.chevron_right, size: 18),
+                                onTap: () => Navigator.pop(dialogContext, t),
+                              );
+                            },
+                          ),
+              ),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, null),
+            child: const Text('Cancelar'),
           ),
         ],
       ),
@@ -350,11 +480,14 @@ class _AgendaScreenState extends State<AgendaScreen> {
     bool isTime = false,
     int maxLines = 1,
     String? hint,
+    VoidCallback? onTap,
   }) => Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: TextFormField(
         controller: controller,
         maxLines: maxLines,
+        readOnly: onTap != null,
+        onTap: onTap,
         keyboardType: (numeric || isDate || isTime) ? TextInputType.number : TextInputType.text,
         inputFormatters: <TextInputFormatter>[
           if (isDate) DateMaskFormatter(),
@@ -535,7 +668,14 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                     onDismissed: (DismissDirection direction) => unawaited(_eliminarAudiencia(aud)),
                                     child: ListTile(
                                       title: Text(aud.expediente, style: const TextStyle(fontWeight: FontWeight.bold)),
-                                      subtitle: Text("${aud.imputado} - ${aud.hora}"),
+                                      subtitle: Text(
+                                        '${aud.imputado} · ${aud.hora}'
+                                        '${(aud.tribunal ?? '').isNotEmpty ? '\n⚖ ${aud.tribunal}' : ''}',
+                                      ),
+                                      isThreeLine: (aud.tribunal ?? '').isNotEmpty,
+                                      onTap: aud.tribunalId != null
+                                          ? () => _abrirTribunal(aud.tribunalId!)
+                                          : null,
                                       trailing: IconButton(
                                         icon: const Icon(Icons.delete_outline, color: Colors.red),
                                         onPressed: () => unawaited(_eliminarAudiencia(aud)),

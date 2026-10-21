@@ -177,14 +177,14 @@ class _RepositorioJurisprudenciaScreenState
           selectedColor: dorado,
           backgroundColor: Colors.transparent,
           labelStyle: TextStyle(
-            color: activo ? azulMarino : Colors.white,
+            color: activo ? azulMarino : TemaGlobal.texto,
             fontWeight: activo ? FontWeight.bold : FontWeight.normal,
             fontSize: 12.5,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
             side: BorderSide(
-                color: activo ? dorado : Colors.white.withValues(alpha: 0.5)),
+                color: activo ? dorado : TemaGlobal.capa),
           ),
           visualDensity: VisualDensity.compact,
           showCheckmark: false,
@@ -263,9 +263,9 @@ class _RepositorioJurisprudenciaScreenState
                     label: Text(_anioSeleccionado?.toString() ?? 'Año'),
                     backgroundColor: Colors.transparent,
                     labelStyle:
-                        const TextStyle(color: Colors.white, fontSize: 12.5),
+                        TextStyle(color: TemaGlobal.texto, fontSize: 12.5),
                     side:
-                        BorderSide(color: Colors.white.withValues(alpha: 0.5)),
+                        BorderSide(color: TemaGlobal.capa),
                     visualDensity: VisualDensity.compact,
                   ),
                 ),
@@ -317,7 +317,7 @@ class _RepositorioJurisprudenciaScreenState
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: azulMarino,
+              color: TemaGlobal.superficie,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.1),
@@ -331,11 +331,11 @@ class _RepositorioJurisprudenciaScreenState
               children: [
                 TextField(
                   controller: _searchController,
-                  style: const TextStyle(color: Colors.white, fontSize: 15),
+                  style: TextStyle(color: TemaGlobal.texto, fontSize: 15),
                   decoration: InputDecoration(
                     hintText: 'Buscar por número, delito, partes...',
                     hintStyle: TextStyle(
-                      color: Colors.white.withOpacity(0.5),
+                      color: TemaGlobal.textoTenue,
                       fontSize: 15,
                     ),
                     prefixIcon:
@@ -352,7 +352,7 @@ class _RepositorioJurisprudenciaScreenState
                           )
                         : null,
                     filled: true,
-                    fillColor: Colors.white.withOpacity(0.1),
+                    fillColor: TemaGlobal.campoTexto,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
@@ -384,7 +384,7 @@ class _RepositorioJurisprudenciaScreenState
                     Text(
                       'Búsqueda inteligente: prueba "matar", "robar", "drogas"...',
                       style: TextStyle(
-                        color: Colors.white.withOpacity(0.4),
+                        color: TemaGlobal.textoSecundario,
                         fontSize: 12,
                       ),
                     ),
@@ -701,7 +701,7 @@ class _RepositorioJurisprudenciaScreenState
   void _mostrarMetadata(SentenciaModel s) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFF1E293B),
+      backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -718,7 +718,7 @@ class _RepositorioJurisprudenciaScreenState
                     width: 40,
                     height: 4,
                     decoration: BoxDecoration(
-                      color: Colors.white24,
+                      color: TemaGlobal.capa,
                       borderRadius: BorderRadius.circular(2),
                     ),
                   ),
@@ -743,7 +743,7 @@ class _RepositorioJurisprudenciaScreenState
                 // ⚖️ Criterios jurisprudenciales de la sentencia
                 if (_criterios.isNotEmpty) ...[
                   const SizedBox(height: 18),
-                  const Divider(color: Colors.white12, height: 1),
+                  Divider(color: TemaGlobal.capa, height: 1),
                   const SizedBox(height: 12),
                   Text(
                     '⚖️ Criterios jurisprudenciales (${_criterios.length})',
@@ -761,7 +761,7 @@ class _RepositorioJurisprudenciaScreenState
                         width: double.infinity,
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          color: Colors.white10,
+                          color: TemaGlobal.capa,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Column(
@@ -780,8 +780,8 @@ class _RepositorioJurisprudenciaScreenState
                             const SizedBox(height: 4),
                             Text(
                               _textoCriterio(c),
-                              style: const TextStyle(
-                                color: Colors.white,
+                              style: TextStyle(
+                                color: TemaGlobal.texto,
                                 fontSize: 13,
                                 height: 1.45,
                               ),
@@ -791,7 +791,7 @@ class _RepositorioJurisprudenciaScreenState
                               Text(
                                 '«${_citaCriterio(c)}»',
                                 style: TextStyle(
-                                  color: Colors.white.withValues(alpha: 0.6),
+                                  color: TemaGlobal.textoSecundario,
                                   fontStyle: FontStyle.italic,
                                   fontSize: 12,
                                   height: 1.4,
@@ -823,7 +823,7 @@ class _RepositorioJurisprudenciaScreenState
             child: Text(
               etiqueta,
               style: TextStyle(
-                color: Colors.white.withValues(alpha: 0.5),
+                color: TemaGlobal.textoSecundario,
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
               ),
@@ -832,12 +832,32 @@ class _RepositorioJurisprudenciaScreenState
           Expanded(
             child: Text(
               valor,
-              style: const TextStyle(color: Colors.white, fontSize: 14),
+              style: TextStyle(color: TemaGlobal.texto, fontSize: 14),
             ),
           ),
         ],
       ),
     );
+  }
+
+  // Criterios de la sentencia para la ficha técnica del listado
+  // (se mantienen vacíos aquí; el detalle es quien los carga).
+  List<Map<String, dynamic>> _criterios = [];
+
+  String _textoCriterio(Map<String, dynamic> c) {
+    final texto = (c['texto_ratio'] ?? '').toString().trim();
+    if (texto.isNotEmpty && texto != 'null') return texto;
+    return (c['resumen'] ?? '').toString().trim();
+  }
+
+  String _citaCriterio(Map<String, dynamic> c) {
+    final ev = (c['parrafo_evidencia'] ?? '').toString().trim();
+    if (ev.isEmpty || ev == 'null') return '';
+    final texto = _textoCriterio(c);
+    // Si la cita es casi el mismo texto que el criterio, no duplicar.
+    if (texto.isNotEmpty && ev == texto) return '';
+    if (ev.length > 600) return '${ev.substring(0, 600)}…';
+    return ev;
   }
 
   Future<void> _verSentencia(SentenciaModel sentencia) async {
@@ -886,6 +906,10 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
   List<Map<String, dynamic>> _criterios = [];
   bool _cargandoCriterios = false;
 
+  // 📚 Citas a doctrina académica (autor/obra) citadas por la sentencia
+  List<Map<String, dynamic>> _citasDoctrinales = [];
+  bool _cargandoCitasDoctrinales = false;
+
   bool _mostrandoAnalisisIA = false;
   bool _analizando = false;
   AnalisisProfundoSentencia? _analisisProfundo;
@@ -895,6 +919,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
     super.initState();
     _cargarEstadoFavorito();
     _cargarCriterios();
+    _cargarCitasDoctrinales();
   }
 
   Future<void> _cargarCriterios() async {
@@ -906,6 +931,18 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
     setState(() {
       _criterios = criterios;
       _cargandoCriterios = false;
+    });
+  }
+
+  Future<void> _cargarCitasDoctrinales() async {
+    if (_cargandoCitasDoctrinales) return;
+    setState(() => _cargandoCitasDoctrinales = true);
+    final citas = await _jurisService
+        .citasDoctrinalesDeSentencia(widget.sentencia.id);
+    if (!mounted) return;
+    setState(() {
+      _citasDoctrinales = citas;
+      _cargandoCitasDoctrinales = false;
     });
   }
 
@@ -1112,7 +1149,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
-      backgroundColor: const Color(0xFF1E293B),
+      backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -1131,7 +1168,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                   width: 40,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: Colors.white24,
+                    color: TemaGlobal.capa,
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
@@ -1141,11 +1178,11 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                 children: [
                   const Icon(Icons.auto_awesome, color: dorado, size: 22),
                   const SizedBox(width: 8),
-                  const Expanded(
+                  Expanded(
                     child: Text(
                       'Análisis con IA',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: TemaGlobal.texto,
                         fontWeight: FontWeight.bold,
                         fontSize: 17,
                       ),
@@ -1153,11 +1190,11 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                   ),
                   IconButton(
                     onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.close, color: Colors.white70),
+                    icon: Icon(Icons.close, color: TemaGlobal.textoSecundario),
                   ),
                 ],
               ),
-              const Divider(color: Colors.white10, height: 1),
+              Divider(color: TemaGlobal.capa, height: 1),
               const SizedBox(height: 8),
               Expanded(
                 child: SingleChildScrollView(
@@ -1165,18 +1202,18 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                   child: MarkdownBody(
                     data: analisis,
                     styleSheet: MarkdownStyleSheet(
-                      h2: const TextStyle(
-                        color: dorado,
+                      h2: TextStyle(
+                        color: TemaGlobal.dorado,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
-                      p: const TextStyle(
-                        color: Colors.white,
+                      p: TextStyle(
+                        color: TemaGlobal.texto,
                         height: 1.55,
                         fontSize: 14,
                       ),
-                      strong: const TextStyle(
-                        color: Colors.white,
+                      strong: TextStyle(
+                        color: TemaGlobal.texto,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -1262,7 +1299,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                     margin: const EdgeInsets.only(bottom: 16),
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: TemaGlobal.tarjeta,
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
@@ -1425,10 +1462,10 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                               const SizedBox(height: 8),
                               Text(
                                 widget.sentencia.resumen,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 14,
                                   height: 1.5,
-                                  color: Colors.black87,
+                                  color: TemaGlobal.texto,
                                 ),
                               ),
                               const SizedBox(height: 16),
@@ -1505,6 +1542,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
               style: const TextStyle(fontSize: 14, height: 1.5)),
           const SizedBox(height: 24),
           _buildSeccionCriterios(),
+          const SizedBox(height: 24),
+          _buildSeccionCitasDoctrinales(),
           const SizedBox(height: 24),
           if (s.urlParaVer.isNotEmpty)
             SizedBox(
@@ -1610,10 +1649,10 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
         const SizedBox(height: 8),
         Text(
           contenido,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 13,
             height: 1.5,
-            color: Colors.black87,
+            color: TemaGlobal.texto,
           ),
         ),
       ],
@@ -1657,10 +1696,10 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
             width: double.infinity,
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: const Color(0xFF0F172A).withValues(alpha: 0.04),
+              color: TemaGlobal.capa.withValues(alpha: 0.5),
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: const Color(0xFFC5A059).withValues(alpha: 0.4),
+                color: dorado.withValues(alpha: 0.4),
               ),
             ),
             child: Column(
@@ -1668,17 +1707,17 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.gavel, size: 16, color: Color(0xFFC5A059)),
+                    const Icon(Icons.gavel, size: 16, color: dorado),
                     const SizedBox(width: 6),
                     Expanded(
                       child: Text(
                         (c['tipo'] ?? '') == 'jurisprudencia'
                             ? 'Criterio oficial de la Sala'
                             : 'Criterio de la Sala',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 12.5,
-                          color: Color(0xFF0F172A),
+                          color: TemaGlobal.texto,
                         ),
                       ),
                     ),
@@ -1694,7 +1733,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: TemaGlobal.tarjeta,
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -1717,6 +1756,103 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
     );
   }
 
+  /// Sección "📚 Doctrina académica citada" de la ficha técnica.
+  ///
+  /// Muestra las citas a autores/obras académicos que la sentencia invoca
+  /// (extraídas por IA con cita textual literal verificada). Si la tabla aún
+  /// no existe en la BD (migración pendiente) o no hay citas, no se muestra.
+  Widget _buildSeccionCitasDoctrinales() {
+    if (_cargandoCitasDoctrinales) {
+      return const Padding(
+        padding: EdgeInsets.symmetric(vertical: 8),
+        child: Center(
+          child: SizedBox(
+            width: 22,
+            height: 22,
+            child: CircularProgressIndicator(strokeWidth: 2.5),
+          ),
+        ),
+      );
+    }
+    if (_citasDoctrinales.isEmpty) return const SizedBox.shrink();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          '📚 Doctrina académica citada (${_citasDoctrinales.length})',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: TemaGlobal.texto,
+            fontSize: 15,
+          ),
+        ),
+        const SizedBox(height: 10),
+        for (final c in _citasDoctrinales) ...[
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: TemaGlobal.capa.withValues(alpha: 0.5),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: dorado.withValues(alpha: 0.4),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const Icon(Icons.menu_book, size: 16, color: dorado),
+                    const SizedBox(width: 6),
+                    Expanded(
+                      child: Text(
+                        _nombreCitaDoctrinal(c),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.5,
+                          color: TemaGlobal.texto,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  (c['parrafo_evidencia'] ?? '').toString().trim(),
+                  style: const TextStyle(fontSize: 13.5, height: 1.5),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+        ],
+      ],
+    );
+  }
+
+  /// "AUTOR — Obra, p. X" de una cita doctrinal (o solo autor / solo obra).
+  String _nombreCitaDoctrinal(Map<String, dynamic> c) {
+    final autor = (c['autor'] ?? '').toString().trim();
+    final obra = (c['obra'] ?? '').toString().trim();
+    final pagina = (c['pagina'] ?? '').toString().trim();
+    String base;
+    if (autor.isNotEmpty && obra.isNotEmpty) {
+      base = '$autor — $obra';
+    } else if (autor.isNotEmpty) {
+      base = autor;
+    } else if (obra.isNotEmpty) {
+      base = obra;
+    } else {
+      base = 'Cita doctrinal';
+    }
+    if (pagina.isNotEmpty && pagina != 'null') {
+      return '$base, $pagina';
+    }
+    return base;
+  }
+
   String _textoCriterio(Map<String, dynamic> c) {
     final texto = (c['texto_ratio'] ?? '').toString().trim();
     if (texto.isNotEmpty && texto != 'null') return texto;
@@ -1731,5 +1867,207 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
     if (texto.isNotEmpty && ev == texto) return '';
     if (ev.length > 600) return '${ev.substring(0, 600)}…';
     return ev;
+  }
+
+  /// Texto de vista previa: prioriza ratio decidendi, luego resumen IA,
+  /// luego extracto (mismo criterio que la pantalla de listado).
+  String _textoResumen(SentenciaModel s) {
+    final texto = s.ratioDecidendi.isNotEmpty
+        ? s.ratioDecidendi
+        : (s.resumen.isNotEmpty ? s.resumen : s.extracto);
+    return (texto == 'null') ? '' : texto;
+  }
+
+  Widget _filaMeta(String etiqueta, String valor) {
+    if (valor.isEmpty) return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 90,
+            child: Text(
+              etiqueta,
+              style: TextStyle(
+                color: TemaGlobal.textoSecundario,
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              valor,
+              style: TextStyle(color: TemaGlobal.texto, fontSize: 14),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Ficha técnica: bottom sheet con metadatos y criterios jurisprudenciales
+  /// (incluida la doctrina académica citada) de la sentencia.
+  void _mostrarMetadata(SentenciaModel s) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: TemaGlobal.tarjeta,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return Container(
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Container(
+                    width: 40,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: TemaGlobal.capa,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'Sentencia Nº ${s.numeroSentencia}',
+                  style: const TextStyle(
+                    color: dorado,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                  ),
+                ),
+                const SizedBox(height: 14),
+                _filaMeta('Sala', s.sala),
+                _filaMeta('Ponente', s.ponente),
+                _filaMeta('Fecha', s.fechaSentencia),
+                _filaMeta('Delito', s.delito),
+                _filaMeta('Materia', s.materia),
+                _filaMeta('Partes', s.partes),
+                _filaMeta('Tipo', s.tipoSentencia),
+                // ⚖️ Criterios jurisprudenciales de la sentencia
+                if (_criterios.isNotEmpty) ...[
+                  const SizedBox(height: 18),
+                  Divider(color: TemaGlobal.capa, height: 1),
+                  const SizedBox(height: 12),
+                  Text(
+                    '⚖️ Criterios jurisprudenciales (${_criterios.length})',
+                    style: const TextStyle(
+                      color: dorado,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  for (final c in _criterios)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: TemaGlobal.capa,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              (c['tipo'] ?? '') == 'jurisprudencia'
+                                  ? '★ Criterio oficial de la Sala'
+                                  : 'Criterio de la Sala',
+                              style: const TextStyle(
+                                color: dorado,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 11.5,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              _textoCriterio(c),
+                              style: TextStyle(
+                                color: TemaGlobal.texto,
+                                fontSize: 13,
+                                height: 1.45,
+                              ),
+                            ),
+                            if (_citaCriterio(c).isNotEmpty) ...[
+                              const SizedBox(height: 6),
+                              Text(
+                                '«${_citaCriterio(c)}»',
+                                style: TextStyle(
+                                  color: TemaGlobal.textoSecundario,
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: 12,
+                                  height: 1.4,
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ),
+                ],
+                // 📚 Doctrina académica citada
+                if (_citasDoctrinales.isNotEmpty) ...[
+                  const SizedBox(height: 18),
+                  Divider(color: TemaGlobal.capa, height: 1),
+                  const SizedBox(height: 12),
+                  Text(
+                    '📚 Doctrina académica citada (${_citasDoctrinales.length})',
+                    style: const TextStyle(
+                      color: dorado,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  for (final c in _citasDoctrinales)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: TemaGlobal.capa,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              _nombreCitaDoctrinal(c),
+                              style: const TextStyle(
+                                color: dorado,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 11.5,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              (c['parrafo_evidencia'] ?? '').toString().trim(),
+                              style: TextStyle(
+                                color: TemaGlobal.texto,
+                                fontSize: 12.5,
+                                height: 1.45,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                ],
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }

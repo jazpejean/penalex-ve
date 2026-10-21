@@ -1,7 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 class NotificationService {
@@ -35,11 +36,17 @@ class NotificationService {
     await _localNotifications.initialize(settings);
 
     final String? token = await _firebaseMessaging.getToken();
-    if (token != null && FirebaseAuth.instance.currentUser != null) {
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .update(<Object, Object?>{'fcmToken': token});
+    final fb.User? user = fb.FirebaseAuth.instance.currentUser;
+    if (token != null && user != null) {
+      // fcm_token vive en Supabase (user_profiles), no en Firestore.
+      try {
+        await Supabase.instance.client
+            .from('user_profiles')
+            .update(<String, dynamic>{'fcm_token': token})
+            .eq('id', user.uid);
+      } catch (e) {
+        debugPrint('Error guardando fcm_token en Supabase: $e');
+      }
     }
 
     FirebaseMessaging.onMessage.listen(_handleForegroundMessage);

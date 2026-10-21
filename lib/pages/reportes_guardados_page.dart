@@ -225,7 +225,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
                       Icon(
                         Icons.folder_open,
                         size: 80,
-                        color: Colors.grey[400],
+                        color: TemaGlobal.textoTenue,
                       ),
                       const SizedBox(height: 16),
                       Text(
@@ -235,7 +235,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
                       const SizedBox(height: 8),
                       Text(
                         'Genera reportes PDF desde la calculadora',
-                        style: TextStyle(fontSize: 14, color: Colors.grey[500]),
+                        style: TextStyle(fontSize: 14, color: TemaGlobal.textoTenue),
                       ),
                     ],
                   ),
@@ -294,7 +294,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
                             Text(
                               tamano,
                               style: TextStyle(
-                                  fontSize: 12, color: Colors.grey[500]),
+                                  fontSize: 12, color: TemaGlobal.textoTenue),
                             ),
                           ],
                         ),

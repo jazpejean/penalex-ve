@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
+import '../config/app_theme.dart';
 import '../models/ley_estructurada.dart';
 import '../services/leyes_rag_service.dart';
 import '../services/leyes_repositorio_service.dart';
@@ -22,7 +23,6 @@ class LeyEstructuraScreen extends StatefulWidget {
 class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color tarjetaFondo = Color(0xFF1E293B);
 
   final LeyesRepositorioService _service = LeyesRepositorioService();
 
@@ -116,7 +116,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: azulMarino,
+      backgroundColor: TemaGlobal.superficie,
       appBar: AppBar(
         title: Text(
           widget.ley.nombre,
@@ -147,7 +147,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
             Text(
               _error!,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.white, fontSize: 16),
+              style: TextStyle(color: TemaGlobal.texto, fontSize: 16),
             ),
             const SizedBox(height: 16),
             ElevatedButton.icon(
@@ -192,7 +192,10 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
           child: Text(
             'No se encontró ningún artículo con "$_filtro"',
             textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 14),
+            style: TextStyle(
+              color: TemaGlobal.textoSecundario,
+              fontSize: 14,
+            ),
           ),
         ),
       );
@@ -210,7 +213,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
   Widget _buildResultadoFiltro(String path, ArticuloLey art) {
     return Card(
       margin: const EdgeInsets.only(bottom: 10),
-      color: tarjetaFondo,
+      color: TemaGlobal.tarjeta,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(color: dorado.withOpacity(0.35)),
@@ -245,7 +248,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.55),
+                    color: TemaGlobal.textoSecundario,
                     fontSize: 11,
                   ),
                 ),
@@ -257,8 +260,9 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.85),
+                    color: TemaGlobal.texto,
                     fontSize: 13,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
@@ -314,11 +318,11 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
           const SizedBox(height: 12),
           TextField(
             controller: _filtroController,
-            style: const TextStyle(color: Colors.white, fontSize: 14),
+            style: TextStyle(color: TemaGlobal.texto, fontSize: 14),
             decoration: InputDecoration(
               hintText: 'Ej. "400", "homicidio", "medidas"...',
               hintStyle: TextStyle(
-                color: Colors.white.withOpacity(0.5),
+                color: TemaGlobal.textoTenue,
                 fontSize: 14,
               ),
               prefixIcon: const Icon(Icons.search, color: dorado, size: 20),
@@ -332,7 +336,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
                     )
                   : null,
               filled: true,
-              fillColor: Colors.white.withOpacity(0.08),
+              fillColor: TemaGlobal.campoTexto,
               contentPadding: const EdgeInsets.symmetric(
                 horizontal: 14,
                 vertical: 10,
@@ -427,7 +431,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
 
   Widget _buildNodo(NodoArbol nodo) {
     final profundidad = _profundidadNodo(nodo.nivel);
-    final colorTitulo = profundidad == 0 ? dorado : Colors.white;
+    final colorTitulo = profundidad == 0 ? dorado : TemaGlobal.texto;
     final tamano = profundidad == 0 ? 15.0 : 14.0;
 
     if (nodo.nivel == 'articulos') {
@@ -437,7 +441,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 4),
       decoration: BoxDecoration(
-        color: tarjetaFondo.withOpacity(profundidad == 0 ? 1.0 : 0.6),
+        color: TemaGlobal.tarjeta.withOpacity(profundidad == 0 ? 1.0 : 0.6),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: dorado.withOpacity(profundidad == 0 ? 0.35 : 0.15)),
       ),
@@ -448,7 +452,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
           tilePadding: EdgeInsets.only(left: 8.0 + profundidad * 8, right: 12),
           childrenPadding: const EdgeInsets.only(bottom: 8),
           iconColor: dorado,
-          collapsedIconColor: Colors.white54,
+          collapsedIconColor: TemaGlobal.textoTenue,
           title: Row(
             children: [
               Expanded(
@@ -514,9 +518,9 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
         margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: const Color(0xFF0F172A),
+          color: TemaGlobal.tarjeta,
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.white10),
+          border: Border.all(color: TemaGlobal.capa),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -544,9 +548,9 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
                   if (art.encabezado != null && art.encabezado!.isNotEmpty)
                     Text(
                       art.encabezado!,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
+                      style: TextStyle(
+                        color: TemaGlobal.texto,
+                        fontWeight: FontWeight.bold,
                         fontSize: 13,
                       ),
                     ),
@@ -555,8 +559,8 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
                     art.textoPrincipal,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Colors.white70,
+                    style: TextStyle(
+                      color: TemaGlobal.textoSecundario,
                       fontSize: 13,
                       height: 1.4,
                     ),
@@ -621,9 +625,9 @@ class _ArticuloSheet extends StatelessWidget {
 
     return Container(
       height: MediaQuery.of(context).size.height * 0.85,
-      decoration: const BoxDecoration(
-        color: Color(0xFF1E293B),
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      decoration: BoxDecoration(
+        color: TemaGlobal.tarjeta,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: Column(
         children: [
@@ -632,7 +636,7 @@ class _ArticuloSheet extends StatelessWidget {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: Colors.white24,
+              color: TemaGlobal.capa,
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -661,20 +665,20 @@ class _ArticuloSheet extends StatelessWidget {
                     leyNombre,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Colors.white70,
+                    style: TextStyle(
+                      color: TemaGlobal.textoSecundario,
                       fontSize: 13,
                     ),
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.close, color: Colors.white70),
+                  icon: Icon(Icons.close, color: TemaGlobal.textoSecundario),
                   onPressed: () => Navigator.pop(context),
                 ),
               ],
             ),
           ),
-          const Divider(color: Colors.white10, height: 1),
+          Divider(color: TemaGlobal.capa, height: 1),
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(20),
@@ -684,8 +688,8 @@ class _ArticuloSheet extends StatelessWidget {
                   if (articulo.encabezado != null && articulo.encabezado!.isNotEmpty)
                     Text(
                       articulo.encabezado!,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: TemaGlobal.texto,
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
                         height: 1.3,
@@ -694,8 +698,8 @@ class _ArticuloSheet extends StatelessWidget {
                   const SizedBox(height: 12),
                   Text(
                     articulo.textoPrincipal,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: TemaGlobal.texto,
                       fontSize: 15,
                       height: 1.6,
                     ),
@@ -708,8 +712,8 @@ class _ArticuloSheet extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 8),
                           child: Text(
                             n,
-                            style: const TextStyle(
-                              color: Colors.white70,
+                            style: TextStyle(
+                              color: TemaGlobal.textoSecundario,
                               fontSize: 14,
                               height: 1.5,
                             ),
@@ -727,8 +731,8 @@ class _ArticuloSheet extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 8),
                           child: Text(
                             p,
-                            style: const TextStyle(
-                              color: Colors.white70,
+                            style: TextStyle(
+                              color: TemaGlobal.textoSecundario,
                               fontSize: 14,
                               height: 1.5,
                             ),
@@ -854,7 +858,7 @@ class _LeyChatIAPageState extends State<LeyChatIAPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: azulMarino,
+      backgroundColor: TemaGlobal.superficie,
       appBar: AppBar(
         title: const Text('Asistente Legal IA'),
         backgroundColor: azulMarino,
@@ -888,7 +892,7 @@ class _LeyChatIAPageState extends State<LeyChatIAPage> {
                       'penas, jurisprudencia relacionada, etc.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.white.withOpacity(0.5),
+                        color: TemaGlobal.textoTenue,
                         fontSize: 14,
                       ),
                     ),
@@ -909,12 +913,12 @@ class _LeyChatIAPageState extends State<LeyChatIAPage> {
                 Expanded(
                   child: TextField(
                     controller: _controller,
-                    style: const TextStyle(color: Colors.white),
+                    style: TextStyle(color: TemaGlobal.texto),
                     decoration: InputDecoration(
                       hintText: 'Escribe tu pregunta...',
-                      hintStyle: const TextStyle(color: Colors.white54),
+                      hintStyle: TextStyle(color: TemaGlobal.textoTenue),
                       filled: true,
-                      fillColor: azulMarino,
+                      fillColor: TemaGlobal.campoTexto,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -949,10 +953,10 @@ class _LeyChatIAPageState extends State<LeyChatIAPage> {
         decoration: BoxDecoration(
           color: esUsuario
               ? dorado.withOpacity(0.25)
-              : const Color(0xFF1E293B),
+              : TemaGlobal.tarjeta,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: esUsuario ? dorado.withOpacity(0.5) : Colors.white24,
+            color: esUsuario ? dorado.withOpacity(0.5) : TemaGlobal.capa,
           ),
         ),
         child: Column(
@@ -961,25 +965,25 @@ class _LeyChatIAPageState extends State<LeyChatIAPage> {
             if (esUsuario)
               Text(
                 msg.contenido,
-                style: const TextStyle(color: Colors.white, fontSize: 14, height: 1.5),
+                style: TextStyle(color: TemaGlobal.texto, fontSize: 14, height: 1.5),
               )
             else
               MarkdownBody(
                 data: msg.contenido,
                 selectable: true,
                 styleSheet: MarkdownStyleSheet(
-                  p: const TextStyle(color: Colors.white, fontSize: 14, height: 1.5),
+                  p: TextStyle(color: TemaGlobal.texto, fontSize: 14, height: 1.5),
                   h1: const TextStyle(color: dorado, fontWeight: FontWeight.bold, fontSize: 18),
                   h2: const TextStyle(color: dorado, fontWeight: FontWeight.bold, fontSize: 16),
                   h3: const TextStyle(color: dorado, fontWeight: FontWeight.bold, fontSize: 15),
-                  strong: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                  listBullet: const TextStyle(color: Colors.white, fontSize: 14),
+                  strong: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),
+                  listBullet: TextStyle(color: TemaGlobal.texto, fontSize: 14),
                   a: const TextStyle(color: dorado),
                 ),
               ),
             if (msg.fuentes != null && msg.fuentes!.isNotEmpty) ...[
               const SizedBox(height: 10),
-              const Divider(color: Colors.white10),
+              Divider(color: TemaGlobal.capa, height: 1),
               const SizedBox(height: 6),
               Text(
                 'Fuentes normativas:',
@@ -995,7 +999,7 @@ class _LeyChatIAPageState extends State<LeyChatIAPage> {
                     child: Text(
                       '• ${referenciaCorta(f.registro)}',
                       style: TextStyle(
-                        color: Colors.white.withOpacity(0.7),
+                        color: TemaGlobal.textoSecundario,
                         fontSize: 12,
                       ),
                     ),
@@ -1014,19 +1018,20 @@ class _LeyChatIAPageState extends State<LeyChatIAPage> {
         margin: const EdgeInsets.only(bottom: 12),
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: const Color(0xFF1E293B),
+          color: TemaGlobal.tarjeta,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: const Row(
+        child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
+            const SizedBox(
               width: 16,
               height: 16,
               child: CircularProgressIndicator(color: dorado, strokeWidth: 2),
             ),
-            SizedBox(width: 12),
-            Text('Analizando...', style: TextStyle(color: Colors.white70)),
+            const SizedBox(width: 12),
+            Text('Analizando...',
+                style: TextStyle(color: TemaGlobal.textoSecundario)),
           ],
         ),
       ),

@@ -1,113 +1,119 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:flutter/foundation.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../models/audiencia.dart';
 
+/// Servicio de la agenda judicial — respaldo en Supabase.
+///
+/// Tabla: `agenda_eventos` (user_id = UID de Firebase, RLS por usuario).
+/// Reemplaza por completo el almacén anterior en Firestore.
 class AgendaService {
-  static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  static final FirebaseAuth _auth = FirebaseAuth.instance;
+  static final SupabaseClient _supabase = Supabase.instance.client;
 
-  static String? get _userId => _auth.currentUser?.uid;
+  static String? get _userId {
+    try {
+      return fb.FirebaseAuth.instance.currentUser?.uid;
+    } catch (_) {
+      return null;
+    }
+  }
 
+  /// Audiencias del mes [mes] (desde el día 1 hasta el día 1 del siguiente).
   static Future<List<Audiencia>> cargarAudiencias(DateTime mes) async {
     final String? userId = _userId;
+    if (userId == null) return <Audiencia>[];
     final DateTime inicio = DateTime(mes.year, mes.month);
     final DateTime fin = DateTime(mes.year, mes.month + 1);
 
     try {
-      final Query<Map<String, dynamic>> baseQuery = _firestore
-          .collection('audiencias')
-          .where('fecha', isGreaterThanOrEqualTo: inicio)
-          .where('fecha', isLessThan: fin)
-          .orderBy('fecha');
-
-      final List<Future<QuerySnapshot<Object?>>> possibleQueries = <Future<QuerySnapshot>>[];
-      if (userId != null) {
-        possibleQueries.add(baseQuery.where('usuarioId', isEqualTo: userId).get());
-        possibleQueries.add(baseQuery.where('userId', isEqualTo: userId).get());
-        possibleQueries.add(baseQuery.where('user_id', isEqualTo: userId).get());
-      }
-
-      for (final Future<QuerySnapshot<Object?>> queryFuture in possibleQueries) {
-        final QuerySnapshot<Object?> query = await queryFuture;
-        if (query.docs.isNotEmpty) {
-          return _parseAudiencias(query.docs);
-        }
-      }
-
-      final QuerySnapshot<Map<String, dynamic>> fallbackQuery = await baseQuery.get();
-      return _parseAudiencias(fallbackQuery.docs);
-    } on FirebaseException catch (e) {
-      debugPrint('Error cargando audiencias: $e');
-      return <Audiencia>[];
+      final resp = await _supabase
+          .from('agenda_eventos')
+          .select('*')
+          .eq('user_id', userId)
+          .gte('fecha', inicio.toIso8601String())
+          .lt('fecha', fin.toIso8601String())
+          .order('fecha');
+      return (resp as List<dynamic>)
+          .map((e) => Audiencia.fromJson(e as Map<String, dynamic>))
+          .toList();
     } on Exception catch (e) {
       debugPrint('Error cargando audiencias: $e');
       return <Audiencia>[];
     }
   }
 
-  static List<Audiencia> _parseAudiencias(List<QueryDocumentSnapshot> docs) => docs.map((QueryDocumentSnapshot<Object?> doc) {
-      final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-      return Audiencia(
-        id: doc.id,
-        expediente: data["expediente"] ?? data["expediente_id"] ?? "",
-        tribunal: data["tribunal"],
-        imputado: data["imputado"] ?? data["acusado"] ?? "",
-        cedula: data["cedula"],
-        fiscalia: data["fiscalia"],
-        delitos: data["delitos"],
-        fecha: (data["fecha"] as Timestamp).toDate(),
-        hora: data["hora"] ?? data["hora_audiencia"] ?? "",
-        tipo: data["tipo"],
-        notas: data["notas"],
-      );
-    }).toList();
-
+  /// Crea una audiencia nueva (id lo genera Supabase).
   static Future<bool> crearAudiencia(Audiencia audiencia) async {
     final String? userId = _userId;
     if (userId == null) return false;
 
     try {
-      // Usar solo 'userId' según las reglas de Firestore
-      await _firestore.collection('audiencias').add(<String, dynamic>{
-        'userId': userId,
+      await _supabase.from('agenda_eventos').insert(<String, dynamic>{
+        'user_id': userId,
         'expediente': audiencia.expediente,
         'tribunal': audiencia.tribunal,
+        'tribunal_id': audiencia.tribunalId,
         'imputado': audiencia.imputado,
         'cedula': audiencia.cedula,
         'fiscalia': audiencia.fiscalia,
         'delitos': audiencia.delitos,
-        'fecha': Timestamp.fromDate(audiencia.fecha),
+        'fecha': audiencia.fecha.toUtc().toIso8601String(),
         'hora': audiencia.hora,
         'tipo': audiencia.tipo,
         'notas': audiencia.notas,
-        'creadoEn': FieldValue.serverTimestamp(),
+        'recordatorio_minutos': audiencia.recordatorioMinutos,
       });
       return true;
-    } on FirebaseException catch (e) {
-      debugPrint('Error creando audiencia: $e');
-      return false;
     } on Exception catch (e) {
       debugPrint('Error creando audiencia: $e');
       return false;
     }
   }
 
-  static Future<bool> eliminarAudiencia(String documentId) async {
+  /// Actualiza una audiencia existente.
+  static Future<bool> actualizarAudiencia(Audiencia audiencia) async {
     final String? userId = _userId;
     if (userId == null) return false;
 
     try {
-      final DocumentSnapshot<Map<String, dynamic>> doc = await _firestore.collection('audiencias').doc(documentId).get();
-      // Verificar userId según las reglas de Firestore
-      if (doc.exists && doc.data()?['userId'] == userId) {
-        await doc.reference.delete();
-        return true;
-      }
+      final resp = await _supabase
+          .from('agenda_eventos')
+          .update(<String, dynamic>{
+            'expediente': audiencia.expediente,
+            'tribunal': audiencia.tribunal,
+            'tribunal_id': audiencia.tribunalId,
+            'imputado': audiencia.imputado,
+            'cedula': audiencia.cedula,
+            'fiscalia': audiencia.fiscalia,
+            'delitos': audiencia.delitos,
+            'fecha': audiencia.fecha.toUtc().toIso8601String(),
+            'hora': audiencia.hora,
+            'tipo': audiencia.tipo,
+            'notas': audiencia.notas,
+            'recordatorio_minutos': audiencia.recordatorioMinutos,
+          })
+          .eq('id', audiencia.id)
+          .eq('user_id', userId);
+      return resp.error == null;
+    } on Exception catch (e) {
+      debugPrint('Error actualizando audiencia: $e');
       return false;
-    } on FirebaseException catch (e) {
-      debugPrint('Error eliminando audiencia: $e');
-      return false;
+    }
+  }
+
+  /// Elimina una audiencia (solo la propia; RLS lo garantiza).
+  static Future<bool> eliminarAudiencia(String id) async {
+    final String? userId = _userId;
+    if (userId == null) return false;
+
+    try {
+      final resp = await _supabase
+          .from('agenda_eventos')
+          .delete()
+          .eq('id', id)
+          .eq('user_id', userId);
+      return resp.error == null;
     } on Exception catch (e) {
       debugPrint('Error eliminando audiencia: $e');
       return false;

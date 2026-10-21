@@ -20,10 +20,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Timer? _cooldownTimer;
   bool _emailSent = false;
 
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
   static Color get fondoGris => TemaGlobal.superficie;
-  static const Color grisTexto = Color(0xFF4A5568);
 
   @override
   void dispose() {
@@ -55,11 +52,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       builder: (_) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: Text(title, style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
-        content: Text(message, style: TextStyle(color: isError ? Colors.red : azulMarino)),
+        content: Text(message, style: TextStyle(color: isError ? Colors.red : TemaGlobal.textoSecundario)),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Entendido', style: TextStyle(color: dorado)),
+            child: Text('Entendido', style: TextStyle(color: TemaGlobal.dorado)),
           ),
         ],
       ),
@@ -104,9 +101,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) => Scaffold(
       backgroundColor: fondoGris,
       appBar: AppBar(
-        backgroundColor: azulMarino,
+        backgroundColor: TemaGlobal.azulMarino,
         elevation: 0,
-        title: const Text("Recuperar cuenta", style: TextStyle(color: dorado)),
+        title: Text("Recuperar cuenta", style: TextStyle(color: TemaGlobal.dorado)),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -115,17 +112,17 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Icon(Icons.lock_reset_outlined, size: 80, color: azulMarino),
+              Icon(Icons.lock_reset_outlined, size: 80, color: TemaGlobal.azulMarino),
               const SizedBox(height: 20),
-              const Text("¿Olvidaste tu contraseña?", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: azulMarino)),
+              Text("¿Olvidaste tu contraseña?", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: TemaGlobal.azulMarino)),
               const SizedBox(height: 8),
-              const Text("Te enviaremos un enlace para restablecer tu contraseña", style: TextStyle(fontSize: 16, color: grisTexto)),
+              Text("Te enviaremos un enlace para restablecer tu contraseña", style: TextStyle(fontSize: 16, color: TemaGlobal.textoSecundario)),
               const SizedBox(height: 40),
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
                   labelText: "Correo electrónico",
-                  prefixIcon: const Icon(Icons.email_outlined, color: azulMarino),
+                  prefixIcon: Icon(Icons.email_outlined, color: TemaGlobal.azulMarino),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 ),
                 keyboardType: TextInputType.emailAddress,
@@ -139,8 +136,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     ElevatedButton(
                       onPressed: _isCooldown ? null : _sendResetEmail,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: azulMarino,
-                        foregroundColor: dorado,
+                        backgroundColor: TemaGlobal.azulMarino,
+                        foregroundColor: TemaGlobal.dorado,
                         minimumSize: const Size(double.infinity, 52),
                       ),
                       child: Text(_isCooldown ? "Reenviar en $_cooldownSeconds s" : "ENVIAR ENLACE"),
@@ -152,9 +149,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           Navigator.pushNamed(context, '/reset-password');
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: azulMarino,
-                          side: const BorderSide(color: dorado),
+                          backgroundColor: TemaGlobal.tarjeta,
+                          foregroundColor: TemaGlobal.azulMarino,
+                          side: BorderSide(color: TemaGlobal.dorado),
                           minimumSize: const Size(double.infinity, 52),
                         ),
                         child: const Text("TENGO EL ENLACE / CÓDIGO"),
@@ -165,8 +162,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           Navigator.pop(context);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: azulMarino,
-                          foregroundColor: dorado,
+                          backgroundColor: TemaGlobal.azulMarino,
+                          foregroundColor: TemaGlobal.dorado,
                           minimumSize: const Size(double.infinity, 52),
                         ),
                         child: const Text("YA CAMBIÉ MI CONTRASEÑA"),
@@ -178,12 +175,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               TextButton(
                 onPressed: () =>
                     Navigator.pushNamed(context, '/reset-password'),
-                child: const Text("Ya tengo el código de restablecimiento",
-                    style: TextStyle(color: azulMarino)),
+                child: Text("Ya tengo el código de restablecimiento",
+                    style: TextStyle(color: TemaGlobal.azulMarino)),
               ),
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text("Volver al login", style: TextStyle(color: azulMarino)),
+                child: Text("Volver al login", style: TextStyle(color: TemaGlobal.azulMarino)),
               ),
             ],
           ),

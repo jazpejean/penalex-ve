@@ -47,10 +47,7 @@ class _LoginPageState extends State<LoginPage> {
   String _errorMessage = '';
   bool _isLoading = false;
 
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
   static Color get fondoGris => TemaGlobal.superficie;
-  static const Color grisTexto = Color(0xFF4A5568);
 
   @override
   void dispose() {
@@ -89,26 +86,26 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(subtitle,
-                style: TextStyle(color: azulMarino.withValues(alpha: 0.85))),
+                style: TextStyle(color: TemaGlobal.azulMarino.withValues(alpha: 0.85))),
             const SizedBox(height: 12),
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: const Color(0xFF0F172A).withValues(alpha: 0.05),
+                color: TemaGlobal.azulMarino.withValues(alpha: 0.05),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                    color: const Color(0xFF0F172A).withValues(alpha: 0.10)),
+                    color: TemaGlobal.azulMarino.withValues(alpha: 0.10)),
               ),
               child: Row(
                 children: [
                   Icon(Icons.mark_email_unread_outlined,
-                      color: azulMarino.withValues(alpha: 0.85)),
+                      color: TemaGlobal.azulMarino.withValues(alpha: 0.85)),
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
                       'Abre el enlace del correo y luego intenta iniciar sesión nuevamente.',
                       style: TextStyle(
-                          color: azulMarino.withValues(alpha: 0.80),
+                          color: TemaGlobal.azulMarino.withValues(alpha: 0.80),
                           height: 1.2),
                     ),
                   ),
@@ -120,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Entendido', style: TextStyle(color: azulMarino)),
+            child: Text('Entendido', style: TextStyle(color: TemaGlobal.azulMarino)),
           ),
         ],
       ),
@@ -241,19 +238,19 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                const Icon(Icons.gavel_rounded, size: 80, color: azulMarino),
+                Icon(Icons.gavel_rounded, size: 80, color: TemaGlobal.azulMarino),
                 const SizedBox(height: 24),
-                const Text(
+                Text(
                   'Penalex VE',
                   style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: azulMarino),
+                      color: TemaGlobal.azulMarino),
                 ),
                 const SizedBox(height: 8),
-                const Text(
+                Text(
                   'Inicia sesión para continuar',
-                  style: TextStyle(fontSize: 16, color: grisTexto),
+                  style: TextStyle(fontSize: 16, color: TemaGlobal.textoSecundario),
                 ),
                 const SizedBox(height: 40),
                 if (_errorMessage.isNotEmpty)
@@ -281,11 +278,11 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                     labelText: 'Correo electrónico',
                     prefixIcon: Icon(Icons.email_outlined,
-                        color: azulMarino.withValues(alpha: 0.90)),
+                        color: TemaGlobal.azulMarino.withValues(alpha: 0.90)),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12)),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: TemaGlobal.campoTexto,
                   ),
                   textInputAction: TextInputAction.next,
                 ),
@@ -296,13 +293,13 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                     labelText: 'Contraseña',
                     prefixIcon: Icon(Icons.lock_outline,
-                        color: azulMarino.withValues(alpha: 0.90)),
+                        color: TemaGlobal.azulMarino.withValues(alpha: 0.90)),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscurePassword
                             ? Icons.visibility_off
                             : Icons.visibility,
-                        color: azulMarino.withValues(alpha: 0.90),
+                        color: TemaGlobal.azulMarino.withValues(alpha: 0.90),
                       ),
                       onPressed: () =>
                           setState(() => _obscurePassword = !_obscurePassword),
@@ -310,7 +307,7 @@ class _LoginPageState extends State<LoginPage> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12)),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: TemaGlobal.campoTexto,
                   ),
                   textInputAction: TextInputAction.done,
                   onSubmitted: (_) => _login(),
@@ -324,8 +321,8 @@ class _LoginPageState extends State<LoginPage> {
                       MaterialPageRoute(
                           builder: (_) => const ForgotPasswordPage()),
                     ),
-                    child: const Text('¿Olvidaste tu contraseña?',
-                        style: TextStyle(color: azulMarino)),
+                    child: Text('¿Olvidaste tu contraseña?',
+                        style: TextStyle(color: TemaGlobal.azulMarino)),
                   ),
                 ),
                 const SizedBox(height: 32),
@@ -335,8 +332,8 @@ class _LoginPageState extends State<LoginPage> {
                   ElevatedButton(
                     onPressed: _login,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: azulMarino,
-                      foregroundColor: dorado,
+                      backgroundColor: TemaGlobal.azulMarino,
+                      foregroundColor: TemaGlobal.dorado,
                       minimumSize: const Size(double.infinity, 52),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
@@ -350,11 +347,11 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: _loginWithGoogle,
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(
-                        color: dorado.withValues(alpha: 0.85), width: 1.5),
+                        color: TemaGlobal.dorado.withValues(alpha: 0.85), width: 1.5),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                     minimumSize: const Size(double.infinity, 52),
-                    backgroundColor: Colors.white,
+                    backgroundColor: TemaGlobal.tarjeta,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -377,8 +374,8 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Text('¿No tienes cuenta? ',
-                        style: TextStyle(color: grisTexto)),
+                    Text('¿No tienes cuenta? ',
+                        style: TextStyle(color: TemaGlobal.textoSecundario)),
                     TextButton(
                       onPressed: () => Navigator.push(
                         context,

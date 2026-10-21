@@ -23,7 +23,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
   static Color get fondoGris => TemaGlobal.superficie;
-  static const Color grisTexto = Color(0xFF4A5568);
+  static Color get grisTexto => TemaGlobal.textoSecundario;
 
   @override
   void initState() {
@@ -137,7 +137,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 16),
-                const Text(
+                Text(
                   'Te hemos enviado un correo de verificación. Haz clic en el enlace del correo para activar tu cuenta.',
                   style: TextStyle(fontSize: 16, color: grisTexto),
                   textAlign: TextAlign.center,
@@ -146,9 +146,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: TemaGlobal.tarjeta,
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: azulMarino.withValues(alpha: 0.1)),
+                    border: Border.all(color: TemaGlobal.capa),
                   ),
                   child: Column(
                     children: <Widget>[
@@ -222,7 +222,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                       else
                         Text(
                           'Puedes reenviar en $_resendCooldown segundos',
-                          style: const TextStyle(color: grisTexto, fontSize: 14),
+                          style: TextStyle(color: grisTexto, fontSize: 14),
                         ),
                       const SizedBox(height: 16),
                       TextButton(

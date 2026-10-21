@@ -13,7 +13,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:penalex_ve/config/app_theme.dart';
 
 class _PropuestaJurisprudencia extends StatelessWidget {
-  const _PropuestaJurisprudencia();
+  const _PropuestaJurisprudencia({this.scopeLeyes = false});
+
+  final bool scopeLeyes;
 
   @override
   Widget build(BuildContext context) {
@@ -158,8 +160,8 @@ class _PropuestaJurisprudencia extends StatelessWidget {
               const SizedBox(height: 8),
               Row(
                 children: [
-                  _segmento('Sentencias', activo: true),
-                  _segmento('Leyes', activo: false),
+                  _segmento('Sentencias', activo: !scopeLeyes),
+                  _segmento('Leyes', activo: scopeLeyes),
                   _segmento('Glosario', activo: false),
                 ],
               ),
@@ -201,7 +203,7 @@ class _PropuestaJurisprudencia extends StatelessWidget {
 
               // ===== Sugerencia de resultados (ejemplo) =====
               Text(
-                'Resultados sugeridos',
+                scopeLeyes ? 'Leyes sugeridas' : 'Resultados sugeridos',
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -226,6 +228,22 @@ class _PropuestaJurisprudencia extends StatelessWidget {
                     'Agravante de uso de arma de fuego: la pluralidad de partícipes y la nocturnidad...',
                 vinculante: false,
               ),
+              if (scopeLeyes) ...[
+                const SizedBox(height: 12),
+                _leyEjemplo(
+                  articulo: 'Código Penal · Art. 405',
+                  titulo: 'Homicidio',
+                  texto:
+                      'El que intencionalmente haya dado muerte a alguna persona, será penado con presidio de doce a dieciocho años...',
+                ),
+                const SizedBox(height: 12),
+                _leyEjemplo(
+                  articulo: 'Código Penal · Art. 458',
+                  titulo: 'Robo agravado',
+                  texto:
+                      'La pena será de diez a diecisiete años de presidio, cuando el robo se haya cometido por medio de amenazas a la vida...',
+                ),
+              ],
             ],
           ),
         ),
@@ -320,6 +338,68 @@ class _PropuestaJurisprudencia extends StatelessWidget {
           const SizedBox(width: 8),
           Icon(Icons.arrow_forward_ios,
               size: 13, color: TemaGlobal.dorado),
+        ],
+      ),
+    );
+  }
+
+  Widget _leyEjemplo({
+    required String articulo,
+    required String titulo,
+    required String texto,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: TemaGlobal.tarjeta,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: TemaGlobal.capa, width: 1),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                decoration: BoxDecoration(
+                  color: TemaGlobal.azulMarino,
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text(
+                  articulo,
+                  style: const TextStyle(
+                    fontSize: 10.5,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  titulo,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: TemaGlobal.texto,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            texto,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 12.5,
+              height: 1.45,
+              color: TemaGlobal.textoSecundario,
+            ),
+          ),
         ],
       ),
     );
@@ -420,7 +500,7 @@ void main() {
     await loader.load();
   });
 
-  Future<void> pumpPropuesta(WidgetTester tester) async {
+  Future<void> pumpPropuesta(WidgetTester tester, [Widget? widget]) async {
     tester.view.physicalSize = const Size(1170, 2532);
     tester.view.devicePixelRatio = 3.0;
     addTearDown(tester.view.reset);
@@ -433,7 +513,7 @@ void main() {
           theme: TemaGlobal.isDark
               ? ThemeData.dark(useMaterial3: true)
               : ThemeData.light(useMaterial3: true),
-          home: const _PropuestaJurisprudencia(),
+          home: widget ?? const _PropuestaJurisprudencia(),
         ),
       );
       await tester.pump(const Duration(milliseconds: 400));
@@ -462,6 +542,17 @@ void main() {
       matchesGoldenFile('goldens/venley_jurisprudencia_propuesta_oscura.png'),
     );
     TemaGlobal.oscuro.value = false;
+    tester.takeException();
+  });
+
+  testWidgets('propuesta integrada: alcance LEYES (claro)', (tester) async {
+    TemaGlobal.oscuro.value = false;
+    await pumpPropuesta(
+        tester, const _PropuestaJurisprudencia(scopeLeyes: true));
+    await expectLater(
+      find.byType(_PropuestaJurisprudencia),
+      matchesGoldenFile('goldens/venley_jurisprudencia_leyes.png'),
+    );
     tester.takeException();
   });
 }

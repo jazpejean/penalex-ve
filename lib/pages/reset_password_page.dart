@@ -34,7 +34,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
   static Color get fondoGris => TemaGlobal.superficie;
-  static const Color grisTexto = Color(0xFF4A5568);
+  static Color get grisTexto => TemaGlobal.textoSecundario;
 
   @override
   void initState() {
@@ -153,7 +153,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
+                Text(
                   'Pega el enlace del correo de recuperación o el código oobCode, luego define tu nueva contraseña.',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 14, color: grisTexto),
@@ -169,7 +169,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12)),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: TemaGlobal.campoTexto,
                   ),
                   textInputAction: TextInputAction.next,
                 ),
@@ -195,7 +195,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12)),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: TemaGlobal.campoTexto,
                   ),
                   textInputAction: TextInputAction.next,
                 ),
@@ -221,7 +221,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12)),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: TemaGlobal.campoTexto,
                   ),
                   textInputAction: TextInputAction.done,
                   onSubmitted: (_) {

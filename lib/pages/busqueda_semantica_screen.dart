@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
 import '../pages/main_screen.dart';
 import '../utils/main_tab_controller.dart';
 import '../services/busqueda_semantica_service.dart';
@@ -76,8 +77,12 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: TemaGlobal.superficie,
       appBar: AppBar(
-        title: const Text('Búsqueda Semántica'),
+        title: Text('Búsqueda Semántica', style: TextStyle(color: TemaGlobal.dorado, fontWeight: FontWeight.bold)),
+        backgroundColor: TemaGlobal.azulMarino,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Color(0xFFC5A059)),
         actions: [
           IconButton(
             icon: const Icon(Icons.history),
@@ -117,7 +122,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.purple.shade50,
+        color: TemaGlobal.capa,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.05),
@@ -147,7 +152,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
                       )
                     : null,
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: TemaGlobal.campoTexto,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
@@ -181,17 +186,17 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
 
   Widget _buildSugerencias() {
     return Container(
-      color: Colors.white,
+      color: TemaGlobal.superficie,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 8, 16, 4),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
             child: Text(
               'Búsquedas recientes',
               style: TextStyle(
                 fontSize: 12,
-                color: Colors.grey,
+                color: TemaGlobal.textoSecundario,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -214,17 +219,17 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
 
   Widget _buildContenido() {
     if (_cargando) {
-      return const Center(
+      return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(),
-            SizedBox(height: 16),
-            Text('Buscando con IA semántica...'),
-            SizedBox(height: 8),
+            const CircularProgressIndicator(),
+            const SizedBox(height: 16),
+            const Text('Buscando con IA semántica...'),
+            const SizedBox(height: 8),
             Text(
               'Esto puede tomar unos segundos',
-              style: TextStyle(fontSize: 12, color: Colors.grey),
+              style: TextStyle(fontSize: 12, color: TemaGlobal.textoTenue),
             ),
           ],
         ),
@@ -268,7 +273,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.manage_search,
-                size: 100, color: Colors.purple.shade200),
+                size: 100, color: TemaGlobal.dorado),
             const SizedBox(height: 24),
             const Text(
               'Búsqueda Semántica Inteligente',
@@ -276,11 +281,11 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'Busca usando lenguaje natural. La IA encuentra contenido relevante '
               'aunque no uses las palabras exactas.',
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey, fontSize: 14),
+              style: TextStyle(color: TemaGlobal.textoSecundario, fontSize: 14),
             ),
             const SizedBox(height: 32),
             Wrap(
@@ -318,7 +323,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.search_off, size: 64, color: Colors.grey),
+            Icon(Icons.search_off, size: 64, color: TemaGlobal.textoTenue),
             const SizedBox(height: 16),
             const Text(
               'No se encontraron resultados',
@@ -328,7 +333,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
             Text(
               'para "${_resultados!.consulta}"',
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.grey),
+              style: TextStyle(color: TemaGlobal.textoSecundario),
             ),
             const SizedBox(height: 24),
             const Text(
@@ -351,12 +356,12 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
       children: [
         // Resumen
         Card(
-          color: Colors.purple.shade50,
+          color: TemaGlobal.tarjeta,
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Row(
               children: [
-                const Icon(Icons.analytics, color: Colors.purple),
+                const Icon(Icons.analytics, color: Color(0xFFC5A059)),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -450,14 +455,14 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  const Icon(Icons.gavel, size: 16, color: Colors.grey),
+                  const Icon(Icons.gavel, size: 16, color: Color(0xFFC5A059)),
                   const SizedBox(width: 4),
                   Expanded(
                     child: Text(
                       sentencia.numero,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 12,
-                        color: Colors.grey,
+                        color: TemaGlobal.textoSecundario,
                       ),
                     ),
                   ),
@@ -482,11 +487,11 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
               Row(
                 children: [
                   Icon(Icons.calendar_today,
-                      size: 14, color: Colors.grey.shade600),
+                      size: 14, color: TemaGlobal.textoTenue),
                   const SizedBox(width: 4),
                   Text(
                     '${sentencia.fecha.day}/${sentencia.fecha.month}/${sentencia.fecha.year}',
-                    style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+                    style: TextStyle(fontSize: 12, color: TemaGlobal.textoTenue),
                   ),
                   const Spacer(),
                   const Icon(Icons.arrow_forward_ios, size: 14),
@@ -536,14 +541,14 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  const Icon(Icons.article, size: 16, color: Colors.grey),
+                  const Icon(Icons.article, size: 16, color: Color(0xFFC5A059)),
                   const SizedBox(width: 4),
                   Expanded(
                     child: Text(
                       ley.nombreCorto,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 12,
-                        color: Colors.grey,
+                        color: TemaGlobal.textoSecundario,
                       ),
                     ),
                   ),
@@ -570,10 +575,10 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
                   if (ley.capitulos.isNotEmpty)
                     Text(
                       'Cap. ${ley.capitulos.first.numero}',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
-                        color: Colors.purple,
+                        color: TemaGlobal.textoSecundario,
                       ),
                     ),
                   const Spacer(),
@@ -590,7 +595,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
   Color _getColorSimilitud(double similitud) {
     if (similitud >= 0.7) return Colors.green;
     if (similitud >= 0.5) return Colors.orange;
-    return Colors.grey;
+    return TemaGlobal.textoTenue;
   }
 
   void _mostrarHistorial() {

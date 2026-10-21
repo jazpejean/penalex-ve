@@ -22,37 +22,19 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
   
   AIModel _modeloSeleccionado = AIService.getModeloActivo();
   
-  final TextEditingController _openAIKeyController = TextEditingController();
-  final TextEditingController _geminiKeyController = TextEditingController();
-  final TextEditingController _claudeKeyController = TextEditingController();
   final TextEditingController _deepseekKeyController = TextEditingController();
   
-  bool _showOpenAIKey = false;
-  bool _showGeminiKey = false;
-  bool _showClaudeKey = false;
   bool _showDeepSeekKey = false;
   
   @override
   void dispose() {
-    _openAIKeyController.dispose();
-    _geminiKeyController.dispose();
-    _claudeKeyController.dispose();
     _deepseekKeyController.dispose();
     super.dispose();
   }
   
   Future<void> _guardarConfiguracion() async {
-    // Actualizar API keys
+    // Actualizar API key
     AIService.configurarKeys(
-      openAI: _openAIKeyController.text.trim().isEmpty 
-          ? null 
-          : _openAIKeyController.text.trim(),
-      gemini: _geminiKeyController.text.trim().isEmpty 
-          ? null 
-          : _geminiKeyController.text.trim(),
-      claude: _claudeKeyController.text.trim().isEmpty 
-          ? null 
-          : _claudeKeyController.text.trim(),
       deepseek: _deepseekKeyController.text.trim().isEmpty 
           ? null 
           : _deepseekKeyController.text.trim(),
@@ -240,27 +222,6 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
             const SizedBox(height: 12),
             
             _buildProveedorSection(
-              'OpenAI',
-              Icons.smart_toy,
-              [AIModel.gpt4, AIModel.gpt4Turbo, AIModel.gpt35Turbo],
-              Colors.green,
-            ),
-            
-            _buildProveedorSection(
-              'Google Gemini',
-              Icons.auto_awesome,
-              [AIModel.geminiPro, AIModel.gemini15Pro],
-              Colors.blue,
-            ),
-            
-            _buildProveedorSection(
-              'Anthropic Claude',
-              Icons.psychology,
-              [AIModel.claude3Opus, AIModel.claude3Sonnet, AIModel.claude3Haiku],
-              Colors.purple,
-            ),
-            
-            _buildProveedorSection(
               'DeepSeek',
               Icons.code,
               [AIModel.deepseekChat, AIModel.deepseekCoder],
@@ -269,8 +230,8 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
             
             const SizedBox(height: 24),
             
-            // API Keys
-            Text(              'API KEYS',
+            // API Key
+            Text(              'API KEY',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -279,30 +240,6 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
               ),
             ),
             const SizedBox(height: 12),
-            
-            _buildAPIKeyField(
-              'OpenAI',
-              _openAIKeyController,
-              _showOpenAIKey,
-              (value) => setState(() => _showOpenAIKey = value),
-              'sk-proj-...',
-            ),
-            
-            _buildAPIKeyField(
-              'Google Gemini',
-              _geminiKeyController,
-              _showGeminiKey,
-              (value) => setState(() => _showGeminiKey = value),
-              'AIza...',
-            ),
-            
-            _buildAPIKeyField(
-              'Anthropic Claude',
-              _claudeKeyController,
-              _showClaudeKey,
-              (value) => setState(() => _showClaudeKey = value),
-              'sk-ant-...',
-            ),
             
             _buildAPIKeyField(
               'DeepSeek',
@@ -324,7 +261,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
                     label: Text('Probar modelo'),
                     style: OutlinedButton.styleFrom(
                       side: BorderSide(color: TemaGlobal.texto, width: 1.5),
-                      foregroundColor: azulMarino,
+                      foregroundColor: TemaGlobal.texto,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -478,7 +415,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: color.withValues(alpha: 50 / 255)),
       ),
@@ -523,7 +460,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
         decoration: BoxDecoration(
           color: isSelected ? azulMarino.withAlpha(10) : null,
           border: Border(
-            bottom: BorderSide(color: Colors.grey.withAlpha(25)),
+            bottom: BorderSide(color: TemaGlobal.capa),
           ),
         ),
         child: Row(
@@ -551,7 +488,9 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
                         modelo.nombre,
                         style: TextStyle(
                           fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                          color: isDisponible ? azulMarino : Colors.grey,
+                          color: isDisponible
+                              ? TemaGlobal.texto
+                              : TemaGlobal.textoSecundario,
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -632,9 +571,9 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.withAlpha(50)),
+        border: Border.all(color: TemaGlobal.capa),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

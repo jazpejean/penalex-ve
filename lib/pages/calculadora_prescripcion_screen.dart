@@ -114,8 +114,8 @@ class _CalculadoraPrescripcionScreenState
       builder: (context, child) => Theme(
         data: Theme.of(context).copyWith(
           colorScheme: const ColorScheme.dark(
-            primary: Color(0xFFC5A059),
-            surface: Color(0xFF1E293B),
+            primary: dorado,
+            surface: grisOscuro,
           ),
         ),
         child: child!,
@@ -155,11 +155,11 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
       appBar: AppBar(
         title: const Text(
           'Calculadora de Prescripción',
-          style: TextStyle(color: Color(0xFFC5A059), fontWeight: FontWeight.bold),
+          style: TextStyle(color: dorado, fontWeight: FontWeight.bold),
         ),
         backgroundColor: azulMarino,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Color(0xFFC5A059)),
+        iconTheme: const IconThemeData(color: dorado),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -440,7 +440,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
         const Text(
           'Resultado',
           style: TextStyle(
-            color: Color(0xFFC5A059),
+            color: dorado,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -510,7 +510,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
                 const Text(
                   'Fundamento textual',
                   style: TextStyle(
-                    color: Color(0xFFC5A059),
+                    color: dorado,
                     fontWeight: FontWeight.bold,
                     fontSize: 13,
                   ),
@@ -570,7 +570,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
         const Text(
           'Reglas del cómputo',
           style: TextStyle(
-            color: Color(0xFFC5A059),
+            color: dorado,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),

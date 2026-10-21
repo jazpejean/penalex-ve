@@ -32,10 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
 
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
   static Color get fondoGris => TemaGlobal.superficie;
-  static const Color grisTexto = Color(0xFF4A5568);
 
   @override
   void dispose() {
@@ -52,11 +49,11 @@ class _RegisterPageState extends State<RegisterPage> {
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: Text(titulo, style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
-        content: Text(mensaje, style: TextStyle(color: isError ? Colors.red : azulMarino)),
+        content: Text(mensaje, style: TextStyle(color: isError ? Colors.red : TemaGlobal.textoSecundario)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Entendido', style: TextStyle(color: azulMarino)),
+            child: Text('Entendido', style: TextStyle(color: TemaGlobal.azulMarino)),
           ),
         ],
       ),
@@ -127,23 +124,23 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.person_add_alt_1, size: 80, color: azulMarino),
+              Icon(Icons.person_add_alt_1, size: 80, color: TemaGlobal.azulMarino),
               const SizedBox(height: 24),
-              const Text(
+              Text(
                 'Crear cuenta',
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: azulMarino),
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: TemaGlobal.azulMarino),
               ),
               const SizedBox(height: 8),
-              const Text(
+              Text(
                 'Regístrate para comenzar',
-                style: TextStyle(fontSize: 16, color: grisTexto),
+                style: TextStyle(fontSize: 16, color: TemaGlobal.textoSecundario),
               ),
               const SizedBox(height: 40),
               TextField(
                 controller: _nameController,
                 decoration: InputDecoration(
                   labelText: 'Nombre completo',
-                  prefixIcon: const Icon(Icons.person_outline, color: azulMarino),
+                  prefixIcon: Icon(Icons.person_outline, color: TemaGlobal.azulMarino),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 ),
                 textInputAction: TextInputAction.next,
@@ -154,7 +151,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: 'Correo electrónico',
-                  prefixIcon: const Icon(Icons.email_outlined, color: azulMarino),
+                  prefixIcon: Icon(Icons.email_outlined, color: TemaGlobal.azulMarino),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 ),
                 textInputAction: TextInputAction.next,
@@ -165,9 +162,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 obscureText: _obscurePassword,
                 decoration: InputDecoration(
                   labelText: 'Contraseña',
-                  prefixIcon: const Icon(Icons.lock_outline, color: azulMarino),
+                  prefixIcon: Icon(Icons.lock_outline, color: TemaGlobal.azulMarino),
                   suffixIcon: IconButton(
-                    icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility, color: azulMarino),
+                    icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility, color: TemaGlobal.azulMarino),
                     onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
                   ),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
@@ -180,9 +177,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 obscureText: _obscureConfirm,
                 decoration: InputDecoration(
                   labelText: 'Confirmar contraseña',
-                  prefixIcon: const Icon(Icons.lock_outline, color: azulMarino),
+                  prefixIcon: Icon(Icons.lock_outline, color: TemaGlobal.azulMarino),
                   suffixIcon: IconButton(
-                    icon: Icon(_obscureConfirm ? Icons.visibility_off : Icons.visibility, color: azulMarino),
+                    icon: Icon(_obscureConfirm ? Icons.visibility_off : Icons.visibility, color: TemaGlobal.azulMarino),
                     onPressed: () => setState(() => _obscureConfirm = !_obscureConfirm),
                   ),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
@@ -197,8 +194,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 ElevatedButton(
                   onPressed: _register,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: azulMarino,
-                    foregroundColor: dorado,
+                    backgroundColor: TemaGlobal.azulMarino,
+                    foregroundColor: TemaGlobal.dorado,
                     minimumSize: const Size(double.infinity, 52),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   ),
@@ -208,7 +205,7 @@ class _RegisterPageState extends State<RegisterPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('¿Ya tienes cuenta? ', style: TextStyle(color: grisTexto)),
+                  Text('¿Ya tienes cuenta? ', style: TextStyle(color: TemaGlobal.textoSecundario)),
                   TextButton(
                     onPressed: () => Navigator.pop(context),
                     child: Text('Inicia sesión', style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold)),

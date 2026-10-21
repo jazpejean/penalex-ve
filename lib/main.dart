@@ -15,9 +15,9 @@ import 'pages/agenda_screen.dart';
 import 'pages/admin_glosario_screen.dart';
 import 'pages/admin_ia_config_screen.dart';
 import 'pages/admin_users_screen.dart';
-import 'pages/ai_analytics_screen.dart';
 import 'pages/asistente_legal_screen.dart';
 import 'pages/asistente_legal_hub_screen.dart';
+import 'pages/mapa_tribunales_screen.dart';
 import 'pages/redactor_documentos_screen.dart';
 import 'pages/busqueda_semantica_screen.dart';
 import 'pages/calculos_guardados_page.dart';
@@ -26,6 +26,7 @@ import 'pages/computo_page.dart';
 import 'pages/dashboard_screen.dart';
 import 'pages/dosimetria_page.dart';
 
+import 'pages/glosario_screen.dart';
 import 'pages/main_screen.dart';
 import 'pages/login_page.dart'; // FIREBASE LOGIN
 import 'pages/splash_screen.dart';
@@ -65,6 +66,9 @@ void main() async {
   // NO CRÍTICO: se ejecuta en paralelo, no bloquea el arranque.
   unawaited(initializeDateFormatting('es_ES', null));
   unawaited(TemaGlobal.cargar());
+  // Precarga el glosario desde Supabase (tabla glosario_terminos) para que
+  // la pantalla, el buscador y el RAG tengan siempre los términos aprobados.
+  unawaited(GlosarioScreen.precargarDesdeSupabase());
 
   runApp(const DosimetriaPenalApp());
 }
@@ -127,7 +131,7 @@ class DosimetriaPenalApp extends StatelessWidget {
               const BuscadorJuridicoScreen(alcanceInicial: AlcanceBusqueda.sentencias),
           '/repositorio_leyes': (context) =>
               const BuscadorJuridicoScreen(alcanceInicial: AlcanceBusqueda.leyes),
-          '/ai_analytics': (context) => const AIAnalyticsScreen(),
+          '/mapa_tribunales': (context) => const MapaTribunalesScreen(),
           '/quiz': (context) => const QuizLobbyScreen(),
           '/quiz_lobby': (context) => const QuizLobbyScreen(),
           '/quiz_logros': (context) => const QuizLogrosScreen(),

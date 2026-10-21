@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../config/app_theme.dart';
 import '../services/leyes_repositorio_service.dart';
 import 'tabla_anexo.dart';
 
@@ -20,7 +21,7 @@ Future<void> mostrarArticuloLey(
 class _ArticuloLeySheet extends StatelessWidget {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color grisOscuro = Color(0xFF1E293B);
+  static Color get grisOscuro => TemaGlobal.tarjeta;
 
   final ResultadoLey resultado;
 
@@ -34,9 +35,9 @@ class _ArticuloLeySheet extends StatelessWidget {
 
     return Container(
       height: MediaQuery.of(context).size.height * 0.85,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: grisOscuro,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: Column(
         children: [
@@ -45,7 +46,7 @@ class _ArticuloLeySheet extends StatelessWidget {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: Colors.white24,
+              color: TemaGlobal.capa,
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -75,20 +76,20 @@ class _ArticuloLeySheet extends StatelessWidget {
                     reg.leyNombre,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Colors.white70,
+                    style: TextStyle(
+                      color: TemaGlobal.textoSecundario,
                       fontSize: 13,
                     ),
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.close, color: Colors.white70),
+                  icon: Icon(Icons.close, color: TemaGlobal.textoSecundario),
                   onPressed: () => Navigator.pop(context),
                 ),
               ],
             ),
           ),
-          const Divider(color: Colors.white10, height: 1),
+          Divider(color: TemaGlobal.capa, height: 1),
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(20),
@@ -110,8 +111,8 @@ class _ArticuloLeySheet extends StatelessWidget {
                   if (reg.encabezado != null && reg.encabezado!.isNotEmpty)
                     Text(
                       reg.encabezado!,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: TemaGlobal.texto,
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
                         height: 1.3,
@@ -120,8 +121,8 @@ class _ArticuloLeySheet extends StatelessWidget {
                   const SizedBox(height: 12),
                   Text(
                     reg.texto,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: TemaGlobal.texto,
                       fontSize: 15,
                       height: 1.6,
                     ),
@@ -134,8 +135,8 @@ class _ArticuloLeySheet extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 8),
                           child: Text(
                             n,
-                            style: const TextStyle(
-                              color: Colors.white70,
+                            style: TextStyle(
+                              color: TemaGlobal.textoSecundario,
                               fontSize: 14,
                               height: 1.5,
                             ),
@@ -153,8 +154,8 @@ class _ArticuloLeySheet extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 8),
                           child: Text(
                             p,
-                            style: const TextStyle(
-                              color: Colors.white70,
+                            style: TextStyle(
+                              color: TemaGlobal.textoSecundario,
                               fontSize: 14,
                               height: 1.5,
                             ),

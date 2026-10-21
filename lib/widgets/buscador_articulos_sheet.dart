@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../config/app_theme.dart';
 import '../services/leyes_repositorio_service.dart';
 import 'articulo_ley_sheet.dart';
 
@@ -24,9 +25,8 @@ class _BuscadorArticulosSheet extends StatefulWidget {
 }
 
 class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
-  static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  static const Color grisOscuro = Color(0xFF1E293B);
+  static Color get grisOscuro => TemaGlobal.tarjeta;
 
   final LeyesRepositorioService _service = LeyesRepositorioService();
   final TextEditingController _controller = TextEditingController();
@@ -74,9 +74,9 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.85,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: grisOscuro,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: Column(
         children: [
@@ -85,7 +85,7 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: Colors.white24,
+              color: TemaGlobal.capa,
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -93,18 +93,18 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
             padding: const EdgeInsets.fromLTRB(20, 12, 12, 0),
             child: Row(
               children: [
-                const Expanded(
+                Expanded(
                   child: Text(
                     'Consultar artículos',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: TemaGlobal.texto,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.close, color: Colors.white70),
+                  icon: Icon(Icons.close, color: TemaGlobal.textoSecundario),
                   onPressed: () => Navigator.pop(context),
                 ),
               ],
@@ -115,13 +115,13 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
             child: TextField(
               controller: _controller,
               autofocus: true,
-              style: const TextStyle(color: Colors.white, fontSize: 15),
+              style: TextStyle(color: TemaGlobal.texto, fontSize: 15),
               decoration: InputDecoration(
                 hintText: 'Buscar por artículo, delito o tema (ej. 406, homicidio)',
-                hintStyle: TextStyle(color: Colors.white.withOpacity(0.4)),
+                hintStyle: TextStyle(color: TemaGlobal.textoTenue),
                 prefixIcon: const Icon(Icons.search, color: dorado, size: 22),
                 filled: true,
-                fillColor: azulMarino,
+                fillColor: TemaGlobal.campoTexto,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
@@ -152,7 +152,7 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
             const SizedBox(height: 16),
             Text(
               _progreso.isEmpty ? 'Buscando...' : _progreso,
-              style: TextStyle(color: Colors.white.withOpacity(0.7)),
+              style: TextStyle(color: TemaGlobal.textoSecundario),
             ),
           ],
         ),
@@ -172,7 +172,7 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
                 'Escribe un término legal o el número de un artículo\ny toca "Buscar" en el teclado.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.6),
+                  color: TemaGlobal.textoSecundario,
                   fontSize: 14,
                   height: 1.5,
                 ),
@@ -190,11 +190,11 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.search_off, size: 56, color: Colors.white38),
+              Icon(Icons.search_off, size: 56, color: TemaGlobal.textoTenue),
               const SizedBox(height: 16),
               Text(
                 'Sin resultados',
-                style: TextStyle(color: Colors.white.withOpacity(0.7)),
+                style: TextStyle(color: TemaGlobal.textoSecundario),
               ),
             ],
           ),
@@ -222,9 +222,9 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
         margin: const EdgeInsets.symmetric(vertical: 4),
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: azulMarino,
+          color: TemaGlobal.tarjeta,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.white10),
+          border: Border.all(color: TemaGlobal.capa),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -236,7 +236,7 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: grisOscuro,
+                      color: TemaGlobal.capa,
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -255,8 +255,8 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
                 Expanded(
                   child: Text(
                     titulo,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: TemaGlobal.texto,
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
                     ),
@@ -270,8 +270,8 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
                 padding: const EdgeInsets.only(top: 6),
                 child: Text(
                   reg.encabezado!,
-                  style: const TextStyle(
-                    color: Colors.white70,
+                  style: TextStyle(
+                    color: TemaGlobal.textoSecundario,
                     fontWeight: FontWeight.w600,
                     fontSize: 13,
                   ),
@@ -283,7 +283,7 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                color: Colors.white.withOpacity(0.6),
+                color: TemaGlobal.textoSecundario,
                 fontSize: 13,
                 height: 1.4,
               ),

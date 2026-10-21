@@ -1,6 +1,0 @@
-{
-  "name": "Penalex VE",
-  "description": "Quiz legal gamificado de derecho penal venezolano",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}

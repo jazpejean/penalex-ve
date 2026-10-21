@@ -11,12 +11,9 @@ class AIService {
   static const String marcaIA = 'Ulpiano';
 
   // Configuración (debe estar en .env o Firebase Remote Config)
-  static String _openAIKey = '';
-  static String _geminiKey = '';
-  static String _claudeKey = '';
   static String _deepseekKey = '';
   
-  // Modelo activo (configurable por administrador)
+  // Modelo activo (proveedor único: DeepSeek)
   static AIModel _modeloActivo = AIModel.deepseekChat;
   
   // Cache de configuración
@@ -177,40 +174,6 @@ class AIService {
     }
   }
   
-  /// Compara dos sentencias o artículos
-  static Future<AIInterpretation> compararTextos({
-    required String titulo1,
-    required String texto1,
-    required String titulo2,
-    required String texto2,
-    String? aspectoComparacion,
-  }) async {
-    try {
-      debugPrint('🤖 Comparando: $titulo1 vs $titulo2');
-      
-      final String prompt = _construirPromptComparacion(
-        titulo1: titulo1,
-        texto1: texto1,
-        titulo2: titulo2,
-        texto2: texto2,
-        aspectoComparacion: aspectoComparacion,
-      );
-      
-      final String respuesta = await _llamarIA(prompt);
-      
-      return AIInterpretation(
-        tipo: TipoInterpretacion.comparacion,
-        titulo: 'Comparación: $titulo1 vs $titulo2',
-        textoOriginal: 'Texto 1:\n$texto1\n\nTexto 2:\n$texto2',
-        interpretacion: respuesta,
-        timestamp: DateTime.now(),
-      );
-    } catch (e) {
-      debugPrint('❌ Error comparando textos: $e');
-      rethrow;
-    }
-  }
-  
   /// Pregunta libre sobre un texto legal
   static Future<AIInterpretation> preguntarSobreTexto({
     required String titulo,
@@ -271,130 +234,12 @@ class AIService {
     }
   }
   
-  /// Llama a la API de IA según el modelo configurado
+  /// Llama a la API de IA (proveedor único: DeepSeek).
   static Future<String> _llamarIA(String prompt) async {
     debugPrint('🤖 Usando modelo: ${_modeloActivo.nombre}');
-    
-    switch (_modeloActivo) {
-      case AIModel.gpt4:
-      case AIModel.gpt4Turbo:
-      case AIModel.gpt35Turbo:
-        return _llamarOpenAI(prompt, _modeloActivo.modelId);
-      
-      case AIModel.geminiPro:
-      case AIModel.gemini15Pro:
-        return _llamarGemini(prompt, _modeloActivo.modelId);
-      
-      case AIModel.claude3Opus:
-      case AIModel.claude3Sonnet:
-      case AIModel.claude3Haiku:
-        return _llamarClaude(prompt, _modeloActivo.modelId);
-      
-      case AIModel.deepseekChat:
-      case AIModel.deepseekCoder:
-        return _llamarDeepSeek(prompt, _modeloActivo.modelId);
-    }
+    return _llamarDeepSeek(prompt, _modeloActivo.modelId);
   }
-  
-  /// OpenAI GPT (soporte múltiples modelos)
-  static Future<String> _llamarOpenAI(String prompt, String model) async {
-    final url = Uri.parse('https://api.openai.com/v1/chat/completions');
-    
-    final response = await http.post(
-      url,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $_openAIKey',
-      },
-      body: jsonEncode({
-        'model': model,
-        'messages': [
-          {
-            'role': 'system',
-            'content': _obtenerSystemPrompt(),
-          },
-          {
-            'role': 'user',
-            'content': prompt,
-          },
-        ],
-        'temperature': 0.3,
-        'max_tokens': 2000,
-      }),
-    );
-    
-    if (response.statusCode != 200) {
-      throw Exception('OpenAI API error: ${response.statusCode} - ${response.body}');
-    }
-    
-    final data = jsonDecode(utf8.decode(response.bodyBytes));
-    return data['choices'][0]['message']['content'] as String;
-  }
-  
-  /// Google Gemini (soporte múltiples modelos)
-  static Future<String> _llamarGemini(String prompt, String model) async {
-    final url = Uri.parse(
-      'https://generativelanguage.googleapis.com/v1beta/models/$model:generateContent?key=$_geminiKey',
-    );
-    
-    final response = await http.post(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
-        'contents': [
-          {
-            'parts': [
-              {'text': '${_obtenerSystemPrompt()}\n\n$prompt'}
-            ]
-          }
-        ],
-        'generationConfig': {
-          'temperature': 0.3,
-          'maxOutputTokens': 2000,
-        },
-      }),
-    );
-    
-    if (response.statusCode != 200) {
-      throw Exception('Gemini API error: ${response.statusCode} - ${response.body}');
-    }
-    
-    final data = jsonDecode(utf8.decode(response.bodyBytes));
-    return data['candidates'][0]['content']['parts'][0]['text'] as String;
-  }
-  
-  /// Anthropic Claude (soporte múltiples modelos)
-  static Future<String> _llamarClaude(String prompt, String model) async {
-    final url = Uri.parse('https://api.anthropic.com/v1/messages');
-    
-    final response = await http.post(
-      url,
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': _claudeKey,
-        'anthropic-version': '2023-06-01',
-      },
-      body: jsonEncode({
-        'model': model,
-        'max_tokens': 2000,
-        'system': _obtenerSystemPrompt(),
-        'messages': [
-          {
-            'role': 'user',
-            'content': prompt,
-          },
-        ],
-      }),
-    );
-    
-    if (response.statusCode != 200) {
-      throw Exception('Claude API error: ${response.statusCode} - ${response.body}');
-    }
-    
-    final data = jsonDecode(utf8.decode(response.bodyBytes));
-    return data['content'][0]['text'] as String;
-  }
-  
+
   /// DeepSeek (compatible con OpenAI API)
   static Future<String> _llamarDeepSeek(String prompt, String model) async {
     final url = Uri.parse('https://api.deepseek.com/v1/chat/completions');
@@ -519,32 +364,6 @@ Proporciona:
 5. Precedentes relacionados (si los conoces)''';
   }
   
-  /// Construye prompt para comparar textos
-  static String _construirPromptComparacion({
-    required String titulo1,
-    required String texto1,
-    required String titulo2,
-    required String texto2,
-    String? aspectoComparacion,
-  }) {
-    return '''Compara los siguientes textos legales:
-
-TEXTO 1: $titulo1
-$texto1
-
-TEXTO 2: $titulo2
-$texto2
-
-${aspectoComparacion != null ? '\nASPECTO A COMPARAR:\n$aspectoComparacion' : ''}
-
-Proporciona:
-1. Similitudes principales
-2. Diferencias clave
-3. Criterios que varían
-4. Cuál es más aplicable en qué situaciones
-5. Posibles conflictos normativos''';
-  }
-  
   /// Construye prompt para pregunta libre
   static String _construirPromptPregunta({
     required String titulo,
@@ -612,16 +431,10 @@ Incluye:
   
   /// Configura las API keys
   static void configurarKeys({
-    String? openAI,
-    String? gemini,
-    String? claude,
     String? deepseek,
   }) {
-    if (openAI != null) _openAIKey = openAI;
-    if (gemini != null) _geminiKey = gemini;
-    if (claude != null) _claudeKey = claude;
     if (deepseek != null) _deepseekKey = deepseek;
-    debugPrint('🔑 API Keys actualizadas');
+    debugPrint('🔑 API Key DeepSeek actualizada');
   }
   
   /// Carga configuración desde Firebase Remote Config
@@ -630,7 +443,7 @@ Incluye:
       // Aquí puedes cargar desde Firebase Remote Config
       // final remoteConfig = FirebaseRemoteConfig.instance;
       // await remoteConfig.fetchAndActivate();
-      // _openAIKey = remoteConfig.getString('openai_key');
+      // _deepseekKey = remoteConfig.getString('deepseek_key');
       // etc.
       
       debugPrint('✅ Configuración cargada');
@@ -655,18 +468,9 @@ Incluye:
     'calidad': _modeloActivo.calidad.name,
   };
   
-  /// Verifica si un modelo está disponible (tiene API key)
+  /// Verifica si un modelo está disponible (tiene API key DeepSeek).
   static bool isModeloDisponible(AIModel modelo) {
-    switch (modelo.proveedor) {
-      case ProveedorIA.openai:
-        return _openAIKey != 'YOUR_OPENAI_API_KEY' && _openAIKey.isNotEmpty;
-      case ProveedorIA.gemini:
-        return _geminiKey != 'YOUR_GEMINI_API_KEY' && _geminiKey.isNotEmpty;
-      case ProveedorIA.claude:
-        return _claudeKey != 'YOUR_CLAUDE_API_KEY' && _claudeKey.isNotEmpty;
-      case ProveedorIA.deepseek:
-        return _deepseekKey != 'YOUR_DEEPSEEK_API_KEY' && _deepseekKey.isNotEmpty;
-    }
+    return _deepseekKey != 'YOUR_DEEPSEEK_API_KEY' && _deepseekKey.isNotEmpty;
   }
   
   /// Obtiene modelos disponibles (con API key configurada)
@@ -848,12 +652,6 @@ Mantén un lenguaje técnico pero accesible. Usa formato markdown.''';
     );
   }
 
-  /// Genera estrategias legales comparativas (usado por ComparadorService)
-  static Future<String> generarEstrategiaLegal(String prompt) async {
-    debugPrint('⚖️ Generando estrategias legales comparativas...');
-    return await _llamarIA(prompt);
-  }
-
   /// Expande un query de búsqueda a términos legales relevantes (Búsqueda Semántica)
   static Future<List<String>> expandirQueryLegal(String query) async {
     try {
@@ -906,42 +704,18 @@ Términos legales:''';
 
 /// Proveedores de IA
 enum ProveedorIA {
-  openai,
-  gemini,
-  claude,
   deepseek;
-  
+
   String get nombre {
     switch (this) {
-      case ProveedorIA.openai:
-        return 'OpenAI';
-      case ProveedorIA.gemini:
-        return 'Google Gemini';
-      case ProveedorIA.claude:
-        return 'Anthropic Claude';
       case ProveedorIA.deepseek:
         return 'DeepSeek';
     }
   }
 }
 
-/// Modelos de IA disponibles
+/// Modelos de IA disponibles (solo DeepSeek: proveedor único de Penalex VE)
 enum AIModel {
-  // OpenAI
-  gpt4('gpt-4', 'GPT-4', ProveedorIA.openai, 0.03, 'Máxima calidad, razonamiento profundo', Velocidad.media, Calidad.excelente),
-  gpt4Turbo('gpt-4-turbo-preview', 'GPT-4 Turbo', ProveedorIA.openai, 0.01, 'Balance calidad/velocidad', Velocidad.rapida, Calidad.excelente),
-  gpt35Turbo('gpt-3.5-turbo', 'GPT-3.5 Turbo', ProveedorIA.openai, 0.0005, 'Económico y rápido', Velocidad.muyRapida, Calidad.buena),
-  
-  // Google Gemini
-  geminiPro('gemini-pro', 'Gemini Pro', ProveedorIA.gemini, 0.0, 'Gratis, buen rendimiento', Velocidad.rapida, Calidad.muyBuena),
-  gemini15Pro('gemini-1.5-pro', 'Gemini 1.5 Pro', ProveedorIA.gemini, 0.001, 'Contexto largo, económico', Velocidad.rapida, Calidad.excelente),
-  
-  // Anthropic Claude
-  claude3Opus('claude-3-opus-20240229', 'Claude 3 Opus', ProveedorIA.claude, 0.015, 'Máxima inteligencia', Velocidad.media, Calidad.excelente),
-  claude3Sonnet('claude-3-sonnet-20240229', 'Claude 3 Sonnet', ProveedorIA.claude, 0.003, 'Balance ideal', Velocidad.rapida, Calidad.excelente),
-  claude3Haiku('claude-3-haiku-20240307', 'Claude 3 Haiku', ProveedorIA.claude, 0.00025, 'Ultra rápido y económico', Velocidad.muyRapida, Calidad.buena),
-  
-  // DeepSeek
   deepseekChat('deepseek-chat', 'DeepSeek Chat', ProveedorIA.deepseek, 0.00014, 'Muy económico, buena calidad', Velocidad.rapida, Calidad.buena),
   deepseekCoder('deepseek-coder', 'DeepSeek Coder', ProveedorIA.deepseek, 0.00014, 'Especializado en código/lógica', Velocidad.rapida, Calidad.buena);
   
@@ -986,7 +760,6 @@ enum Calidad {
 enum TipoInterpretacion {
   ley,
   jurisprudencia,
-  comparacion,
   pregunta,
   resumen,
 }

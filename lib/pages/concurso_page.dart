@@ -36,7 +36,6 @@ class _ConcursoPageState extends State<ConcursoPage> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
   static Color get fondoGris => TemaGlobal.superficie;
-  static const Color grisTexto = Color(0xFF4A5568);
 
   @override
   void initState() {
@@ -124,7 +123,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                     const DosimetriaStepper(pasoActual: 2),
                     Card(
                       elevation: 0,
-                      color: Colors.white,
+                      color: TemaGlobal.tarjeta,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18),
                         side: const BorderSide(color: dorado),
@@ -160,7 +159,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     }
                                   },
                                   child: Icon(Icons.info_outline,
-                                      color: azulMarino.withValues(alpha: 0.65),
+                                      color: dorado,
                                       size: 20),
                                 ),
                               ],
@@ -199,10 +198,10 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                   if (states.contains(WidgetState.selected)) {
                                     return dorado;
                                   }
-                                  return azulMarino.withValues(alpha: 0.80);
+                                  return TemaGlobal.texto;
                                 }),
-                                side: WidgetStatePropertyAll(BorderSide(
-                                    color: azulMarino.withValues(alpha: 0.12))),
+                                side: WidgetStatePropertyAll(
+                                    BorderSide(color: TemaGlobal.capa)),
                                 shape: WidgetStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius:
@@ -229,7 +228,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                         child: Row(
                           children: <Widget>[
                             Icon(Icons.gavel,
-                                color: azulMarino.withValues(alpha: 0.75),
+                                color: dorado,
                                 size: 22),
                             const SizedBox(width: 12),
                             Expanded(
@@ -248,7 +247,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                   Text(
                                     _articuloConcursoAplicado,
                                     style: TextStyle(
-                                      color: azulMarino.withValues(alpha: 0.90),
+                                      color: TemaGlobal.texto.withValues(alpha: 0.90),
                                       fontWeight: FontWeight.w600,
                                       fontSize: 13,
                                     ),
@@ -284,7 +283,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                 }
                               },
                               child: Icon(Icons.info_outline,
-                                  color: azulMarino.withValues(alpha: 0.65),
+                                  color: dorado,
                                   size: 20),
                             ),
                           ],
@@ -294,7 +293,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                     ],
                     Card(
                       elevation: 0,
-                      color: Colors.white,
+                      color: TemaGlobal.tarjeta,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18),
                         side: const BorderSide(color: dorado),
@@ -318,7 +317,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                               physics: const NeverScrollableScrollPhysics(),
                               itemCount: widget.delitos.length,
                               separatorBuilder: (_, __) => Divider(
-                                  color: azulMarino.withValues(alpha: 0.10),
+                                  color: TemaGlobal.capa,
                                   height: 1),
                               itemBuilder: (BuildContext context, int index) {
                                 final Delito d = widget.delitos[index];
@@ -337,8 +336,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                         ? d.nombre
                                         : "Delito sin nombre",
                                     style: TextStyle(
-                                        color:
-                                            azulMarino.withValues(alpha: 0.88),
+                                        color: TemaGlobal.texto.withValues(alpha: 0.88),
                                         fontWeight: FontWeight.w600),
                                   ),
                                   subtitle: Column(
@@ -347,13 +345,13 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     children: <Widget>[
                                       Text("Pena:",
                                           style: TextStyle(
-                                              color: grisTexto.withValues(
+                                              color: TemaGlobal.textoSecundario.withValues(
                                                   alpha: 0.85),
                                               fontSize: 12)),
                                       Text(
                                         DosimetriaEngine.formatYMD(penaInd),
                                         style: TextStyle(
-                                            color: grisTexto.withValues(
+                                            color: TemaGlobal.textoSecundario.withValues(
                                                 alpha: 0.85),
                                             fontSize: 12),
                                         softWrap: true,
@@ -374,7 +372,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                     const SizedBox(height: 20),
                     Card(
                       elevation: 0,
-                      color: Colors.white,
+                      color: TemaGlobal.tarjeta,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18),
                         side: const BorderSide(color: dorado),
@@ -392,7 +390,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     style: TextStyle(
                                         fontWeight: FontWeight.w800,
                                         color:
-                                            azulMarino.withValues(alpha: 0.85),
+                                            TemaGlobal.texto.withValues(alpha: 0.85),
                                         letterSpacing: 0.6,
                                         fontSize: 12),
                                   ),
@@ -404,7 +402,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     "Institución procesal donde el imputado acepta su responsabilidad en la audiencia. Permite al juez rebajar la pena de un tercio (1/3) a la mitad (1/2), considerando la naturaleza del delito y el momento procesal en que se admita.",
                                   ),
                                   child: Icon(Icons.info_outline,
-                                      color: azulMarino.withValues(alpha: 0.65),
+                                      color: dorado,
                                       size: 20),
                                 ),
                               ],
@@ -413,7 +411,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                               title: Text("Aplicar Admisión de Hechos",
                                   style: TextStyle(
                                       color:
-                                          azulMarino.withValues(alpha: 0.86))),
+                                          TemaGlobal.texto.withValues(alpha: 0.86))),
                               value: _admisionHechos,
                               onChanged: (bool val) {
                                 setState(() {
@@ -429,7 +427,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                               Text(
                                 "Rebaja: ${_formatearFraccion(_fraccionAdmision)}",
                                 style: TextStyle(
-                                    color: grisTexto.withValues(alpha: 0.92)),
+                                    color: TemaGlobal.textoSecundario.withValues(alpha: 0.92)),
                               ),
                               Slider(
                                 value: _fraccionAdmision,
@@ -447,8 +445,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                   });
                                 },
                                 activeColor: dorado,
-                                inactiveColor:
-                                    azulMarino.withValues(alpha: 0.10),
+                                inactiveColor: TemaGlobal.capa,
                               ),
                             ],
                           ],
@@ -564,7 +561,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                         ? 'OCULTAR DESGLOSE'
                                         : 'VER DESGLOSE PASO A PASO',
                                     style: const TextStyle(
-                                        color: Color(0xFFC5A059),
+                                        color: dorado,
                                         fontSize: 10,
                                         fontWeight: FontWeight.w800,
                                         letterSpacing: 0.5),
@@ -573,7 +570,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     _mostrarDesglose
                                         ? Icons.keyboard_arrow_up_rounded
                                         : Icons.keyboard_arrow_down_rounded,
-                                    color: const Color(0xFFC5A059),
+                                    color: dorado,
                                     size: 16,
                                   ),
                                 ],
@@ -587,7 +584,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     const BoxConstraints(maxHeight: 180),
                                 padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
-                                  color: Colors.white.withValues(alpha: 0.07),
+                                  color: TemaGlobal.capa,
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
                                       color: dorado.withValues(alpha: 0.25)),
@@ -597,10 +594,11 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: _pasosConcurso.isEmpty
-                                        ? const <Widget>[
+                                        ? <Widget>[
                                             Text('Sin pasos',
                                                 style: TextStyle(
-                                                    color: Colors.white70,
+                                                    color:
+                                                        TemaGlobal.textoSecundario,
                                                     fontSize: 11)),
                                           ]
                                         : _pasosConcurso
@@ -617,8 +615,8 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                                 '- ${e.value}',
                                                 style: TextStyle(
                                                   color: esFinal
-                                                      ? const Color(0xFFC5A059)
-                                                      : Colors.white,
+                                                      ? dorado
+                                                      : TemaGlobal.texto,
                                                   fontSize: 11,
                                                   fontWeight: esFinal
                                                       ? FontWeight.w800
@@ -645,7 +643,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                             label: const Text("ANTERIOR"),
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(color: dorado),
-                              foregroundColor: azulMarino,
+                              foregroundColor: TemaGlobal.texto,
                               fixedSize: const Size.fromHeight(48),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(14)),

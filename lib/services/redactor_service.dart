@@ -65,7 +65,24 @@ class RedactorService {
           .select()
           .eq('user_id', userId)
           .order('updated_at', ascending: false);
-      return response.cast<Map<String, dynamic>>();
+      final convs = response.cast<Map<String, dynamic>>();
+      if (convs.isEmpty) return convs;
+
+      // ✅ Filtrar conversaciones vacías: solo mostrar las que tienen al
+      // menos un mensaje (evita el historial lleno de conversaciones que
+      // se crearon al abrir la pantalla y nunca se usaron).
+      final conMensajes = await _supabase
+          .from('redactor_mensajes')
+          .select('conversation_id')
+          .eq('user_id', userId);
+      final idsConMensajes = (conMensajes as List<dynamic>)
+          .cast<Map<String, dynamic>>()
+          .map((m) => m['conversation_id'] as String?)
+          .whereType<String>()
+          .toSet();
+      return convs
+          .where((c) => idsConMensajes.contains(c['id'] as String?))
+          .toList();
     } catch (e) {
       debugPrint('❌ Error obteniendo conversaciones del redactor: $e');
       return [];

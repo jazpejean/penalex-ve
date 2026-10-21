@@ -61,6 +61,7 @@ class ChatService {
           .from('chat_conversaciones')
           .select()
           .eq('user_id', userId)
+          .filter('message_count', 'gt', 0)
           .order('updated_at', ascending: false);
 
       return response
@@ -209,14 +210,14 @@ class ChatService {
     }
   }
 
-  /// Genera respuesta del asistente con DeepSeek + Tracking
+  /// Genera respuesta del asistente con DeepSeek
   static Future<ChatMessage> generarRespuestaAsistente({
     required String conversationId,
     required List<ChatMessage> historial,
   }) async {
     return await AIAnalyticsService.trackOperation(
-      toolName: AIToolName.chatLegal,
-      actionType: AIActionType.query,
+      toolName: AIAnalyticsService.chatLegal,
+      actionType: AIAnalyticsService.query,
       metadata: {
         'conversation_id': conversationId,
         'messages_in_history': historial.length,

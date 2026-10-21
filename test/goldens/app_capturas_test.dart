@@ -15,7 +15,6 @@ import 'package:penalex_ve/pages/dosimetria_page.dart';
 import 'package:penalex_ve/pages/main_screen.dart';
 import 'package:penalex_ve/pages/buscador_juridico_screen.dart';
 import 'package:penalex_ve/pages/repositorio_jurisprudencia_screen.dart';
-import 'package:penalex_ve/pages/repositorio_leyes_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:penalex_ve/config/app_theme.dart';
 import 'package:penalex_ve/services/auth_service.dart';
@@ -119,7 +118,9 @@ void main() {
   });
 
   testWidgets('leyes MODO OSCURO', (tester) async {
-    await capturaOscura(tester, const RepositorioLeyesScreen(),
+    await capturaOscura(
+        tester,
+        const BuscadorJuridicoScreen(alcanceInicial: AlcanceBusqueda.leyes),
         'leyes_oscura');
   });
 

@@ -1,7 +1,7 @@
 /// Servicio RAG (Retrieval-Augmented Generation).
 ///
 /// Recupera jurisprudencia REAL del TSJ desde Supabase y la convierte en:
-/// - Contexto para prompts de IA (chat, redactor, comparador).
+/// - Contexto para prompts de IA (chat legal, redactor).
 /// - Fuentes citables ([MessageSource]) para el chat legal.
 /// - Listas de sentencias para el módulo de "relacionadas" en leyes.
 library;
@@ -168,6 +168,79 @@ class RAGService {
     }).toList();
   }
 
+  /// Busca citas a DOCTRINA ACADÉMICA (autor/obra/página) relevantes a la
+  /// consulta. Nunca lanza: ante cualquier error devuelve [].
+  static Future<List<Map<String, dynamic>>> buscarDoctrinasAcademicasRelevantes({
+    required String consulta,
+    int limit = 5,
+  }) async {
+    if (consulta.trim().isEmpty) return [];
+    try {
+      return await _jurisprudenciaService.buscarDoctrinasAcademicas(
+        textoBusqueda: consulta.trim(),
+        limit: limit,
+      );
+    } catch (e) {
+      debugPrint('❌ RAGService.buscarDoctrinasAcademicasRelevantes: $e');
+      return [];
+    }
+  }
+
+  /// Formatea citas de DOCTRINA ACADÉMICA (autor/obra/página) como bloque de
+  /// contexto para prompts, con instrucciones anti-alucinación: el redactor
+  /// debe citar SOLO el autor/obra/página que aparezca aquí, nunca inventar.
+  static String construirContextoDoctrinasAcademicas(
+      List<Map<String, dynamic>> citas) {
+    if (citas.isEmpty) return '';
+    final buffer = StringBuffer();
+    for (var i = 0; i < citas.length; i++) {
+      final c = citas[i];
+      final autor = _limpio((c['autor'] ?? '').toString());
+      final obra = _limpio((c['obra'] ?? '').toString());
+      final pagina = _limpio((c['pagina'] ?? '').toString());
+      final evidencia = _limpio((c['parrafo_evidencia'] ?? '').toString());
+      buffer
+        ..writeln('DOCTRINA ACADÉMICA ${i + 1}:')
+        ..writeln('- Autor: ${autor.isEmpty ? '(no indicado)' : autor}')
+        ..writeln('- Obra: ${obra.isEmpty ? '(no indicada)' : obra}');
+      if (pagina.isNotEmpty) buffer.writeln('- Página: $pagina');
+      if (evidencia.isNotEmpty) {
+        final corta = evidencia.length > 700
+            ? '${evidencia.substring(0, 700)}...'
+            : evidencia;
+        buffer.writeln('- Cita textual de la sentencia: "$corta"');
+      }
+      final sentenciaOrigen = _limpio((c['sentencia_id'] ?? '').toString());
+      if (sentenciaOrigen.isNotEmpty) {
+        buffer.writeln('- Sentencia origen: $sentenciaOrigen');
+      }
+    }
+    return buffer.toString().trim();
+  }
+
+  /// Convierte citas de DOCTRINA ACADÉMICA en fuentes citables para el chat.
+  static List<MessageSource> construirFuentesDoctrinasAcademicas(
+      List<Map<String, dynamic>> citas) {
+    return citas.map((c) {
+      final autor = _limpio((c['autor'] ?? '').toString());
+      final obra = _limpio((c['obra'] ?? '').toString());
+      final pagina = _limpio((c['pagina'] ?? '').toString());
+      final evidencia = _limpio((c['parrafo_evidencia'] ?? '').toString());
+      final titulo = obra.isNotEmpty
+          ? '${autor.isNotEmpty ? '$autor — ' : ''}$obra'
+          : (autor.isNotEmpty ? autor : 'Cita doctrinal');
+      return MessageSource(
+        type: SourceType.doctrina,
+        title: titulo,
+        reference:
+            '${pagina.isNotEmpty ? '$pagina · ' : ''}Sentencia ${c['sentencia_id']}',
+        excerpt: evidencia.length > 300
+            ? '${evidencia.substring(0, 300)}...'
+            : evidencia,
+      );
+    }).toList();
+  }
+
   /// Términos del glosario que coinciden con la consulta (definiciones).
   static List<Map<String, String>> buscarGlosarioRelevante(String consulta) {
     if (consulta.trim().isEmpty) return [];
@@ -187,18 +260,21 @@ class RAGService {
     if (terminos.isEmpty) return '';
     final buffer = StringBuffer();
     for (var i = 0; i < terminos.length; i++) {
+      final ref = (terminos[i]['reference'] ?? '').trim();
+      final sufijo = ref.isNotEmpty ? ' (Fuente: $ref)' : '';
       buffer.writeln(
-          'GLOSARIO ${i + 1}: ${terminos[i]['term']} — ${terminos[i]['definition']}');
+          'GLOSARIO ${i + 1}: ${terminos[i]['term']} — ${terminos[i]['definition']}$sufijo');
     }
     return buffer.toString().trim();
   }
 
   /// Conveniencia: contexto y fuentes de la consulta usando TODA la base:
-  /// jurisprudencia (sentencias) + doctrinas + glosario.
+  /// jurisprudencia (sentencias) + doctrinas + glosario + doctrina académica.
   static Future<
       ({
         List<SentenciaModel> sentencias,
         List<Map<String, dynamic>> doctrinas,
+        List<Map<String, dynamic>> doctrinasAcademicas,
         String contexto,
         List<MessageSource> fuentes,
       })> obtenerContextoCompleto({
@@ -215,19 +291,29 @@ class RAGService {
       consulta: consulta,
       limit: limit,
     );
+    final doctrinasAcademicas = await buscarDoctrinasAcademicasRelevantes(
+      consulta: consulta,
+      limit: limit,
+    );
     final glosario = buscarGlosarioRelevante(consulta);
 
     final bloques = <String>[
       construirContextoJurisprudencial(sentencias),
       construirContextoDoctrinal(doctrinas),
+      construirContextoDoctrinasAcademicas(doctrinasAcademicas),
       construirContextoGlosario(glosario),
     ].where((b) => b.isNotEmpty);
 
     return (
       sentencias: sentencias,
       doctrinas: doctrinas,
+      doctrinasAcademicas: doctrinasAcademicas,
       contexto: bloques.join('\n\n'),
-      fuentes: [...construirFuentes(sentencias), ...construirFuentesDoctrinas(doctrinas)],
+      fuentes: [
+        ...construirFuentes(sentencias),
+        ...construirFuentesDoctrinas(doctrinas),
+        ...construirFuentesDoctrinasAcademicas(doctrinasAcademicas),
+      ],
     );
   }
 

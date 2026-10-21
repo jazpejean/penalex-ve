@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
+import '../services/glosario_service.dart';
 
 import '../config/app_colors.dart';
 import '../widgets/app_drawer.dart';
@@ -7,8 +8,26 @@ import '../widgets/app_drawer.dart';
 class GlosarioScreen extends StatefulWidget {
   const GlosarioScreen({super.key});
 
-  /// Términos del glosario (compartidos con el Buscador Jurídico)
-  static List<Map<String, String>> get terminos => _GlosarioScreenState.terminos;
+  /// Términos del glosario (compartidos con el Buscador Jurídico).
+  ///
+  /// Prioriza los términos aprobados cargados desde Supabase
+  /// (`glosario_terminos`); si aún no se cargaron (app sin red o en el primer
+  /// instante), usa la lista local de respaldo. Se rellena con
+  /// [precargarDesdeSupabase] (arranque) y en initState.
+  static List<Map<String, String>> get terminos {
+    final remotos = _GlosarioScreenState.terminosRemotos;
+    if (remotos.isNotEmpty) return remotos;
+    return _GlosarioScreenState.terminos;
+  }
+
+  /// Precarga los términos aprobados desde Supabase (usado en el arranque de
+  /// la app para que el RAG y el buscador siempre tengan el glosario).
+  static Future<void> precargarDesdeSupabase() async {
+    final remotos = await GlosarioService.cargarDesdeSupabase();
+    if (remotos.isNotEmpty) {
+      _GlosarioScreenState.terminosRemotos = remotos;
+    }
+  }
 
   @override
   State<GlosarioScreen> createState() => _GlosarioScreenState();
@@ -16,7 +35,11 @@ class GlosarioScreen extends StatefulWidget {
 
 class _GlosarioScreenState extends State<GlosarioScreen> {
   final TextEditingController _searchController = TextEditingController();
-  
+
+  /// Términos aprobados cargados desde Supabase (se rellenan en initState).
+  static List<Map<String, String>> terminosRemotos = [];
+  static bool _cargandoRemotos = false;
+
   // Glosario ampliado con más de 150 términos (RESPALDO)
   static const List<Map<String, String>> terminos = <Map<String, String>>[
     // A
@@ -202,8 +225,23 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
   @override
   void initState() {
     super.initState();
+    // Cargar términos desde Supabase (tabla glosario_terminos); mientras
+    // tanto se muestra la lista local de respaldo. Una sola carga por sesión.
+    _cargarTerminosSupabase();
     // Usar glosario local directamente
     _filteredGlossary = List.from(terminos);
+  }
+
+  Future<void> _cargarTerminosSupabase() async {
+    if (_cargandoRemotos) return;
+    _cargandoRemotos = true;
+    final remotos = await GlosarioService.cargarDesdeSupabase();
+    _cargandoRemotos = false;
+    if (!mounted || remotos.isEmpty) return;
+    setState(() {
+      terminosRemotos = remotos;
+      _filteredGlossary = List.from(GlosarioScreen.terminos);
+    });
   }
 
   @override
@@ -224,7 +262,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
 
   void _filterGlossary(String value) {
     final String normalized = _normalize(value.trim());
-    final List<Map<String, String>> results = terminos.where((Map<String, String> entry) {
+    final List<Map<String, String>> results = GlosarioScreen.terminos.where((Map<String, String> entry) {
       final String term = _normalize(entry['term'] ?? '');
       final String definition = _normalize(entry['definition'] ?? '');
       final bool matchesSearch = normalized.isEmpty || term.contains(normalized) || definition.contains(normalized);
@@ -290,13 +328,13 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
             TextField(
               controller: _searchController,
               onChanged: _filterGlossary,
-              style: const TextStyle(color: Colors.black87, fontSize: 16),
+              style: TextStyle(color: TemaGlobal.texto, fontSize: 16),
               decoration: InputDecoration(
                 hintText: "Buscar término o definición...",
-                hintStyle: TextStyle(color: Colors.grey.shade600),
+                hintStyle: TextStyle(color: TemaGlobal.textoTenue),
                 prefixIcon: Icon(Icons.search, color: TemaGlobal.texto),
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: TemaGlobal.campoTexto,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
                   borderSide: BorderSide.none,
@@ -340,7 +378,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                       duration: const Duration(milliseconds: 200),
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                       decoration: BoxDecoration(
-                        color: selected ? AppColors.secondary : Colors.white,
+                        color: selected ? AppColors.secondary : TemaGlobal.tarjeta,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
                           color: selected ? AppColors.secondary : AppColors.primary.withValues(alpha: 0.2),
@@ -478,13 +516,42 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                             ),
                             subtitle: Padding(
                               padding: const EdgeInsets.only(top: 8),
-                              child: Text(
-                                definition,
-                                style: TextStyle(
-                                  color: Colors.grey.shade800,
-                                  fontSize: 15,
-                                  height: 1.4,
-                                ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    definition,
+                                    style: TextStyle(
+                                      color: Colors.grey.shade800,
+                                      fontSize: 15,
+                                      height: 1.4,
+                                    ),
+                                  ),
+                                  if ((item["reference"] ?? "").isNotEmpty) ...[
+                                    const SizedBox(height: 6),
+                                    Row(
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.balance,
+                                          size: 14,
+                                          color: AppColors.secondary.withValues(alpha: 0.8),
+                                        ),
+                                        const SizedBox(width: 6),
+                                        Flexible(
+                                          child: Text(
+                                            item["reference"]!,
+                                            style: TextStyle(
+                                              color: AppColors.secondary.withValues(alpha: 0.85),
+                                              fontSize: 12,
+                                              fontStyle: FontStyle.italic,
+                                              height: 1.3,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ],
                               ),
                             ),
                           ),

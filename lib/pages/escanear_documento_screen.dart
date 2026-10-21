@@ -139,16 +139,16 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
   Widget _buildBuscador() {
     if (_documentos.isEmpty) return const SizedBox.shrink();
     return Container(
-      color: azulMarino,
+      color: TemaGlobal.superficie,
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
       child: TextField(
-        style: const TextStyle(color: Colors.white),
+        style: TextStyle(color: TemaGlobal.texto),
         decoration: InputDecoration(
           hintText: 'Buscar documento...',
-          hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
+          hintStyle: TextStyle(color: TemaGlobal.textoTenue),
           prefixIcon: const Icon(Icons.search, color: dorado, size: 20),
           filled: true,
-          fillColor: Colors.white.withOpacity(0.1),
+          fillColor: TemaGlobal.campoTexto,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide.none,
@@ -178,7 +178,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
 
   Widget _buildDocumentCard(DocumentoEscaneado doc) {
     return Material(
-      color: Colors.white,
+      color: TemaGlobal.tarjeta,
       borderRadius: BorderRadius.circular(14),
       elevation: 1,
       shadowColor: azulMarino.withOpacity(0.08),
@@ -279,7 +279,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
               width: 120,
               height: 120,
               decoration: BoxDecoration(
-                color: TemaGlobal.texto,
+                color: TemaGlobal.tarjeta,
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
@@ -309,7 +309,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
               'Detección automática, filtros y OCR incluidos.',
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: azulMarino.withOpacity(0.6),
+                color: TemaGlobal.textoSecundario,
                 fontSize: 14,
                 height: 1.5,
               ),
@@ -336,7 +336,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
   void _mostrarOpciones(DocumentoEscaneado doc) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.white,
+      backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -345,24 +345,24 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: const Icon(Icons.visibility_outlined, color: azulMarino),
-              title: const Text('Ver documento'),
+              leading: const Icon(Icons.visibility_outlined, color: dorado),
+              title: Text('Ver documento', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
                 _abrirDocumento(doc);
               },
             ),
             ListTile(
-              leading: const Icon(Icons.edit_outlined, color: azulMarino),
-              title: const Text('Renombrar'),
+              leading: const Icon(Icons.edit_outlined, color: dorado),
+              title: Text('Renombrar', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
                 _renombrar(doc);
               },
             ),
             ListTile(
-              leading: const Icon(Icons.picture_as_pdf_outlined, color: azulMarino),
-              title: const Text('Exportar PDF'),
+              leading: const Icon(Icons.picture_as_pdf_outlined, color: dorado),
+              title: Text('Exportar PDF', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
                 PdfExportService.exportarYAbrir(doc);

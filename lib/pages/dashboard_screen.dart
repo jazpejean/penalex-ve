@@ -34,7 +34,7 @@ class DashboardScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: <BoxShadow>[
                   BoxShadow(
-                    color: const Color(0xFF0F172A).withValues(alpha: 0.3),
+                    color: TemaGlobal.azulMarino.withValues(alpha: 0.3),
                     blurRadius: 12,
                     offset: const Offset(0, 4),
                   ),
@@ -44,14 +44,14 @@ class DashboardScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   // Logo de Penalex (movido del AppBar a la tarjeta de bienvenida)
-                  const Row(
+                  Row(
                     children: <Widget>[
-                      Icon(Icons.gavel, color: Color(0xFFC5A059), size: 28),
+                      Icon(Icons.gavel, color: TemaGlobal.dorado, size: 28),
                       SizedBox(width: 8),
                       Text(
                         'PENALEX VE',
                         style: TextStyle(
-                          color: Color(0xFFC5A059),
+                          color: TemaGlobal.dorado,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           letterSpacing: 1.5,
@@ -65,16 +65,16 @@ class DashboardScreen extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFC5A059).withValues(alpha: 0.15),
+                          color: TemaGlobal.dorado.withValues(alpha: 0.15),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: const Color(0xFFC5A059).withValues(alpha: 0.3),
+                            color: TemaGlobal.dorado.withValues(alpha: 0.3),
                             width: 1,
                           ),
                         ),
-                        child: const Icon(
+                        child: Icon(
                           Icons.account_balance,
-                          color: Color(0xFFC5A059),
+                          color: TemaGlobal.dorado,
                           size: 28,
                         ),
                       ),
@@ -85,10 +85,10 @@ class DashboardScreen extends StatelessWidget {
                           children: <Widget>[
                             Text(
                               '¡Bienvenido, $nombreUsuario!',
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFFC5A059),
+                                color: TemaGlobal.dorado,
                                 letterSpacing: 0.5,
                               ),
                             ),
@@ -162,6 +162,15 @@ class DashboardScreen extends StatelessWidget {
             ),
             _buildCard(
               context,
+              title: 'Mapa de Tribunales',
+              subtitle: 'Catálogo oficial del TSJ',
+              description: 'Ubica los tribunales penales del país por estado y función.',
+              icon: Icons.map,
+              route: '/mapa_tribunales',
+              actionText: 'Ver mapa',
+            ),
+            _buildCard(
+              context,
               title: 'Glosario Jurídico',
               subtitle: 'Definiciones claras',
               description: 'Aclara términos y conceptos del derecho penal.',
@@ -210,12 +219,12 @@ class DashboardScreen extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: const Color(0xFFC5A059),
+              color: TemaGlobal.dorado,
               width: 2,
             ),
             boxShadow: <BoxShadow>[
               BoxShadow(
-                color: const Color(0xFFC5A059).withValues(alpha: 0.3),
+                color: TemaGlobal.dorado.withValues(alpha: 0.3),
                 blurRadius: 20,
                 offset: const Offset(0, 8),
               ),
@@ -229,7 +238,7 @@ class DashboardScreen extends StatelessWidget {
                 Navigator.pushNamed(context, route);
               },
               borderRadius: BorderRadius.circular(20),
-              splashColor: const Color(0xFFC5A059).withValues(alpha: 0.2),
+              splashColor: TemaGlobal.dorado.withValues(alpha: 0.2),
               child: Padding(
                 padding: const EdgeInsets.all(24),
                 child: Column(
@@ -240,14 +249,14 @@ class DashboardScreen extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.all(14),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFC5A059).withValues(alpha: 0.2),
+                            color: TemaGlobal.dorado.withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(14),
                             border: Border.all(
-                              color: const Color(0xFFC5A059).withValues(alpha: 0.5),
+                              color: TemaGlobal.dorado.withValues(alpha: 0.5),
                               width: 1.5,
                             ),
                           ),
-                          child: Icon(icon, size: 32, color: const Color(0xFFC5A059)),
+                          child: Icon(icon, size: 32, color: TemaGlobal.dorado),
                         ),
                         const SizedBox(width: 16),
                         Expanded(
@@ -260,7 +269,7 @@ class DashboardScreen extends StatelessWidget {
                                   vertical: 4,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFC5A059),
+                                  color: TemaGlobal.dorado,
                                   borderRadius: BorderRadius.circular(6),
                                 ),
                                 child: Row(
@@ -300,7 +309,7 @@ class DashboardScreen extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
-                                  color: const Color(0xFFC5A059).withValues(alpha: 0.9),
+                                  color: TemaGlobal.dorado.withValues(alpha: 0.9),
                                   letterSpacing: 0.2,
                                 ),
                               ),
@@ -310,7 +319,7 @@ class DashboardScreen extends StatelessWidget {
                         Icon(
                           Icons.arrow_forward_ios,
                           size: 18,
-                          color: const Color(0xFFC5A059),
+                          color: TemaGlobal.dorado,
                         ),
                       ],
                     ),
@@ -328,11 +337,11 @@ class DashboardScreen extends StatelessWidget {
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFC5A059),
+                        color: TemaGlobal.dorado,
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: <BoxShadow>[
                           BoxShadow(
-                            color: const Color(0xFFC5A059).withValues(alpha: 0.3),
+                            color: TemaGlobal.dorado.withValues(alpha: 0.3),
                             blurRadius: 8,
                             offset: const Offset(0, 4),
                           ),
@@ -388,7 +397,7 @@ class DashboardScreen extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: const Color(0xFFC5A059).withValues(alpha: 0.2),
+              color: TemaGlobal.dorado.withValues(alpha: 0.2),
               width: 1,
             ),
             boxShadow: <BoxShadow>[
@@ -404,7 +413,7 @@ class DashboardScreen extends StatelessWidget {
             child: InkWell(
               onTap: () => Navigator.pushNamed(context, route),
               borderRadius: BorderRadius.circular(16),
-              splashColor: const Color(0xFFC5A059).withValues(alpha: 0.1),
+              splashColor: TemaGlobal.dorado.withValues(alpha: 0.1),
               child: Padding(
                 padding: const EdgeInsets.all(18),
                 child: Column(
@@ -415,14 +424,14 @@ class DashboardScreen extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFC5A059).withValues(alpha: 0.15),
+                            color: TemaGlobal.dorado.withValues(alpha: 0.15),
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: const Color(0xFFC5A059).withValues(alpha: 0.3),
+                              color: TemaGlobal.dorado.withValues(alpha: 0.3),
                               width: 1,
                             ),
                           ),
-                          child: Icon(icon, size: 28, color: const Color(0xFFC5A059)),
+                          child: Icon(icon, size: 28, color: TemaGlobal.dorado),
                         ),
                         const SizedBox(width: 16),
                         Expanded(
@@ -444,7 +453,7 @@ class DashboardScreen extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w500,
-                                  color: const Color(0xFFC5A059).withValues(alpha: 0.8),
+                                  color: TemaGlobal.dorado.withValues(alpha: 0.8),
                                   letterSpacing: 0.2,
                                 ),
                               ),
@@ -454,7 +463,7 @@ class DashboardScreen extends StatelessWidget {
                         Icon(
                           Icons.arrow_forward_ios,
                           size: 16,
-                          color: const Color(0xFFC5A059).withValues(alpha: 0.6),
+                          color: TemaGlobal.dorado.withValues(alpha: 0.6),
                         ),
                       ],
                     ),
@@ -476,19 +485,19 @@ class DashboardScreen extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFC5A059).withValues(alpha: 0.1),
+                          color: TemaGlobal.dorado.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(6),
                           border: Border.all(
-                            color: const Color(0xFFC5A059).withValues(alpha: 0.3),
+                            color: TemaGlobal.dorado.withValues(alpha: 0.3),
                             width: 1,
                           ),
                         ),
                         child: Text(
                           actionText,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFFC5A059),
+                            color: TemaGlobal.dorado,
                             letterSpacing: 0.5,
                           ),
                         ),
