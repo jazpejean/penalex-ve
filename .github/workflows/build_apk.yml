@@ -32,6 +32,23 @@ jobs:
       - name: Dependencias
         run: flutter pub get
 
+      - name: Generar .env desde secrets (necesario para analyze y build)
+        run: |
+          cat > .env <<'ENVEOF'
+          SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
+          DEEPSEEK_API_KEY=${{ secrets.DEEPSEEK_API_KEY }}
+          FIREBASE_API_KEY_ANDROID=${{ secrets.FIREBASE_API_KEY_ANDROID }}
+          FIREBASE_APP_ID_ANDROID=${{ secrets.FIREBASE_APP_ID_ANDROID }}
+          FIREBASE_MESSAGING_SENDER_ID=${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
+          FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }}
+          FIREBASE_STORAGE_BUCKET=${{ secrets.FIREBASE_STORAGE_BUCKET }}
+          FIREBASE_API_KEY_WEB=${{ secrets.FIREBASE_API_KEY_WEB }}
+          FIREBASE_APP_ID_WEB=${{ secrets.FIREBASE_APP_ID_WEB }}
+          FIREBASE_AUTH_DOMAIN=${{ secrets.FIREBASE_AUTH_DOMAIN }}
+          ENVEOF
+          echo ".env generado ($(wc -l < .env) líneas)"
+
       - name: Análisis estático
         run: flutter analyze --no-pub
 

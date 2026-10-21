@@ -23,9 +23,11 @@ class AIService {
   static Future<void> inicializar() async {
     try {
       // Cargar API key desde .env (flutter_dotenv)
-      _deepseekKey = dotenv.env['DEEPSEEK_API_KEY'] ??
-          'sk-0a9f652b7fd549db937ca806959ab6c1';
-      debugPrint('✅ DeepSeek API Key cargada desde .env');
+      // Nunca hardcodear la key: se lee SOLO de .env (no trackeado en git).
+      _deepseekKey = dotenv.env['DEEPSEEK_API_KEY'] ?? '';
+      debugPrint(_deepseekKey.isEmpty
+          ? '⚠️ DEEPSEEK_API_KEY no configurada en .env'
+          : '✅ DeepSeek API Key cargada desde .env');
     } catch (e) {
       debugPrint('❌ Error inicializando AIService: $e');
     }

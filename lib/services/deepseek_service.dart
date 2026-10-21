@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 /// Proporciona generación de documentos legales usando IA
 class DeepSeekService {
   static const String _baseUrl = 'https://api.deepseek.com/v1';
-  static String get _apiKey => dotenv.env['DEEPSEEK_API_KEY'] ?? 'sk-0a9f652b7fd549db937ca806959ab6c1';
+  static String get _apiKey => dotenv.env['DEEPSEEK_API_KEY'] ?? '';
   
   /// Timeout para peticiones HTTP (2 minutos para documentos largos)
   static const Duration _timeout = Duration(seconds: 120);
