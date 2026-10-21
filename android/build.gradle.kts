@@ -15,6 +15,19 @@ subprojects {
     val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
     project.layout.buildDirectory.value(newSubprojectBuildDir)
 }
+
+// AGP 8+ exige namespace en todos los módulos. Los plugins de Flutter antiguos
+// (p. ej. edge_detection 1.1.3) no lo declaran: se lo asignamos automáticamente.
+subprojects {
+    plugins.withId("com.android.library") {
+        extensions.configure<com.android.build.gradle.LibraryExtension> {
+            if (namespace == null) {
+                namespace = "com.penalex.ve.${project.name.replace("-", "")}"
+            }
+        }
+    }
+}
+
 subprojects {
     project.evaluationDependsOn(":app")
 }
