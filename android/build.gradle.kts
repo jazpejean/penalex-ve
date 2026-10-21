@@ -22,6 +22,10 @@ subprojects {
 subprojects {
     plugins.withId("com.android.library") {
         extensions.configure<com.android.build.gradle.LibraryExtension> {
+            // Alinear compileSdk de los plugins con el del app (36). Evita
+            // "resource android:attr/lStar not found" en google_mlkit_commons
+            // (compila con SDK < 33, pero dependencias como material usan lStar).
+            compileSdk = 36
             if (namespace == null) {
                 val grupo = project.group.toString()
                 namespace = if (grupo.isNotEmpty() && grupo != "unspecified") {
