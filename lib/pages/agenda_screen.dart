@@ -263,6 +263,8 @@ class _AgendaScreenState extends State<AgendaScreen> {
         codigo: '',
         nombre: tribunalId,
         estado: '',
+        instancia: '',
+        despacho: '',
       ),
     );
     if (!mounted) return;
