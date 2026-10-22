@@ -152,7 +152,7 @@ class AppDrawer extends StatelessWidget {
 
     return Drawer(
       child: Container(
-        color: const azulMarino,
+        color: azulMarino,
         child: Column(
           children: <Widget>[
             StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
@@ -190,7 +190,7 @@ class AppDrawer extends StatelessWidget {
                           children: <Widget>[
                             CircleAvatar(
                               radius: 36,
-                              backgroundColor: const dorado,
+                              backgroundColor: dorado,
                               backgroundImage: photoBase64 != null
                                   ? MemoryImage(base64Decode(photoBase64))
                                   : (photoUrl != null ? NetworkImage(photoUrl) : null) as ImageProvider?,
@@ -212,10 +212,10 @@ class AppDrawer extends StatelessWidget {
                               height: 28,
                               width: 28,
                               decoration: BoxDecoration(
-                                color: const dorado,
+                                color: dorado,
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                    color: const azulMarino, width: 2),
+                                    color: azulMarino, width: 2),
                               ),
                               child: const Icon(Icons.camera_alt,
                                   size: 16, color: azulMarino),
@@ -244,7 +244,7 @@ class AppDrawer extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 6, horizontal: 12),
                               decoration: BoxDecoration(
-                                color: const dorado
+                                color: dorado
                                     .withValues(alpha: 0.12),
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -457,7 +457,7 @@ class AppDrawer extends StatelessWidget {
                     style: const TextStyle(
                         color: Colors.white54, fontSize: 11)),
                 value: oscuro,
-                activeTrackColor: const dorado,
+                activeTrackColor: dorado,
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 20),
                 onChanged: (v) => TemaGlobal.guardar(v),
@@ -497,12 +497,12 @@ class AppDrawer extends StatelessWidget {
     final bool isSelected = currentRoute == route;
     return ListTile(
       leading: Icon(icon,
-          color: isSelected ? const dorado : const Color(0xFF94A3B8),
+          color: isSelected ? dorado : const Color(0xFF94A3B8),
           size: 24),
       title: Text(
         title,
         style: TextStyle(
-          color: isSelected ? const dorado : Colors.white,
+          color: isSelected ? dorado : Colors.white,
           fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
           fontSize: 14,
         ),
@@ -518,7 +518,7 @@ class AppDrawer extends StatelessWidget {
             )
           : null,
       selected: isSelected,
-      selectedTileColor: const dorado.withValues(alpha: 0.18),
+      selectedTileColor: dorado.withValues(alpha: 0.18),
       onTap: () {
         if (showSnackbar) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -546,7 +546,7 @@ class AppDrawer extends StatelessWidget {
     final bool isSelected = currentRoute == route;
     return ListTile(
       leading: Icon(icon,
-          color: isSelected ? const dorado : const Color(0xFF94A3B8),
+          color: isSelected ? dorado : const Color(0xFF94A3B8),
           size: 20),
       title: Text(
         title,
@@ -583,7 +583,7 @@ class AppDrawer extends StatelessWidget {
           leading: Icon(icon, color: const Color(0xFF94A3B8), size: 24),
           title: Text(title,
               style: const TextStyle(fontSize: 15, color: Colors.white70)),
-          collapsedIconColor: const dorado,
+          collapsedIconColor: dorado,
           childrenPadding: EdgeInsets.zero,
           tilePadding: const EdgeInsets.symmetric(horizontal: 20),
           children: children,

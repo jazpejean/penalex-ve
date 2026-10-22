@@ -327,7 +327,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 autofocus: true,
                 decoration: InputDecoration(
                   hintText: 'Ej: juicio de Maracaibo, control de Caracas...',
-                  prefixIcon: const Icon(Icons.search, color: TemaGlobal.textoSecundario),
+                  prefixIcon: Icon(Icons.search, color: TemaGlobal.textoSecundario),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   isDense: true,
                 ),

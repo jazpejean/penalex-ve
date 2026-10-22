@@ -48,18 +48,21 @@ class MainBottomBar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   _buildNavItem(
+                    context,
                     Icons.home_outlined,
                     'Inicio',
                     0,
                     currentIndex,
                   ),
                   _buildNavItem(
+                    context,
                     Icons.calendar_month_outlined,
                     'Agenda',
                     1,
                     currentIndex,
                   ),
                   _buildNavItem(
+                    context,
                     Icons.auto_awesome,
                     'Asistente',
                     2,
@@ -67,12 +70,13 @@ class MainBottomBar extends StatelessWidget {
                     isCenter: true,
                   ),
                   _buildNavItem(
+                    context,
                     Icons.search,
                     'Buscar',
                     3,
                     currentIndex,
                   ),
-                  _buildDrawerItem(),
+                  _buildDrawerItem(context),
                 ],
               ),
             ),
@@ -83,6 +87,7 @@ class MainBottomBar extends StatelessWidget {
   }
 
   Widget _buildNavItem(
+    BuildContext context,
     IconData icon,
     String label,
     int index,
@@ -167,7 +172,7 @@ class MainBottomBar extends StatelessWidget {
 
   /// Item "Más" del bottom nav: abre el drawer si se provee callback;
   /// en pantallas externas vuelve al inicio (pestaña 0).
-  Widget _buildDrawerItem() {
+  Widget _buildDrawerItem(BuildContext context) {
     return Expanded(
       child: InkWell(
         onTap: () {

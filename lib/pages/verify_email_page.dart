@@ -95,7 +95,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       if (mounted) {
         // Navegación compartida: MainScreen como raíz + pestaña Inicio,
         // nunca un DashboardScreen huérfano sin barra inferior.
-        unawaited(navegarDesdeMain(context, '/dashboard'));
+        navegarDesdeMain(context, '/dashboard');
       }
     } else {
       _showSnackBar('Tu correo aún no está verificado. Revisa tu bandeja de entrada.', isError: true);
@@ -128,9 +128,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Icon(Icons.mark_email_unread_outlined, size: 80, color: TemaGlobal.texto),
+                Icon(Icons.mark_email_unread_outlined, size: 80, color: TemaGlobal.texto),
                 const SizedBox(height: 24),
-                const Text(
+                Text(
                   'Verifica tu correo electrónico',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: TemaGlobal.texto),
                   textAlign: TextAlign.center,
@@ -153,7 +153,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                     children: <Widget>[
                       Row(
                         children: <Widget>[
-                          const Icon(Icons.email_outlined, color: TemaGlobal.textoSecundario),
+                          Icon(Icons.email_outlined, color: TemaGlobal.textoSecundario),
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(
@@ -166,7 +166,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                       const SizedBox(height: 12),
                       Row(
                         children: <Widget>[
-                          const Icon(Icons.link_outlined, color: TemaGlobal.textoSecundario),
+                          Icon(Icons.link_outlined, color: TemaGlobal.textoSecundario),
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(
@@ -179,7 +179,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                       const SizedBox(height: 12),
                       Row(
                         children: <Widget>[
-                          const Icon(Icons.refresh_outlined, color: TemaGlobal.textoSecundario),
+                          Icon(Icons.refresh_outlined, color: TemaGlobal.textoSecundario),
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(

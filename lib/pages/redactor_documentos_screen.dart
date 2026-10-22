@@ -226,7 +226,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
 
   Color _getFileColor(AttachmentType type) {
     // Acentos unificados en dorado institucional (uniformidad TemaGlobal).
-    return const AppColors.secondary;
+    return AppColors.secondary;
   }
 
   Future<void> _exportToPDF(String content, {bool compartir = true}) async {
@@ -507,7 +507,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
       label: Text(label),
       selected: activo,
       onSelected: (_) => onTap(value),
-      selectedColor: const AppColors.secondary,
+      selectedColor: AppColors.secondary,
       backgroundColor: TemaGlobal.capa,
       labelStyle: TextStyle(color: activo ? Colors.black : TemaGlobal.texto),
     );
@@ -766,7 +766,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     const SizedBox(width: 8),
                     FloatingActionButton(
                       onPressed: _isLoading ? null : _sendMessage,
-                      backgroundColor: const AppColors.secondary,
+                      backgroundColor: AppColors.secondary,
                       mini: true,
                       child: const Icon(Icons.send, color: Color(0xFF0F172A)),
                     ),
@@ -862,7 +862,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: const Icon(Icons.edit, size: 16),
                     label: const Text('Editar'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const AppColors.secondary,
+                      backgroundColor: AppColors.secondary,
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 12,
@@ -1392,7 +1392,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: Icons.document_scanner,
                     title: 'Documentos Escaneados',
                     subtitle: 'Textos extraídos con OCR',
-                    color: const AppColors.secondary,
+                    color: AppColors.secondary,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarDocumentosEscaneados();
@@ -1403,7 +1403,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: Icons.calculate,
                     title: 'Reportes de Calculadora',
                     subtitle: 'Dosimetrías y cómputos guardados',
-                    color: const AppColors.secondary,
+                    color: AppColors.secondary,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarReportesCalculadora();
@@ -1414,7 +1414,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: Icons.chat,
                     title: 'Conversaciones del Chat Legal',
                     subtitle: 'Historial de consultas',
-                    color: const AppColors.secondary,
+                    color: AppColors.secondary,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarConversacionesChatLegal();
@@ -1425,7 +1425,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: Icons.star,
                     title: 'Sentencias Favoritas',
                     subtitle: 'Jurisprudencias marcadas',
-                    color: const AppColors.secondary,
+                    color: AppColors.secondary,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarSentenciasFavoritas();
