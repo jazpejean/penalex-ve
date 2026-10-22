@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
+import '../config/app_theme.dart';
 import '../services/tribunales_service.dart';
+import '../widgets/main_bottom_bar.dart';
 import 'tribunal_detail_screen.dart';
 
 /// Mapa de tribunales penales de Venezuela (catálogo oficial TSJ).
@@ -236,6 +238,7 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
           ),
         ],
       ),
+      bottomNavigationBar: const MainBottomBar(),
       body: _cargando
           ? const Center(child: CircularProgressIndicator())
           : _error != null
@@ -475,7 +478,7 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
             '${_visibles.length} de ${_tribunales.length} tribunales',
             style: TextStyle(
               fontSize: 12,
-              color: Colors.grey.shade700,
+              color: TemaGlobal.textoTenue,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -487,7 +490,7 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
                 'Limpiar filtros',
                 style: TextStyle(
                   fontSize: 12,
-                  color: Colors.blue.shade700,
+                  color: TemaGlobal.dorado,
                   decoration: TextDecoration.underline,
                 ),
               ),
@@ -570,7 +573,13 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
               Row(
                 children: [
                   Chip(
-                    label: Text('Despacho: ${t.despacho}'),
+                    label: Text(
+                      'Despacho: ${t.despacho}',
+                      style: TextStyle(
+                        color: TemaGlobal.azulMarino,
+                        fontSize: 12,
+                      ),
+                    ),
                     backgroundColor: t.despacho == 'con despacho'
                         ? Colors.green.shade100
                         : Colors.orange.shade100,
@@ -600,9 +609,14 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
       padding: const EdgeInsets.symmetric(vertical: 2),
       child: Row(
         children: [
-          Icon(icon, size: 16, color: Colors.grey.shade600),
+          Icon(icon, size: 16, color: TemaGlobal.textoTenue),
           const SizedBox(width: 8),
-          Expanded(child: Text(texto, style: const TextStyle(fontSize: 13))),
+          Expanded(
+            child: Text(
+              texto,
+              style: TextStyle(fontSize: 13, color: TemaGlobal.texto),
+            ),
+          ),
         ],
       ),
     );

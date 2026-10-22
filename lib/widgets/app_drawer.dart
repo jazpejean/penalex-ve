@@ -152,7 +152,7 @@ class AppDrawer extends StatelessWidget {
 
     return Drawer(
       child: Container(
-        color: const Color(0xFF0F172A),
+        color: const azulMarino,
         child: Column(
           children: <Widget>[
             StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
@@ -190,7 +190,7 @@ class AppDrawer extends StatelessWidget {
                           children: <Widget>[
                             CircleAvatar(
                               radius: 36,
-                              backgroundColor: const Color(0xFFC5A059),
+                              backgroundColor: const dorado,
                               backgroundImage: photoBase64 != null
                                   ? MemoryImage(base64Decode(photoBase64))
                                   : (photoUrl != null ? NetworkImage(photoUrl) : null) as ImageProvider?,
@@ -203,7 +203,7 @@ class AppDrawer extends StatelessWidget {
                               child: (photoBase64 == null && photoUrl == null)
                                   ? Text(inicial,
                                       style: const TextStyle(
-                                          color: Color(0xFF0F172A),
+                                          color: azulMarino,
                                           fontSize: 28,
                                           fontWeight: FontWeight.bold))
                                   : null,
@@ -212,13 +212,13 @@ class AppDrawer extends StatelessWidget {
                               height: 28,
                               width: 28,
                               decoration: BoxDecoration(
-                                color: const Color(0xFFC5A059),
+                                color: const dorado,
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                    color: const Color(0xFF0F172A), width: 2),
+                                    color: const azulMarino, width: 2),
                               ),
                               child: const Icon(Icons.camera_alt,
-                                  size: 16, color: Color(0xFF0F172A)),
+                                  size: 16, color: azulMarino),
                             ),
                           ],
                         ),
@@ -244,13 +244,13 @@ class AppDrawer extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 6, horizontal: 12),
                               decoration: BoxDecoration(
-                                color: const Color(0xFFC5A059)
+                                color: const dorado
                                     .withValues(alpha: 0.12),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Text(rango,
                                   style: const TextStyle(
-                                      color: Color(0xFFC5A059),
+                                      color: dorado,
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600)),
                             ),
@@ -450,14 +450,14 @@ class AppDrawer extends StatelessWidget {
               valueListenable: TemaGlobal.oscuro,
               builder: (context, oscuro, _) => SwitchListTile(
                 secondary: const Icon(Icons.dark_mode,
-                    color: Color(0xFFC5A059), size: 22),
+                    color: dorado, size: 22),
                 title: const Text('Modo oscuro',
                     style: TextStyle(color: Colors.white, fontSize: 14)),
                 subtitle: Text(oscuro ? 'Activado' : 'Desactivado',
                     style: const TextStyle(
                         color: Colors.white54, fontSize: 11)),
                 value: oscuro,
-                activeTrackColor: const Color(0xFFC5A059),
+                activeTrackColor: const dorado,
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 20),
                 onChanged: (v) => TemaGlobal.guardar(v),
@@ -476,7 +476,7 @@ class AppDrawer extends StatelessWidget {
       child: Text(
         title,
         style: const TextStyle(
-          color: Color(0xFFC5A059),
+          color: dorado,
           fontSize: 11,
           fontWeight: FontWeight.bold,
           letterSpacing: 1.2,
@@ -497,12 +497,12 @@ class AppDrawer extends StatelessWidget {
     final bool isSelected = currentRoute == route;
     return ListTile(
       leading: Icon(icon,
-          color: isSelected ? const Color(0xFFC5A059) : const Color(0xFF94A3B8),
+          color: isSelected ? const dorado : const Color(0xFF94A3B8),
           size: 24),
       title: Text(
         title,
         style: TextStyle(
-          color: isSelected ? const Color(0xFFC5A059) : Colors.white,
+          color: isSelected ? const dorado : Colors.white,
           fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
           fontSize: 14,
         ),
@@ -518,7 +518,7 @@ class AppDrawer extends StatelessWidget {
             )
           : null,
       selected: isSelected,
-      selectedTileColor: const Color(0xFFC5A059).withValues(alpha: 0.18),
+      selectedTileColor: const dorado.withValues(alpha: 0.18),
       onTap: () {
         if (showSnackbar) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -546,7 +546,7 @@ class AppDrawer extends StatelessWidget {
     final bool isSelected = currentRoute == route;
     return ListTile(
       leading: Icon(icon,
-          color: isSelected ? const Color(0xFFC5A059) : const Color(0xFF94A3B8),
+          color: isSelected ? const dorado : const Color(0xFF94A3B8),
           size: 20),
       title: Text(
         title,
@@ -583,7 +583,7 @@ class AppDrawer extends StatelessWidget {
           leading: Icon(icon, color: const Color(0xFF94A3B8), size: 24),
           title: Text(title,
               style: const TextStyle(fontSize: 15, color: Colors.white70)),
-          collapsedIconColor: const Color(0xFFC5A059),
+          collapsedIconColor: const dorado,
           childrenPadding: EdgeInsets.zero,
           tilePadding: const EdgeInsets.symmetric(horizontal: 20),
           children: children,

@@ -327,7 +327,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 autofocus: true,
                 decoration: InputDecoration(
                   hintText: 'Ej: juicio de Maracaibo, control de Caracas...',
-                  prefixIcon: const Icon(Icons.search, color: AppColors.primary),
+                  prefixIcon: const Icon(Icons.search, color: TemaGlobal.textoSecundario),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   isDense: true,
                 ),
@@ -338,9 +338,9 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 child: buscando
                     ? const Center(child: CircularProgressIndicator())
                     : resultados.isEmpty
-                        ? const Center(
+                        ? Center(
                             child: Text('Escribe para buscar tribunales',
-                                style: TextStyle(color: Colors.grey)))
+                                style: TextStyle(color: TemaGlobal.textoTenue)))
                         : ListView.builder(
                             itemCount: resultados.length,
                             itemBuilder: (_, i) {
@@ -500,7 +500,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
           labelText: label,
           hintText: hint,
           hintStyle: TextStyle(color: TemaGlobal.textoTenue, fontSize: 13),
-          prefixIcon: Icon(icon, color: AppColors.primary),
+          prefixIcon: Icon(icon, color: TemaGlobal.textoSecundario),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
           isDense: true,
         ),

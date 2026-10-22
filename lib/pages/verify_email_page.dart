@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../services/auth_service.dart';
 import '../services/local_auth_service.dart';
+import '../utils/main_tab_controller.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({super.key});
@@ -92,11 +93,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     if (verified) {
       await LocalAuthService.updateEmailVerified(verified: true);
       if (mounted) {
-        unawaited(Navigator.pushNamedAndRemoveUntil(
-          context,
-          '/dashboard',
-          (Route<dynamic> route) => false,
-        ));
+        // Navegación compartida: MainScreen como raíz + pestaña Inicio,
+        // nunca un DashboardScreen huérfano sin barra inferior.
+        unawaited(navegarDesdeMain(context, '/dashboard'));
       }
     } else {
       _showSnackBar('Tu correo aún no está verificado. Revisa tu bandeja de entrada.', isError: true);
@@ -129,11 +128,11 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Icon(Icons.mark_email_unread_outlined, size: 80, color: azulMarino),
+                const Icon(Icons.mark_email_unread_outlined, size: 80, color: TemaGlobal.texto),
                 const SizedBox(height: 24),
                 const Text(
                   'Verifica tu correo electrónico',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: azulMarino),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: TemaGlobal.texto),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 16),
@@ -154,12 +153,12 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                     children: <Widget>[
                       Row(
                         children: <Widget>[
-                          const Icon(Icons.email_outlined, color: azulMarino),
+                          const Icon(Icons.email_outlined, color: TemaGlobal.textoSecundario),
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(
                               'Revisa tu bandeja de entrada y carpeta de spam/junk',
-                              style: TextStyle(color: azulMarino.withValues(alpha: 0.8)),
+                              style: TextStyle(color: TemaGlobal.textoSecundario),
                             ),
                           ),
                         ],
@@ -167,12 +166,12 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                       const SizedBox(height: 12),
                       Row(
                         children: <Widget>[
-                          const Icon(Icons.link_outlined, color: azulMarino),
+                          const Icon(Icons.link_outlined, color: TemaGlobal.textoSecundario),
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(
                               'Haz clic en el enlace de verificación',
-                              style: TextStyle(color: azulMarino.withValues(alpha: 0.8)),
+                              style: TextStyle(color: TemaGlobal.textoSecundario),
                             ),
                           ),
                         ],
@@ -180,12 +179,12 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                       const SizedBox(height: 12),
                       Row(
                         children: <Widget>[
-                          const Icon(Icons.refresh_outlined, color: azulMarino),
+                          const Icon(Icons.refresh_outlined, color: TemaGlobal.textoSecundario),
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(
                               'Vuelve aquí y presiona "Ya verifiqué mi correo"',
-                              style: TextStyle(color: azulMarino.withValues(alpha: 0.8)),
+                              style: TextStyle(color: TemaGlobal.textoSecundario),
                             ),
                           ),
                         ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../utils/main_tab_controller.dart';
 import '../widgets/app_drawer.dart';
+import '../widgets/main_bottom_bar.dart';
 import 'dashboard_screen.dart';
 import 'agenda_screen.dart';
 import 'asistente_legal_hub_screen.dart';
@@ -25,10 +26,6 @@ class _MainScreenState extends State<MainScreen> {
   // el drawer navegó a 'Agenda' y reemplazó la pila), la nueva instancia
   // del MainScreen abre directamente esa pestaña.
   int _currentIndex = mainTabIndex.value;
-
-  static const _fondoProfundo = Color(0xFF0F172A);
-  static const _oro = Color(0xFFC5A059);
-  static const _oroBrillante = Color(0xFFE9C86A);
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -86,162 +83,9 @@ class _MainScreenState extends State<MainScreen> {
         index: _currentIndex,
         children: _screens,
       ),
-      bottomNavigationBar: _buildBottomBar(),
+      bottomNavigationBar: MainBottomBar(
+        onOpenDrawer: () => _scaffoldKey.currentState?.openDrawer(),
       ),
-    );
-  }
-
-  Widget _buildBottomBar() {
-    return Container(
-      decoration: BoxDecoration(
-        color: _fondoProfundo,
-        border: Border(
-          top: BorderSide(color: _oro.withValues(alpha: 0.35), width: 1),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.35),
-            blurRadius: 12,
-            offset: const Offset(0, -3),
-          ),
-        ],
-      ),
-      child: SafeArea(
-        top: false,
-        child: SizedBox(
-          height: 68,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              // TODO: reemplazar por QuizIcon('home_ornate')
-              _buildNavItem(Icons.home_outlined, 'Inicio', 0),
-              // TODO: reemplazar por QuizIcon('calendar_court')
-              _buildNavItem(Icons.calendar_month_outlined, 'Agenda', 1),
-              // TODO: reemplazar por QuizIcon('auto_awesome_ornate')
-              _buildNavItem(Icons.auto_awesome, 'Asistente', 2, isCenter: true),
-              // TODO: reemplazar por QuizIcon('search_ornate')
-              _buildNavItem(Icons.search, 'Buscar', 3),
-              _buildDrawerItem(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavItem(
-    IconData icon,
-    String label,
-    int index, {
-    bool isCenter = false,
-  }) {
-    final bool isSelected = _currentIndex == index;
-    final double iconSize = isCenter ? 26 : 22;
-
-    return Expanded(
-      child: InkWell(
-        onTap: () => setState(() => _currentIndex = index),
-        borderRadius: BorderRadius.circular(12),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            if (isCenter)
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: isSelected
-                      ? _oro
-                      : _oro.withValues(alpha: 0.15),
-                  boxShadow: isSelected
-                      ? [
-                          BoxShadow(
-                            color: _oro.withValues(alpha: 0.5),
-                            blurRadius: 16,
-                            spreadRadius: 2,
-                          ),
-                        ]
-                      : null,
-                ),
-                child: Icon(
-                  icon,
-                  size: iconSize,
-                  color: isSelected ? _fondoProfundo : _oro,
-                ),
-              )
-            else
-              Icon(
-                icon,
-                size: iconSize,
-                color: isSelected
-                    ? _oroBrillante
-                    : _oro.withValues(alpha: 0.6),
-              ),
-            const SizedBox(height: 5),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  label,
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: isSelected
-                        ? FontWeight.w700
-                        : FontWeight.w500,
-                    letterSpacing: 0.2,
-                    color: isSelected
-                        ? _oroBrillante
-                        : _oro.withValues(alpha: 0.7),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  /// Item "Más" del bottom nav: NO cambia _currentIndex, abre el drawer.
-  Widget _buildDrawerItem() {
-    return Expanded(
-      child: InkWell(
-        onTap: () => _scaffoldKey.currentState?.openDrawer(),
-        borderRadius: BorderRadius.circular(12),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // TODO: reemplazar por QuizIcon('menu_ornate')
-            Icon(
-              Icons.menu,
-              size: 22,
-              color: _oro.withValues(alpha: 0.6),
-            ),
-            const SizedBox(height: 5),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  'Más',
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 0.2,
-                    color: _oro.withValues(alpha: 0.7),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

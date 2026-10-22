@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../services/prescripcion_service.dart';
+import '../widgets/main_bottom_bar.dart';
 import 'redactor_documentos_screen.dart';
 
 /// Calculadora de Prescripción Penal (arts. 108 y 112 CP).
@@ -152,6 +153,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: azulMarino,
+      bottomNavigationBar: const MainBottomBar(),
       appBar: AppBar(
         title: const Text(
           'Calculadora de Prescripción',

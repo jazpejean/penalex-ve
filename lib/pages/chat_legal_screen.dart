@@ -16,6 +16,7 @@ import '../services/chat_service.dart';
 import '../services/ocr_service.dart';
 import '../services/chat_legal_export_service.dart';
 import '../services/ulpiano_service.dart';
+import '../widgets/main_bottom_bar.dart';
 import 'redactor_documentos_screen.dart' show RedactorDocumentosScreen;
 
 /// Modelo para archivos adjuntos
@@ -777,6 +778,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: TemaGlobal.superficie,
+      bottomNavigationBar: const MainBottomBar(),
       appBar: AppBar(
         title: const Row(
           mainAxisSize: MainAxisSize.min,

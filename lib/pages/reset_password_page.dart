@@ -142,7 +142,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Icon(Icons.lock_reset, size: 80, color: azulMarino),
+                const Icon(Icons.lock_reset, size: 80, color: TemaGlobal.texto),
                 SizedBox(height: 20),
                 Text(
                   'Restablecer contraseña',
@@ -165,7 +165,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   decoration: InputDecoration(
                     labelText: 'Enlace o código del correo',
                     prefixIcon:
-                        const Icon(Icons.link, color: azulMarino),
+                        const Icon(Icons.link, color: TemaGlobal.textoSecundario),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12)),
                     filled: true,
@@ -181,7 +181,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   decoration: InputDecoration(
                     labelText: 'Nueva contraseña',
                     prefixIcon:
-                        Icon(Icons.lock_outline, color: azulMarino),
+                        Icon(Icons.lock_outline, color: TemaGlobal.textoSecundario),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscurePassword
@@ -207,7 +207,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   decoration: InputDecoration(
                     labelText: 'Confirmar contraseña',
                     prefixIcon:
-                        Icon(Icons.lock_outline, color: azulMarino),
+                        Icon(Icons.lock_outline, color: TemaGlobal.textoSecundario),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscureConfirm

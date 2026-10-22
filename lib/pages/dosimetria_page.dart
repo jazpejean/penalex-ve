@@ -10,6 +10,7 @@ import '../services/calculation_service.dart';
 import '../config/app_theme.dart';
 import '../widgets/buscador_articulos_sheet.dart';
 import '../widgets/dosimetria_stepper.dart';
+import '../widgets/main_bottom_bar.dart';
 import 'concurso_page.dart';
 
 enum UnidadTiempo {
@@ -576,6 +577,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: fondoGris,
+        bottomNavigationBar: const MainBottomBar(),
         body: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),

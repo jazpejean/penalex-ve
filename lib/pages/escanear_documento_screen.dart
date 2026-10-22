@@ -5,6 +5,7 @@ import '../models/documento_escaneado.dart';
 import '../services/documentos_service.dart';
 import '../services/escaneo_service.dart';
 import '../services/pdf_export_service.dart';
+import '../widgets/main_bottom_bar.dart';
 import 'document_editor_screen.dart';
 
 /// Lista de documentos escaneados (repositorio del escáner).
@@ -88,6 +89,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: fondoGris,
+      bottomNavigationBar: const MainBottomBar(),
       appBar: AppBar(
         title: const Text(
           'Mis Documentos',

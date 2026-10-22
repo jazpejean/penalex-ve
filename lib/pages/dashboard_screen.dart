@@ -4,9 +4,28 @@ import 'package:provider/provider.dart';
 
 import '../services/auth_service.dart';
 import '../config/app_theme.dart';
+import '../utils/main_tab_controller.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
+
+  /// Navega desde el dashboard manteniendo la bottom bar siempre visible:
+  /// - rutas-pestaña (agenda, asistente, consulta) cambian el tab del MainScreen;
+  /// - las 3 rutas de consulta abren la pestaña "Buscar" con su corpus;
+  /// - herramientas externas (calculadora, mapa, quiz) se apilan con la barra.
+  void _navegar(BuildContext context, String route) {
+    Haptics.tap();
+    switch (route) {
+      case '/repositorio_jurisprudencia':
+        navegarAConsulta(context, 'sentencias');
+      case '/repositorio_leyes':
+        navegarAConsulta(context, 'leyes');
+      case '/glosario':
+        navegarAConsulta(context, 'glosario');
+      default:
+        navegarDesdeMain(context, route);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -205,10 +224,7 @@ class DashboardScreen extends StatelessWidget {
     required String badge,
   }) =>
       GestureDetector(
-        onTap: () {
-          Haptics.tap();
-          Navigator.pushNamed(context, route);
-        },
+        onTap: () => _navegar(context, route),
         child: Container(
           margin: const EdgeInsets.only(bottom: 20),
           decoration: BoxDecoration(
@@ -233,10 +249,7 @@ class DashboardScreen extends StatelessWidget {
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () {
-                Haptics.tap();
-                Navigator.pushNamed(context, route);
-              },
+              onTap: () => _navegar(context, route),
               borderRadius: BorderRadius.circular(20),
               splashColor: TemaGlobal.dorado.withValues(alpha: 0.2),
               child: Padding(
@@ -386,7 +399,7 @@ class DashboardScreen extends StatelessWidget {
     required String actionText,
   }) =>
       GestureDetector(
-        onTap: () => Navigator.pushNamed(context, route),
+        onTap: () => _navegar(context, route),
         child: Container(
           margin: const EdgeInsets.only(bottom: 14),
           decoration: BoxDecoration(
@@ -411,7 +424,7 @@ class DashboardScreen extends StatelessWidget {
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () => Navigator.pushNamed(context, route),
+              onTap: () => _navegar(context, route),
               borderRadius: BorderRadius.circular(16),
               splashColor: TemaGlobal.dorado.withValues(alpha: 0.1),
               child: Padding(

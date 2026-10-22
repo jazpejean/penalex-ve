@@ -86,26 +86,26 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(subtitle,
-                style: TextStyle(color: TemaGlobal.azulMarino.withValues(alpha: 0.85))),
+                style: TextStyle(color: TemaGlobal.textoSecundario)),
             const SizedBox(height: 12),
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: TemaGlobal.azulMarino.withValues(alpha: 0.05),
+                color: TemaGlobal.dorado.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                    color: TemaGlobal.azulMarino.withValues(alpha: 0.10)),
+                    color: TemaGlobal.dorado.withValues(alpha: 0.2)),
               ),
               child: Row(
                 children: [
                   Icon(Icons.mark_email_unread_outlined,
-                      color: TemaGlobal.azulMarino.withValues(alpha: 0.85)),
+                      color: TemaGlobal.dorado),
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
                       'Abre el enlace del correo y luego intenta iniciar sesión nuevamente.',
                       style: TextStyle(
-                          color: TemaGlobal.azulMarino.withValues(alpha: 0.80),
+                          color: TemaGlobal.textoSecundario,
                           height: 1.2),
                     ),
                   ),
@@ -117,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('Entendido', style: TextStyle(color: TemaGlobal.azulMarino)),
+            child: Text('Entendido', style: TextStyle(color: TemaGlobal.dorado)),
           ),
         ],
       ),
@@ -238,14 +238,14 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                Icon(Icons.gavel_rounded, size: 80, color: TemaGlobal.azulMarino),
+                Icon(Icons.gavel_rounded, size: 80, color: TemaGlobal.texto),
                 const SizedBox(height: 24),
                 Text(
                   'Penalex VE',
                   style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: TemaGlobal.azulMarino),
+                      color: TemaGlobal.texto),
                 ),
                 const SizedBox(height: 8),
                 Text(
@@ -278,7 +278,7 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                     labelText: 'Correo electrónico',
                     prefixIcon: Icon(Icons.email_outlined,
-                        color: TemaGlobal.azulMarino.withValues(alpha: 0.90)),
+                        color: TemaGlobal.textoSecundario),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12)),
                     filled: true,
@@ -293,13 +293,13 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                     labelText: 'Contraseña',
                     prefixIcon: Icon(Icons.lock_outline,
-                        color: TemaGlobal.azulMarino.withValues(alpha: 0.90)),
+                        color: TemaGlobal.textoSecundario),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscurePassword
                             ? Icons.visibility_off
                             : Icons.visibility,
-                        color: TemaGlobal.azulMarino.withValues(alpha: 0.90),
+                        color: TemaGlobal.textoSecundario,
                       ),
                       onPressed: () =>
                           setState(() => _obscurePassword = !_obscurePassword),
@@ -322,7 +322,7 @@ class _LoginPageState extends State<LoginPage> {
                           builder: (_) => const ForgotPasswordPage()),
                     ),
                     child: Text('¿Olvidaste tu contraseña?',
-                        style: TextStyle(color: TemaGlobal.azulMarino)),
+                        style: TextStyle(color: TemaGlobal.dorado)),
                   ),
                 ),
                 const SizedBox(height: 32),

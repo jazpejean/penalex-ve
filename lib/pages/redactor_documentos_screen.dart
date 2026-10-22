@@ -14,8 +14,10 @@ import '../services/ocr_service.dart';
 import '../services/redactor_service.dart';
 import '../services/chat_legal_export_service.dart';
 import '../services/membrete_service.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../models/chat_attachment.dart';
+import '../widgets/main_bottom_bar.dart';
 import 'word_editor_screen.dart';
 
 class RedactorDocumentosScreen extends StatefulWidget {
@@ -224,7 +226,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
 
   Color _getFileColor(AttachmentType type) {
     // Acentos unificados en dorado institucional (uniformidad TemaGlobal).
-    return const Color(0xFFC5A059);
+    return const AppColors.secondary;
   }
 
   Future<void> _exportToPDF(String content, {bool compartir = true}) async {
@@ -505,7 +507,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
       label: Text(label),
       selected: activo,
       onSelected: (_) => onTap(value),
-      selectedColor: const Color(0xFFC5A059),
+      selectedColor: const AppColors.secondary,
       backgroundColor: TemaGlobal.capa,
       labelStyle: TextStyle(color: activo ? Colors.black : TemaGlobal.texto),
     );
@@ -553,6 +555,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TemaGlobal.superficie,
+      bottomNavigationBar: const MainBottomBar(),
       appBar: AppBar(
         backgroundColor: TemaGlobal.azulMarino,
         title: const Text('Redactor de Documentos'),
@@ -580,7 +583,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
             tooltip: 'Nueva conversación',
           ),
             IconButton(
-              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
+              icon: const Icon(Icons.home_outlined, color: AppColors.secondary),
               tooltip: 'Ir al inicio',
               onPressed: () {
                 mainTabIndex.value = 0;
@@ -615,7 +618,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                   children: [
                     Row(
                       children: [
-                        const Icon(Icons.edit_document, color: Color(0xFFC5A059), size: 20),
+                        const Icon(Icons.edit_document, color: AppColors.secondary, size: 20),
                         const SizedBox(width: 8),
                         Text(
                           'Completando documento: $progress/$total campos',
@@ -627,7 +630,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     LinearProgressIndicator(
                       value: progress / total,
                       backgroundColor: TemaGlobal.capa,
-                      valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFFC5A059)),
+                      valueColor: const AlwaysStoppedAnimation<Color>(AppColors.secondary),
                     ),
                   ],
                 ),
@@ -763,7 +766,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     const SizedBox(width: 8),
                     FloatingActionButton(
                       onPressed: _isLoading ? null : _sendMessage,
-                      backgroundColor: const Color(0xFFC5A059),
+                      backgroundColor: const AppColors.secondary,
                       mini: true,
                       child: const Icon(Icons.send, color: Color(0xFF0F172A)),
                     ),
@@ -828,22 +831,22 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                           fontSize: 20,
                         ),
                         h2: const TextStyle(
-                          color: Color(0xFFC5A059),
+                          color: AppColors.secondary,
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                         ),
                         h3: const TextStyle(
-                          color: Color(0xFFC5A059),
+                          color: AppColors.secondary,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
-                        listBullet: const TextStyle(color: Color(0xFFC5A059)),
+                        listBullet: const TextStyle(color: AppColors.secondary),
                         blockquote: TextStyle(
                           color: TemaGlobal.textoSecundario,
                           fontStyle: FontStyle.italic,
                         ),
                         code: const TextStyle(
-                          color: Color(0xFFC5A059),
+                          color: AppColors.secondary,
                           backgroundColor: Color(0xFF0F172A),
                         ),
                       ),
@@ -859,7 +862,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: const Icon(Icons.edit, size: 16),
                     label: const Text('Editar'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFC5A059),
+                      backgroundColor: const AppColors.secondary,
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 12,
@@ -960,7 +963,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
               padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
-                  const Icon(Icons.attach_file, color: Color(0xFFC5A059)),
+                  const Icon(Icons.attach_file, color: AppColors.secondary),
                   const SizedBox(width: 12),
                   Text(
                     'Adjuntar archivo',
@@ -977,7 +980,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
             
             // Archivos externos
             ListTile(
-              leading: const Icon(Icons.insert_drive_file, color: Color(0xFFC5A059)),
+              leading: const Icon(Icons.insert_drive_file, color: AppColors.secondary),
               title: Text(
                 'Archivo Externo',
                 style: TextStyle(color: TemaGlobal.texto),
@@ -996,7 +999,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
             
             // ✨ Documentos guardados
             ListTile(
-              leading: const Icon(Icons.folder_special, color: Color(0xFFC5A059)),
+              leading: const Icon(Icons.folder_special, color: AppColors.secondary),
               title: Text(
                 'Documentos Guardados',
                 style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),
@@ -1101,7 +1104,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     padding: const EdgeInsets.all(16),
                     child: Row(
                       children: [
-                        const Icon(Icons.history, color: Color(0xFFC5A059)),
+                        const Icon(Icons.history, color: AppColors.secondary),
                         const SizedBox(width: 12),
                         Text(
                           'Historial del Redactor',
@@ -1123,7 +1126,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                         const Text(
                           'DOCUMENTOS GENERADOS',
                           style: TextStyle(
-                            color: Color(0xFFC5A059),
+                            color: AppColors.secondary,
                             fontWeight: FontWeight.bold,
                             fontSize: 13,
                           ),
@@ -1145,7 +1148,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                               child: ListTile(
                                 leading: const Icon(
                                   Icons.description,
-                                  color: Color(0xFFC5A059),
+                                  color: AppColors.secondary,
                                 ),
                                 title: Text(
                                   d.titulo,
@@ -1192,7 +1195,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                         const Text(
                           'CONVERSACIONES',
                           style: TextStyle(
-                            color: Color(0xFFC5A059),
+                            color: AppColors.secondary,
                             fontWeight: FontWeight.bold,
                             fontSize: 13,
                           ),
@@ -1208,7 +1211,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                         ...convs.map((c) => ListTile(
                               leading: const Icon(
                                 Icons.chat_outlined,
-                                color: Color(0xFFC5A059),
+                                color: AppColors.secondary,
                               ),
                               title: Text(
                                 c['title'] as String? ?? 'Redacción',
@@ -1294,7 +1297,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     ),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.copy, color: Color(0xFFC5A059)),
+                    icon: const Icon(Icons.copy, color: AppColors.secondary),
                     tooltip: 'Copiar',
                     onPressed: () => _copyToClipboard(doc.contenido),
                   ),
@@ -1304,7 +1307,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     onPressed: () => _exportToPDF(doc.contenido),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.description, color: Color(0xFFC5A059)),
+                    icon: const Icon(Icons.description, color: AppColors.secondary),
                     tooltip: 'Exportar Word',
                     onPressed: () => _exportToWord(doc.contenido),
                   ),
@@ -1322,9 +1325,9 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                   styleSheet: MarkdownStyleSheet(
                     p: TextStyle(color: TemaGlobal.texto, fontSize: 15, height: 1.5),
                     strong: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),
-                    h1: const TextStyle(color: Color(0xFFC5A059), fontWeight: FontWeight.bold, fontSize: 20),
-                    h2: const TextStyle(color: Color(0xFFC5A059), fontWeight: FontWeight.bold, fontSize: 18),
-                    listBullet: const TextStyle(color: Color(0xFFC5A059)),
+                    h1: const TextStyle(color: AppColors.secondary, fontWeight: FontWeight.bold, fontSize: 20),
+                    h2: const TextStyle(color: AppColors.secondary, fontWeight: FontWeight.bold, fontSize: 18),
+                    listBullet: const TextStyle(color: AppColors.secondary),
                   ),
                 ),
               ),
@@ -1359,7 +1362,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.folder_special, color: Color(0xFFC5A059)),
+                  const Icon(Icons.folder_special, color: AppColors.secondary),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
@@ -1389,7 +1392,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: Icons.document_scanner,
                     title: 'Documentos Escaneados',
                     subtitle: 'Textos extraídos con OCR',
-                    color: const Color(0xFFC5A059),
+                    color: const AppColors.secondary,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarDocumentosEscaneados();
@@ -1400,7 +1403,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: Icons.calculate,
                     title: 'Reportes de Calculadora',
                     subtitle: 'Dosimetrías y cómputos guardados',
-                    color: const Color(0xFFC5A059),
+                    color: const AppColors.secondary,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarReportesCalculadora();
@@ -1411,7 +1414,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: Icons.chat,
                     title: 'Conversaciones del Chat Legal',
                     subtitle: 'Historial de consultas',
-                    color: const Color(0xFFC5A059),
+                    color: const AppColors.secondary,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarConversacionesChatLegal();
@@ -1422,7 +1425,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: Icons.star,
                     title: 'Sentencias Favoritas',
                     subtitle: 'Jurisprudencias marcadas',
-                    color: const Color(0xFFC5A059),
+                    color: const AppColors.secondary,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarSentenciasFavoritas();

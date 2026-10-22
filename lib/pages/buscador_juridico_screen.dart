@@ -1,13 +1,17 @@
 // Buscador Jurídico unificado — "nivel Venley".
 // Un solo buscador con alcance segmentado: Sentencias / Leyes / Glosario.
 // El segmentado cambia el corpus EN LA MISMA PANTALLA (como Venley).
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../models/ley_estructurada.dart';
 import '../models/sentencia_model.dart';
 import '../services/jurisprudencia_service.dart';
 import '../services/leyes_repositorio_service.dart';
+import '../utils/main_tab_controller.dart';
 import 'asistente_legal_screen.dart';
 import 'glosario_screen.dart';
 import 'ley_estructura_screen.dart';
@@ -31,11 +35,13 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
 
   late AlcanceBusqueda _alcance = widget.alcanceInicial ?? AlcanceBusqueda.sentencias;
   bool _cargando = false;
+  String? _error;
+  int _secuenciaBusqueda = 0;
+  Timer? _debounce;
   int? _conteoSentencias;
 
   // Sentencias
   List<SentenciaModel> _sentencias = [];
-  bool _soloFavoritas = false;
   String _tipoSeleccionado = 'Sentencias';
   String? _salaSeleccionada;
   int? _anioSeleccionado;
@@ -52,12 +58,32 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
     super.initState();
     _cargarConteo();
     if (_alcance == AlcanceBusqueda.sentencias) _buscar();
+    // Alcance pedido desde fuera (dashboard → pestaña Buscar con corpus).
+    consultaAlcance.addListener(_onConsultaExterna);
   }
 
   @override
   void dispose() {
+    consultaAlcance.removeListener(_onConsultaExterna);
+    _debounce?.cancel();
     _searchController.dispose();
     super.dispose();
+  }
+
+  void _onConsultaExterna() {
+    final String? alcance = consultaAlcance.value;
+    if (alcance == null || !mounted) return;
+    final AlcanceBusqueda nuevo = switch (alcance) {
+      'leyes' => AlcanceBusqueda.leyes,
+      'glosario' => AlcanceBusqueda.glosario,
+      _ => AlcanceBusqueda.sentencias,
+    };
+    if (nuevo == _alcance) return;
+    setState(() {
+      _alcance = nuevo;
+      _searchController.clear();
+    });
+    _buscar();
   }
 
   Future<void> _cargarConteo() async {
@@ -92,7 +118,11 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
   }
 
   Future<void> _buscarSentencias(String q) async {
-    setState(() => _cargando = true);
+    final int miSecuencia = ++_secuenciaBusqueda;
+    setState(() {
+      _cargando = true;
+      _error = null;
+    });
     final tipoParam = _tipoSeleccionado == 'Jurisprudencias'
         ? 'jurisprudencia'
         : _tipoSeleccionado == 'Resoluciones'
@@ -104,11 +134,16 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
       sala: _salaSeleccionada,
       anio: _anioSeleccionado,
       limit: 50,
+      onError: (mensaje) {
+        if (mounted && miSecuencia == _secuenciaBusqueda) {
+          setState(() => _error = mensaje);
+        }
+      },
     );
-    if (!mounted) return;
+    // Respuesta vieja (otra búsqueda la pisó): descartar.
+    if (!mounted || miSecuencia != _secuenciaBusqueda) return;
     setState(() {
       _sentencias = resultados;
-      if (_soloFavoritas) _sentencias = _sentencias.where((s) => s.esJurisprudencia || s.tienePDF).toList();
       _cargando = false;
     });
   }
@@ -164,23 +199,27 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
 
   void _cambiarAlcance(AlcanceBusqueda nuevo) {
     if (_alcance == nuevo) return;
+    _debounce?.cancel();
     setState(() {
       _alcance = nuevo;
       _sentencias = [];
       _leyes = [];
       _glosario = [];
       _progresoIndice = '';
+      _error = null;
     });
     _buscar();
   }
 
   void _limpiar() {
+    _debounce?.cancel();
     _searchController.clear();
     setState(() {
       _sentencias = [];
       _leyes = [];
       _glosario = [];
       _progresoIndice = '';
+      _error = null;
     });
     _buscar();
   }
@@ -403,7 +442,13 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                 onSubmitted: (_) => _buscar(),
                 onChanged: (v) {
                   setState(() {});
-                  if (v.isEmpty) _buscar();
+                  _debounce?.cancel();
+                  if (v.isEmpty) {
+                    _buscar();
+                  } else {
+                    // Debounce 350 ms: no llamar a DeepSeek/Supabase en cada tecla.
+                    _debounce = Timer(const Duration(milliseconds: 350), _buscar);
+                  }
                 },
               ),
             ),
@@ -556,6 +601,53 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
       );
     }
 
+    if (_error != null) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.cloud_off, size: 48, color: AppColors.error),
+              const SizedBox(height: 14),
+              Text(
+                'No se pudo buscar',
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: TemaGlobal.texto,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                _error!,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: TemaGlobal.textoSecundario,
+                ),
+              ),
+              const SizedBox(height: 18),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() => _error = null);
+                  _buscar();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: TemaGlobal.dorado,
+                  foregroundColor: TemaGlobal.azulMarino,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 24, vertical: 12),
+                ),
+                child: const Text('Reintentar',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     final vacio = _alcance == AlcanceBusqueda.sentencias
         ? _sentencias.isEmpty
         : _alcance == AlcanceBusqueda.leyes
@@ -611,6 +703,56 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
   }
 
   Widget _buildInicio() {
+    if (_alcance == AlcanceBusqueda.leyes) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.menu_book, size: 52, color: TemaGlobal.textoTenue),
+              const SizedBox(height: 14),
+              Text(
+                'Busca por el nombre de la ley',
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: TemaGlobal.texto,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                'Ej: "Código Penal", "Ley Orgánica contra la Delincuencia..."',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: TemaGlobal.textoSecundario,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    if (_alcance == AlcanceBusqueda.glosario) {
+      return ListView(
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        children: [
+          _enlaceRapido(
+            titulo: 'Ver todos los términos del glosario',
+            contador: null,
+            onTap: () {
+              setState(() {
+                _glosario = List<Map<String, String>>.from(
+                    GlosarioScreen.terminos)
+                  ..sort(
+                      (a, b) => (a['term'] ?? '').compareTo(b['term'] ?? ''));
+              });
+            },
+          ),
+        ],
+      );
+    }
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
       children: [
@@ -1070,13 +1212,13 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                           setSheetState(() => _salaSeleccionada = null);
                         }),
                         chip('Penal',
-                            activo: _salaSeleccionada == 'scp',
+                            activo: _salaSeleccionada == 'Sala de Casación Penal',
                             onTap: () {
                           setSheetState(() =>
                               _salaSeleccionada = 'Sala de Casación Penal');
                         }),
                         chip('Constitucional',
-                            activo: _salaSeleccionada == 'scon',
+                            activo: _salaSeleccionada == 'Sala Constitucional',
                             onTap: () {
                           setSheetState(() =>
                               _salaSeleccionada = 'Sala Constitucional');

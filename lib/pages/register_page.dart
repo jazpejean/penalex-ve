@@ -53,7 +53,7 @@ class _RegisterPageState extends State<RegisterPage> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('Entendido', style: TextStyle(color: TemaGlobal.azulMarino)),
+            child: Text('Entendido', style: TextStyle(color: TemaGlobal.dorado)),
           ),
         ],
       ),
@@ -124,11 +124,11 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.person_add_alt_1, size: 80, color: TemaGlobal.azulMarino),
+              Icon(Icons.person_add_alt_1, size: 80, color: TemaGlobal.texto),
               const SizedBox(height: 24),
               Text(
                 'Crear cuenta',
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: TemaGlobal.azulMarino),
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: TemaGlobal.texto),
               ),
               const SizedBox(height: 8),
               Text(
@@ -140,7 +140,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 controller: _nameController,
                 decoration: InputDecoration(
                   labelText: 'Nombre completo',
-                  prefixIcon: Icon(Icons.person_outline, color: TemaGlobal.azulMarino),
+                  prefixIcon: Icon(Icons.person_outline, color: TemaGlobal.textoSecundario),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 ),
                 textInputAction: TextInputAction.next,
@@ -151,7 +151,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: 'Correo electrónico',
-                  prefixIcon: Icon(Icons.email_outlined, color: TemaGlobal.azulMarino),
+                  prefixIcon: Icon(Icons.email_outlined, color: TemaGlobal.textoSecundario),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 ),
                 textInputAction: TextInputAction.next,
@@ -162,9 +162,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 obscureText: _obscurePassword,
                 decoration: InputDecoration(
                   labelText: 'Contraseña',
-                  prefixIcon: Icon(Icons.lock_outline, color: TemaGlobal.azulMarino),
+                  prefixIcon: Icon(Icons.lock_outline, color: TemaGlobal.textoSecundario),
                   suffixIcon: IconButton(
-                    icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility, color: TemaGlobal.azulMarino),
+                    icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility, color: TemaGlobal.textoSecundario),
                     onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
                   ),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
@@ -177,9 +177,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 obscureText: _obscureConfirm,
                 decoration: InputDecoration(
                   labelText: 'Confirmar contraseña',
-                  prefixIcon: Icon(Icons.lock_outline, color: TemaGlobal.azulMarino),
+                  prefixIcon: Icon(Icons.lock_outline, color: TemaGlobal.textoSecundario),
                   suffixIcon: IconButton(
-                    icon: Icon(_obscureConfirm ? Icons.visibility_off : Icons.visibility, color: TemaGlobal.azulMarino),
+                    icon: Icon(_obscureConfirm ? Icons.visibility_off : Icons.visibility, color: TemaGlobal.textoSecundario),
                     onPressed: () => setState(() => _obscureConfirm = !_obscureConfirm),
                   ),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),

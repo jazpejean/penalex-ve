@@ -497,8 +497,8 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                               child: Center(
                                 child: Text(
                                   term.isNotEmpty ? term[0].toUpperCase() : '',
-                                  style: const TextStyle(
-                                    color: AppColors.primary,
+                                  style: TextStyle(
+                                    color: TemaGlobal.texto,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 24,
                                   ),
@@ -507,8 +507,8 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                             ),
                             title: Text(
                               term,
-                              style: const TextStyle(
-                                color: AppColors.primary,
+                              style: TextStyle(
+                                color: TemaGlobal.texto,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
                                 letterSpacing: 0.3,
@@ -522,7 +522,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                                   Text(
                                     definition,
                                     style: TextStyle(
-                                      color: Colors.grey.shade800,
+                                      color: TemaGlobal.textoSecundario,
                                       fontSize: 15,
                                       height: 1.4,
                                     ),

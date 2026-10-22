@@ -69,9 +69,14 @@ class JurisprudenciaService {
     int? mesFiltro,
     int? diaFiltro,
     int limit = 50,
+    void Function(String mensaje)? onError,
   }) async {
     try {
       debugPrint('🔍 Búsqueda en Supabase: tipo=$tipoFiltro, sala=$salaFiltro, año=$anioFiltro, texto=$textoBusqueda');
+
+      // Términos expandidos (DeepSeek) para el ranking por relevancia.
+      // Se rellenan dentro del bloque de texto; vacíos si no hay consulta.
+      List<String> terminosExpandidos = <String>[];
 
       var query = _supabase.from('sentencias').select();
 
@@ -131,7 +136,7 @@ class JurisprudenciaService {
         }
 
         // Expandir la consulta con términos relacionados usando DeepSeek
-        final terminosExpandidos = await _expandirConsultaSemantica(textoBusqueda);
+        terminosExpandidos = await _expandirConsultaSemantica(textoBusqueda);
         debugPrint('🧠 Términos expandidos: $terminosExpandidos');
 
         // Construir búsqueda fulltext con todos los términos (OR).
@@ -149,11 +154,24 @@ class JurisprudenciaService {
         );
       }
 
-      // Orden descendente por fecha y límite
+      // Orden descendente por fecha y límite (la reordenación por
+      // relevancia se hace en Dart con [terminosExpandidos]).
       final response = await query.order('fecha', ascending: false).limit(limit);
-      final List<dynamic> data = response as List<dynamic>;
+      List<dynamic> data = response as List<dynamic>;
 
       debugPrint('✅ Encontrados ${data.length} documentos (búsqueda principal)');
+
+      // Ranking por relevancia real: los términos expandidos pesan según
+      // cuántos aparecen en el documento (delito, resumen, decisión, número,
+      // expediente). Deja de ser "los 50 más recientes".
+      if (data.length > 1 && textoBusqueda != null && textoBusqueda.isNotEmpty) {
+        data.sort((a, b) {
+          final ra = _scoreRelevancia(a, terminosExpandidos);
+          final rb = _scoreRelevancia(b, terminosExpandidos);
+          if (rb != ra) return rb.compareTo(ra);
+          return (b['fecha'] ?? '').toString().compareTo((a['fecha'] ?? '').toString());
+        });
+      }
 
       // Si la búsqueda principal no dio suficientes resultados, intentar fallback con ilike
       if (data.length < 5 && textoBusqueda != null && textoBusqueda.isNotEmpty) {
@@ -170,11 +188,59 @@ class JurisprudenciaService {
         debugPrint('✅ Total con fallback: ${data.length} documentos');
       }
 
+      // Re-sort final: el fallback ilike pudo añadir filas fuera de orden.
+      if (data.length > 1 && textoBusqueda != null && textoBusqueda.isNotEmpty) {
+        data.sort((a, b) {
+          final ra = _scoreRelevancia(a, terminosExpandidos);
+          final rb = _scoreRelevancia(b, terminosExpandidos);
+          if (rb != ra) return rb.compareTo(ra);
+          return (b['fecha'] ?? '').toString().compareTo((a['fecha'] ?? '').toString());
+        });
+      }
+
       return data.map((json) => SentenciaModel.fromSupabase(json)).toList();
     } catch (e) {
       debugPrint('❌ Error en búsqueda Supabase: $e');
+      onError?.call('No se pudo consultar la base de sentencias. Verifica tu conexión.');
       return [];
     }
+  }
+
+  /// Puntúa un documento según cuántos términos expandidos (normalizados,
+  /// sin acentos) aparecen en sus campos de texto. Sirve para ordenar los
+  /// resultados por relevancia real en lugar de solo por fecha.
+  int _scoreRelevancia(Map<String, dynamic> doc, List<String> terminos) {
+    if (terminos.isEmpty) return 0;
+    final texto = _normalizar([
+      doc['delito'],
+      doc['resumen'],
+      doc['decision'],
+      doc['expediente'],
+      doc['num_sentencia'],
+      doc['sala'],
+      doc['ponente'],
+    ]
+        .whereType<String>()
+        .join(' ')
+        .toLowerCase());
+    var score = 0;
+    for (final t in terminos) {
+      final norm = _normalizar(t.toLowerCase());
+      if (norm.length >= 3 && texto.contains(norm)) score++;
+    }
+    return score;
+  }
+
+  /// Normaliza texto sin diacríticos (á→a, é→e, …) para comparar términos.
+  static String _normalizar(String s) {
+    const con = 'áàäâãéèëêíìïîóòöôõúùüûñç';
+    const sin = 'aaaaaeeeeiiiiooooouuuuunc';
+    final sb = StringBuffer();
+    for (final ch in s.split('')) {
+      final idx = con.indexOf(ch);
+      sb.write(idx >= 0 ? sin[idx] : ch);
+    }
+    return sb.toString();
   }
 
   /// Busca doctrinas (criterios de la Sala extraídos por IA) relevantes.
@@ -283,6 +349,7 @@ class JurisprudenciaService {
     int? mes,
     int? dia,
     int limit = 50,
+    void Function(String mensaje)? onError,
   }) async {
     // Convertir tipo a tipoFiltro
     String tipoFiltro = 'sentencias';
@@ -302,6 +369,7 @@ class JurisprudenciaService {
       mesFiltro: mes,
       diaFiltro: dia,
       limit: limit,
+      onError: onError,
     );
   }
 

@@ -12,6 +12,7 @@ import 'package:share_plus/share_plus.dart';
 import '../game/quiz_effects_game.dart';
 import '../services/misiones_diarias_service.dart';
 import '../services/quiz_certificate_service.dart';
+import '../widgets/main_bottom_bar.dart';
 import '../services/quiz_generador_service.dart';
 import '../services/quiz_progresion_service.dart';
 import '../services/quiz_ranking_service.dart';
@@ -158,6 +159,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
       ),
       child: Scaffold(
       backgroundColor: _fondoProfundo,
+      bottomNavigationBar: const MainBottomBar(),
       body: Stack(
         children: [
           const Positioned.fill(
