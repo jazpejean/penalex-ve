@@ -411,7 +411,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                       Expanded(
                         child: Text(
                           'Este día se marcará como inhábil en toda la agenda personal, sin distinguir tribunales.',
-                          style: TextStyle(fontSize: 12, color: AppColors.primary.withValues(alpha: 0.8)),
+                          style: TextStyle(fontSize: 12, color: TemaGlobal.textoSecundario),
                         ),
                       ),
                     ],

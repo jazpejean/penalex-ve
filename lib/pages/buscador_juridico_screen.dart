@@ -315,7 +315,7 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                 style: TextStyle(
                   fontSize: 11.5,
                   fontWeight: FontWeight.bold,
-                  color: TemaGlobal.azulMarino,
+                  color: TemaGlobal.textoSecundario,
                 ),
               ),
             ),

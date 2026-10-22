@@ -112,9 +112,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Icon(Icons.lock_reset_outlined, size: 80, color: TemaGlobal.azulMarino),
+              Icon(Icons.lock_reset_outlined, size: 80, color: TemaGlobal.texto),
               const SizedBox(height: 20),
-              Text("¿Olvidaste tu contraseña?", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: TemaGlobal.azulMarino)),
+              Text("¿Olvidaste tu contraseña?", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: TemaGlobal.texto)),
               const SizedBox(height: 8),
               Text("Te enviaremos un enlace para restablecer tu contraseña", style: TextStyle(fontSize: 16, color: TemaGlobal.textoSecundario)),
               const SizedBox(height: 40),
@@ -122,7 +122,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 controller: _emailController,
                 decoration: InputDecoration(
                   labelText: "Correo electrónico",
-                  prefixIcon: Icon(Icons.email_outlined, color: TemaGlobal.azulMarino),
+                  prefixIcon: Icon(Icons.email_outlined, color: TemaGlobal.textoSecundario),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 ),
                 keyboardType: TextInputType.emailAddress,
@@ -150,7 +150,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: TemaGlobal.tarjeta,
-                          foregroundColor: TemaGlobal.azulMarino,
+                          foregroundColor: TemaGlobal.texto,
                           side: BorderSide(color: TemaGlobal.dorado),
                           minimumSize: const Size(double.infinity, 52),
                         ),
@@ -176,11 +176,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 onPressed: () =>
                     Navigator.pushNamed(context, '/reset-password'),
                 child: Text("Ya tengo el código de restablecimiento",
-                    style: TextStyle(color: TemaGlobal.azulMarino)),
+                    style: TextStyle(color: TemaGlobal.dorado)),
               ),
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: Text("Volver al login", style: TextStyle(color: TemaGlobal.azulMarino)),
+                child: Text("Volver al login", style: TextStyle(color: TemaGlobal.dorado)),
               ),
             ],
           ),

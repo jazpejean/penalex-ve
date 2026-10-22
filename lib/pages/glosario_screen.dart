@@ -306,10 +306,10 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                 ),
                 child: Text(
                   '${terminos.length} términos',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.primary,
+                    color: TemaGlobal.texto,
                     letterSpacing: 0.5,
                   ),
                 ),

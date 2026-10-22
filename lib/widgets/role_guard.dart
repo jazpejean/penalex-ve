@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../config/app_theme.dart';
 import '../services/role_service.dart';
 
 /// Widget que protege contenido según el rol del usuario
@@ -88,7 +89,7 @@ class RoleGuard extends StatelessWidget {
               Text(
                 'No tienes permisos para acceder a esta sección.\nSe requiere rol: ${RoleService.getRoleDisplayName(requiredRole)}',
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 16, color: Colors.grey),
+                style: TextStyle(fontSize: 16, color: TemaGlobal.textoSecundario),
               ),
               const SizedBox(height: 32),
               ElevatedButton.icon(

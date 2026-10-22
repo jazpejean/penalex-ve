@@ -298,7 +298,7 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
                                 ),
                                 trailing: IconButton(
                                   icon: const Icon(Icons.edit),
-                                  color: AppColors.primary,
+                                  color: TemaGlobal.textoSecundario,
                                   onPressed: () => _changeUserRole(
                                     user['uid'] as String,
                                     user['name'] as String? ?? 'Usuario',
