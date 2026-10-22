@@ -695,30 +695,30 @@ class _AgendaScreenState extends State<AgendaScreen> {
         ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 12, right: 12),
-        child: Row(
+        child: Column(
           mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             ElevatedButton.icon(
               onPressed: _mostrarFormularioNuevoDiaSinDespacho,
-              icon: const Icon(Icons.block, size: 20),
+              icon: const Icon(Icons.block, size: 18),
               label: const Text("Día sin despacho"),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               ),
             ),
-            const SizedBox(width: 12),
+            const SizedBox(height: 10),
             ElevatedButton.icon(
               onPressed: _mostrarFormularioNuevaAudiencia,
-              icon: const Icon(Icons.add, size: 20),
+              icon: const Icon(Icons.add, size: 18),
               label: const Text("Nueva audiencia"),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.secondary,
                 foregroundColor: AppColors.primary,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               ),
             ),
