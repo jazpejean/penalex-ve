@@ -13,7 +13,9 @@ import '../services/non_working_day_service.dart';
 import '../services/notification_service.dart';
 import '../services/tribunales_service.dart';
 import '../utils/date_utils.dart';
+import '../utils/main_tab_controller.dart';
 import '../utils/non_working_days.dart';
+import '../widgets/calendario_judicial_view.dart';
 import 'tribunal_detail_screen.dart';
 
 class AgendaScreen extends StatefulWidget {
@@ -32,12 +34,34 @@ class _AgendaScreenState extends State<AgendaScreen> {
   bool _isLoading = false;
   final NotificationService _notificationService = NotificationService();
 
+  /// true → muestra la sección de LAPSOS (Calendario Judicial integrado);
+  /// false → muestra audiencias + calendario.
+  bool _mostrarLapsos = false;
+
+  /// Permite recargar la vista de lapsos al guardar días sin despacho.
+  final CalendarioJudicialViewController _lapsosController =
+      CalendarioJudicialViewController();
+
   @override
   void initState() {
     super.initState();
     _selectedDay = _focusedDay;
+    _mostrarLapsos = agendaEnLapsos.value;
+    agendaEnLapsos.addListener(_onAgendaEnLapsos);
     unawaited(_cargarAudiencias());
     unawaited(_loadNonWorkingDays());
+  }
+
+  @override
+  void dispose() {
+    agendaEnLapsos.removeListener(_onAgendaEnLapsos);
+    super.dispose();
+  }
+
+  void _onAgendaEnLapsos() {
+    if (mounted && agendaEnLapsos.value != _mostrarLapsos) {
+      setState(() => _mostrarLapsos = agendaEnLapsos.value);
+    }
   }
 
   Future<void> _loadNonWorkingDays() async {
@@ -452,6 +476,9 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 }
                 if (context.mounted) Navigator.pop(context);
                 unawaited(_loadNonWorkingDays());
+                // Si la vista de lapsos está visible, recalcula de inmediato
+                // los lapsos pendientes con el nuevo día sin despacho.
+                unawaited(_lapsosController.recargar());
               } else {
                 if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -507,6 +534,75 @@ class _AgendaScreenState extends State<AgendaScreen> {
       ),
     );
 
+  /// Selector de sección: Audiencias (calendario + eventos) o Lapsos
+  /// (Calendario Judicial integrado). Usa el mismo estilo de chips
+  /// del resto de la app (dorado sobre azul marino).
+  Widget _buildSeccionSelector() {
+    return Container(
+      padding: const EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        color: TemaGlobal.azulMarino,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: TemaGlobal.dorado.withValues(alpha: 0.35), width: 1),
+      ),
+      child: Row(
+        children: <Widget>[
+          _chipSeccion(
+            titulo: 'Audiencias',
+            icono: Icons.calendar_month,
+            activo: !_mostrarLapsos,
+            onTap: () => setState(() => _mostrarLapsos = false),
+          ),
+          const SizedBox(width: 6),
+          _chipSeccion(
+            titulo: 'Lapsos',
+            icono: Icons.timeline,
+            activo: _mostrarLapsos,
+            onTap: () => setState(() => _mostrarLapsos = true),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _chipSeccion({
+    required String titulo,
+    required IconData icono,
+    required bool activo,
+    required VoidCallback onTap,
+  }) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          padding: const EdgeInsets.symmetric(vertical: 9),
+          decoration: BoxDecoration(
+            color: activo ? TemaGlobal.dorado : Colors.transparent,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(icono,
+                  size: 17,
+                  color: activo ? TemaGlobal.texto : TemaGlobal.dorado),
+              const SizedBox(width: 6),
+              Text(
+                titulo,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: activo ? TemaGlobal.texto : TemaGlobal.dorado,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) => Scaffold(
       body: SafeArea(
@@ -525,6 +621,13 @@ class _AgendaScreenState extends State<AgendaScreen> {
                         ),
                   ),
                   const SizedBox(height: 12),
+                  _buildSeccionSelector(),
+                  const SizedBox(height: 12),
+                  if (_mostrarLapsos)
+                    Expanded(
+                      child: CalendarioJudicialView(controller: _lapsosController),
+                    )
+                  else ...<Widget>[
                   Card(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                     elevation: 2,
@@ -689,6 +792,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                       ),
                     ),
                   ),
+                  ],
                 ],
               ),
             ),

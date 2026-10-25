@@ -101,6 +101,10 @@ class MainBottomBar extends StatelessWidget {
       child: InkWell(
         onTap: () {
           mainTabIndex.value = index;
+          // Al entrar a la pestaña Agenda por la barra (no desde el
+          // dashboard), la sección por defecto son las Audiencias; el
+          // modo Lapsos se pide explícitamente con navegarALapsos().
+          if (index == 1) agendaEnLapsos.value = false;
           // Si la pantalla actual es una ruta externa, volver a la raíz
           // (MainScreen) para que el cambio de pestaña sea visible.
           Navigator.popUntil(context, (r) => r.isFirst);

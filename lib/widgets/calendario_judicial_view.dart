@@ -25,17 +25,26 @@ import '../services/agenda_service.dart';
 import '../services/haptics_service.dart';
 import '../services/non_working_day_service.dart';
 import '../utils/non_working_days.dart';
-import '../widgets/main_bottom_bar.dart';
 
-class CalendarioJudicialScreen extends StatefulWidget {
-  const CalendarioJudicialScreen({super.key});
+/// Controller para que la pantalla contenedora (Agenda Judicial) pueda
+/// pedir una recarga de días sin despacho (p. ej. tras guardar uno).
+class CalendarioJudicialViewController {
+  Future<void> Function()? _recargar;
 
-  @override
-  State<CalendarioJudicialScreen> createState() =>
-      _CalendarioJudicialScreenState();
+  /// Recarga los días excluidos y recalcula los lapsos pendientes.
+  Future<void> recargar() async => _recargar?.call();
 }
 
-class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
+class CalendarioJudicialView extends StatefulWidget {
+  const CalendarioJudicialView({super.key, this.controller});
+
+  final CalendarioJudicialViewController? controller;
+
+  @override
+  State<CalendarioJudicialView> createState() => _CalendarioJudicialViewState();
+}
+
+class _CalendarioJudicialViewState extends State<CalendarioJudicialView> {
   ViaProcesal _via = ViaProcesal.ordinario;
 
   /// Fecha de la audiencia de presentación (fecha base del calendario).
@@ -56,7 +65,14 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
   @override
   void initState() {
     super.initState();
+    widget.controller?._recargar = _cargarDiasExcluidos;
     _cargarDiasExcluidos();
+  }
+
+  @override
+  void dispose() {
+    widget.controller?._recargar = null;
+    super.dispose();
   }
 
   Future<void> _cargarDiasExcluidos() async {
@@ -238,39 +254,45 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
   @override
   Widget build(BuildContext context) {
     final List<HitoCalculado> hitos = _hitos();
-    return Scaffold(
-      backgroundColor: TemaGlobal.superficie,
-      appBar: AppBar(
-        backgroundColor: TemaGlobal.azulMarino,
-        foregroundColor: TemaGlobal.dorado,
-        elevation: 0,
-        title: const Text('Calendario Judicial'),
-        centerTitle: true,
-      ),
-      bottomNavigationBar: const MainBottomBar(),
-      body: SafeArea(
-        child: RefreshIndicator(
-          onRefresh: _recargarExcluidos,
-          child: ListView(
-            padding: const EdgeInsets.all(16),
-            children: <Widget>[
-              _buildViaSelector(),
-              const SizedBox(height: 12),
-              _buildFechaPresentacion(),
-              if (_cargando)
-                const Padding(
-                  padding: EdgeInsets.all(24),
-                  child: Center(child: CircularProgressIndicator()),
-                )
-              else if (_error != null)
-                _buildError()
-              else if (_fechaPresentacion == null)
-                _buildIntro()
-              else
-                ..._buildHitos(hitos),
-            ],
+    return RefreshIndicator(
+      onRefresh: _recargarExcluidos,
+      child: ListView(
+        padding: const EdgeInsets.all(16),
+        children: <Widget>[
+          Text(
+            'Lapsos procesales',
+            style: TextStyle(
+              color: TemaGlobal.dorado,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
+          const SizedBox(height: 2),
+          Text(
+            'Línea de tiempo desde la audiencia de presentación '
+            '(excluye la fase de ejecución de la pena).',
+            style: TextStyle(
+              color: TemaGlobal.textoSecundario,
+              fontSize: 12.5,
+              height: 1.4,
+            ),
+          ),
+          const SizedBox(height: 14),
+          _buildViaSelector(),
+          const SizedBox(height: 12),
+          _buildFechaPresentacion(),
+          if (_cargando)
+            const Padding(
+              padding: EdgeInsets.all(24),
+              child: Center(child: CircularProgressIndicator()),
+            )
+          else if (_error != null)
+            _buildError()
+          else if (_fechaPresentacion == null)
+            _buildIntro()
+          else
+            ..._buildHitos(hitos),
+        ],
       ),
     );
   }
