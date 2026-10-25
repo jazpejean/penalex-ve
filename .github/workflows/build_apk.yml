@@ -80,6 +80,9 @@ jobs:
       - name: Análisis estático
         run: flutter analyze --no-pub
 
+      - name: Tests del motor de lapsos (Calendario Judicial)
+        run: flutter test test/lapsos_engine_test.dart --no-pub
+
       - name: Compilar APK (release firmado, con WORKER_URL/INGEST_TOKEN)
         run: >
           flutter build apk --release
