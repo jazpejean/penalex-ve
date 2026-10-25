@@ -77,17 +77,39 @@ jobs:
           ls -la android/app/keystore/
           echo "KEYSTORE_FILE=$(pwd)/android/app/keystore/penalex-release.jks" >> "$GITHUB_ENV"
 
+      - name: Caché Gradle/NDK (acelera builds; evita re-descargar NDK)
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.android/build-cache
+            ${{ runner.temp }}/ndk
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
       - name: Análisis estático
         run: flutter analyze --no-pub
 
       - name: Tests del motor de lapsos (Calendario Judicial)
         run: flutter test test/lapsos_engine_test.dart --no-pub
 
+      - name: Diagnóstico de espacio antes de compilar
+        run: df -h / | tail -1 && du -sh ~/.gradle ~/.pub-cache 2>/dev/null | tail -2
+
       - name: Compilar APK (release firmado, con WORKER_URL/INGEST_TOKEN)
+        id: build
         run: >
           flutter build apk --release
           --dart-define=WORKER_URL=${{ secrets.WORKER_URL }}
           --dart-define=INGEST_TOKEN=${{ secrets.INGEST_TOKEN }}
+
+      - name: Diagnóstico (stacktrace si packageRelease falla)
+        if: failure() && steps.build.outcome == 'failure'
+        run: |
+          cd android
+          ./gradlew :app:packageRelease --stacktrace -x lint 2>&1 | tail -60 || true
 
       - name: Subir APK como artefacto
         uses: actions/upload-artifact@v4
