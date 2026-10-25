@@ -13,9 +13,8 @@ import '../services/non_working_day_service.dart';
 import '../services/notification_service.dart';
 import '../services/tribunales_service.dart';
 import '../utils/date_utils.dart';
-import '../utils/main_tab_controller.dart';
 import '../utils/non_working_days.dart';
-import '../widgets/calendario_judicial_view.dart';
+import 'calendario_judicial_screen.dart';
 import 'tribunal_detail_screen.dart';
 
 class AgendaScreen extends StatefulWidget {
@@ -34,34 +33,12 @@ class _AgendaScreenState extends State<AgendaScreen> {
   bool _isLoading = false;
   final NotificationService _notificationService = NotificationService();
 
-  /// true → muestra la sección de LAPSOS (Calendario Judicial integrado);
-  /// false → muestra audiencias + calendario.
-  bool _mostrarLapsos = false;
-
-  /// Permite recargar la vista de lapsos al guardar días sin despacho.
-  final CalendarioJudicialViewController _lapsosController =
-      CalendarioJudicialViewController();
-
   @override
   void initState() {
     super.initState();
     _selectedDay = _focusedDay;
-    _mostrarLapsos = agendaEnLapsos.value;
-    agendaEnLapsos.addListener(_onAgendaEnLapsos);
     unawaited(_cargarAudiencias());
     unawaited(_loadNonWorkingDays());
-  }
-
-  @override
-  void dispose() {
-    agendaEnLapsos.removeListener(_onAgendaEnLapsos);
-    super.dispose();
-  }
-
-  void _onAgendaEnLapsos() {
-    if (mounted && agendaEnLapsos.value != _mostrarLapsos) {
-      setState(() => _mostrarLapsos = agendaEnLapsos.value);
-    }
   }
 
   Future<void> _loadNonWorkingDays() async {
@@ -299,6 +276,22 @@ class _AgendaScreenState extends State<AgendaScreen> {
     );
   }
 
+  /// Abre los LAPSOS del expediente agendado: línea de tiempo guiada
+  /// desde la fecha de la audiencia (la presentación es la primera que
+  /// se agenda). El motor calcula vencimientos/hitos según la vía.
+  void _abrirLapsosExpediente(Audiencia aud) {
+    Haptics.tap();
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => CalendarioJudicialScreen(
+          expediente: aud.expediente,
+          imputado: aud.imputado,
+          fechaBase: aud.fecha,
+        ),
+      ),
+    );
+  }
+
   /// Selector de tribunal con búsqueda semántica (catálogo de 868).
   /// Abre un modal con un campo de texto; cada búsqueda consulta
   /// [TribunalesService.buscarSemantico] (pgvector + bge-m3) y muestra los
@@ -476,9 +469,6 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 }
                 if (context.mounted) Navigator.pop(context);
                 unawaited(_loadNonWorkingDays());
-                // Si la vista de lapsos está visible, recalcula de inmediato
-                // los lapsos pendientes con el nuevo día sin despacho.
-                unawaited(_lapsosController.recargar());
               } else {
                 if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -534,75 +524,6 @@ class _AgendaScreenState extends State<AgendaScreen> {
       ),
     );
 
-  /// Selector de sección: Audiencias (calendario + eventos) o Lapsos
-  /// (Calendario Judicial integrado). Usa el mismo estilo de chips
-  /// del resto de la app (dorado sobre azul marino).
-  Widget _buildSeccionSelector() {
-    return Container(
-      padding: const EdgeInsets.all(4),
-      decoration: BoxDecoration(
-        color: TemaGlobal.azulMarino,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: TemaGlobal.dorado.withValues(alpha: 0.35), width: 1),
-      ),
-      child: Row(
-        children: <Widget>[
-          _chipSeccion(
-            titulo: 'Audiencias',
-            icono: Icons.calendar_month,
-            activo: !_mostrarLapsos,
-            onTap: () => setState(() => _mostrarLapsos = false),
-          ),
-          const SizedBox(width: 6),
-          _chipSeccion(
-            titulo: 'Lapsos',
-            icono: Icons.timeline,
-            activo: _mostrarLapsos,
-            onTap: () => setState(() => _mostrarLapsos = true),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _chipSeccion({
-    required String titulo,
-    required IconData icono,
-    required bool activo,
-    required VoidCallback onTap,
-  }) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
-          padding: const EdgeInsets.symmetric(vertical: 9),
-          decoration: BoxDecoration(
-            color: activo ? TemaGlobal.dorado : Colors.transparent,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Icon(icono,
-                  size: 17,
-                  color: activo ? TemaGlobal.texto : TemaGlobal.dorado),
-              const SizedBox(width: 6),
-              Text(
-                titulo,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: activo ? TemaGlobal.texto : TemaGlobal.dorado,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) => Scaffold(
       body: SafeArea(
@@ -620,14 +541,40 @@ class _AgendaScreenState extends State<AgendaScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                   ),
+                  const SizedBox(height: 10),
+                  // Acciones principales: fila limpia (nada flotante).
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: _mostrarFormularioNuevaAudiencia,
+                          icon: const Icon(Icons.add, size: 18),
+                          label: const Text('Nueva audiencia'),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: TemaGlobal.dorado,
+                            side: BorderSide(
+                                color: TemaGlobal.dorado.withValues(alpha: 0.5)),
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: _mostrarFormularioNuevoDiaSinDespacho,
+                          icon: const Icon(Icons.block, size: 18),
+                          label: const Text('Día sin despacho'),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: TemaGlobal.dorado,
+                            side: BorderSide(
+                                color: TemaGlobal.dorado.withValues(alpha: 0.5)),
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 12),
-                  _buildSeccionSelector(),
-                  const SizedBox(height: 12),
-                  if (_mostrarLapsos)
-                    Expanded(
-                      child: CalendarioJudicialView(controller: _lapsosController),
-                    )
-                  else ...<Widget>[
                   Card(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                     elevation: 2,
@@ -781,9 +728,20 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                       onTap: aud.tribunalId != null
                                           ? () => _abrirTribunal(aud.tribunalId!)
                                           : null,
-                                      trailing: IconButton(
-                                        icon: const Icon(Icons.delete_outline, color: Colors.red),
-                                        onPressed: () => unawaited(_eliminarAudiencia(aud)),
+                                      trailing: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          IconButton(
+                                            tooltip: 'Lapsos del expediente',
+                                            icon: const Icon(Icons.timeline,
+                                                color: TemaGlobal.dorado),
+                                            onPressed: () => _abrirLapsosExpediente(aud),
+                                          ),
+                                          IconButton(
+                                            icon: const Icon(Icons.delete_outline, color: Colors.red),
+                                            onPressed: () => unawaited(_eliminarAudiencia(aud)),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   );
@@ -792,43 +750,10 @@ class _AgendaScreenState extends State<AgendaScreen> {
                       ),
                     ),
                   ),
-                  ],
                 ],
               ),
             ),
         ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 12, right: 12),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            ElevatedButton.icon(
-              onPressed: _mostrarFormularioNuevoDiaSinDespacho,
-              icon: const Icon(Icons.block, size: 18),
-              label: const Text("Día sin despacho"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              ),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton.icon(
-              onPressed: _mostrarFormularioNuevaAudiencia,
-              icon: const Icon(Icons.add, size: 18),
-              label: const Text("Nueva audiencia"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.secondary,
-                foregroundColor: AppColors.primary,
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              ),
-            ),
-          ],
-        ),
-      ),
     );
 }
 

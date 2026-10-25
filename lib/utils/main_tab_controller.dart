@@ -13,13 +13,6 @@ final ValueNotifier<int> mainTabIndex = ValueNotifier<int>(0);
 /// este notifier y aplica el alcance sin recrear la pantalla.
 final ValueNotifier<String?> consultaAlcance = ValueNotifier<String?>(null);
 
-/// Pide a la pestaña "Agenda" (1) abrir su sección de LAPSOS procesales.
-///
-/// La Agenda vive en un IndexedStack y conserva su estado; este notifier
-/// le dice que muestre la vista de lapsos (Calendario Judicial integrado)
-/// en lugar de las audiencias. Se resetea a false al entrar por el tab.
-final ValueNotifier<bool> agendaEnLapsos = ValueNotifier<bool>(false);
-
 /// Mapa de rutas principales a su índice de tab en el bottom nav.
 ///
 /// Si una ruta aparece aquí, el drawer la trata como pestaña: cambia el tab
@@ -55,13 +48,5 @@ void navegarDesdeMain(BuildContext context, String route) {
 void navegarAConsulta(BuildContext context, String alcance) {
   mainTabIndex.value = 3;
   consultaAlcance.value = alcance;
-  Navigator.popUntil(context, (r) => r.isFirst);
-}
-
-/// Abre la pestaña "Agenda" (1) en su sección de LAPSOS procesales
-/// (Calendario Judicial integrado en la Agenda, decisión del usuario).
-void navegarALapsos(BuildContext context) {
-  agendaEnLapsos.value = true;
-  mainTabIndex.value = 1;
   Navigator.popUntil(context, (r) => r.isFirst);
 }

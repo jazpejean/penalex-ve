@@ -135,7 +135,7 @@ class DosimetriaPenalApp extends StatelessWidget {
           '/quiz': (context) => const QuizLobbyScreen(),
           '/quiz_lobby': (context) => const QuizLobbyScreen(),
           '/quiz_logros': (context) => const QuizLogrosScreen(),
-          '/lapsos': (context) => const AgendaScreen(), // Lapsos integrados en Agenda
+          '/lapsos': (context) => const AgendaScreen(), // Lapsos integrados en Agenda (por expediente)
           '/verify-email': (context) => const VerifyEmailPage(),
           '/reset-password': (context) => const ResetPasswordPage(),
         },

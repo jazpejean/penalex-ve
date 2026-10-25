@@ -22,9 +22,6 @@ class DashboardScreen extends StatelessWidget {
         navegarAConsulta(context, 'leyes');
       case '/glosario':
         navegarAConsulta(context, 'glosario');
-      case '/lapsos':
-        // Lapsos integrados en la Agenda Judicial (sección propia).
-        navegarALapsos(context);
       default:
         navegarDesdeMain(context, route);
     }
@@ -159,19 +156,10 @@ class DashboardScreen extends StatelessWidget {
               context,
               title: 'Agenda Judicial',
               subtitle: 'Organiza tus audiencias',
-              description: 'Registro de actos procesales y recordatorios.',
+              description: 'Audiencias, recordatorios y lapsos procesales de cada expediente.',
               icon: Icons.calendar_month,
               route: '/agenda',
               actionText: 'Ir a mi agenda',
-            ),
-            _buildCard(
-              context,
-              title: 'Calendario Judicial',
-              subtitle: 'Lapsos desde la presentación',
-              description: 'Línea de tiempo guiada de lapsos procesales según la vía, con días hábiles y de despacho (integrada en la Agenda).',
-              icon: Icons.timeline,
-              route: '/lapsos',
-              actionText: 'Calcular lapsos',
             ),
             _buildCard(
               context,

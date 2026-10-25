@@ -1,9 +1,13 @@
-/// Calendario Judicial — línea de tiempo guiada de lapsos procesales.
+/// Calendario Judicial — línea de tiempo guiada de lapsos procesales
+/// DE UN EXPEDIENTE AGENDADO (se abre desde la Agenda, en la tarjeta de
+/// la audiencia). Decisión del usuario: los lapsos se muestran en cada
+/// expediente agendado; no hay pestañas ni pantalla global.
 ///
 /// Flujo dirigido por el usuario (decisión de diseño confirmada):
 ///  - Paso 1: elegir la vía (ordinario / violencia / menos graves).
-///  - Paso 2: indicar la fecha de la AUDIENCIA DE PRESENTACIÓN (la
-///    primera fecha que se agenda; el motor calcula solo hacia adelante).
+///  - Paso 2: la fecha base viene precargada con la fecha de la audiencia
+///    agendada (la de presentación, la primera que se agenda); el abogado
+///    puede corregirla si es necesario.
 ///  - Paso 3: el abogado marca cada acto posterior (acusación, preliminar,
 ///    recepción del expediente en el tribunal de juicio, sentencia…) y el
 ///    motor calcula los lapsos que corren desde esa fecha real.
@@ -26,26 +30,38 @@ import '../services/haptics_service.dart';
 import '../services/non_working_day_service.dart';
 import '../utils/non_working_days.dart';
 
-/// Controller para que la pantalla contenedora (Agenda Judicial) pueda
-/// pedir una recarga de días sin despacho (p. ej. tras guardar uno).
-class CalendarioJudicialViewController {
-  Future<void> Function()? _recargar;
+/// Lapsos de UN expediente agendado. Se abre desde la tarjeta de la
+/// audiencia en la Agenda; `fechaBase` es la fecha de esa audiencia
+/// (la presentación es la primera que se agenda).
+class CalendarioJudicialScreen extends StatefulWidget {
+  const CalendarioJudicialScreen({
+    super.key,
+    required this.expediente,
+    required this.imputado,
+    this.fechaBase,
+    this.viaInicial = ViaProcesal.ordinario,
+  });
 
-  /// Recarga los días excluidos y recalcula los lapsos pendientes.
-  Future<void> recargar() async => _recargar?.call();
-}
+  /// Número de expediente agendado (se usa al agendar hitos).
+  final String expediente;
 
-class CalendarioJudicialView extends StatefulWidget {
-  const CalendarioJudicialView({super.key, this.controller});
+  /// Nombre del imputado/acusado.
+  final String imputado;
 
-  final CalendarioJudicialViewController? controller;
+  /// Fecha de la audiencia agendada (base del cómputo). Si es null,
+  /// el abogado la indica al abrir.
+  final DateTime? fechaBase;
+
+  /// Vía procesal con la que inicia (por defecto ordinario).
+  final ViaProcesal viaInicial;
 
   @override
-  State<CalendarioJudicialView> createState() => _CalendarioJudicialViewState();
+  State<CalendarioJudicialScreen> createState() =>
+      _CalendarioJudicialScreenState();
 }
 
-class _CalendarioJudicialViewState extends State<CalendarioJudicialView> {
-  ViaProcesal _via = ViaProcesal.ordinario;
+class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
+  late ViaProcesal _via = widget.viaInicial;
 
   /// Fecha de la audiencia de presentación (fecha base del calendario).
   DateTime? _fechaPresentacion;
@@ -65,14 +81,11 @@ class _CalendarioJudicialViewState extends State<CalendarioJudicialView> {
   @override
   void initState() {
     super.initState();
-    widget.controller?._recargar = _cargarDiasExcluidos;
+    // La fecha base viene de la audiencia agendada (presentación).
+    _fechaPresentacion = widget.fechaBase != null
+        ? fechaPura(widget.fechaBase!)
+        : null;
     _cargarDiasExcluidos();
-  }
-
-  @override
-  void dispose() {
-    widget.controller?._recargar = null;
-    super.dispose();
   }
 
   Future<void> _cargarDiasExcluidos() async {
@@ -228,9 +241,9 @@ class _CalendarioJudicialViewState extends State<CalendarioJudicialView> {
     if (h.fechaMin == null) return;
     final bool ok = await AgendaService.crearAudiencia(Audiencia(
       id: '',
-      expediente: '',
+      expediente: widget.expediente,
       tribunal: 'Calendario Judicial',
-      imputado: h.lapso.acto,
+      imputado: '${widget.imputado} — ${h.lapso.acto}',
       cedula: null,
       fiscalia: null,
       delitos: h.lapso.baseLegal,
@@ -254,32 +267,81 @@ class _CalendarioJudicialViewState extends State<CalendarioJudicialView> {
   @override
   Widget build(BuildContext context) {
     final List<HitoCalculado> hitos = _hitos();
-    return RefreshIndicator(
-      onRefresh: _recargarExcluidos,
-      child: ListView(
-        padding: const EdgeInsets.all(16),
-        children: <Widget>[
-          Text(
-            'Lapsos procesales',
-            style: TextStyle(
-              color: TemaGlobal.dorado,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+    return Scaffold(
+      backgroundColor: TemaGlobal.superficie,
+      appBar: AppBar(
+        backgroundColor: TemaGlobal.azulMarino,
+        foregroundColor: TemaGlobal.dorado,
+        elevation: 0,
+        title: const Text('Lapsos del expediente'),
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: TemaGlobal.dorado),
+          onPressed: () => Navigator.of(context).maybePop(),
+        ),
+      ),
+      body: RefreshIndicator(
+        onRefresh: _recargarExcluidos,
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: <Widget>[
+            // Cabecera del expediente agendado.
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: TemaGlobal.tarjeta,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                    color: TemaGlobal.dorado.withValues(alpha: 0.3), width: 1),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    widget.expediente.isEmpty
+                        ? 'Expediente sin número'
+                        : 'Expediente ${widget.expediente}',
+                    style: TextStyle(
+                      color: TemaGlobal.texto,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  if (widget.imputado.isNotEmpty) ...<Widget>[
+                    const SizedBox(height: 2),
+                    Text(
+                      widget.imputado,
+                      style: TextStyle(
+                        color: TemaGlobal.textoSecundario,
+                        fontSize: 12.5,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 2),
-          Text(
-            'Línea de tiempo desde la audiencia de presentación '
-            '(excluye la fase de ejecución de la pena).',
-            style: TextStyle(
-              color: TemaGlobal.textoSecundario,
-              fontSize: 12.5,
-              height: 1.4,
+            const SizedBox(height: 14),
+            Text(
+              'Lapsos procesales',
+              style: TextStyle(
+                color: TemaGlobal.dorado,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          const SizedBox(height: 14),
-          _buildViaSelector(),
-          const SizedBox(height: 12),
+            const SizedBox(height: 2),
+            Text(
+              'Desde la audiencia de presentación (${_fechaPresentacion != null ? _fmt(_fechaPresentacion!) : 'sin fecha aún'}). '
+              'Excluye la fase de ejecución de la pena.',
+              style: TextStyle(
+                color: TemaGlobal.textoSecundario,
+                fontSize: 12.5,
+                height: 1.4,
+              ),
+            ),
+            const SizedBox(height: 14),
+            _buildViaSelector(),
+            const SizedBox(height: 12),
           _buildFechaPresentacion(),
           if (_cargando)
             const Padding(
@@ -293,6 +355,7 @@ class _CalendarioJudicialViewState extends State<CalendarioJudicialView> {
           else
             ..._buildHitos(hitos),
         ],
+        ),
       ),
     );
   }
@@ -349,7 +412,7 @@ class _CalendarioJudicialViewState extends State<CalendarioJudicialView> {
         subtitle: Text(
           _fechaPresentacion == null
               ? 'Toca para fijar la fecha base'
-              : 'Fecha base: ${_fmt(_fechaPresentacion!)}',
+              : 'Fecha base (agendada): ${_fmt(_fechaPresentacion!)} — toca para corregir',
           style: TextStyle(color: TemaGlobal.textoSecundario),
         ),
         trailing: Icon(Icons.edit_calendar, color: TemaGlobal.textoSecundario),
@@ -361,7 +424,7 @@ class _CalendarioJudicialViewState extends State<CalendarioJudicialView> {
   Future<void> _seleccionarFechaPresentacion() async {
     final DateTime? fecha = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: _fechaPresentacion ?? DateTime.now(),
       firstDate: DateTime(2020),
       lastDate: DateTime(2035),
       helpText: 'Fecha de la audiencia de presentación',
