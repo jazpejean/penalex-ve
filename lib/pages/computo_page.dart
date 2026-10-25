@@ -1079,7 +1079,10 @@ class _ComputoPageState extends State<ComputoPage> {
           ],
         ),
       ),
-    );
+      ),
+    ],
+    ),
+  );
   }
 
   Widget _buildActionChip({
@@ -1182,6 +1185,8 @@ class _TimelineComputo extends StatelessWidget {
   final bool sinDetenido;
 
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : TemaGlobal.azulMarino;
 
   static String _fmt(DateTime d) => '${d.day.toString().padLeft(2, '0')}/'
       '${d.month.toString().padLeft(2, '0')}/${d.year}';
@@ -1271,6 +1276,8 @@ class _Nodo extends StatelessWidget {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
 
   @override
   Widget build(BuildContext context) {

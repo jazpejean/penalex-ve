@@ -614,8 +614,6 @@ class NodoArbol {
 class _ArticuloSheet extends StatelessWidget {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
-  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
-  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
 
   final String leyNombre;
   final ArticuloLey articulo;
@@ -1032,7 +1030,7 @@ class _LeyChatIAPageState extends State<LeyChatIAPage> {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(
+            SizedBox(
               width: 16,
               height: 16,
               child: CircularProgressIndicator(color: acento, strokeWidth: 2),

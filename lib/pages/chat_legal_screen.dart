@@ -858,7 +858,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             // Mensajes
             Expanded(
               child: _isLoading
-                  ? const Center(
+                  ? Center(
                       child: CircularProgressIndicator(color: acento),
                     )
                   : _messages.isEmpty
@@ -996,7 +996,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                 ),
               ],
             ),
-            child: const Icon(
+            child: Icon(
               Icons.chat_bubble_outline,
               size: 60,
               color: acento,
@@ -1568,6 +1568,8 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
   // leen de TemaGlobal.
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
 
   late Future<List<ChatConversation>> _future;
 
@@ -1598,7 +1600,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
         future: _future,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
+            return Center(
               child: CircularProgressIndicator(color: acento),
             );
           }

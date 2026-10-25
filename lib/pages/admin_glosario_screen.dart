@@ -272,7 +272,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
                 }
 
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
+                  return Center(
                     child: CircularProgressIndicator(color: acento),
                   );
                 }
@@ -340,7 +340,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
                           child: Center(
                             child: Text(
                               termino.isNotEmpty ? termino[0].toUpperCase() : '?',
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: acento,

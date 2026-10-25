@@ -1292,6 +1292,8 @@ class _PenaInputRowState extends State<_PenaInputRow> {
   bool _isUpdatingFromUser = false;
 
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : TemaGlobal.azulMarino;
 
   @override
   void initState() {

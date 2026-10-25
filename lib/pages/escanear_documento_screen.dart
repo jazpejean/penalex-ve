@@ -207,7 +207,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
                                 ? child
                                 : Container(
                                     color: TemaGlobal.superficie,
-                                    child: const Center(
+                                    child: Center(
                                       child: CircularProgressIndicator(
                                         strokeWidth: 2,
                                         color: acento,
@@ -294,7 +294,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
                   ),
                 ],
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.document_scanner,
                 size: 56,
                 color: acento,
