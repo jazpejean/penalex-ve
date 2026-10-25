@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 
 import '../models/documento_escaneado.dart';
@@ -123,14 +124,14 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
                 height: 18,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: TemaGlobal.texto,
+                  color: azulMarino,
                 ),
               )
             : Icon(Icons.document_scanner, color: azulMarino),
         label: Text(
           _escaneando ? 'Abriendo...' : 'Escanear',
           style: TextStyle(
-            color: TemaGlobal.texto,
+            color: azulMarino,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -371,8 +372,8 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.delete_outline, color: Colors.red),
-              title: const Text('Eliminar', style: TextStyle(color: Colors.red)),
+              leading: const Icon(Icons.delete_outline, color: AppColors.error),
+              title: const Text('Eliminar', style: TextStyle(color: AppColors.error)),
               onTap: () {
                 Navigator.pop(context);
                 _eliminar(doc);
@@ -428,7 +429,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            style: TextButton.styleFrom(foregroundColor: AppColors.error),
             child: const Text('Eliminar'),
           ),
         ],
@@ -588,7 +589,7 @@ class _DocumentViewerScreenState extends State<DocumentViewerScreen> {
             success ? '✅ PDF generado y abierto' : '❌ Error generando PDF',
           ),
           behavior: SnackBarBehavior.floating,
-          backgroundColor: success ? Colors.green : Colors.red,
+          backgroundColor: success ? AppColors.success : AppColors.error,
         ),
       );
     }

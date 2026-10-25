@@ -476,7 +476,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
                   setState(() => _modeloSeleccionado = value);
                 }
               },
-              activeColor: azulMarino,
+              activeColor: TemaGlobal.dorado,
             ),
             Expanded(
               child: Column(
@@ -651,7 +651,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
                 'Información',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.blue[800],
+                  color: TemaGlobal.texto,
                 ),
               ),
             ],

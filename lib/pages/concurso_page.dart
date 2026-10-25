@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 
 import '../logic/dosimetria_engine.dart';
@@ -473,7 +474,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                   children: <Widget>[
                     Card(
                       elevation: 0,
-                      color: TemaGlobal.texto,
+                      color: TemaGlobal.azulMarino,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                         side: const BorderSide(color: dorado, width: 1.5),
@@ -506,7 +507,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                 if (_topeAplicado) ...<Widget>[
                                   const SizedBox(width: 8),
                                   const Icon(Icons.warning_amber_rounded,
-                                      color: Colors.orange, size: 18),
+                                      color: AppColors.warning, size: 18),
                                 ],
                               ],
                             ),
@@ -544,7 +545,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                               const Text(
                                 'TOPE DE 30 AÑOS APLICADO (Art. 94 CP)',
                                 style: TextStyle(
-                                    color: Colors.orangeAccent,
+                                    color: AppColors.warning,
                                     fontSize: 10,
                                     fontWeight: FontWeight.w800,
                                     letterSpacing: 0.6),

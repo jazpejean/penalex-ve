@@ -267,8 +267,11 @@ class _ComputoPageState extends State<ComputoPage> {
       lastDate: DateTime.now(),
       builder: (context, child) {
         return Theme(
-          data: ThemeData.light().copyWith(
-            colorScheme: const ColorScheme.light(primary: azulMarino),
+          data: (TemaGlobal.isDark ? ThemeData.dark() : ThemeData.light())
+              .copyWith(
+            colorScheme: TemaGlobal.isDark
+                ? const ColorScheme.dark(primary: dorado)
+                : const ColorScheme.light(primary: azulMarino),
             dialogTheme: DialogThemeData(backgroundColor: TemaGlobal.tarjeta),
           ),
           child: child!,
@@ -573,7 +576,7 @@ class _ComputoPageState extends State<ComputoPage> {
                         Text(
                           'DATOS DEL CASO',
                           style: TextStyle(
-                            color: azulMarino.withValues(alpha: 0.85),
+                            color: TemaGlobal.texto,
                             fontSize: 12,
                             fontWeight: FontWeight.w800,
                             letterSpacing: 0.8,
@@ -1272,7 +1275,7 @@ class _Nodo extends StatelessWidget {
               fontSize: 9,
               fontWeight: FontWeight.w800,
               letterSpacing: 0.5,
-              color: gris ? TemaGlobal.textoTenue : azulMarino,
+              color: gris ? TemaGlobal.textoTenue : TemaGlobal.texto,
             ),
           ),
           const SizedBox(height: 3),

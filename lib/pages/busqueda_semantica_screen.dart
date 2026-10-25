@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../pages/main_screen.dart';
 import '../utils/main_tab_controller.dart';
@@ -241,7 +242,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.error_outline, size: 64, color: Colors.red),
+            const Icon(Icons.error_outline, size: 64, color: AppColors.error),
             const SizedBox(height: 16),
             Text(_error!, textAlign: TextAlign.center),
             const SizedBox(height: 16),
@@ -593,8 +594,16 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
   }
 
   Color _getColorSimilitud(double similitud) {
-    if (similitud >= 0.7) return Colors.green;
-    if (similitud >= 0.5) return Colors.orange;
+    if (similitud >= 0.7) {
+      return TemaGlobal.isDark
+          ? const Color(0xFF4ADE80)
+          : const Color(0xFF15803D);
+    }
+    if (similitud >= 0.5) {
+      return TemaGlobal.isDark
+          ? const Color(0xFFFBBF24)
+          : const Color(0xFFC2410C);
+    }
     return TemaGlobal.textoTenue;
   }
 

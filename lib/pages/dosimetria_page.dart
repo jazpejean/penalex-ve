@@ -7,6 +7,7 @@ import '../logic/dosimetria_engine.dart';
 import '../models/calculation_model.dart';
 import '../models/delito.dart';
 import '../services/calculation_service.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../widgets/buscador_articulos_sheet.dart';
 import '../widgets/dosimetria_stepper.dart';
@@ -77,7 +78,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
       const SnackBar(
         content: Text('Cálculo restablecido'),
         duration: Duration(seconds: 2),
-        backgroundColor: Colors.green,
+        backgroundColor: AppColors.success,
       ),
     );
   }
@@ -688,9 +689,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                               icon: const Icon(Icons.arrow_back),
                               label: const Text("REGRESAR"),
                               style: OutlinedButton.styleFrom(
-                                side: BorderSide(
-                                    color: azulMarino.withValues(alpha: 0.45)),
-                                foregroundColor: azulMarino,
+                                side: BorderSide(color: TemaGlobal.capa),
+                                foregroundColor: TemaGlobal.texto,
                                 fixedSize: const Size.fromHeight(48),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(14)),

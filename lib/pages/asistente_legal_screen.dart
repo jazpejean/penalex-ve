@@ -3,6 +3,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:share_plus/share_plus.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../services/ai_service.dart';
 import '../services/document_text_extraction_service.dart';
@@ -292,7 +293,7 @@ Puedo ayudarte a:
           content: Text(
             success ? '✅ PDF generado y abierto' : '❌ Error generando PDF',
           ),
-          backgroundColor: success ? Colors.green : Colors.red,
+          backgroundColor: success ? AppColors.success : AppColors.error,
         ),
       );
     }
@@ -319,7 +320,7 @@ Puedo ayudarte a:
           content: Text(
             success ? '✅ Conversación exportada a PDF' : '❌ Error exportando',
           ),
-          backgroundColor: success ? Colors.green : Colors.red,
+          backgroundColor: success ? AppColors.success : AppColors.error,
         ),
       );
     }
@@ -346,7 +347,7 @@ Puedo ayudarte a:
           content: Text(
             success ? '✅ Conversación exportada a Word' : '❌ Error exportando',
           ),
-          backgroundColor: success ? Colors.green : Colors.red,
+          backgroundColor: success ? AppColors.success : AppColors.error,
         ),
       );
     }
@@ -361,7 +362,7 @@ Puedo ayudarte a:
           content: Text(
             success ? '✅ Documento Word generado' : '❌ Error generando documento',
           ),
-          backgroundColor: success ? Colors.green : Colors.red,
+          backgroundColor: success ? AppColors.success : AppColors.error,
         ),
       );
     }

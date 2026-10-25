@@ -1,6 +1,7 @@
 import 'dart:async';
 import '../services/haptics_service.dart';
 import 'package:flutter/material.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
@@ -52,7 +53,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       builder: (_) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: Text(title, style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
-        content: Text(message, style: TextStyle(color: isError ? Colors.red : TemaGlobal.textoSecundario)),
+        content: Text(message, style: TextStyle(color: isError ? AppColors.error : TemaGlobal.textoSecundario)),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context),

@@ -341,7 +341,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide(color: AppColors.primary.withValues(alpha: 0.3)),
+                  borderSide: BorderSide(color: TemaGlobal.capa),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
@@ -445,7 +445,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                           Icon(
                             Icons.search_off,
                             size: 64,
-                            color: AppColors.primary.withValues(alpha: 0.3),
+                            color: TemaGlobal.textoTenue,
                           ),
                           const SizedBox(height: 16),
                           Text(

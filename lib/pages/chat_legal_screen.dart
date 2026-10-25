@@ -11,6 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../models/chat_message.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../services/chat_service.dart';
 import '../services/ocr_service.dart';
@@ -369,7 +370,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
     return Container(
       constraints: const BoxConstraints(maxWidth: 200),
       decoration: BoxDecoration(
-        color: azulMarino,
+        color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: dorado.withValues(alpha: 0.3),
@@ -574,7 +575,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error al generar respuesta: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
             duration: const Duration(seconds: 3),
           ),
         );
@@ -731,7 +732,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error seleccionando imagen: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
           ),
         );
       }
@@ -766,7 +767,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error seleccionando documento: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
           ),
         );
       }

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import '../services/haptics_service.dart';
 import 'package:flutter/material.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -60,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: isError ? Colors.red : Colors.green,
+        backgroundColor: isError ? AppColors.error : AppColors.success,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         margin: const EdgeInsets.all(10),
@@ -258,17 +259,20 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.all(12),
                     margin: const EdgeInsets.only(bottom: 14),
                     decoration: BoxDecoration(
-                      color: Colors.red.shade50,
+                      color: AppColors.error.withValues(alpha: 0.10),
                       borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.red.shade200),
+                      border: Border.all(
+                          color: AppColors.error.withValues(alpha: 0.35)),
                     ),
                     child: Row(
                       children: <Widget>[
-                        const Icon(Icons.error_outline, color: Colors.red),
+                        const Icon(Icons.error_outline,
+                            color: AppColors.error),
                         const SizedBox(width: 12),
                         Expanded(
                             child: Text(_errorMessage,
-                                style: const TextStyle(color: Colors.red))),
+                                style: const TextStyle(
+                                    color: AppColors.error))),
                       ],
                     ),
                   ),

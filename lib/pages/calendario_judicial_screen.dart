@@ -20,6 +20,7 @@ library;
 
 import 'package:flutter/material.dart';
 
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../logic/lapsos_engine.dart';
 import '../logic/secuencia_procesal.dart';
@@ -269,7 +270,7 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
       content: Text(ok
           ? 'Hito agendado: ${_fmt(h.fechaMin!)}'
           : 'No se pudo agendar (sesión o conexión)'),
-      backgroundColor: ok ? TemaGlobal.dorado : Colors.red.shade400,
+      backgroundColor: ok ? TemaGlobal.dorado : AppColors.error,
     ));
   }
 

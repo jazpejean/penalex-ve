@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../pages/main_screen.dart';
 import '../utils/main_tab_controller.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -41,7 +42,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('❌ Completa todos los campos'),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.error,
         ),
       );
       return;
@@ -59,7 +60,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('✅ Término "$termino" agregado'),
-            backgroundColor: Colors.green,
+            backgroundColor: AppColors.success,
           ),
         );
       }
@@ -68,7 +69,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('❌ Error: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
           ),
         );
       }
@@ -108,7 +109,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('✅ Término "$termino" eliminado'),
-            backgroundColor: Colors.green,
+            backgroundColor: AppColors.success,
           ),
         );
       }
@@ -117,7 +118,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('❌ Error: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
           ),
         );
       }

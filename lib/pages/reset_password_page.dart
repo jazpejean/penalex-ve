@@ -3,6 +3,7 @@ import '../services/haptics_service.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -103,7 +104,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Contraseña actualizada. Ahora puedes iniciar sesión.'),
-          backgroundColor: Colors.green,
+          backgroundColor: AppColors.success,
         ),
       );
       unawaited(Navigator.pushNamedAndRemoveUntil(

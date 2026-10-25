@@ -863,7 +863,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     label: const Text('Editar'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.secondary,
-                      foregroundColor: Colors.white,
+                      foregroundColor: TemaGlobal.azulMarino,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 12,
                         vertical: 8,
@@ -890,7 +890,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: const Icon(Icons.picture_as_pdf, size: 16),
                     label: const Text('PDF'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red[700],
+                      backgroundColor: AppColors.error,
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 12,
@@ -1063,7 +1063,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
           SnackBar(
             content: Text('✅ ${result.files.length} archivo(s) adjuntado(s)'),
             duration: const Duration(seconds: 2),
-            backgroundColor: Colors.green[700],
+            backgroundColor: AppColors.success,
           ),
         );
       }
@@ -1071,7 +1071,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('❌ Error al adjuntar archivos: $e'),
-          backgroundColor: Colors.red[700],
+          backgroundColor: AppColors.error,
         ),
       );
     }

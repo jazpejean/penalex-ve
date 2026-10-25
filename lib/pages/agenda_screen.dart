@@ -217,7 +217,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 Haptics.error();
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text('Expediente, Imputado, Fecha y Hora son obligatorios'),
-                  backgroundColor: Colors.red,
+                  backgroundColor: AppColors.error,
                 ));
                 return;
               }
@@ -225,7 +225,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
               if (fecha == null) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text('Fecha inválida. Use DD/MM/AAAA'),
-                  backgroundColor: Colors.red,
+                  backgroundColor: AppColors.error,
                 ));
                 return;
               }
@@ -269,7 +269,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text('Error al guardar la audiencia'),
-                    backgroundColor: Colors.red,
+                    backgroundColor: AppColors.error,
                   ));
                 }
               }
@@ -691,7 +691,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
               if (fechaCtrl.text.isEmpty || motivoCtrl.text.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text('Fecha y Motivo son obligatorios'),
-                  backgroundColor: Colors.red,
+                  backgroundColor: AppColors.error,
                 ));
                 return;
               }
@@ -699,7 +699,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
               if (fecha == null) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text('Fecha inválida. Use DD/MM/AAAA'),
-                  backgroundColor: Colors.red,
+                  backgroundColor: AppColors.error,
                 ));
                 return;
               }
@@ -714,7 +714,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text('Día sin despacho guardado'),
-                    backgroundColor: Colors.green,
+                    backgroundColor: AppColors.success,
                   ));
                 }
                 if (context.mounted) Navigator.pop(context);
@@ -723,7 +723,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text('No se pudo guardar el día sin despacho. Verifique su sesión y conexión.'),
-                    backgroundColor: Colors.red,
+                    backgroundColor: AppColors.error,
                   ));
                 }
               }

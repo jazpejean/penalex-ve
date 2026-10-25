@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../services/haptics_service.dart';
 import '../pages/main_screen.dart';
 import '../utils/main_tab_controller.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 
 import '../models/calculation_model.dart';
@@ -45,7 +46,7 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error al cargar cálculos: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
           ),
         );
       }
@@ -65,7 +66,7 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
           ),
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            style: ElevatedButton.styleFrom(backgroundColor: AppColors.error),
             child: const Text('Eliminar'),
           ),
         ],
@@ -80,7 +81,7 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('✅ Cálculo eliminado'),
-            backgroundColor: Colors.green,
+            backgroundColor: AppColors.success,
           ),
         );
       }
@@ -211,7 +212,7 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             IconButton(
-                              icon: const Icon(Icons.delete, color: Colors.red),
+                              icon: const Icon(Icons.delete, color: AppColors.error),
                               onPressed: () => _eliminarCalculo(calculo.id),
                               tooltip: 'Eliminar',
                             ),

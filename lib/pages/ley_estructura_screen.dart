@@ -744,8 +744,10 @@ class _ArticuloSheet extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 12),
                       child: Text(
                         'Estado: ${articulo.estado.toUpperCase()}',
-                        style: const TextStyle(
-                          color: Colors.orangeAccent,
+                        style: TextStyle(
+                          color: TemaGlobal.isDark
+                              ? const Color(0xFFFBBF24)
+                              : const Color(0xFFC2410C),
                           fontWeight: FontWeight.bold,
                           fontSize: 13,
                         ),

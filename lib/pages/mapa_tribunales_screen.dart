@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../services/tribunales_service.dart';
 import '../widgets/main_bottom_bar.dart';
@@ -666,13 +667,21 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
                         label: Text(
                           'Despacho: ${t.despacho}',
                           style: TextStyle(
-                            color: TemaGlobal.azulMarino,
+                            color: t.despacho == 'con despacho'
+                                ? (TemaGlobal.isDark
+                                    ? const Color(0xFF4ADE80)
+                                    : const Color(0xFF15803D))
+                                : (TemaGlobal.isDark
+                                    ? const Color(0xFFFBBF24)
+                                    : const Color(0xFFC2410C)),
                             fontSize: 12,
                           ),
                         ),
                         backgroundColor: t.despacho == 'con despacho'
-                            ? Colors.green.shade100
-                            : Colors.orange.shade100,
+                            ? AppColors.success.withValues(
+                                alpha: TemaGlobal.isDark ? 0.22 : 0.14)
+                            : AppColors.warning.withValues(
+                                alpha: TemaGlobal.isDark ? 0.22 : 0.14),
                         visualDensity: VisualDensity.compact,
                       ),
                       const Spacer(),

@@ -3,6 +3,7 @@ import '../services/haptics_service.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
@@ -49,7 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: Text(titulo, style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
-        content: Text(mensaje, style: TextStyle(color: isError ? Colors.red : TemaGlobal.textoSecundario)),
+        content: Text(mensaje, style: TextStyle(color: isError ? AppColors.error : TemaGlobal.textoSecundario)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),

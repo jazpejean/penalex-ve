@@ -4,6 +4,8 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../config/app_colors.dart';
+import '../config/app_theme.dart';
 import '../services/tribunales_service.dart';
 
 /// Ficha y geolocalización de un tribunal penal venezolano.
@@ -26,7 +28,7 @@ class TribunalDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F6FA),
+      backgroundColor: TemaGlobal.superficie,
       body: CustomScrollView(
         slivers: [
           _cabecera(context),
@@ -57,7 +59,7 @@ class TribunalDetailScreen extends StatelessWidget {
   // Cabecera: foto del tribunal (R2) con caché, más la barra superior.
   // -------------------------------------------------------------------------
   Widget _cabecera(BuildContext context) {
-    const azulMarino = Color(0xFF0B132B);
+    final azulMarino = TemaGlobal.azulMarino;
     final foto = tribunal.urlFoto;
     return SliverAppBar(
       pinned: true,
@@ -103,10 +105,10 @@ class TribunalDetailScreen extends StatelessWidget {
   Widget _titulo() {
     return Text(
       tribunal.nombreLimpio,
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.w700,
-        color: Color(0xFF0B132B),
+        color: TemaGlobal.texto,
         height: 1.3,
       ),
     );
@@ -125,13 +127,13 @@ class TribunalDetailScreen extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Icon(Icons.location_on_outlined,
-            size: 20, color: Color(0xFF3A4A6B)),
+        Icon(Icons.location_on_outlined,
+            size: 20, color: TemaGlobal.textoSecundario),
         const SizedBox(width: 6),
         Expanded(
           child: Text(
             texto,
-            style: const TextStyle(fontSize: 14, color: Color(0xFF3A4A6B)),
+            style: TextStyle(fontSize: 14, color: TemaGlobal.textoSecundario),
           ),
         ),
       ],
@@ -150,12 +152,12 @@ class TribunalDetailScreen extends StatelessWidget {
         height: 200,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: const Color(0xFFE8EBF1),
+          color: TemaGlobal.capa,
           borderRadius: BorderRadius.circular(16),
         ),
         alignment: Alignment.center,
-        child: const Text('Ubicación no disponible',
-            style: TextStyle(color: Color(0xFF8A90A0))),
+        child: Text('Ubicación no disponible',
+            style: TextStyle(color: TemaGlobal.textoTenue)),
       );
     }
     final punto = LatLng(lat, lng);
@@ -210,7 +212,7 @@ class TribunalDetailScreen extends StatelessWidget {
             ? null
             : () => _abrirRuta(context, lat, lng),
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF0B132B),
+          backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 14),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

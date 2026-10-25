@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -54,7 +55,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: isError ? Colors.red : Colors.green,
+        backgroundColor: isError ? AppColors.error : AppColors.success,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         margin: const EdgeInsets.all(10),
@@ -226,7 +227,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                       const SizedBox(height: 16),
                       TextButton(
                         onPressed: _logout,
-                        style: TextButton.styleFrom(foregroundColor: Colors.red),
+                        style: TextButton.styleFrom(foregroundColor: AppColors.error),
                         child: const Text('Usar otra cuenta'),
                       ),
                     ],

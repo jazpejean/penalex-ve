@@ -10,6 +10,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../models/sentencia_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../services/jurisprudencia_service.dart';
 import '../services/ai_service.dart';
@@ -447,7 +448,7 @@ class _RepositorioJurisprudenciaScreenState
             Icon(
               Icons.search_off_rounded,
               size: 80,
-              color: azulMarino.withOpacity(0.2),
+              color: TemaGlobal.textoTenue,
             ),
             const SizedBox(height: 24),
             Text(
@@ -502,7 +503,7 @@ class _RepositorioJurisprudenciaScreenState
       shadowColor: azulMarino.withValues(alpha: 0.08),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(14),
-        side: BorderSide(color: azulMarino.withValues(alpha: 0.08), width: 1),
+        side: BorderSide(color: TemaGlobal.capa, width: 1),
       ),
       child: InkWell(
         onTap: () => _verSentencia(sentencia),
@@ -546,7 +547,7 @@ class _RepositorioJurisprudenciaScreenState
                       child: Text(
                         'Vinculante',
                         style: TextStyle(
-                          color: TemaGlobal.texto,
+                          color: azulMarino,
                           fontSize: 9.5,
                           fontWeight: FontWeight.bold,
                         ),
@@ -617,7 +618,7 @@ class _RepositorioJurisprudenciaScreenState
                   IconButton(
                     onPressed: () => _mostrarMetadata(sentencia),
                     icon: Icon(Icons.info_outline,
-                        size: 18, color: azulMarino.withValues(alpha: 0.45)),
+                        size: 18, color: TemaGlobal.textoSecundario),
                     tooltip: 'Ver metadata',
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
@@ -626,7 +627,7 @@ class _RepositorioJurisprudenciaScreenState
                   TextButton(
                     onPressed: () => _verSentencia(sentencia),
                     style: TextButton.styleFrom(
-                      foregroundColor: azulMarino,
+                      foregroundColor: TemaGlobal.texto,
                       padding: const EdgeInsets.symmetric(horizontal: 4),
                       visualDensity: VisualDensity.compact,
                     ),
@@ -658,26 +659,29 @@ class _RepositorioJurisprudenciaScreenState
   }
 
   /// Chip de decisión con color según el sentido del fallo.
+  /// Fondo translúcido (alpha) sobre la superficie actual y texto con tono
+  /// adaptado al modo claro/oscuro: legible sin destellar en modo oscuro.
   Widget _chipDecision(String decision) {
     final d = decision.toUpperCase();
+    final oscuro = TemaGlobal.isDark;
     Color bg;
     Color fg;
     if (d.contains('CON LUGAR')) {
-      bg = const Color(0xFFDCFCE7);
-      fg = const Color(0xFF15803D);
+      bg = AppColors.success.withValues(alpha: oscuro ? 0.22 : 0.14);
+      fg = oscuro ? const Color(0xFF4ADE80) : const Color(0xFF15803D);
     } else if (d.contains('SIN LUGAR') ||
         d.contains('IMPROCEDENTE') ||
         d.contains('INADMISIBLE')) {
-      bg = const Color(0xFFFEE2E2);
-      fg = const Color(0xFFB91C1C);
+      bg = AppColors.error.withValues(alpha: oscuro ? 0.22 : 0.14);
+      fg = oscuro ? const Color(0xFFF87171) : const Color(0xFFB91C1C);
     } else if (d.contains('REVOCA') ||
         d.contains('ANULA') ||
         d.contains('NULIDAD')) {
-      bg = const Color(0xFFFFEDD5);
-      fg = const Color(0xFFC2410C);
+      bg = AppColors.warning.withValues(alpha: oscuro ? 0.22 : 0.14);
+      fg = oscuro ? const Color(0xFFFBBF24) : const Color(0xFFC2410C);
     } else {
-      bg = const Color(0xFFE2E8F0);
-      fg = const Color(0xFF334155);
+      bg = TemaGlobal.capa;
+      fg = TemaGlobal.textoSecundario;
     }
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -1138,7 +1142,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error al analizar: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
           ),
         );
       }

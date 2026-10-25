@@ -4,6 +4,7 @@ import '../pages/main_screen.dart';
 import '../utils/main_tab_controller.dart';
 
 import 'package:flutter/material.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -263,7 +264,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
                           height: 50,
                           decoration: BoxDecoration(
                             gradient: const LinearGradient(
-                              colors: [Color(0xFFEF4444), Color(0xFFB91C1C)],
+                              colors: [AppColors.error, AppColors.error],
                             ),
                             borderRadius: BorderRadius.circular(10),
                           ),
