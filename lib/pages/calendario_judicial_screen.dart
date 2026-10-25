@@ -39,6 +39,7 @@ class CalendarioJudicialScreen extends StatefulWidget {
     required this.expediente,
     required this.imputado,
     this.fechaBase,
+    this.tribunalId,
     this.viaInicial = ViaProcesal.ordinario,
   });
 
@@ -51,6 +52,11 @@ class CalendarioJudicialScreen extends StatefulWidget {
   /// Fecha de la audiencia agendada (base del cómputo). Si es null,
   /// el abogado la indica al abrir.
   final DateTime? fechaBase;
+
+  /// Tribunal del expediente: los días sin despacho asociados a OTRO
+  /// tribunal no se excluyen del cómputo (solo los globales y los de
+  /// este tribunal).
+  final String? tribunalId;
 
   /// Vía procesal con la que inicia (por defecto ordinario).
   final ViaProcesal viaInicial;
@@ -97,9 +103,14 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
       final List<NonWorkingDay> feriados = getAllNonWorkingDays();
       final List<NonWorkingDay> usuario =
           await NonWorkingDayService.loadUserNonWorkingDays();
+      // Días sin despacho del usuario: aplican SOLO si son globales
+      // (sin tribunal) o pertenecen al tribunal de este expediente.
+      final List<NonWorkingDay> aplicables = usuario.where((n) =>
+          n.tribunalId == null ||
+          (widget.tribunalId != null && n.tribunalId == widget.tribunalId)).toList();
       final List<DateTime> fechas = <DateTime>[
         ...feriados.map((n) => n.date),
-        ...usuario.map((n) => n.date),
+        ...aplicables.map((n) => n.date),
       ];
       setState(() {
         _excluidos = fechasExcluidasDe(fechas);
@@ -276,7 +287,7 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
         title: const Text('Lapsos del expediente'),
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: TemaGlobal.dorado),
+          icon: Icon(Icons.arrow_back, color: TemaGlobal.dorado),
           onPressed: () => Navigator.of(context).maybePop(),
         ),
       ),

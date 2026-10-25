@@ -29,6 +29,10 @@ class NonWorkingDayService {
         'user_id': userId,
         'fecha': nonWorkingDay.date.toUtc().toIso8601String(),
         'motivo': nonWorkingDay.reason,
+        if (nonWorkingDay.tribunalId != null)
+          'tribunal_id': nonWorkingDay.tribunalId,
+        if (nonWorkingDay.tribunalNombre != null)
+          'tribunal_nombre': nonWorkingDay.tribunalNombre,
       }, onConflict: 'user_id,fecha');
       return true;
     } on Exception catch (e) {
@@ -44,7 +48,7 @@ class NonWorkingDayService {
     try {
       final resp = await _supabase
           .from('dias_no_despacho')
-          .select('fecha,motivo')
+          .select('fecha,motivo,tribunal_id,tribunal_nombre')
           .eq('user_id', userId)
           .order('fecha');
       return (resp as List<dynamic>)
@@ -55,6 +59,8 @@ class NonWorkingDayService {
                     DateTime.now(),
                 reason:
                     (e['motivo']?.toString() ?? 'Motivo desconocido'),
+                tribunalId: e['tribunal_id']?.toString(),
+                tribunalNombre: e['tribunal_nombre']?.toString(),
               ))
           .toList();
     } on Exception catch (e) {

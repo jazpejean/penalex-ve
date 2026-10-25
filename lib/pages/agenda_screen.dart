@@ -287,22 +287,31 @@ class _AgendaScreenState extends State<AgendaScreen> {
           expediente: aud.expediente,
           imputado: aud.imputado,
           fechaBase: aud.fecha,
+          tribunalId: aud.tribunalId,
         ),
       ),
     );
   }
 
-  /// Selector de tribunal con búsqueda semántica (catálogo de 868).
-  /// Abre un modal con un campo de texto; cada búsqueda consulta
-  /// [TribunalesService.buscarSemantico] (pgvector + bge-m3) y muestra los
-  /// resultados. Si el worker de embeddings está caído o no hay coincidencias
-  /// relevantes, cae al filtro tradicional por texto.
+  /// Selector de tribunal (catálogo oficial de tribunales penales).
+  /// La búsqueda es por TEXTO local sobre el catálogo completo: lista
+  /// TODOS los tribunales que coinciden (buscar "Los Teques" muestra los
+  /// ~20 de esa sede). La semántica (pgvector) solo se usa como refuerzo
+  /// cuando el texto no encuentra nada.
   Future<Tribunal?> _seleccionarTribunal(
       BuildContext context, String inicial) async {
     final TextEditingController buscadorCtrl =
         TextEditingController(text: inicial);
     List<Tribunal> resultados = <Tribunal>[];
-    bool buscando = false;
+    bool buscando = true;
+    bool cacheLista = false;
+
+    // Asegura el catálogo en caché (una sola carga; luego filtro local).
+    Future<void> asegurarCache() async {
+      if (cacheLista) return;
+      await TribunalesService.listar();
+      cacheLista = true;
+    }
 
     Future<void> buscar() async {
       final q = buscadorCtrl.text.trim();
@@ -311,14 +320,20 @@ class _AgendaScreenState extends State<AgendaScreen> {
         return;
       }
       buscando = true;
-      // Semántica primero (limite 12); si devuelve null → fallback substring.
-      final sem = await TribunalesService.buscarSemantico(q, limite: 12);
+      // 1) Filtro local por texto: TODOS los que coinciden.
+      final locales = TribunalesService.filtrarPorTexto(q);
+      if (locales.isNotEmpty) {
+        resultados = locales;
+        buscando = false;
+        return;
+      }
+      // 2) Refuerzo semántico solo si el texto no dio coincidencias.
+      final sem = await TribunalesService.buscarSemantico(q, limite: 20);
       if (sem == null || sem.isEmpty) {
         resultados = sem ?? <Tribunal>[];
         buscando = false;
         return;
       }
-      // Filtra por umbral de distancia (0 = idéntico; relevantes < 0.52).
       const umbral = 0.52;
       final relevantes = sem
           .where((t) => t.distancia != null && t.distancia! < umbral)
@@ -327,6 +342,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
       buscando = false;
     }
 
+    unawaited(asegurarCache());
     await buscar();
 
     return showDialog<Tribunal>(
@@ -343,7 +359,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 controller: buscadorCtrl,
                 autofocus: true,
                 decoration: InputDecoration(
-                  hintText: 'Ej: juicio de Maracaibo, control de Caracas...',
+                  hintText: 'Ej: Los Teques, juicio de Maracaibo...',
                   prefixIcon: Icon(Icons.search, color: TemaGlobal.textoSecundario),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   isDense: true,
@@ -392,6 +408,9 @@ class _AgendaScreenState extends State<AgendaScreen> {
   void _mostrarFormularioNuevoDiaSinDespacho() {
     final TextEditingController fechaCtrl = TextEditingController();
     final TextEditingController motivoCtrl = TextEditingController();
+    final TextEditingController tribunalCtrl = TextEditingController();
+    // Tribunal del catálogo asociado (opcional; null = toda la agenda).
+    Tribunal? tribunalSel;
 
     if (_selectedDay != null) {
       fechaCtrl.text =
@@ -413,6 +432,15 @@ class _AgendaScreenState extends State<AgendaScreen> {
               children: <Widget>[
                 _buildModernField(fechaCtrl, 'Fecha (DD/MM/AAAA) *', Icons.calendar_today, isDate: true, hint: 'Ej: 24/12/2026'),
                 _buildModernField(motivoCtrl, 'Motivo (ej: falla eléctrica, salud, etc.) *', Icons.description, maxLines: 2),
+                _buildModernField(tribunalCtrl, 'Tribunal (opcional)', Icons.account_balance,
+                    onTap: () async {
+                      final Tribunal? elegido = await _seleccionarTribunal(
+                          context, tribunalCtrl.text);
+                      if (elegido != null && context.mounted) {
+                        tribunalSel = elegido;
+                        tribunalCtrl.text = elegido.nombreLimpio;
+                      }
+                    }),
                 const SizedBox(height: 12),
                 Container(
                   padding: const EdgeInsets.all(12),
@@ -427,7 +455,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          'Este día se marcará como inhábil en toda la agenda personal, sin distinguir tribunales.',
+                          'Sin tribunal: aplica a toda la agenda personal. Con tribunal: solo excluye los lapsos de ese tribunal.',
                           style: TextStyle(fontSize: 12, color: TemaGlobal.textoSecundario),
                         ),
                       ),
@@ -458,7 +486,12 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 ));
                 return;
               }
-              final NonWorkingDay newNonWorkingDay = NonWorkingDay(date: fecha, reason: motivoCtrl.text);
+              final NonWorkingDay newNonWorkingDay = NonWorkingDay(
+                date: fecha,
+                reason: motivoCtrl.text,
+                tribunalId: tribunalSel?.id,
+                tribunalNombre: tribunalSel?.nombreLimpio,
+              );
               final bool success = await NonWorkingDayService.saveNonWorkingDay(newNonWorkingDay);
               if (success) {
                 if (context.mounted) {
@@ -733,7 +766,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                         children: <Widget>[
                                           IconButton(
                                             tooltip: 'Lapsos del expediente',
-                                            icon: const Icon(Icons.timeline,
+                                            icon: Icon(Icons.timeline,
                                                 color: TemaGlobal.dorado),
                                             onPressed: () => _abrirLapsosExpediente(aud),
                                           ),

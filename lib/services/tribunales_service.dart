@@ -122,14 +122,66 @@ class Tribunal {
 class TribunalesService {
   static final _supabase = Supabase.instance.client;
 
+  /// Caché del catálogo completo (el selector y el mapa lo reutilizan
+  /// para el filtro por texto local, sin golpear la red en cada tecla).
+  static List<Tribunal>? _cache;
+
   /// Todos los tribunales penales (con ubicación, filtrables).
   static Future<List<Tribunal>> listar() async {
+    if (_cache != null) return _cache!;
     final rows = await _supabase
         .from('tribunales')
         .select()
         .order('estado')
         .order('nombre');
-    return rows.map(Tribunal.fromMap).toList();
+    final lista = rows.map(Tribunal.fromMap).toList();
+    _cache = lista;
+    return lista;
+  }
+
+  /// Invalida la caché (p. ej. tras corregir el catálogo en Supabase).
+  static void invalidarCache() => _cache = null;
+
+  /// Filtro por TEXTO local (substring sin tildes) sobre todos los campos
+  /// visibles: nombre, código, sede, municipio, estado, parroquia, sección
+  /// y función. Devuelve TODOS los que coinciden (el "palacio completo"):
+  /// buscar "Los Teques" lista los ~20 tribunales de esa sede, no uno solo.
+  ///
+  /// La búsqueda semántica (pgvector) queda como REFUERZO: se usa solo
+  /// cuando este filtro local no encuentra nada.
+  static List<Tribunal> filtrarPorTexto(String consulta) {
+    final q = _normalizar(consulta.trim());
+    if (q.isEmpty) return const <Tribunal>[];
+    final cache = _cache;
+    if (cache == null) return const <Tribunal>[];
+    return cache.where((t) {
+      final haystack = _normalizar(<String>[
+        t.nombre,
+        t.codigo,
+        t.sede ?? '',
+        t.municipio ?? '',
+        t.estado,
+        t.parroquia ?? '',
+        t.seccion ?? '',
+        t.funcion ?? '',
+      ].join(' '));
+      return haystack.contains(q);
+    }).toList();
+  }
+
+  /// Normaliza para comparar sin tildes ni mayúsculas (Los Teques →
+  /// "los teques"; BOLIVARIANO GUAICAIPURO → "bolivariano guaicaipuro").
+  static String _normalizar(String s) {
+    const acentos = <String, String>{
+      'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
+      'Á': 'a', 'É': 'e', 'Í': 'i', 'Ó': 'o', 'Ú': 'u',
+      'ñ': 'ñ', 'Ñ': 'ñ',
+    };
+    final b = StringBuffer();
+    for (final ch in s.toLowerCase().split('')) {
+      b.write(acentos[ch] ?? ch);
+    }
+    return b.toString().replaceAll(RegExp(r'\s+'), ' ').trim();
   }
 
   /// Tribunales con coordenadas válidas (para el mapa).

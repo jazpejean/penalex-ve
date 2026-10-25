@@ -1,21 +1,33 @@
 /// Modelo para representar días sin despacho en la agenda
 class NonWorkingDay {
-  NonWorkingDay({required this.date, required this.reason, this.isOptional = false});
+  NonWorkingDay({
+    required this.date,
+    required this.reason,
+    this.isOptional = false,
+    this.tribunalId,
+    this.tribunalNombre,
+  });
 
   factory NonWorkingDay.fromMap(Map<String, dynamic> map) => NonWorkingDay(
       date: DateTime.parse(map['date'] as String),
       reason: map['reason']?.toString() ?? 'Motivo desconocido',
       isOptional: map['isOptional'] as bool? ?? false,
+      tribunalId: map['tribunal_id']?.toString(),
+      tribunalNombre: map['tribunal_nombre']?.toString(),
     );
 
   final DateTime date;
   final String reason;
   final bool isOptional; // Para días que pueden variar según criterio institucional
+  final String? tribunalId; // Tribunal del catálogo asociado (opcional)
+  final String? tribunalNombre;
 
   Map<String, dynamic> toMap() => <String, dynamic>{
       "date": date.toIso8601String(),
       "reason": reason,
       "isOptional": isOptional,
+      if (tribunalId != null) "tribunal_id": tribunalId,
+      if (tribunalNombre != null) "tribunal_nombre": tribunalNombre,
     };
 }
 

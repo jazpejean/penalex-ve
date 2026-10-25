@@ -81,11 +81,12 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
   }
 
   void _aplicarFiltros() {
-    // Búsqueda semántica cuando hay texto: primero intenta pgvector;
-    // si el worker no responde, cae al filtro tradicional (substring).
+    // Filtro por TEXTO local primero: lista TODOS los tribunales que
+    // coinciden (buscar "Los Teques" muestra los ~20 de esa sede).
+    // La semántica solo se usa como refuerzo si el texto no da resultados.
     final q = _busqueda.trim();
     if (q.isNotEmpty) {
-      _buscarSemantico(q);
+      _buscarLocal(q);
       return;
     }
     setState(() {
@@ -101,6 +102,33 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
       }).toList();
       _seleccionado = null;
     });
+  }
+
+  /// Filtro local por texto sobre el catálogo ya cargado; semántica solo
+  /// si el texto no coincidió con nada.
+  Future<void> _buscarLocal(String q) async {
+    // Asegura la caché del catálogo (para filtrarPorTexto).
+    await TribunalesService.listar();
+    if (!mounted) return;
+    final locales = TribunalesService.filtrarPorTexto(q);
+    if (locales.isNotEmpty) {
+      setState(() {
+        _visibles = locales.where((t) {
+          final okEstado =
+              _filtroEstado == null || t.estado == _filtroEstado;
+          final okFuncion =
+              _filtroFuncion == null || t.funcion == _filtroFuncion;
+          final okInstancia =
+              _filtroInstancia == null || t.instancia == _filtroInstancia;
+          final okSeccion =
+              _filtroSeccion == null || t.seccion == _filtroSeccion;
+          return okEstado && okFuncion && okInstancia && okSeccion;
+        }).toList();
+        _seleccionado = null;
+      });
+      return;
+    }
+    await _buscarSemantico(q);
   }
 
   Future<void> _buscarSemantico(String q) async {
