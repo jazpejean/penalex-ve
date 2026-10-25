@@ -142,6 +142,11 @@ class TribunalesService {
   /// Invalida la caché (p. ej. tras corregir el catálogo en Supabase).
   static void invalidarCache() => _cache = null;
 
+  /// Devuelve el catálogo ya cargado en caché (sin golpear la red), o null
+  /// si aún no se ha cargado. Lo usa el selector para mostrar el directorio
+  /// completo cuando el buscador está vacío.
+  static List<Tribunal>? listarEnCache() => _cache;
+
   /// Filtro por TEXTO local (substring sin tildes) sobre todos los campos
   /// visibles: nombre, código, sede, municipio, estado, parroquia, sección
   /// y función. Devuelve TODOS los que coinciden (el "palacio completo"):

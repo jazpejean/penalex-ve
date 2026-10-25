@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:math' as math;
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -295,19 +297,7 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
                                 userAgentPackageName: 'com.penalex.ve',
                               ),
                               MarkerLayer(
-                                markers: _visibles
-                                    .where((t) => t.latLng != null)
-                                    .map((t) => Marker(
-                                          point: t.latLng!,
-                                          width: 36,
-                                          height: 36,
-                                          child: GestureDetector(
-                                            onTap: () => setState(
-                                                () => _seleccionado = t),
-                                            child: _marcadorIcon(t),
-                                          ),
-                                        ))
-                                    .toList(),
+                                markers: _markersSeparados(),
                               ),
                             ],
                           ),
@@ -547,6 +537,57 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
     );
   }
 
+  /// Construye los markers separando los tribunales que comparten la MISMA
+  /// coordenada (varios tribunales en un mismo palacio de justicia). Sin
+  /// esta separación, los 16 de "Los Teques" se apilan en un solo punto y
+  /// solo se ve el último dibujado; con el desplazamiento en espiral se
+  /// ven todos y cada uno es tocable.
+  List<Marker> _markersSeparados() {
+    const radio = 0.0016; // ~170 m: separación visible en el zoom urbano.
+    final conUbicacion =
+        _visibles.where((t) => t.latLng != null).toList();
+    // Agrupa por coordenada redondeada (≈ 8 m) para detectar apilados.
+    final grupos = <String, List<Tribunal>>{};
+    for (final t in conUbicacion) {
+      final p = t.latLng!;
+      final clave =
+          '${p.latitude.toStringAsFixed(4)},${p.longitude.toStringAsFixed(4)}';
+      grupos.putIfAbsent(clave, () => []).add(t);
+    }
+    final markers = <Marker>[];
+    for (final grupo in grupos.values) {
+      if (grupo.length == 1) {
+        final t = grupo.single;
+        markers.add(_markerEn(t.latLng!, t));
+        continue;
+      }
+      // Espiral de ángulo dorado: reparte los N del mismo punto.
+      for (var i = 0; i < grupo.length; i++) {
+        final t = grupo[i];
+        final angulo = i * 2.399963; // ángulo dorado (rad)
+        final d = radio * (0.4 + i * 0.22);
+        final punto = LatLng(
+          t.latLng!.latitude + d * math.cos(angulo),
+          t.latLng!.longitude + d * math.sin(angulo),
+        );
+        markers.add(_markerEn(punto, t));
+      }
+    }
+    return markers;
+  }
+
+  Marker _markerEn(LatLng punto, Tribunal t) {
+    return Marker(
+      point: punto,
+      width: 36,
+      height: 36,
+      child: GestureDetector(
+        onTap: () => setState(() => _seleccionado = t),
+        child: _marcadorIcon(t),
+      ),
+    );
+  }
+
   IconData _iconoPorFuncion(String? funcion) {
     switch (funcion?.toUpperCase()) {
       case 'CONTROL':
@@ -570,64 +611,100 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
       child: Card(
         elevation: 6,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        child: Padding(
-          padding: const EdgeInsets.all(14),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      t.nombre,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 15),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Foto del tribunal en contenedor FIJO: todas las imágenes se
+            // muestran del mismo tamaño (220x110, cover), sin importar la
+            // resolución original de la foto en R2.
+            SizedBox(
+              width: double.infinity,
+              height: 110,
+              child: t.urlFoto == null || t.urlFoto!.isEmpty
+                  ? _fichaFotoPlaceholder()
+                  : CachedNetworkImage(
+                      imageUrl: t.urlFoto!,
+                      fit: BoxFit.cover,
+                      placeholder: (_, __) => _fichaFotoPlaceholder(),
+                      errorWidget: (_, __, ___) => _fichaFotoPlaceholder(),
                     ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          t.nombre,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () => setState(() => _seleccionado = null),
+                      ),
+                    ],
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.close),
-                    onPressed: () => setState(() => _seleccionado = null),
+                  const SizedBox(height: 6),
+                  _filaInfo(Icons.map, '${t.sede ?? ''} — ${t.estado}'),
+                  if (t.municipio != null)
+                    _filaInfo(Icons.location_city, t.municipio!),
+                  _filaInfo(Icons.badge, '${t.codigo} · ${t.etiquetaFuncion}'),
+                  _filaInfo(Icons.verified, t.instancia),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Chip(
+                        label: Text(
+                          'Despacho: ${t.despacho}',
+                          style: TextStyle(
+                            color: TemaGlobal.azulMarino,
+                            fontSize: 12,
+                          ),
+                        ),
+                        backgroundColor: t.despacho == 'con despacho'
+                            ? Colors.green.shade100
+                            : Colors.orange.shade100,
+                        visualDensity: VisualDensity.compact,
+                      ),
+                      const Spacer(),
+                      TextButton.icon(
+                        onPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => TribunalDetailScreen(tribunal: t),
+                          ),
+                        ),
+                        icon: const Icon(Icons.open_in_full, size: 18),
+                        label: const Text('Ver ficha'),
+                      ),
+                    ],
                   ),
                 ],
               ),
-              const SizedBox(height: 6),
-              _filaInfo(Icons.map, '${t.sede ?? ''} — ${t.estado}'),
-              if (t.municipio != null)
-                _filaInfo(Icons.location_city, t.municipio!),
-              _filaInfo(Icons.badge, '${t.codigo} · ${t.etiquetaFuncion}'),
-              _filaInfo(Icons.verified, t.instancia),
-              const SizedBox(height: 8),
-              Row(
-                children: [
-                  Chip(
-                    label: Text(
-                      'Despacho: ${t.despacho}',
-                      style: TextStyle(
-                        color: TemaGlobal.azulMarino,
-                        fontSize: 12,
-                      ),
-                    ),
-                    backgroundColor: t.despacho == 'con despacho'
-                        ? Colors.green.shade100
-                        : Colors.orange.shade100,
-                    visualDensity: VisualDensity.compact,
-                  ),
-                  const Spacer(),
-                  TextButton.icon(
-                    onPressed: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => TribunalDetailScreen(tribunal: t),
-                      ),
-                    ),
-                    icon: const Icon(Icons.open_in_full, size: 18),
-                    label: const Text('Ver ficha'),
-                  ),
-                ],
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget _fichaFotoPlaceholder() {
+    return Container(
+      width: double.infinity,
+      height: 110,
+      color: const Color(0xFFD9DCE5),
+      alignment: Alignment.center,
+      child: const Icon(
+        Icons.account_balance,
+        size: 40,
+        color: Color(0xFF8A90A0),
       ),
     );
   }

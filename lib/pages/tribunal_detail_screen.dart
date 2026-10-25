@@ -198,7 +198,7 @@ class TribunalDetailScreen extends StatelessWidget {
   }
 
   // -------------------------------------------------------------------------
-  // Botón "Cómo llegar": intenta Waze; si falla, abre Google Maps.
+  // Botón "Cómo llegar": abre Google Maps; si falla, Waze como respaldo.
   // -------------------------------------------------------------------------
   Widget _botonRuta(BuildContext context) {
     final lat = tribunal.latitud;
@@ -223,24 +223,24 @@ class TribunalDetailScreen extends StatelessWidget {
   }
 
   Future<void> _abrirRuta(BuildContext context, double lat, double lng) async {
-    // 1) Waze (aplicación de navegación preferida en Venezuela).
-    final waze = Uri.parse(
-        'https://waze.com/ul?ll=$lat,$lng&navigate=yes');
-    // 2) Google Maps como respaldo.
+    // 1) Google Maps (navegación solicitada por el usuario).
     final maps = Uri.parse(
         'https://www.google.com/maps/dir/?api=1&destination=$lat,$lng');
+    // 2) Waze como respaldo si Maps no está disponible.
+    final waze = Uri.parse(
+        'https://waze.com/ul?ll=$lat,$lng&navigate=yes');
 
     var abierto = false;
     try {
-      abierto = await launchUrl(waze, mode: LaunchMode.externalApplication);
+      abierto = await launchUrl(maps, mode: LaunchMode.externalApplication);
     } catch (_) {
       abierto = false;
     }
     if (!abierto) {
       try {
-        await launchUrl(maps, mode: LaunchMode.externalApplication);
+        await launchUrl(waze, mode: LaunchMode.externalApplication);
       } catch (_) {
-        // ni Waze ni Maps: se muestra un aviso sin romper la UI
+        // ni Maps ni Waze: se muestra un aviso sin romper la UI
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('No se pudo abrir la ruta')),

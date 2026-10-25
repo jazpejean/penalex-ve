@@ -313,10 +313,19 @@ class _AgendaScreenState extends State<AgendaScreen> {
       cacheLista = true;
     }
 
+    // La caché del catálogo debe estar lista ANTES del primer filtro por
+    // texto; si no, el filtro local no encuentra nada y se cae a la
+    // semántica (que devuelve solo 1-2 resultados "relevantes").
+    await asegurarCache();
+
     Future<void> buscar() async {
       final q = buscadorCtrl.text.trim();
       if (q.isEmpty) {
-        resultados = <Tribunal>[];
+        // Sin texto: mostrar el catálogo completo (directorio), no un
+        // spinner infinito.
+        final todos = TribunalesService.listarEnCache();
+        resultados = todos == null ? <Tribunal>[] : List.of(todos);
+        buscando = false;
         return;
       }
       buscando = true;
@@ -342,7 +351,6 @@ class _AgendaScreenState extends State<AgendaScreen> {
       buscando = false;
     }
 
-    unawaited(asegurarCache());
     await buscar();
 
     return showDialog<Tribunal>(
@@ -384,7 +392,9 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(fontSize: 14)),
                                 subtitle: Text(
-                                    '${t.codigo} · ${t.estado}${t.funcion != null ? ' · ${t.etiquetaFuncion}' : ''}',
+                                    '${t.codigo} · ${t.estado}${t.municipio != null ? ' · ${t.municipio}' : ''}${t.funcion != null ? ' · ${t.etiquetaFuncion}' : ''}',
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(fontSize: 12)),
                                 trailing: const Icon(Icons.chevron_right, size: 18),
                                 onTap: () => Navigator.pop(dialogContext, t),
