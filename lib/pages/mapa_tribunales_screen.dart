@@ -657,7 +657,7 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
                   if (t.municipio != null)
                     _filaInfo(Icons.location_city, t.municipio!),
                   _filaInfo(Icons.account_balance, t.circunscripcionJudicial),
-                  _filaInfo(Icons.badge, '${t.codigo} · ${t.etiquetaFuncion}'),
+                  _filaInfo(Icons.badge, '${t.etiquetaFuncion}'),
                   _filaInfo(Icons.verified, t.instancia),
                   const SizedBox(height: 8),
                   Row(

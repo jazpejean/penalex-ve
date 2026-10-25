@@ -539,7 +539,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 style: const TextStyle(
                     fontSize: 13.5, fontWeight: FontWeight.w600)),
             subtitle: Text(
-              '${t.codigo} · ${t.etiquetaFuncion}${t.municipio != null ? ' · ${t.municipio}' : ''}',
+              '${t.etiquetaFuncion}${t.municipio != null ? ' · ${t.municipio}' : ''}',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(fontSize: 11.5),
