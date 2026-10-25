@@ -23,6 +23,8 @@ class LeyEstructuraScreen extends StatefulWidget {
 class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
 
   final LeyesRepositorioService _service = LeyesRepositorioService();
 
@@ -128,7 +130,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
         elevation: 0,
       ),
       body: _cargando
-          ? const Center(child: CircularProgressIndicator(color: dorado))
+          ? Center(child: CircularProgressIndicator(color: acento))
           : _error != null
               ? _buildError()
               : _buildContenido(),
@@ -142,7 +144,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.cloud_off_rounded, size: 80, color: dorado.withOpacity(0.4)),
+            Icon(Icons.cloud_off_rounded, size: 80, color: acento.withOpacity(0.4)),
             const SizedBox(height: 16),
             Text(
               _error!,
@@ -216,7 +218,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
       color: TemaGlobal.tarjeta,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        side: BorderSide(color: dorado.withOpacity(0.35)),
+        side: BorderSide(color: acento.withOpacity(0.35)),
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
@@ -231,14 +233,14 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
                   Expanded(
                     child: Text(
                       '${art.tipoNorma} ${art.identificador}',
-                      style: const TextStyle(
-                        color: dorado,
+                      style: TextStyle(
+                        color: acento,
                         fontWeight: FontWeight.bold,
                         fontSize: 15,
                       ),
                     ),
                   ),
-                  const Icon(Icons.chevron_right, color: dorado, size: 18),
+                  Icon(Icons.chevron_right, color: acento, size: 18),
                 ],
               ),
               if (path.isNotEmpty) ...[
@@ -325,10 +327,10 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
                 color: TemaGlobal.textoTenue,
                 fontSize: 14,
               ),
-              prefixIcon: const Icon(Icons.search, color: dorado, size: 20),
+              prefixIcon: Icon(Icons.search, color: acento, size: 20),
               suffixIcon: _filtro.isNotEmpty
                   ? IconButton(
-                      icon: const Icon(Icons.clear, color: dorado, size: 18),
+                      icon: Icon(Icons.clear, color: acento, size: 18),
                       onPressed: () {
                         _filtroController.clear();
                         setState(() => _filtro = '');
@@ -347,7 +349,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(color: dorado, width: 1.5),
+                borderSide: BorderSide(color: acento, width: 1.5),
               ),
             ),
             onChanged: (v) => setState(() => _filtro = v),
@@ -443,7 +445,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta.withOpacity(profundidad == 0 ? 1.0 : 0.6),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: dorado.withOpacity(profundidad == 0 ? 0.35 : 0.15)),
+        border: Border.all(color: acento.withOpacity(profundidad == 0 ? 0.35 : 0.15)),
       ),
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
@@ -451,7 +453,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
           initiallyExpanded: profundidad == 0,
           tilePadding: EdgeInsets.only(left: 8.0 + profundidad * 8, right: 12),
           childrenPadding: const EdgeInsets.only(bottom: 8),
-          iconColor: dorado,
+          iconColor: acento,
           collapsedIconColor: TemaGlobal.textoTenue,
           title: Row(
             children: [
@@ -470,13 +472,13 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                   decoration: BoxDecoration(
-                    color: dorado.withOpacity(0.15),
+                    color: acento.withOpacity(0.15),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
                     _rangoArticulos(nodo),
-                    style: const TextStyle(
-                      color: dorado,
+                    style: TextStyle(
+                      color: acento,
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
                     ),
@@ -568,7 +570,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right, color: dorado, size: 18),
+            Icon(Icons.chevron_right, color: acento, size: 18),
           ],
         ),
       ),
@@ -612,6 +614,8 @@ class NodoArbol {
 class _ArticuloSheet extends StatelessWidget {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
 
   final String leyNombre;
   final ArticuloLey articulo;
@@ -818,6 +822,8 @@ class LeyChatIAPage extends StatefulWidget {
 class _LeyChatIAPageState extends State<LeyChatIAPage> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
 
   final LeyesRAGService _rag = LeyesRAGService();
   final TextEditingController _controller = TextEditingController();
@@ -932,7 +938,7 @@ class _LeyChatIAPageState extends State<LeyChatIAPage> {
                 const SizedBox(width: 8),
                 IconButton(
                   onPressed: _enviar,
-                  icon: const Icon(Icons.send, color: dorado),
+                  icon: Icon(Icons.send, color: acento),
                 ),
               ],
             ),
@@ -975,12 +981,12 @@ class _LeyChatIAPageState extends State<LeyChatIAPage> {
                 selectable: true,
                 styleSheet: MarkdownStyleSheet(
                   p: TextStyle(color: TemaGlobal.texto, fontSize: 14, height: 1.5),
-                  h1: const TextStyle(color: dorado, fontWeight: FontWeight.bold, fontSize: 18),
-                  h2: const TextStyle(color: dorado, fontWeight: FontWeight.bold, fontSize: 16),
-                  h3: const TextStyle(color: dorado, fontWeight: FontWeight.bold, fontSize: 15),
+                  h1: TextStyle(color: acento, fontWeight: FontWeight.bold, fontSize: 18),
+                  h2: TextStyle(color: acento, fontWeight: FontWeight.bold, fontSize: 16),
+                  h3: TextStyle(color: acento, fontWeight: FontWeight.bold, fontSize: 15),
                   strong: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),
                   listBullet: TextStyle(color: TemaGlobal.texto, fontSize: 14),
-                  a: const TextStyle(color: dorado),
+                  a: TextStyle(color: acento),
                 ),
               ),
             if (msg.fuentes != null && msg.fuentes!.isNotEmpty) ...[
@@ -990,7 +996,7 @@ class _LeyChatIAPageState extends State<LeyChatIAPage> {
               Text(
                 'Fuentes normativas:',
                 style: TextStyle(
-                  color: dorado.withOpacity(0.9),
+                  color: acento.withOpacity(0.9),
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                 ),
@@ -1029,7 +1035,7 @@ class _LeyChatIAPageState extends State<LeyChatIAPage> {
             const SizedBox(
               width: 16,
               height: 16,
-              child: CircularProgressIndicator(color: dorado, strokeWidth: 2),
+              child: CircularProgressIndicator(color: acento, strokeWidth: 2),
             ),
             const SizedBox(width: 12),
             Text('Analizando...',

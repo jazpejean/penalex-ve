@@ -36,6 +36,8 @@ class _ConcursoPageState extends State<ConcursoPage> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
   static Color get fondoGris => TemaGlobal.superficie;
 
   @override
@@ -102,19 +104,34 @@ class _ConcursoPageState extends State<ConcursoPage> {
   Widget build(BuildContext context) => Scaffold(
         drawer: const AppDrawer(currentRoute: "/concurso"),
         backgroundColor: fondoGris,
-        appBar: AppBar(
-          backgroundColor: azulMarino,
-          title: const Text("CONCURSO Y ADMISIÓN",
-              style: TextStyle(
-                  color: dorado,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 0.6)),
-          centerTitle: true,
-          iconTheme: const IconThemeData(color: dorado),
-          elevation: 0,
-        ),
         body: Column(
           children: <Widget>[
+            SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(8, 4, 16, 0),
+                child: Row(
+                  children: <Widget>[
+                    IconButton(
+                      icon: const Icon(Icons.menu),
+                      onPressed: () => Scaffold.of(context).openDrawer(),
+                      tooltip: 'Menú',
+                      color: acento,
+                    ),
+                    const SizedBox(width: 4),
+                    Expanded(
+                      child: Text(
+                        'CONCURSO Y ADMISIÓN',
+                        style: TextStyle(
+                            color: acento,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 0.6,
+                            fontSize: 16),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(16),
@@ -127,7 +144,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                       color: TemaGlobal.tarjeta,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18),
-                        side: const BorderSide(color: dorado),
+                        side: BorderSide(color: acento),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(18),
@@ -160,7 +177,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     }
                                   },
                                   child: Icon(Icons.info_outline,
-                                      color: dorado,
+                                      color: acento,
                                       size: 20),
                                 ),
                               ],
@@ -220,16 +237,16 @@ class _ConcursoPageState extends State<ConcursoPage> {
                       Container(
                         padding: const EdgeInsets.all(14),
                         decoration: BoxDecoration(
-                          color: dorado.withValues(alpha: 0.12),
+                          color: acento.withValues(alpha: 0.12),
                           borderRadius: BorderRadius.circular(14),
                           border: Border.all(
-                              color: dorado.withValues(alpha: 0.35),
+                              color: acento.withValues(alpha: 0.35),
                               width: 1.5),
                         ),
                         child: Row(
                           children: <Widget>[
                             Icon(Icons.gavel,
-                                color: dorado,
+                                color: acento,
                                 size: 22),
                             const SizedBox(width: 12),
                             Expanded(
@@ -284,7 +301,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                 }
                               },
                               child: Icon(Icons.info_outline,
-                                  color: dorado,
+                                  color: acento,
                                   size: 20),
                             ),
                           ],
@@ -297,7 +314,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                       color: TemaGlobal.tarjeta,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18),
-                        side: const BorderSide(color: dorado),
+                        side: BorderSide(color: acento),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(18),
@@ -361,7 +378,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                   ),
                                   controlAffinity:
                                       ListTileControlAffinity.leading,
-                                  activeColor: dorado,
+                                  activeColor: acento,
                                   checkColor: azulMarino,
                                 );
                               },
@@ -376,7 +393,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                       color: TemaGlobal.tarjeta,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18),
-                        side: const BorderSide(color: dorado),
+                        side: BorderSide(color: acento),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(18),
@@ -403,7 +420,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     "Institución procesal donde el imputado acepta su responsabilidad en la audiencia. Permite al juez rebajar la pena de un tercio (1/3) a la mitad (1/2), considerando la naturaleza del delito y el momento procesal en que se admita.",
                                   ),
                                   child: Icon(Icons.info_outline,
-                                      color: dorado,
+                                      color: acento,
                                       size: 20),
                                 ),
                               ],
@@ -420,7 +437,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                   _calcularTotal();
                                 });
                               },
-                              activeThumbColor: dorado,
+                              activeThumbColor: acento,
                               contentPadding: EdgeInsets.zero,
                             ),
                             if (_admisionHechos) ...<Widget>[
@@ -445,7 +462,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     _calcularTotal();
                                   });
                                 },
-                                activeColor: dorado,
+                                activeColor: acento,
                                 inactiveColor: TemaGlobal.capa,
                               ),
                             ],
@@ -588,7 +605,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                   color: TemaGlobal.capa,
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
-                                      color: dorado.withValues(alpha: 0.25)),
+                                      color: acento.withValues(alpha: 0.25)),
                                 ),
                                 child: SingleChildScrollView(
                                   child: Column(
@@ -643,7 +660,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                             icon: const Icon(Icons.arrow_back),
                             label: const Text("ANTERIOR"),
                             style: OutlinedButton.styleFrom(
-                              side: const BorderSide(color: dorado),
+                              side: BorderSide(color: acento),
                               foregroundColor: TemaGlobal.texto,
                               fixedSize: const Size.fromHeight(48),
                               shape: RoundedRectangleBorder(

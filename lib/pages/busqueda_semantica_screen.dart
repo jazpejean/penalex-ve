@@ -274,7 +274,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.manage_search,
-                size: 100, color: TemaGlobal.dorado),
+                size: 100, color: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino),
             const SizedBox(height: 24),
             const Text(
               'Búsqueda Semántica Inteligente',

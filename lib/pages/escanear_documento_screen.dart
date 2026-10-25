@@ -24,6 +24,8 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
   static Color get fondoGris => TemaGlobal.superficie;
 
   List<DocumentoEscaneado> _documentos = [];
@@ -109,7 +111,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
           _buildBuscador(),
           Expanded(
             child: _cargando
-                ? const Center(child: CircularProgressIndicator(color: dorado))
+                ? Center(child: CircularProgressIndicator(color: acento))
                 : _documentosFiltrados.isEmpty
                     ? _buildEmptyState()
                     : _buildGrid(),
@@ -149,7 +151,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
         decoration: InputDecoration(
           hintText: 'Buscar documento...',
           hintStyle: TextStyle(color: TemaGlobal.textoTenue),
-          prefixIcon: const Icon(Icons.search, color: dorado, size: 20),
+          prefixIcon: Icon(Icons.search, color: acento, size: 20),
           filled: true,
           fillColor: TemaGlobal.campoTexto,
           border: OutlineInputBorder(
@@ -208,7 +210,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
                                     child: const Center(
                                       child: CircularProgressIndicator(
                                         strokeWidth: 2,
-                                        color: dorado,
+                                        color: acento,
                                       ),
                                     ),
                                   ),
@@ -286,7 +288,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: dorado.withOpacity(0.25),
+                    color: acento.withOpacity(0.25),
                     blurRadius: 24,
                     spreadRadius: 4,
                   ),
@@ -295,7 +297,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
               child: const Icon(
                 Icons.document_scanner,
                 size: 56,
-                color: dorado,
+                color: acento,
               ),
             ),
             SizedBox(height: 28),
@@ -348,7 +350,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: const Icon(Icons.visibility_outlined, color: dorado),
+              leading: Icon(Icons.visibility_outlined, color: acento),
               title: Text('Ver documento', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
@@ -356,7 +358,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.edit_outlined, color: dorado),
+              leading: Icon(Icons.edit_outlined, color: acento),
               title: Text('Renombrar', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
@@ -364,7 +366,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.picture_as_pdf_outlined, color: dorado),
+              leading: Icon(Icons.picture_as_pdf_outlined, color: acento),
               title: Text('Exportar PDF', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);

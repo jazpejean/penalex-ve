@@ -273,7 +273,9 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                   : _alcance == AlcanceBusqueda.leyes
                       ? Icons.menu_book
                       : Icons.menu_book_outlined,
-              color: TemaGlobal.dorado,
+              color: TemaGlobal.isDark
+                  ? TemaGlobal.dorado
+                  : TemaGlobal.azulMarino,
               size: 22,
             ),
           ),
@@ -421,7 +423,7 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
         child: Row(
           children: [
             const SizedBox(width: 16),
-            Icon(Icons.search, color: TemaGlobal.dorado, size: 22),
+            Icon(Icons.search, color: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino, size: 22),
             const SizedBox(width: 12),
             Expanded(
               child: TextField(
@@ -549,7 +551,7 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          Icon(Icons.auto_awesome, size: 12, color: TemaGlobal.dorado),
+          Icon(Icons.auto_awesome, size: 12, color: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino),
           const SizedBox(width: 5),
           Expanded(
             child: Text(
@@ -677,7 +679,9 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
             style: TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: TemaGlobal.dorado,
+              color: TemaGlobal.isDark
+                  ? TemaGlobal.dorado
+                  : TemaGlobal.azulMarino,
             ),
           ),
         ),
@@ -844,7 +848,7 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                 ),
               ),
             if (contador != null) const SizedBox(width: 8),
-            Icon(Icons.arrow_forward_ios, size: 13, color: TemaGlobal.dorado),
+            Icon(Icons.arrow_forward_ios, size: 13, color: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino),
           ],
         ),
       ),
@@ -1038,7 +1042,7 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                   ),
                 ),
                 const Spacer(),
-                Icon(Icons.menu_book, size: 15, color: TemaGlobal.dorado),
+                Icon(Icons.menu_book, size: 15, color: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino),
               ],
             ),
             if (reg.encabezado != null && reg.encabezado!.isNotEmpty) ...[
@@ -1125,11 +1129,15 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                 label: Text(label),
                 selected: activo,
                 onSelected: (_) => onTap(),
-                selectedColor: TemaGlobal.dorado,
+                selectedColor: TemaGlobal.isDark
+                    ? TemaGlobal.dorado
+                    : TemaGlobal.azulMarino,
                 backgroundColor: TemaGlobal.capa,
                 labelStyle: TextStyle(
                   color: activo
-                      ? TemaGlobal.azulMarino
+                      ? (TemaGlobal.isDark
+                          ? TemaGlobal.azulMarino
+                          : Colors.white)
                       : TemaGlobal.textoSecundario,
                   fontWeight: activo ? FontWeight.bold : FontWeight.normal,
                   fontSize: 12.5,
@@ -1137,7 +1145,11 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                   side: BorderSide(
-                    color: activo ? TemaGlobal.dorado : TemaGlobal.capa,
+                    color: activo
+                        ? (TemaGlobal.isDark
+                            ? TemaGlobal.dorado
+                            : TemaGlobal.azulMarino)
+                        : TemaGlobal.capa,
                   ),
                 ),
                 visualDensity: VisualDensity.compact,

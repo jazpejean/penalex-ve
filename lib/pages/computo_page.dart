@@ -76,6 +76,8 @@ class _ComputoPageState extends State<ComputoPage> {
   static Color get fondoPantalla => TemaGlobal.superficie;
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
   static Color get grisTexto => TemaGlobal.textoSecundario;
   static Color get borde => TemaGlobal.capa;
 
@@ -536,23 +538,42 @@ class _ComputoPageState extends State<ComputoPage> {
     return Scaffold(
       drawer: const AppDrawer(currentRoute: '/computo'),
       backgroundColor: fondoPantalla,
-      appBar: AppBar(
-        title: const Text('CÓMPUTO',
-            style: TextStyle(
-                color: dorado,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 0.6)),
-        backgroundColor: azulMarino,
-        foregroundColor: dorado,
-        centerTitle: true,
-        elevation: 0,
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const DosimetriaStepper(pasoActual: 3),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(8, 4, 16, 0),
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.menu),
+                    onPressed: () => Scaffold.of(context).openDrawer(),
+                    tooltip: 'Menú',
+                    color: acento,
+                  ),
+                  const SizedBox(width: 4),
+                  Expanded(
+                    child: Text(
+                      'CÓMPUTO',
+                      style: TextStyle(
+                          color: acento,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0.6,
+                          fontSize: 16),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const DosimetriaStepper(pasoActual: 3),
 
             // ==================== 0. DATOS DEL CASO ====================
             Card(
@@ -571,7 +592,7 @@ class _ComputoPageState extends State<ComputoPage> {
                     Row(
                       children: [
                         Icon(Icons.folder_outlined,
-                            color: dorado, size: 20),
+                            color: acento, size: 20),
                         const SizedBox(width: 8),
                         Text(
                           'DATOS DEL CASO',
@@ -827,7 +848,7 @@ class _ComputoPageState extends State<ComputoPage> {
                               });
                             },
                             controlAffinity: ListTileControlAffinity.leading,
-                            activeColor: dorado,
+                            activeColor: acento,
                             contentPadding: EdgeInsets.zero,
                           ),
                         ),
@@ -858,14 +879,14 @@ class _ComputoPageState extends State<ComputoPage> {
                                     focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(14),
                                         borderSide: BorderSide(
-                                            color: TemaGlobal.dorado,
+                                            color: acento,
                                             width: 1.2)),
                                     errorText: _fechaDetencionValida
                                         ? null
                                         : 'Fecha inválida',
                                     suffixIcon: Icon(
                                         Icons.calendar_today_rounded,
-                                        color: dorado),
+                                        color: acento),
                                   ),
                                   style: TextStyle(color: TemaGlobal.texto),
                                   onChanged: (value) {
@@ -926,7 +947,7 @@ class _ComputoPageState extends State<ComputoPage> {
                           _calcularTodo();
                         });
                       },
-                      activeThumbColor: dorado,
+                      activeThumbColor: acento,
                       contentPadding: EdgeInsets.zero,
                     ),
                     if (!_usarFechaActual) ...[
@@ -954,14 +975,14 @@ class _ComputoPageState extends State<ComputoPage> {
                                     focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(14),
                                         borderSide: BorderSide(
-                                            color: TemaGlobal.dorado,
+                                            color: acento,
                                             width: 1.2)),
                                     errorText: _fechaCondenaValida
                                         ? null
                                         : 'Fecha inválida',
                                     suffixIcon: Icon(
                                         Icons.calendar_today_rounded,
-                                        color: dorado),
+                                        color: acento),
                                   ),
                                   style: TextStyle(color: TemaGlobal.texto),
                                   onChanged: (value) {
@@ -1171,7 +1192,7 @@ class _TimelineComputo extends StatelessWidget {
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(18),
-        side: const BorderSide(color: dorado),
+        side: BorderSide(color: acento),
       ),
       color: TemaGlobal.tarjeta,
       child: Padding(
@@ -1284,7 +1305,7 @@ class _Nodo extends StatelessWidget {
             style: TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.w800,
-              color: gris ? TemaGlobal.textoTenue : dorado,
+              color: gris ? TemaGlobal.textoTenue : acento,
             ),
           ),
         ],

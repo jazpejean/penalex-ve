@@ -157,7 +157,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 color: TemaGlobal.dorado.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Icon(Icons.gavel, color: TemaGlobal.dorado, size: 22),
+              child: Icon(Icons.gavel, color: TemaGlobal.azulMarino, size: 22),
             ),
             const SizedBox(width: 10),
             const Expanded(
@@ -398,7 +398,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(Icons.account_balance,
-                  color: TemaGlobal.dorado, size: 22),
+                  color: TemaGlobal.azulMarino, size: 22),
             ),
             const SizedBox(width: 10),
             const Expanded(
@@ -566,8 +566,8 @@ class _AgendaScreenState extends State<AgendaScreen> {
             height: nivel == 0 ? 18 : 14,
             decoration: BoxDecoration(
               color: nivel == 0
-                  ? TemaGlobal.dorado
-                  : TemaGlobal.dorado.withValues(alpha: 0.5),
+                  ? TemaGlobal.azulMarino
+                  : TemaGlobal.azulMarino.withValues(alpha: 0.5),
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -617,7 +617,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 color: TemaGlobal.dorado.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Icon(Icons.block, color: TemaGlobal.dorado, size: 22),
+              child: Icon(Icons.block, color: TemaGlobal.azulMarino, size: 22),
             ),
             const SizedBox(width: 10),
             const Expanded(
@@ -777,7 +777,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
               color: TemaGlobal.dorado.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(icon, color: TemaGlobal.dorado, size: 20),
+            child: Icon(icon, color: TemaGlobal.azulMarino, size: 20),
           ),
           filled: true,
           fillColor: TemaGlobal.superficie,
@@ -790,7 +790,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: TemaGlobal.dorado, width: 1.4),
+            borderSide: BorderSide(color: TemaGlobal.azulMarino, width: 1.4),
           ),
         ),
       ),
@@ -823,9 +823,9 @@ class _AgendaScreenState extends State<AgendaScreen> {
                           icon: const Icon(Icons.add, size: 18),
                           label: const Text('Nueva audiencia'),
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: TemaGlobal.dorado,
+                            foregroundColor: TemaGlobal.azulMarino,
                             side: BorderSide(
-                                color: TemaGlobal.dorado.withValues(alpha: 0.5)),
+                                color: TemaGlobal.azulMarino.withValues(alpha: 0.5)),
                             padding: const EdgeInsets.symmetric(vertical: 12),
                           ),
                         ),
@@ -837,9 +837,9 @@ class _AgendaScreenState extends State<AgendaScreen> {
                           icon: const Icon(Icons.block, size: 18),
                           label: const Text('Día sin despacho'),
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: TemaGlobal.dorado,
+                            foregroundColor: TemaGlobal.azulMarino,
                             side: BorderSide(
-                                color: TemaGlobal.dorado.withValues(alpha: 0.5)),
+                                color: TemaGlobal.azulMarino.withValues(alpha: 0.5)),
                             padding: const EdgeInsets.symmetric(vertical: 12),
                           ),
                         ),
@@ -1006,7 +1006,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                           IconButton(
                                             tooltip: 'Lapsos del expediente',
                                             icon: Icon(Icons.timeline,
-                                                color: TemaGlobal.dorado),
+                                                color: TemaGlobal.azulMarino),
                                             onPressed: () => _abrirLapsosExpediente(aud),
                                           ),
                                           IconButton(

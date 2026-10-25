@@ -17,6 +17,8 @@ class AdminGlosarioScreen extends StatefulWidget {
 class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
   static Color get fondoGris => TemaGlobal.superficie;
 
   final TextEditingController _terminoController = TextEditingController();
@@ -271,7 +273,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
 
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
-                    child: CircularProgressIndicator(color: dorado),
+                    child: CircularProgressIndicator(color: acento),
                   );
                 }
 
@@ -323,7 +325,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                         side: BorderSide(
-                          color: dorado.withValues(alpha: 0.3),
+                          color: acento.withValues(alpha: 0.3),
                           width: 1,
                         ),
                       ),
@@ -332,7 +334,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                            color: dorado.withValues(alpha: 0.1),
+                            color: acento.withValues(alpha: 0.1),
                             shape: BoxShape.circle,
                           ),
                           child: Center(
@@ -341,7 +343,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
                               style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: dorado,
+                                color: acento,
                               ),
                             ),
                           ),

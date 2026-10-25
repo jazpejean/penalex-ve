@@ -53,6 +53,8 @@ class _RepositorioJurisprudenciaScreenState
   // Colores de la app
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
   static Color get fondoGris => TemaGlobal.superficie;
 
   @override
@@ -260,7 +262,7 @@ class _RepositorioJurisprudenciaScreenState
                   padding: const EdgeInsets.only(right: 8),
                   child: Chip(
                     avatar: Icon(Icons.calendar_month,
-                        size: 15, color: dorado.withValues(alpha: 0.8)),
+                        size: 15, color: acento.withValues(alpha: 0.8)),
                     label: Text(_anioSeleccionado?.toString() ?? 'Año'),
                     backgroundColor: Colors.transparent,
                     labelStyle:
@@ -340,11 +342,11 @@ class _RepositorioJurisprudenciaScreenState
                       fontSize: 15,
                     ),
                     prefixIcon:
-                        const Icon(Icons.search, color: dorado, size: 22),
+                        Icon(Icons.search, color: acento, size: 22),
                     suffixIcon: _searchController.text.isNotEmpty
                         ? IconButton(
-                            icon: const Icon(Icons.clear,
-                                color: dorado, size: 20),
+                            icon: Icon(Icons.clear,
+                                color: acento, size: 20),
                             onPressed: () {
                               _searchController.clear();
                               setState(() {});
@@ -360,7 +362,7 @@ class _RepositorioJurisprudenciaScreenState
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: dorado, width: 2),
+                      borderSide: BorderSide(color: acento, width: 2),
                     ),
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 16,
@@ -380,7 +382,7 @@ class _RepositorioJurisprudenciaScreenState
                 Row(
                   children: [
                     Icon(Icons.auto_awesome,
-                        size: 12, color: dorado.withOpacity(0.6)),
+                        size: 12, color: acento.withOpacity(0.6)),
                     const SizedBox(width: 4),
                     Text(
                       'Búsqueda inteligente: prueba "matar", "robar", "drogas"...',
@@ -404,8 +406,8 @@ class _RepositorioJurisprudenciaScreenState
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const CircularProgressIndicator(
-                          color: dorado,
+                        CircularProgressIndicator(
+                          color: acento,
                           strokeWidth: 3,
                         ),
                         const SizedBox(height: 16),
@@ -730,8 +732,8 @@ class _RepositorioJurisprudenciaScreenState
                 const SizedBox(height: 16),
                 Text(
                   'Sentencia Nº ${s.numeroSentencia}',
-                  style: const TextStyle(
-                    color: dorado,
+                  style: TextStyle(
+                    color: acento,
                     fontWeight: FontWeight.bold,
                     fontSize: 17,
                   ),
@@ -751,8 +753,8 @@ class _RepositorioJurisprudenciaScreenState
                   const SizedBox(height: 12),
                   Text(
                     '⚖️ Criterios jurisprudenciales (${_criterios.length})',
-                    style: const TextStyle(
-                      color: dorado,
+                    style: TextStyle(
+                      color: acento,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
@@ -775,8 +777,8 @@ class _RepositorioJurisprudenciaScreenState
                               (c['tipo'] ?? '') == 'jurisprudencia'
                                   ? '★ Criterio oficial de la Sala'
                                   : 'Criterio de la Sala',
-                              style: const TextStyle(
-                                color: dorado,
+                              style: TextStyle(
+                                color: acento,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 11.5,
                               ),
@@ -900,6 +902,8 @@ class DetalleSentenciaScreen extends StatefulWidget {
 class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
 
   // ⭐ Favoritas / Importantes
   final FavoritosService _favoritosService = FavoritosService();
@@ -1180,7 +1184,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
               const SizedBox(height: 14),
               Row(
                 children: [
-                  const Icon(Icons.auto_awesome, color: dorado, size: 22),
+                  Icon(Icons.auto_awesome, color: acento, size: 22),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -1207,7 +1211,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                     data: analisis,
                     styleSheet: MarkdownStyleSheet(
                       h2: TextStyle(
-                        color: TemaGlobal.dorado,
+                        color: acento,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
@@ -1322,12 +1326,12 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                             Container(
                               padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
-                                color: dorado.withOpacity(0.1),
+                                color: acento.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              child: const Icon(
+                              child: Icon(
                                 Icons.auto_awesome,
-                                color: dorado,
+                                color: acento,
                                 size: 20,
                               ),
                             ),
@@ -1358,7 +1362,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                           Center(
                             child: Column(
                               children: [
-                                CircularProgressIndicator(color: dorado),
+                                CircularProgressIndicator(color: acento),
                                 SizedBox(height: 12),
                                 Text(
                                   'Analizando sentencia con IA...',
@@ -1608,7 +1612,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, size: 18, color: dorado),
+          Icon(icon, size: 18, color: acento),
           const SizedBox(width: 8),
           Expanded(
             child: Column(
@@ -1703,7 +1707,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
               color: TemaGlobal.capa.withValues(alpha: 0.5),
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: dorado.withValues(alpha: 0.4),
+                color: acento.withValues(alpha: 0.4),
               ),
             ),
             child: Column(
@@ -1711,7 +1715,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.gavel, size: 16, color: dorado),
+                    Icon(Icons.gavel, size: 16, color: acento),
                     const SizedBox(width: 6),
                     Expanded(
                       child: Text(
@@ -1800,7 +1804,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
               color: TemaGlobal.capa.withValues(alpha: 0.5),
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: dorado.withValues(alpha: 0.4),
+                color: acento.withValues(alpha: 0.4),
               ),
             ),
             child: Column(
@@ -1808,7 +1812,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.menu_book, size: 16, color: dorado),
+                    Icon(Icons.menu_book, size: 16, color: acento),
                     const SizedBox(width: 6),
                     Expanded(
                       child: Text(
@@ -1941,8 +1945,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                 const SizedBox(height: 16),
                 Text(
                   'Sentencia Nº ${s.numeroSentencia}',
-                  style: const TextStyle(
-                    color: dorado,
+                  style: TextStyle(
+                    color: acento,
                     fontWeight: FontWeight.bold,
                     fontSize: 17,
                   ),
@@ -1962,8 +1966,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                   const SizedBox(height: 12),
                   Text(
                     '⚖️ Criterios jurisprudenciales (${_criterios.length})',
-                    style: const TextStyle(
-                      color: dorado,
+                    style: TextStyle(
+                      color: acento,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
@@ -1986,8 +1990,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                               (c['tipo'] ?? '') == 'jurisprudencia'
                                   ? '★ Criterio oficial de la Sala'
                                   : 'Criterio de la Sala',
-                              style: const TextStyle(
-                                color: dorado,
+                              style: TextStyle(
+                                color: acento,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 11.5,
                               ),
@@ -2025,8 +2029,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                   const SizedBox(height: 12),
                   Text(
                     '📚 Doctrina académica citada (${_citasDoctrinales.length})',
-                    style: const TextStyle(
-                      color: dorado,
+                    style: TextStyle(
+                      color: acento,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
@@ -2047,8 +2051,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                           children: [
                             Text(
                               _nombreCitaDoctrinal(c),
-                              style: const TextStyle(
-                                color: dorado,
+                              style: TextStyle(
+                                color: acento,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 11.5,
                               ),

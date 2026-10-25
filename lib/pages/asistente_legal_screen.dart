@@ -29,6 +29,8 @@ class _AsistenteLegalScreenState extends State<AsistenteLegalScreen> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
   static Color get grisOscuro => TemaGlobal.tarjeta;
 
   @override
@@ -196,7 +198,7 @@ Puedo ayudarte a:
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: const Icon(Icons.image, color: dorado),
+              leading: Icon(Icons.image, color: acento),
               title: Text('Imagen', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
@@ -204,7 +206,7 @@ Puedo ayudarte a:
               },
             ),
             ListTile(
-              leading: const Icon(Icons.insert_drive_file, color: dorado),
+              leading: Icon(Icons.insert_drive_file, color: acento),
               title: Text('Documento', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
@@ -230,7 +232,7 @@ Puedo ayudarte a:
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: const Icon(Icons.picture_as_pdf, color: dorado),
+              leading: Icon(Icons.picture_as_pdf, color: acento),
               title: Text('Exportar mensaje como PDF', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
@@ -238,7 +240,7 @@ Puedo ayudarte a:
               },
             ),
             ListTile(
-              leading: const Icon(Icons.picture_as_pdf, color: dorado),
+              leading: Icon(Icons.picture_as_pdf, color: acento),
               title: Text('Exportar conversación completa', style: TextStyle(color: TemaGlobal.texto)),
               subtitle: Text(
                 'Todos los mensajes en un PDF',
@@ -250,7 +252,7 @@ Puedo ayudarte a:
               },
             ),
             ListTile(
-              leading: const Icon(Icons.description, color: dorado),
+              leading: Icon(Icons.description, color: acento),
               title: Text('Exportar mensaje como Word', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
@@ -258,7 +260,7 @@ Puedo ayudarte a:
               },
             ),
             ListTile(
-              leading: const Icon(Icons.description, color: dorado),
+              leading: Icon(Icons.description, color: acento),
               title: Text('Exportar conversación completa Word', style: TextStyle(color: TemaGlobal.texto)),
               subtitle: Text(
                 'Todos los mensajes en formato Word',
@@ -270,7 +272,7 @@ Puedo ayudarte a:
               },
             ),
             ListTile(
-              leading: const Icon(Icons.share, color: dorado),
+              leading: Icon(Icons.share, color: acento),
               title: Text('Compartir texto', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
@@ -406,7 +408,7 @@ Puedo ayudarte a:
             color: TemaGlobal.capa,
             child: Row(
               children: [
-                const Icon(Icons.auto_awesome, color: dorado, size: 20),
+                Icon(Icons.auto_awesome, color: acento, size: 20),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
@@ -462,7 +464,7 @@ Puedo ayudarte a:
                         avatar: Icon(
                           file.type == FileType.image ? Icons.image : Icons.insert_drive_file,
                           size: 16,
-                          color: dorado,
+                          color: acento,
                         ),
                         label: Text(
                           file.name,
@@ -494,7 +496,7 @@ Puedo ayudarte a:
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 IconButton(
-                  icon: const Icon(Icons.attach_file, color: dorado),
+                  icon: Icon(Icons.attach_file, color: acento),
                   onPressed: _showAttachmentOptions,
                 ),
                 const SizedBox(width: 8),
@@ -632,16 +634,16 @@ Puedo ayudarte a:
                         height: 1.4,
                       ),
                       h2: TextStyle(
-                        color: message.isUser ? azulMarino : dorado,
+                        color: message.isUser ? azulMarino : acento,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                       strong: TextStyle(
-                        color: message.isUser ? azulMarino : dorado,
+                        color: message.isUser ? azulMarino : acento,
                         fontWeight: FontWeight.bold,
                       ),
                       listBullet: TextStyle(
-                        color: message.isUser ? azulMarino : dorado,
+                        color: message.isUser ? azulMarino : acento,
                       ),
                     ),
                   ),
@@ -656,7 +658,7 @@ Puedo ayudarte a:
                           icon: const Icon(Icons.download, size: 16),
                           label: const Text('Exportar'),
                           style: TextButton.styleFrom(
-                            foregroundColor: dorado,
+                            foregroundColor: acento,
                             padding: const EdgeInsets.symmetric(horizontal: 12),
                           ),
                         ),
@@ -672,7 +674,7 @@ Puedo ayudarte a:
             CircleAvatar(
               backgroundColor: TemaGlobal.capa,
               radius: 20,
-              child: const Icon(Icons.person, color: dorado, size: 20),
+              child: Icon(Icons.person, color: acento, size: 20),
             ),
           ],
         ],

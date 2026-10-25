@@ -509,7 +509,9 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
                 'Limpiar filtros',
                 style: TextStyle(
                   fontSize: 12,
-                  color: TemaGlobal.dorado,
+                  color: TemaGlobal.isDark
+                      ? TemaGlobal.dorado
+                      : TemaGlobal.azulMarino,
                   decoration: TextDecoration.underline,
                 ),
               ),

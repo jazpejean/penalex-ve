@@ -304,7 +304,7 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
                 color: TemaGlobal.tarjeta,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                    color: TemaGlobal.dorado.withValues(alpha: 0.3), width: 1),
+                    color: TemaGlobal.capa, width: 1),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -336,7 +336,7 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
             Text(
               'Lapsos procesales',
               style: TextStyle(
-                color: TemaGlobal.dorado,
+                color: TemaGlobal.azulMarino,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
@@ -418,7 +418,7 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
     return Card(
       color: TemaGlobal.tarjeta,
       child: ListTile(
-        leading: Icon(Icons.event, color: TemaGlobal.dorado),
+        leading: Icon(Icons.event, color: TemaGlobal.azulMarino),
         title: Text('Audiencia de Presentación',
             style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
         subtitle: Text(
@@ -454,7 +454,7 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
       padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 8),
       child: Column(
         children: <Widget>[
-          Icon(Icons.timeline, size: 64, color: TemaGlobal.dorado),
+          Icon(Icons.timeline, size: 64, color: TemaGlobal.azulMarino),
           const SizedBox(height: 16),
           Text(
             'El calendario parte de la audiencia de presentación.\n'
@@ -503,7 +503,7 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
           child: Text(
             faseActual,
             style: TextStyle(
-              color: TemaGlobal.dorado,
+              color: TemaGlobal.azulMarino,
               fontWeight: FontWeight.bold,
               fontSize: 15,
               letterSpacing: 0.5,
@@ -520,9 +520,9 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
           // Recalcula con los días sin despacho actualizados de la agenda.
           _recargarExcluidos();
         },
-        icon: Icon(Icons.refresh, color: TemaGlobal.dorado),
+        icon: Icon(Icons.refresh, color: TemaGlobal.azulMarino),
         label: Text('Recalcular (días sin despacho)',
-            style: TextStyle(color: TemaGlobal.dorado)),
+            style: TextStyle(color: TemaGlobal.azulMarino)),
       ),
     ));
     return widgets;
@@ -540,7 +540,7 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
         childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
         leading: Icon(
           pendiente ? Icons.schedule : Icons.check_circle_outline,
-          color: pendiente ? TemaGlobal.textoSecundario : TemaGlobal.dorado,
+          color: pendiente ? TemaGlobal.textoSecundario : TemaGlobal.azulMarino,
         ),
         title: Text(l.acto,
             style: TextStyle(
@@ -548,7 +548,9 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
         subtitle: Text(
           _fechasHito(h),
           style: TextStyle(
-              color: pendiente ? TemaGlobal.textoSecundario : TemaGlobal.dorado),
+              color: pendiente
+                  ? TemaGlobal.textoSecundario
+                  : TemaGlobal.azulMarino),
         ),
         children: <Widget>[
           _fila('Lapso legal', _textoLapso(l)),
@@ -578,8 +580,8 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
                   child: OutlinedButton.icon(
                     onPressed: () => _agendarHito(h),
                     style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: TemaGlobal.dorado),
-                      foregroundColor: TemaGlobal.dorado,
+                      side: BorderSide(color: TemaGlobal.azulMarino),
+                      foregroundColor: TemaGlobal.azulMarino,
                     ),
                     icon: const Icon(Icons.calendar_month),
                     label: const Text('Agendar este hito'),

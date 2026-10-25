@@ -70,6 +70,8 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
   static Color get grisOscuro => TemaGlobal.tarjeta;
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
 
   @override
   void initState() {
@@ -139,7 +141,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     icon: Icons.document_scanner,
                     title: 'Documentos Escaneados',
                     subtitle: 'Textos extraídos con OCR',
-                    color: dorado,
+                    color: acento,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarDocumentosEscaneados();
@@ -150,7 +152,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     icon: Icons.calculate,
                     title: 'Reportes de Calculadora',
                     subtitle: 'Dosimetrías y cómputos guardados',
-                    color: dorado,
+                    color: acento,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarReportesCalculadora();
@@ -161,7 +163,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     icon: Icons.edit_document,
                     title: 'Documentos del Redactor',
                     subtitle: 'Escritos legales generados',
-                    color: dorado,
+                    color: acento,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarDocumentosRedactor();
@@ -172,7 +174,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     icon: Icons.star,
                     title: 'Sentencias Favoritas',
                     subtitle: 'Jurisprudencias marcadas',
-                    color: dorado,
+                    color: acento,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarSentenciasFavoritas();
@@ -373,7 +375,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
         color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: dorado.withValues(alpha: 0.3),
+          color: acento.withValues(alpha: 0.3),
           width: 1,
         ),
       ),
@@ -393,13 +395,13 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                 Container(
                   padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
-                    color: dorado.withValues(alpha: 0.2),
+                    color: acento.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Icon(
                     file.icon,
                     size: 16,
-                    color: dorado,
+                    color: acento,
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -620,7 +622,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
               padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
-                  const Icon(Icons.attach_file, color: dorado),
+                  Icon(Icons.attach_file, color: acento),
                   const SizedBox(width: 12),
                   Text(
                     'Adjuntar archivo',
@@ -637,7 +639,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             
             // Archivos externos
             ListTile(
-              leading: const Icon(Icons.photo_library, color: dorado),
+              leading: Icon(Icons.photo_library, color: acento),
               title: Text(
                 'Galería',
                 style: TextStyle(color: TemaGlobal.texto),
@@ -652,7 +654,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.camera_alt, color: dorado),
+              leading: Icon(Icons.camera_alt, color: acento),
               title: Text(
                 'Cámara',
                 style: TextStyle(color: TemaGlobal.texto),
@@ -667,7 +669,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.insert_drive_file, color: dorado),
+              leading: Icon(Icons.insert_drive_file, color: acento),
               title: Text(
                 'Documento',
                 style: TextStyle(color: TemaGlobal.texto),
@@ -686,7 +688,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             
             // ✨ NUEVO: Documentos guardados en la app
             ListTile(
-              leading: const Icon(Icons.folder_special, color: dorado),
+              leading: Icon(Icons.folder_special, color: acento),
               title: Text(
                 'Documentos Guardados',
                 style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),
@@ -838,7 +840,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
               color: TemaGlobal.capa,
               child: Row(
                 children: [
-                  const Icon(Icons.info_outline, color: dorado, size: 20),
+                  Icon(Icons.info_outline, color: acento, size: 20),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
@@ -857,7 +859,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             Expanded(
               child: _isLoading
                   ? const Center(
-                      child: CircularProgressIndicator(color: dorado),
+                      child: CircularProgressIndicator(color: acento),
                     )
                   : _messages.isEmpty
                       ? _buildEmptyState()
@@ -911,7 +913,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     children: [
                       // Botón de adjuntar
                       IconButton(
-                        icon: const Icon(Icons.attach_file, color: dorado),
+                        icon: Icon(Icons.attach_file, color: acento),
                         onPressed: _mostrarOpcionesAdjunto,
                       ),
                       const SizedBox(width: 8),
@@ -988,7 +990,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: dorado.withValues(alpha: 0.2),
+                  color: acento.withValues(alpha: 0.2),
                   blurRadius: 20,
                   spreadRadius: 5,
                 ),
@@ -997,7 +999,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             child: const Icon(
               Icons.chat_bubble_outline,
               size: 60,
-              color: dorado,
+              color: acento,
             ),
           ),
           const SizedBox(height: 24),
@@ -1039,7 +1041,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
       label: Text(text),
       labelStyle: TextStyle(color: TemaGlobal.texto, fontSize: 12),
       backgroundColor: TemaGlobal.tarjeta,
-      side: BorderSide(color: dorado.withValues(alpha: 0.3)),
+      side: BorderSide(color: acento.withValues(alpha: 0.3)),
       onPressed: () {
         _messageController.text = text;
         _enviarMensaje();
@@ -1099,7 +1101,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                             message.attachmentType?.startsWith('image/') == true
                                 ? Icons.image
                                 : Icons.insert_drive_file,
-                            color: isUser ? azulMarino : dorado,
+                            color: isUser ? azulMarino : acento,
                             size: 20,
                           ),
                           const SizedBox(width: 8),
@@ -1150,17 +1152,17 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
-                        h2: const TextStyle(
-                          color: dorado,
+                        h2: TextStyle(
+                          color: acento,
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                         ),
-                        h3: const TextStyle(
-                          color: dorado,
+                        h3: TextStyle(
+                          color: acento,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
-                        listBullet: const TextStyle(color: dorado),
+                        listBullet: TextStyle(color: acento),
                         blockquote: TextStyle(
                           color: TemaGlobal.textoSecundario,
                           fontStyle: FontStyle.italic,
@@ -1208,7 +1210,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             CircleAvatar(
               backgroundColor: TemaGlobal.capa,
               radius: 20,
-              child: const Icon(Icons.person, color: dorado, size: 20),
+              child: Icon(Icons.person, color: acento, size: 20),
             ),
           ],
         ],
@@ -1352,7 +1354,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                   Icon(
                     _getSourceIcon(source.type),
                     size: 14,
-                    color: dorado,
+                    color: acento,
                   ),
                   const SizedBox(width: 8),
                   Expanded(
@@ -1422,7 +1424,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                   height: 16,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation<Color>(dorado),
+                    valueColor: AlwaysStoppedAnimation<Color>(acento),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -1597,7 +1599,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
-              child: CircularProgressIndicator(color: dorado),
+              child: CircularProgressIndicator(color: acento),
             );
           }
 
@@ -1608,7 +1610,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.chat_bubble_outline, size: 64, color: dorado),
+                  Icon(Icons.chat_bubble_outline, size: 64, color: acento),
                   const SizedBox(height: 16),
                   Text(
                     'No hay conversaciones',
@@ -1651,10 +1653,10 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
       child: ListTile(
         onTap: () => Navigator.pop(context, conv.id),
         leading: CircleAvatar(
-          backgroundColor: dorado.withValues(alpha: 0.2),
+          backgroundColor: acento.withValues(alpha: 0.2),
           child: Icon(
             conv.isPinned ? Icons.push_pin : Icons.chat_bubble_outline,
-            color: dorado,
+            color: acento,
           ),
         ),
         title: Text(
@@ -1683,7 +1685,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
                 children: [
                   Icon(
                     conv.isPinned ? Icons.push_pin_outlined : Icons.push_pin,
-                    color: dorado,
+                    color: acento,
                   ),
                   const SizedBox(width: 12),
                   Text(
@@ -1697,7 +1699,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
               onTap: () => _renombrar(conv),
               child: Row(
                 children: [
-                  Icon(Icons.edit, color: dorado),
+                  Icon(Icons.edit, color: acento),
                   const SizedBox(width: 12),
                   Text('Renombrar', style: TextStyle(color: TemaGlobal.texto)),
                 ],

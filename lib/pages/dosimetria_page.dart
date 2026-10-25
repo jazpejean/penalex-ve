@@ -36,6 +36,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
 
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
   static Color get fondoGris => TemaGlobal.superficie;
   static Color get grisTexto => TemaGlobal.textoSecundario;
 
@@ -104,10 +106,10 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  const Text(
+                  Text(
                     'CÁLCULOS GUARDADOS',
                     style: TextStyle(
-                        color: dorado,
+                        color: acento,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                         letterSpacing: 0.6),
@@ -115,12 +117,12 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                   Row(
                     children: [
                       IconButton(
-                        icon: const Icon(Icons.refresh_rounded, color: dorado),
+                        icon: Icon(Icons.refresh_rounded, color: acento),
                         onPressed: _loadCalculations,
                         tooltip: 'Recargar',
                       ),
                       IconButton(
-                        icon: const Icon(Icons.close, color: dorado),
+                        icon: Icon(Icons.close, color: acento),
                         onPressed: () => Navigator.pop(context),
                       ),
                     ],
@@ -279,7 +281,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
             const SizedBox(width: 8),
             GestureDetector(
                 onTap: onInfo,
-                child: const Icon(Icons.info_outline, color: dorado, size: 16)),
+                child: Icon(Icons.info_outline, color: acento, size: 16)),
           ],
         ),
         const SizedBox(height: 8),
@@ -330,7 +332,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                   divisions: divisions,
                   label: _fraccionTexto(currentValue),
                   onChanged: onChanged,
-                  activeColor: dorado,
+                  activeColor: acento,
                 ),
               ),
               SizedBox(
@@ -399,7 +401,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
         margin: const EdgeInsets.symmetric(vertical: 4),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
-          side: const BorderSide(color: dorado),
+          side: BorderSide(color: acento),
         ),
         child: ListTile(
           leading: Icon(
@@ -590,7 +592,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     IconButton(
-                      icon: const Icon(Icons.menu_book_outlined, color: dorado),
+                      icon: Icon(Icons.menu_book_outlined, color: acento),
                       onPressed: () {
                         Haptics.tap();
                         mostrarBuscadorArticulos(context);
@@ -598,7 +600,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                       tooltip: "Consultar artículos de la ley",
                     ),
                     IconButton(
-                      icon: const Icon(Icons.refresh_rounded, color: dorado),
+                      icon: Icon(Icons.refresh_rounded, color: acento),
                       onPressed: () {
                         Haptics.tap();
                         _resetCalculation();
@@ -606,7 +608,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                       tooltip: "Restablecer",
                     ),
                     IconButton(
-                      icon: const Icon(Icons.folder_open_rounded, color: dorado),
+                      icon: Icon(Icons.folder_open_rounded, color: acento),
                       onPressed: () {
                         Haptics.tap();
                         _showSavedCalculations();
@@ -645,7 +647,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                         color: TemaGlobal.tarjeta,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
-                          side: const BorderSide(color: dorado, width: 1.5),
+                          side: BorderSide(color: acento, width: 1.5),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -653,10 +655,10 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              const Text(
+                              Text(
                                 "SUMATORIA DE PENAS",
                                 style: TextStyle(
-                                    color: dorado,
+                                    color: acento,
                                     fontWeight: FontWeight.w800,
                                     fontSize: 13,
                                     letterSpacing: 0.7),
@@ -666,8 +668,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                                 scrollDirection: Axis.horizontal,
                                 child: Text(
                                   DosimetriaEngine.formatYMD(_sumarPenas()),
-                                  style: const TextStyle(
-                                      color: dorado,
+                                  style: TextStyle(
+                                      color: acento,
                                       fontWeight: FontWeight.w800,
                                       fontSize: 14),
                                   textAlign: TextAlign.left,
@@ -739,7 +741,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
-        side: const BorderSide(color: dorado),
+        side: BorderSide(color: acento),
       ),
       color: TemaGlobal.tarjeta,
       surfaceTintColor: TemaGlobal.tarjeta,
@@ -770,13 +772,13 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      const Icon(Icons.gavel_rounded, color: dorado, size: 13),
+                      Icon(Icons.gavel_rounded, color: acento, size: 13),
                       const SizedBox(width: 5),
                       Text(
                         DosimetriaEngine.formatYMD(
                             delito.calcularPenaIndividualizada()),
-                        style: const TextStyle(
-                            color: dorado,
+                        style: TextStyle(
+                            color: acento,
                             fontSize: 11,
                             fontWeight: FontWeight.w800),
                       ),
@@ -795,8 +797,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     decoration: InputDecoration(
                       labelText: 'Nombre del delito',
                       labelStyle: TextStyle(color: TemaGlobal.textoSecundario),
-                      prefixIcon: const Icon(Icons.edit_note_rounded,
-                          color: dorado, size: 20),
+                      prefixIcon: Icon(Icons.edit_note_rounded,
+                          color: acento, size: 20),
                       filled: true,
                       fillColor: TemaGlobal.campoTexto,
                       border: OutlineInputBorder(
@@ -808,7 +810,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(14),
                           borderSide: BorderSide(
-                              color: TemaGlobal.dorado, width: 1.2)),
+                              color: acento, width: 1.2)),
                     ),
                     onChanged: (String value) {
                       delito.nombre = value;
@@ -823,7 +825,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     'Indique el nombre del delito conforme al Código Penal o leyes especiales.\n\nEjemplo: "Homicidio Calificado" (Art. 406 CPV).',
                   ),
                   child:
-                      const Icon(Icons.info_outline, color: dorado, size: 20),
+                      Icon(Icons.info_outline, color: acento, size: 20),
                 ),
               ],
             ),
@@ -899,7 +901,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
               label: const Text('Agregar ajuste'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: TemaGlobal.capa,
-                side: const BorderSide(color: dorado),
+                side: BorderSide(color: acento),
               ),
             ),
             const SizedBox(height: 20),
@@ -908,9 +910,9 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
               decoration: BoxDecoration(
-                color: dorado.withValues(alpha: 0.10),
+                color: acento.withValues(alpha: 0.10),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: dorado.withValues(alpha: 0.22)),
+                border: Border.all(color: acento.withValues(alpha: 0.22)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -932,8 +934,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                           'Término Medio (Art. 37 CP)',
                           'Punto de partida obligatorio para la dosimetría penal. Se obtiene sumando el límite mínimo y el máximo de la pena prevista para el delito y dividiendo el resultado entre dos. Sobre este valor se aplican las circunstancias atenuantes o agravantes que concurran en el caso.',
                         ),
-                        child: const Icon(Icons.info_outline,
-                            color: dorado, size: 18),
+                        child: Icon(Icons.info_outline,
+                            color: acento, size: 18),
                       ),
                     ],
                   ),
@@ -1046,7 +1048,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     'Varias violaciones de la misma disposición legal, cometidas en diferentes fechas pero bajo una misma resolución criminal, se consideran un solo hecho punible. Se toma la pena del delito más grave (término medio) y se aumenta entre una sexta parte (1/6) y la mitad (1/2).',
                   ),
                   child:
-                      const Icon(Icons.info_outline, color: dorado, size: 18),
+                      Icon(Icons.info_outline, color: acento, size: 18),
                 ),
                 const Spacer(),
                 Switch(
@@ -1055,7 +1057,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     delito.delitoContinuado = val;
                     _actualizarDelito(index, delito);
                   },
-                  activeThumbColor: dorado,
+                  activeThumbColor: acento,
                 ),
               ],
             ),
@@ -1144,7 +1146,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     'Atenuantes: circunstancias que reducen la responsabilidad penal (como la falta de intención proporcional al daño o la minoridad). Su presencia obliga al juez a mover la pena desde el término medio hacia el límite mínimo.\n\nAgravantes: circunstancias que aumentan la punibilidad debido a la mayor peligrosidad del agente o la forma de ejecución (alevosía, ensañamiento, reincidencia). Su presencia obliga al juez a mover la pena desde el término medio hacia el límite máximo.',
                   ),
                   child:
-                      const Icon(Icons.info_outline, color: dorado, size: 20),
+                      Icon(Icons.info_outline, color: acento, size: 20),
                 ),
               ],
             ),
@@ -1183,22 +1185,22 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
               decoration: BoxDecoration(
                 color: TemaGlobal.tarjeta,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: dorado, width: 1.5),
+                border: Border.all(color: acento, width: 1.5),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  const Text('PENA INDIVIDUALIZADA',
+                  Text('PENA INDIVIDUALIZADA',
                       style: TextStyle(
-                          color: dorado, fontWeight: FontWeight.w800)),
+                          color: acento, fontWeight: FontWeight.w800)),
                   const SizedBox(height: 8),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Text(
                       DosimetriaEngine.formatYMD(
                           delito.calcularPenaIndividualizada()),
-                      style: const TextStyle(
-                          color: dorado,
+                      style: TextStyle(
+                          color: acento,
                           fontWeight: FontWeight.w800,
                           fontSize: 14),
                       textAlign: TextAlign.left,
@@ -1351,7 +1353,7 @@ class _PenaInputRowState extends State<_PenaInputRow> {
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14),
               borderSide: BorderSide(
-                  color: TemaGlobal.dorado, width: 1.2)),
+                  color: acento, width: 1.2)),
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
         ),
@@ -1382,7 +1384,7 @@ class _PenaInputRowState extends State<_PenaInputRow> {
               const SizedBox(width: 8),
               GestureDetector(
                 onTap: widget.onInfo,
-                child: const Icon(Icons.info_outline, color: dorado, size: 18),
+                child: Icon(Icons.info_outline, color: acento, size: 18),
               ),
             ],
           ),

@@ -303,7 +303,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             IconButton(
-                              icon: const Icon(Icons.share, color: dorado),
+                              icon: Icon(Icons.share, color: TemaGlobal.isDark ? dorado : azulMarino),
                               onPressed: () => _compartirPDF(reporte),
                               tooltip: 'Compartir',
                             ),
