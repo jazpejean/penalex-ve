@@ -15,7 +15,11 @@ jobs:
       KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
       # Override del heap de Gradle para CI (la máquina local usa -Xmx1536M, el runner tiene 7GB)
       ORG_GRADLE_PROJECT_org.gradle.jvmargs: "-Xmx4G -XX:MaxMetaspaceSize=1g -Dfile.encoding=UTF-8 -XX:+UseParallelGC"
-      ORG_GRADLE_PROJECT_org.gradle.workers.max: "4"
+      ORG_GRADLE_PROJECT_org.gradle.workers.max: "2"
+      # Desactiva el file-watcher de Gradle (bug "Already watching path" de
+      # AGP 8 + runners de GitHub Actions en packageRelease/IncrementalSplitter)
+      ORG_GRADLE_PROJECT_org.gradle.vfs.watch: "false"
+      GRADLE_OPTS: "-Dorg.gradle.vfs.watch=false"
 
     steps:
       - name: Checkout código
@@ -97,6 +101,14 @@ jobs:
 
       - name: Diagnóstico de espacio antes de compilar
         run: df -h / | tail -1 && du -sh ~/.gradle ~/.pub-cache 2>/dev/null | tail -2
+
+      - name: Limpiar daemons de Gradle (evita watchers colgados en CI)
+        run: |
+          cd android
+          ./gradlew --stop || true
+          pkill -f GradleDaemon || true
+          rm -rf ~/.gradle/daemon ~/.gradle/workers || true
+          echo "daemons limpiados"
 
       - name: Compilar APK (release firmado, con WORKER_URL/INGEST_TOKEN)
         id: build
