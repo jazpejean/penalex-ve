@@ -149,7 +149,23 @@ class _AgendaScreenState extends State<AgendaScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text('Nueva Audiencia', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Row(
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: TemaGlobal.dorado.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(Icons.gavel, color: TemaGlobal.dorado, size: 22),
+            ),
+            const SizedBox(width: 10),
+            const Expanded(
+              child: Text('Nueva Audiencia',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
+            ),
+          ],
+        ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         content: SizedBox(
@@ -158,11 +174,11 @@ class _AgendaScreenState extends State<AgendaScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                _buildModernField(expedienteCtrl, 'Expediente *', Icons.folder_open),
-                _buildModernField(imputadoCtrl, 'Imputado / Acusado *', Icons.person),
+                _buildModernField(expedienteCtrl, 'Expediente', Icons.folder_open, esObligatorio: true),
+                _buildModernField(imputadoCtrl, 'Imputado / Acusado', Icons.person, esObligatorio: true),
                 _buildModernField(cedulaCtrl, 'Cédula de Identidad', Icons.badge_outlined, numeric: true),
-                _buildModernField(fechaCtrl, 'Fecha de Audiencia (DD/MM/AAAA) *', Icons.calendar_today, isDate: true, hint: 'Ej: 24/12/2026'),
-                _buildModernField(horaCtrl, 'Hora (HH:MM) *', Icons.access_time, isTime: true, hint: 'Ej: 0230 (Aplica PM automáticamente)'),
+                _buildModernField(fechaCtrl, 'Fecha de Audiencia (DD/MM/AAAA)', Icons.calendar_today, isDate: true, hint: 'Ej: 24/12/2026', esObligatorio: true),
+                _buildModernField(horaCtrl, 'Hora (HH:MM)', Icons.access_time, isTime: true, hint: 'Ej: 0230 (Aplica PM automáticamente)', esObligatorio: true),
                 _buildModernField(tribunalCtrl, 'Tribunal competente', Icons.account_balance,
                     onTap: () async {
                       final Tribunal? elegido = await _seleccionarTribunal(
@@ -181,9 +197,20 @@ class _AgendaScreenState extends State<AgendaScreen> {
           ),
         ),
         actions: <Widget>[
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancelar')),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary, foregroundColor: Colors.white),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            style: TextButton.styleFrom(
+              foregroundColor: TemaGlobal.textoSecundario,
+            ),
+            child: const Text('Cancelar'),
+          ),
+          ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            ),
             onPressed: () async {
               Haptics.light();
               if (expedienteCtrl.text.isEmpty || imputadoCtrl.text.isEmpty || fechaCtrl.text.isEmpty || horaCtrl.text.isEmpty) {
@@ -305,6 +332,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
     List<Tribunal> resultados = <Tribunal>[];
     bool buscando = true;
     bool cacheLista = false;
+    String? filtroEstado; // null = todos los estados
 
     // Asegura el catálogo en caché (una sola carga; luego filtro local).
     Future<void> asegurarCache() async {
@@ -351,16 +379,39 @@ class _AgendaScreenState extends State<AgendaScreen> {
       buscando = false;
     }
 
+    // Lista de estados disponibles (para el filtro desplegable).
+    final todosEstados = <String>{
+      ...?TribunalesService.listarEnCache()?.map((t) => t.estado),
+    }.toList()..sort();
+
     await buscar();
 
     return showDialog<Tribunal>(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text('Buscar tribunal', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Row(
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: TemaGlobal.dorado.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(Icons.account_balance,
+                  color: TemaGlobal.dorado, size: 22),
+            ),
+            const SizedBox(width: 10),
+            const Expanded(
+              child: Text('Buscar tribunal',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18)),
+            ),
+          ],
+        ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         content: SizedBox(
           width: MediaQuery.of(dialogContext).size.width * 0.92,
-          height: 420,
+          height: 460,
           child: Column(
             children: <Widget>[
               TextField(
@@ -368,39 +419,65 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 autofocus: true,
                 decoration: InputDecoration(
                   hintText: 'Ej: Los Teques, juicio de Maracaibo...',
-                  prefixIcon: Icon(Icons.search, color: TemaGlobal.textoSecundario),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  prefixIcon: Icon(Icons.search,
+                      color: TemaGlobal.textoSecundario),
+                  filled: true,
+                  fillColor: TemaGlobal.superficie,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
                   isDense: true,
                 ),
                 onChanged: (_) => buscar(),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 10),
+              // Filtro por estado / circunscripción judicial.
+              DropdownButtonFormField<String>(
+                initialValue: filtroEstado,
+                isExpanded: true,
+                decoration: InputDecoration(
+                  labelText: 'Estado (circunscripción judicial)',
+                  prefixIcon: Icon(Icons.public,
+                      color: TemaGlobal.textoSecundario, size: 20),
+                  filled: true,
+                  fillColor: TemaGlobal.superficie,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                  isDense: true,
+                  contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 12, vertical: 10),
+                ),
+                items: <DropdownMenuItem<String>>[
+                  const DropdownMenuItem<String>(
+                    value: null,
+                    child: Text('Todos los estados'),
+                  ),
+                  ...todosEstados.map((e) => DropdownMenuItem<String>(
+                        value: e,
+                        child: Text(e, overflow: TextOverflow.ellipsis),
+                      )),
+                ],
+                onChanged: (v) {
+                  filtroEstado = v;
+                  buscar();
+                },
+              ),
+              const SizedBox(height: 10),
               Expanded(
                 child: buscando
                     ? const Center(child: CircularProgressIndicator())
                     : resultados.isEmpty
                         ? Center(
-                            child: Text('Escribe para buscar tribunales',
-                                style: TextStyle(color: TemaGlobal.textoTenue)))
-                        : ListView.builder(
-                            itemCount: resultados.length,
-                            itemBuilder: (_, i) {
-                              final t = resultados[i];
-                              return ListTile(
-                                title: Text(t.nombreLimpio,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(fontSize: 14)),
-                                subtitle: Text(
-                                    '${t.codigo} · ${t.estado}${t.municipio != null ? ' · ${t.municipio}' : ''}${t.funcion != null ? ' · ${t.etiquetaFuncion}' : ''}',
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(fontSize: 12)),
-                                trailing: const Icon(Icons.chevron_right, size: 18),
-                                onTap: () => Navigator.pop(dialogContext, t),
-                              );
-                            },
-                          ),
+                            child: Text(
+                              'No se encontraron tribunales con esos criterios',
+                              style: TextStyle(color: TemaGlobal.textoTenue),
+                              textAlign: TextAlign.center,
+                            ))
+                        : _listaTribunalesAgrupada(
+                            dialogContext, resultados, filtroEstado),
               ),
             ],
           ),
@@ -409,6 +486,108 @@ class _AgendaScreenState extends State<AgendaScreen> {
           TextButton(
             onPressed: () => Navigator.pop(dialogContext, null),
             child: const Text('Cancelar'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Lista de tribunales agrupada por estado y circunscripción judicial.
+  /// Lista de tribunales clasificada por ESTADO y CIRCUNSCRIPCIÓN JUDICIAL:
+  /// sin filtro se agrupa en dos niveles (estado → circuito judicial → lista);
+  /// con [filtroEstado] se muestran solo los de ese estado, con un
+  /// encabezado por circuito (ej. "CIRCUITO JUDICIAL PENAL DEL ESTADO ...").
+  Widget _listaTribunalesAgrupada(BuildContext dialogContext,
+      List<Tribunal> lista, String? filtroEstado) {
+    final filas = <Widget>[];
+    // Primer nivel: estado.
+    final porEstado = <String, List<Tribunal>>{};
+    for (final t in lista) {
+      if (filtroEstado != null && t.estado != filtroEstado) continue;
+      porEstado.putIfAbsent(t.estado, () => <Tribunal>[]).add(t);
+    }
+    final estados = porEstado.keys.toList()..sort();
+    for (final estado in estados) {
+      final tribunalesEstado = porEstado[estado]!;
+      if (filtroEstado == null) {
+        filas.add(_encabezadoGrupo(estado, tribunalesEstado.length, nivel: 0));
+      }
+      // Segundo nivel: circunscripción judicial (circuito).
+      final porCircuito = <String, List<Tribunal>>{};
+      for (final t in tribunalesEstado) {
+        porCircuito
+            .putIfAbsent(t.circunscripcionJudicial, () => <Tribunal>[])
+            .add(t);
+      }
+      final circuitos = porCircuito.keys.toList()..sort();
+      for (final circuito in circuitos) {
+        final tribunales = porCircuito[circuito]!..sort((a, b) {
+          final f = a.etiquetaFuncion.compareTo(b.etiquetaFuncion);
+          if (f != 0) return f;
+          return a.nombreLimpio.compareTo(b.nombreLimpio);
+        });
+        if (filtroEstado != null || circuitos.length > 1) {
+          filas.add(
+              _encabezadoGrupo(circuito, tribunales.length, nivel: 1));
+        }
+        for (final t in tribunales) {
+          filas.add(ListTile(
+            dense: true,
+            title: Text(t.nombreLimpio,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                    fontSize: 13.5, fontWeight: FontWeight.w600)),
+            subtitle: Text(
+              '${t.codigo} · ${t.etiquetaFuncion}${t.municipio != null ? ' · ${t.municipio}' : ''}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 11.5),
+            ),
+            trailing: const Icon(Icons.chevron_right, size: 18),
+            onTap: () => Navigator.pop(dialogContext, t),
+          ));
+        }
+      }
+    }
+    return ListView(
+      padding: const EdgeInsets.only(bottom: 8),
+      children: filas,
+    );
+  }
+
+  Widget _encabezadoGrupo(String titulo, int cantidad, {int nivel = 0}) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(4, nivel == 0 ? 12 : 8, 4, 4),
+      child: Row(
+        children: <Widget>[
+          Container(
+            width: 3,
+            height: nivel == 0 ? 18 : 14,
+            decoration: BoxDecoration(
+              color: nivel == 0
+                  ? TemaGlobal.dorado
+                  : TemaGlobal.dorado.withValues(alpha: 0.5),
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              titulo,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: nivel == 0 ? 13 : 12,
+                  color: TemaGlobal.textoSecundario),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          Text(
+            '$cantidad',
+            style: TextStyle(
+                fontSize: 11.5,
+                color: TemaGlobal.textoTenue,
+                fontWeight: FontWeight.w600),
           ),
         ],
       ),
@@ -430,7 +609,23 @@ class _AgendaScreenState extends State<AgendaScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text('Nuevo día sin despacho', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Row(
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: TemaGlobal.dorado.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(Icons.block, color: TemaGlobal.dorado, size: 22),
+            ),
+            const SizedBox(width: 10),
+            const Expanded(
+              child: Text('Nuevo día sin despacho',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
+            ),
+          ],
+        ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         content: SizedBox(
@@ -440,8 +635,8 @@ class _AgendaScreenState extends State<AgendaScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                _buildModernField(fechaCtrl, 'Fecha (DD/MM/AAAA) *', Icons.calendar_today, isDate: true, hint: 'Ej: 24/12/2026'),
-                _buildModernField(motivoCtrl, 'Motivo (ej: falla eléctrica, salud, etc.) *', Icons.description, maxLines: 2),
+                _buildModernField(fechaCtrl, 'Fecha (DD/MM/AAAA)', Icons.calendar_today, isDate: true, hint: 'Ej: 24/12/2026', esObligatorio: true),
+                _buildModernField(motivoCtrl, 'Motivo', Icons.description, maxLines: 2, hint: 'Ej: falla eléctrica, salud, etc.', esObligatorio: true),
                 _buildModernField(tribunalCtrl, 'Tribunal (opcional)', Icons.account_balance,
                     onTap: () async {
                       final Tribunal? elegido = await _seleccionarTribunal(
@@ -451,22 +646,23 @@ class _AgendaScreenState extends State<AgendaScreen> {
                         tribunalCtrl.text = elegido.nombreLimpio;
                       }
                     }),
-                const SizedBox(height: 12),
+                const SizedBox(height: 8),
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     color: AppColors.warning.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: AppColors.warning.withValues(alpha: 0.3)),
                   ),
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       const Icon(Icons.info_outline, color: AppColors.warning, size: 20),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
                           'Sin tribunal: aplica a toda la agenda personal. Con tribunal: solo excluye los lapsos de ese tribunal.',
-                          style: TextStyle(fontSize: 12, color: TemaGlobal.textoSecundario),
+                          style: TextStyle(fontSize: 12, color: TemaGlobal.textoSecundario, height: 1.4),
                         ),
                       ),
                     ],
@@ -477,9 +673,20 @@ class _AgendaScreenState extends State<AgendaScreen> {
           ),
         ),
         actions: <Widget>[
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancelar')),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary, foregroundColor: Colors.white),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            style: TextButton.styleFrom(
+              foregroundColor: TemaGlobal.textoSecundario,
+            ),
+            child: const Text('Cancelar'),
+          ),
+          ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            ),
             onPressed: () async {
               if (fechaCtrl.text.isEmpty || motivoCtrl.text.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -543,8 +750,9 @@ class _AgendaScreenState extends State<AgendaScreen> {
     int maxLines = 1,
     String? hint,
     VoidCallback? onTap,
+    bool esObligatorio = false,
   }) => Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.only(bottom: 14),
       child: TextFormField(
         controller: controller,
         maxLines: maxLines,
@@ -556,13 +764,34 @@ class _AgendaScreenState extends State<AgendaScreen> {
           if (isTime) TimeMaskFormatter(),
           if (numeric && !isDate && !isTime) FilteringTextInputFormatter.digitsOnly,
         ],
+        style: TextStyle(fontSize: 15, color: TemaGlobal.texto),
         decoration: InputDecoration(
-          labelText: label,
+          labelText: esObligatorio ? '$label *' : label,
           hintText: hint,
           hintStyle: TextStyle(color: TemaGlobal.textoTenue, fontSize: 13),
-          prefixIcon: Icon(icon, color: TemaGlobal.textoSecundario),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-          isDense: true,
+          labelStyle: TextStyle(
+              color: TemaGlobal.textoSecundario, fontSize: 13.5),
+          prefixIcon: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            decoration: BoxDecoration(
+              color: TemaGlobal.dorado.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(icon, color: TemaGlobal.dorado, size: 20),
+          ),
+          filled: true,
+          fillColor: TemaGlobal.superficie,
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+                color: TemaGlobal.textoTenue.withValues(alpha: 0.25)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: TemaGlobal.dorado, width: 1.4),
+          ),
         ),
       ),
     );

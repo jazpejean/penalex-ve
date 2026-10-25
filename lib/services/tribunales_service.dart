@@ -65,6 +65,41 @@ class Tribunal {
     }
   }
 
+  /// Circunscripción judicial derivada de la sede: extrae el nombre del
+  /// circuito judicial (ej. "CIRCUITO JUDICIAL PENAL DEL ESTADO MIRANDA").
+  /// Si la sede no lo menciona, cae al estado (cada estado venezolano es,
+  /// en principio, una circunscripción judicial).
+  String get circunscripcionJudicial {
+    final s = (sede ?? '').trim();
+    if (s.isEmpty) return estado;
+    final idx = RegExp(r'CIR?CUITO', caseSensitive: false).firstMatch(s)?.start;
+    if (idx == null) return estado;
+    var circ = s.substring(idx);
+    // recortar hasta un separador que NO sea parte del circuito (punto final)
+    circ = circ.replaceAll(RegExp(r'[\.\s]+$'), '');
+    // normalizar espacios y limpiar comas/paréntesis sobrantes
+    circ = circ.replaceAll(RegExp(r'\s+'), ' ').trim();
+    circ = circ.replaceAll(RegExp(r'^[\(,\s]+|[\),\s]+$'), '');
+    return _tituloCircuito(circ);
+  }
+
+  /// Capitaliza el nombre del circuito manteniendo siglas y números.
+  static String _tituloCircuito(String s) {
+    const menores = {
+      'DE', 'DEL', 'LA', 'EL', 'EN', 'A', 'AL', 'Y', 'O', 'POR', 'CON',
+      'LOS', 'LAS', 'UN', 'UNA', 'SU', 'SUS',
+    };
+    final palabras = s.split(' ').map((p) {
+      if (p.isEmpty) return p;
+      final baja = p.toLowerCase();
+      if (menores.contains(baja.toUpperCase())) return baja;
+      // mantener "AREA METROPOLITANA" y siglas como TSJ, AMC
+      if (RegExp(r'^\d+$').hasMatch(p)) return p;
+      return p[0].toUpperCase() + p.substring(1).toLowerCase();
+    }).join(' ');
+    return palabras;
+  }
+
   /// Nombre limpio para mostrar: recorta el sufijo repetitivo del TSJ
   /// ("DEL CIRCUITO JUDICIAL PENAL DE LA CIRCUNSCRIPCIÓN JUDICIAL DEL
   /// ESTADO ...") y capitaliza cada palabra. Ej.:
