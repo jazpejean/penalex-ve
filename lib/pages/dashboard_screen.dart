@@ -163,6 +163,15 @@ class DashboardScreen extends StatelessWidget {
             ),
             _buildCard(
               context,
+              title: 'Calendario Judicial',
+              subtitle: 'Lapsos desde la presentación',
+              description: 'Línea de tiempo guiada de lapsos procesales según la vía, con días hábiles y de despacho.',
+              icon: Icons.timeline,
+              route: '/calendario_judicial',
+              actionText: 'Calcular lapsos',
+            ),
+            _buildCard(
+              context,
               title: 'Legislación Penal',
               subtitle: 'Marco legal venezolano',
               description: 'Constitución, Código Penal, COPP y más.',

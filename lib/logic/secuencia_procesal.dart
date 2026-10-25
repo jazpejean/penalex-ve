@@ -40,10 +40,13 @@ class LapsoCatalogo extends LapsoProcesal {
 /// Identificadores de gatillos (actos que disparan lapsos posteriores).
 class Gatillos {
   static const String acusacion = 'acusacion';
+  static const String preliminar = 'preliminar';
   static const String autoApertura = 'autoApertura';
   static const String recepcionExpediente = 'recepcionExpediente';
+  static const String juicioInicio = 'juicioInicio';
   static const String sentencia = 'sentencia';
-  static const String preliminar = 'preliminar';
+  static const String decisionInterlocutoria = 'decisionInterlocutoria';
+  static const String interposicionApelacionAutos = 'interposicionApelacionAutos';
 }
 
 /// Catálogo por vía (fases 1-8 de la guía; se EXCLUYE la ejecución).
@@ -148,8 +151,20 @@ const List<LapsoCatalogo> _ordinario = <LapsoCatalogo>[
     unidad: UnidadLapso.dias,
     computo: TipoComputo.continuo,
     cantidadMin: 10,
+    gatillo: Gatillos.juicioInicio,
     baseLegal: 'Art. 318 COPP',
     descripcion: 'El debate puede suspenderse por causa legal hasta 10 días continuos.',
+  ),
+  LapsoCatalogo(
+    via: ViaProcesal.ordinario,
+    fase: 'Juicio',
+    acto: 'Interrupción del debate (recomenzar desde cero)',
+    unidad: UnidadLapso.dias,
+    computo: TipoComputo.continuo,
+    cantidadMin: 11,
+    gatillo: Gatillos.juicioInicio,
+    baseLegal: 'Art. 320 COPP',
+    descripcion: 'Si la suspensión supera el límite, el debate se interrumpe y debe recomenzarse desde el inicio.',
   ),
   LapsoCatalogo(
     via: ViaProcesal.ordinario,
@@ -192,6 +207,7 @@ const List<LapsoCatalogo> _ordinario = <LapsoCatalogo>[
     unidad: UnidadLapso.dias,
     computo: TipoComputo.despacho,
     cantidadMin: 5,
+    gatillo: Gatillos.decisionInterlocutoria,
     baseLegal: 'Art. 440 COPP',
     descripcion: 'Las decisiones de mero trámite o definitivas distintas de la sentencia se apelan dentro de 5 días de despacho.',
   ),
@@ -202,6 +218,7 @@ const List<LapsoCatalogo> _ordinario = <LapsoCatalogo>[
     unidad: UnidadLapso.dias,
     computo: TipoComputo.despacho,
     cantidadMin: 3,
+    gatillo: Gatillos.interposicionApelacionAutos,
     baseLegal: 'Art. 441 COPP',
     descripcion: 'La contraparte contesta la apelación de autos dentro de 3 días de despacho.',
   ),

@@ -113,19 +113,3 @@ DateTime restarDiasHabiles({
 Set<DateTime> fechasExcluidasDe(List<DateTime> diasSinDespacho) {
   return diasSinDespacho.map(fechaPura).toSet();
 }
-
-/// Rango resultante de un lapso con cantidad mínima y máxima.
-({DateTime min, DateTime max}) rangoFechas({
-  required DateTime base,
-  required int min,
-  required int max,
-  required UnidadLapso unidad,
-  required TipoComputo computo,
-  Set<DateTime>? excluidos,
-}) {
-  final DateTime fMin = calcularFecha(
-      base: base, cantidad: min, unidad: unidad, computo: computo, excluidos: excluidos);
-  final DateTime fMax = calcularFecha(
-      base: base, cantidad: max, unidad: unidad, computo: computo, excluidos: excluidos);
-  return (min: fMin, max: fMax);
-}

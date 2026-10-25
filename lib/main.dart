@@ -12,6 +12,7 @@ import 'config/theme.dart';
 import 'config/app_theme.dart';
 import 'models/delito.dart';
 import 'pages/agenda_screen.dart';
+import 'pages/calendario_judicial_screen.dart';
 import 'pages/admin_glosario_screen.dart';
 import 'pages/admin_ia_config_screen.dart';
 import 'pages/admin_users_screen.dart';
@@ -136,6 +137,7 @@ class DosimetriaPenalApp extends StatelessWidget {
           '/quiz_lobby': (context) => const QuizLobbyScreen(),
           '/quiz_logros': (context) => const QuizLogrosScreen(),
           '/lapsos': (context) => const AgendaScreen(), // Lapsos integrados en Agenda
+          '/calendario_judicial': (context) => const CalendarioJudicialScreen(),
           '/verify-email': (context) => const VerifyEmailPage(),
           '/reset-password': (context) => const ResetPasswordPage(),
         },
