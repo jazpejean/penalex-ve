@@ -274,7 +274,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 }
               }
             },
-            child: const Text('Guardar'),
+            label: const Text('Guardar'),
           ),
         ],
       ),
@@ -728,7 +728,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 }
               }
             },
-            child: const Text('Guardar'),
+            label: const Text('Guardar'),
           ),
         ],
       ),
