@@ -16,6 +16,8 @@ class BusquedaSemanticaScreen extends StatefulWidget {
 }
 
 class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
+  static Color get acento =>
+      TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino;
   final BusquedaSemanticaService _busquedaService =
       BusquedaSemanticaService();
   final TextEditingController _searchController = TextEditingController();
@@ -362,7 +364,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
             padding: const EdgeInsets.all(16),
             child: Row(
               children: [
-                const Icon(Icons.analytics, color: Color(0xFFC5A059)),
+                Icon(Icons.analytics, color: acento),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -456,7 +458,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  const Icon(Icons.gavel, size: 16, color: Color(0xFFC5A059)),
+                  Icon(Icons.gavel, size: 16, color: acento),
                   const SizedBox(width: 4),
                   Expanded(
                     child: Text(
@@ -542,7 +544,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  const Icon(Icons.article, size: 16, color: Color(0xFFC5A059)),
+                  Icon(Icons.article, size: 16, color: acento),
                   const SizedBox(width: 4),
                   Expanded(
                     child: Text(

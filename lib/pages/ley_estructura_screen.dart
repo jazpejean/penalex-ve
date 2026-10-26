@@ -612,6 +612,8 @@ class NodoArbol {
 
 /// Bottom sheet con el contenido completo de un artículo + botón de IA.
 class _ArticuloSheet extends StatelessWidget {
+  static Color get acento =>
+      TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino;
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
 
@@ -794,8 +796,8 @@ class _ArticuloSheet extends StatelessWidget {
 
   Widget _subtitulo(String texto) => Text(
         texto,
-        style: const TextStyle(
-          color: Color(0xFFC5A059),
+        style: TextStyle(
+          color: acento,
           fontWeight: FontWeight.bold,
           fontSize: 14,
         ),

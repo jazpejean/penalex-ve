@@ -186,7 +186,8 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
             tooltip: 'Guardar',
           ),
             IconButton(
-              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
+              icon: Icon(Icons.home_outlined,
+                  color: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino),
               tooltip: 'Ir al inicio',
               onPressed: () {
                 mainTabIndex.value = 0;
@@ -476,7 +477,8 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
                   setState(() => _modeloSeleccionado = value);
                 }
               },
-              activeColor: TemaGlobal.dorado,
+              activeColor:
+                  TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino,
             ),
             Expanded(
               child: Column(

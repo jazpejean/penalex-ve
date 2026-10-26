@@ -112,7 +112,8 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
         elevation: 0,
         actions: [
             IconButton(
-              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
+              icon: Icon(Icons.home_outlined,
+                  color: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino),
               tooltip: 'Ir al inicio',
               onPressed: () {
                 mainTabIndex.value = 0;
