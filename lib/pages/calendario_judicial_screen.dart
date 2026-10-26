@@ -68,6 +68,8 @@ class CalendarioJudicialScreen extends StatefulWidget {
 }
 
 class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
+  static Color get acento =>
+      TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino;
   late ViaProcesal _via = widget.viaInicial;
 
   /// Fecha de la audiencia de presentación (fecha base del calendario).
@@ -336,7 +338,7 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
             Text(
               'Lapsos procesales',
               style: TextStyle(
-                color: TemaGlobal.azulMarino,
+                color: acento,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
@@ -503,7 +505,7 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
           child: Text(
             faseActual,
             style: TextStyle(
-              color: TemaGlobal.azulMarino,
+              color: acento,
               fontWeight: FontWeight.bold,
               fontSize: 15,
               letterSpacing: 0.5,
@@ -580,8 +582,8 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
                   child: OutlinedButton.icon(
                     onPressed: () => _agendarHito(h),
                     style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: TemaGlobal.azulMarino),
-                      foregroundColor: TemaGlobal.azulMarino,
+                      side: BorderSide(color: acento),
+                      foregroundColor: acento,
                     ),
                     icon: const Icon(Icons.calendar_month),
                     label: const Text('Agendar este hito'),

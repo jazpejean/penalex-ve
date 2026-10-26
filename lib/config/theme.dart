@@ -15,6 +15,30 @@ class AppTheme {
           seedColor: AppColors.primary,
           primary: AppColors.primary,
           secondary: AppColors.secondary,
+        ).copyWith(
+          // Superficies institucionales: blanco para tarjetas, gris claro para fondo.
+          surface: const Color(0xFFFFFFFF),
+          onSurface: const Color(0xFF0F172A),
+          onSurfaceVariant: const Color(0xFF475569),
+          surfaceContainerLowest: const Color(0xFFF1F5F9),
+          surfaceContainerLow: const Color(0xFFFFFFFF),
+          surfaceContainer: const Color(0xFFFFFFFF),
+          surfaceContainerHigh: const Color(0xFFE2E8F0),
+          surfaceContainerHighest: const Color(0xFFE2E8F0),
+          outline: const Color(0xFFE2E8F0),
+          outlineVariant: const Color(0xFFE2E8F0),
+        ),
+        cardColor: const Color(0xFFFFFFFF),
+        dialogTheme: const DialogThemeData(
+          backgroundColor: Color(0xFFFFFFFF),
+          surfaceTintColor: Colors.transparent,
+        ),
+        bottomSheetTheme: const BottomSheetThemeData(
+          backgroundColor: Color(0xFFFFFFFF),
+          surfaceTintColor: Colors.transparent,
+        ),
+        dividerTheme: const DividerThemeData(
+          color: Color(0xFFE2E8F0),
         ),
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColors.primary,
@@ -57,6 +81,31 @@ class AppTheme {
           primary: AppColors.primary,
           secondary: AppColors.secondary,
           surface: const Color(0xFF1E293B),
+        ).copyWith(
+          // Paleta oscura institucional: navy de fondo, slate para tarjetas.
+          surface: const Color(0xFF1E293B),
+          onSurface: Colors.white,
+          onSurfaceVariant: const Color(0xFF94A3B8),
+          surfaceContainerLowest: const Color(0xFF0F172A),
+          surfaceContainerLow: const Color(0xFF1E293B),
+          surfaceContainer: const Color(0xFF1E293B),
+          surfaceContainerHigh: const Color(0xFF334155),
+          surfaceContainerHighest: const Color(0xFF334155),
+          outline: const Color(0xFF334155),
+          outlineVariant: const Color(0xFF334155),
+          surfaceTint: Colors.transparent,
+        ),
+        cardColor: const Color(0xFF1E293B),
+        dialogTheme: const DialogThemeData(
+          backgroundColor: Color(0xFF1E293B),
+          surfaceTintColor: Colors.transparent,
+        ),
+        bottomSheetTheme: const BottomSheetThemeData(
+          backgroundColor: Color(0xFF1E293B),
+          surfaceTintColor: Colors.transparent,
+        ),
+        dividerTheme: const DividerThemeData(
+          color: Color(0xFF334155),
         ),
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColors.primary,

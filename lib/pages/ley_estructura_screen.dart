@@ -298,8 +298,8 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
                 ),
                 child: Text(
                   '${_ley!.totalArticulos} artículos',
-                  style: const TextStyle(
-                    color: azulMarino,
+                  style: TextStyle(
+                    color: acento,
                     fontWeight: FontWeight.bold,
                     fontSize: 12,
                   ),
@@ -535,8 +535,8 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
               ),
               child: Text(
                 titulo,
-                style: const TextStyle(
-                  color: azulMarino,
+                style: TextStyle(
+                  color: acento,
                   fontWeight: FontWeight.bold,
                   fontSize: 12,
                 ),
@@ -656,8 +656,8 @@ class _ArticuloSheet extends StatelessWidget {
                   ),
                   child: Text(
                     titulo,
-                    style: const TextStyle(
-                      color: azulMarino,
+                    style: TextStyle(
+                      color: acento,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),

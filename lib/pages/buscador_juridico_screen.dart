@@ -29,6 +29,8 @@ class BuscadorJuridicoScreen extends StatefulWidget {
 }
 
 class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
+  static Color get acento =>
+      TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino;
   final JurisprudenciaService _serviceSentencias = JurisprudenciaService();
   final LeyesRepositorioService _serviceLeyes = LeyesRepositorioService();
   final TextEditingController _searchController = TextEditingController();
@@ -479,7 +481,7 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                 ),
                 child: Icon(
                   Icons.arrow_forward,
-                  color: TemaGlobal.azulMarino,
+                  color: acento,
                   size: 20,
                 ),
               ),
@@ -944,7 +946,7 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                       style: TextStyle(
                         fontSize: 9.5,
                         fontWeight: FontWeight.bold,
-                        color: TemaGlobal.azulMarino,
+                        color: acento,
                         letterSpacing: 0.4,
                       ),
                     ),

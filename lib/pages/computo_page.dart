@@ -623,8 +623,7 @@ class _ComputoPageState extends State<ComputoPage> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide:
-                              const BorderSide(color: azulMarino, width: 2),
+                          borderSide: BorderSide(color: acento, width: 2),
                         ),
                       ),
                     ),
@@ -646,8 +645,7 @@ class _ComputoPageState extends State<ComputoPage> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide:
-                              const BorderSide(color: azulMarino, width: 2),
+                          borderSide: BorderSide(color: acento, width: 2),
                         ),
                       ),
                       textCapitalization: TextCapitalization.words,
