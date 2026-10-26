@@ -9,8 +9,8 @@ final ValueNotifier<int> mainTabIndex = ValueNotifier<int>(0);
 /// Alcance pedido para la pestaña "Buscar" (3) desde fuera (dashboard).
 ///
 /// El dashboard navega a la pestaña Buscar con un corpus concreto
-/// ('sentencias' | 'leyes' | 'glosario'); BuscadorJuridicoScreen escucha
-/// este notifier y aplica el alcance sin recrear la pantalla.
+/// ('sentencias' | 'leyes' | 'glosario'); HubConsultaJuridicaScreen escucha
+/// este notifier y abre la herramienta correspondiente directamente.
 final ValueNotifier<String?> consultaAlcance = ValueNotifier<String?>(null);
 
 /// Mapa de rutas principales a su índice de tab en el bottom nav.
@@ -23,9 +23,6 @@ const Map<String, int> kRutaATab = <String, int>{
   '/agenda': 1,
   '/lapsos': 1,
   '/asistente_legal': 2,
-  '/repositorio_jurisprudencia': 3,
-  '/repositorio_leyes': 3,
-  '/glosario': 3,
   '/busqueda_semantica': 3,
 };
 

@@ -4,6 +4,7 @@ import '../services/glosario_service.dart';
 
 import '../config/app_colors.dart';
 import '../widgets/app_drawer.dart';
+import '../widgets/main_bottom_bar.dart';
 
 class GlosarioScreen extends StatefulWidget {
   const GlosarioScreen({super.key});
@@ -280,6 +281,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
   @override
   Widget build(BuildContext context) => Scaffold(
       drawer: const AppDrawer(currentRoute: "/glosario"),
+      bottomNavigationBar: const MainBottomBar(),
       appBar: AppBar(
         title: const Text("Glosario Jurídico"),
         backgroundColor: AppColors.primary,

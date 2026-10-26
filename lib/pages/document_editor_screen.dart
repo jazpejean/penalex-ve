@@ -34,6 +34,8 @@ class DocumentEditorScreen extends StatefulWidget {
 class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
+  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
+  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
   static const Color grisOscuro = Color(0xFF1E293B);
 
   final EscaneoService _escaneoService = EscaneoService();
@@ -216,7 +218,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
               padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
-                  const Icon(Icons.text_fields, color: dorado),
+                  Icon(Icons.text_fields, color: acento),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
@@ -531,7 +533,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icono, color: dorado, size: 24),
+            Icon(icono, color: acento, size: 24),
             const SizedBox(height: 2),
             Text(
               etiqueta,
@@ -590,7 +592,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icono, color: dorado, size: 32),
+            Icon(icono, color: acento, size: 32),
             const SizedBox(height: 8),
             Text(etiqueta, style: TextStyle(color: TemaGlobal.textoSecundario)),
           ],

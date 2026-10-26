@@ -470,25 +470,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                         ),
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: fondoGris,
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.08),
-                      blurRadius: 18,
-                      offset: const Offset(0, -6))
-                ],
-              ),
-              child: SafeArea(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
+const SizedBox(height: 16),
                     Card(
                       elevation: 0,
                       color: TemaGlobal.azulMarino,

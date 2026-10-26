@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../utils/main_tab_controller.dart';
+import 'hub_consulta_juridica_screen.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'dashboard_screen.dart';
 import 'agenda_screen.dart';
 import 'asistente_legal_hub_screen.dart';
-import 'buscador_juridico_screen.dart';
 
 /// Navegación principal de Penalex VE — patrón Facebook/WhatsApp.
 ///
@@ -34,7 +34,7 @@ class _MainScreenState extends State<MainScreen> {
         0 => '/dashboard',
         1 => '/agenda',
         2 => '/asistente_legal',
-        _ => '/jurisprudencia',
+        _ => '/consulta_juridica',
       };
 
   @override
@@ -61,7 +61,7 @@ class _MainScreenState extends State<MainScreen> {
     DashboardScreen(), // 0 - Inicio
     AgendaScreen(), // 1 - Agenda
     AsistenteLegalHubScreen(), // 2 - Asistente IA (centro destacado)
-    BuscadorJuridicoScreen(), // 3 - Buscar
+    HubConsultaJuridicaScreen(), // 3 - Buscar (hub con las 3 herramientas)
   ];
 
   @override

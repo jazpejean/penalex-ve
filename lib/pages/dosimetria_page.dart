@@ -900,8 +900,11 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
               icon: const Icon(Icons.add),
               label: const Text('Agregar ajuste'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: TemaGlobal.capa,
-                side: BorderSide(color: acento),
+                backgroundColor: azulMarino,
+                foregroundColor: dorado,
+                side: const BorderSide(color: dorado, width: 1.2),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14)),
               ),
             ),
             const SizedBox(height: 20),

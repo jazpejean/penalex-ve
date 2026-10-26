@@ -10,8 +10,9 @@ class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
   /// Navega desde el dashboard manteniendo la bottom bar siempre visible:
-  /// - rutas-pestaña (agenda, asistente, consulta) cambian el tab del MainScreen;
-  /// - las 3 rutas de consulta abren la pestaña "Buscar" con su corpus;
+  /// - rutas-pestaña (agenda, asistente) cambian el tab del MainScreen;
+  /// - las 3 rutas de consulta abren la pestaña "Buscar" (hub) y este abre
+  ///   la herramienta correspondiente (Jurisprudencias / Leyes / Glosario);
   /// - herramientas externas (calculadora, mapa, quiz) se apilan con la barra.
   void _navegar(BuildContext context, String route) {
     Haptics.tap();

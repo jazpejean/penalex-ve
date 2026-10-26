@@ -73,7 +73,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             _buildToolCard(
               context,
               icon: Icons.edit_document,
-              iconColor: const Color(0xFFC5A059),
+              iconColor: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino,
               title: 'Redactor de Documentos',
               badge: '⚡ Ahorra tiempo',
               description:
@@ -93,7 +93,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             _buildToolCard(
               context,
               icon: Icons.document_scanner,
-              iconColor: const Color(0xFFC5A059),
+              iconColor: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino,
               title: 'Escáner de Documentos',
               badge: null,
               description:
@@ -113,7 +113,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             _buildToolCard(
               context,
               icon: Icons.hourglass_bottom,
-              iconColor: const Color(0xFFC5A059),
+              iconColor: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino,
               title: 'Calculadora de Prescripción',
               badge: '⚖️ Art. 108 y 112 CP',
               description:
@@ -151,12 +151,13 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
         color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: const Color(0xFFC5A059),
-          width: 2,
+          color: (TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino)
+              .withValues(alpha: 0.35),
+          width: 1.5,
         ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFC5A059).withValues(alpha: 0.3),
+            color: Colors.black.withValues(alpha: 0.12),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -178,16 +179,18 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                     Container(
                       padding: const EdgeInsets.all(14),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFC5A059).withValues(alpha: 0.2),
+                        color: (TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino)
+                            .withValues(alpha: 0.14),
                         borderRadius: BorderRadius.circular(14),
                         border: Border.all(
-                          color: const Color(0xFFC5A059).withValues(alpha: 0.5),
+                          color: (TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino)
+                              .withValues(alpha: 0.4),
                           width: 1.5,
                         ),
                       ),
                       child: Icon(
                         icon,
-                        color: const Color(0xFFC5A059),
+                        color: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino,
                         size: 32,
                       ),
                     ),
@@ -228,9 +231,9 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                         ],
                       ),
                     ),
-                    const Icon(
+                    Icon(
                       Icons.arrow_forward_ios,
-                      color: Color(0xFFC5A059),
+                      color: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino,
                       size: 20,
                     ),
                   ],
@@ -333,7 +336,8 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
         color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: TemaGlobal.dorado.withValues(alpha: 0.18),
+          color: (TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino)
+              .withValues(alpha: 0.28),
           width: 1,
         ),
         boxShadow: [

@@ -17,6 +17,7 @@ import '../services/ai_service.dart';
 import '../services/sentencia_pdf_service.dart';
 import '../services/favoritos_service.dart';
 import '../widgets/app_drawer.dart';
+import '../widgets/main_bottom_bar.dart';
 
 class RepositorioJurisprudenciaScreen extends StatefulWidget {
   const RepositorioJurisprudenciaScreen({super.key});
@@ -313,6 +314,7 @@ class _RepositorioJurisprudenciaScreenState
             ),
         ],
       ),
+      bottomNavigationBar: const MainBottomBar(),
       backgroundColor: fondoGris,
       body: Column(
         children: [

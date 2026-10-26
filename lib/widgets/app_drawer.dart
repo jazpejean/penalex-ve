@@ -341,7 +341,7 @@ class AppDrawer extends StatelessWidget {
                   _buildSectionHeader('AGENDA & GESTIÓN'),
                   _buildMenuItem(context,
                       icon: Icons.calendar_month_outlined,
-                      title: 'Agenda Judicial',
+                      title: 'Mi Agenda',
                       subtitle: 'Con calculadora de lapsos',
                       route: '/agenda'),
                   _buildMenuItem(context,

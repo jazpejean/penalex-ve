@@ -806,14 +806,6 @@ class _AgendaScreenState extends State<AgendaScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Text(
-                    "Agenda Judicial",
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: TemaGlobal.texto,
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                  const SizedBox(height: 10),
                   // Acciones principales: fila limpia (nada flotante).
                   Row(
                     children: <Widget>[
