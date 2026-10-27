@@ -11,6 +11,7 @@ import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../widgets/buscador_articulos_sheet.dart';
 import '../widgets/dosimetria_stepper.dart';
+import '../widgets/app_drawer.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'concurso_page.dart';
 
@@ -579,6 +580,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        drawer: const AppDrawer(currentRoute: '/dosimetria'),
         backgroundColor: fondoGris,
         bottomNavigationBar: const MainBottomBar(),
         body: SafeArea(
@@ -586,11 +588,15 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Column(
               children: <Widget>[
-                // Acciones que estaban en el AppBar: artículos, restablecer y cargar cálculo.
-                // Se conservan para no perder funcionalidad al eliminar el AppBar.
+                // Menú lateral + acciones de la herramienta.
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.menu, color: acento),
+                      onPressed: () => Scaffold.of(context).openDrawer(),
+                      tooltip: 'Menú',
+                    ),
+                    const Spacer(),
                     IconButton(
                       icon: Icon(Icons.menu_book_outlined, color: acento),
                       onPressed: () {
@@ -1060,7 +1066,10 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     delito.delitoContinuado = val;
                     _actualizarDelito(index, delito);
                   },
-                  activeThumbColor: acento,
+                  activeColor: TemaGlobal.dorado,
+                  activeTrackColor: TemaGlobal.dorado.withValues(alpha: 0.55),
+                  inactiveTrackColor: TemaGlobal.capa,
+                  inactiveThumbColor: TemaGlobal.texto,
                 ),
               ],
             ),

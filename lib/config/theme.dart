@@ -40,12 +40,12 @@ class AppTheme {
         dividerTheme: const DividerThemeData(
           color: Color(0xFFE2E8F0),
         ),
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
+          foregroundColor: AppColors.secondary,
           centerTitle: true,
           titleTextStyle: TextStyle(
-            color: Colors.white,
+            color: AppColors.secondary,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
@@ -53,7 +53,8 @@ class AppTheme {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.primary,
-            foregroundColor: Colors.white,
+            foregroundColor: AppColors.secondary,
+            side: BorderSide(color: AppColors.secondary, width: 1),
             minimumSize: const Size(double.infinity, 50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -107,12 +108,12 @@ class AppTheme {
         dividerTheme: const DividerThemeData(
           color: Color(0xFF334155),
         ),
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
+          foregroundColor: AppColors.secondary,
           centerTitle: true,
           titleTextStyle: TextStyle(
-            color: Colors.white,
+            color: AppColors.secondary,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
@@ -120,7 +121,8 @@ class AppTheme {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.primary,
-            foregroundColor: Colors.white,
+            foregroundColor: AppColors.secondary,
+            side: BorderSide(color: AppColors.secondary, width: 1),
             minimumSize: const Size(double.infinity, 50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),

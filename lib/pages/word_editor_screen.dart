@@ -177,7 +177,7 @@ class _WordEditorScreenState extends State<WordEditorScreen> {
       appBar: AppBar(
         title: const Text('✏️ Editar documento'),
         backgroundColor: TemaGlobal.azulMarino,
-        foregroundColor: Colors.white,
+        foregroundColor: TemaGlobal.dorado,
         actions: [
           IconButton(
             onPressed: _ocupado ? null : _exportarWord,

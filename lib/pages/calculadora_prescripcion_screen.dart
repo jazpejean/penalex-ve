@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../services/prescripcion_service.dart';
+import '../widgets/app_drawer.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'redactor_documentos_screen.dart';
 
@@ -152,9 +153,18 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(currentRoute: '/calculadora_prescripcion'),
       backgroundColor: azulMarino,
       bottomNavigationBar: const MainBottomBar(),
       appBar: AppBar(
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.menu),
+            color: dorado,
+            tooltip: 'Menú',
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+        ),
         title: const Text(
           'Calculadora de Prescripción',
           style: TextStyle(color: dorado, fontWeight: FontWeight.bold),
