@@ -1089,7 +1089,6 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     _actualizarDelito(index, delito);
                   });
                 },
-                divisions: 3,
               ),
             ],
             const SizedBox(height: 20),
