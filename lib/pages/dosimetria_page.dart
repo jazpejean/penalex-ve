@@ -591,10 +591,13 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                 // Menú lateral + acciones de la herramienta.
                 Row(
                   children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.menu, color: acento),
-                      onPressed: () => Scaffold.of(context).openDrawer(),
-                      tooltip: 'Menú',
+                    Builder(
+                      builder: (BuildContext menuContext) => IconButton(
+                        icon: Icon(Icons.menu, color: acento),
+                        onPressed: () =>
+                            Scaffold.of(menuContext).openDrawer(),
+                        tooltip: 'Menú',
+                      ),
                     ),
                     const Spacer(),
                     IconButton(

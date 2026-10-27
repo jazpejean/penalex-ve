@@ -546,11 +546,14 @@ class _ComputoPageState extends State<ComputoPage> {
               padding: const EdgeInsets.fromLTRB(8, 4, 16, 0),
               child: Row(
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.menu),
-                    onPressed: () => Scaffold.of(context).openDrawer(),
-                    tooltip: 'Menú',
-                    color: acento,
+                  Builder(
+                    builder: (BuildContext menuContext) => IconButton(
+                      icon: const Icon(Icons.menu),
+                      onPressed: () =>
+                          Scaffold.of(menuContext).openDrawer(),
+                      tooltip: 'Menú',
+                      color: acento,
+                    ),
                   ),
                   const SizedBox(width: 4),
                   Expanded(
