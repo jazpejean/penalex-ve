@@ -448,13 +448,13 @@ class _QuizGameScreenState extends State<QuizGameScreen>
                         key: ValueKey(_xpNonce),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: _primario,
+                          color: _oroBrillante,
                           fontSize: 30,
                           fontWeight: FontWeight.w800,
                           letterSpacing: 1.5,
                           shadows: [
                             Shadow(
-                              color: _primario.withValues(alpha: 0.35),
+                              color: _oro.withValues(alpha: 0.45),
                               blurRadius: 18,
                             ),
                           ],
@@ -576,8 +576,9 @@ class _QuizGameScreenState extends State<QuizGameScreen>
               child: LinearProgressIndicator(
                 value: v,
                 minHeight: 8,
+                borderRadius: BorderRadius.circular(10),
                 backgroundColor: _bordeKit,
-                valueColor: const AlwaysStoppedAnimation(_primario),
+                valueColor: const AlwaysStoppedAnimation(_oro),
               ),
             ),
           ),
