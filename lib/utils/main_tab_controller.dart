@@ -23,7 +23,6 @@ const Map<String, int> kRutaATab = <String, int>{
   '/agenda': 1,
   '/lapsos': 1,
   '/asistente_legal': 2,
-  '/busqueda_semantica': 3,
 };
 
 /// Navegación desde una pantalla que vive DENTRO del MainScreen (p. ej. el
