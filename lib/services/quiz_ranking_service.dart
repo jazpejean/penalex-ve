@@ -2,8 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'quiz_rules.dart';
+
 /// Ranking global del quiz (única tabla diminuta en Postgres; el resto de los
-/// datos vive en Storage).
+/// datos vive en Storage). Sin materias ni niveles numéricos: el "nivel" del
+/// ranking es el índice dentro de la carrera judicial (derivado del XP).
 class QuizRankingService {
   static final _supabase = Supabase.instance.client;
   static final _firebaseAuth = firebase_auth.FirebaseAuth.instance;
@@ -11,7 +14,6 @@ class QuizRankingService {
 
   static Future<void> actualizar({
     required int xp,
-    required int nivelActual,
     required String rango,
   }) async {
     final uid = _uid;
@@ -25,7 +27,7 @@ class QuizRankingService {
         'user_id': uid,
         'nombre': nombre,
         'xp': xp,
-        'nivel_actual': nivelActual,
+        'nivel_actual': QuizRules.indiceRango(xp) + 1,
         'rango_actual': rango,
         'updated_at': DateTime.now().toIso8601String(),
       });

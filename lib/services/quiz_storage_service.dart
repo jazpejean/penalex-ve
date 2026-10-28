@@ -12,8 +12,15 @@ import '../models/caso_quiz.dart';
 /// metadata de sentencias).
 ///
 /// Estructura en el bucket `quiz`:
-///  - `casos/lote_{timestamp}.json`  -> banco de preguntas (compartido)
-///  - `progreso/{uid}.json`          -> progreso de cada usuario
+///  - `casos_usuario/{uid}/lote_{timestamp}.json` -> banco PERSONAL de preguntas
+///    de cada usuario (cada quien recibe casos hipotéticos únicos generados
+///    para él; no hay banco compartido).
+///  - `progreso/{uid}.json`                       -> progreso de cada usuario
+///
+/// Diseño "sin materias": NO hay tramos. Todos los casos son casos hipotéticos
+/// aplicados de cualquier área del derecho penal; la selección es aleatoria de
+/// todo el banco personal, excluyendo falladas (reposo hasta agotar el banco)
+/// y respondidas (nunca se repiten).
 class QuizStorageService {
   static final _supabase = Supabase.instance.client;
   static final _firebaseAuth = firebase_auth.FirebaseAuth.instance;
@@ -28,23 +35,32 @@ class QuizStorageService {
     }
   }
   static const String bucket = 'quiz';
-  static const Duration _cooldown = Duration(hours: 24);
+
+  /// UID de sesión público (para el sync por usuario).
+  static String? get uidSesion => _uid;
 
   final Random _random = Random();
 
   List<CasoQuiz>? _cacheCasos;
+  String? _cacheUid;
+
+  /// Prefijo del banco personal del usuario actual.
+  static String get _rutaCasos {
+    final uid = _uid;
+    return uid == null ? 'casos' : 'casos_usuario/$uid';
+  }
 
   // ---------------------------------------------------------------------------
-  // Banco de preguntas (batches JSON)
+  // Banco de preguntas (batches JSON por usuario)
   // ---------------------------------------------------------------------------
 
-  /// Sube un lote de casos como un archivo JSON en Storage.
+  /// Sube un lote de casos como un archivo JSON en Storage (banco personal).
   Future<void> guardarBatch(List<CasoQuiz> casos) async {
     if (casos.isEmpty) return;
     final nombre = 'lote_${DateTime.now().millisecondsSinceEpoch}.json';
     final json = jsonEncode(casos.map((c) => c.toJson()).toList());
     await _supabase.storage.from(bucket).uploadBinary(
-          'casos/$nombre',
+          '$_rutaCasos/$nombre',
           utf8.encode(json),
           fileOptions: const FileOptions(
             upsert: true,
@@ -52,27 +68,34 @@ class QuizStorageService {
           ),
         );
     _cacheCasos = null; // invalidar caché
-    debugPrint('✅ Lote guardado en Storage: casos/$nombre (${casos.length} casos)');
+    _cacheUid = _uid;
+    debugPrint('✅ Lote guardado en Storage: $_rutaCasos/$nombre (${casos.length} casos)');
   }
 
-  /// Carga todos los casos del banco (descarga batches y los parsea).
+  /// Carga todos los casos del banco PERSONAL del usuario (descarga batches y
+  /// los parsea). La caché se invalida si cambia el usuario.
   Future<List<CasoQuiz>> listarCasos() async {
-    if (_cacheCasos != null) return _cacheCasos!;
+    final uid = _uid;
+    if (_cacheCasos != null && _cacheUid == uid) return _cacheCasos!;
+    _cacheCasos = null;
     try {
-      final files = await _supabase.storage.from(bucket).list(path: 'casos');
+      final files = await _supabase.storage
+          .from(bucket)
+          .list(path: _rutaCasos);
       final casos = <CasoQuiz>[];
       for (final f in files) {
         if (!f.name.endsWith('.json')) continue;
         final bytes = await _supabase.storage
             .from(bucket)
-            .download('casos/${f.name}');
+            .download('$_rutaCasos/${f.name}');
         final data = jsonDecode(utf8.decode(bytes)) as List<dynamic>;
         for (final item in data) {
           casos.add(CasoQuiz.fromJson(item as Map<String, dynamic>));
         }
       }
       _cacheCasos = casos;
-      debugPrint('📚 Banco del quiz cargado: ${casos.length} casos');
+      _cacheUid = uid;
+      debugPrint('📚 Banco personal del quiz cargado: ${casos.length} casos');
       return casos;
     } catch (e) {
       debugPrint('❌ Error cargando banco del quiz: $e');
@@ -80,7 +103,7 @@ class QuizStorageService {
     }
   }
 
-  /// Si el banco está vacío, sube los casos iniciales (semilla).
+  /// Si el banco personal está vacío, sube los casos iniciales (semilla).
   Future<void> sembrarInicial(List<CasoQuiz> casos) async {
     final existentes = await listarCasos();
     if (existentes.isNotEmpty) return;
@@ -88,42 +111,27 @@ class QuizStorageService {
   }
 
   // ---------------------------------------------------------------------------
-  // Selección de pregunta (anti-predecible + cooldown)
+  // Selección de pregunta (anti-predecible + reposo estricto)
   // ---------------------------------------------------------------------------
 
-  /// Obtiene un caso para el nivel dado, excluyendo los fallados en cooldown
-  /// y priorizando no repetir los ya respondidos. Baraja las opciones.
-  Future<CasoQuiz?> obtenerCaso(int nivel, {Set<String>? excluirIds}) async {
+  /// Obtiene un caso hipotético de TODO el banco personal (sin materias),
+  /// excluyendo falladas en reposo y respondidas. Baraja las opciones.
+  Future<CasoQuiz?> obtenerCaso({Set<String>? excluirIds}) async {
     final casos = await listarCasos();
     if (casos.isEmpty) return null;
 
-    final tramo = _tramoDeNivel(nivel);
     final excluir = excluirIds ?? <String>{};
 
-    // 1. Casos del tramo actual, no excluidos.
-    var candidatos = casos
-        .where((c) => c.tramo == tramo && !excluir.contains(c.id))
-        .toList();
+    // 1. Casos disponibles (no fallados en reposo, no respondidos).
+    var candidatos =
+        casos.where((c) => !excluir.contains(c.id)).toList();
 
-    // 2. Si no hay suficientes, ampliar a cualquier tramo.
-    if (candidatos.length < 3) {
-      candidatos = casos.where((c) => !excluir.contains(c.id)).toList();
-    }
-
-    // 3. Si aun así no hay (todo excluido), permitir repetir.
+    // 2. Si el banco personal se agotó (todo respondido o en reposo), permite
+    //    repetir los fallados para que la sesión no se quede sin casos.
     if (candidatos.isEmpty) candidatos = casos;
 
     final elegido = candidatos[_random.nextInt(candidatos.length)];
     return elegido.conOpcionesBarajadas(_random);
-  }
-
-  int _tramoDeNivel(int nivel) {
-    if (nivel <= 20) return 1; // parte general
-    if (nivel <= 40) return 2; // delitos contra las personas
-    if (nivel <= 60) return 3; // delitos contra la propiedad
-    if (nivel <= 80) return 4; // COPP
-    if (nivel <= 100) return 5; // delitos especiales
-    return (nivel % 5) + 1;
   }
 
   // ---------------------------------------------------------------------------
@@ -131,7 +139,6 @@ class QuizStorageService {
   // ---------------------------------------------------------------------------
 
   Map<String, dynamic> progresoInicial() => {
-        'nivel_actual': 1,
         'xp': 0,
         'puntos': 0,
         'racha_actual': 0,
@@ -233,18 +240,18 @@ class QuizStorageService {
     return restante.isNegative ? Duration.zero : restante;
   }
 
-  /// IDs a excluir: falladas dentro del cooldown + ya respondidas.
+  /// IDs a excluir: TODAS las falladas (reposo hasta agotar el banco personal)
+  /// + ya respondidas (nunca se repiten).
   Set<String> idsExcluidos(Map<String, dynamic> progreso) {
     final excluir = <String>{};
-    final ahora = DateTime.now();
 
+    // Reposo estricto: una pregunta fallada queda fuera mientras existan otras
+    // disponibles en el banco personal. Si el banco se agota, obtenerCaso()
+    // permite repetirlas (para no cortar la sesión).
     final falladas = (progreso['falladas'] as List<dynamic>? ?? const []);
     for (final f in falladas) {
       final map = f as Map<String, dynamic>;
-      final ultima = DateTime.tryParse(map['ultima'] as String? ?? '');
-      if (ultima != null && ahora.difference(ultima) < _cooldown) {
-        excluir.add(map['caso_id'] as String);
-      }
+      excluir.add(map['caso_id'] as String);
     }
 
     final respondidas = (progreso['respondidas'] as List<dynamic>? ?? const []);

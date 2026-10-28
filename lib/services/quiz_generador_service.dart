@@ -12,11 +12,15 @@ import 'rag_service.dart';
 /// Genera casos hipotéticos del quiz con IA (DeepSeek), fundamentados en el
 /// repositorio de leyes y jurisprudencia. Los lotes generados se guardan en
 /// Storage (cache), por lo que cada caso se paga en tokens UNA sola vez.
+///
+/// Diseño "sin materias": cada lote mezcla casos hipotéticos de TODO el
+/// derecho penal venezolano (teoría del delito, personas, propiedad, COPP,
+/// especiales) — nunca preguntas teóricas, siempre escenarios aplicados.
 class QuizGeneradorService {
   static bool _generando = false;
 
-  /// Recarga el banco en background si está por debajo del umbral (evita lag
-  /// y gasto innecesario de tokens: solo genera cuando hace falta).
+  /// Recarga el banco personal en background si está por debajo del umbral
+  /// (evita lag y gasto innecesario de tokens: solo genera cuando hace falta).
   static Future<void> recargarBanco({int umbral = 60, int cantidad = 20}) async {
     if (_generando) return;
     _generando = true;
@@ -31,8 +35,7 @@ class QuizGeneradorService {
         if (trasSync.length >= umbral) return;
       }
       // 2º) Respaldo local (DeepSeek) SOLO si no hay lotes pendientes.
-      // TODO: round-robin entre tramos a medida que el usuario sube de nivel.
-      final lote = await generarLote(cantidad: cantidad, tramo: 1, dificultad: 2);
+      final lote = await generarLote(cantidad: cantidad, dificultad: 2);
       await QuizStorageService().guardarBatch(lote);
     } catch (e) {
       debugPrint('❌ Error recargando banco: $e');
@@ -41,58 +44,25 @@ class QuizGeneradorService {
     }
   }
 
-  static String materiaParaTramo(int tramo) {
-    switch (tramo) {
-      case 1:
-        return 'Parte General del Derecho Penal (teoría del delito: tipicidad, '
-            'autoría, participación, tentativa, error, legítima defensa)';
-      case 2:
-        return 'Delitos contra las personas (homicidio, lesiones, femicidio, '
-            'aborto, secuestro)';
-      case 3:
-        return 'Delitos contra la propiedad (hurto, robo, estafa, extorsión, '
-            'apropiación indebida, daños)';
-      case 4:
-        return 'Derecho Procesal Penal (COPP: flagrancia, medidas cautelares, '
-            'pruebas, apelación, audiencia preliminar, acusación)';
-      case 5:
-        return 'Delitos especiales (drogas, corrupción, informáticos, lavado '
-            'de activos, trata de personas)';
-      default:
-        return 'Derecho Penal Venezolano';
-    }
-  }
-
-  static int nivelBaseTramo(int tramo) {
-    switch (tramo) {
-      case 1:
-        return 1;
-      case 2:
-        return 21;
-      case 3:
-        return 41;
-      case 4:
-        return 61;
-      case 5:
-        return 81;
-      default:
-        return 1;
-    }
-  }
-
-  /// Genera un lote de [cantidad] casos para un tramo y dificultad.
+  /// Genera un lote de [cantidad] casos hipotéticos MIXTOS (sin materias).
   static Future<List<CasoQuiz>> generarLote({
     int cantidad = 20,
-    required int tramo,
     required int dificultad,
   }) async {
-    final materia = materiaParaTramo(tramo);
+    const materia = 'Derecho Penal Venezolano completo: teoría del delito '
+        '(tentativa, legítima defensa, autoría, participación, error), delitos '
+        'contra las personas (homicidio, lesiones, femicidio, aborto, '
+        'secuestro), delitos contra la propiedad (hurto, robo, estafa, '
+        'extorsión, apropiación indebida), derecho procesal penal (COPP: '
+        'flagrancia, medidas cautelares, pruebas, apelación), y delitos '
+        'especiales (drogas, corrupción, informáticos, lavado de activos, '
+        'trata). Mezcla las áreas SIN separarlas: un lote debe cubrir varias.';
 
     // 📚 Contexto de leyes vigentes
     String leyesContexto = '';
     try {
       final resultados = await LeyesRepositorioService().buscar(
-        materia,
+        'delito pena artículo',
         limite: 5,
       );
       if (resultados.isNotEmpty) {
@@ -113,7 +83,7 @@ class QuizGeneradorService {
     String jurisContexto = '';
     try {
       final rag = await RAGService.obtenerContextoYFuentes(
-        consulta: materia,
+        consulta: 'delito sentencia penal',
         limit: 3,
       );
       jurisContexto = rag.contexto;
@@ -131,7 +101,7 @@ Eres un profesor de Derecho Penal Venezolano. Genera EXACTAMENTE $cantidad casos
 4. En "fundamentacion" escribe 2-3 frases explicando POR QUÉ la opción correcta es la correcta.
 5. En "articulos" cita SOLO artículos VIGENTES de las leyes de abajo (formato "Art. N NombreLey").
 6. En "sentencias" cita SOLO sentencias REALES de la jurisprudencia de abajo (formato breve: "Sentencia Nº X · Sala · fecha"). Si no hay sentencia aplicable, deja la lista vacía. NUNCA inventes números ni fechas.
-7. No repitas casos. Cada uno debe ser distinto.
+7. No repitas casos. Cada uno debe ser distinto. El lote debe mezclar VARIAS áreas del derecho penal (no todos del mismo tema).
 8. VERIFICA que la respuesta correcta sea jurídicamente cierta según las LEYES VIGENTES de abajo. Si dudas del dato (plazos, penas, artículos), NO incluyas esa pregunta y genera otra.
 
 **LEYES VIGENTES DISPONIBLES (cita solo estas):**
@@ -158,11 +128,10 @@ $jurisContexto
     final respuesta = await AIService.procesarConsultaGeneral(prompt);
     final json = _parseJson(respuesta);
     if (json == null || json is! List || json.isEmpty) {
-      debugPrint('⚠️ El generador no devolvió JSON válido para tramo $tramo');
+      debugPrint('⚠️ El generador no devolvió JSON válido');
       return [];
     }
 
-    final base = nivelBaseTramo(tramo);
     final casos = <CasoQuiz>[];
     for (var i = 0; i < json.length; i++) {
       final item = json[i];
@@ -172,9 +141,9 @@ $jurisContexto
           .toList();
       if (opciones.length != 4) continue;
       casos.add(CasoQuiz(
-        id: 'caso_t${tramo}_${DateTime.now().millisecondsSinceEpoch}_$i',
-        nivel: base,
-        tramo: tramo,
+        id: 'caso_u_${DateTime.now().millisecondsSinceEpoch}_$i',
+        nivel: 0, // sin nivel numérico: progresión por carrera judicial
+        tramo: 0, // sin materias: todo el penal se mezcla
         delitoBase: item['delito_base']?.toString() ?? '',
         contextoNarrativo: item['contexto']?.toString() ?? '',
         opciones: opciones,
@@ -191,7 +160,7 @@ $jurisContexto
       ));
     }
 
-    debugPrint('🧠 Lote generado: ${casos.length} casos (tramo $tramo)');
+    debugPrint('🧠 Lote generado: ${casos.length} casos (mixto, sin materias)');
     return casos;
   }
 

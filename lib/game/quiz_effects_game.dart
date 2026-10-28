@@ -6,11 +6,14 @@ import 'package:flutter/material.dart';
 /// Formas disponibles para las partículas del quiz.
 enum FormaParticula { circulo, rombo, estrella, gema, pluma, chispa }
 
-/// Paleta oficial del quiz (navy + oro, sin violeta).
-const _oro = Color(0xFFC5A059);
+/// Paleta del kit Queezy adaptada al quiz: violetas/lavanda/rosa/menta con el
+/// oro de Penalex como acento (premios, medallas).
+const _primario = Color(0xFF6A5AE0);
+const _secundario = Color(0xFF9087E5);
+const _lavanda = Color(0xFFC4D0FB);
+const _rosaPink = Color(0xFFFF8FA2);
+const _menta = Color(0xFFC9F2E9);
 const _oroBrillante = Color(0xFFE9C86A);
-const _ambar = Color(0xFFF59E0B);
-const _esmeralda = Color(0xFF10B981);
 
 /// Partícula con física simple (gravedad, fricción, rotación, vida) y una
 /// forma propia; conserva un pequeño historial de posiciones para dibujar
@@ -85,7 +88,7 @@ class QuizEffectsGame extends FlameGame {
     List<Color>? colores,
   }) {
     final cols = colores ??
-        const [_oroBrillante, _oro, Color(0xFFFFFFFF), _ambar, _esmeralda];
+        const [_primario, _secundario, _lavanda, _rosaPink, _menta, _oroBrillante];
     for (var i = 0; i < cantidad; i++) {
       final ang = _rnd.nextDouble() * 2 * pi;
       final vel = (0.25 + _rnd.nextDouble()) * fuerza;
@@ -113,9 +116,12 @@ class QuizEffectsGame extends FlameGame {
     return FormaParticula.rombo;
   }
 
-  /// Partícula ambiental dorada que sube flotando desde abajo (lobby).
+  /// Partícula ambiental del kit (violeta/lavanda suave) que sube flotando
+  /// desde abajo (lobby) — visible sobre el fondo claro.
   void particulaAmbiente(double ancho, double alto) {
     final x = _rnd.nextDouble() * ancho;
+    final colorAmbiente = const [_lavanda, _secundario, _primario, _rosaPink]
+        [_rnd.nextInt(4)];
     _particulas.add(_Particula(
       x: x,
       y: alto + 20,
@@ -125,7 +131,7 @@ class QuizEffectsGame extends FlameGame {
       vr: (_rnd.nextDouble() - 0.5) * 1.2,
       vida: 5 + _rnd.nextDouble() * 4,
       tam: 2 + _rnd.nextDouble() * 3.5,
-      color: _oroBrillante,
+      color: colorAmbiente,
     ));
   }
 

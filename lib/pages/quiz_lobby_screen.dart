@@ -18,23 +18,31 @@ import '../services/quiz_progresion_service.dart';
 import '../services/quiz_ranking_service.dart';
 import '../services/quiz_rules.dart';
 import '../services/quiz_storage_service.dart';
+import '../models/caso_quiz.dart';
 import '../services/sfx_service.dart';
 import '../utils/quiz_seed.dart';
 import '../utils/transiciones.dart';
-import '../widgets/liquid_gold_background.dart';
 import '../widgets/quiz_insignia_widget.dart';
-import '../widgets/penalex_logo.dart';
 import '../widgets/quiz_icon.dart';
 import '../widgets/quiz_pulso_widget.dart';
 import 'quiz_game_screen.dart';
 import 'quiz_logros_screen.dart';
 
-/// Paleta oficial del quiz: navy profundo + oro (alineada al resto de la app).
-const _fondoProfundo = Color(0xFF0A0E1A);
-const _card = Color(0xFF141B2E);
-const _ambar = Color(0xFFF59E0B);
-const _esmeralda = Color(0xFF10B981);
-const _oro = Color(0xFFC5A059);
+/// Paleta del quiz adaptada del kit "Queezy" (fondo claro, violeta/lavanda/
+/// rosa/menta) con un pequeño ajuste para armonizar con el resto de Penalex:
+/// el texto fuerte usa el navy de la app (#0F172A) y el oro (#C5A059) queda
+/// como acento secundario en premios/medallas — sin romper la claridad del kit.
+const _fondoKit = Color(0xFFF7F6FF); // fondo del kit
+const _primario = Color(0xFF6A5AE0); // violeta primario del kit
+const _secundario = Color(0xFF9087E5); // violeta claro (featured card)
+const _lavanda = Color(0xFFC4D0FB); // acento lavanda del kit
+const _rosaPink = Color(0xFFFF8FA2); // pink del kit
+const _menta = Color(0xFFC9F2E9); // acento menta del kit
+const _navyTexto = Color(0xFF0F172A); // texto fuerte = navy de la app
+const _grisClaro = Color(0xFF858494); // grey 2 del kit
+const _bordeKit = Color(0xFFEFEEFC); // grey 5 del kit (bordes de tarjetas)
+const _blanco = Colors.white;
+const _oro = Color(0xFFC5A059); // acento app: premios/medallas
 const _oroBrillante = Color(0xFFE9C86A);
 
 class QuizLobbyScreen extends StatefulWidget {
@@ -52,6 +60,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
 
   Map<String, dynamic> _progreso = {};
   int _totalCasos = 0;
+  List<CasoQuiz> _casos = [];
   List<Map<String, dynamic>> _ranking = [];
   bool _cargando = true;
   bool _muted = false;
@@ -106,7 +115,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
       await _service.guardarProgreso(pFinal);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: _card,
+          backgroundColor: _navyTexto,
           content: Text(
             '¡Racha de ${pFinal['racha_dias']} días! +${preparado.bono} XP por volver',
             style: const TextStyle(color: _oroBrillante),
@@ -121,6 +130,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
     setState(() {
       _progreso = pFinal;
       _totalCasos = casos.length;
+      _casos = casos;
       _ranking = ranking;
       _cargando = false;
     });
@@ -154,17 +164,14 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
   Widget build(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
-        textTheme: GoogleFonts.interTextTheme(
+        textTheme: GoogleFonts.rubikTextTheme(
             Theme.of(context).textTheme),
       ),
       child: Scaffold(
-      backgroundColor: _fondoProfundo,
+      backgroundColor: _fondoKit,
       bottomNavigationBar: const MainBottomBar(),
       body: Stack(
         children: [
-          const Positioned.fill(
-            child: LiquidGoldBackground(child: SizedBox.expand()),
-          ),
           Positioned.fill(
             child: IgnorePointer(
               child: GameWidget(
@@ -196,19 +203,23 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        _entradaAnim(0, _buildHero()),
-                        const SizedBox(height: 24),
-                        _entradaAnim(1, _buildRankCard()),
-                        const SizedBox(height: 24),
-                        _entradaAnim(2, _buildMisiones()),
-                        const SizedBox(height: 24),
-                        _entradaAnim(3, _buildJugar()),
+                        _entradaAnim(0, _buildHeader()),
+                        const SizedBox(height: 20),
+                        _entradaAnim(1, _buildCasoDestacado()),
+                        const SizedBox(height: 20),
+                        _entradaAnim(2, _buildRankCard()),
+                        const SizedBox(height: 20),
+                        _entradaAnim(3, _buildCasosDisponibles()),
+                        const SizedBox(height: 20),
+                        _entradaAnim(4, _buildMisiones()),
+                        const SizedBox(height: 20),
+                        _entradaAnim(5, _buildJugar()),
                         const SizedBox(height: 12),
-                        _entradaAnim(4, _buildCertificado()),
+                        _entradaAnim(6, _buildCertificado()),
                         const SizedBox(height: 12),
-                        _entradaAnim(5, _buildMisLogros()),
+                        _entradaAnim(7, _buildMisLogros()),
                         const SizedBox(height: 32),
-                        _entradaAnim(6, _buildRanking()),
+                        _entradaAnim(8, _buildRanking()),
                       ],
                     ),
                   ),
@@ -221,8 +232,10 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
 
   Widget _buildHomeButton() {
     return Material(
-      color: _card.withValues(alpha: 0.75),
+      color: _blanco,
       shape: const CircleBorder(),
+      elevation: 2,
+      shadowColor: _primario.withValues(alpha: 0.18),
       child: InkWell(
         customBorder: const CircleBorder(),
         onTap: () {
@@ -238,7 +251,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
           child: Icon(
             Icons.home_outlined,
             size: 22,
-            color: _oroBrillante,
+            color: _navyTexto,
           ),
         ),
       ),
@@ -247,8 +260,10 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
 
   Widget _buildMuteToggle() {
     return Material(
-      color: _card.withValues(alpha: 0.75),
+      color: _blanco,
       shape: const CircleBorder(),
+      elevation: 2,
+      shadowColor: _primario.withValues(alpha: 0.18),
       child: InkWell(
         customBorder: const CircleBorder(),
         onTap: () async {
@@ -262,64 +277,308 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
           child: QuizIcon(
             _muted ? 'sound_off_ornate' : 'sound_on_ornate',
             size: 22,
-            color: _muted ? Colors.white54 : _oroBrillante,
+            color: _muted ? _grisClaro : _primario,
           ),
         ),
       ),
     );
   }
 
-  Widget _buildHero() {
-    return Column(
+  /// Nombre visible del usuario (displayName, email o fallback).
+  String get _nombreUsuario {
+    final u = FirebaseAuth.instance.currentUser;
+    if (u?.displayName?.trim().isNotEmpty == true) return u!.displayName!;
+    final email = u?.email ?? '';
+    return email.isEmpty ? 'Abogado Penalex' : email.split('@').first;
+  }
+
+  /// Saludo según la hora (como el "Good Morning" del kit).
+  String get _saludo {
+    final h = DateTime.now().hour;
+    if (h < 12) return 'BUENOS DÍAS';
+    if (h < 19) return 'BUENAS TARDES';
+    return 'BUENAS NOCHES';
+  }
+
+  /// Header tipo "Greetings" del kit: saludo + nombre + avatar (insignia del
+  /// rango judicial en lugar del avatar de persona).
+  Widget _buildHeader() {
+    final indice = QuizRules.indiceRango(_xp);
+    return Row(
       children: [
-        QuizPulso(
-          maxScale: 1.06,
-          periodo: const Duration(milliseconds: 1600),
-          child: Container(
-            width: 98,
-            height: 98,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: const LinearGradient(
-                colors: [_oroBrillante, _oro],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: _oro.withValues(alpha: 0.55),
-                  blurRadius: 34,
-                  spreadRadius: 3,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                _saludo,
+                style: TextStyle(
+                  color: _grisClaro,
+                  fontSize: 12,
+                  letterSpacing: 2,
+                  fontWeight: FontWeight.w600,
                 ),
-              ],
+              ),
+              const SizedBox(height: 4),
+              Text(
+                _nombreUsuario,
+                style: GoogleFonts.rubik(
+                  color: _navyTexto,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                '${QuizRules.rangoParaXp(_xp)} · $_xp XP',
+                style: const TextStyle(
+                  color: _primario,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+        ),
+        // Avatar del kit → insignia del rango con anillo violeta del kit.
+        Container(
+          width: 58,
+          height: 58,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: const LinearGradient(
+              colors: [_secundario, _primario],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
-            child: PenalexLogo(
-              variant: PenalexLogoVariant.logo,
-              size: 56,
-              color: const Color(0xFF0F172A),
-              animate: false,
+            boxShadow: [
+              BoxShadow(
+                color: _primario.withValues(alpha: 0.35),
+                blurRadius: 22,
+                spreadRadius: 2,
+              ),
+            ],
+          ),
+          child: Center(
+            child: QuizInsignia(
+              rango: QuizRules.rangoParaXp(_xp),
+              tamano: 46,
+              estrellas: (indice / QuizRules.totalRangos * 5).round(),
+              brillo: indice >= QuizRules.totalRangos * 0.6,
             ),
           ),
         ),
-        const SizedBox(height: 24),
-        _ShimmerText(
-          'PENALEX QUIZ',
-          style: GoogleFonts.cinzel(
-            fontSize: 34,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 2.5,
-          ),
+      ],
+    );
+  }
+
+  /// Tarjeta destacada estilo "featured" del kit (fondo violeta, botón blanco
+  /// con texto violeta): caso del día con botón.
+  Widget _buildCasoDestacado() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(22),
+        gradient: const LinearGradient(
+          colors: [_secundario, _primario],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
-        const SizedBox(height: 8),
+        boxShadow: [
+          BoxShadow(
+            color: _primario.withValues(alpha: 0.35),
+            blurRadius: 26,
+            offset: const Offset(0, 12),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Row(
+            children: [
+              QuizIcon('star_shield', size: 20, color: _blanco),
+              SizedBox(width: 8),
+              Text(
+                'CASO DESTACADO',
+                style: TextStyle(
+                  color: _blanco,
+                  fontSize: 12,
+                  letterSpacing: 2,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          Text(
+            'Dosimetría y cómputo\nde penas',
+            style: GoogleFonts.rubik(
+              color: _blanco,
+              fontSize: 22,
+              fontWeight: FontWeight.w600,
+              height: 1.15,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            '5 casos · ~5 min · hasta +120 XP',
+            style: TextStyle(
+              color: _blanco.withValues(alpha: 0.8),
+              fontSize: 13,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Material(
+            color: _blanco,
+            borderRadius: BorderRadius.circular(14),
+            elevation: 0,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(14),
+              onTap: () {
+                Haptics.light();
+                Navigator.push(context, cortinaDorada(const QuizGameScreen()));
+              },
+              child: Ink(
+                padding: const EdgeInsets.symmetric(vertical: 13),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    QuizIcon('play_ornate', color: _primario, size: 24),
+                    SizedBox(width: 6),
+                    Text(
+                      'RESOLVER',
+                      style: TextStyle(
+                        color: _primario,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 1.5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Casos hipotéticos del banco personal (sin materias: todo el derecho
+    /// penal se mezcla). Cada tarjeta abre el juego. Réplica de la "Live Quiz"
+    /// card del kit: blanca, borde gris claro, icono en frame lavanda.
+  Widget _buildCasosDisponibles() {
+    final delitos = <String>{
+      for (final c in _casos)
+        if (c.delitoBase.trim().isNotEmpty) c.delitoBase.trim()
+    }.toList();
+    final visibles = delitos.take(6).toList();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
         Text(
-          'Asciende en la carrera judicial venezolana',
-          textAlign: TextAlign.center,
+          'CASOS HIPOTÉTICOS',
           style: TextStyle(
-            color: Colors.white.withValues(alpha: 0.65),
-            fontSize: 14,
-            letterSpacing: 0.3,
+            color: _grisClaro,
+            fontSize: 12,
+            letterSpacing: 2,
+            fontWeight: FontWeight.w600,
           ),
         ),
+        const SizedBox(height: 12),
+        Material(
+          color: _blanco,
+          borderRadius: BorderRadius.circular(20),
+          elevation: 0,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(20),
+            onTap: () {
+              Haptics.light();
+              Navigator.push(
+                  context, cortinaDorada(const QuizGameScreen()));
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: _bordeKit, width: 2),
+              ),
+              child: Row(
+                children: [
+                  // Frame lavanda con el icono (como la card "Live Quiz").
+                  Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: _lavanda,
+                    ),
+                    child: const Center(
+                      child: QuizIcon('gavel_refined', size: 22,
+                          color: _primario),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Caso hipotético · Derecho Penal',
+                          style: TextStyle(
+                            color: _navyTexto,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          '$_totalCasos casos en tu banco · todo el penal se mezcla',
+                          style: const TextStyle(
+                            color: _grisClaro,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const QuizIcon('play_ornate', size: 20, color: _primario),
+                ],
+              ),
+            ),
+          ),
+        ),
+        if (visibles.isNotEmpty) ...[
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final d in visibles)
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: _lavanda.withValues(alpha: 0.45),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    d,
+                    style: const TextStyle(
+                      color: _primario,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ],
       ],
     );
   }
@@ -333,12 +592,12 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: _card,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: _oro.withValues(alpha: 0.35), width: 1.2),
+        color: _blanco,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: _bordeKit, width: 2),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.35),
+            color: _primario.withValues(alpha: 0.08),
             blurRadius: 26,
             offset: const Offset(0, 12),
           ),
@@ -362,8 +621,8 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                         value: v,
                         strokeWidth: 7,
                         strokeCap: StrokeCap.round,
-                        backgroundColor: Colors.white12,
-                        valueColor: const AlwaysStoppedAnimation(_oro),
+                        backgroundColor: _bordeKit,
+                        valueColor: const AlwaysStoppedAnimation(_primario),
                       ),
                     ),
                     QuizInsignia(
@@ -382,17 +641,17 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                   children: [
                     Text(
                       QuizRules.rangoParaXp(_xp),
-                      style: GoogleFonts.cinzel(
-                        color: Colors.white,
+                      style: GoogleFonts.rubik(
+                        color: _navyTexto,
                         fontSize: 19,
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       '$_xp XP',
                       style: const TextStyle(
-                        color: _oroBrillante,
+                        color: _primario,
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
                       ),
@@ -402,8 +661,8 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                       sig != null
                           ? 'Próximo: ${sig.nombre} · ${sig.xp} XP'
                           : 'Rango máximo alcanzado',
-                      style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.5),
+                      style: const TextStyle(
+                        color: _grisClaro,
                         fontSize: 12,
                       ),
                     ),
@@ -413,18 +672,18 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
             ],
           ),
           const SizedBox(height: 24),
-          Container(height: 1, color: Colors.white.withValues(alpha: 0.08)),
+          Container(height: 1, color: _bordeKit),
           const SizedBox(height: 16),
           Row(
             children: [
               _stat(QuizIcon('flame_legal', size: 22,
-                  color: _oroBrillante), '$_racha', 'Racha'),
+                  color: _primario), '$_racha', 'Racha'),
               _stat(QuizIcon('calendar_court', size: 22,
-                  color: _ambar), '$_rachaDias', 'Días'),
-              _stat(QuizIcon('scales_calc', size: 22, color: _oroBrillante),
+                  color: _rosaPink), '$_rachaDias', 'Días'),
+              _stat(QuizIcon('scales_calc', size: 22, color: _primario),
                   '$_apelaciones', 'Apelaciones'),
               _stat(QuizIcon('book_law', size: 22,
-                  color: _esmeralda), '$_totalCasos', 'Casos'),
+                  color: _menta), '$_totalCasos', 'Casos'),
             ],
           ),
           if (_apelaciones < 5) ...[
@@ -444,19 +703,18 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: _oro.withValues(alpha: 0.14),
+        color: _lavanda.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: _oro.withValues(alpha: 0.35)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const QuizIcon('hourglass_gold', size: 18, color: _oroBrillante),
+          const QuizIcon('hourglass_gold', size: 18, color: _primario),
           const SizedBox(width: 8),
           Text(
             'Próxima apelación en ${m}m ${seg.toString().padLeft(2, '0')}s',
             style: const TextStyle(
-              color: Colors.white,
+              color: _navyTexto,
               fontSize: 13,
               fontWeight: FontWeight.w600,
             ),
@@ -471,31 +729,31 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: _card,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: _oro.withValues(alpha: 0.25)),
+        color: _blanco,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: _bordeKit, width: 2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Row(
             children: [
-              const QuizIcon('flag_ornate', size: 20, color: _oroBrillante),
+              const QuizIcon('flag_ornate', size: 20, color: _primario),
               const SizedBox(width: 8),
               const Text(
                 'MISIONES DEL DÍA',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: _navyTexto,
                   fontSize: 15,
-                  fontWeight: FontWeight.w900,
+                  fontWeight: FontWeight.w700,
                   letterSpacing: 1.2,
                 ),
               ),
               const Spacer(),
-              Text(
+              const Text(
                 'renuevan mañana',
                 style: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.45),
+                  color: _grisClaro,
                   fontSize: 11,
                 ),
               ),
@@ -515,9 +773,8 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: _fondoProfundo.withValues(alpha: 0.55),
+        color: _fondoKit,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: _oro.withValues(alpha: 0.22)),
       ),
       child: Row(
         children: [
@@ -530,9 +787,9 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                 Text(
                   m.descripcion,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: _navyTexto,
                     fontSize: 13,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -541,15 +798,15 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                   child: LinearProgressIndicator(
                     value: pct,
                     minHeight: 6,
-                    backgroundColor: Colors.white12,
-                    valueColor: const AlwaysStoppedAnimation(_oro),
+                    backgroundColor: _bordeKit,
+                    valueColor: const AlwaysStoppedAnimation(_primario),
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   '${e.progreso}/${m.meta} · +${m.recompensa} XP',
-                  style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.5),
+                  style: const TextStyle(
+                    color: _grisClaro,
                     fontSize: 11,
                   ),
                 ),
@@ -558,7 +815,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
           ),
           const SizedBox(width: 8),
           if (e.reclamada)
-            const QuizIcon('check_seal', size: 26, color: _esmeralda)
+            const QuizIcon('check_seal', size: 26, color: _menta)
           else if (e.completa)
             GestureDetector(
               onTap: () {
@@ -569,19 +826,15 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [_oroBrillante, _oro],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
+                  color: _primario,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: const Text(
                   'RECLAMAR',
                   style: TextStyle(
-                    color: Color(0xFF0F172A),
+                    color: _blanco,
                     fontSize: 11,
-                    fontWeight: FontWeight.w900,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
@@ -589,8 +842,8 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
           else
             Text(
               '${(pct * 100).round()}%',
-              style: TextStyle(
-                color: Colors.white.withValues(alpha: 0.4),
+              style: const TextStyle(
+                color: _grisClaro,
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
               ),
@@ -613,7 +866,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
     await _service.guardarProgreso(nuevo);
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: _card,
+        backgroundColor: _navyTexto,
         content: Text(
           '${m.descripcion} — +${m.recompensa} XP',
           style: const TextStyle(color: _oroBrillante),
@@ -631,7 +884,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
           Text(
             valor,
             style: const TextStyle(
-              color: Colors.white,
+              color: _navyTexto,
               fontWeight: FontWeight.w800,
               fontSize: 18,
             ),
@@ -639,8 +892,8 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
           const SizedBox(height: 4),
           Text(
             label,
-            style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.5),
+            style: const TextStyle(
+              color: _grisClaro,
               fontSize: 11,
             ),
           ),
@@ -655,15 +908,15 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
       periodo: const Duration(milliseconds: 1200),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(16),
           gradient: const LinearGradient(
-            colors: [_oroBrillante, _oro],
+            colors: [_primario, _secundario],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
           boxShadow: [
             BoxShadow(
-              color: _oro.withValues(alpha: 0.55),
+              color: _primario.withValues(alpha: 0.4),
               blurRadius: 28,
               offset: const Offset(0, 10),
             ),
@@ -672,7 +925,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(16),
             onTap: () {
               Haptics.light();
               Navigator.push(context, cortinaDorada(const QuizGameScreen()));
@@ -683,14 +936,14 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   QuizIcon('play_ornate',
-                      color: Color(0xFF0F172A), size: 32),
+                      color: _blanco, size: 32),
                   SizedBox(width: 8),
                   Text(
                     'JUGAR',
                     style: TextStyle(
-                      color: Color(0xFF0F172A),
+                      color: _blanco,
                       fontSize: 20,
-                      fontWeight: FontWeight.w900,
+                      fontWeight: FontWeight.w700,
                       letterSpacing: 2,
                     ),
                   ),
@@ -706,14 +959,14 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
   Widget _buildCertificado() {
     return OutlinedButton.icon(
       style: OutlinedButton.styleFrom(
-        foregroundColor: _oroBrillante,
-        side: BorderSide(color: _oro.withValues(alpha: 0.6), width: 1.2),
-        backgroundColor: _card.withValues(alpha: 0.6),
+        foregroundColor: _navyTexto,
+        side: const BorderSide(color: _bordeKit, width: 2),
+        backgroundColor: _blanco,
         padding: const EdgeInsets.symmetric(vertical: 15),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       ),
       onPressed: _descargarCertificado,
-      icon: const QuizIcon('scroll_seal'),
+      icon: const QuizIcon('scroll_seal', color: _primario),
       label: const Text(
         'Descargar certificado',
         style: TextStyle(fontWeight: FontWeight.w600),
@@ -724,16 +977,19 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
   Widget _buildMisLogros() {
     return OutlinedButton.icon(
       style: OutlinedButton.styleFrom(
-        foregroundColor: Colors.white,
-        side: const BorderSide(color: Colors.white24),
-        backgroundColor: _card.withValues(alpha: 0.6),
+        foregroundColor: _navyTexto,
+        side: const BorderSide(color: _bordeKit, width: 2),
+        backgroundColor: _blanco,
         padding: const EdgeInsets.symmetric(vertical: 15),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       ),
       onPressed: () =>
           Navigator.push(context, cortinaDorada(const QuizLogrosScreen())),
-      icon: const QuizIcon('laurel'),
-      label: const Text('Mis Logros'),
+      icon: const QuizIcon('laurel', color: _primario),
+      label: const Text(
+        'Mis Logros',
+        style: TextStyle(fontWeight: FontWeight.w600),
+      ),
     );
   }
 
@@ -771,21 +1027,21 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'TOP DEL RANKING',
           style: TextStyle(
-            color: Colors.white.withValues(alpha: 0.5),
+            color: _grisClaro,
             fontSize: 12,
             letterSpacing: 2,
-            fontWeight: FontWeight.w800,
+            fontWeight: FontWeight.w600,
           ),
         ),
         const SizedBox(height: 12),
         Container(
           decoration: BoxDecoration(
-            color: _card.withValues(alpha: 0.7),
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: _oro.withValues(alpha: 0.25)),
+            color: _blanco,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: _bordeKit, width: 2),
           ),
           child: Column(
             children: _ranking.asMap().entries.map((e) {
@@ -812,13 +1068,13 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                 child: ListTile(
                   leading: CircleAvatar(
                     backgroundColor: medalla == Colors.transparent
-                        ? Colors.white12
+                        ? _bordeKit
                         : medalla,
                     child: Text(
                       '${i + 1}',
                       style: TextStyle(
                         color: medalla == Colors.transparent
-                            ? Colors.white
+                            ? _navyTexto
                             : const Color(0xFF0F172A),
                         fontWeight: FontWeight.w800,
                       ),
@@ -827,21 +1083,21 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                   title: Text(
                     r['nombre'] ?? 'Usuario',
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: _navyTexto,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   subtitle: Text(
                     r['rango_actual'] ?? '',
-                    style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.5),
+                    style: const TextStyle(
+                      color: _grisClaro,
                       fontSize: 12,
                     ),
                   ),
                   trailing: Text(
                     '${r['xp'] ?? 0} XP',
                     style: const TextStyle(
-                      color: _oroBrillante,
+                      color: _primario,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -851,54 +1107,6 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
           ),
         ),
       ],
-    );
-  }
-}
-
-/// Título con brillo que se desliza (shimmer dorado).
-class _ShimmerText extends StatefulWidget {
-  final String text;
-  final TextStyle style;
-
-  const _ShimmerText(this.text, {required this.style});
-
-  @override
-  State<_ShimmerText> createState() => _ShimmerTextState();
-}
-
-class _ShimmerTextState extends State<_ShimmerText>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _c = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 1800),
-  )..repeat();
-
-  @override
-  void dispose() {
-    _c.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _c,
-      builder: (context, _) {
-        final v = _c.value;
-        return ShaderMask(
-          shaderCallback: (rect) => LinearGradient(
-            begin: Alignment(-1.2 + 2.4 * v, 0),
-            end: Alignment(-0.2 + 2.4 * v, 0),
-            colors: [_oro, _oroBrillante, _oro],
-            stops: const [0.2, 0.5, 0.8],
-          ).createShader(rect),
-          blendMode: BlendMode.srcIn,
-          child: Text(
-            widget.text,
-            style: widget.style.copyWith(color: Colors.white),
-          ),
-        );
-      },
     );
   }
 }

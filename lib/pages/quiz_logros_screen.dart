@@ -15,10 +15,14 @@ import '../services/quiz_storage_service.dart';
 import '../widgets/quiz_icon.dart';
 import '../widgets/quiz_pulso_widget.dart';
 
-const _fondoProfundo = Color(0xFF0A0E1A);
-const _card = Color(0xFF141B2E);
-const _oro = Color(0xFFC5A059);
-const _oroBrillante = Color(0xFFE9C86A);
+const _fondoKit = Color(0xFFF7F6FF); // fondo del kit
+const _primario = Color(0xFF6A5AE0); // violeta primario del kit
+const _secundario = Color(0xFF9087E5); // violeta claro (featured)
+const _lavanda = Color(0xFFC4D0FB); // acento lavanda del kit
+const _navyTexto = Color(0xFF0F172A); // texto fuerte = navy de la app
+const _grisClaro = Color(0xFF858494); // grey 2 del kit
+const _bordeKit = Color(0xFFEFEEFC); // grey 5 del kit (bordes de tarjetas)
+const _blanco = Colors.white;
 
 /// Galería de logros: el camino de la carrera judicial como escalones-gema.
 class QuizLogrosScreen extends StatefulWidget {
@@ -77,22 +81,22 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
     final hitos = QuizRules.hitosConCertificado;
     return Theme(
       data: Theme.of(context).copyWith(
-        textTheme: GoogleFonts.interTextTheme(
+        textTheme: GoogleFonts.rubikTextTheme(
             Theme.of(context).textTheme),
       ),
       child: Scaffold(
-      backgroundColor: _fondoProfundo,
+      backgroundColor: _fondoKit,
       appBar: AppBar(
         title: const Text(
           'Mis Logros',
-          style: TextStyle(fontWeight: FontWeight.bold, color: _oro),
+          style: TextStyle(fontWeight: FontWeight.bold, color: _primario),
         ),
-        backgroundColor: _fondoProfundo,
-        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: _fondoKit,
+        iconTheme: const IconThemeData(color: _navyTexto),
         elevation: 0,
         actions: [
             IconButton(
-              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
+              icon: const Icon(Icons.home_outlined, color: _primario),
               tooltip: 'Ir al inicio',
               onPressed: () {
                 mainTabIndex.value = 0;
@@ -115,7 +119,7 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
             ),
           ),
           _cargando
-              ? const Center(child: CircularProgressIndicator(color: _oro))
+              ? const Center(child: CircularProgressIndicator(color: _primario))
               : ListView.builder(
                   padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
                   itemCount: hitos.length + 1,
@@ -153,16 +157,16 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
         child: Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color: _card,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: _oro.withValues(alpha: 0.35)),
+            color: _blanco,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: _bordeKit, width: 2),
           ),
           child: Column(
             children: [
               Row(
                 children: [
                   const QuizIcon('scroll_seal',
-                      size: 34, color: _oroBrillante),
+                      size: 34, color: _primario),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
@@ -171,16 +175,16 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                         Text(
                           '$ganados de ${hitos.length} logros',
                           style: const TextStyle(
-                            color: Colors.white,
+                            color: _navyTexto,
                             fontSize: 18,
-                            fontWeight: FontWeight.w800,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           '$_xp XP acumulados',
-                          style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.55),
+                          style: const TextStyle(
+                            color: _grisClaro,
                             fontSize: 13,
                           ),
                         ),
@@ -199,8 +203,8 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                   child: LinearProgressIndicator(
                     value: v,
                     minHeight: 10,
-                    backgroundColor: Colors.white12,
-                    valueColor: const AlwaysStoppedAnimation(_oro),
+                    backgroundColor: _bordeKit,
+                    valueColor: const AlwaysStoppedAnimation(_primario),
                   ),
                 ),
               ),
@@ -241,15 +245,15 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                     width: 3,
                     height: 12,
                     color: desbloqueado
-                        ? _oro.withValues(alpha: 0.7)
-                        : Colors.white12,
+                        ? _primario.withValues(alpha: 0.6)
+                        : _bordeKit,
                   ),
                   Expanded(
                     child: Container(
                       width: 3,
                       color: desbloqueado
-                          ? _oro.withValues(alpha: 0.35)
-                          : Colors.white10,
+                          ? _primario.withValues(alpha: 0.3)
+                          : _bordeKit,
                     ),
                   ),
                   if (!esUltimo)
@@ -257,8 +261,8 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                       width: 3,
                       height: 12,
                       color: desbloqueado
-                          ? _oro.withValues(alpha: 0.7)
-                          : Colors.white12,
+                          ? _primario.withValues(alpha: 0.6)
+                          : _bordeKit,
                     ),
                 ],
               ),
@@ -277,20 +281,20 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           gradient: const LinearGradient(
-                            colors: [_oroBrillante, _oro],
+                            colors: [_primario, _secundario],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: _oro.withValues(alpha: 0.6),
+                              color: _primario.withValues(alpha: 0.4),
                               blurRadius: 16,
                               spreadRadius: 1,
                             ),
                           ],
                         ),
                         child: const QuizIcon('medal_ornate',
-                            size: 18, color: Color(0xFF0F172A)),
+                            size: 18, color: _blanco),
                       ),
                     )
                   : Container(
@@ -298,11 +302,11 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                       height: 34,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.white.withValues(alpha: 0.06),
-                        border: Border.all(color: Colors.white24),
+                        color: _blanco,
+                        border: Border.all(color: _bordeKit),
                       ),
                       child: const QuizIcon('lock_ornate',
-                          size: 17, color: Colors.white38),
+                          size: 17, color: _grisClaro),
                     ),
             ),
             const SizedBox(width: 12),
@@ -312,15 +316,11 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                 margin: const EdgeInsets.only(bottom: 12),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: desbloqueado
-                      ? _card
-                      : Colors.white.withValues(alpha: 0.03),
+                  color: desbloqueado ? _blanco : _fondoKit,
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: desbloqueado
-                        ? _oro.withValues(alpha: 0.55)
-                        : Colors.white.withValues(alpha: 0.12),
-                    width: desbloqueado ? 1.4 : 1,
+                    color: desbloqueado ? _lavanda : _bordeKit,
+                    width: desbloqueado ? 2 : 1,
                   ),
                 ),
                 child: Row(
@@ -331,10 +331,10 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                         children: [
                           Text(
                             hito.nombre,
-                            style: GoogleFonts.cinzel(
+                            style: GoogleFonts.rubik(
                               color:
-                                  desbloqueado ? Colors.white : Colors.white54,
-                              fontWeight: FontWeight.w800,
+                                  desbloqueado ? _navyTexto : _grisClaro,
+                              fontWeight: FontWeight.w700,
                               fontSize: 15,
                             ),
                           ),
@@ -346,8 +346,8 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                                         '${_fecha(logro['fecha'] as String)}'
                                     : 'Desbloqueado')
                                 : '${hito.xp} XP para desbloquear',
-                            style: TextStyle(
-                              color: Colors.white.withValues(alpha: 0.45),
+                            style: const TextStyle(
+                              color: _grisClaro,
                               fontSize: 12,
                             ),
                           ),
@@ -358,14 +358,14 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                       IconButton(
                         onPressed: () => _compartir(hito, logro),
                         icon: const QuizIcon('share_ornate',
-                            size: 20, color: _oroBrillante),
+                            size: 20, color: _primario),
                         tooltip: 'Compartir certificado',
                       )
                     else
                       Text(
                         '${hito.xp} XP',
                         style: TextStyle(
-                          color: _oro.withValues(alpha: 0.6),
+                          color: _primario.withValues(alpha: 0.6),
                           fontWeight: FontWeight.w700,
                           fontSize: 13,
                         ),

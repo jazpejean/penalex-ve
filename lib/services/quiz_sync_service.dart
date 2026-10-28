@@ -8,35 +8,37 @@ import '../models/caso_quiz.dart';
 import 'quiz_storage_service.dart';
 import 'quiz_validador_service.dart';
 
-/// Sincroniza los lotes VALIDADOS del worker (bucket `quiz/pendientes/` en
-/// Supabase) hacia el banco local de la app (`quiz/casos/`).
+/// Sincroniza los lotes VALIDADOS del worker (bucket `quiz/pendientes/{uid}/`
+/// en Supabase) hacia el banco PERSONAL del usuario (`quiz/casos_usuario/{uid}/`).
 ///
 /// Pipeline de cero error (sin revisión humana):
-///  1. Descarga cada lote pendiente.
+///  1. Descarga cada lote pendiente del usuario actual.
 ///  2. Pasa CADA caso por [QuizValidadorService] (gate 100% máquina: cita
 ///     por ley, fundamentación literal, firma de elementos, ambigüedad,
 ///     penas desde el corpus, dedup).
-///  3. Solo los casos aprobados entran al banco local.
-///  4. El lote se elimina de `pendientes/` (procesado = descartado).
+///  3. Solo los casos aprobados entran al banco personal.
+///  4. El lote se elimina de `pendientes/{uid}/` (procesado = descartado).
 ///
 /// El generador local (DeepSeek) queda como respaldo ÚNICO si no hay lote
-/// pendiente y el banco está bajo el umbral.
+/// pendiente y el banco personal está bajo el umbral.
 class QuizSyncService {
   static bool _sincronizando = false;
   static List<LeyCorpus>? _corpusCache;
 
-  /// Importa los lotes pendientes validados. Devuelve cuántos casos entraron
-  /// al banco local. Idempotente y seguro de reintentar (los lotes solo se
-  /// borran cuando se procesaron completos).
+  /// Importa los lotes pendientes validados del usuario actual. Devuelve
+  /// cuántos casos entraron al banco personal. Idempotente y seguro de
+  /// reintentar (los lotes solo se borran cuando se procesaron completos).
   static Future<int> sincronizarPendientes({List<LeyCorpus>? corpus}) async {
     if (_sincronizando) return 0;
     _sincronizando = true;
     var importados = 0;
     try {
       final supabase = Supabase.instance.client;
-      final objs = await supabase.storage.from('quiz').list(path: 'pendientes');
+      final uid = QuizStorageService.uidSesion;
+      final ruta = uid == null ? 'pendientes' : 'pendientes/$uid';
+      final objs = await supabase.storage.from('quiz').list(path: ruta);
       if (objs.isEmpty) return 0;
-      final leyes = corpus ?? await _cargarCorpusAssets();
+      final leyes = corpus ?? await cargarCorpusAssets();
       final validador = QuizValidadorService();
       final existentes = await QuizStorageService().listarCasos();
       final idsPrevios = existentes.map((c) => c.id).toSet();
@@ -45,7 +47,7 @@ class QuizSyncService {
         try {
           final bytes = await supabase.storage
               .from('quiz')
-              .download('pendientes/${obj.name}');
+              .download('$ruta/${obj.name}');
           final json = jsonDecode(utf8.decode(bytes));
           final casos = json is List
               ? json
@@ -80,7 +82,7 @@ class QuizSyncService {
           // reporte de errores del usuario sirve de cuarentena posterior).
           await supabase.storage
               .from('quiz')
-              .remove(['pendientes/${obj.name}']);
+              .remove(['$ruta/${obj.name}']);
         } catch (e) {
           // No se borra el lote si falla su procesamiento (reintento seguro).
           debugPrint('⚠️ Lote ${obj.name} no procesado: $e');
@@ -97,7 +99,7 @@ class QuizSyncService {
 
   /// Carga el corpus de leyes desde los assets locales (esquema local:
   /// {secciones, articulos:[{numero_texto, parrafos}]}) — cacheado.
-  static Future<List<LeyCorpus>> _cargarCorpusAssets() async {
+  static Future<List<LeyCorpus>> cargarCorpusAssets() async {
     if (_corpusCache != null) return _corpusCache!;
     const dir = 'assets/data/leyes';
     // _indice.json es un dict con "leyes": [{"id": "codigo_penal_2005", ...}];
