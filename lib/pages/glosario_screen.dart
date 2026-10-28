@@ -285,7 +285,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
       bottomNavigationBar: const MainBottomBar(),
             appBar: AppBarInstitucional(
         title: 'Glosario Jurídico',
-        mostrarBack: true,
+        mostrarDrawer: true,
         mostrarHome: true,
         actions: [
           // Contador de términos

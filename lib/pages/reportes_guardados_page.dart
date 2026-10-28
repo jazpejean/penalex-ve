@@ -180,7 +180,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
       backgroundColor: fondoGris,
             appBar: AppBarInstitucional(
         title: 'REPORTES LOCALES',
-        mostrarBack: true,
+        mostrarDrawer: true,
         mostrarHome: true,
       ),
       body: _cargando

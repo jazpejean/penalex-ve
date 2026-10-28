@@ -94,7 +94,7 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
       backgroundColor: fondoGris,
             appBar: AppBarInstitucional(
         title: 'CÁLCULOS GUARDADOS',
-        mostrarBack: true,
+        mostrarDrawer: true,
         mostrarHome: true,
       ),
       body: _cargando
