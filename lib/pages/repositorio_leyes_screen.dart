@@ -6,6 +6,8 @@ import '../services/leyes_repositorio_service.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'ley_estructura_screen.dart';
+import '../config/app_colors.dart';
+import '../widgets/app_bar_institucional.dart';
 
 /// Repositorio de Leyes (apariencia similar al repositorio de jurisprudencias).
 ///
@@ -22,9 +24,9 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
   final LeyesRepositorioService _service = LeyesRepositorioService();
   final TextEditingController _searchController = TextEditingController();
 
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
-  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
+  
+  
+  
   static Color get fondoGris => TemaGlobal.superficie;
 
   List<LeyMeta> _leyes = [];
@@ -102,34 +104,10 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
     return Scaffold(
       drawer: const AppDrawer(currentRoute: '/repositorio_leyes'),
       bottomNavigationBar: const MainBottomBar(),
-      appBar: AppBar(
-        title: const Text(
-          'Biblioteca Jurídica',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.5,
-            color: dorado,
-          ),
-        ),
-        backgroundColor: azulMarino,
-        foregroundColor: dorado,
-        elevation: 0,
-        actions: [
-          if (!_cargando && _resultados.isNotEmpty)
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: Text(
-                  '${_resultados.length} resultado${_resultados.length == 1 ? '' : 's'}',
-                  style: const TextStyle(
-                    color: dorado,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                  ),
-                ),
-              ),
-            ),
-        ],
+            appBar: AppBarInstitucional(
+        title: 'Biblioteca Jurídica',
+        mostrarBack: true,
+        mostrarHome: true,
       ),
       backgroundColor: fondoGris,
       body: Column(
@@ -145,10 +123,10 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: azulMarino,
+        color: AppColors.azulMarino,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: AppColors.a12),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -163,13 +141,13 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
             decoration: InputDecoration(
               hintText: 'Busca una ley o un artículo (ej. "250", "homicidio", "COPP")...',
               hintStyle: TextStyle(
-                color: Colors.white.withOpacity(0.5),
+                color: Colors.white.withValues(alpha: AppColors.a48),
                 fontSize: 15,
               ),
-              prefixIcon: const Icon(Icons.search, color: dorado, size: 22),
+              prefixIcon: const Icon(Icons.search, color: AppColors.dorado, size: 22),
               suffixIcon: _searchController.text.isNotEmpty
                   ? IconButton(
-                      icon: const Icon(Icons.clear, color: dorado, size: 20),
+                      icon: const Icon(Icons.clear, color: AppColors.dorado, size: 20),
                       onPressed: () {
                         _searchController.clear();
                         setState(() {});
@@ -178,14 +156,14 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
                     )
                   : null,
               filled: true,
-              fillColor: Colors.white.withOpacity(0.1),
+              fillColor: Colors.white.withValues(alpha: AppColors.a12),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide.none,
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(color: dorado, width: 2),
+                borderSide: const BorderSide(color: AppColors.dorado, width: 2),
               ),
               contentPadding: const EdgeInsets.symmetric(
                 horizontal: 16,
@@ -201,12 +179,12 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
           const SizedBox(height: 8),
           Row(
             children: [
-              Icon(Icons.auto_awesome, size: 12, color: dorado.withOpacity(0.6)),
+              Icon(Icons.auto_awesome, size: 12, color: AppColors.dorado.withValues(alpha: AppColors.a48)),
               const SizedBox(width: 4),
               Text(
                 'Escribe el número de un artículo (ej. "250") o un tema (ej. "homicidio", "drogas")...',
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.4),
+                  color: Colors.white.withValues(alpha: AppColors.a48),
                   fontSize: 12,
                 ),
               ),
@@ -220,7 +198,7 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
   Widget _buildCuerpo() {
     if (_cargando) {
       return Center(
-        child: CircularProgressIndicator(color: acento, strokeWidth: 3),
+        child: CircularProgressIndicator(color: AppColors.acento, strokeWidth: 3),
       );
     }
     if (_error.isNotEmpty && _leyes.isEmpty) {
@@ -231,7 +209,7 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(color: acento, strokeWidth: 3),
+            CircularProgressIndicator(color: AppColors.acento, strokeWidth: 3),
             const SizedBox(height: 16),
             Text(
               _progresoIndice.isEmpty
@@ -272,10 +250,10 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       elevation: 2,
-      shadowColor: azulMarino.withOpacity(0.1),
+      shadowColor: AppColors.azulMarino.withValues(alpha: AppColors.a12),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(14),
-        side: BorderSide(color: acento.withValues(alpha: 0.45), width: 1.2),
+        side: BorderSide(color: AppColors.acento.withValues(alpha: 0.45), width: 1.2),
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(14),
@@ -288,10 +266,10 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
                 width: 44,
                 height: 44,
                 decoration: BoxDecoration(
-                  color: azulMarino,
+                  color: AppColors.azulMarino,
                   borderRadius: BorderRadius.circular(11),
                 ),
-                child: const Icon(Icons.menu_book_rounded, color: dorado, size: 22),
+                child: const Icon(Icons.menu_book_rounded, color: AppColors.dorado, size: 22),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -319,7 +297,7 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
                   ],
                 ),
               ),
-              Icon(Icons.chevron_right, color: acento),
+              Icon(Icons.chevron_right, color: AppColors.acento),
             ],
           ),
         ),
@@ -345,7 +323,7 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: azulMarino,
+                      color: AppColors.azulMarino,
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -353,7 +331,7 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
-                        color: dorado,
+                        color: AppColors.dorado,
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
                       ),
@@ -423,20 +401,20 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.search_off_rounded, size: 80, color: azulMarino.withOpacity(0.2)),
+            Icon(Icons.search_off_rounded, size: 80, color: AppColors.azulMarino.withValues(alpha: AppColors.a18)),
             const SizedBox(height: 24),
             Text(
               'No se encontraron resultados',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: azulMarino.withOpacity(0.7),
+                color: AppColors.azulMarino.withValues(alpha: AppColors.a48),
               ),
             ),
             const SizedBox(height: 12),
             Text(
               'Intenta con otros términos de búsqueda',
-              style: TextStyle(fontSize: 14, color: azulMarino.withOpacity(0.5)),
+              style: TextStyle(fontSize: 14, color: AppColors.azulMarino.withValues(alpha: AppColors.a48)),
             ),
           ],
         ),
@@ -451,14 +429,14 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.cloud_off_rounded, size: 80, color: azulMarino.withOpacity(0.2)),
+            Icon(Icons.cloud_off_rounded, size: 80, color: AppColors.azulMarino.withValues(alpha: AppColors.a18)),
             const SizedBox(height: 24),
             Text(
               _error,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
-                color: azulMarino.withOpacity(0.7),
+                color: AppColors.azulMarino.withValues(alpha: AppColors.a48),
               ),
             ),
             const SizedBox(height: 16),
@@ -467,8 +445,8 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
               icon: const Icon(Icons.refresh),
               label: const Text('Reintentar'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: azulMarino,
-                foregroundColor: dorado,
+                backgroundColor: AppColors.azulMarino,
+                foregroundColor: AppColors.dorado,
               ),
             ),
           ],

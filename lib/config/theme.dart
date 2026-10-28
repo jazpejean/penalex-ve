@@ -6,55 +6,55 @@ class AppTheme {
   /// Tema claro único de Penalex VE.
   ///
   /// Paleta institucional: azul marino (#0F172A) como primario,
-  /// dorado (#C5A059) como acento secundario, fondo gris claro (#F1F5F9).
+  /// AppColors.dorado (#C5A059) como AppColors.acento secundario, fondo gris claro (#F1F5F9).
   static ThemeData get lightTheme => ThemeData(
         useMaterial3: true,
-        primaryColor: AppColors.primary,
+        primaryColor: AppColors.azulMarino,
         scaffoldBackgroundColor: AppColors.background,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.primary,
-          primary: AppColors.primary,
-          secondary: AppColors.secondary,
+          seedColor: AppColors.azulMarino,
+          primary: AppColors.azulMarino,
+          secondary: AppColors.dorado,
         ).copyWith(
           // Superficies institucionales: blanco para tarjetas, gris claro para fondo.
-          surface: const Color(0xFFFFFFFF),
-          onSurface: const Color(0xFF0F172A),
-          onSurfaceVariant: const Color(0xFF475569),
-          surfaceContainerLowest: const Color(0xFFF1F5F9),
-          surfaceContainerLow: const Color(0xFFFFFFFF),
-          surfaceContainer: const Color(0xFFFFFFFF),
-          surfaceContainerHigh: const Color(0xFFE2E8F0),
-          surfaceContainerHighest: const Color(0xFFE2E8F0),
-          outline: const Color(0xFFE2E8F0),
-          outlineVariant: const Color(0xFFE2E8F0),
+          surface: AppColors.onAzulMarino,
+          onSurface: AppColors.azulMarino,
+          onSurfaceVariant: AppColors.textoSecundario,
+          surfaceContainerLowest: AppColors.superficie,
+          surfaceContainerLow: AppColors.onAzulMarino,
+          surfaceContainer: AppColors.onAzulMarino,
+          surfaceContainerHigh: AppColors.capa,
+          surfaceContainerHighest: AppColors.capa,
+          outline: AppColors.capa,
+          outlineVariant: AppColors.capa,
         ),
-        cardColor: const Color(0xFFFFFFFF),
-        dialogTheme: const DialogThemeData(
-          backgroundColor: Color(0xFFFFFFFF),
+        cardColor: AppColors.onAzulMarino,
+        dialogTheme: DialogThemeData(
+          backgroundColor: AppColors.onAzulMarino,
           surfaceTintColor: Colors.transparent,
         ),
-        bottomSheetTheme: const BottomSheetThemeData(
-          backgroundColor: Color(0xFFFFFFFF),
+        bottomSheetTheme: BottomSheetThemeData(
+          backgroundColor: AppColors.onAzulMarino,
           surfaceTintColor: Colors.transparent,
         ),
-        dividerTheme: const DividerThemeData(
-          color: Color(0xFFE2E8F0),
+        dividerTheme: DividerThemeData(
+          color: AppColors.capa,
         ),
         appBarTheme: AppBarTheme(
-          backgroundColor: AppColors.primary,
-          foregroundColor: AppColors.secondary,
+          backgroundColor: AppColors.azulMarino,
+          foregroundColor: AppColors.dorado,
           centerTitle: true,
           titleTextStyle: TextStyle(
-            color: AppColors.secondary,
+            color: AppColors.dorado,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.primary,
-            foregroundColor: AppColors.secondary,
-            side: BorderSide(color: AppColors.secondary, width: 1),
+            backgroundColor: AppColors.azulMarino,
+            foregroundColor: AppColors.dorado,
+            side: BorderSide(color: AppColors.dorado, width: 1),
             minimumSize: const Size(double.infinity, 50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -70,59 +70,59 @@ class AppTheme {
         ),
       );
 
-  /// Tema oscuro de Penalex VE: fondo navy, superficies slate, dorado intacto.
+  /// Tema oscuro de Penalex VE: fondo navy, superficies slate, AppColors.dorado intacto.
   static ThemeData get darkTheme => ThemeData(
         useMaterial3: true,
         brightness: Brightness.dark,
-        primaryColor: AppColors.primary,
-        scaffoldBackgroundColor: const Color(0xFF0F172A),
+        primaryColor: AppColors.azulMarino,
+        scaffoldBackgroundColor: AppColors.azulMarino,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.primary,
+          seedColor: AppColors.azulMarino,
           brightness: Brightness.dark,
-          primary: AppColors.primary,
-          secondary: AppColors.secondary,
-          surface: const Color(0xFF1E293B),
+          primary: AppColors.azulMarino,
+          secondary: AppColors.dorado,
+          surface: AppColors.tarjeta,
         ).copyWith(
           // Paleta oscura institucional: navy de fondo, slate para tarjetas.
-          surface: const Color(0xFF1E293B),
+          surface: AppColors.tarjeta,
           onSurface: Colors.white,
-          onSurfaceVariant: const Color(0xFF94A3B8),
-          surfaceContainerLowest: const Color(0xFF0F172A),
-          surfaceContainerLow: const Color(0xFF1E293B),
-          surfaceContainer: const Color(0xFF1E293B),
-          surfaceContainerHigh: const Color(0xFF334155),
-          surfaceContainerHighest: const Color(0xFF334155),
-          outline: const Color(0xFF334155),
-          outlineVariant: const Color(0xFF334155),
+          onSurfaceVariant: AppColors.textoSecundario,
+          surfaceContainerLowest: AppColors.azulMarino,
+          surfaceContainerLow: AppColors.tarjeta,
+          surfaceContainer: AppColors.tarjeta,
+          surfaceContainerHigh: AppColors.capa,
+          surfaceContainerHighest: AppColors.capa,
+          outline: AppColors.capa,
+          outlineVariant: AppColors.capa,
           surfaceTint: Colors.transparent,
         ),
-        cardColor: const Color(0xFF1E293B),
-        dialogTheme: const DialogThemeData(
-          backgroundColor: Color(0xFF1E293B),
+        cardColor: AppColors.tarjeta,
+        dialogTheme: DialogThemeData(
+          backgroundColor: AppColors.tarjeta,
           surfaceTintColor: Colors.transparent,
         ),
-        bottomSheetTheme: const BottomSheetThemeData(
-          backgroundColor: Color(0xFF1E293B),
+        bottomSheetTheme: BottomSheetThemeData(
+          backgroundColor: AppColors.tarjeta,
           surfaceTintColor: Colors.transparent,
         ),
-        dividerTheme: const DividerThemeData(
-          color: Color(0xFF334155),
+        dividerTheme: DividerThemeData(
+          color: AppColors.capa,
         ),
         appBarTheme: AppBarTheme(
-          backgroundColor: AppColors.primary,
-          foregroundColor: AppColors.secondary,
+          backgroundColor: AppColors.azulMarino,
+          foregroundColor: AppColors.dorado,
           centerTitle: true,
           titleTextStyle: TextStyle(
-            color: AppColors.secondary,
+            color: AppColors.dorado,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.primary,
-            foregroundColor: AppColors.secondary,
-            side: BorderSide(color: AppColors.secondary, width: 1),
+            backgroundColor: AppColors.azulMarino,
+            foregroundColor: AppColors.dorado,
+            side: BorderSide(color: AppColors.dorado, width: 1),
             minimumSize: const Size(double.infinity, 50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),

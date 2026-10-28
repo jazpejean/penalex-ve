@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import '../config/app_colors.dart';
 
 /// Transición "cortina dorada": la página entra con escala+desvanecido mientras
 /// dos mitades doradas se cierran (0→1) y se abren (1→0) en 700 ms.
 ///
 /// Se usa en toda la navegación del módulo quiz (lobby → juego → logros).
 Route<void> cortinaDorada(Widget page) {
-  const oro = Color(0xFFC5A059);
-  const oroBrillante = Color(0xFFE9C86A);
+  const oro = AppColors.dorado;
+  const oroBrillante = AppColors.oroBrillante;
 
   return PageRouteBuilder<void>(
     transitionDuration: const Duration(milliseconds: 700),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
 import '../services/leyes_repositorio_service.dart';
 import 'tabla_anexo.dart';
+import '../config/app_colors.dart';
 
 /// Muestra un artículo en una ventana flotante (bottom sheet), sin salir de la
 /// pantalla actual. Reutilizable desde la calculadora, el chat, etc.
@@ -19,8 +20,8 @@ Future<void> mostrarArticuloLey(
 }
 
 class _ArticuloLeySheet extends StatelessWidget {
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
+  
+  
   static Color get grisOscuro => TemaGlobal.tarjeta;
 
   final ResultadoLey resultado;
@@ -58,13 +59,13 @@ class _ArticuloLeySheet extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
-                    color: dorado,
+                    color: AppColors.dorado,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
                     titulo,
                     style: const TextStyle(
-                      color: azulMarino,
+                      color: AppColors.azulMarino,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
@@ -102,7 +103,7 @@ class _ArticuloLeySheet extends StatelessWidget {
                       child: Text(
                         reg.titulo!,
                         style: TextStyle(
-                          color: dorado.withOpacity(0.8),
+                          color: AppColors.dorado.withValues(alpha: AppColors.a48),
                           fontSize: 12,
                           fontStyle: FontStyle.italic,
                         ),
@@ -174,7 +175,7 @@ class _ArticuloLeySheet extends StatelessWidget {
   Widget _subtitulo(String texto) => Text(
         texto,
         style: const TextStyle(
-          color: Color(0xFFC5A059),
+          color: AppColors.dorado,
           fontWeight: FontWeight.bold,
           fontSize: 14,
         ),

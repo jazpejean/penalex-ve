@@ -5,6 +5,7 @@ import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
+import '../widgets/app_bar_institucional.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -101,11 +102,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
       backgroundColor: fondoGris,
-      appBar: AppBar(
-        backgroundColor: TemaGlobal.azulMarino,
-        elevation: 0,
-        title: Text("Recuperar cuenta", style: TextStyle(color: TemaGlobal.dorado)),
-        centerTitle: true,
+            appBar: AppBarInstitucional(
+        title: 'Recuperar cuenta',
+        mostrarBack: true,
+        mostrarHome: true,
       ),
       body: SafeArea(
         child: Padding(

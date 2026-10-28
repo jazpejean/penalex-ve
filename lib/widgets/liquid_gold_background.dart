@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import '../config/app_colors.dart';
 
 /// Fondo "liquid gold": shader GLSL animado (navy + vetas doradas) bajo
 /// cualquier contenido.
@@ -56,7 +57,7 @@ class _LiquidGoldBackgroundState extends State<LiquidGoldBackground>
   Widget build(BuildContext context) {
     final programa = _program;
     if (programa == null) {
-      return Container(color: const Color(0xFF0A0E1A), child: widget.child);
+      return Container(color: AppColors.azulMarino, child: widget.child);
     }
     return AnimatedBuilder(
       animation: _reloj,

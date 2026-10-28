@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import '../config/app_colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -62,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0F172A), // Azul medianoche (mismo que usas)
+      backgroundColor: AppColors.azulMarino, // Azul medianoche (mismo que usas)
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -73,8 +74,8 @@ class _SplashScreenState extends State<SplashScreen>
                 center: const Alignment(0, -0.1),
                 radius: 1.2,
                 colors: [
-                  const Color(0xFF0F172A).withValues(alpha: 0.70),
-                  const Color(0xFF0B1022),
+                  AppColors.azulMarino.withValues(alpha: 0.70),
+                  AppColors.azulMarino,
                 ],
               ),
             ),
@@ -104,7 +105,7 @@ class _SplashScreenState extends State<SplashScreen>
                           scale: _logoScale.value,
                           child: const _Logo(
                             size: 118,
-                            colorFallback: Color(0xFFC5A059),
+                            colorFallback: AppColors.dorado,
                           ),
                         ),
                       ),
@@ -149,7 +150,7 @@ class _Logo extends StatelessWidget {
       height: size,
       width: size,
       decoration: BoxDecoration(
-        color: const Color(0xFF0F172A), // Azul marino
+        color: AppColors.azulMarino, // Azul marino
         shape: BoxShape.circle,
       ),
       child: Icon(
@@ -196,9 +197,9 @@ class _SparkleField {
       return s / 0x7fffffff;
     }
 
-    const yellow = Color(0xFFF4D03F);
-    const blue = Color(0xFF2E86C1);
-    const red = Color(0xFFE74C3C);
+    const yellow = AppColors.accent;
+    const blue = AppColors.info;
+    final red = AppColors.error;
     final palette = <Color>[yellow, blue, red];
 
     return List<_Sparkle>.generate(count, (i) {
@@ -241,7 +242,7 @@ class _SparkleFieldPainter extends CustomPainter {
       ..shader = RadialGradient(
         radius: 1,
         colors: [
-          const Color(0xFF2E86C1).withValues(alpha: 0.06),
+          AppColors.info.withValues(alpha: 0.06),
           Colors.transparent,
         ],
       ).createShader(Rect.fromCircle(center: center, radius: maxR));

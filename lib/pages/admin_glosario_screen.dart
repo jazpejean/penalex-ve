@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../pages/main_screen.dart';
-import '../utils/main_tab_controller.dart';
 import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../services/glosario_service.dart';
+import '../widgets/app_snackbar.dart';
+import '../widgets/app_bar_institucional.dart';
 
 class AdminGlosarioScreen extends StatefulWidget {
   const AdminGlosarioScreen({super.key});
@@ -15,10 +15,10 @@ class AdminGlosarioScreen extends StatefulWidget {
 }
 
 class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
-  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
-  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
+  
+  
+  /// Acento de marca: azul marino en modo claro, AppColors.dorado en modo oscuro.
+  
   static Color get fondoGris => TemaGlobal.superficie;
 
   final TextEditingController _terminoController = TextEditingController();
@@ -41,12 +41,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
     final definicion = _definicionController.text.trim();
 
     if (termino.isEmpty || definicion.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('❌ Completa todos los campos'),
-          backgroundColor: AppColors.error,
-        ),
-      );
+      AppSnackBar.error(context, '❌ Completa todos los campos');
       return;
     }
 
@@ -95,7 +90,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            style: TextButton.styleFrom(foregroundColor: AppColors.error),
             child: const Text('Eliminar'),
           ),
         ],
@@ -130,29 +125,10 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Gestionar Glosario',
-          style: TextStyle(color: dorado, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: azulMarino,
-        foregroundColor: dorado,
-        elevation: 0,
-        centerTitle: true,
-        actions: [
-            IconButton(
-              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
-              tooltip: 'Ir al inicio',
-              onPressed: () {
-                mainTabIndex.value = 0;
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (_) => const MainScreen()),
-                  (r) => false,
-                );
-              },
-            ),
-        ],
+            appBar: AppBarInstitucional(
+        title: 'Gestionar Glosario',
+        mostrarBack: true,
+        mostrarHome: true,
       ),
       backgroundColor: fondoGris,
       body: Column(
@@ -216,12 +192,12 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
                         : const Icon(Icons.add),
                     label: const Text('Agregar término'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: azulMarino,
-                      foregroundColor: dorado,
+                      backgroundColor: AppColors.azulMarino,
+                      foregroundColor: AppColors.dorado,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
-                        side: const BorderSide(color: dorado, width: 1.5),
+                        side: const BorderSide(color: AppColors.dorado, width: 1.5),
                       ),
                     ),
                   ),
@@ -273,7 +249,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
 
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(
-                    child: CircularProgressIndicator(color: acento),
+                    child: CircularProgressIndicator(color: AppColors.acento),
                   );
                 }
 
@@ -325,7 +301,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                         side: BorderSide(
-                          color: acento.withValues(alpha: 0.3),
+                          color: AppColors.acento.withValues(alpha: 0.3),
                           width: 1,
                         ),
                       ),
@@ -334,7 +310,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                            color: acento.withValues(alpha: 0.1),
+                            color: AppColors.acento.withValues(alpha: 0.1),
                             shape: BoxShape.circle,
                           ),
                           child: Center(
@@ -343,7 +319,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: acento,
+                                color: AppColors.acento,
                               ),
                             ),
                           ),
@@ -363,7 +339,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
                           overflow: TextOverflow.ellipsis,
                         ),
                         trailing: IconButton(
-                          icon: const Icon(Icons.delete, color: Colors.red),
+                          icon: Icon(Icons.delete, color: AppColors.error),
                           onPressed: () => _eliminarTermino(doc.id, termino),
                         ),
                         children: [

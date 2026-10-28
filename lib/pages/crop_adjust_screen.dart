@@ -7,6 +7,7 @@ import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../services/document_scanner_service_pro.dart';
 import 'filter_preview_screen.dart';
+import '../widgets/app_bar_institucional.dart';
 
 /// Pantalla para ajustar manualmente las 4 esquinas del documento
 /// Permite arrastrar cada esquina para perfeccionar la detección automática
@@ -57,44 +58,10 @@ class _CropAdjustScreenState extends State<CropAdjustScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TemaGlobal.superficie,
-      appBar: AppBar(
-        backgroundColor: TemaGlobal.superficie,
-        leading: IconButton(
-          icon: Icon(Icons.close, color: TemaGlobal.texto),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text(
-          'Ajustar Bordes',
-          style: TextStyle(color: TemaGlobal.texto),
-        ),
-        actions: [
-          if (_isProcessing)
-            const Center(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation<Color>(AppColors.secondary),
-                  ),
-                ),
-              ),
-            )
-          else
-            TextButton.icon(
-              onPressed: _applyAndContinue,
-              icon: const Icon(Icons.check, color: AppColors.secondary),
-              label: const Text(
-                'Aplicar',
-                style: TextStyle(
-                  color: AppColors.secondary,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-        ],
+            appBar: AppBarInstitucional(
+        title: 'Ajustar Bordes',
+        mostrarBack: true,
+        mostrarHome: true,
       ),
       body: Column(
         children: [
@@ -198,7 +165,7 @@ class _CropAdjustScreenState extends State<CropAdjustScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
-          side: BorderSide(color: TemaGlobal.texto.withOpacity(0.2)),
+          side: BorderSide(color: TemaGlobal.texto.withValues(alpha: AppColors.a18)),
         ),
       ),
     );
@@ -369,7 +336,7 @@ class _CropAdjustScreenState extends State<CropAdjustScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
           ),
         );
       }
@@ -464,7 +431,7 @@ class _CropOverlayPainter extends CustomPainter {
     
     canvas.drawPath(
       path,
-      Paint()..color = Colors.black.withOpacity(0.6),
+      Paint()..color = Colors.black.withValues(alpha: AppColors.a48),
     );
   }
 

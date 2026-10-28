@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../pages/main_screen.dart';
-import '../utils/main_tab_controller.dart';
 
 import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../services/role_service.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/role_guard.dart';
+import '../widgets/app_snackbar.dart';
+import '../widgets/app_bar_institucional.dart';
 
 class AdminUsersScreen extends StatefulWidget {
   const AdminUsersScreen({super.key});
@@ -118,7 +118,7 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
                 foregroundColor: Colors.white,
               ),
               onPressed: () => Navigator.pop(context, selectedRole),
-              child: const Text('Cambiar'),
+              child: Text('Cambiar'),
             ),
           ],
         ),
@@ -135,19 +135,14 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Rol actualizado a ${RoleService.getRoleDisplayName(result)}'),
-              backgroundColor: Colors.green,
+              backgroundColor: AppColors.success,
             ),
           );
         }
         await _loadUsers();
       } else {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Error al actualizar el rol'),
-              backgroundColor: Colors.red,
-            ),
-          );
+          AppSnackBar.error(context, 'Error al actualizar el rol');
         }
       }
       
@@ -161,30 +156,11 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
       requiredRole: UserRole.admin,
       child: Scaffold(
         drawer: const AppDrawer(currentRoute: '/admin_users'),
-        appBar: AppBar(
-          title: const Text('Gestión de Usuarios'),
-          backgroundColor: AppColors.primary,
-          foregroundColor: AppColors.secondary,
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.refresh),
-              onPressed: _loadUsers,
-              tooltip: 'Recargar',
-            ),
-            IconButton(
-              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
-              tooltip: 'Ir al inicio',
-              onPressed: () {
-                mainTabIndex.value = 0;
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (_) => const MainScreen()),
-                  (r) => false,
-                );
-              },
-            ),
-          ],
-        ),
+              appBar: AppBarInstitucional(
+        title: 'Gestión de Usuarios',
+        mostrarBack: true,
+        mostrarHome: true,
+      ),
         body: Column(
           children: [
             // Barra de búsqueda

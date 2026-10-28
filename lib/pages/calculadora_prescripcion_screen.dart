@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../config/app_colors.dart';
 import '../services/prescripcion_service.dart';
+import '../widgets/app_bar_institucional.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'redactor_documentos_screen.dart';
@@ -19,10 +21,6 @@ class CalculadoraPrescripcionScreen extends StatefulWidget {
 
 class _CalculadoraPrescripcionScreenState
     extends State<CalculadoraPrescripcionScreen> {
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
-  static const Color grisOscuro = Color(0xFF1E293B);
-
   bool _modoPena = false; // false = acción penal (art. 108), true = pena (art. 112)
   TipoPenaPrescripcion _tipo = TipoPenaPrescripcion.prision;
 
@@ -115,10 +113,7 @@ class _CalculadoraPrescripcionScreenState
       helpText: 'Fecha del hecho / última actuación',
       builder: (context, child) => Theme(
         data: Theme.of(context).copyWith(
-          colorScheme: const ColorScheme.dark(
-            primary: dorado,
-            surface: grisOscuro,
-          ),
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.azulMarino),
         ),
         child: child!,
       ),
@@ -154,24 +149,12 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const AppDrawer(currentRoute: '/calculadora_prescripcion'),
-      backgroundColor: azulMarino,
+      backgroundColor: AppColors.superficie,
       bottomNavigationBar: const MainBottomBar(),
-      appBar: AppBar(
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: const Icon(Icons.menu),
-            color: dorado,
-            tooltip: 'Menú',
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
-        title: const Text(
-          'Calculadora de Prescripción',
-          style: TextStyle(color: dorado, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: azulMarino,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: dorado),
+      appBar: AppBarInstitucional(
+        title: 'Calculadora de Prescripción',
+        mostrarBack: true,
+        mostrarHome: true,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -199,16 +182,16 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: grisOscuro,
+        color: AppColors.tarjeta,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             '¿Qué prescripción calculas?',
             style: TextStyle(
-              color: Colors.white,
+              color: AppColors.texto,
               fontWeight: FontWeight.bold,
               fontSize: 15,
             ),
@@ -240,7 +223,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
 
   Widget _buildModoButton(String label, bool activo, VoidCallback onTap) {
     return Material(
-      color: activo ? dorado : Colors.transparent,
+      color: activo ? AppColors.dorado : Colors.transparent,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
@@ -249,13 +232,13 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
           padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: dorado.withValues(alpha: 0.4)),
+            border: Border.all(color: AppColors.dorado.withValues(alpha: 0.4)),
           ),
           child: Text(
             label,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: activo ? azulMarino : Colors.white70,
+              color: activo ? AppColors.onDorado : AppColors.textoSecundario,
               fontWeight: FontWeight.w600,
               fontSize: 13,
             ),
@@ -269,7 +252,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: grisOscuro,
+        color: AppColors.tarjeta,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -278,7 +261,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
           if (!_modoPena && _tipo != TipoPenaPrescripcion.prision) ...[
             Text(
               'Tipo de pena',
-              style: TextStyle(color: Colors.white70, fontSize: 13),
+              style: TextStyle(color: AppColors.textoSecundario, fontSize: 13),
             ),
             const SizedBox(height: 8),
             _buildTipoSelector(),
@@ -289,13 +272,13 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
               _modoPena
                   ? 'Pena impuesta (años, ej. 12.5)'
                   : 'Pena máxima del delito (años, ej. 12.5)',
-              style: TextStyle(color: Colors.white70, fontSize: 13),
+              style: TextStyle(color: AppColors.textoSecundario, fontSize: 13),
             ),
             const SizedBox(height: 8),
             TextField(
               controller: _penaController,
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(color: AppColors.texto),
               decoration: _dec('Ej. 12.5'),
             ),
             const SizedBox(height: 16),
@@ -303,13 +286,13 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
           if (!_modoPena && _tipo == TipoPenaPrescripcion.arresto) ...[
             Text(
               'Duración del arresto (meses)',
-              style: TextStyle(color: Colors.white70, fontSize: 13),
+              style: TextStyle(color: AppColors.textoSecundario, fontSize: 13),
             ),
             const SizedBox(height: 8),
             TextField(
               controller: _arrestoController,
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(color: AppColors.texto),
               decoration: _dec('Ej. 3'),
             ),
             const SizedBox(height: 16),
@@ -317,24 +300,24 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
           if (!_modoPena && _tipo == TipoPenaPrescripcion.multa) ...[
             Text(
               'Monto de la multa (U.T.)',
-              style: TextStyle(color: Colors.white70, fontSize: 13),
+              style: TextStyle(color: AppColors.textoSecundario, fontSize: 13),
             ),
             const SizedBox(height: 8),
             TextField(
               controller: _multaController,
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(color: AppColors.texto),
               decoration: _dec('Ej. 200'),
             ),
             const SizedBox(height: 16),
           ],
           Text(
             'Fecha del hecho / última actuación (art. 109 CP)',
-            style: TextStyle(color: Colors.white70, fontSize: 13),
+            style: TextStyle(color: AppColors.textoSecundario, fontSize: 13),
           ),
           const SizedBox(height: 8),
           Material(
-            color: azulMarino,
+            color: AppColors.campoTexto,
             borderRadius: BorderRadius.circular(12),
             child: InkWell(
               borderRadius: BorderRadius.circular(12),
@@ -343,15 +326,15 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
                 padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: dorado.withValues(alpha: 0.4)),
+                  border: Border.all(color: AppColors.dorado.withValues(alpha: 0.4)),
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.calendar_month, color: dorado, size: 20),
+                    const Icon(Icons.calendar_month, color: AppColors.dorado, size: 20),
                     const SizedBox(width: 10),
                     Text(
                       DateFormat('dd/MM/yyyy').format(_fechaBase),
-                      style: const TextStyle(color: Colors.white, fontSize: 15),
+                      style: TextStyle(color: AppColors.texto, fontSize: 15),
                     ),
                   ],
                 ),
@@ -366,16 +349,16 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
   InputDecoration _dec(String hint) {
     return InputDecoration(
       hintText: hint,
-      hintStyle: TextStyle(color: Colors.white38, fontSize: 14),
+      hintStyle: TextStyle(color: AppColors.textoTenue, fontSize: 14),
       filled: true,
-      fillColor: azulMarino,
+      fillColor: AppColors.campoTexto,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: dorado.withValues(alpha: 0.3)),
+        borderSide: BorderSide(color: AppColors.dorado.withValues(alpha: 0.3)),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: dorado.withValues(alpha: 0.3)),
+        borderSide: BorderSide(color: AppColors.dorado.withValues(alpha: 0.3)),
       ),
     );
   }
@@ -393,7 +376,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Material(
-              color: activo ? dorado : Colors.transparent,
+              color: activo ? AppColors.dorado : Colors.transparent,
               borderRadius: BorderRadius.circular(10),
               child: InkWell(
                 borderRadius: BorderRadius.circular(10),
@@ -402,13 +385,13 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: dorado.withValues(alpha: 0.4)),
+                    border: Border.all(color: AppColors.dorado.withValues(alpha: 0.4)),
                   ),
                   child: Text(
                     o.$2,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: activo ? azulMarino : Colors.white70,
+                      color: activo ? AppColors.onDorado : AppColors.textoSecundario,
                       fontWeight: FontWeight.w600,
                       fontSize: 13,
                     ),
@@ -430,8 +413,8 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
         icon: const Icon(Icons.calculate),
         label: const Text('Calcular prescripción'),
         style: ElevatedButton.styleFrom(
-          backgroundColor: dorado,
-          foregroundColor: azulMarino,
+          backgroundColor: AppColors.dorado,
+          foregroundColor: AppColors.onDorado,
           padding: const EdgeInsets.symmetric(vertical: 16),
           textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -452,7 +435,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
         const Text(
           'Resultado',
           style: TextStyle(
-            color: dorado,
+            color: AppColors.dorado,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -463,11 +446,11 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: prescrita
-                ? const Color(0xFFB91C1C).withValues(alpha: 0.85)
-                : grisOscuro,
+                ? AppColors.error.withValues(alpha: AppColors.a48)
+                : AppColors.tarjeta,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: prescrita ? const Color(0xFFEF4444) : dorado,
+              color: prescrita ? AppColors.error : AppColors.dorado,
               width: 1.5,
             ),
           ),
@@ -476,8 +459,8 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
             children: [
               Text(
                 'Término: ${termino.tituloLargo}',
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: AppColors.texto,
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
                 ),
@@ -485,7 +468,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
               const SizedBox(height: 6),
               Text(
                 termino.fundamento,
-                style: TextStyle(color: Colors.white70, fontSize: 13),
+                style: TextStyle(color: AppColors.textoSecundario, fontSize: 13),
               ),
               const SizedBox(height: 16),
               _buildFilaResultado(
@@ -512,9 +495,9 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
             width: double.infinity,
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
-              color: azulMarino,
+              color: AppColors.campoTexto,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: dorado.withValues(alpha: 0.3)),
+              border: Border.all(color: AppColors.dorado.withValues(alpha: 0.3)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -522,7 +505,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
                 const Text(
                   'Fundamento textual',
                   style: TextStyle(
-                    color: dorado,
+                    color: AppColors.dorado,
                     fontWeight: FontWeight.bold,
                     fontSize: 13,
                   ),
@@ -543,8 +526,8 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
             icon: const Icon(Icons.edit_document),
             label: const Text('Redactar solicitud de prescripción'),
             style: OutlinedButton.styleFrom(
-              foregroundColor: dorado,
-              side: BorderSide(color: dorado.withValues(alpha: 0.5)),
+              foregroundColor: AppColors.dorado,
+              side: BorderSide(color: AppColors.dorado.withValues(alpha: 0.5)),
               padding: const EdgeInsets.symmetric(vertical: 14),
             ),
           ),
@@ -556,7 +539,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
   Widget _buildFilaResultado(String label, String valor, IconData icon) {
     return Row(
       children: [
-        Icon(icon, color: dorado, size: 18),
+        Icon(icon, color: AppColors.dorado, size: 18),
         const SizedBox(width: 10),
         Text(
           label,
@@ -565,8 +548,8 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
         const Spacer(),
         Text(
           valor,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: AppColors.texto,
             fontWeight: FontWeight.bold,
             fontSize: 14,
           ),
@@ -582,7 +565,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
         const Text(
           'Reglas del cómputo',
           style: TextStyle(
-            color: dorado,
+            color: AppColors.dorado,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -618,13 +601,13 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
       width: double.infinity,
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: grisOscuro,
+        color: AppColors.tarjeta,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: dorado, size: 20),
+          Icon(icon, color: AppColors.dorado, size: 20),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -632,8 +615,8 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
               children: [
                 Text(
                   titulo,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    color: AppColors.texto,
                     fontWeight: FontWeight.bold,
                     fontSize: 14,
                   ),

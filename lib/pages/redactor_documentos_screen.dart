@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../services/haptics_service.dart';
-import '../pages/main_screen.dart';
-import '../utils/main_tab_controller.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:share_plus/share_plus.dart';
@@ -19,6 +17,7 @@ import '../config/app_theme.dart';
 import '../models/chat_attachment.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'word_editor_screen.dart';
+import '../widgets/app_bar_institucional.dart';
 
 class RedactorDocumentosScreen extends StatefulWidget {
   /// Instrucción inicial (en lenguaje natural) que se envía automáticamente
@@ -225,7 +224,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
   }
 
   Color _getFileColor(AttachmentType type) {
-    // Acentos unificados en dorado institucional (uniformidad TemaGlobal).
+    // Acentos unificados en AppColors.dorado institucional (uniformidad TemaGlobal).
     return AppColors.secondary;
   }
 
@@ -556,9 +555,10 @@ Analiza los documentos adjuntos y extrae información relevante para el document
     return Scaffold(
       backgroundColor: TemaGlobal.superficie,
       bottomNavigationBar: const MainBottomBar(),
-      appBar: AppBar(
-        backgroundColor: TemaGlobal.azulMarino,
-        title: const Text('Redactor de Documentos'),
+            appBar: AppBarInstitucional(
+        title: 'Redactor de Documentos',
+        mostrarBack: true,
+        mostrarHome: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.badge_outlined),
@@ -582,18 +582,6 @@ Analiza los documentos adjuntos y extrae información relevante para el document
             },
             tooltip: 'Nueva conversación',
           ),
-            IconButton(
-              icon: const Icon(Icons.home_outlined, color: AppColors.secondary),
-              tooltip: 'Ir al inicio',
-              onPressed: () {
-                mainTabIndex.value = 0;
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (_) => const MainScreen()),
-                  (r) => false,
-                );
-              },
-            ),
         ],
       ),
       body: Column(
@@ -679,7 +667,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
               color: TemaGlobal.tarjeta,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.3),
+                  color: Colors.black.withValues(alpha: AppColors.a24),
                   blurRadius: 10,
                   offset: const Offset(0, -2),
                 ),
@@ -768,7 +756,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                       onPressed: _isLoading ? null : _sendMessage,
                       backgroundColor: AppColors.secondary,
                       mini: true,
-                      child: const Icon(Icons.send, color: Color(0xFF0F172A)),
+                      child: const Icon(Icons.send, color: AppColors.azulMarino),
                     ),
                   ],
                 ),
@@ -799,7 +787,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 color: message.isUser
-                    ? const Color(0xFF0F172A)
+                    ? AppColors.azulMarino
                     : TemaGlobal.tarjeta,
                 borderRadius: BorderRadius.circular(16),
               ),
@@ -847,7 +835,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                         ),
                         code: const TextStyle(
                           color: AppColors.secondary,
-                          backgroundColor: Color(0xFF0F172A),
+                          backgroundColor: AppColors.azulMarino,
                         ),
                       ),
                     ),
@@ -904,7 +892,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     icon: const Icon(Icons.description, size: 16),
                     label: const Text('Word'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF0F172A),
+                      backgroundColor: AppColors.azulMarino,
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 12,
@@ -1302,7 +1290,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
                     onPressed: () => _copyToClipboard(doc.contenido),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.picture_as_pdf, color: Colors.redAccent),
+                    icon: Icon(Icons.picture_as_pdf, color: AppColors.error),
                     tooltip: 'Exportar PDF',
                     onPressed: () => _exportToPDF(doc.contenido),
                   ),

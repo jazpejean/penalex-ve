@@ -8,6 +8,8 @@ import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
 
 import '../services/auth_service.dart';
+import '../widgets/app_snackbar.dart';
+import '../widgets/app_bar_institucional.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({super.key, this.oobCode = ''});
@@ -32,8 +34,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
 
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
+  
+  
   static Color get fondoGris => TemaGlobal.superficie;
   static Color get grisTexto => TemaGlobal.textoSecundario;
 
@@ -101,12 +103,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       
       if (!mounted) return;
       
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Contraseña actualizada. Ahora puedes iniciar sesión.'),
-          backgroundColor: AppColors.success,
-        ),
-      );
+      AppSnackBar.success(context, 'Contraseña actualizada. Ahora puedes iniciar sesión.');
       unawaited(Navigator.pushNamedAndRemoveUntil(
         context,
         '/login',
@@ -125,13 +122,11 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: fondoGris,
-        appBar: AppBar(
-          backgroundColor: azulMarino,
-          foregroundColor: dorado,
-          elevation: 0,
-          title: const Text('Nueva contraseña'),
-          centerTitle: true,
-        ),
+              appBar: AppBarInstitucional(
+        title: 'Nueva contraseña',
+        mostrarBack: true,
+        mostrarHome: true,
+      ),
         body: SafeArea(
           child: SingleChildScrollView(
             padding: EdgeInsets.fromLTRB(
@@ -234,7 +229,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     padding: const EdgeInsets.only(top: 12),
                     child: Text(
                       _errorMessage,
-                      style: const TextStyle(color: Colors.red),
+                      style: TextStyle(color: AppColors.error),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -245,8 +240,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   ElevatedButton(
                     onPressed: _handleReset,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: azulMarino,
-                      foregroundColor: dorado,
+                      backgroundColor: AppColors.azulMarino,
+                      foregroundColor: AppColors.dorado,
                       minimumSize: const Size(double.infinity, 52),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),

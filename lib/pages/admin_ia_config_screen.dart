@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import '../pages/main_screen.dart';
-import '../utils/main_tab_controller.dart';
 import '../config/app_theme.dart';
 import 'package:flutter/services.dart';
 
 import '../services/ai_service.dart';
 import '../services/role_service.dart';
 import '../widgets/role_guard.dart';
+import '../config/app_colors.dart';
+import '../widgets/app_snackbar.dart';
+import '../widgets/app_bar_institucional.dart';
 
 class AdminIAConfigScreen extends StatefulWidget {
   const AdminIAConfigScreen({super.key});
@@ -16,8 +17,8 @@ class AdminIAConfigScreen extends StatefulWidget {
 }
 
 class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
+  
+  
   static Color get fondoGris => TemaGlobal.superficie;
   
   AIModel _modeloSeleccionado = AIService.getModeloActivo();
@@ -44,12 +45,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
     await AIService.setModelo(_modeloSeleccionado);
     
     if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('✅ Configuración guardada'),
-          backgroundColor: Colors.green,
-        ),
-      );
+      AppSnackBar.success(context, '✅ Configuración guardada');
     }
   }
   
@@ -58,7 +54,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('❌ API Key no configurada para ${_modeloSeleccionado.proveedor.nombre}'),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.error,
         ),
       );
       return;
@@ -70,7 +66,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
       builder: (context) => AlertDialog(
         content: Row(
           children: [
-            const CircularProgressIndicator(color: dorado),
+            const CircularProgressIndicator(color: AppColors.dorado),
             const SizedBox(width: 16),
             Text('Probando ${_modeloSeleccionado.nombre}...'),
           ],
@@ -99,7 +95,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
           builder: (context) => AlertDialog(
             title: Row(
               children: [
-                const Icon(Icons.check_circle, color: Colors.green),
+                Icon(Icons.check_circle, color: AppColors.success),
                 const SizedBox(width: 8),
                 Text('✅ ${_modeloSeleccionado.nombre}'),
               ],
@@ -145,9 +141,9 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Row(
+            title: Row(
               children: [
-                Icon(Icons.error, color: Colors.red),
+                Icon(Icons.error, color: AppColors.error),
                 SizedBox(width: 8),
                 Text('❌ Error'),
               ],
@@ -170,35 +166,10 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
     return RoleProtectedPage(
       requiredRole: UserRole.admin,
       child: Scaffold(
-        appBar: AppBar(
-        title: const Text(
-          'Configuración de IA',
-          style: TextStyle(color: dorado, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: azulMarino,
-        foregroundColor: dorado,
-        elevation: 0,
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.save),
-            onPressed: _guardarConfiguracion,
-            tooltip: 'Guardar',
-          ),
-            IconButton(
-              icon: Icon(Icons.home_outlined,
-                  color: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino),
-              tooltip: 'Ir al inicio',
-              onPressed: () {
-                mainTabIndex.value = 0;
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (_) => const MainScreen()),
-                  (r) => false,
-                );
-              },
-            ),
-        ],
+              appBar: AppBarInstitucional(
+        title: 'Configuración de IA',
+        mostrarBack: true,
+        mostrarHome: true,
       ),
       backgroundColor: fondoGris,
       body: SingleChildScrollView(
@@ -277,12 +248,12 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
                     icon: const Icon(Icons.save),
                     label: const Text('Guardar'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: azulMarino,
-                      foregroundColor: dorado,
+                      backgroundColor: AppColors.azulMarino,
+                      foregroundColor: AppColors.dorado,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
-                        side: const BorderSide(color: dorado, width: 1.5),
+                        side: const BorderSide(color: AppColors.dorado, width: 1.5),
                       ),
                     ),
                   ),
@@ -308,8 +279,8 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [azulMarino, Color(0xFF1E293B)],
+        gradient: LinearGradient(
+          colors: [AppColors.azulMarino, AppColors.tarjeta],
         ),
         borderRadius: BorderRadius.circular(16),
       ),
@@ -321,10 +292,10 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: dorado.withValues(alpha: 50 / 255),
+                  color: AppColors.dorado.withValues(alpha: 50 / 255),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Icon(Icons.auto_awesome, color: dorado),
+                child: const Icon(Icons.auto_awesome, color: AppColors.dorado),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -334,7 +305,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
                     const Text(
                       'MODELO ACTIVO',
                       style: TextStyle(
-                        color: dorado,
+                        color: AppColors.dorado,
                         fontSize: 11,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1,
@@ -371,7 +342,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
           const SizedBox(height: 8),
           Text(
             'Costo: \$${modelo.costoEstimadoPorInterpretacion.toStringAsFixed(4)} por interpretación',
-            style: TextStyle(color: dorado.withValues(alpha: 180 / 255), fontSize: 12),
+            style: TextStyle(color: AppColors.dorado.withValues(alpha: 180 / 255), fontSize: 12),
           ),
         ],
       ),
@@ -459,7 +430,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
-          color: isSelected ? azulMarino.withAlpha(10) : null,
+          color: isSelected ? AppColors.azulMarino.withValues(alpha: AppColors.a06) : null,
           border: Border(
             bottom: BorderSide(color: TemaGlobal.capa),
           ),
@@ -500,7 +471,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                           decoration: BoxDecoration(
-                            color: Colors.orange.withAlpha(50),
+                            color: Colors.orange.withValues(alpha: AppColors.a18),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: const Text(
@@ -527,7 +498,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
                     children: [
                       _buildChip('${modelo.velocidad.name}', Colors.blue),
                       const SizedBox(width: 4),
-                      _buildChip('${modelo.calidad.name}', Colors.green),
+                      _buildChip('${modelo.calidad.name}', AppColors.success),
                       const SizedBox(width: 4),
                       _buildChip(
                         '\$${modelo.costoEstimadoPorInterpretacion.toStringAsFixed(4)}',
@@ -548,7 +519,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
-        color: color.withAlpha(25),
+        color: color.withValues(alpha: AppColors.a12),
         borderRadius: BorderRadius.circular(4),
       ),
       child: Text(
@@ -638,9 +609,9 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.blue.withAlpha(25),
+        color: Colors.blue.withValues(alpha: AppColors.a12),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.blue.withAlpha(50)),
+        border: Border.all(color: Colors.blue.withValues(alpha: AppColors.a18)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

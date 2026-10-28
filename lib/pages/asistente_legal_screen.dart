@@ -8,6 +8,7 @@ import '../config/app_theme.dart';
 import '../services/ai_service.dart';
 import '../services/document_text_extraction_service.dart';
 import '../services/chat_export_service.dart';
+import '../widgets/app_bar_institucional.dart';
 
 class AsistenteLegalScreen extends StatefulWidget {
   const AsistenteLegalScreen({super.key});
@@ -27,10 +28,10 @@ class _AsistenteLegalScreenState extends State<AsistenteLegalScreen> {
   // Archivos adjuntos
   final List<AttachedFile> _attachedFiles = [];
 
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
-  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
-  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
+  
+  
+  /// Acento de marca: azul marino en modo claro, AppColors.dorado en modo oscuro.
+  
   static Color get grisOscuro => TemaGlobal.tarjeta;
 
   @override
@@ -198,7 +199,7 @@ Puedo ayudarte a:
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: Icon(Icons.image, color: acento),
+              leading: Icon(Icons.image, color: AppColors.acento),
               title: Text('Imagen', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
@@ -206,7 +207,7 @@ Puedo ayudarte a:
               },
             ),
             ListTile(
-              leading: Icon(Icons.insert_drive_file, color: acento),
+              leading: Icon(Icons.insert_drive_file, color: AppColors.acento),
               title: Text('Documento', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
@@ -232,7 +233,7 @@ Puedo ayudarte a:
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: Icon(Icons.picture_as_pdf, color: acento),
+              leading: Icon(Icons.picture_as_pdf, color: AppColors.acento),
               title: Text('Exportar mensaje como PDF', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
@@ -240,7 +241,7 @@ Puedo ayudarte a:
               },
             ),
             ListTile(
-              leading: Icon(Icons.picture_as_pdf, color: acento),
+              leading: Icon(Icons.picture_as_pdf, color: AppColors.acento),
               title: Text('Exportar conversación completa', style: TextStyle(color: TemaGlobal.texto)),
               subtitle: Text(
                 'Todos los mensajes en un PDF',
@@ -252,7 +253,7 @@ Puedo ayudarte a:
               },
             ),
             ListTile(
-              leading: Icon(Icons.description, color: acento),
+              leading: Icon(Icons.description, color: AppColors.acento),
               title: Text('Exportar mensaje como Word', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
@@ -260,7 +261,7 @@ Puedo ayudarte a:
               },
             ),
             ListTile(
-              leading: Icon(Icons.description, color: acento),
+              leading: Icon(Icons.description, color: AppColors.acento),
               title: Text('Exportar conversación completa Word', style: TextStyle(color: TemaGlobal.texto)),
               subtitle: Text(
                 'Todos los mensajes en formato Word',
@@ -272,7 +273,7 @@ Puedo ayudarte a:
               },
             ),
             ListTile(
-              leading: Icon(Icons.share, color: acento),
+              leading: Icon(Icons.share, color: AppColors.acento),
               title: Text('Compartir texto', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
@@ -374,31 +375,10 @@ Puedo ayudarte a:
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TemaGlobal.superficie,
-      appBar: AppBar(
-        title: const Text(
-          'Asistente Legal IA',
-          style: TextStyle(color: dorado, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: azulMarino,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: dorado),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.download),
-            onPressed: _messages.length > 1 ? _exportarConversacionCompletaAPDF : null,
-            tooltip: 'Exportar conversación completa',
-          ),
-          IconButton(
-            icon: const Icon(Icons.delete_outline),
-            onPressed: () {
-              setState(() {
-                _messages.clear();
-                _addWelcomeMessage();
-              });
-            },
-            tooltip: 'Nueva conversación',
-          ),
-        ],
+            appBar: AppBarInstitucional(
+        title: 'Asistente Legal IA',
+        mostrarBack: true,
+        mostrarHome: true,
       ),
       body: Column(
         children: [
@@ -408,7 +388,7 @@ Puedo ayudarte a:
             color: TemaGlobal.capa,
             child: Row(
               children: [
-                Icon(Icons.auto_awesome, color: acento, size: 20),
+                Icon(Icons.auto_awesome, color: AppColors.acento, size: 20),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
@@ -464,7 +444,7 @@ Puedo ayudarte a:
                         avatar: Icon(
                           file.type == FileType.image ? Icons.image : Icons.insert_drive_file,
                           size: 16,
-                          color: acento,
+                          color: AppColors.acento,
                         ),
                         label: Text(
                           file.name,
@@ -496,7 +476,7 @@ Puedo ayudarte a:
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 IconButton(
-                  icon: Icon(Icons.attach_file, color: acento),
+                  icon: Icon(Icons.attach_file, color: AppColors.acento),
                   onPressed: _showAttachmentOptions,
                 ),
                 const SizedBox(width: 8),
@@ -532,12 +512,12 @@ Puedo ayudarte a:
                 Container(
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
-                      colors: [dorado, Color(0xFFC5A059)],
+                      colors: [AppColors.dorado, AppColors.dorado],
                     ),
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: dorado.withValues(alpha: 0.3),
+                        color: AppColors.dorado.withValues(alpha: 0.3),
                         blurRadius: 8,
                         spreadRadius: 2,
                       ),
@@ -545,7 +525,7 @@ Puedo ayudarte a:
                   ),
                   child: IconButton(
                     icon: const Icon(Icons.send_rounded),
-                    color: azulMarino,
+                    color: AppColors.azulMarino,
                     onPressed: _isLoading ? null : _sendMessage,
                   ),
                 ),
@@ -567,9 +547,9 @@ Puedo ayudarte a:
         children: [
           if (!message.isUser) ...[
             CircleAvatar(
-              backgroundColor: dorado,
+              backgroundColor: AppColors.dorado,
               radius: 20,
-              child: const Icon(Icons.smart_toy, color: azulMarino, size: 20),
+              child: const Icon(Icons.smart_toy, color: AppColors.azulMarino, size: 20),
             ),
             const SizedBox(width: 12),
           ],
@@ -577,7 +557,7 @@ Puedo ayudarte a:
             child: Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: message.isUser ? dorado : grisOscuro,
+                color: message.isUser ? AppColors.dorado : grisOscuro,
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
@@ -602,7 +582,7 @@ Puedo ayudarte a:
                                     : Icons.insert_drive_file,
                                 size: 16,
                                 color: message.isUser
-                                    ? azulMarino
+                                    ? AppColors.azulMarino
                                     : TemaGlobal.textoSecundario,
                               ),
                               const SizedBox(width: 8),
@@ -611,7 +591,7 @@ Puedo ayudarte a:
                                   file.name,
                                   style: TextStyle(
                                     color: message.isUser
-                                        ? azulMarino
+                                        ? AppColors.azulMarino
                                         : TemaGlobal.textoSecundario,
                                     fontSize: 12,
                                   ),
@@ -628,22 +608,22 @@ Puedo ayudarte a:
                     styleSheet: MarkdownStyleSheet(
                       p: TextStyle(
                         color: message.isUser
-                            ? azulMarino
+                            ? AppColors.azulMarino
                             : TemaGlobal.texto,
                         fontSize: 15,
                         height: 1.4,
                       ),
                       h2: TextStyle(
-                        color: message.isUser ? azulMarino : acento,
+                        color: message.isUser ? AppColors.azulMarino : AppColors.acento,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                       strong: TextStyle(
-                        color: message.isUser ? azulMarino : acento,
+                        color: message.isUser ? AppColors.azulMarino : AppColors.acento,
                         fontWeight: FontWeight.bold,
                       ),
                       listBullet: TextStyle(
-                        color: message.isUser ? azulMarino : acento,
+                        color: message.isUser ? AppColors.azulMarino : AppColors.acento,
                       ),
                     ),
                   ),
@@ -658,7 +638,7 @@ Puedo ayudarte a:
                           icon: const Icon(Icons.download, size: 16),
                           label: const Text('Exportar'),
                           style: TextButton.styleFrom(
-                            foregroundColor: acento,
+                            foregroundColor: AppColors.acento,
                             padding: const EdgeInsets.symmetric(horizontal: 12),
                           ),
                         ),
@@ -674,7 +654,7 @@ Puedo ayudarte a:
             CircleAvatar(
               backgroundColor: TemaGlobal.capa,
               radius: 20,
-              child: Icon(Icons.person, color: acento, size: 20),
+              child: Icon(Icons.person, color: AppColors.acento, size: 20),
             ),
           ],
         ],
@@ -689,9 +669,9 @@ Puedo ayudarte a:
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CircleAvatar(
-            backgroundColor: dorado,
+            backgroundColor: AppColors.dorado,
             radius: 20,
-            child: const Icon(Icons.smart_toy, color: azulMarino, size: 20),
+            child: const Icon(Icons.smart_toy, color: AppColors.azulMarino, size: 20),
           ),
           const SizedBox(width: 12),
           Container(
@@ -708,7 +688,7 @@ Puedo ayudarte a:
                   height: 16,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation<Color>(dorado),
+                    valueColor: AlwaysStoppedAnimation<Color>(AppColors.dorado),
                   ),
                 ),
                 const SizedBox(width: 12),

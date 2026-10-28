@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../config/app_colors.dart';
 
 /// Overlay "¡RACHA xN!" que aparece al cruzar múltiplos de 5.
 ///
@@ -50,10 +51,10 @@ class _RachaOverlayState extends State<RachaOverlay> {
             fontSize: 34,
             fontWeight: FontWeight.w900,
             letterSpacing: 2,
-            color: const Color(0xFFE9C86A),
+            color: AppColors.oroBrillante,
             shadows: [
               Shadow(
-                color: const Color(0xFFC5A059).withValues(alpha: 0.9),
+                color: AppColors.dorado.withValues(alpha: 0.9),
                 blurRadius: 22,
               ),
             ],

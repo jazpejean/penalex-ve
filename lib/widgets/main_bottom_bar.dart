@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../utils/main_tab_controller.dart';
+import '../config/app_colors.dart';
 
 /// Barra de navegación inferior compartida de Penalex VE.
 ///
-/// Misma identidad visual que la del MainScreen (navy + dorado) pero
+/// Misma identidad visual que la del MainScreen (navy + AppColors.dorado) pero
 /// manejada por [mainTabIndex] (ValueNotifier global): cualquier pantalla —
 /// incluso las herramientas externas apiladas sobre el MainScreen — puede
 /// incrustarla en su propio Scaffold y conservar la navegación principal.
@@ -17,9 +18,9 @@ class MainBottomBar extends StatelessWidget {
   /// Opcional: abre el drawer del MainScreen (solo tiene sentido ahí).
   final VoidCallback? onOpenDrawer;
 
-  static const _fondoProfundo = Color(0xFF0F172A);
-  static const _oro = Color(0xFFC5A059);
-  static const _oroBrillante = Color(0xFFE9C86A);
+  static const _fondoProfundo = AppColors.azulMarino;
+  static const _oro = AppColors.dorado;
+  static const _oroBrillante = AppColors.oroBrillante;
 
   @override
   Widget build(BuildContext context) {

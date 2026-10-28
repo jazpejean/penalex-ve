@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import '../config/app_colors.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
@@ -32,11 +33,7 @@ class DocumentEditorScreen extends StatefulWidget {
 }
 
 class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
-  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
-  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
-  static const Color grisOscuro = Color(0xFF1E293B);
+
 
   final EscaneoService _escaneoService = EscaneoService();
 
@@ -218,7 +215,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
               padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
-                  Icon(Icons.text_fields, color: acento),
+                  Icon(Icons.text_fields, color: AppColors.acento),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
@@ -313,7 +310,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
               ? '✅ Documento guardado'
               : '❌ Error guardando documento',
         ),
-        backgroundColor: documento != null ? Colors.green : Colors.red,
+        backgroundColor: documento != null ? AppColors.success : AppColors.error,
         behavior: SnackBarBehavior.floating,
       ),
     );
@@ -330,17 +327,17 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: azulMarino,
+      backgroundColor: AppColors.superficie,
       appBar: AppBar(
-        backgroundColor: azulMarino,
+        backgroundColor: AppColors.azulMarino,
         elevation: 0,
-        iconTheme: const IconThemeData(color: dorado),
+        iconTheme: const IconThemeData(color: AppColors.dorado),
         title: TextField(
           controller: _tituloController,
-          style: const TextStyle(color: Colors.white, fontSize: 16),
-          decoration: const InputDecoration(
+          style: const TextStyle(color: AppColors.onAzulMarino, fontSize: 16),
+          decoration: InputDecoration(
             hintText: 'Nombre del documento',
-            hintStyle: TextStyle(color: Colors.white38),
+            hintStyle: TextStyle(color: AppColors.onAzulMarino.withValues(alpha: 0.48)),
             border: InputBorder.none,
           ),
         ),
@@ -353,23 +350,23 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
                 height: 20,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  valueColor: AlwaysStoppedAnimation<Color>(dorado),
+                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.dorado),
                 ),
               ),
             )
           else ...[
             IconButton(
-              icon: const Icon(Icons.picture_as_pdf, color: dorado),
+              icon: const Icon(Icons.picture_as_pdf, color: AppColors.dorado),
               tooltip: 'Descargar como PDF',
               onPressed: _descargarPdf,
             ),
             IconButton(
-              icon: const Icon(Icons.image, color: dorado),
+              icon: const Icon(Icons.image, color: AppColors.dorado),
               tooltip: 'Descargar como imagen',
               onPressed: _descargarImagen,
             ),
             IconButton(
-              icon: const Icon(Icons.cloud_upload, color: dorado),
+              icon: const Icon(Icons.cloud_upload, color: AppColors.dorado),
               tooltip: 'Guardar en la nube',
               onPressed: _guardar,
             ),
@@ -401,7 +398,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
                   File(_paginas[index]),
                   fit: BoxFit.contain,
                   errorBuilder: (_, __, ___) => const Center(
-                    child: Icon(Icons.broken_image, color: dorado, size: 64),
+                    child: Icon(Icons.broken_image, color: AppColors.dorado, size: 64),
                   ),
                 ),
               ),
@@ -413,7 +410,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
             child: Container(
               color: Colors.black45,
               child: const Center(
-                child: CircularProgressIndicator(color: dorado),
+                child: CircularProgressIndicator(color: AppColors.dorado),
               ),
             ),
           ),
@@ -423,13 +420,13 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.7),
+              color: Colors.black.withValues(alpha: 0.7),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
               '${_paginaActual + 1} / ${_paginas.length}',
               style: const TextStyle(
-                color: Colors.white,
+                color: AppColors.onAzulMarino,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -442,7 +439,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
   Widget _buildTiraMiniaturas() {
     return Container(
       height: 96,
-      color: grisOscuro,
+      color: AppColors.tarjeta,
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -471,7 +468,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-            color: seleccionada ? dorado : Colors.white24,
+            color: seleccionada ? AppColors.dorado : AppColors.capa,
             width: seleccionada ? 2 : 1,
           ),
         ),
@@ -481,7 +478,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
             File(_paginas[index]),
             fit: BoxFit.cover,
             errorBuilder: (_, __, ___) =>
-                const Icon(Icons.description, color: Colors.white54),
+                Icon(Icons.description, color: AppColors.textoSecundario),
           ),
         ),
       ),
@@ -496,17 +493,17 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
         margin: const EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: dorado.withOpacity(0.6)),
-          color: azulMarino,
+          border: Border.all(color: AppColors.dorado.withValues(alpha: AppColors.a48)),
+          color: AppColors.azulMarino,
         ),
-        child: const Icon(Icons.add, color: dorado, size: 28),
+        child: const Icon(Icons.add, color: AppColors.dorado, size: 28),
       ),
     );
   }
 
   Widget _buildBarraAcciones() {
     return Container(
-      color: TemaGlobal.tarjeta,
+      color: AppColors.tarjeta,
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -533,7 +530,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icono, color: acento, size: 24),
+            Icon(icono, color: AppColors.acento, size: 24),
             const SizedBox(height: 2),
             Text(
               etiqueta,
@@ -592,7 +589,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icono, color: acento, size: 32),
+            Icon(icono, color: AppColors.acento, size: 32),
             const SizedBox(height: 8),
             Text(etiqueta, style: TextStyle(color: TemaGlobal.textoSecundario)),
           ],
@@ -646,7 +643,7 @@ class _ReordenarPaginasSheetState extends State<_ReordenarPaginasSheet> {
                   child: const Text(
                     'Listo',
                     style: TextStyle(
-                      color: Color(0xFFC5A059),
+                      color: AppColors.dorado,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

@@ -9,8 +9,8 @@ import 'package:share_plus/share_plus.dart';
 
 class PDFService {
   // Colores institucionales según especificación
-  static const azulMarino = PdfColor.fromInt(0xFF0F172A); // Azul marino institucional
-  static const dorado = PdfColor.fromInt(0xFFC5A059); // Dorado/Bronce institucional
+  static final PdfColor azulMarino = PdfColor.fromInt(0xFF0F172A); // Azul marino institucional
+  static final PdfColor dorado = PdfColor.fromInt(0xFFC5A059); // Dorado/Bronce institucional
   static const grisClaro = PdfColor.fromInt(0xFFF2F2F2); // Fondo alterno
   static const grisPie = PdfColor.fromInt(0xFFF9F9F9); // Fondo del pie
   static const grisOscuro = PdfColor.fromInt(0xFF4A5568); // Texto secundario
@@ -249,7 +249,7 @@ class PDFService {
                     tableRows.add(
                       pw.TableRow(
                         decoration: isHeader
-                            ? const pw.BoxDecoration(color: dorado)
+                            ? pw.BoxDecoration(color: dorado)
                             : pw.BoxDecoration(
                                 color: rowIdx % 2 == 1 ? grisMuyClaro : blanco,
                               ),
@@ -331,7 +331,7 @@ class PDFService {
                   pw.Container(
                     width: double.infinity,
                     padding: const pw.EdgeInsets.all(15),
-                    decoration: const pw.BoxDecoration(
+                    decoration: pw.BoxDecoration(
                       color: dorado,
                       borderRadius: pw.BorderRadius.all(pw.Radius.circular(4)),
                     ),
@@ -376,7 +376,7 @@ class PDFService {
                           width: 4,
                           height: 4,
                           margin: const pw.EdgeInsets.only(top: 5, right: 8),
-                          decoration: const pw.BoxDecoration(
+                          decoration: pw.BoxDecoration(
                             color: dorado,
                             shape: pw.BoxShape.circle,
                           ),
@@ -748,7 +748,7 @@ class PDFService {
                           width: 5,
                           height: 5,
                           margin: const pw.EdgeInsets.only(top: 6, right: 10),
-                          decoration: const pw.BoxDecoration(
+                          decoration: pw.BoxDecoration(
                             color: dorado,
                             shape: pw.BoxShape.circle,
                           ),

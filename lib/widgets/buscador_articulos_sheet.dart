@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
 import '../services/leyes_repositorio_service.dart';
 import 'articulo_ley_sheet.dart';
+import '../config/app_colors.dart';
 
 /// Abre un buscador flotante de artículos de ley. El usuario busca, ve
 /// resultados y al tocar uno se abre el artículo completo en otra ventana
@@ -25,7 +26,7 @@ class _BuscadorArticulosSheet extends StatefulWidget {
 }
 
 class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
-  static const Color dorado = Color(0xFFC5A059);
+  
   static Color get grisOscuro => TemaGlobal.tarjeta;
 
   final LeyesRepositorioService _service = LeyesRepositorioService();
@@ -119,7 +120,7 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
               decoration: InputDecoration(
                 hintText: 'Buscar por artículo, delito o tema (ej. 406, homicidio)',
                 hintStyle: TextStyle(color: TemaGlobal.textoTenue),
-                prefixIcon: const Icon(Icons.search, color: dorado, size: 22),
+                prefixIcon: const Icon(Icons.search, color: AppColors.dorado, size: 22),
                 filled: true,
                 fillColor: TemaGlobal.campoTexto,
                 border: OutlineInputBorder(
@@ -128,7 +129,7 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: const BorderSide(color: dorado, width: 1.5),
+                  borderSide: const BorderSide(color: AppColors.dorado, width: 1.5),
                 ),
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -148,7 +149,7 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircularProgressIndicator(color: dorado, strokeWidth: 3),
+            const CircularProgressIndicator(color: AppColors.dorado, strokeWidth: 3),
             const SizedBox(height: 16),
             Text(
               _progreso.isEmpty ? 'Buscando...' : _progreso,
@@ -166,7 +167,7 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.menu_book, size: 56, color: dorado),
+              const Icon(Icons.menu_book, size: 56, color: AppColors.dorado),
               const SizedBox(height: 16),
               Text(
                 'Escribe un término legal o el número de un artículo\ny toca "Buscar" en el teclado.',
@@ -244,7 +245,7 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
-                        color: dorado,
+                        color: AppColors.dorado,
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
                       ),
@@ -262,7 +263,7 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
                     ),
                   ),
                 ),
-                const Icon(Icons.chevron_right, color: dorado, size: 20),
+                const Icon(Icons.chevron_right, color: AppColors.dorado, size: 20),
               ],
             ),
             if (reg.encabezado != null && reg.encabezado!.isNotEmpty)

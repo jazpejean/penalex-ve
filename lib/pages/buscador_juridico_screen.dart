@@ -29,8 +29,7 @@ class BuscadorJuridicoScreen extends StatefulWidget {
 }
 
 class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
-  static Color get acento =>
-      TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino;
+  
   final JurisprudenciaService _serviceSentencias = JurisprudenciaService();
   final LeyesRepositorioService _serviceLeyes = LeyesRepositorioService();
   final TextEditingController _searchController = TextEditingController();
@@ -319,7 +318,7 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                 style: TextStyle(
                   fontSize: 11.5,
                   fontWeight: FontWeight.bold,
-                  color: TemaGlobal.textoSecundario,
+                  color: AppColors.onDorado,
                 ),
               ),
             ),
@@ -481,7 +480,7 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                 ),
                 child: Icon(
                   Icons.arrow_forward,
-                  color: acento,
+                  color: AppColors.onDorado,
                   size: 20,
                 ),
               ),
@@ -587,7 +586,7 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
               height: 26,
               child: CircularProgressIndicator(
                 strokeWidth: 2.5,
-                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFC5A059)),
+                valueColor: AlwaysStoppedAnimation<Color>(AppColors.dorado),
               ),
             ),
             if (_progresoIndice.isNotEmpty) ...[
@@ -946,7 +945,7 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                       style: TextStyle(
                         fontSize: 9.5,
                         fontWeight: FontWeight.bold,
-                        color: acento,
+                        color: AppColors.onDorado,
                         letterSpacing: 0.4,
                       ),
                     ),

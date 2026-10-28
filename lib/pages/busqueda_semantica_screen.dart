@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import '../config/app_colors.dart';
 import '../config/app_theme.dart';
-import '../pages/main_screen.dart';
-import '../utils/main_tab_controller.dart';
 import '../services/busqueda_semantica_service.dart';
 import '../models/sentencia.dart';
 import '../models/ley.dart';
+import '../widgets/app_bar_institucional.dart';
 
 class BusquedaSemanticaScreen extends StatefulWidget {
   const BusquedaSemanticaScreen({super.key});
@@ -16,8 +15,7 @@ class BusquedaSemanticaScreen extends StatefulWidget {
 }
 
 class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
-  static Color get acento =>
-      TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino;
+  
   final BusquedaSemanticaService _busquedaService =
       BusquedaSemanticaService();
   final TextEditingController _searchController = TextEditingController();
@@ -81,11 +79,10 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TemaGlobal.superficie,
-      appBar: AppBar(
-        title: Text('Búsqueda Semántica', style: TextStyle(color: TemaGlobal.dorado, fontWeight: FontWeight.bold)),
-        backgroundColor: TemaGlobal.azulMarino,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Color(0xFFC5A059)),
+            appBar: AppBarInstitucional(
+        title: 'Búsqueda Semántica',
+        mostrarBack: true,
+        mostrarHome: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.history),
@@ -97,18 +94,6 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
             onPressed: () => _mostrarAyuda(),
             tooltip: 'Ayuda',
           ),
-            IconButton(
-              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
-              tooltip: 'Ir al inicio',
-              onPressed: () {
-                mainTabIndex.value = 0;
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (_) => const MainScreen()),
-                  (r) => false,
-                );
-              },
-            ),
         ],
       ),
       body: Column(
@@ -244,7 +229,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.error_outline, size: 64, color: AppColors.error),
+            Icon(Icons.error_outline, size: 64, color: AppColors.error),
             const SizedBox(height: 16),
             Text(_error!, textAlign: TextAlign.center),
             const SizedBox(height: 16),
@@ -364,7 +349,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
             padding: const EdgeInsets.all(16),
             child: Row(
               children: [
-                Icon(Icons.analytics, color: acento),
+                Icon(Icons.analytics, color: AppColors.acento),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -458,7 +443,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Icon(Icons.gavel, size: 16, color: acento),
+                  Icon(Icons.gavel, size: 16, color: AppColors.acento),
                   const SizedBox(width: 4),
                   Expanded(
                     child: Text(
@@ -544,7 +529,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Icon(Icons.article, size: 16, color: acento),
+                  Icon(Icons.article, size: 16, color: AppColors.acento),
                   const SizedBox(width: 4),
                   Expanded(
                     child: Text(
@@ -598,13 +583,13 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
   Color _getColorSimilitud(double similitud) {
     if (similitud >= 0.7) {
       return TemaGlobal.isDark
-          ? const Color(0xFF4ADE80)
-          : const Color(0xFF15803D);
+          ? AppColors.success
+          : AppColors.success;
     }
     if (similitud >= 0.5) {
       return TemaGlobal.isDark
-          ? const Color(0xFFFBBF24)
-          : const Color(0xFFC2410C);
+          ? AppColors.warning
+          : AppColors.warning;
     }
     return TemaGlobal.textoTenue;
   }

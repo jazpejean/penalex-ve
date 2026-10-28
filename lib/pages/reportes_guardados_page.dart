@@ -1,7 +1,5 @@
 import 'dart:io';
 import '../services/haptics_service.dart';
-import '../pages/main_screen.dart';
-import '../utils/main_tab_controller.dart';
 
 import 'package:flutter/material.dart';
 import '../config/app_colors.dart';
@@ -10,6 +8,8 @@ import 'package:path_provider/path_provider.dart';
 
 import '../services/pdf_service.dart';
 import '../widgets/app_drawer.dart';
+import '../widgets/app_snackbar.dart';
+import '../widgets/app_bar_institucional.dart';
 
 /// Pantalla para ver reportes PDF guardados localmente
 class ReportesGuardadosPage extends StatefulWidget {
@@ -20,8 +20,8 @@ class ReportesGuardadosPage extends StatefulWidget {
 }
 
 class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
+  
+  
   static Color get fondoGris => TemaGlobal.superficie;
 
   List<File> _reportes = [];
@@ -78,7 +78,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error al cargar reportes: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
           ),
         );
       }
@@ -93,7 +93,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error al abrir PDF: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
           ),
         );
       }
@@ -108,7 +108,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error al compartir PDF: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
           ),
         );
       }
@@ -131,8 +131,8 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
           ),
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            child: const Text('Eliminar'),
+            style: ElevatedButton.styleFrom(backgroundColor: AppColors.error),
+            child: Text('Eliminar'),
           ),
         ],
       ),
@@ -144,19 +144,14 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
         await file.delete();
         await _cargarReportes();
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('✅ Reporte eliminado'),
-              backgroundColor: Colors.green,
-            ),
-          );
+          AppSnackBar.success(context, '✅ Reporte eliminado');
         }
       } catch (e) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Error al eliminar: $e'),
-              backgroundColor: Colors.red,
+              backgroundColor: AppColors.error,
             ),
           );
         }
@@ -183,38 +178,10 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
     return Scaffold(
       drawer: const AppDrawer(currentRoute: '/reportes'),
       backgroundColor: fondoGris,
-      appBar: AppBar(
-        title: const Text(
-          'REPORTES LOCALES',
-          style: TextStyle(
-            color: dorado,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 0.6,
-          ),
-        ),
-        backgroundColor: azulMarino,
-        foregroundColor: dorado,
-        centerTitle: true,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: _cargarReportes,
-            tooltip: 'Actualizar',
-          ),
-            IconButton(
-              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
-              tooltip: 'Ir al inicio',
-              onPressed: () {
-                mainTabIndex.value = 0;
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (_) => const MainScreen()),
-                  (r) => false,
-                );
-              },
-            ),
-        ],
+            appBar: AppBarInstitucional(
+        title: 'REPORTES LOCALES',
+        mostrarBack: true,
+        mostrarHome: true,
       ),
       body: _cargando
           ? const Center(child: CircularProgressIndicator())
@@ -263,7 +230,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
                           width: 50,
                           height: 50,
                           decoration: BoxDecoration(
-                            gradient: const LinearGradient(
+                            gradient: LinearGradient(
                               colors: [AppColors.error, AppColors.error],
                             ),
                             borderRadius: BorderRadius.circular(10),
@@ -303,12 +270,12 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             IconButton(
-                              icon: Icon(Icons.share, color: TemaGlobal.isDark ? dorado : azulMarino),
+                              icon: Icon(Icons.share, color: TemaGlobal.isDark ? AppColors.dorado : AppColors.azulMarino),
                               onPressed: () => _compartirPDF(reporte),
                               tooltip: 'Compartir',
                             ),
                             IconButton(
-                              icon: const Icon(Icons.delete, color: Colors.red),
+                              icon: Icon(Icons.delete, color: AppColors.error),
                               onPressed: () => _eliminarReporte(reporte),
                               tooltip: 'Eliminar',
                             ),

@@ -19,6 +19,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import '../widgets/app_bar_institucional.dart';
 
 import '../config/app_colors.dart';
 import '../config/app_theme.dart';
@@ -68,8 +69,7 @@ class CalendarioJudicialScreen extends StatefulWidget {
 }
 
 class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
-  static Color get acento =>
-      TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino;
+  
   late ViaProcesal _via = widget.viaInicial;
 
   /// Fecha de la audiencia de presentación (fecha base del calendario).
@@ -283,16 +283,10 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
     final List<HitoCalculado> hitos = _hitos();
     return Scaffold(
       backgroundColor: TemaGlobal.superficie,
-      appBar: AppBar(
-        backgroundColor: TemaGlobal.azulMarino,
-        foregroundColor: TemaGlobal.dorado,
-        elevation: 0,
-        title: const Text('Lapsos del expediente'),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: TemaGlobal.dorado),
-          onPressed: () => Navigator.of(context).maybePop(),
-        ),
+            appBar: AppBarInstitucional(
+        title: 'Lapsos del expediente',
+        mostrarBack: true,
+        mostrarHome: true,
       ),
       body: RefreshIndicator(
         onRefresh: _recargarExcluidos,
@@ -338,7 +332,7 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
             Text(
               'Lapsos procesales',
               style: TextStyle(
-                color: acento,
+                color: AppColors.acento,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
@@ -505,7 +499,7 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
           child: Text(
             faseActual,
             style: TextStyle(
-              color: acento,
+              color: AppColors.acento,
               fontWeight: FontWeight.bold,
               fontSize: 15,
               letterSpacing: 0.5,
@@ -582,8 +576,8 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
                   child: OutlinedButton.icon(
                     onPressed: () => _agendarHito(h),
                     style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: acento),
-                      foregroundColor: acento,
+                      side: BorderSide(color: AppColors.acento),
+                      foregroundColor: AppColors.acento,
                     ),
                     icon: const Icon(Icons.calendar_month),
                     label: const Text('Agendar este hito'),

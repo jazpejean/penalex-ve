@@ -59,12 +59,11 @@ class TribunalDetailScreen extends StatelessWidget {
   // Cabecera: foto del tribunal (R2) con caché, más la barra superior.
   // -------------------------------------------------------------------------
   Widget _cabecera(BuildContext context) {
-    final azulMarino = TemaGlobal.azulMarino;
     final foto = tribunal.urlFoto;
     return SliverAppBar(
       pinned: true,
       expandedHeight: 230,
-      backgroundColor: azulMarino,
+      backgroundColor: AppColors.azulMarino,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back, color: Colors.white),
         onPressed: () => Navigator.of(context).maybePop(),
@@ -77,7 +76,7 @@ class TribunalDetailScreen extends StatelessWidget {
                 fit: BoxFit.cover,
                 // --- Estado de carga de la imagen ---
                 placeholder: (context, _) => Container(
-                  color: const Color(0xFFD9DCE5),
+                  color: AppColors.capa,
                   alignment: Alignment.center,
                   child: const CircularProgressIndicator(strokeWidth: 2),
                 ),
@@ -89,12 +88,12 @@ class TribunalDetailScreen extends StatelessWidget {
 
   Widget _placeholderFoto() {
     return Container(
-      color: const Color(0xFFD9DCE5),
+      color: AppColors.capa,
       alignment: Alignment.center,
-      child: const Icon(
+      child: Icon(
         Icons.account_balance,
         size: 72,
-        color: Color(0xFF8A90A0),
+        color: AppColors.textoSecundario,
       ),
     );
   }
@@ -188,7 +187,7 @@ class TribunalDetailScreen extends StatelessWidget {
                   child: const Icon(
                     Icons.location_pin,
                     size: 40,
-                    color: Color(0xFF0B132B),
+                    color: AppColors.azulMarino,
                   ),
                 ),
               ],

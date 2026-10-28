@@ -16,6 +16,7 @@ import '../utils/date_utils.dart';
 import '../utils/non_working_days.dart';
 import 'calendario_judicial_screen.dart';
 import 'tribunal_detail_screen.dart';
+import '../widgets/app_snackbar.dart';
 
 class AgendaScreen extends StatefulWidget {
   const AgendaScreen({super.key});
@@ -25,8 +26,7 @@ class AgendaScreen extends StatefulWidget {
 }
 
 class _AgendaScreenState extends State<AgendaScreen> {
-  static Color get acento =>
-      TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino;
+  
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   Map<DateTime, List<Audiencia>> _audienciasPorDia = <DateTime, List<Audiencia>>{};
@@ -100,7 +100,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
             child: const Text('Cancelar'),
           ),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            style: ElevatedButton.styleFrom(backgroundColor: AppColors.error),
             onPressed: () => Navigator.pop(context, true),
             child: const Text('Eliminar'),
           ),
@@ -115,15 +115,11 @@ class _AgendaScreenState extends State<AgendaScreen> {
     if (exito) {
       await _cargarAudiencias();
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Audiencia eliminada'), backgroundColor: Colors.green),
-        );
+        AppSnackBar.success(context, 'Audiencia eliminada');
       }
     } else {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Error al eliminar la audiencia'), backgroundColor: Colors.red),
-        );
+        AppSnackBar.error(context, 'Error al eliminar la audiencia');
       }
     }
     setState(() => _isLoading = false);
@@ -159,7 +155,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 color: TemaGlobal.dorado.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Icon(Icons.gavel, color: acento, size: 22),
+              child: Icon(Icons.gavel, color: AppColors.acento, size: 22),
             ),
             const SizedBox(width: 10),
             const Expanded(
@@ -217,18 +213,12 @@ class _AgendaScreenState extends State<AgendaScreen> {
               Haptics.light();
               if (expedienteCtrl.text.isEmpty || imputadoCtrl.text.isEmpty || fechaCtrl.text.isEmpty || horaCtrl.text.isEmpty) {
                 Haptics.error();
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text('Expediente, Imputado, Fecha y Hora son obligatorios'),
-                  backgroundColor: AppColors.error,
-                ));
+                AppSnackBar.error(context, 'Expediente, Imputado, Fecha y Hora son obligatorios');
                 return;
               }
               final DateTime? fecha = parseFecha(fechaCtrl.text);
               if (fecha == null) {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text('Fecha inválida. Use DD/MM/AAAA'),
-                  backgroundColor: AppColors.error,
-                ));
+                AppSnackBar.error(context, 'Fecha inválida. Use DD/MM/AAAA');
                 return;
               }
               final Audiencia nueva = Audiencia(
@@ -269,10 +259,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 unawaited(_cargarAudiencias());
               } else {
                 if (context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text('Error al guardar la audiencia'),
-                    backgroundColor: AppColors.error,
-                  ));
+                  AppSnackBar.error(context, 'Error al guardar la audiencia');
                 }
               }
             },
@@ -400,7 +387,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(Icons.account_balance,
-                  color: acento, size: 22),
+                  color: AppColors.acento, size: 22),
             ),
             const SizedBox(width: 10),
             const Expanded(
@@ -568,8 +555,8 @@ class _AgendaScreenState extends State<AgendaScreen> {
             height: nivel == 0 ? 18 : 14,
             decoration: BoxDecoration(
               color: nivel == 0
-                  ? acento
-                  : acento.withValues(alpha: 0.5),
+                  ? AppColors.acento
+                  : AppColors.acento.withValues(alpha: 0.5),
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -619,7 +606,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 color: TemaGlobal.dorado.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Icon(Icons.block, color: acento, size: 22),
+              child: Icon(Icons.block, color: AppColors.acento, size: 22),
             ),
             const SizedBox(width: 10),
             const Expanded(
@@ -659,7 +646,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      const Icon(Icons.info_outline, color: AppColors.warning, size: 20),
+                      Icon(Icons.info_outline, color: AppColors.warning, size: 20),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
@@ -691,18 +678,12 @@ class _AgendaScreenState extends State<AgendaScreen> {
             ),
             onPressed: () async {
               if (fechaCtrl.text.isEmpty || motivoCtrl.text.isEmpty) {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text('Fecha y Motivo son obligatorios'),
-                  backgroundColor: AppColors.error,
-                ));
+                AppSnackBar.error(context, 'Fecha y Motivo son obligatorios');
                 return;
               }
               final DateTime? fecha = parseFecha(fechaCtrl.text);
               if (fecha == null) {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text('Fecha inválida. Use DD/MM/AAAA'),
-                  backgroundColor: AppColors.error,
-                ));
+                AppSnackBar.error(context, 'Fecha inválida. Use DD/MM/AAAA');
                 return;
               }
               final NonWorkingDay newNonWorkingDay = NonWorkingDay(
@@ -714,19 +695,13 @@ class _AgendaScreenState extends State<AgendaScreen> {
               final bool success = await NonWorkingDayService.saveNonWorkingDay(newNonWorkingDay);
               if (success) {
                 if (context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text('Día sin despacho guardado'),
-                    backgroundColor: AppColors.success,
-                  ));
+                  AppSnackBar.success(context, 'Día sin despacho guardado');
                 }
                 if (context.mounted) Navigator.pop(context);
                 unawaited(_loadNonWorkingDays());
               } else {
                 if (context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text('No se pudo guardar el día sin despacho. Verifique su sesión y conexión.'),
-                    backgroundColor: AppColors.error,
-                  ));
+                  AppSnackBar.error(context, 'No se pudo guardar el día sin despacho. Verifique su sesión y conexión.');
                 }
               }
             },
@@ -779,7 +754,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
               color: TemaGlobal.dorado.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(icon, color: acento, size: 20),
+            child: Icon(icon, color: AppColors.acento, size: 20),
           ),
           filled: true,
           fillColor: TemaGlobal.superficie,
@@ -792,7 +767,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: acento, width: 1.4),
+            borderSide: BorderSide(color: AppColors.acento, width: 1.4),
           ),
         ),
       ),
@@ -817,9 +792,9 @@ class _AgendaScreenState extends State<AgendaScreen> {
                           icon: const Icon(Icons.add, size: 18),
                           label: const Text('Nueva audiencia'),
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: acento,
+                            foregroundColor: AppColors.acento,
                             side: BorderSide(
-                                color: acento.withValues(alpha: 0.5)),
+                                color: AppColors.acento.withValues(alpha: 0.5)),
                             padding: const EdgeInsets.symmetric(vertical: 12),
                           ),
                         ),
@@ -831,9 +806,9 @@ class _AgendaScreenState extends State<AgendaScreen> {
                           icon: const Icon(Icons.block, size: 18),
                           label: const Text('Día sin despacho'),
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: acento,
+                            foregroundColor: AppColors.acento,
                             side: BorderSide(
-                                color: acento.withValues(alpha: 0.5)),
+                                color: AppColors.acento.withValues(alpha: 0.5)),
                             padding: const EdgeInsets.symmetric(vertical: 12),
                           ),
                         ),
@@ -919,7 +894,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                 ),
                                 child: Text(
                                   "${day.day}",
-                                  style: const TextStyle(color: AppColors.error, fontWeight: FontWeight.bold),
+                                  style: TextStyle(color: AppColors.error, fontWeight: FontWeight.bold),
                                 ),
                               );
                             }
@@ -980,7 +955,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                           content: Text('¿Eliminar audiencia con expediente "${aud.expediente}"?'),
                                           actions: <Widget>[
                                             TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancelar')),
-                                            TextButton(onPressed: () => Navigator.pop(context, true), child: const Text('Eliminar', style: TextStyle(color: AppColors.error))),
+                                            TextButton(onPressed: () => Navigator.pop(context, true), child: Text('Eliminar', style: TextStyle(color: AppColors.error))),
                                           ],
                                         )),
                                     onDismissed: (DismissDirection direction) => unawaited(_eliminarAudiencia(aud)),
@@ -1000,11 +975,11 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                           IconButton(
                                             tooltip: 'Lapsos del expediente',
                                             icon: Icon(Icons.timeline,
-                                                color: acento),
+                                                color: AppColors.acento),
                                             onPressed: () => _abrirLapsosExpediente(aud),
                                           ),
                                           IconButton(
-                                            icon: const Icon(Icons.delete_outline, color: Colors.red),
+                                            icon: Icon(Icons.delete_outline, color: AppColors.error),
                                             onPressed: () => unawaited(_eliminarAudiencia(aud)),
                                           ),
                                         ],

@@ -266,12 +266,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     child: Row(
                       children: <Widget>[
-                        const Icon(Icons.error_outline,
+                        Icon(Icons.error_outline,
                             color: AppColors.error),
                         const SizedBox(width: 12),
                         Expanded(
                             child: Text(_errorMessage,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: AppColors.error))),
                       ],
                     ),
@@ -366,7 +366,7 @@ class _LoginPageState extends State<LoginPage> {
                         width: 24,
                         errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) =>
                             Icon(Icons.g_mobiledata,
-                                size: 24, color: Color(0xFFDB4437)),
+                                size: 24, color: AppColors.rojoGoogle),
                       ),
                       SizedBox(width: 12),
                       Text('Iniciar con Google',

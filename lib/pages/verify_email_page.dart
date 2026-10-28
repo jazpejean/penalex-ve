@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
 import '../services/local_auth_service.dart';
 import '../utils/main_tab_controller.dart';
+import '../widgets/app_bar_institucional.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({super.key});
@@ -22,8 +23,8 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
   int _resendCooldown = 0;
   Timer? _cooldownTimer;
 
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
+  
+  
   static Color get fondoGris => TemaGlobal.superficie;
   static Color get grisTexto => TemaGlobal.textoSecundario;
 
@@ -116,13 +117,11 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: fondoGris,
-        appBar: AppBar(
-          backgroundColor: azulMarino,
-          foregroundColor: dorado,
-          elevation: 0,
-          title: const Text('Verificar Correo'),
-          centerTitle: true,
-        ),
+              appBar: AppBarInstitucional(
+        title: 'Verificar Correo',
+        mostrarBack: true,
+        mostrarHome: true,
+      ),
         body: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(24),
@@ -202,8 +201,8 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                       ElevatedButton(
                         onPressed: _checkVerification,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: azulMarino,
-                          foregroundColor: dorado,
+                          backgroundColor: AppColors.azulMarino,
+                          foregroundColor: AppColors.dorado,
                           minimumSize: const Size(double.infinity, 52),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                         ),

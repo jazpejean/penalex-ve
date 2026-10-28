@@ -5,6 +5,7 @@ import '../services/glosario_service.dart';
 import '../config/app_colors.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/main_bottom_bar.dart';
+import '../widgets/app_bar_institucional.dart';
 
 class GlosarioScreen extends StatefulWidget {
   const GlosarioScreen({super.key});
@@ -282,12 +283,10 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
   Widget build(BuildContext context) => Scaffold(
       drawer: const AppDrawer(currentRoute: "/glosario"),
       bottomNavigationBar: const MainBottomBar(),
-      appBar: AppBar(
-        title: const Text("Glosario Jurídico"),
-        backgroundColor: AppColors.primary,
-        foregroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
+            appBar: AppBarInstitucional(
+        title: 'Glosario Jurídico',
+        mostrarBack: true,
+        mostrarHome: true,
         actions: [
           // Contador de términos
           Padding(
@@ -296,22 +295,22 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: AppColors.secondary,
+                  color: AppColors.dorado,
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.secondary.withValues(alpha: 0.3),
+                      color: AppColors.dorado.withValues(alpha: 0.3),
                       blurRadius: 4,
                       offset: const Offset(0, 2),
                     ),
                   ],
                 ),
                 child: Text(
-                  '${terminos.length} términos',
+                  '${GlosarioScreen.terminos.length} términos',
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
-                    color: TemaGlobal.texto,
+                    color: AppColors.onDorado,
                     letterSpacing: 0.5,
                   ),
                 ),
@@ -347,7 +346,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
-                  borderSide: const BorderSide(color: AppColors.secondary, width: 2),
+                  borderSide: const BorderSide(color: AppColors.dorado, width: 2),
                 ),
                 contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
               ),
@@ -380,16 +379,16 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                       duration: const Duration(milliseconds: 200),
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                       decoration: BoxDecoration(
-                        color: selected ? AppColors.secondary : TemaGlobal.tarjeta,
+                        color: selected ? AppColors.dorado : TemaGlobal.tarjeta,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: selected ? AppColors.secondary : AppColors.primary.withValues(alpha: 0.2),
+                          color: selected ? AppColors.dorado : AppColors.azulMarino.withValues(alpha: AppColors.a18),
                           width: 1.5,
                         ),
                         boxShadow: selected
                             ? <BoxShadow>[
                                 BoxShadow(
-                                  color: AppColors.primary.withValues(alpha: 0.3),
+                                  color: AppColors.azulMarino.withValues(alpha: AppColors.a24),
                                   blurRadius: 8,
                                   offset: const Offset(0, 2),
                                 ),
@@ -399,7 +398,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                       child: Text(
                         letter,
                         style: TextStyle(
-                          color: selected ? AppColors.primary : TemaGlobal.texto,
+                          color: selected ? AppColors.onDorado : TemaGlobal.texto,
                           fontWeight: selected ? FontWeight.bold : FontWeight.w500,
                           fontSize: 16,
                         ),
@@ -431,7 +430,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                     },
                     child: const Text(
                       "Limpiar filtros",
-                      style: TextStyle(color: AppColors.secondary, fontWeight: FontWeight.w600),
+                      style: TextStyle(color: AppColors.dorado, fontWeight: FontWeight.w600),
                     ),
                   ),
               ],
@@ -478,12 +477,12 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                         return Card(
                           color: TemaGlobal.tarjeta,
                           elevation: 2,
-                          shadowColor: AppColors.secondary.withValues(alpha: 0.1),
+                          shadowColor: AppColors.dorado.withValues(alpha: 0.1),
                           margin: const EdgeInsets.only(bottom: 12),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                             side: BorderSide(
-                              color: AppColors.secondary.withValues(alpha: 0.3),
+                              color: AppColors.dorado.withValues(alpha: 0.3),
                               width: 1,
                             ),
                           ),
@@ -493,7 +492,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                               width: 48,
                               height: 48,
                               decoration: BoxDecoration(
-                                color: AppColors.secondary.withValues(alpha: 0.15),
+                                color: AppColors.dorado.withValues(alpha: 0.15),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Center(
@@ -536,14 +535,14 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                                         Icon(
                                           Icons.balance,
                                           size: 14,
-                                          color: AppColors.secondary.withValues(alpha: 0.8),
+                                          color: AppColors.textoSecundario,
                                         ),
                                         const SizedBox(width: 6),
                                         Flexible(
                                           child: Text(
                                             item["reference"]!,
                                             style: TextStyle(
-                                              color: AppColors.secondary.withValues(alpha: 0.85),
+                                              color: AppColors.textoSecundario,
                                               fontSize: 12,
                                               fontStyle: FontStyle.italic,
                                               height: 1.3,

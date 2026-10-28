@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../services/chat_legal_export_service.dart';
 import '../services/membrete_service.dart';
 import '../services/word_export_service.dart';
 import '../utils/quill_conversion.dart';
+import '../widgets/app_bar_institucional.dart';
 
 /// Editor de documentos estilo Word (básico) integrado al Redactor.
 ///
@@ -174,10 +176,10 @@ class _WordEditorScreenState extends State<WordEditorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TemaGlobal.superficie,
-      appBar: AppBar(
-        title: const Text('✏️ Editar documento'),
-        backgroundColor: TemaGlobal.azulMarino,
-        foregroundColor: TemaGlobal.dorado,
+            appBar: AppBarInstitucional(
+        title: '✏️ Editar documento',
+        mostrarBack: true,
+        mostrarHome: true,
         actions: [
           IconButton(
             onPressed: _ocupado ? null : _exportarWord,
@@ -191,10 +193,10 @@ class _WordEditorScreenState extends State<WordEditorScreen> {
           ),
           TextButton.icon(
             onPressed: _ocupado ? null : _guardar,
-            icon: const Icon(Icons.check, color: Colors.white),
+            icon: const Icon(Icons.check, color: AppColors.onAzulMarino),
             label: const Text(
               'Guardar',
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              style: TextStyle(color: AppColors.onAzulMarino, fontWeight: FontWeight.bold),
             ),
           ),
         ],

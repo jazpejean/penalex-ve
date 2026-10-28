@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 
+import '../config/app_colors.dart';
+
 /// Tipos de archivos adjuntos soportados
 enum AttachmentType {
   image,
@@ -54,9 +56,9 @@ class ChatAttachment {
       case AttachmentType.image:
         return Colors.blue;
       case AttachmentType.pdf:
-        return Colors.red;
+        return AppColors.error;
       case AttachmentType.document:
-        return Colors.green;
+        return AppColors.success;
       case AttachmentType.audio:
         return Colors.purple;
       case AttachmentType.video:

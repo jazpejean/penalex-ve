@@ -34,10 +34,10 @@ class _ConcursoPageState extends State<ConcursoPage> {
   List<String> _pasosConcurso = <String>[];
   bool _mostrarDesglose = false;
 
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
-  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
-  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
+  
+  
+  /// Acento de marca: azul marino en modo claro, AppColors.dorado en modo oscuro.
+  
   static Color get fondoGris => TemaGlobal.superficie;
 
   @override
@@ -117,7 +117,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                         onPressed: () =>
                             Scaffold.of(menuContext).openDrawer(),
                         tooltip: 'Menú',
-                        color: acento,
+                        color: AppColors.acento,
                       ),
                     ),
                     const SizedBox(width: 4),
@@ -125,7 +125,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                       child: Text(
                         'CONCURSO Y ADMISIÓN',
                         style: TextStyle(
-                            color: acento,
+                            color: AppColors.acento,
                             fontWeight: FontWeight.w700,
                             letterSpacing: 0.6,
                             fontSize: 16),
@@ -147,7 +147,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                       color: TemaGlobal.tarjeta,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18),
-                        side: BorderSide(color: acento),
+                        side: BorderSide(color: AppColors.acento),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(18),
@@ -180,7 +180,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     }
                                   },
                                   child: Icon(Icons.info_outline,
-                                      color: acento,
+                                      color: AppColors.acento,
                                       size: 20),
                                 ),
                               ],
@@ -209,17 +209,17 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     WidgetStateProperty.resolveWith(
                                         (Set<WidgetState> states) {
                                   if (states.contains(WidgetState.selected)) {
-                                    return azulMarino;
+                                    return AppColors.dorado;
                                   }
-                                  return fondoGris;
+                                  return AppColors.capa;
                                 }),
                                 foregroundColor:
                                     WidgetStateProperty.resolveWith(
                                         (Set<WidgetState> states) {
                                   if (states.contains(WidgetState.selected)) {
-                                    return dorado;
+                                    return AppColors.onDorado;
                                   }
-                                  return TemaGlobal.texto;
+                                  return AppColors.texto;
                                 }),
                                 side: WidgetStatePropertyAll(
                                     BorderSide(color: TemaGlobal.capa)),
@@ -240,16 +240,16 @@ class _ConcursoPageState extends State<ConcursoPage> {
                       Container(
                         padding: const EdgeInsets.all(14),
                         decoration: BoxDecoration(
-                          color: acento.withValues(alpha: 0.12),
+                          color: AppColors.acento.withValues(alpha: 0.12),
                           borderRadius: BorderRadius.circular(14),
                           border: Border.all(
-                              color: acento.withValues(alpha: 0.35),
+                              color: AppColors.acento.withValues(alpha: 0.35),
                               width: 1.5),
                         ),
                         child: Row(
                           children: <Widget>[
                             Icon(Icons.gavel,
-                                color: acento,
+                                color: AppColors.acento,
                                 size: 22),
                             const SizedBox(width: 12),
                             Expanded(
@@ -304,7 +304,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                 }
                               },
                               child: Icon(Icons.info_outline,
-                                  color: acento,
+                                  color: AppColors.acento,
                                   size: 20),
                             ),
                           ],
@@ -317,7 +317,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                       color: TemaGlobal.tarjeta,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18),
-                        side: BorderSide(color: acento),
+                        side: BorderSide(color: AppColors.acento),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(18),
@@ -381,8 +381,8 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                   ),
                                   controlAffinity:
                                       ListTileControlAffinity.leading,
-                                  activeColor: acento,
-                                  checkColor: azulMarino,
+                                  activeColor: AppColors.acento,
+                                  checkColor: AppColors.azulMarino,
                                 );
                               },
                             ),
@@ -396,7 +396,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                       color: TemaGlobal.tarjeta,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18),
-                        side: BorderSide(color: acento),
+                        side: BorderSide(color: AppColors.acento),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(18),
@@ -423,7 +423,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     "Institución procesal donde el imputado acepta su responsabilidad en la audiencia. Permite al juez rebajar la pena de un tercio (1/3) a la mitad (1/2), considerando la naturaleza del delito y el momento procesal en que se admita.",
                                   ),
                                   child: Icon(Icons.info_outline,
-                                      color: acento,
+                                      color: AppColors.acento,
                                       size: 20),
                                 ),
                               ],
@@ -440,7 +440,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                   _calcularTotal();
                                 });
                               },
-                              activeThumbColor: acento,
+                              activeThumbColor: AppColors.acento,
                               contentPadding: EdgeInsets.zero,
                             ),
                             if (_admisionHechos) ...<Widget>[
@@ -465,7 +465,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     _calcularTotal();
                                   });
                                 },
-                                activeColor: acento,
+                                activeColor: AppColors.acento,
                                 inactiveColor: TemaGlobal.capa,
                               ),
                             ],
@@ -476,12 +476,23 @@ class _ConcursoPageState extends State<ConcursoPage> {
 const SizedBox(height: 16),
                     Card(
                       elevation: 0,
-                      color: TemaGlobal.azulMarino,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
-                        side: const BorderSide(color: dorado, width: 1.5),
+                        side: const BorderSide(color: AppColors.dorado, width: 1.5),
                       ),
-                      child: Padding(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: <Color>[
+                              AppColors.azulMarino,
+                              AppColors.tarjeta,
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -492,7 +503,7 @@ const SizedBox(height: 16),
                                 const Text(
                                   "PENA DEFINITIVA",
                                   style: TextStyle(
-                                      color: dorado,
+                                      color: AppColors.dorado,
                                       fontWeight: FontWeight.w800,
                                       fontSize: 13,
                                       letterSpacing: 0.7),
@@ -504,11 +515,11 @@ const SizedBox(height: 16),
                                     "En el sistema jurídico venezolano, la pena privativa de libertad es de carácter humanista y tiene un límite constitucional absoluto de 30 años. Ningún cálculo aritmético o acumulación de penas puede superar este tope de cumplimiento efectivo.",
                                   ),
                                   child: const Icon(Icons.info_outline,
-                                      color: dorado, size: 18),
+                                      color: AppColors.dorado, size: 18),
                                 ),
                                 if (_topeAplicado) ...<Widget>[
                                   const SizedBox(width: 8),
-                                  const Icon(Icons.warning_amber_rounded,
+                                  Icon(Icons.warning_amber_rounded,
                                       color: AppColors.warning, size: 18),
                                 ],
                               ],
@@ -517,7 +528,7 @@ const SizedBox(height: 16),
                             Text(
                               DosimetriaEngine.formatYMD(_penaTotal),
                               style: const TextStyle(
-                                  color: dorado,
+                                  color: AppColors.dorado,
                                   fontWeight: FontWeight.w800,
                                   fontSize: 24),
                               textAlign: TextAlign.center,
@@ -529,14 +540,14 @@ const SizedBox(height: 16),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(14),
                                 border: Border.all(
-                                    color: dorado.withValues(alpha: 0.6)),
+                                    color: AppColors.dorado.withValues(alpha: 0.6)),
                               ),
                               child: Text(
                                 _articuloConcursoAplicado.isEmpty
                                     ? 'Delito único (sin concurso)'
                                     : _articuloConcursoAplicado,
                                 style: const TextStyle(
-                                    color: dorado,
+                                    color: AppColors.dorado,
                                     fontSize: 10,
                                     fontWeight: FontWeight.w700),
                                 textAlign: TextAlign.center,
@@ -544,7 +555,7 @@ const SizedBox(height: 16),
                             ),
                             const SizedBox(height: 6),
                             if (_topeAplicado)
-                              const Text(
+                              Text(
                                 'TOPE DE 30 AÑOS APLICADO (Art. 94 CP)',
                                 style: TextStyle(
                                     color: AppColors.warning,
@@ -564,7 +575,7 @@ const SizedBox(height: 16),
                                         ? 'OCULTAR DESGLOSE'
                                         : 'VER DESGLOSE PASO A PASO',
                                     style: const TextStyle(
-                                        color: dorado,
+                                        color: AppColors.dorado,
                                         fontSize: 10,
                                         fontWeight: FontWeight.w800,
                                         letterSpacing: 0.5),
@@ -573,7 +584,7 @@ const SizedBox(height: 16),
                                     _mostrarDesglose
                                         ? Icons.keyboard_arrow_up_rounded
                                         : Icons.keyboard_arrow_down_rounded,
-                                    color: dorado,
+                                    color: AppColors.dorado,
                                     size: 16,
                                   ),
                                 ],
@@ -590,7 +601,7 @@ const SizedBox(height: 16),
                                   color: TemaGlobal.capa,
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
-                                      color: acento.withValues(alpha: 0.25)),
+                                      color: AppColors.acento.withValues(alpha: 0.25)),
                                 ),
                                 child: SingleChildScrollView(
                                   child: Column(
@@ -618,7 +629,7 @@ const SizedBox(height: 16),
                                                 '- ${e.value}',
                                                 style: TextStyle(
                                                   color: esFinal
-                                                      ? dorado
+                                                      ? AppColors.dorado
                                                       : TemaGlobal.texto,
                                                   fontSize: 11,
                                                   fontWeight: esFinal
@@ -635,6 +646,7 @@ const SizedBox(height: 16),
                           ],
                         ),
                       ),
+                      ),
                     ),
                     const SizedBox(height: 16),
                     Row(
@@ -645,7 +657,7 @@ const SizedBox(height: 16),
                             icon: const Icon(Icons.arrow_back),
                             label: const Text("ANTERIOR"),
                             style: OutlinedButton.styleFrom(
-                              side: BorderSide(color: acento),
+                              side: BorderSide(color: AppColors.acento),
                               foregroundColor: TemaGlobal.texto,
                               fixedSize: const Size.fromHeight(48),
                               shape: RoundedRectangleBorder(
@@ -683,9 +695,9 @@ const SizedBox(height: 16),
                             icon: const Icon(Icons.arrow_forward),
                             label: const Text("CONTINUAR"),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: azulMarino,
-                              foregroundColor: dorado,
-                              side: const BorderSide(color: dorado),
+                              backgroundColor: AppColors.azulMarino,
+                              foregroundColor: AppColors.dorado,
+                              side: const BorderSide(color: AppColors.dorado),
                               fixedSize: const Size.fromHeight(48),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(14)),

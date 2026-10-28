@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../config/app_theme.dart';
 import '../models/ley_estructurada.dart';
+import '../config/app_colors.dart';
 
 /// Renderiza una tabla/anexo de un artículo (campo `tablas` del JSON de la ley)
 /// como una tabla real: encabezado (ej. "ANEXO I"), nombre de la tabla y
 /// columnas/filas con scroll horizontal.
 class TablaAnexoView extends StatelessWidget {
-  static const Color dorado = Color(0xFFC5A059);
-  static const Color azulMarino = Color(0xFF0F172A);
+  
+  
 
   final TablaAnexo tabla;
 
@@ -23,9 +24,9 @@ class TablaAnexoView extends StatelessWidget {
       margin: const EdgeInsets.only(top: 16),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: azulMarino.withOpacity(0.6),
+        color: AppColors.azulMarino.withValues(alpha: AppColors.a48),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: dorado.withOpacity(0.4)),
+        border: Border.all(color: AppColors.dorado.withValues(alpha: AppColors.a48)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +35,7 @@ class TablaAnexoView extends StatelessWidget {
             Text(
               tabla.titulo!,
               style: const TextStyle(
-                color: dorado,
+                color: AppColors.dorado,
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
               ),
@@ -54,9 +55,9 @@ class TablaAnexoView extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: DataTable(
-              headingRowColor: WidgetStatePropertyAll(dorado.withOpacity(0.18)),
+              headingRowColor: WidgetStatePropertyAll(AppColors.dorado.withValues(alpha: AppColors.a18)),
               headingTextStyle: const TextStyle(
-                color: dorado,
+                color: AppColors.dorado,
                 fontWeight: FontWeight.bold,
                 fontSize: 12,
               ),

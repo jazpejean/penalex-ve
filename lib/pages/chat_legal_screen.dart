@@ -1,7 +1,5 @@
 import 'dart:io';
 import '../services/haptics_service.dart';
-import '../pages/main_screen.dart';
-import '../utils/main_tab_controller.dart';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +17,7 @@ import '../services/chat_legal_export_service.dart';
 import '../services/ulpiano_service.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'redactor_documentos_screen.dart' show RedactorDocumentosScreen;
+import '../widgets/app_bar_institucional.dart';
 
 /// Modelo para archivos adjuntos
 class AttachedFile {
@@ -66,12 +65,12 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
   final List<AttachedFile> _attachedFiles = [];
 
   // Marca institucional (fija en ambos modos; idéntica a TemaGlobal.dorado/
-  // azulMarino). El resto de superficies/textos leen de TemaGlobal.
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
+  // AppColors.azulMarino). El resto de superficies/textos leen de TemaGlobal.
+  
+  
   static Color get grisOscuro => TemaGlobal.tarjeta;
-  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
-  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
+  /// Acento de marca: azul marino en modo claro, AppColors.dorado en modo oscuro.
+  
 
   @override
   void initState() {
@@ -106,12 +105,12 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: azulMarino,
+                color: AppColors.azulMarino,
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.folder_special, color: dorado),
+                  const Icon(Icons.folder_special, color: AppColors.dorado),
                   const SizedBox(width: 12),
                   const Expanded(
                     child: Text(
@@ -141,7 +140,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     icon: Icons.document_scanner,
                     title: 'Documentos Escaneados',
                     subtitle: 'Textos extraídos con OCR',
-                    color: acento,
+                    color: AppColors.acento,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarDocumentosEscaneados();
@@ -152,7 +151,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     icon: Icons.calculate,
                     title: 'Reportes de Calculadora',
                     subtitle: 'Dosimetrías y cómputos guardados',
-                    color: acento,
+                    color: AppColors.acento,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarReportesCalculadora();
@@ -163,7 +162,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     icon: Icons.edit_document,
                     title: 'Documentos del Redactor',
                     subtitle: 'Escritos legales generados',
-                    color: acento,
+                    color: AppColors.acento,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarDocumentosRedactor();
@@ -174,7 +173,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     icon: Icons.star,
                     title: 'Sentencias Favoritas',
                     subtitle: 'Jurisprudencias marcadas',
-                    color: acento,
+                    color: AppColors.acento,
                     onTap: () {
                       Navigator.pop(context);
                       _cargarSentenciasFavoritas();
@@ -375,7 +374,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
         color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: acento.withValues(alpha: 0.3),
+          color: AppColors.acento.withValues(alpha: 0.3),
           width: 1,
         ),
       ),
@@ -395,13 +394,13 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                 Container(
                   padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
-                    color: acento.withValues(alpha: 0.2),
+                    color: AppColors.acento.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Icon(
                     file.icon,
                     size: 16,
-                    color: acento,
+                    color: AppColors.acento,
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -622,7 +621,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
               padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
-                  Icon(Icons.attach_file, color: acento),
+                  Icon(Icons.attach_file, color: AppColors.acento),
                   const SizedBox(width: 12),
                   Text(
                     'Adjuntar archivo',
@@ -639,7 +638,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             
             // Archivos externos
             ListTile(
-              leading: Icon(Icons.photo_library, color: acento),
+              leading: Icon(Icons.photo_library, color: AppColors.acento),
               title: Text(
                 'Galería',
                 style: TextStyle(color: TemaGlobal.texto),
@@ -654,7 +653,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.camera_alt, color: acento),
+              leading: Icon(Icons.camera_alt, color: AppColors.acento),
               title: Text(
                 'Cámara',
                 style: TextStyle(color: TemaGlobal.texto),
@@ -669,7 +668,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.insert_drive_file, color: acento),
+              leading: Icon(Icons.insert_drive_file, color: AppColors.acento),
               title: Text(
                 'Documento',
                 style: TextStyle(color: TemaGlobal.texto),
@@ -688,7 +687,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             
             // ✨ NUEVO: Documentos guardados en la app
             ListTile(
-              leading: Icon(Icons.folder_special, color: acento),
+              leading: Icon(Icons.folder_special, color: AppColors.acento),
               title: Text(
                 'Documentos Guardados',
                 style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),
@@ -782,21 +781,10 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
       resizeToAvoidBottomInset: true,
       backgroundColor: TemaGlobal.superficie,
       bottomNavigationBar: const MainBottomBar(),
-      appBar: AppBar(
-        title: const Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.auto_awesome, color: dorado, size: 22),
-            SizedBox(width: 8),
-            Text(
-              'Ulpiano',
-              style: TextStyle(color: dorado, fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        backgroundColor: azulMarino,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: dorado),
+            appBar: AppBarInstitucional(
+        title: 'Ulpiano',
+        mostrarBack: true,
+        mostrarHome: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.history),
@@ -804,7 +792,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             tooltip: 'Ver conversaciones',
           ),
           PopupMenuButton<String>(
-            icon: const Icon(Icons.download, color: dorado),
+            icon: const Icon(Icons.download, color: AppColors.dorado),
             tooltip: 'Exportar conversación',
             onSelected: _exportarConversacion,
             itemBuilder: (context) => const [
@@ -817,18 +805,6 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             onPressed: _confirmarEliminarConversacion,
             tooltip: 'Eliminar conversación',
           ),
-            IconButton(
-              icon: const Icon(Icons.home_outlined, color: Color(0xFFC5A059)),
-              tooltip: 'Ir al inicio',
-              onPressed: () {
-                mainTabIndex.value = 0;
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (_) => const MainScreen()),
-                  (r) => false,
-                );
-              },
-            ),
         ],
       ),
       body: SafeArea(
@@ -840,7 +816,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
               color: TemaGlobal.capa,
               child: Row(
                 children: [
-                  Icon(Icons.info_outline, color: acento, size: 20),
+                  Icon(Icons.info_outline, color: AppColors.acento, size: 20),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
@@ -859,7 +835,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             Expanded(
               child: _isLoading
                   ? Center(
-                      child: CircularProgressIndicator(color: acento),
+                      child: CircularProgressIndicator(color: AppColors.acento),
                     )
                   : _messages.isEmpty
                       ? _buildEmptyState()
@@ -913,7 +889,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     children: [
                       // Botón de adjuntar
                       IconButton(
-                        icon: Icon(Icons.attach_file, color: acento),
+                        icon: Icon(Icons.attach_file, color: AppColors.acento),
                         onPressed: _mostrarOpcionesAdjunto,
                       ),
                       const SizedBox(width: 8),
@@ -949,12 +925,12 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                       Container(
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
-                            colors: [dorado, Color(0xFFC5A059)],
+                            colors: [AppColors.dorado, AppColors.dorado],
                           ),
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: dorado.withValues(alpha: 0.3),
+                              color: AppColors.dorado.withValues(alpha: 0.3),
                               blurRadius: 8,
                               spreadRadius: 2,
                             ),
@@ -962,7 +938,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                         ),
                         child: IconButton(
                           icon: const Icon(Icons.send_rounded),
-                          color: azulMarino,
+                          color: AppColors.azulMarino,
                           onPressed: _isGeneratingResponse ? null : _enviarMensaje,
                         ),
                       ),
@@ -990,7 +966,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: acento.withValues(alpha: 0.2),
+                  color: AppColors.acento.withValues(alpha: 0.2),
                   blurRadius: 20,
                   spreadRadius: 5,
                 ),
@@ -999,7 +975,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             child: Icon(
               Icons.chat_bubble_outline,
               size: 60,
-              color: acento,
+              color: AppColors.acento,
             ),
           ),
           const SizedBox(height: 24),
@@ -1041,7 +1017,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
       label: Text(text),
       labelStyle: TextStyle(color: TemaGlobal.texto, fontSize: 12),
       backgroundColor: TemaGlobal.tarjeta,
-      side: BorderSide(color: acento.withValues(alpha: 0.3)),
+      side: BorderSide(color: AppColors.acento.withValues(alpha: 0.3)),
       onPressed: () {
         _messageController.text = text;
         _enviarMensaje();
@@ -1061,9 +1037,9 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
         children: [
           if (!isUser) ...[
             CircleAvatar(
-              backgroundColor: dorado,
+              backgroundColor: AppColors.dorado,
               radius: 20,
-              child: const Icon(Icons.smart_toy, color: azulMarino, size: 20),
+              child: const Icon(Icons.smart_toy, color: AppColors.azulMarino, size: 20),
             ),
             const SizedBox(width: 12),
           ],
@@ -1071,7 +1047,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             child: Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: isUser ? dorado : grisOscuro,
+                color: isUser ? AppColors.dorado : grisOscuro,
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
@@ -1091,7 +1067,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         color: isUser
-                            ? azulMarino.withValues(alpha: 0.2)
+                            ? AppColors.azulMarino.withValues(alpha: 0.2)
                             : TemaGlobal.capa.withValues(alpha: 0.6),
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -1101,7 +1077,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                             message.attachmentType?.startsWith('image/') == true
                                 ? Icons.image
                                 : Icons.insert_drive_file,
-                            color: isUser ? azulMarino : acento,
+                            color: isUser ? AppColors.azulMarino : AppColors.acento,
                             size: 20,
                           ),
                           const SizedBox(width: 8),
@@ -1111,7 +1087,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                                   ? 'Imagen adjunta'
                                   : 'Documento adjunto',
                               style: TextStyle(
-                                color: isUser ? azulMarino : TemaGlobal.texto,
+                                color: isUser ? AppColors.azulMarino : TemaGlobal.texto,
                                 fontSize: 12,
                               ),
                             ),
@@ -1124,7 +1100,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                     Text(
                       message.content,
                       style: const TextStyle(
-                        color: azulMarino,
+                        color: AppColors.azulMarino,
                         fontSize: 15,
                         height: 1.4,
                       ),
@@ -1153,23 +1129,23 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                           fontSize: 20,
                         ),
                         h2: TextStyle(
-                          color: acento,
+                          color: AppColors.acento,
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                         ),
                         h3: TextStyle(
-                          color: acento,
+                          color: AppColors.acento,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
-                        listBullet: TextStyle(color: acento),
+                        listBullet: TextStyle(color: AppColors.acento),
                         blockquote: TextStyle(
                           color: TemaGlobal.textoSecundario,
                           fontStyle: FontStyle.italic,
                         ),
                         code: const TextStyle(
-                          color: Color(0xFFC5A059),
-                          backgroundColor: Color(0xFF0F172A),
+                          color: AppColors.dorado,
+                          backgroundColor: AppColors.azulMarino,
                         ),
                       ),
                     ),
@@ -1180,7 +1156,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                         DateFormat('HH:mm').format(message.timestamp),
                         style: TextStyle(
                           color: isUser
-                              ? azulMarino.withValues(alpha: 0.6)
+                              ? AppColors.azulMarino.withValues(alpha: 0.6)
                               : TemaGlobal.textoTenue,
                           fontSize: 11,
                         ),
@@ -1210,7 +1186,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             CircleAvatar(
               backgroundColor: TemaGlobal.capa,
               radius: 20,
-              child: Icon(Icons.person, color: acento, size: 20),
+              child: Icon(Icons.person, color: AppColors.acento, size: 20),
             ),
           ],
         ],
@@ -1220,7 +1196,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
 
   Widget _buildAccionesMensaje(ChatMessage message) {
     final colorBase = message.isUser
-        ? azulMarino.withValues(alpha: 0.5)
+        ? AppColors.azulMarino.withValues(alpha: 0.5)
         : TemaGlobal.textoSecundario;
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -1354,7 +1330,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                   Icon(
                     _getSourceIcon(source.type),
                     size: 14,
-                    color: acento,
+                    color: AppColors.acento,
                   ),
                   const SizedBox(width: 8),
                   Expanded(
@@ -1405,9 +1381,9 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CircleAvatar(
-            backgroundColor: dorado,
+            backgroundColor: AppColors.dorado,
             radius: 20,
-            child: const Icon(Icons.smart_toy, color: azulMarino, size: 20),
+            child: const Icon(Icons.smart_toy, color: AppColors.azulMarino, size: 20),
           ),
           const SizedBox(width: 12),
           Container(
@@ -1424,7 +1400,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                   height: 16,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation<Color>(acento),
+                    valueColor: AlwaysStoppedAnimation<Color>(AppColors.acento),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -1539,7 +1515,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            style: TextButton.styleFrom(foregroundColor: AppColors.error),
             child: const Text('Eliminar'),
           ),
         ],
@@ -1566,10 +1542,10 @@ class ChatHistoryScreen extends StatefulWidget {
 class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
   // Marca institucional (fija; idéntica a TemaGlobal). Superficies/textos
   // leen de TemaGlobal.
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
-  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
-  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
+  
+  
+  /// Acento de marca: azul marino en modo claro, AppColors.dorado en modo oscuro.
+  
 
   late Future<List<ChatConversation>> _future;
 
@@ -1587,21 +1563,17 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TemaGlobal.superficie,
-      appBar: AppBar(
-        title: const Text(
-          'Conversaciones',
-          style: TextStyle(color: dorado, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: azulMarino,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: dorado),
+            appBar: AppBarInstitucional(
+        title: 'Conversaciones',
+        mostrarBack: true,
+        mostrarHome: true,
       ),
       body: FutureBuilder<List<ChatConversation>>(
         future: _future,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
-              child: CircularProgressIndicator(color: acento),
+              child: CircularProgressIndicator(color: AppColors.acento),
             );
           }
 
@@ -1612,7 +1584,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.chat_bubble_outline, size: 64, color: acento),
+                  Icon(Icons.chat_bubble_outline, size: 64, color: AppColors.acento),
                   const SizedBox(height: 16),
                   Text(
                     'No hay conversaciones',
@@ -1637,11 +1609,11 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Navigator.pop(context, '__NEW_CONVERSATION__'),
-        backgroundColor: dorado,
-        icon: Icon(Icons.add, color: azulMarino),
+        backgroundColor: AppColors.dorado,
+        icon: Icon(Icons.add, color: AppColors.azulMarino),
         label: Text(
           'Nueva conversación',
-          style: TextStyle(color: azulMarino, fontWeight: FontWeight.bold),
+          style: TextStyle(color: AppColors.azulMarino, fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -1655,10 +1627,10 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
       child: ListTile(
         onTap: () => Navigator.pop(context, conv.id),
         leading: CircleAvatar(
-          backgroundColor: acento.withValues(alpha: 0.2),
+          backgroundColor: AppColors.acento.withValues(alpha: 0.2),
           child: Icon(
             conv.isPinned ? Icons.push_pin : Icons.chat_bubble_outline,
-            color: acento,
+            color: AppColors.acento,
           ),
         ),
         title: Text(
@@ -1687,7 +1659,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
                 children: [
                   Icon(
                     conv.isPinned ? Icons.push_pin_outlined : Icons.push_pin,
-                    color: acento,
+                    color: AppColors.acento,
                   ),
                   const SizedBox(width: 12),
                   Text(
@@ -1701,7 +1673,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
               onTap: () => _renombrar(conv),
               child: Row(
                 children: [
-                  Icon(Icons.edit, color: acento),
+                  Icon(Icons.edit, color: AppColors.acento),
                   const SizedBox(width: 12),
                   Text('Renombrar', style: TextStyle(color: TemaGlobal.texto)),
                 ],
@@ -1709,11 +1681,11 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
             ),
             PopupMenuItem(
               onTap: () => _eliminar(conv.id),
-              child: const Row(
+              child: Row(
                 children: [
-                  Icon(Icons.delete, color: Colors.red),
-                  SizedBox(width: 12),
-                  Text('Eliminar', style: TextStyle(color: Colors.red)),
+                  Icon(Icons.delete, color: AppColors.error),
+                  const SizedBox(width: 12),
+                  Text('Eliminar', style: TextStyle(color: AppColors.error)),
                 ],
               ),
             ),
@@ -1797,7 +1769,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            style: TextButton.styleFrom(foregroundColor: AppColors.error),
             child: const Text('Eliminar'),
           ),
         ],

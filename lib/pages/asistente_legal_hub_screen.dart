@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import 'chat_legal_screen.dart';
 import 'redactor_documentos_screen.dart';
@@ -205,7 +206,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                               vertical: 4,
                             ),
                             decoration: BoxDecoration(
-                              color: const Color(0xFFC5A059),
+                              color: AppColors.dorado,
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: Text(
@@ -213,7 +214,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                               style: const TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF0F172A),
+                                color: AppColors.azulMarino,
                                 letterSpacing: 0.5,
                               ),
                             ),
@@ -282,11 +283,11 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFC5A059),
+                    color: AppColors.dorado,
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFFC5A059).withValues(alpha: 0.3),
+                        color: AppColors.dorado.withValues(alpha: AppColors.a24),
                         blurRadius: 8,
                         offset: const Offset(0, 4),
                       ),
@@ -297,7 +298,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                     children: [
                       Icon(
                         Icons.auto_awesome,
-                        color: Color(0xFF0F172A),
+                        color: AppColors.onDorado,
                         size: 20,
                       ),
                       SizedBox(width: 8),
@@ -306,7 +307,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF0F172A),
+                          color: AppColors.onDorado,
                           letterSpacing: 0.5,
                         ),
                       ),

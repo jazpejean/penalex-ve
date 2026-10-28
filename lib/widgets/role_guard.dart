@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../config/app_theme.dart';
 import '../services/role_service.dart';
+import '../config/app_colors.dart';
+import '../widgets/app_bar_institucional.dart';
 
 /// Widget que protege contenido según el rol del usuario
 class RoleGuard extends StatelessWidget {
@@ -61,10 +63,10 @@ class RoleGuard extends StatelessWidget {
 
   Widget _buildAccessDenied(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Acceso Denegado'),
-        backgroundColor: const Color(0xFF0F172A),
-        foregroundColor: const Color(0xFFC5A059),
+            appBar: AppBarInstitucional(
+        title: 'Acceso Denegado',
+        mostrarBack: true,
+        mostrarHome: true,
       ),
       body: Center(
         child: Padding(
@@ -72,10 +74,10 @@ class RoleGuard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(
+              Icon(
                 Icons.lock_outline,
                 size: 80,
-                color: Colors.red,
+                color: AppColors.error,
               ),
               const SizedBox(height: 24),
               const Text(
@@ -97,8 +99,8 @@ class RoleGuard extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back),
                 label: const Text('Volver'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0F172A),
-                  foregroundColor: const Color(0xFFC5A059),
+                  backgroundColor: AppColors.azulMarino,
+                  foregroundColor: AppColors.dorado,
                   padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                 ),
               ),

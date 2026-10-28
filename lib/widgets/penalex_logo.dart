@@ -12,7 +12,7 @@ enum PenalexLogoVariant { emblema, logo, isotipo }
 /// el equipo aporta el logo oficial; el widget ya queda listo para usarlo.
 ///
 /// - [color]: tiñe el logo (`BlendMode.srcIn`); `null` respeta el color del SVG.
-/// - [withGlow]: halo dorado difuminado con la silueta exacta.
+/// - [withGlow]: halo AppColors.dorado difuminado con la silueta exacta.
 /// - [animate]: entrada ceremonial (900 ms, easeOutCubic, escala 0.85→1 + fade).
 class PenalexLogo extends StatelessWidget {
   final PenalexLogoVariant variant;

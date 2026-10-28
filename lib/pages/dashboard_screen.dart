@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
 import '../config/app_theme.dart';
 import '../utils/main_tab_controller.dart';
+import '../config/app_colors.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -46,8 +47,8 @@ class DashboardScreen extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF0F172A), Color(0xFF1E293B)],
+                gradient: LinearGradient(
+                  colors: [AppColors.azulMarino, AppColors.tarjeta],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -229,8 +230,8 @@ class DashboardScreen extends StatelessWidget {
         child: Container(
           margin: const EdgeInsets.only(bottom: 20),
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [Color(0xFF1E293B), Color(0xFF0F172A)],
+            gradient: LinearGradient(
+              colors: [AppColors.tarjeta, AppColors.azulMarino],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -292,7 +293,7 @@ class DashboardScreen extends StatelessWidget {
                                     Icon(
                                       Icons.star_rounded,
                                       size: 14,
-                                      color: TemaGlobal.texto,
+                                      color: AppColors.onDorado,
                                     ),
                                     const SizedBox(width: 4),
                                     Text(
@@ -300,7 +301,7 @@ class DashboardScreen extends StatelessWidget {
                                       style: TextStyle(
                                         fontSize: 11,
                                         fontWeight: FontWeight.bold,
-                                        color: TemaGlobal.texto,
+                                        color: AppColors.onDorado,
                                         letterSpacing: 0.5,
                                       ),
                                     ),
@@ -404,8 +405,8 @@ class DashboardScreen extends StatelessWidget {
         child: Container(
           margin: const EdgeInsets.only(bottom: 14),
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [Color(0xFF1E293B), Color(0xFF0F172A)],
+            gradient: LinearGradient(
+              colors: [AppColors.tarjeta, AppColors.azulMarino],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),

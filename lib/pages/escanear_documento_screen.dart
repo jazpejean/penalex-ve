@@ -8,6 +8,7 @@ import '../services/escaneo_service.dart';
 import '../services/pdf_export_service.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'document_editor_screen.dart';
+import '../widgets/app_bar_institucional.dart';
 
 /// Lista de documentos escaneados (repositorio del escáner).
 class EscanearDocumentoScreen extends StatefulWidget {
@@ -22,10 +23,10 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
   final DocumentosService _documentosService = DocumentosService();
   final EscaneoService _escaneoService = EscaneoService();
 
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
-  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
-  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
+  
+  
+  /// Acento de marca: azul marino en modo claro, AppColors.dorado en modo oscuro.
+  
   static Color get fondoGris => TemaGlobal.superficie;
 
   List<DocumentoEscaneado> _documentos = [];
@@ -93,25 +94,17 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
     return Scaffold(
       backgroundColor: fondoGris,
       bottomNavigationBar: const MainBottomBar(),
-      appBar: AppBar(
-        title: const Text(
-          'Mis Documentos',
-          style: TextStyle(
-            color: dorado,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.3,
-          ),
-        ),
-        backgroundColor: azulMarino,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: dorado),
+            appBar: AppBarInstitucional(
+        title: 'Mis Documentos',
+        mostrarBack: true,
+        mostrarHome: true,
       ),
       body: Column(
         children: [
           _buildBuscador(),
           Expanded(
             child: _cargando
-                ? Center(child: CircularProgressIndicator(color: acento))
+                ? Center(child: CircularProgressIndicator(color: AppColors.acento))
                 : _documentosFiltrados.isEmpty
                     ? _buildEmptyState()
                     : _buildGrid(),
@@ -120,20 +113,20 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _escaneando ? null : _iniciarEscaneo,
-        backgroundColor: dorado,
+        backgroundColor: AppColors.dorado,
         icon: _escaneando
             ? SizedBox(                width: 18,
                 height: 18,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: azulMarino,
+                  color: AppColors.azulMarino,
                 ),
               )
-            : Icon(Icons.document_scanner, color: azulMarino),
+            : Icon(Icons.document_scanner, color: AppColors.azulMarino),
         label: Text(
           _escaneando ? 'Abriendo...' : 'Escanear',
           style: TextStyle(
-            color: azulMarino,
+            color: AppColors.azulMarino,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -151,7 +144,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
         decoration: InputDecoration(
           hintText: 'Buscar documento...',
           hintStyle: TextStyle(color: TemaGlobal.textoTenue),
-          prefixIcon: Icon(Icons.search, color: acento, size: 20),
+          prefixIcon: Icon(Icons.search, color: AppColors.acento, size: 20),
           filled: true,
           fillColor: TemaGlobal.campoTexto,
           border: OutlineInputBorder(
@@ -186,7 +179,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
       color: TemaGlobal.tarjeta,
       borderRadius: BorderRadius.circular(14),
       elevation: 1,
-      shadowColor: azulMarino.withOpacity(0.08),
+      shadowColor: AppColors.azulMarino.withValues(alpha: AppColors.a06),
       child: InkWell(
         borderRadius: BorderRadius.circular(14),
         onTap: () => _abrirDocumento(doc),
@@ -210,7 +203,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
                                     child: Center(
                                       child: CircularProgressIndicator(
                                         strokeWidth: 2,
-                                        color: acento,
+                                        color: AppColors.acento,
                                       ),
                                     ),
                                   ),
@@ -288,7 +281,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: acento.withOpacity(0.25),
+                    color: AppColors.acento.withValues(alpha: AppColors.a24),
                     blurRadius: 24,
                     spreadRadius: 4,
                   ),
@@ -297,7 +290,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
               child: Icon(
                 Icons.document_scanner,
                 size: 56,
-                color: acento,
+                color: AppColors.acento,
               ),
             ),
             SizedBox(height: 28),
@@ -350,7 +343,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: Icon(Icons.visibility_outlined, color: acento),
+              leading: Icon(Icons.visibility_outlined, color: AppColors.acento),
               title: Text('Ver documento', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
@@ -358,7 +351,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.edit_outlined, color: acento),
+              leading: Icon(Icons.edit_outlined, color: AppColors.acento),
               title: Text('Renombrar', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
@@ -366,7 +359,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.picture_as_pdf_outlined, color: acento),
+              leading: Icon(Icons.picture_as_pdf_outlined, color: AppColors.acento),
               title: Text('Exportar PDF', style: TextStyle(color: TemaGlobal.texto)),
               onTap: () {
                 Navigator.pop(context);
@@ -374,8 +367,8 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.delete_outline, color: AppColors.error),
-              title: const Text('Eliminar', style: TextStyle(color: AppColors.error)),
+              leading: Icon(Icons.delete_outline, color: AppColors.error),
+              title: Text('Eliminar', style: TextStyle(color: AppColors.error)),
               onTap: () {
                 Navigator.pop(context);
                 _eliminar(doc);
@@ -469,8 +462,8 @@ class DocumentViewerScreen extends StatefulWidget {
 }
 
 class _DocumentViewerScreenState extends State<DocumentViewerScreen> {
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
+  
+  
 
   int _pagina = 0;
   bool _exportando = false;
@@ -479,21 +472,11 @@ class _DocumentViewerScreenState extends State<DocumentViewerScreen> {
   Widget build(BuildContext context) {
     final doc = widget.documento;
     return Scaffold(
-      backgroundColor: azulMarino,
-      appBar: AppBar(
-        title: Text(
-          doc.titulo,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
-            color: dorado,
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-        ),
-        backgroundColor: azulMarino,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: dorado),
+      backgroundColor: AppColors.azulMarino,
+            appBar: AppBarInstitucional(
+        title: doc.titulo,
+        mostrarBack: true,
+        mostrarHome: true,
         actions: [
           if (_exportando)
             const Padding(
@@ -503,7 +486,7 @@ class _DocumentViewerScreenState extends State<DocumentViewerScreen> {
                 height: 18,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: dorado,
+                  color: AppColors.dorado,
                 ),
               ),
             )
@@ -539,7 +522,7 @@ class _DocumentViewerScreenState extends State<DocumentViewerScreen> {
                                   ? child
                                   : const Center(
                                       child: CircularProgressIndicator(
-                                        color: dorado,
+                                        color: AppColors.dorado,
                                       ),
                                     ),
                           errorBuilder: (_, __, ___) => const Center(
@@ -563,7 +546,7 @@ class _DocumentViewerScreenState extends State<DocumentViewerScreen> {
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.7),
+                      color: Colors.black.withValues(alpha: AppColors.a48),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(

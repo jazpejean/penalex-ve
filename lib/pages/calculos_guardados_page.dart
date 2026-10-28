@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../services/haptics_service.dart';
-import '../pages/main_screen.dart';
-import '../utils/main_tab_controller.dart';
 import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 
 import '../models/calculation_model.dart';
 import '../utils/storage_manager.dart';
 import '../widgets/app_drawer.dart';
+import '../widgets/app_snackbar.dart';
+import '../widgets/app_bar_institucional.dart';
 
 /// Pantalla para ver y cargar cálculos guardados
 class CalculosGuardadosPage extends StatefulWidget {
@@ -18,8 +18,8 @@ class CalculosGuardadosPage extends StatefulWidget {
 }
 
 class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
+  
+  
   static Color get fondoGris => TemaGlobal.superficie;
 
   final StorageManager _storageManager = StorageManager();
@@ -67,7 +67,7 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
             style: ElevatedButton.styleFrom(backgroundColor: AppColors.error),
-            child: const Text('Eliminar'),
+            child: Text('Eliminar'),
           ),
         ],
       ),
@@ -78,12 +78,7 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
       await _storageManager.deleteCalculation(id);
       await _cargarCalculos();
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('✅ Cálculo eliminado'),
-            backgroundColor: AppColors.success,
-          ),
-        );
+        AppSnackBar.success(context, '✅ Cálculo eliminado');
       }
     }
   }
@@ -97,34 +92,10 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
     return Scaffold(
       drawer: const AppDrawer(currentRoute: '/calculos'),
       backgroundColor: fondoGris,
-      appBar: AppBar(
-        title: const Text(
-          'CÁLCULOS GUARDADOS',
-          style: TextStyle(
-            color: dorado,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 0.6,
-          ),
-        ),
-        backgroundColor: azulMarino,
-        foregroundColor: dorado,
-        centerTitle: true,
-        elevation: 0,
-        actions: [
-            IconButton(
-              icon: Icon(Icons.home_outlined,
-                  color: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino),
-              tooltip: 'Ir al inicio',
-              onPressed: () {
-                mainTabIndex.value = 0;
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (_) => const MainScreen()),
-                  (r) => false,
-                );
-              },
-            ),
-        ],
+            appBar: AppBarInstitucional(
+        title: 'CÁLCULOS GUARDADOS',
+        mostrarBack: true,
+        mostrarHome: true,
       ),
       body: _cargando
           ? const Center(child: CircularProgressIndicator())
@@ -174,7 +145,7 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
                           width: 50,
                           height: 50,
                           decoration: BoxDecoration(
-                            color: azulMarino.withValues(alpha: 0.1),
+                            color: AppColors.azulMarino.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Icon(
@@ -213,7 +184,7 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             IconButton(
-                              icon: const Icon(Icons.delete, color: AppColors.error),
+                              icon: Icon(Icons.delete, color: AppColors.error),
                               onPressed: () => _eliminarCalculo(calculo.id),
                               tooltip: 'Eliminar',
                             ),

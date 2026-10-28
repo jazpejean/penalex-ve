@@ -18,6 +18,7 @@ import '../services/sentencia_pdf_service.dart';
 import '../services/favoritos_service.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/main_bottom_bar.dart';
+import '../widgets/app_bar_institucional.dart';
 
 class RepositorioJurisprudenciaScreen extends StatefulWidget {
   const RepositorioJurisprudenciaScreen({super.key});
@@ -52,10 +53,10 @@ class _RepositorioJurisprudenciaScreenState
   late Animation<double> _fadeAnimation;
 
   // Colores de la app
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
-  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
-  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
+  
+  
+  /// Acento de marca: azul marino en modo claro, AppColors.dorado en modo oscuro.
+  
   static Color get fondoGris => TemaGlobal.superficie;
 
   @override
@@ -178,17 +179,17 @@ class _RepositorioJurisprudenciaScreenState
           label: Text(label),
           selected: activo,
           onSelected: (_) => onTap(),
-          selectedColor: dorado,
+          selectedColor: AppColors.dorado,
           backgroundColor: Colors.transparent,
           labelStyle: TextStyle(
-            color: activo ? azulMarino : TemaGlobal.texto,
+            color: activo ? AppColors.azulMarino : TemaGlobal.texto,
             fontWeight: activo ? FontWeight.bold : FontWeight.normal,
             fontSize: 12.5,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
             side: BorderSide(
-                color: activo ? dorado : TemaGlobal.capa),
+                color: activo ? AppColors.dorado : TemaGlobal.capa),
           ),
           visualDensity: VisualDensity.compact,
           showCheckmark: false,
@@ -263,7 +264,7 @@ class _RepositorioJurisprudenciaScreenState
                   padding: const EdgeInsets.only(right: 8),
                   child: Chip(
                     avatar: Icon(Icons.calendar_month,
-                        size: 15, color: acento.withValues(alpha: 0.8)),
+                        size: 15, color: AppColors.acento.withValues(alpha: 0.8)),
                     label: Text(_anioSeleccionado?.toString() ?? 'Año'),
                     backgroundColor: Colors.transparent,
                     labelStyle:
@@ -285,17 +286,10 @@ class _RepositorioJurisprudenciaScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const AppDrawer(currentRoute: '/repositorio_jurisprudencia'),
-      appBar: AppBar(
-        title: const Text(
-          'Jurisprudencia',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.5,
-            color: dorado,
-          ),
-        ),
-        backgroundColor: azulMarino,
-        elevation: 0,
+            appBar: AppBarInstitucional(
+        title: 'Jurisprudencia',
+        mostrarBack: true,
+        mostrarHome: true,
         actions: [
           // ✅ Contador de resultados simple
           if (!_cargando && _resultados.isNotEmpty)
@@ -305,7 +299,7 @@ class _RepositorioJurisprudenciaScreenState
                 child: Text(
                   '${_resultados.length} ${_resultados.length == 1 ? "resultado" : "resultados"}',
                   style: const TextStyle(
-                    color: dorado,
+                    color: AppColors.dorado,
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
                   ),
@@ -325,7 +319,7 @@ class _RepositorioJurisprudenciaScreenState
               color: TemaGlobal.superficie,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withValues(alpha: AppColors.a12),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
@@ -344,11 +338,11 @@ class _RepositorioJurisprudenciaScreenState
                       fontSize: 15,
                     ),
                     prefixIcon:
-                        Icon(Icons.search, color: acento, size: 22),
+                        Icon(Icons.search, color: AppColors.acento, size: 22),
                     suffixIcon: _searchController.text.isNotEmpty
                         ? IconButton(
                             icon: Icon(Icons.clear,
-                                color: acento, size: 20),
+                                color: AppColors.acento, size: 20),
                             onPressed: () {
                               _searchController.clear();
                               setState(() {});
@@ -364,7 +358,7 @@ class _RepositorioJurisprudenciaScreenState
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: acento, width: 2),
+                      borderSide: BorderSide(color: AppColors.acento, width: 2),
                     ),
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 16,
@@ -384,7 +378,7 @@ class _RepositorioJurisprudenciaScreenState
                 Row(
                   children: [
                     Icon(Icons.auto_awesome,
-                        size: 12, color: acento.withOpacity(0.6)),
+                        size: 12, color: AppColors.acento.withValues(alpha: AppColors.a48)),
                     const SizedBox(width: 4),
                     Text(
                       'Búsqueda inteligente: prueba "matar", "robar", "drogas"...',
@@ -409,7 +403,7 @@ class _RepositorioJurisprudenciaScreenState
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CircularProgressIndicator(
-                          color: acento,
+                          color: AppColors.acento,
                           strokeWidth: 3,
                         ),
                         const SizedBox(height: 16),
@@ -479,8 +473,8 @@ class _RepositorioJurisprudenciaScreenState
               icon: const Icon(Icons.refresh, size: 20),
               label: const Text('Limpiar búsqueda'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: azulMarino,
-                foregroundColor: dorado,
+                backgroundColor: AppColors.azulMarino,
+                foregroundColor: AppColors.dorado,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 shape: RoundedRectangleBorder(
@@ -504,7 +498,7 @@ class _RepositorioJurisprudenciaScreenState
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       elevation: 1,
-      shadowColor: azulMarino.withValues(alpha: 0.08),
+      shadowColor: AppColors.azulMarino.withValues(alpha: 0.08),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(14),
         side: BorderSide(color: TemaGlobal.capa, width: 1),
@@ -524,7 +518,7 @@ class _RepositorioJurisprudenciaScreenState
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: azulMarino,
+                      color: AppColors.azulMarino,
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -545,13 +539,13 @@ class _RepositorioJurisprudenciaScreenState
                       padding: const EdgeInsets.symmetric(
                           horizontal: 6, vertical: 3),
                       decoration: BoxDecoration(
-                        color: dorado,
+                        color: AppColors.dorado,
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
                         'Vinculante',
                         style: TextStyle(
-                          color: azulMarino,
+                          color: AppColors.azulMarino,
                           fontSize: 9.5,
                           fontWeight: FontWeight.bold,
                         ),
@@ -672,17 +666,17 @@ class _RepositorioJurisprudenciaScreenState
     Color fg;
     if (d.contains('CON LUGAR')) {
       bg = AppColors.success.withValues(alpha: oscuro ? 0.22 : 0.14);
-      fg = oscuro ? const Color(0xFF4ADE80) : const Color(0xFF15803D);
+      fg = oscuro ? AppColors.success : AppColors.success;
     } else if (d.contains('SIN LUGAR') ||
         d.contains('IMPROCEDENTE') ||
         d.contains('INADMISIBLE')) {
       bg = AppColors.error.withValues(alpha: oscuro ? 0.22 : 0.14);
-      fg = oscuro ? const Color(0xFFF87171) : const Color(0xFFB91C1C);
+      fg = oscuro ? AppColors.error : AppColors.error;
     } else if (d.contains('REVOCA') ||
         d.contains('ANULA') ||
         d.contains('NULIDAD')) {
       bg = AppColors.warning.withValues(alpha: oscuro ? 0.22 : 0.14);
-      fg = oscuro ? const Color(0xFFFBBF24) : const Color(0xFFC2410C);
+      fg = oscuro ? AppColors.warning : AppColors.warning;
     } else {
       bg = TemaGlobal.capa;
       fg = TemaGlobal.textoSecundario;
@@ -735,7 +729,7 @@ class _RepositorioJurisprudenciaScreenState
                 Text(
                   'Sentencia Nº ${s.numeroSentencia}',
                   style: TextStyle(
-                    color: acento,
+                    color: AppColors.acento,
                     fontWeight: FontWeight.bold,
                     fontSize: 17,
                   ),
@@ -756,7 +750,7 @@ class _RepositorioJurisprudenciaScreenState
                   Text(
                     '⚖️ Criterios jurisprudenciales (${_criterios.length})',
                     style: TextStyle(
-                      color: acento,
+                      color: AppColors.acento,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
@@ -780,7 +774,7 @@ class _RepositorioJurisprudenciaScreenState
                                   ? '★ Criterio oficial de la Sala'
                                   : 'Criterio de la Sala',
                               style: TextStyle(
-                                color: acento,
+                                color: AppColors.acento,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 11.5,
                               ),
@@ -902,10 +896,10 @@ class DetalleSentenciaScreen extends StatefulWidget {
 }
 
 class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
-  static const Color azulMarino = Color(0xFF0F172A);
-  static const Color dorado = Color(0xFFC5A059);
-  /// Acento de marca: azul marino en modo claro, dorado en modo oscuro.
-  static Color get acento => TemaGlobal.isDark ? dorado : azulMarino;
+  
+  
+  /// Acento de marca: azul marino en modo claro, AppColors.dorado en modo oscuro.
+  
 
   // ⭐ Favoritas / Importantes
   final FavoritosService _favoritosService = FavoritosService();
@@ -1186,7 +1180,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
               const SizedBox(height: 14),
               Row(
                 children: [
-                  Icon(Icons.auto_awesome, color: acento, size: 22),
+                  Icon(Icons.auto_awesome, color: AppColors.acento, size: 22),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -1213,7 +1207,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                     data: analisis,
                     styleSheet: MarkdownStyleSheet(
                       h2: TextStyle(
-                        color: acento,
+                        color: AppColors.acento,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
@@ -1240,16 +1234,10 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Sentencia ${widget.sentencia.numeroSentencia}',
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            color: dorado,
-          ),
-        ),
-        backgroundColor: azulMarino,
-        elevation: 0,
+            appBar: AppBarInstitucional(
+        title: 'Sentencia ${widget.sentencia.numeroSentencia}',
+        mostrarBack: true,
+        mostrarHome: true,
         actions: [
           // ⭐ Marcar como favorita/importante
           IconButton(
@@ -1313,7 +1301,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
+                          color: Colors.black.withValues(alpha: AppColors.a18),
                           blurRadius: 20,
                           offset: const Offset(0, 10),
                         ),
@@ -1328,12 +1316,12 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                             Container(
                               padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
-                                color: acento.withOpacity(0.1),
+                                color: AppColors.acento.withValues(alpha: AppColors.a12),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Icon(
                                 Icons.auto_awesome,
-                                color: acento,
+                                color: AppColors.acento,
                                 size: 20,
                               ),
                             ),
@@ -1364,7 +1352,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                           Center(
                             child: Column(
                               children: [
-                                CircularProgressIndicator(color: acento),
+                                CircularProgressIndicator(color: AppColors.acento),
                                 SizedBox(height: 12),
                                 Text(
                                   'Analizando sentencia con IA...',
@@ -1428,8 +1416,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                                       size: 18),
                                   label: const Text('Exportar Análisis'),
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: azulMarino,
-                                    foregroundColor: dorado,
+                                    backgroundColor: AppColors.azulMarino,
+                                    foregroundColor: AppColors.dorado,
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 16,
                                       vertical: 12,
@@ -1484,8 +1472,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                                 icon: const Icon(Icons.psychology, size: 18),
                                 label: const Text('Análisis Profundo con IA'),
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: azulMarino,
-                                  foregroundColor: dorado,
+                                  backgroundColor: AppColors.azulMarino,
+                                  foregroundColor: AppColors.dorado,
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 16,
                                     vertical: 12,
@@ -1504,8 +1492,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                 // Botón flotante de IA
                 FloatingActionButton.extended(
                   onPressed: _analizarConIA,
-                  backgroundColor: azulMarino,
-                  foregroundColor: dorado,
+                  backgroundColor: AppColors.azulMarino,
+                  foregroundColor: AppColors.dorado,
                   elevation: 8,
                   icon: const Icon(Icons.auto_awesome),
                   label: const Text(
@@ -1563,8 +1551,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                 icon: const Icon(Icons.open_in_new),
                 label: const Text('Abrir documento completo en el navegador'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: azulMarino,
-                  foregroundColor: dorado,
+                  backgroundColor: AppColors.azulMarino,
+                  foregroundColor: AppColors.dorado,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -1614,7 +1602,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, size: 18, color: acento),
+          Icon(icon, size: 18, color: AppColors.acento),
           const SizedBox(width: 8),
           Expanded(
             child: Column(
@@ -1709,7 +1697,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
               color: TemaGlobal.capa.withValues(alpha: 0.5),
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: acento.withValues(alpha: 0.4),
+                color: AppColors.acento.withValues(alpha: 0.4),
               ),
             ),
             child: Column(
@@ -1717,7 +1705,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.gavel, size: 16, color: acento),
+                    Icon(Icons.gavel, size: 16, color: AppColors.acento),
                     const SizedBox(width: 6),
                     Expanded(
                       child: Text(
@@ -1806,7 +1794,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
               color: TemaGlobal.capa.withValues(alpha: 0.5),
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: acento.withValues(alpha: 0.4),
+                color: AppColors.acento.withValues(alpha: 0.4),
               ),
             ),
             child: Column(
@@ -1814,7 +1802,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.menu_book, size: 16, color: acento),
+                    Icon(Icons.menu_book, size: 16, color: AppColors.acento),
                     const SizedBox(width: 6),
                     Expanded(
                       child: Text(
@@ -1948,7 +1936,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                 Text(
                   'Sentencia Nº ${s.numeroSentencia}',
                   style: TextStyle(
-                    color: acento,
+                    color: AppColors.acento,
                     fontWeight: FontWeight.bold,
                     fontSize: 17,
                   ),
@@ -1969,7 +1957,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                   Text(
                     '⚖️ Criterios jurisprudenciales (${_criterios.length})',
                     style: TextStyle(
-                      color: acento,
+                      color: AppColors.acento,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
@@ -1993,7 +1981,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                                   ? '★ Criterio oficial de la Sala'
                                   : 'Criterio de la Sala',
                               style: TextStyle(
-                                color: acento,
+                                color: AppColors.acento,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 11.5,
                               ),
@@ -2032,7 +2020,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                   Text(
                     '📚 Doctrina académica citada (${_citasDoctrinales.length})',
                     style: TextStyle(
-                      color: acento,
+                      color: AppColors.acento,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
@@ -2054,7 +2042,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                             Text(
                               _nombreCitaDoctrinal(c),
                               style: TextStyle(
-                                color: acento,
+                                color: AppColors.acento,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 11.5,
                               ),

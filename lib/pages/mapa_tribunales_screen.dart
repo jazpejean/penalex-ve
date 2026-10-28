@@ -11,6 +11,7 @@ import '../config/app_theme.dart';
 import '../services/tribunales_service.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'tribunal_detail_screen.dart';
+import '../widgets/app_bar_institucional.dart';
 
 /// Mapa de tribunales penales de Venezuela (catálogo oficial TSJ).
 class MapaTribunalesScreen extends StatefulWidget {
@@ -257,17 +258,10 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Mapa de Tribunales Penales'),
-        backgroundColor: const Color(0xFF0F172A),
-        foregroundColor: Colors.white,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            tooltip: 'Recargar',
-            onPressed: _cargar,
-          ),
-        ],
+            appBar: AppBarInstitucional(
+        title: 'Mapa de Tribunales Penales',
+        mostrarBack: true,
+        mostrarHome: true,
       ),
       bottomNavigationBar: const MainBottomBar(),
       body: _cargando
@@ -564,10 +558,10 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
         markers.add(_markerEn(t.latLng!, t));
         continue;
       }
-      // Espiral de ángulo dorado: reparte los N del mismo punto.
+      // Espiral de ángulo AppColors.dorado: reparte los N del mismo punto.
       for (var i = 0; i < grupo.length; i++) {
         final t = grupo[i];
-        final angulo = i * 2.399963; // ángulo dorado (rad)
+        final angulo = i * 2.399963; // ángulo AppColors.dorado (rad)
         final d = radio * (0.4 + i * 0.22);
         final punto = LatLng(
           t.latLng!.latitude + d * math.cos(angulo),
@@ -671,11 +665,11 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
                           style: TextStyle(
                             color: t.despacho == 'con despacho'
                                 ? (TemaGlobal.isDark
-                                    ? const Color(0xFF4ADE80)
-                                    : const Color(0xFF15803D))
+                                    ? AppColors.success
+                                    : AppColors.success)
                                 : (TemaGlobal.isDark
-                                    ? const Color(0xFFFBBF24)
-                                    : const Color(0xFFC2410C)),
+                                    ? AppColors.warning
+                                    : AppColors.warning),
                             fontSize: 12,
                           ),
                         ),
@@ -711,12 +705,12 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
     return Container(
       width: double.infinity,
       height: 110,
-      color: const Color(0xFFD9DCE5),
+      color: AppColors.capa,
       alignment: Alignment.center,
-      child: const Icon(
+      child: Icon(
         Icons.account_balance,
         size: 40,
-        color: Color(0xFF8A90A0),
+        color: AppColors.textoSecundario,
       ),
     );
   }
@@ -742,7 +736,7 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
   Widget _leyenda() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      color: const Color(0xFF0F172A),
+      color: AppColors.azulMarino,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -784,7 +778,7 @@ class _ErrorVista extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.error_outline, size: 48, color: Colors.red),
+            Icon(Icons.error_outline, size: 48, color: AppColors.error),
             const SizedBox(height: 12),
             Text(mensaje, textAlign: TextAlign.center),
             const SizedBox(height: 16),

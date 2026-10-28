@@ -5,6 +5,8 @@ import 'package:photo_view/photo_view.dart';
 
 import '../config/app_colors.dart';
 import '../services/image_filter_service.dart';
+import '../widgets/app_snackbar.dart';
+import '../widgets/app_bar_institucional.dart';
 
 /// Pantalla para previsualizar y seleccionar filtros
 /// Estilo CamScanner con previews de todos los filtros
@@ -57,7 +59,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error generando filtros: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
           ),
         );
       }
@@ -68,16 +70,10 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: const Text(
-          'Aplicar Filtro',
-          style: TextStyle(color: Colors.white),
-        ),
+            appBar: AppBarInstitucional(
+        title: 'Aplicar Filtro',
+        mostrarBack: true,
+        mostrarHome: true,
         actions: [
           if (_isApplying)
             const Center(
@@ -88,7 +84,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
                   height: 20,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation<Color>(AppColors.secondary),
+                    valueColor: AlwaysStoppedAnimation<Color>(AppColors.dorado),
                   ),
                 ),
               ),
@@ -96,11 +92,11 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
           else
             TextButton.icon(
               onPressed: _isGeneratingPreviews ? null : _applyFilterAndContinue,
-              icon: const Icon(Icons.check, color: AppColors.secondary),
+              icon: const Icon(Icons.check, color: AppColors.dorado),
               label: const Text(
                 'Usar',
                 style: TextStyle(
-                  color: AppColors.secondary,
+                  color: AppColors.dorado,
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
@@ -121,7 +117,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
                 // Galería horizontal de filtros
                 Container(
                   height: 180,
-                  color: const Color(0xFF1E293B),
+                  color: AppColors.tarjeta,
                   child: _buildFilterGallery(),
                 ),
               ],
@@ -141,7 +137,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
           Text(
             'Generando filtros...',
             style: TextStyle(
-              color: Colors.white.withOpacity(0.8),
+              color: Colors.white.withValues(alpha: AppColors.a48),
               fontSize: 16,
             ),
           ),
@@ -149,7 +145,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
           Text(
             'Esto puede tardar unos segundos',
             style: TextStyle(
-              color: Colors.white.withOpacity(0.5),
+              color: Colors.white.withValues(alpha: AppColors.a48),
               fontSize: 14,
             ),
           ),
@@ -190,10 +186,10 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.7),
+                color: Colors.black.withValues(alpha: AppColors.a48),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
-                  color: AppColors.secondary.withOpacity(0.5),
+                  color: AppColors.secondary.withValues(alpha: AppColors.a48),
                   width: 1,
                 ),
               ),
@@ -229,7 +225,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.6),
+                color: Colors.black.withValues(alpha: AppColors.a48),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Row(
@@ -237,14 +233,14 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
                 children: [
                   Icon(
                     Icons.zoom_in,
-                    color: Colors.white.withOpacity(0.7),
+                    color: Colors.white.withValues(alpha: AppColors.a48),
                     size: 16,
                   ),
                   const SizedBox(width: 6),
                   Text(
                     'Pellizca para hacer zoom',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.7),
+                      color: Colors.white.withValues(alpha: AppColors.a48),
                       fontSize: 12,
                     ),
                   ),
@@ -285,10 +281,10 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
           border: Border.all(
             color: isSelected 
                 ? AppColors.secondary 
-                : Colors.white.withOpacity(0.2),
+                : Colors.white.withValues(alpha: AppColors.a18),
             width: isSelected ? 3 : 1,
           ),
-          color: const Color(0xFF0F172A),
+          color: AppColors.azulMarino,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -325,7 +321,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
               padding: const EdgeInsets.symmetric(vertical: 8),
               decoration: BoxDecoration(
                 color: isSelected 
-                    ? AppColors.secondary.withOpacity(0.2)
+                    ? AppColors.secondary.withValues(alpha: AppColors.a18)
                     : Colors.transparent,
                 borderRadius: const BorderRadius.vertical(bottom: Radius.circular(10)),
               ),
@@ -367,12 +363,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
 
   Future<void> _applyFilterAndContinue() async {
     if (_currentPreviewPath == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('No hay preview disponible'),
-          backgroundColor: Colors.red,
-        ),
-      );
+      AppSnackBar.error(context, 'No hay preview disponible');
       return;
     }
 
@@ -399,7 +390,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
           ),
         );
       }

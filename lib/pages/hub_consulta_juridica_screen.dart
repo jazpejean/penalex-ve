@@ -5,6 +5,7 @@ import '../utils/main_tab_controller.dart';
 import 'glosario_screen.dart';
 import 'repositorio_jurisprudencia_screen.dart';
 import 'repositorio_leyes_screen.dart';
+import '../config/app_colors.dart';
 
 /// Hub de Consulta Jurídica.
 ///
@@ -166,16 +167,13 @@ class _HubConsultaJuridicaScreenState extends State<HubConsultaJuridicaScreen> {
     required String detalle,
     required VoidCallback onTap,
   }) {
-    final Color acento = TemaGlobal.isDark
-        ? TemaGlobal.dorado
-        : TemaGlobal.azulMarino;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: acento.withValues(alpha: 0.28),
+          color: AppColors.acento.withValues(alpha: 0.28),
           width: 1,
         ),
         boxShadow: [
@@ -199,14 +197,14 @@ class _HubConsultaJuridicaScreenState extends State<HubConsultaJuridicaScreen> {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: acento.withValues(alpha: 0.12),
+                    color: AppColors.acento.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: acento.withValues(alpha: 0.35),
+                      color: AppColors.acento.withValues(alpha: 0.35),
                       width: 1,
                     ),
                   ),
-                  child: Icon(icon, color: acento, size: 28),
+                  child: Icon(icon, color: AppColors.acento, size: 28),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
@@ -237,7 +235,7 @@ class _HubConsultaJuridicaScreenState extends State<HubConsultaJuridicaScreen> {
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
-                          color: acento,
+                          color: AppColors.acento,
                         ),
                       ),
                     ],
@@ -247,7 +245,7 @@ class _HubConsultaJuridicaScreenState extends State<HubConsultaJuridicaScreen> {
                 Icon(
                   Icons.arrow_forward_ios,
                   size: 16,
-                  color: acento,
+                  color: AppColors.acento,
                 ),
               ],
             ),
