@@ -106,7 +106,7 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
       bottomNavigationBar: const MainBottomBar(),
             appBar: AppBarInstitucional(
         title: 'Biblioteca Jurídica',
-        mostrarDrawer: true,
+        mostrarBack: true,
         mostrarHome: true,
       ),
       backgroundColor: fondoGris,

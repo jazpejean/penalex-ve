@@ -158,7 +158,7 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
         drawer: const AppDrawer(currentRoute: '/admin_users'),
               appBar: AppBarInstitucional(
         title: 'Gestión de Usuarios',
-        mostrarDrawer: true,
+        mostrarBack: true,
         mostrarHome: true,
       ),
         body: Column(

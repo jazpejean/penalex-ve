@@ -288,7 +288,7 @@ class _RepositorioJurisprudenciaScreenState
       drawer: const AppDrawer(currentRoute: '/repositorio_jurisprudencia'),
             appBar: AppBarInstitucional(
         title: 'Jurisprudencia',
-        mostrarDrawer: true,
+        mostrarBack: true,
         mostrarHome: true,
         actions: [
           // ✅ Contador de resultados simple
