@@ -60,16 +60,16 @@ class _ChipPaso extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool resaltado = completado || activo;
     final Color bg =
-        resaltado ? DosimetriaStepper.azulMarino : TemaGlobal.capa;
+        resaltado ? AppColors.azulMarino : TemaGlobal.capa;
     final Color fg =
-        resaltado ? DosimetriaStepper.dorado : TemaGlobal.textoSecundario;
+        resaltado ? AppColors.dorado : TemaGlobal.textoSecundario;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         color: bg,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: resaltado ? DosimetriaStepper.dorado : TemaGlobal.capa,
+          color: resaltado ? AppColors.dorado : TemaGlobal.capa,
           width: 1,
         ),
       ),
