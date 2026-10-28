@@ -75,7 +75,7 @@ class AppDrawer extends StatelessWidget {
   Future<void> _showProfilePicker(BuildContext context) async {
     unawaited(showModalBottomSheet(
       context: context,
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.azulMarino,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
       ),
@@ -85,7 +85,7 @@ class AppDrawer extends StatelessWidget {
           children: <Widget>[
             ListTile(
               leading:
-                  const Icon(Icons.photo_library, color: AppColors.secondary),
+                  const Icon(Icons.photo_library, color: AppColors.dorado),
               title: const Text("Seleccionar de la galería",
                   style: TextStyle(color: Colors.white)),
               onTap: () async {
@@ -94,7 +94,7 @@ class AppDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.camera_alt, color: AppColors.secondary),
+              leading: const Icon(Icons.camera_alt, color: AppColors.dorado),
               title: const Text("Tomar foto con cámara",
                   style: TextStyle(color: Colors.white)),
               onTap: () async {

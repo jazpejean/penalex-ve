@@ -73,7 +73,7 @@ class _CropAdjustScreenState extends State<CropAdjustScreen> {
               children: [
                 const Icon(
                   Icons.touch_app,
-                  color: AppColors.secondary,
+                  color: AppColors.dorado,
                   size: 20,
                 ),
                 const SizedBox(width: 12),
@@ -95,7 +95,7 @@ class _CropAdjustScreenState extends State<CropAdjustScreen> {
             child: _image == null
                 ? const Center(
                     child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(AppColors.secondary),
+                      valueColor: AlwaysStoppedAnimation<Color>(AppColors.dorado),
                     ),
                   )
                 : GestureDetector(
@@ -437,7 +437,7 @@ class _CropOverlayPainter extends CustomPainter {
 
   void _drawDocumentLines(Canvas canvas, List<Offset> screenCorners) {
     final paint = Paint()
-      ..color = AppColors.secondary
+      ..color = AppColors.dorado
       ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
     
@@ -460,7 +460,7 @@ class _CropOverlayPainter extends CustomPainter {
         screenCorners[i],
         isBeingDragged ? 18 : 15,
         Paint()
-          ..color = AppColors.secondary
+          ..color = AppColors.dorado
           ..style = PaintingStyle.fill,
       );
       
@@ -469,7 +469,7 @@ class _CropOverlayPainter extends CustomPainter {
         screenCorners[i],
         isBeingDragged ? 12 : 10,
         Paint()
-          ..color = AppColors.primary
+          ..color = AppColors.azulMarino
           ..style = PaintingStyle.fill,
       );
       

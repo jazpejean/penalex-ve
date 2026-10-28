@@ -204,8 +204,8 @@ class _AgendaScreenState extends State<AgendaScreen> {
           ),
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primary,
-              foregroundColor: Colors.white,
+              backgroundColor: AppColors.azulMarino,
+              foregroundColor: AppColors.onAzulMarino,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             ),
@@ -671,8 +671,8 @@ class _AgendaScreenState extends State<AgendaScreen> {
           ),
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primary,
-              foregroundColor: Colors.white,
+              backgroundColor: AppColors.azulMarino,
+              foregroundColor: AppColors.onAzulMarino,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             ),
@@ -874,11 +874,11 @@ class _AgendaScreenState extends State<AgendaScreen> {
                           weekendStyle: TextStyle(color: TemaGlobal.texto),
                         ),
                         calendarStyle: CalendarStyle(
-                          selectedDecoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(8)),
-                          todayDecoration: BoxDecoration(color: AppColors.primary.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(8)),
-                          selectedTextStyle: const TextStyle(color: AppColors.secondary, fontWeight: FontWeight.bold),
+                          selectedDecoration: BoxDecoration(color: AppColors.azulMarino, borderRadius: BorderRadius.circular(8)),
+                          todayDecoration: BoxDecoration(color: AppColors.azulMarino.withValues(alpha: AppColors.a12), borderRadius: BorderRadius.circular(8)),
+                          selectedTextStyle: const TextStyle(color: AppColors.dorado, fontWeight: FontWeight.bold),
                           todayTextStyle: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.w700),
-                          markerDecoration: const BoxDecoration(color: AppColors.secondary, shape: BoxShape.circle),
+                          markerDecoration: const BoxDecoration(color: AppColors.dorado, shape: BoxShape.circle),
                         ),
                         calendarBuilders: CalendarBuilders(
                           defaultBuilder: (BuildContext context, DateTime day, DateTime focusedDay) {
@@ -904,7 +904,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                               margin: const EdgeInsets.all(6),
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                color: AppColors.primary.withValues(alpha: 0.12),
+                                color: AppColors.azulMarino.withValues(alpha: AppColors.a12),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text('${day.day}', style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.w700)),
@@ -912,8 +912,8 @@ class _AgendaScreenState extends State<AgendaScreen> {
                           selectedBuilder: (BuildContext context, DateTime day, DateTime focusedDay) => Container(
                               margin: const EdgeInsets.all(6),
                               alignment: Alignment.center,
-                              decoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(8)),
-                              child: Text('${day.day}', style: const TextStyle(color: AppColors.secondary, fontWeight: FontWeight.bold)),
+                              decoration: BoxDecoration(color: AppColors.azulMarino, borderRadius: BorderRadius.circular(8)),
+                              child: Text('${day.day}', style: const TextStyle(color: AppColors.dorado, fontWeight: FontWeight.bold)),
                             ),
                         ),
                       ),

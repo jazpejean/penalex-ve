@@ -526,7 +526,7 @@ class _RepositorioJurisprudenciaScreenState
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: AppColors.onAzulMarino,
                         fontSize: 10.5,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.3,

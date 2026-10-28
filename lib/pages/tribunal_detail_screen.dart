@@ -211,7 +211,7 @@ class TribunalDetailScreen extends StatelessWidget {
             ? null
             : () => _abrirRuta(context, lat, lng),
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
+          backgroundColor: AppColors.azulMarino,
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 14),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

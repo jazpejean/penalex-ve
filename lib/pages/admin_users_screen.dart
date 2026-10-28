@@ -114,8 +114,8 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
-                foregroundColor: Colors.white,
+                backgroundColor: AppColors.azulMarino,
+                foregroundColor: AppColors.onAzulMarino,
               ),
               onPressed: () => Navigator.pop(context, selectedRole),
               child: Text('Cambiar'),

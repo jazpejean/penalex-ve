@@ -131,7 +131,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(AppColors.secondary),
+            valueColor: AlwaysStoppedAnimation<Color>(AppColors.dorado),
           ),
           const SizedBox(height: 24),
           Text(
@@ -189,7 +189,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
                 color: Colors.black.withValues(alpha: AppColors.a48),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
-                  color: AppColors.secondary.withValues(alpha: AppColors.a48),
+                  color: AppColors.dorado.withValues(alpha: AppColors.a48),
                   width: 1,
                 ),
               ),
@@ -198,7 +198,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
                 children: [
                   Icon(
                     _selectedFilter.icon,
-                    color: AppColors.secondary,
+                    color: AppColors.dorado,
                     size: 20,
                   ),
                   const SizedBox(width: 8),
@@ -280,7 +280,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isSelected 
-                ? AppColors.secondary 
+                ? AppColors.dorado 
                 : Colors.white.withValues(alpha: AppColors.a18),
             width: isSelected ? 3 : 1,
           ),
@@ -307,7 +307,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
                             child: CircularProgressIndicator(
                               strokeWidth: 2,
                               valueColor: AlwaysStoppedAnimation<Color>(
-                                AppColors.secondary,
+                                AppColors.dorado,
                               ),
                             ),
                           ),
@@ -321,7 +321,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
               padding: const EdgeInsets.symmetric(vertical: 8),
               decoration: BoxDecoration(
                 color: isSelected 
-                    ? AppColors.secondary.withValues(alpha: AppColors.a18)
+                    ? AppColors.dorado.withValues(alpha: AppColors.a18)
                     : Colors.transparent,
                 borderRadius: const BorderRadius.vertical(bottom: Radius.circular(10)),
               ),
@@ -329,7 +329,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
                 children: [
                   Icon(
                     filter.icon,
-                    color: isSelected ? AppColors.secondary : Colors.white70,
+                    color: isSelected ? AppColors.dorado : Colors.white70,
                     size: 18,
                   ),
                   const SizedBox(height: 4),
@@ -337,7 +337,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
                     filter.displayName,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: isSelected ? AppColors.secondary : Colors.white70,
+                      color: isSelected ? AppColors.dorado : Colors.white70,
                       fontSize: 12,
                       fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                     ),
