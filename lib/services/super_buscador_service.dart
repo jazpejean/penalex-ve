@@ -122,7 +122,9 @@ class SuperBuscadorService {
     //    devolver los resultados semánticos con la etiqueta. La semántica
     //    es un top-k (no se pagina): tieneMas = false para que el lazy
     //    load no pida páginas duplicadas.
-    if (fusion.isEmpty && semantica.isNotEmpty) {
+    if (fusion.sentencias.isEmpty &&
+        fusion.doctrinas.isEmpty &&
+        semantica.isNotEmpty) {
       final porSemantica = await _cargarPorSemantica(
         semantica,
         esDoctrina: esDoctrina,
