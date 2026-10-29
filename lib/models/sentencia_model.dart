@@ -51,17 +51,16 @@ class SentenciaModel {
     this.timestamp,
   });
 
-  /// URL priorizada para ABRIR la sentencia completa.
+  /// URL priorizada para ABRIR la sentencia completa en el WebView.
   ///
-  /// [urlTXT] NO se usa aquí: es exclusivo del RAG (contexto/IA). Para abrir
-  /// se prioriza la copia HTML propia alojada en R2, luego la ficha y por
-  /// último el servidor del TSJ.
+  /// SIEMPRE la copia HTML propia alojada en R2 (copia fiel del TSJ, estable).
+  /// NUNCA cae al servidor del TSJ: el WebView muestra la copia de R2; si no
+  /// existe, la UI muestra un aviso de "copia no disponible".
   String get urlParaVer {
     if (urlHTML.isNotEmpty && urlHTML != 'null') return urlHTML;
     if (urlFichaPenalex.isNotEmpty && urlFichaPenalex != 'null') {
       return urlFichaPenalex;
     }
-    if (urlTSJ.isNotEmpty && urlTSJ != 'null') return urlTSJ;
     return '';
   }
 
@@ -92,9 +91,10 @@ class SentenciaModel {
       urlTSJ: data['url_tsj'] ?? '',
       urlHTML: data['url_html'] ?? '',
       urlTXT: data['url_txt'] ?? '',
-      // Priorizar la copia HTML propia (estable) antes que el servidor del TSJ.
-      // (El TXT queda solo para RAG, no para abrir la sentencia.)
-      urlFichaPenalex: data['url_html'] ?? data['url_tsj'] ?? '',
+      // La ficha es SIEMPRE la copia HTML propia en R2 (estable); nunca la
+      // URL del TSJ. El WebView muestra la copia de R2; si no existe, la UI
+      // avisa que la copia no está disponible.
+      urlFichaPenalex: data['url_html'] ?? '',
       contenidoCompleto: data['extracto'] ?? '',
       esJurisprudencia: data['es_jurisprudencia'] ?? false,
       tienePDF: data['tiene_pdf'] ?? false,

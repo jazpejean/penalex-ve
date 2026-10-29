@@ -19,6 +19,7 @@ import '../services/favoritos_service.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/main_bottom_bar.dart';
 import '../widgets/app_bar_institucional.dart';
+import '../widgets/app_snackbar.dart';
 
 class RepositorioJurisprudenciaScreen extends StatefulWidget {
   const RepositorioJurisprudenciaScreen({super.key});
@@ -145,14 +146,10 @@ class _RepositorioJurisprudenciaScreenState
     });
 
     final esFavorita = _idsFavoritos.contains(sentencia.id);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          esFavorita ? '⭐ Agregada a Favoritas' : 'Eliminada de Favoritas',
-        ),
-        behavior: SnackBarBehavior.floating,
-        duration: const Duration(seconds: 1),
-      ),
+    // Guía 3.4: AppSnackBar siempre.
+    AppSnackBar.success(
+      context,
+      esFavorita ? '⭐ Agregada a Favoritas' : 'Eliminada de Favoritas',
     );
   }
 
@@ -182,9 +179,10 @@ class _RepositorioJurisprudenciaScreenState
           selectedColor: AppColors.dorado,
           backgroundColor: Colors.transparent,
           labelStyle: TextStyle(
-            color: activo ? AppColors.azulMarino : TemaGlobal.texto,
+            // Guía 3.3: texto sobre dorado = onDorado.
+            color: activo ? AppColors.onDorado : TemaGlobal.texto,
             fontWeight: activo ? FontWeight.bold : FontWeight.normal,
-            fontSize: 12.5,
+            fontSize: 12,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
@@ -268,7 +266,7 @@ class _RepositorioJurisprudenciaScreenState
                     label: Text(_anioSeleccionado?.toString() ?? 'Año'),
                     backgroundColor: Colors.transparent,
                     labelStyle:
-                        TextStyle(color: TemaGlobal.texto, fontSize: 12.5),
+                        TextStyle(color: TemaGlobal.texto, fontSize: 12),
                     side:
                         BorderSide(color: TemaGlobal.capa),
                     visualDensity: VisualDensity.compact,
@@ -473,8 +471,12 @@ class _RepositorioJurisprudenciaScreenState
               icon: const Icon(Icons.refresh, size: 20),
               label: const Text('Limpiar búsqueda'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.azulMarino,
-                foregroundColor: AppColors.dorado,
+                // Guía 3.2: primario = acento dinámico (navy en claro /
+                // dorado en oscuro).
+                backgroundColor: AppColors.acento,
+                foregroundColor: AppColors.acento == AppColors.dorado
+                    ? AppColors.onDorado
+                    : AppColors.onAzulMarino,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 shape: RoundedRectangleBorder(
@@ -499,13 +501,14 @@ class _RepositorioJurisprudenciaScreenState
       margin: const EdgeInsets.only(bottom: 12),
       elevation: 1,
       shadowColor: AppColors.azulMarino.withValues(alpha: 0.08),
+      // Guía 3.1: r16 para tarjetas de lista.
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(16),
         side: BorderSide(color: TemaGlobal.capa, width: 1),
       ),
       child: InkWell(
         onTap: () => _verSentencia(sentencia),
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(16),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -527,7 +530,8 @@ class _RepositorioJurisprudenciaScreenState
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         color: AppColors.onAzulMarino,
-                        fontSize: 10.5,
+                        // Guía 3.6: badge 10px.
+                        fontSize: 10,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.3,
                       ),
@@ -545,8 +549,9 @@ class _RepositorioJurisprudenciaScreenState
                       child: Text(
                         'Vinculante',
                         style: TextStyle(
-                          color: AppColors.azulMarino,
-                          fontSize: 9.5,
+                          color: AppColors.onDorado,
+                          // Guía 3.6: badge 10px.
+                          fontSize: 10,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -561,7 +566,8 @@ class _RepositorioJurisprudenciaScreenState
                           : Icons.star_border,
                       size: 20,
                       color: _idsFavoritos.contains(sentencia.id)
-                          ? Colors.amber
+                          // Guía 3.5: favorita = dorado (igual que el detalle).
+                          ? AppColors.dorado
                           : TemaGlobal.textoTenue,
                     ),
                     tooltip: _idsFavoritos.contains(sentencia.id)
@@ -776,7 +782,7 @@ class _RepositorioJurisprudenciaScreenState
                               style: TextStyle(
                                 color: AppColors.acento,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 11.5,
+                                fontSize: 11,
                               ),
                             ),
                             const SizedBox(height: 4),
@@ -959,26 +965,23 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
     await _favoritosService.toggleFavorita(widget.sentencia.id);
     if (!mounted) return;
     setState(() => _esFavorita = !_esFavorita);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          _esFavorita ? '⭐ Agregada a Favoritas' : 'Eliminada de Favoritas',
-        ),
-        behavior: SnackBarBehavior.floating,
-        duration: const Duration(seconds: 1),
-      ),
+    // Guía 3.4: AppSnackBar siempre.
+    AppSnackBar.success(
+      context,
+      _esFavorita ? '⭐ Agregada a Favoritas' : 'Eliminada de Favoritas',
     );
   }
 
-  /// Compartir la sentencia (resumen + enlace oficial).
+  /// Compartir la sentencia (resumen + enlace).
   /// Funciona en Android, iOS y Web (Web Share API).
   Future<void> _compartirSentencia() async {
     final s = widget.sentencia;
-    // Al compartir se cita la fuente oficial (TSJ) para no exponer el
-    // almacenamiento interno; solo se usa la copia propia como respaldo.
-    final fuente = (s.urlTSJ.isNotEmpty && s.urlTSJ != 'null')
-        ? s.urlTSJ
-        : (s.urlParaVer.isNotEmpty ? s.urlParaVer : 'No disponible');
+    // La fuente compartida es la copia HTML de R2 (urlParaVer): al citarla
+    // se apunta al repositorio propio de Penalex (posicionamiento), no al
+    // servidor del TSJ. Solo si no existe copia se cita la URL del TSJ.
+    final fuente = (s.urlParaVer.isNotEmpty && s.urlParaVer != 'null')
+        ? s.urlParaVer
+        : (s.urlTSJ.isNotEmpty && s.urlTSJ != 'null' ? s.urlTSJ : 'No disponible');
 
     final texto = '⚖️ Sentencia Nº ${s.numeroSentencia}\n'
         'Sala: ${s.sala}\n'
@@ -1006,10 +1009,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
     if (kIsWeb) {
       if (_esUrlValida(s.urlHTML)) {
         await _abrirUrl(s.urlHTML);
-      } else if (_esUrlValida(s.urlTSJ)) {
-        await _abrirUrl(s.urlTSJ);
       } else {
-        _mostrarSnack('No hay documento disponible');
+        _mostrarSnack('La copia en el repositorio no está disponible');
       }
       return;
     }
@@ -1047,13 +1048,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
       return;
     }
 
-    // Sin copia HTML en R2: abrir la página original del TSJ.
-    if (_esUrlValida(s.urlTSJ)) {
-      await _abrirUrl(s.urlTSJ);
-      return;
-    }
-
-    _mostrarSnack('No hay documento disponible para descargar');
+    // Sin copia HTML en R2: avisar (nunca abrir el servidor del TSJ).
+    _mostrarSnack('La copia en el repositorio no está disponible');
   }
 
   bool _esUrlValida(String url) =>
@@ -1072,12 +1068,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
 
   void _mostrarSnack(String mensaje) {
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(mensaje),
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
+    // Guía 3.4: AppSnackBar siempre (todos los usos son fallos/avisos).
+    AppSnackBar.error(context, mensaje);
   }
 
   Future<void> _analizarConIA() async {
@@ -1139,12 +1131,8 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
       debugPrint('Error en análisis IA: $e');
       if (mounted) {
         setState(() => _analizando = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Error al analizar: $e'),
-            backgroundColor: AppColors.error,
-          ),
-        );
+        // Guía 3.4: AppSnackBar siempre.
+        AppSnackBar.error(context, 'Error al analizar: $e');
       }
     }
   }
@@ -1243,7 +1231,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
           IconButton(
             icon: Icon(
               _esFavorita ? Icons.star : Icons.star_border,
-              color: _esFavorita ? Colors.amber : null,
+              color: AppColors.dorado,
             ),
             onPressed: _toggleFavorita,
             tooltip:
@@ -1251,17 +1239,20 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
           ),
           IconButton(
             icon: const Icon(Icons.ios_share),
+            color: AppColors.dorado,
             onPressed: _compartirSentencia,
             tooltip: 'Compartir sentencia',
           ),
           IconButton(
             icon: const Icon(Icons.picture_as_pdf_outlined),
+            color: AppColors.dorado,
             onPressed: _descargarSentencia,
             tooltip: 'Descargar PDF estructurado',
           ),
           // 📋 Ficha técnica (metadatos + criterios jurisprudenciales)
           IconButton(
             icon: const Icon(Icons.info_outline),
+            color: AppColors.dorado,
             onPressed: () => _mostrarMetadata(widget.sentencia),
             tooltip: 'Ficha técnica',
           ),
@@ -1269,18 +1260,23 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
       ),
       body: Stack(
         children: [
-          // WebView con la sentencia (móvil) / vista simple (Web: no existe
-          // webview_flutter para web, así que mostramos los datos + enlace).
+          // WebView con la SENTENCIA DE R2 (copia fiel del TSJ alojada en
+          // nuestro R2 — estable). Si no existe copia, se muestra un aviso;
+          // NUNCA se carga la URL del TSJ (servidor inestable y fuera de
+          // nuestro control).
           if (kIsWeb)
             _buildContenidoWeb()
-          else
+          else if (widget.sentencia.urlParaVer.isNotEmpty)
             WebViewWidget(
               controller: WebViewController()
                 ..setJavaScriptMode(JavaScriptMode.unrestricted)
-                ..setBackgroundColor(Colors.white)
-                // Abrir la copia en R2 cuando exista (más estable que el TSJ).
+                ..setBackgroundColor(TemaGlobal.superficie)
+                // Copia fiel en R2 (guía: la sentencia siempre se muestra
+                // desde nuestro repositorio, no desde el TSJ).
                 ..loadRequest(Uri.parse(widget.sentencia.urlParaVer)),
-            ),
+            )
+          else
+            _buildCopiaNoDisponible(),
 
           // Botón flotante de IA (esquina inferior derecha)
           Positioned(
@@ -1404,20 +1400,20 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                                 ElevatedButton.icon(
                                   onPressed: () {
                                     // TODO: Exportar análisis a PDF
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text(
-                                            'Exportar análisis próximamente'),
-                                        behavior: SnackBarBehavior.floating,
-                                      ),
-                                    );
+                                    // Guía 3.4: AppSnackBar siempre.
+                                    AppSnackBar.success(
+                                        context, 'Exportar análisis próximamente');
                                   },
                                   icon: const Icon(Icons.picture_as_pdf,
                                       size: 18),
                                   label: const Text('Exportar Análisis'),
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppColors.azulMarino,
-                                    foregroundColor: AppColors.dorado,
+                                    // Guía 3.2: primario = acento dinámico.
+                                    backgroundColor: AppColors.acento,
+                                    foregroundColor: AppColors.acento ==
+                                            AppColors.dorado
+                                        ? AppColors.onDorado
+                                        : AppColors.onAzulMarino,
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 16,
                                       vertical: 12,
@@ -1472,8 +1468,11 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                                 icon: const Icon(Icons.psychology, size: 18),
                                 label: const Text('Análisis Profundo con IA'),
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColors.azulMarino,
-                                  foregroundColor: AppColors.dorado,
+                                  backgroundColor: AppColors.acento,
+                                  foregroundColor: AppColors.acento ==
+                                          AppColors.dorado
+                                      ? AppColors.onDorado
+                                      : AppColors.onAzulMarino,
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 16,
                                     vertical: 12,
@@ -1492,8 +1491,12 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                 // Botón flotante de IA
                 FloatingActionButton.extended(
                   onPressed: _analizarConIA,
-                  backgroundColor: AppColors.azulMarino,
-                  foregroundColor: AppColors.dorado,
+                  // Guía 3.2: primario = acento dinámico (navy en claro /
+                  // dorado en oscuro). El navy fijo se funde en modo oscuro.
+                  backgroundColor: AppColors.acento,
+                  foregroundColor: AppColors.acento == AppColors.dorado
+                      ? AppColors.onDorado
+                      : AppColors.onAzulMarino,
                   elevation: 8,
                   icon: const Icon(Icons.auto_awesome),
                   label: const Text(
@@ -1504,6 +1507,73 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  /// Aviso cuando la sentencia NO tiene copia HTML en R2: se muestran los
+  /// datos de la ficha y se informa que la copia aún no está disponible
+  /// (nunca se abre el servidor del TSJ).
+  Widget _buildCopiaNoDisponible() {
+    final s = widget.sentencia;
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: AppColors.warning.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                  color: AppColors.warning.withValues(alpha: 0.3)),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(Icons.cloud_off_outlined,
+                    color: AppColors.warning, size: 20),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    'La copia de esta sentencia aún no está disponible en '
+                    'el repositorio. Se muestra la ficha con sus datos.',
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: TemaGlobal.textoSecundario,
+                      height: 1.45,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 20),
+          _buildWebDato('Sala', s.sala),
+          _buildWebDato('Nº de sentencia', s.numeroSentencia),
+          _buildWebDato('Fecha', s.fechaSentencia),
+          _buildWebDato('Ponente', s.ponente),
+          _buildWebDato('Delito', s.delito),
+          _buildWebDato('Decisión', s.decision),
+          _buildWebDato('Tipo', s.tipoSentencia),
+          const Divider(height: 32),
+          Text(
+            '📋 Resumen',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: TemaGlobal.texto,
+              fontSize: 15,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(_textoResumen(s),
+              style: const TextStyle(fontSize: 14, height: 1.5)),
+          const SizedBox(height: 24),
+          _buildSeccionCriterios(),
+          const SizedBox(height: 24),
+          _buildSeccionCitasDoctrinales(),
         ],
       ),
     );
@@ -1551,8 +1621,12 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                 icon: const Icon(Icons.open_in_new),
                 label: const Text('Abrir documento completo en el navegador'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.azulMarino,
-                  foregroundColor: AppColors.dorado,
+                  // Guía 3.2: primario = acento dinámico (navy en claro /
+                  // dorado en oscuro).
+                  backgroundColor: AppColors.acento,
+                  foregroundColor: AppColors.acento == AppColors.dorado
+                      ? AppColors.onDorado
+                      : AppColors.onAzulMarino,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -1714,7 +1788,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                             : 'Criterio de la Sala',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 12.5,
+                          fontSize: 12,
                           color: TemaGlobal.texto,
                         ),
                       ),
@@ -1724,7 +1798,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                 const SizedBox(height: 6),
                 Text(
                   _textoCriterio(c),
-                  style: const TextStyle(fontSize: 13.5, height: 1.5),
+                  style: const TextStyle(fontSize: 14, height: 1.5),
                 ),
                 if (_citaCriterio(c).isNotEmpty) ...[
                   const SizedBox(height: 8),
@@ -1809,7 +1883,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                         _nombreCitaDoctrinal(c),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 12.5,
+                          fontSize: 12,
                           color: TemaGlobal.texto,
                         ),
                       ),
@@ -1819,7 +1893,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                 const SizedBox(height: 6),
                 Text(
                   (c['parrafo_evidencia'] ?? '').toString().trim(),
-                  style: const TextStyle(fontSize: 13.5, height: 1.5),
+                  style: const TextStyle(fontSize: 14, height: 1.5),
                 ),
               ],
             ),
@@ -1983,7 +2057,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                               style: TextStyle(
                                 color: AppColors.acento,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 11.5,
+                                fontSize: 11,
                               ),
                             ),
                             const SizedBox(height: 4),
@@ -2044,7 +2118,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                               style: TextStyle(
                                 color: AppColors.acento,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 11.5,
+                                fontSize: 11,
                               ),
                             ),
                             const SizedBox(height: 4),
@@ -2052,7 +2126,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                               (c['parrafo_evidencia'] ?? '').toString().trim(),
                               style: TextStyle(
                                 color: TemaGlobal.texto,
-                                fontSize: 12.5,
+                                fontSize: 12,
                                 height: 1.45,
                               ),
                             ),
