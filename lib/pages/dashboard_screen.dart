@@ -8,6 +8,9 @@ import '../models/audiencia.dart';
 import '../config/app_theme.dart';
 import '../utils/main_tab_controller.dart';
 import '../config/app_colors.dart';
+import '../widgets/app_snackbar.dart';
+import 'calculadora_prescripcion_screen.dart';
+import 'escanear_documento_screen.dart';
 
 /// Pantalla principal (tab Inicio) — rediseño premium navy+oro:
 /// header con saludo y avatar, stats reales, hero Ulpiano, accesos
@@ -61,6 +64,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
         navegarAConsulta(context, 'leyes');
       case '/glosario':
         navegarAConsulta(context, 'glosario');
+      case '/prescripcion':
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const CalculadoraPrescripcionScreen(),
+          ),
+        );
+      case '/escaner':
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const EscanearDocumentoScreen(),
+          ),
+        );
       default:
         navegarDesdeMain(context, route);
     }
@@ -111,9 +128,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 20),
               _buildHeroUlpiano(context),
               const SizedBox(height: 24),
-              _buildSeccionTitulo(context, 'Accesos Rápidos'),
+              _buildSeccionTitulo(context, 'Herramientas de Cálculo'),
               const SizedBox(height: 12),
-              _buildAccesosRapidos(context),
+              _buildHerramientasCalculo(context),
+              const SizedBox(height: 24),
+              _buildSeccionTitulo(context, 'Tu Despacho Digital'),
+              const SizedBox(height: 12),
+              _buildDespacho(context),
               const SizedBox(height: 24),
               _buildSeccionTitulo(context, 'Próxima Audiencia'),
               const SizedBox(height: 12),
@@ -122,6 +143,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
               _buildSeccionTitulo(context, 'Explorar'),
               const SizedBox(height: 12),
               _buildExplorar(context),
+              const SizedBox(height: 20),
+              _buildDetectorVicios(context),
             ],
           ),
         ),
@@ -376,21 +399,31 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  // ------------------------------------------------- Accesos rápidos
-  Widget _buildAccesosRapidos(BuildContext context) {
+  // ------------------------------------------- Herramientas de Cálculo
+  Widget _buildHerramientasCalculo(BuildContext context) {
     return Column(
       children: <Widget>[
-        // Tarjeta ancha: Dosimetría Penal
+        // Dosimetría Penal: motor completo + informe PDF
         _buildToolWide(
           context,
           icon: Icons.calculate,
           titulo: 'Dosimetría Penal',
-          subtitulo: 'Pena individualizada, concurso, cómputo y prescripción',
+          subtitulo: 'Pena individualizada, concurso y cómputo — con informe PDF detallado',
           route: '/calculadora',
         ),
         const SizedBox(height: 12),
         Row(
           children: <Widget>[
+            Expanded(
+              child: _buildToolSmall(
+                context,
+                icon: Icons.hourglass_empty,
+                titulo: 'Prescripción',
+                subtitulo: '¿Cuándo prescribe la causa? Lapsos exactos',
+                route: '/prescripcion',
+              ),
+            ),
+            const SizedBox(width: 12),
             Expanded(
               child: _buildToolSmall(
                 context,
@@ -400,17 +433,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 route: '/repositorio_leyes',
               ),
             ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: _buildToolSmall(
-                context,
-                icon: Icons.calendar_month,
-                titulo: 'Agenda',
-                subtitulo: 'Audiencias, lapsos y días sin despacho',
-                route: '/agenda',
-              ),
-            ),
           ],
+        ),
+      ],
+    );
+  }
+
+  // --------------------------------------------- Tu Despacho Digital
+  Widget _buildDespacho(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Expanded(
+          child: _buildToolSmall(
+            context,
+            icon: Icons.document_scanner,
+            titulo: 'Escáner',
+            subtitulo: 'Digitaliza documentos y guárdalos en tu expediente',
+            route: '/escaner',
+            alto: 150,
+            maxLinesSub: 2,
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: _buildToolSmall(
+            context,
+            icon: Icons.calendar_month,
+            titulo: 'Agenda',
+            subtitulo: 'Audiencias, lapsos y días sin despacho',
+            route: '/agenda',
+            alto: 150,
+            maxLinesSub: 2,
+          ),
         ),
       ],
     );
@@ -762,7 +817,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 context,
                 icon: Icons.account_balance,
                 titulo: 'Jurisprudencia',
-                subtitulo: 'Sentencias de la Sala Penal con PDF descargable',
+                subtitulo: 'Sentencias de la Sala de Casación Penal y Constitucional',
                 route: '/repositorio_jurisprudencia',
                 alto: 150,
                 maxLinesSub: 2,
@@ -798,7 +853,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 context,
                 icon: Icons.quiz,
                 titulo: 'Desafío Penal',
-                subtitulo: 'Gana XP y sube de rango con casos reales',
+                subtitulo: 'Rangos, rachas y XP: demuestra tu estrategia',
                 route: '/quiz_lobby',
                 alto: 150,
                 maxLinesSub: 2,
@@ -807,6 +862,102 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
       ],
+    );
+  }
+
+  // ------------------------------------------- Detector de Vicios
+  Widget _buildDetectorVicios(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Haptics.tap();
+        AppSnackBar.success(context, 'Detector de Vicios: próximamente');
+      },
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [AppColors.azulMarino, Color(0xFF1E293B)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: AppColors.azulMarino.withValues(alpha: 0.3),
+              blurRadius: 20,
+              offset: const Offset(0, 8),
+            ),
+          ],
+        ),
+        child: Row(
+          children: <Widget>[
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: AppColors.dorado.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: const Icon(Icons.gavel, color: AppColors.dorado, size: 26),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      const Text(
+                        'Detector de Vicios',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 2,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.dorado,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Text(
+                          'PROXIMAMENTE',
+                          style: TextStyle(
+                            color: AppColors.onDorado,
+                            fontSize: 9,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Procesales: detecta vicios y nulidades en tu expediente con IA',
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.7),
+                      fontSize: 12,
+                      height: 1.4,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.chevron_right,
+              color: Colors.white.withValues(alpha: 0.6),
+              size: 24,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
