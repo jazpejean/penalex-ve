@@ -6,10 +6,20 @@
 // `supabase.auth.signInWithToken(jwt)` para que Supabase sepa quién es el
 // usuario y el RLS aplique las políticas por `auth.uid()`.
 //
-// Env: FIREBASE_PROJECT_ID, SUPABASE_JWT_SECRET.
+// También expone POST /buscar/semantica: búsqueda semántica sobre Qdrant
+// Cloud (colecciones sentencias_chunks y doctrinas_vectores, 1024 dims,
+// embeddings bge-m3 de Workers AI). Las credenciales de Qdrant y de
+// Cloudflare viven SOLO aquí (secrets del worker); el APK nunca las ve.
+//
+// Env: FIREBASE_PROJECT_ID, SUPABASE_JWT_SECRET (auth).
+// Env: QDRANT_URL, QDRANT_API_KEY, CF_AI_ACCOUNT_ID, CF_AI_API_KEY (semántica).
+//   - QDRANT_URL: https://<cluster>.aws.cloud.qdrant.io:6333
+//   - CF_AI_API_KEY: token de Workers AI (Bearer) para bge-m3.
 
 const CERT_URL =
   'https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com';
+
+const MODELO_EMBEDDING = '@cf/baai/bge-m3';
 
 let certsCache = { data: null, at: 0 };
 
@@ -18,6 +28,12 @@ function json(status, body) {
     status,
     headers: { 'Content-Type': 'application/json' },
   });
+}
+
+// Log auxiliar (solo visible en las trazas del worker; sin secretos).
+function debug(msg) {
+  // eslint-disable-next-line no-console
+  console.log('[super-buscador] ' + msg);
 }
 
 function b64urlToBytes(s) {
@@ -132,6 +148,122 @@ async function mintSupabaseJwt(user, env) {
   return data + '.' + sigB64;
 }
 
+// ---------------------------------------------------------------------------
+// Búsqueda semántica (Qdrant + Workers AI bge-m3)
+// ---------------------------------------------------------------------------
+
+/** Genera el embedding 1024-d de un texto con Workers AI (bge-m3). */
+async function generarEmbedding(env, texto) {
+  const url =
+    'https://api.cloudflare.com/client/v4/accounts/' +
+    env.CF_AI_ACCOUNT_ID +
+    '/ai/v1/embeddings';
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      Authorization: 'Bearer ' + env.CF_AI_API_KEY,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ model: MODELO_EMBEDDING, input: [texto] }),
+  });
+  if (!res.ok) throw new Error('embedding HTTP ' + res.status);
+  const data = await res.json();
+  // La API REST de Workers AI devuelve { object, data: [...] }.
+  const vec = data?.data?.[0]?.embedding;
+  if (!Array.isArray(vec)) throw new Error('respuesta de embedding inválida');
+  return vec;
+}
+
+/** Consulta top-k de Qdrant con filtro opcional de payload. */
+async function buscarQdrant(env, coleccion, vector, filtro, limite) {
+  const body = { vector, limit: limite, with_payload: true };
+  if (filtro) body.filter = filtro;
+  const res = await fetch(
+    env.QDRANT_URL.replace(/\/+$/, '') + '/collections/' + coleccion + '/points/search',
+    {
+      method: 'POST',
+      headers: {
+        'api-key': env.QDRANT_API_KEY,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    },
+  );
+  if (!res.ok) throw new Error('Qdrant HTTP ' + res.status);
+  return (await res.json())?.result ?? [];
+}
+
+/** Filtro de Qdrant por sala y/o año (payload string, igual que el scraper). */
+function filtroPayload(sala, anio) {
+  const must = [];
+  if (sala) must.push({ key: 'sala', match: { value: sala } });
+  if (anio) must.push({ key: 'anio', match: { value: String(anio) } });
+  return must.length ? { must } : null;
+}
+
+/**
+ * POST /buscar/semantica
+ * Body: { query, categoria, sala?, anio?, limite? }
+ *   categoria: 'sentencia' | 'jurisprudencia' | 'resolucion' | 'doctrina'
+ * Devuelve: { resultados: [{ documento_id, score, texto_chunk, sala, anio,
+ *   fuente, doctrina_id? }] }
+ */
+async function buscarSemantica(env, body) {
+  const query = typeof body.query === 'string' ? body.query.trim().slice(0, 300) : '';
+  if (!query) return { resultados: [] };
+
+  const categoria = body.categoria === 'doctrina' ? 'doctrina' : 'sentencia';
+  const sala = typeof body.sala === 'string' ? body.sala.trim().toLowerCase() : '';
+  const anio = body.anio != null ? String(body.anio) : '';
+  const limite = Math.min(Math.max(parseInt(body.limite ?? '30', 10) || 30, 5), 60);
+
+  // Colección según categoría: doctrinas van a su propia colección; el resto
+  // (sentencia, jurisprudencia, resolución) viven en sentencias_chunks.
+  const coleccion = categoria === 'doctrina' ? 'doctrinas_vectores' : 'sentencias_chunks';
+
+  const vector = await generarEmbedding(env, query);
+
+  let hits;
+  const filtro = filtroPayload(sala, anio);
+  if (filtro) {
+    try {
+      hits = await buscarQdrant(env, coleccion, vector, filtro, limite);
+    } catch (e) {
+      // Qdrant exige un índice keyword para filtrar por payload; si aún no
+      // existe (HTTP 400 "Index required but not found"), hacemos fallback:
+      // búsqueda sin filtro con un lote mayor y filtramos localmente.
+      debug('filtro Qdrant no disponible (' + e.message + '); fallback local');
+      const bruto = await buscarQdrant(env, coleccion, vector, null, 60);
+      hits = bruto
+        .filter((h) => {
+          const p = h.payload ?? {};
+          if (sala && String(p.sala ?? '').toLowerCase() !== sala) return false;
+          if (anio && String(p.anio ?? '') !== anio) return false;
+          return true;
+        })
+        .slice(0, limite);
+    }
+  } else {
+    hits = await buscarQdrant(env, coleccion, vector, null, limite);
+  }
+
+  // Devolver solo lo útil para el RRF en la app (id de documento + score).
+  return {
+    resultados: hits.map((h) => {
+      const p = h.payload ?? {};
+      return {
+        documento_id: p.documento_id ?? null,
+        doctrina_id: p.doctrina_id ?? null,
+        score: h.score ?? 0,
+        texto_chunk: p.texto_chunk ?? '',
+        sala: p.sala ?? '',
+        anio: p.anio ?? '',
+        fuente: p.fuente ?? '',
+      };
+    }),
+  };
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -146,6 +278,15 @@ export default {
         return json(200, { token });
       } catch (e) {
         return json(401, { error: 'token inválido: ' + e.message });
+      }
+    }
+
+    if (request.method === 'POST' && url.pathname === '/buscar/semantica') {
+      try {
+        const body = await request.json();
+        return json(200, await buscarSemantica(env, body));
+      } catch (e) {
+        return json(500, { error: 'semántica falló: ' + e.message });
       }
     }
 

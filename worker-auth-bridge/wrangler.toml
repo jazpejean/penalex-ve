@@ -7,4 +7,9 @@ workers_dev = true
 [vars]
 FIREBASE_PROJECT_ID = "penalex-ve"
 
-# Se configura por `wrangler secret put SUPABASE_JWT_SECRET` (no en el repo).
+# Secrets (NO van en el repo; se configuran con `wrangler secret put`):
+#   SUPABASE_JWT_SECRET      — secreto de firma del JWT de Supabase
+#   QDRANT_URL               — https://<cluster>.aws.cloud.qdrant.io:6333
+#   QDRANT_API_KEY           — API key de Qdrant Cloud
+#   CF_AI_ACCOUNT_ID         — cuenta Cloudflare para Workers AI (bge-m3)
+#   CF_AI_API_KEY            — token de Workers AI (Bearer)

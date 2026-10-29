@@ -69,6 +69,7 @@ class JurisprudenciaService {
     int? mesFiltro,
     int? diaFiltro,
     int limit = 50,
+    int offset = 0,
     void Function(String mensaje)? onError,
   }) async {
     try {
@@ -127,7 +128,8 @@ class JurisprudenciaService {
           // Si hay sala/año además, se respetan (ya aplicados arriba).
           final response = await query
               .order('fecha', ascending: false)
-              .limit(limit);
+              .order('num_sentencia', ascending: false)
+              .range(offset, offset + limit - 1);
           final List<dynamic> data = response as List<dynamic>;
           debugPrint('✅ Referencia exacta: ${data.length} resultado(s)');
           return data
@@ -154,9 +156,13 @@ class JurisprudenciaService {
         );
       }
 
-      // Orden descendente por fecha y límite (la reordenación por
-      // relevancia se hace en Dart con [terminosExpandidos]).
-      final response = await query.order('fecha', ascending: false).limit(limit);
+      // Orden descendente por fecha y por número de sentencia (guía del
+      // Super Buscador); la reordenación por relevancia se hace en Dart con
+      // [terminosExpandidos]. Paginación con .range() para el lazy load.
+      final response = await query
+          .order('fecha', ascending: false)
+          .order('num_sentencia', ascending: false)
+          .range(offset, offset + limit - 1);
       List<dynamic> data = response as List<dynamic>;
 
       debugPrint('✅ Encontrados ${data.length} documentos (búsqueda principal)');

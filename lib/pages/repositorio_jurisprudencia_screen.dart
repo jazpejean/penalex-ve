@@ -8,11 +8,13 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:http/http.dart' as http;
 import 'package:webview_flutter/webview_flutter.dart';
 import '../models/sentencia_model.dart';
+import '../models/doctrina_academica_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../services/jurisprudencia_service.dart';
+import '../services/super_buscador_service.dart';
 import '../services/ai_service.dart';
 import '../services/sentencia_pdf_service.dart';
 import '../services/favoritos_service.dart';
@@ -33,10 +35,14 @@ class _RepositorioJurisprudenciaScreenState
     extends State<RepositorioJurisprudenciaScreen>
     with SingleTickerProviderStateMixin {
   final JurisprudenciaService _service = JurisprudenciaService();
+  final SuperBuscadorService _superService = SuperBuscadorService();
   final TextEditingController _searchController = TextEditingController();
 
   List<SentenciaModel> _resultados = [];
   List<SentenciaModel> _todosResultados = [];
+
+  // 📚 Resultados de la categoría Doctrinas Académicas
+  List<DoctrinaAcademicaModel> _doctrinas = [];
 
   bool _cargando = false;
 
@@ -45,13 +51,31 @@ class _RepositorioJurisprudenciaScreenState
   Set<String> _idsFavoritos = {};
   bool _soloFavoritas = false;
 
-  // ✅ Filtros
-  String _tipoSeleccionado = 'Sentencias';
+  // ✅ Filtros (Super Buscador: 4 categorías)
+  String _categoriaSeleccionada = 'Sentencias';
   String? _salaSeleccionada;
   int? _anioSeleccionado;
+  bool _soloTextoCompleto = false;
+
+  // ♾️ Lazy load (scroll infinito con paginación)
+  int _offset = 0;
+  static const int _limitePagina = 20;
+  bool _tieneMas = false;
+  bool _cargandoMas = false;
+
+  // 🔎 Fallback semántico: etiqueta "Resultados por búsqueda semántica"
+  bool _usoSemantica = false;
+
+  /// Total visible (sentencias + doctrinas según la categoría activa).
+  int get _totalResultados => _categoriaSeleccionada == 'Doctrinas'
+      ? _doctrinas.length
+      : _resultados.length;
 
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
+
+  // ♾️ Detector de scroll para el lazy load (cargar siguiente página)
+  final ScrollController _scrollController = ScrollController();
 
   // Colores de la app
   
@@ -71,6 +95,12 @@ class _RepositorioJurisprudenciaScreenState
       parent: _animationController,
       curve: Curves.easeInOut,
     );
+    // Lazy load: al acercarse al final de la lista, pedir la siguiente página.
+    _scrollController.addListener(() {
+      if (_scrollController.position.extentAfter < 400) {
+        _buscarMas();
+      }
+    });
     _cargarFavoritos(); // ⭐ Cargar favoritas guardadas
     _buscar(); // ✅ Cargar sentencias al inicio
   }
@@ -78,37 +108,78 @@ class _RepositorioJurisprudenciaScreenState
   @override
   void dispose() {
     _searchController.dispose();
+    _scrollController.dispose();
     _animationController.dispose();
     super.dispose();
   }
 
   Future<void> _buscar() async {
-    setState(() => _cargando = true);
+    setState(() {
+      _cargando = true;
+      _offset = 0;
+      _tieneMas = false;
+      _usoSemantica = false;
+    });
     _animationController.forward();
 
-    String tipoParam = 'sentencia';
-    if (_tipoSeleccionado == 'Jurisprudencias') {
-      tipoParam = 'jurisprudencia';
-    }
-
-    // ✅ Búsqueda con filtros
-    final resultados = await _service.buscarDocumentos(
-      textoBusqueda: _searchController.text.trim(),
-      tipo: tipoParam,
+    // Super Buscador: búsqueda híbrida (FTS Supabase + semántica Qdrant
+    // vía worker, fusionadas con RRF) sobre las 4 categorías.
+    final resultado = await _superService.buscar(
+      texto: _searchController.text.trim(),
+      categoria: _categoriaSeleccionada,
       sala: _salaSeleccionada,
       anio: _anioSeleccionado,
-      limit: 50,
+      soloTextoCompleto: _soloTextoCompleto,
+      offset: 0,
+      limit: _limitePagina,
     );
 
     if (mounted) {
       setState(() {
-        _todosResultados = resultados;
-        _resultados = resultados; // Ya vienen ordenados por relevancia
+        _todosResultados = resultado.sentencias;
+        _doctrinas = resultado.doctrinas;
+        _resultados = resultado.sentencias; // Ya ordenadas por relevancia
+        _tieneMas = resultado.tieneMas;
+        _usoSemantica = resultado.usoSemantica;
 
         // ⭐ Aplicar filtro de favoritas si está activo
         _aplicarFiltroFavoritas();
 
         _cargando = false;
+        _offset = _limitePagina;
+      });
+    }
+  }
+
+  /// Siguiente página del lazy load (scroll infinito).
+  Future<void> _buscarMas() async {
+    if (_cargando || _cargandoMas || !_tieneMas) return;
+    setState(() => _cargandoMas = true);
+
+    final resultado = await _superService.buscar(
+      texto: _searchController.text.trim(),
+      categoria: _categoriaSeleccionada,
+      sala: _salaSeleccionada,
+      anio: _anioSeleccionado,
+      soloTextoCompleto: _soloTextoCompleto,
+      offset: _offset,
+      limit: _limitePagina,
+    );
+
+    if (mounted) {
+      setState(() {
+        if (_categoriaSeleccionada == 'Doctrinas') {
+          _doctrinas.addAll(resultado.doctrinas);
+        } else {
+          _todosResultados.addAll(resultado.sentencias);
+          if (!_soloFavoritas) {
+            _resultados.addAll(resultado.sentencias);
+          }
+        }
+        _tieneMas = resultado.tieneMas;
+        _usoSemantica = _usoSemantica || resultado.usoSemantica;
+        _offset += _limitePagina;
+        _cargandoMas = false;
       });
     }
   }
@@ -156,20 +227,230 @@ class _RepositorioJurisprudenciaScreenState
   void _limpiarBusqueda() {
     setState(() {
       _searchController.clear();
-      _tipoSeleccionado = 'Sentencias';
+      _categoriaSeleccionada = 'Sentencias';
       _salaSeleccionada = null;
       _anioSeleccionado = null;
+      _soloTextoCompleto = false;
     });
     _buscar();
   }
 
-  Widget _buildFiltros() {
-    final int currentYear = DateTime.now().year;
-    final List<int> years =
-        List.generate(currentYear - 1999, (index) => currentYear - index);
+  /// Panel lateral de filtros (Año, Solo texto completo, Sala).
+  ///
+  /// REGLA ESTRICTA: el filtro de Sala se oculta automáticamente en las
+  /// categorías Resoluciones y Doctrinas (no aplica a esos contenidos).
+  void _abrirPanelFiltros() {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: TemaGlobal.tarjeta,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => StatefulBuilder(
+        builder: (context, setSheetState) {
+          final int currentYear = DateTime.now().year;
+          final List<int> years =
+              List.generate(currentYear - 1999, (index) => currentYear - index);
+          final bool mostrarSala = _categoriaSeleccionada != 'Resoluciones' &&
+              _categoriaSeleccionada != 'Doctrinas';
 
-    Widget chip(String label,
-        {required bool activo, required VoidCallback onTap}) {
+          Widget chip(String label,
+              {required bool activo, required VoidCallback onTap}) {
+            return Padding(
+              padding: const EdgeInsets.only(right: 8, bottom: 4),
+              child: ChoiceChip(
+                label: Text(label),
+                selected: activo,
+                onSelected: (_) => onTap(),
+                selectedColor: AppColors.dorado,
+                backgroundColor: Colors.transparent,
+                labelStyle: TextStyle(
+                  // Guía 3.3: texto sobre dorado = onDorado.
+                  color: activo ? AppColors.onDorado : TemaGlobal.texto,
+                  fontWeight: activo ? FontWeight.bold : FontWeight.normal,
+                  fontSize: 12,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  side: BorderSide(
+                      color: activo ? AppColors.dorado : TemaGlobal.capa),
+                ),
+                visualDensity: VisualDensity.compact,
+                showCheckmark: false,
+              ),
+            );
+          }
+
+          return Padding(
+            padding: EdgeInsets.only(
+              left: 20,
+              right: 20,
+              top: 20,
+              bottom: MediaQuery.of(context).viewInsets.bottom + 24,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      'Filtros',
+                      style: TextStyle(
+                        color: TemaGlobal.texto,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      icon: Icon(Icons.close,
+                          color: TemaGlobal.textoSecundario, size: 20),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                  ],
+                ),
+                const Divider(height: 24),
+                // Año
+                Text(
+                  'Año',
+                  style: TextStyle(
+                    color: TemaGlobal.textoSecundario,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 13,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      chip('Todos', activo: _anioSeleccionado == null, onTap: () {
+                        setSheetState(() => _anioSeleccionado = null);
+                      }),
+                      ...years.map((y) => chip('$y',
+                          activo: _anioSeleccionado == y,
+                          onTap: () => setSheetState(() => _anioSeleccionado = y))),
+                    ],
+                  ),
+                ),
+                // Solo texto completo
+                const SizedBox(height: 16),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: TemaGlobal.campoTexto,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(
+                      'Solo texto completo',
+                      style: TextStyle(
+                        color: TemaGlobal.texto,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Solo sentencias con copia íntegra en el repositorio',
+                      style: TextStyle(
+                        color: TemaGlobal.textoSecundario,
+                        fontSize: 12,
+                      ),
+                    ),
+                    value: _soloTextoCompleto,
+                    // Guía 3.3: Switch dorado/0.35/textoSecundario/capa.
+                    activeColor: AppColors.dorado,
+                    activeTrackColor: AppColors.dorado.withValues(alpha: 0.35),
+                    inactiveTrackColor: TemaGlobal.capa,
+                    inactiveThumbColor: TemaGlobal.textoSecundario,
+                    onChanged: (value) =>
+                        setSheetState(() => _soloTextoCompleto = value),
+                  ),
+                ),
+                // Sala (solo Sentencias y Jurisprudencias)
+                if (mostrarSala) ...[
+                  const SizedBox(height: 16),
+                  Text(
+                    'Sala',
+                    style: TextStyle(
+                      color: TemaGlobal.textoSecundario,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 13,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        chip('Todas', activo: _salaSeleccionada == null, onTap: () {
+                          setSheetState(() => _salaSeleccionada = null);
+                        }),
+                        chip('Penal', activo: _salaSeleccionada == 'scp',
+                            onTap: () =>
+                                setSheetState(() => _salaSeleccionada = 'scp')),
+                        chip('Constitucional', activo: _salaSeleccionada == 'scon',
+                            onTap: () =>
+                                setSheetState(() => _salaSeleccionada = 'scon')),
+                        chip('Casación Social', activo: _salaSeleccionada == 'scs',
+                            onTap: () =>
+                                setSheetState(() => _salaSeleccionada = 'scs')),
+                        chip('Casación Civil', activo: _salaSeleccionada == 'scc',
+                            onTap: () =>
+                                setSheetState(() => _salaSeleccionada = 'scc')),
+                        chip('Político-Administrativa', activo: _salaSeleccionada == 'spa',
+                            onTap: () =>
+                                setSheetState(() => _salaSeleccionada = 'spa')),
+                        chip('Electoral', activo: _salaSeleccionada == 'se',
+                            onTap: () =>
+                                setSheetState(() => _salaSeleccionada = 'se')),
+                      ],
+                    ),
+                  ),
+                ],
+                const SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      _buscar();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      // Guía 3.2: primario = acento dinámico.
+                      backgroundColor: AppColors.acento,
+                      foregroundColor: AppColors.acento == AppColors.dorado
+                          ? AppColors.onDorado
+                          : AppColors.onAzulMarino,
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Text(
+                      'Aplicar filtros',
+                      style: TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  /// Fila de las 4 categorías del Super Buscador + botón Filtros.
+  Widget _buildFiltros() {
+    const categorias = ['Sentencias', 'Jurisprudencias', 'Resoluciones', 'Doctrinas'];
+
+    Widget chip(String label, {required bool activo, required VoidCallback onTap}) {
       return Padding(
         padding: const EdgeInsets.only(right: 8),
         child: ChoiceChip(
@@ -198,86 +479,103 @@ class _RepositorioJurisprudenciaScreenState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Fila 1: favoritas + tipo
+        // 4 categorías (scroll horizontal en pantallas pequeñas)
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              chip('⭐ Favoritas', activo: _soloFavoritas, onTap: () {
-                setState(() => _soloFavoritas = !_soloFavoritas);
-                _aplicarFiltroFavoritas();
-              }),
-              chip('Sentencias', activo: _tipoSeleccionado == 'Sentencias',
-                  onTap: () {
-                setState(() => _tipoSeleccionado = 'Sentencias');
-                _buscar();
-              }),
-              chip('Jurisprudencias',
-                  activo: _tipoSeleccionado == 'Jurisprudencias', onTap: () {
-                setState(() {
-                  _tipoSeleccionado = 'Jurisprudencias';
-                  _salaSeleccionada = null;
-                });
-                _buscar();
-              }),
-            ],
-          ),
-        ),
-        const SizedBox(height: 8),
-        // Fila 2: sala + año
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              chip('Sala: Todas', activo: _salaSeleccionada == null, onTap: () {
-                setState(() => _salaSeleccionada = null);
-                _buscar();
-              }),
-              chip('Penal',
-                  activo: _salaSeleccionada == 'scp',
-                  onTap: () {
-                setState(() => _salaSeleccionada = 'Sala de Casación Penal');
-                _buscar();
-              }),
-              chip('Constitucional',
-                  activo: _salaSeleccionada == 'scon',
-                  onTap: () {
-                setState(() => _salaSeleccionada = 'Sala Constitucional');
-                _buscar();
-              }),
-              // Año
-              PopupMenuButton<int?>(
-                initialValue: _anioSeleccionado,
-                onSelected: (value) {
-                  setState(() => _anioSeleccionado = value);
+              // ⭐ Favoritas: solo aplica a sentencias/jurisprudencias/
+              // resoluciones (las doctrinas no se marcan como favoritas).
+              if (_categoriaSeleccionada != 'Doctrinas')
+                chip('⭐ Favoritas', activo: _soloFavoritas, onTap: () {
+                  setState(() => _soloFavoritas = !_soloFavoritas);
+                  _aplicarFiltroFavoritas();
+                }),
+              for (final categoria in categorias)
+                chip(categoria, activo: _categoriaSeleccionada == categoria,
+                    onTap: () {
+                  setState(() {
+                    _categoriaSeleccionada = categoria;
+                    // Al cambiar a Resoluciones/Doctrinas se oculta Sala
+                    // (regla estricta): limpiar el filtro de sala.
+                    if (categoria == 'Resoluciones' || categoria == 'Doctrinas') {
+                      _salaSeleccionada = null;
+                    }
+                  });
                   _buscar();
-                },
-                itemBuilder: (context) => [
-                  const PopupMenuItem<int?>(
-                      value: null, child: Text('Todos los años')),
-                  ...years.map(
-                      (y) => PopupMenuItem<int?>(value: y, child: Text('$y'))),
-                ],
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: Chip(
-                    avatar: Icon(Icons.calendar_month,
-                        size: 15, color: AppColors.acento.withValues(alpha: 0.8)),
-                    label: Text(_anioSeleccionado?.toString() ?? 'Año'),
-                    backgroundColor: Colors.transparent,
-                    labelStyle:
-                        TextStyle(color: TemaGlobal.texto, fontSize: 12),
-                    side:
-                        BorderSide(color: TemaGlobal.capa),
+                }),
+              // Botón Filtros (a la derecha de los tabs)
+              Padding(
+                padding: const EdgeInsets.only(left: 4),
+                child: OutlinedButton.icon(
+                  onPressed: _abrirPanelFiltros,
+                  icon: Icon(Icons.tune, size: 16, color: AppColors.acento),
+                  label: Text(
+                    'Filtros',
+                    style: TextStyle(
+                        color: AppColors.acento,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(
+                        color: AppColors.acento.withValues(alpha: 0.4)),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 8),
                     visualDensity: VisualDensity.compact,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                 ),
               ),
             ],
           ),
         ),
+        // Resumen de filtros activos
+        if (_salaSeleccionada != null ||
+            _anioSeleccionado != null ||
+            _soloTextoCompleto) ...[
+          const SizedBox(height: 8),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                if (_salaSeleccionada != null)
+                  chip(_nombreSalaCorto(_salaSeleccionada!),
+                      activo: true, onTap: () {
+                    setState(() => _salaSeleccionada = null);
+                    _buscar();
+                  }),
+                if (_anioSeleccionado != null)
+                  chip('Año ${_anioSeleccionado}', activo: true, onTap: () {
+                    setState(() => _anioSeleccionado = null);
+                    _buscar();
+                  }),
+                if (_soloTextoCompleto)
+                  chip('Texto completo', activo: true, onTap: () {
+                    setState(() => _soloTextoCompleto = false);
+                    _buscar();
+                  }),
+              ],
+            ),
+          ),
+        ],
       ],
     );
+  }
+
+  /// Nombre corto para mostrar una sala activa (código BD → etiqueta).
+  String _nombreSalaCorto(String codigo) {
+    const nombres = {
+      'scp': 'Penal',
+      'scon': 'Constitucional',
+      'scs': 'Casación Social',
+      'scc': 'Casación Civil',
+      'spa': 'Político-Administrativa',
+      'se': 'Electoral',
+    };
+    return nombres[codigo] ?? codigo;
   }
 
   @override
@@ -285,17 +583,18 @@ class _RepositorioJurisprudenciaScreenState
     return Scaffold(
       drawer: const AppDrawer(currentRoute: '/repositorio_jurisprudencia'),
             appBar: AppBarInstitucional(
-        title: 'Jurisprudencia',
+        title: 'Super Buscador',
         mostrarBack: true,
 
         actions: [
-          // ✅ Contador de resultados simple
-          if (!_cargando && _resultados.isNotEmpty)
+          // ✅ Contador de resultados
+          if (!_cargando &&
+              (_resultados.isNotEmpty || _doctrinas.isNotEmpty))
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(right: 16),
                 child: Text(
-                  '${_resultados.length} ${_resultados.length == 1 ? "resultado" : "resultados"}',
+                  '${_totalResultados} ${_totalResultados == 1 ? "resultado" : "resultados"}',
                   style: const TextStyle(
                     color: AppColors.dorado,
                     fontWeight: FontWeight.w600,
@@ -326,50 +625,77 @@ class _RepositorioJurisprudenciaScreenState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextField(
-                  controller: _searchController,
-                  style: TextStyle(color: TemaGlobal.texto, fontSize: 15),
-                  decoration: InputDecoration(
-                    hintText: 'Buscar por número, delito, partes...',
-                    hintStyle: TextStyle(
-                      color: TemaGlobal.textoTenue,
-                      fontSize: 15,
+                // ✅ Barra de búsqueda premium: input + botón dorado
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _searchController,
+                        style: TextStyle(color: TemaGlobal.texto, fontSize: 14),
+                        decoration: InputDecoration(
+                          // Placeholder premium (especificación del Super Buscador).
+                          hintText: 'Busca por número, delito, partes o tema...',
+                          hintStyle: TextStyle(
+                            color: TemaGlobal.textoTenue,
+                            fontSize: 14,
+                          ),
+                          prefixIcon:
+                              Icon(Icons.search, color: AppColors.acento, size: 22),
+                          suffixIcon: _searchController.text.isNotEmpty
+                              ? IconButton(
+                                  icon: Icon(Icons.clear,
+                                      color: AppColors.acento, size: 20),
+                                  onPressed: () {
+                                    _searchController.clear();
+                                    setState(() {});
+                                    _buscar();
+                                  },
+                                )
+                              : null,
+                          filled: true,
+                          fillColor: TemaGlobal.campoTexto,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide.none,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide:
+                                BorderSide(color: AppColors.acento, width: 2),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 14,
+                          ),
+                        ),
+                        onSubmitted: (_) => _buscar(),
+                        onChanged: (value) {
+                          setState(() {});
+                          if (value.isEmpty) {
+                            _buscar();
+                          }
+                        },
+                      ),
                     ),
-                    prefixIcon:
-                        Icon(Icons.search, color: AppColors.acento, size: 22),
-                    suffixIcon: _searchController.text.isNotEmpty
-                        ? IconButton(
-                            icon: Icon(Icons.clear,
-                                color: AppColors.acento, size: 20),
-                            onPressed: () {
-                              _searchController.clear();
-                              setState(() {});
-                              _buscar();
-                            },
-                          )
-                        : null,
-                    filled: true,
-                    fillColor: TemaGlobal.campoTexto,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
+                    const SizedBox(width: 8),
+                    // Botón de búsqueda dorado (guía 3.2: primario acento).
+                    Material(
+                      color: AppColors.dorado,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: InkWell(
+                        onTap: _buscar,
+                        borderRadius: BorderRadius.circular(12),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 14),
+                          child: Icon(Icons.search,
+                              color: AppColors.onDorado, size: 22),
+                        ),
+                      ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: AppColors.acento, width: 2),
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 14,
-                    ),
-                  ),
-                  onSubmitted: (_) => _buscar(),
-                  onChanged: (value) {
-                    setState(() {});
-                    if (value.isEmpty) {
-                      _buscar();
-                    }
-                  },
+                  ],
                 ),
                 const SizedBox(height: 8),
                 // ✅ Ayuda sutil con indicador de búsqueda semántica
@@ -393,43 +719,323 @@ class _RepositorioJurisprudenciaScreenState
             ),
           ),
 
-          // ✅ Lista de resultados limpia
+          // ✅ Lista de resultados con skeletons + lazy load
           Expanded(
             child: _cargando
-                ? Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircularProgressIndicator(
-                          color: AppColors.acento,
-                          strokeWidth: 3,
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'Buscando sentencias...',
-                          style: TextStyle(
-                            color: TemaGlobal.texto.withValues(alpha: 0.6),
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : _resultados.isEmpty
+                ? _buildSkeletons()
+                : _listaVacia
                     ? _buildEmptyState()
-                    : FadeTransition(
-                        opacity: _fadeAnimation,
-                        child: ListView.builder(
-                          padding: const EdgeInsets.all(16),
-                          itemCount: _resultados.length,
-                          itemBuilder: (context, index) {
-                            return _buildSentenciaCard(
-                                _resultados[index], index);
-                          },
-                        ),
+                    : Column(
+                        children: [
+                          // Etiqueta cuando el FTS no dio nada y se usó la
+                          // semántica de Qdrant (fallback automático).
+                          if (_usoSemantica)
+                            Container(
+                              width: double.infinity,
+                              margin: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 8),
+                              decoration: BoxDecoration(
+                                color: AppColors.dorado
+                                    .withValues(alpha: AppColors.a12),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                children: [
+                                  Icon(Icons.auto_awesome,
+                                      size: 14, color: AppColors.dorado),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    'Resultados por búsqueda semántica',
+                                    style: TextStyle(
+                                      color: AppColors.dorado,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          Expanded(
+                            child: FadeTransition(
+                              opacity: _fadeAnimation,
+                              child: _categoriaSeleccionada == 'Doctrinas'
+                                  ? _buildListaDoctrinas()
+                                  : _buildListaSentencias(),
+                            ),
+                          ),
+                        ],
                       ),
           ),
         ],
+      ),
+    );
+  }
+
+  /// ¿No hay nada que mostrar en la lista?
+  bool get _listaVacia =>
+      _resultados.isEmpty && _doctrinas.isEmpty;
+
+  /// Lista de sentencias con lazy load (scroll infinito).
+  Widget _buildListaSentencias() {
+    return ListView.builder(
+      controller: _scrollController,
+      padding: const EdgeInsets.all(16),
+      itemCount: _resultados.length + (_tieneMas ? 1 : 0),
+      itemBuilder: (context, index) {
+        if (index >= _resultados.length) {
+          // Pie de carga para la siguiente página
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Center(
+              child: SizedBox(
+                width: 24,
+                height: 24,
+                child: CircularProgressIndicator(
+                  color: AppColors.acento,
+                  strokeWidth: 2.5,
+                ),
+              ),
+            ),
+          );
+        }
+        return _buildSentenciaCard(_resultados[index], index);
+      },
+    );
+  }
+
+  /// Lista de doctrinas académicas con lazy load.
+  Widget _buildListaDoctrinas() {
+    return ListView.builder(
+      controller: _scrollController,
+      padding: const EdgeInsets.all(16),
+      itemCount: _doctrinas.length + (_tieneMas ? 1 : 0),
+      itemBuilder: (context, index) {
+        if (index >= _doctrinas.length) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Center(
+              child: SizedBox(
+                width: 24,
+                height: 24,
+                child: CircularProgressIndicator(
+                  color: AppColors.acento,
+                  strokeWidth: 2.5,
+                ),
+              ),
+            ),
+          );
+        }
+        return _buildDoctrinaCard(_doctrinas[index], index);
+      },
+    );
+  }
+
+  /// Esqueletos de carga mientras se busca (guía 3.1: tarjetas r16).
+  Widget _buildSkeletons() {
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 5,
+      itemBuilder: (context, index) {
+        return Container(
+          margin: const EdgeInsets.only(bottom: 12),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: TemaGlobal.tarjeta,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: TemaGlobal.capa, width: 1),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Badge esqueleto
+              Container(
+                width: 90,
+                height: 18,
+                decoration: BoxDecoration(
+                  color: TemaGlobal.capa,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+              const SizedBox(height: 12),
+              // Título esqueleto
+              Container(
+                width: double.infinity,
+                height: 16,
+                decoration: BoxDecoration(
+                  color: TemaGlobal.capa,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+              const SizedBox(height: 10),
+              // Líneas esqueleto
+              Container(
+                width: double.infinity,
+                height: 12,
+                decoration: BoxDecoration(
+                  color: TemaGlobal.capa.withValues(alpha: 0.7),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Container(
+                width: 200,
+                height: 12,
+                decoration: BoxDecoration(
+                  color: TemaGlobal.capa.withValues(alpha: 0.7),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  /// Tarjeta de DOCTRINA ACADÉMICA (autor/obra/párrafo de evidencia).
+  Widget _buildDoctrinaCard(DoctrinaAcademicaModel doctrina, int index) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 12),
+      elevation: 1,
+      shadowColor: AppColors.azulMarino.withValues(alpha: 0.08),
+      // Guía 3.1: r16 para tarjetas de lista.
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(color: TemaGlobal.capa, width: 1),
+      ),
+      child: InkWell(
+        onTap: () => _verDoctrina(doctrina),
+        borderRadius: BorderRadius.circular(16),
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: AppColors.dorado.withValues(alpha: AppColors.a12),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: const Text(
+                      'DOCTRINA',
+                      style: TextStyle(
+                        color: AppColors.dorado,
+                        fontSize: 10,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                  Icon(Icons.auto_stories,
+                      size: 16, color: AppColors.acento.withValues(alpha: 0.6)),
+                ],
+              ),
+              const SizedBox(height: 10),
+              // Autor — Obra (título de la tarjeta)
+              Text(
+                doctrina.titulo,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: TemaGlobal.texto,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                  height: 1.25,
+                ),
+              ),
+              const SizedBox(height: 8),
+              // Párrafo de evidencia (cita textual)
+              Text(
+                doctrina.parrafoEvidencia,
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: TemaGlobal.textoSecundario,
+                  fontSize: 13,
+                  height: 1.45,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Abrir una doctrina: si referencia una sentencia, la abre; si no,
+  /// muestra la cita completa en un panel.
+  Future<void> _verDoctrina(DoctrinaAcademicaModel doctrina) async {
+    final sentenciaId = doctrina.sentenciaId;
+    if (sentenciaId.isNotEmpty) {
+      // Buscar la sentencia vinculada (referencia exacta por id).
+      final encontradas = await _service.buscarDocumentos(
+        textoBusqueda: sentenciaId,
+        tipo: 'sentencia',
+        limit: 1,
+      );
+      if (encontradas.isNotEmpty && mounted) {
+        await _verSentencia(encontradas.first);
+        return;
+      }
+    }
+    if (!mounted) return;
+    // Sin sentencia vinculada: mostrar la cita doctrinal completa.
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: TemaGlobal.tarjeta,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              doctrina.titulo,
+              style: TextStyle(
+                color: AppColors.acento,
+                fontWeight: FontWeight.w800,
+                fontSize: 17,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              doctrina.parrafoEvidencia,
+              style: TextStyle(
+                color: TemaGlobal.texto,
+                fontSize: 14,
+                height: 1.5,
+              ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () => Navigator.of(context).pop(),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.acento,
+                  foregroundColor: AppColors.acento == AppColors.dorado
+                      ? AppColors.onDorado
+                      : AppColors.onAzulMarino,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: const Text('Cerrar'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
