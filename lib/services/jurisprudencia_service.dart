@@ -70,6 +70,9 @@ class JurisprudenciaService {
     int? diaFiltro,
     int limit = 50,
     int offset = 0,
+    // Cronológico: false = más reciente primero (desc), true = más antiguo
+    // primero (asc).
+    bool ordenAscendente = false,
     void Function(String mensaje)? onError,
   }) async {
     try {
@@ -127,8 +130,8 @@ class JurisprudenciaService {
           }
           // Si hay sala/año además, se respetan (ya aplicados arriba).
           final response = await query
-              .order('fecha', ascending: false)
-              .order('num_sentencia', ascending: false)
+              .order('fecha', ascending: ordenAscendente)
+              .order('num_sentencia', ascending: ordenAscendente)
               .range(offset, offset + limit - 1);
           final List<dynamic> data = response as List<dynamic>;
           debugPrint('✅ Referencia exacta: ${data.length} resultado(s)');
@@ -156,12 +159,13 @@ class JurisprudenciaService {
         );
       }
 
-      // Orden descendente por fecha y por número de sentencia (guía del
-      // Super Buscador); la reordenación por relevancia se hace en Dart con
-      // [terminosExpandidos]. Paginación con .range() para el lazy load.
+      // Orden cronológico por fecha y por número de sentencia (ascendente o
+      // descendente según el usuario); la reordenación por relevancia se hace
+      // en Dart con [terminosExpandidos]. Paginación con .range() para el
+      // lazy load.
       final response = await query
-          .order('fecha', ascending: false)
-          .order('num_sentencia', ascending: false)
+          .order('fecha', ascending: ordenAscendente)
+          .order('num_sentencia', ascending: ordenAscendente)
           .range(offset, offset + limit - 1);
       List<dynamic> data = response as List<dynamic>;
 

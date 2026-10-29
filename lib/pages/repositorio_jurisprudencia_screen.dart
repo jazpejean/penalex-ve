@@ -55,6 +55,9 @@ class _RepositorioJurisprudenciaScreenState
   String _categoriaSeleccionada = 'Sentencias';
   String? _salaSeleccionada;
   int? _anioSeleccionado;
+  // 📅 Orden cronológico: false = más reciente primero (desc), true = más
+  // antiguo primero (asc).
+  bool _ordenAscendente = false;
 
   // ♾️ Lazy load (scroll infinito con paginación)
   int _offset = 0;
@@ -130,6 +133,7 @@ class _RepositorioJurisprudenciaScreenState
       anio: _anioSeleccionado,
       offset: 0,
       limit: _limitePagina,
+      ordenAscendente: _ordenAscendente,
     );
 
     if (mounted) {
@@ -161,6 +165,7 @@ class _RepositorioJurisprudenciaScreenState
       anio: _anioSeleccionado,
       offset: _offset,
       limit: _limitePagina,
+      ordenAscendente: _ordenAscendente,
     );
 
     if (mounted) {
@@ -494,6 +499,24 @@ class _RepositorioJurisprudenciaScreenState
                 setState(() => _soloFavoritas = !_soloFavoritas);
                 _aplicarFiltroFavoritas();
               }),
+            // 📅 Orden cronológico (asc/desc)
+            IconButton(
+              onPressed: () {
+                setState(() => _ordenAscendente = !_ordenAscendente);
+                _buscar();
+              },
+              icon: Icon(
+                _ordenAscendente
+                    ? Icons.arrow_upward
+                    : Icons.arrow_downward,
+                size: 18,
+                color: AppColors.acento,
+              ),
+              tooltip: _ordenAscendente
+                  ? 'Ordenar por fecha: más antiguas primero'
+                  : 'Ordenar por fecha: más recientes primero',
+              visualDensity: VisualDensity.compact,
+            ),
             // Botón Filtros
             Padding(
               padding: const EdgeInsets.only(left: 4),
@@ -1199,13 +1222,16 @@ class _RepositorioJurisprudenciaScreenState
                   ),
                 ),
               const SizedBox(height: 12),
-              // Pie: decisión + acciones
+              // Pie: decisión (con truncado) + acciones
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  // La decisión puede ser larga: Flexible + ellipsis evita
+                  // que se salga de la pantalla (hasta 2 líneas).
                   if (sentencia.decision.isNotEmpty &&
                       sentencia.decision != 'null')
-                    _chipDecision(sentencia.decision),
-                  const Spacer(),
+                    Flexible(child: _chipDecision(sentencia.decision)),
+                  const SizedBox(width: 8),
                   TextButton(
                     onPressed: () => _verSentencia(sentencia),
                     style: TextButton.styleFrom(
@@ -1273,12 +1299,15 @@ class _RepositorioJurisprudenciaScreenState
       ),
       child: Text(
         decision,
-        maxLines: 1,
+        // Decisiones largas: máximo 2 líneas con puntos suspensivos (el
+        // Flexible del Row ya limita el ancho disponible).
+        maxLines: 2,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
           color: fg,
           fontSize: 10,
           fontWeight: FontWeight.bold,
+          height: 1.3,
         ),
       ),
     );

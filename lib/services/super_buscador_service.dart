@@ -88,6 +88,10 @@ class SuperBuscadorService {
     bool soloTextoCompleto = false,
     int offset = 0,
     int limit = 20,
+    // Cronológico: false = más reciente primero (desc), true = más antiguo
+    // primero (asc). Se aplica al FTS; la semántica conserva su orden por
+    // relevancia.
+    bool ordenAscendente = false,
   }) async {
     final textoLimpio = texto.trim();
     final esDoctrina = categoria == 'Doctrinas';
@@ -102,6 +106,7 @@ class SuperBuscadorService {
       soloTextoCompleto: soloTextoCompleto,
       offset: offset,
       limit: limit,
+      ordenAscendente: ordenAscendente,
     );
 
     // 2) Búsqueda semántica en Qdrant (solo si hay texto).
@@ -159,6 +164,7 @@ class SuperBuscadorService {
     required bool soloTextoCompleto,
     required int offset,
     required int limit,
+    bool ordenAscendente = false,
   }) async {
     try {
       if (categoria == 'Doctrinas') {
@@ -203,6 +209,7 @@ class SuperBuscadorService {
         anioFiltro: anio,
         limit: limit,
         offset: offset,
+        ordenAscendente: ordenAscendente,
       );
 
       // "Solo texto completo": quedan las que tienen copia en R2 (txt o html).
