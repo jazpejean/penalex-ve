@@ -2,7 +2,6 @@ import 'dart:async';
 import '../services/haptics_service.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../config/app_colors.dart';
@@ -10,11 +9,11 @@ import '../models/audiencia.dart';
 import '../config/app_theme.dart';
 import '../services/agenda_service.dart';
 import '../services/non_working_day_service.dart';
-import '../services/notification_service.dart';
 import '../services/tribunales_service.dart';
-import '../utils/date_utils.dart';
 import '../utils/non_working_days.dart';
 import 'calendario_judicial_screen.dart';
+import 'formulario_audiencia_screen.dart';
+import 'formulario_dia_sin_despacho_screen.dart';
 import 'tribunal_detail_screen.dart';
 import '../widgets/app_snackbar.dart';
 
@@ -33,7 +32,6 @@ class _AgendaScreenState extends State<AgendaScreen> {
   List<Audiencia> _audienciasDelDia = <Audiencia>[];
   List<NonWorkingDay> _userNonWorkingDays = <NonWorkingDay>[];
   bool _isLoading = false;
-  final NotificationService _notificationService = NotificationService();
 
   @override
   void initState() {
@@ -126,148 +124,47 @@ class _AgendaScreenState extends State<AgendaScreen> {
   }
 
   void _mostrarFormularioNuevaAudiencia() {
-    final TextEditingController expedienteCtrl = TextEditingController();
-    final TextEditingController tribunalCtrl = TextEditingController();
-    final TextEditingController imputadoCtrl = TextEditingController();
-    final TextEditingController cedulaCtrl = TextEditingController();
-    final TextEditingController fiscaliaCtrl = TextEditingController();
-    final TextEditingController delitosCtrl = TextEditingController();
-    final TextEditingController fechaCtrl = TextEditingController();
-    final TextEditingController horaCtrl = TextEditingController();
-    final TextEditingController tipoCtrl = TextEditingController();
-    final TextEditingController notasCtrl = TextEditingController();
-    // Tribunal del catálogo seleccionado (se guarda como tribunal_id).
-    Tribunal? tribunalSel;
-
-    if (_selectedDay != null) {
-      fechaCtrl.text =
-          "${_selectedDay!.day.toString().padLeft(2, '0')}/${_selectedDay!.month.toString().padLeft(2, '0')}/${_selectedDay!.year}";
-    }
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: Row(
-          children: <Widget>[
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: TemaGlobal.dorado.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(Icons.gavel, color: AppColors.acento, size: 22),
-            ),
-            const SizedBox(width: 10),
-            const Expanded(
-              child: Text('Nueva Audiencia',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
-            ),
-          ],
-        ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-        content: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.95,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                _buildModernField(expedienteCtrl, 'Expediente', Icons.folder_open, esObligatorio: true),
-                _buildModernField(imputadoCtrl, 'Imputado / Acusado', Icons.person, esObligatorio: true),
-                _buildModernField(cedulaCtrl, 'Cédula de Identidad', Icons.badge_outlined, numeric: true),
-                _buildModernField(fechaCtrl, 'Fecha de Audiencia (DD/MM/AAAA)', Icons.calendar_today, isDate: true, hint: 'Ej: 24/12/2026', esObligatorio: true),
-                _buildModernField(horaCtrl, 'Hora (HH:MM)', Icons.access_time, isTime: true, hint: 'Ej: 0230 (Aplica PM automáticamente)', esObligatorio: true),
-                _buildModernField(tribunalCtrl, 'Tribunal competente', Icons.account_balance,
-                    onTap: () async {
-                      final Tribunal? elegido = await _seleccionarTribunal(
-                          context, tribunalCtrl.text);
-                      if (elegido != null && context.mounted) {
-                        tribunalSel = elegido;
-                        tribunalCtrl.text = elegido.nombreLimpio;
-                      }
-                    }),
-                _buildModernField(fiscaliaCtrl, 'Fiscalía', Icons.shield),
-                _buildModernField(delitosCtrl, 'Delitos imputados', Icons.gavel, maxLines: 2),
-                _buildModernField(tipoCtrl, 'Tipo de Audiencia', Icons.merge_type),
-                _buildModernField(notasCtrl, 'Notas adicionales', Icons.note_alt_outlined, maxLines: 2),
-              ],
-            ),
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            style: TextButton.styleFrom(
-              foregroundColor: TemaGlobal.textoSecundario,
-            ),
-            child: const Text('Cancelar'),
-          ),
-          ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.azulMarino,
-              foregroundColor: AppColors.onAzulMarino,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            ),
-            onPressed: () async {
-              Haptics.light();
-              if (expedienteCtrl.text.isEmpty || imputadoCtrl.text.isEmpty || fechaCtrl.text.isEmpty || horaCtrl.text.isEmpty) {
-                Haptics.error();
-                AppSnackBar.error(context, 'Expediente, Imputado, Fecha y Hora son obligatorios');
-                return;
-              }
-              final DateTime? fecha = parseFecha(fechaCtrl.text);
-              if (fecha == null) {
-                AppSnackBar.error(context, 'Fecha inválida. Use DD/MM/AAAA');
-                return;
-              }
-              final Audiencia nueva = Audiencia(
-                id: DateTime.now().millisecondsSinceEpoch.toString(),
-                expediente: expedienteCtrl.text,
-                tribunal: tribunalCtrl.text.isNotEmpty ? tribunalCtrl.text : null,
-                tribunalId: tribunalSel?.id,
-                imputado: imputadoCtrl.text,
-                cedula: cedulaCtrl.text.isNotEmpty ? cedulaCtrl.text : null,
-                fiscalia: fiscaliaCtrl.text.isNotEmpty ? fiscaliaCtrl.text : null,
-                delitos: delitosCtrl.text.isNotEmpty ? delitosCtrl.text : null,
-                fecha: fecha,
-                hora: horaCtrl.text,
-                tipo: tipoCtrl.text.isNotEmpty ? tipoCtrl.text : null,
-                notas: notasCtrl.text.isNotEmpty ? notasCtrl.text : null,
-              );
-              final bool exito = await AgendaService.crearAudiencia(nueva);
-              if (exito) {
-                final TimeOfDay? horaAudiencia = parseHora(horaCtrl.text);
-                if (horaAudiencia != null) {
-                  final DateTime fechaHoraAudiencia = DateTime(
-                    fecha.year,
-                    fecha.month,
-                    fecha.day,
-                    horaAudiencia.hour,
-                    horaAudiencia.minute,
-                  );
-                  final DateTime fechaHoraNotificacion = fechaHoraAudiencia.subtract(const Duration(hours: 1));
-                  if (fechaHoraNotificacion.isAfter(DateTime.now())) {
-                    unawaited(_notificationService.scheduleAudienceReminder(
-                      audienceId: nueva.id,
-                      title: 'Audiencia: ${nueva.expediente} - ${nueva.imputado}',
-                      dateTime: fechaHoraNotificacion,
-                    ));
-                  }
-                }
-                if (context.mounted) Navigator.pop(context);
-                unawaited(_cargarAudiencias());
-              } else {
-                if (context.mounted) {
-                  AppSnackBar.error(context, 'Error al guardar la audiencia');
-                }
-              }
-            },
-            label: const Text('Guardar'),
-          ),
-        ],
+    Haptics.tap();
+    Navigator.of(context)
+        .push<bool>(
+      MaterialPageRoute<bool>(
+        builder: (_) => FormularioAudienciaScreen(fechaInicial: _selectedDay),
       ),
-    );
+    )
+        .then((bool? guardado) {
+      if (guardado == true && mounted) {
+        unawaited(_cargarAudiencias());
+      }
+    });
+  }
+
+  void _mostrarFormularioNuevoDiaSinDespacho() {
+    Haptics.tap();
+    Navigator.of(context)
+        .push<bool>(
+      MaterialPageRoute<bool>(
+        builder: (_) =>
+            FormularioDiaSinDespachoScreen(fechaInicial: _selectedDay),
+      ),
+    )
+        .then((bool? guardado) {
+      if (guardado == true && mounted) {
+        unawaited(_loadNonWorkingDays());
+      }
+    });
+  }
+
+  /// Días sin despacho de un día: feriados judiciales de TODOS los años
+  /// (el generador calcula Semana Santa y Carnaval por año) + días sin
+  /// despacho que el usuario registró.
+  List<NonWorkingDay> _getNonWorkingDaysForDay(DateTime day) {
+    final List<NonWorkingDay> allNonWorkingDays = <NonWorkingDay>[
+      ...getNonWorkingDaysForYear(day.year),
+      ..._userNonWorkingDays,
+    ];
+    return allNonWorkingDays
+        .where((NonWorkingDay nwd) => isSameDay(nwd.date, day))
+        .toList();
   }
 
   /// Abre la ficha del tribunal (foto, mapa, ruta) desde una audiencia.
@@ -316,470 +213,6 @@ class _AgendaScreenState extends State<AgendaScreen> {
     );
   }
 
-  /// Selector de tribunal (catálogo oficial de tribunales penales).
-  /// La búsqueda es por TEXTO local sobre el catálogo completo: lista
-  /// TODOS los tribunales que coinciden (buscar "Los Teques" muestra los
-  /// ~20 de esa sede). La semántica (pgvector) solo se usa como refuerzo
-  /// cuando el texto no encuentra nada.
-  Future<Tribunal?> _seleccionarTribunal(
-      BuildContext context, String inicial) async {
-    final TextEditingController buscadorCtrl =
-        TextEditingController(text: inicial);
-    List<Tribunal> resultados = <Tribunal>[];
-    bool buscando = true;
-    bool cacheLista = false;
-    String? filtroEstado; // null = todos los estados
-
-    // Asegura el catálogo en caché (una sola carga; luego filtro local).
-    Future<void> asegurarCache() async {
-      if (cacheLista) return;
-      await TribunalesService.listar();
-      cacheLista = true;
-    }
-
-    // La caché del catálogo debe estar lista ANTES del primer filtro por
-    // texto; si no, el filtro local no encuentra nada y se cae a la
-    // semántica (que devuelve solo 1-2 resultados "relevantes").
-    await asegurarCache();
-
-    Future<void> buscar() async {
-      final q = buscadorCtrl.text.trim();
-      if (q.isEmpty) {
-        // Sin texto: mostrar el catálogo completo (directorio), no un
-        // spinner infinito.
-        final todos = TribunalesService.listarEnCache();
-        resultados = todos == null ? <Tribunal>[] : List.of(todos);
-        buscando = false;
-        return;
-      }
-      buscando = true;
-      // 1) Filtro local por texto: TODOS los que coinciden.
-      final locales = TribunalesService.filtrarPorTexto(q);
-      if (locales.isNotEmpty) {
-        resultados = locales;
-        buscando = false;
-        return;
-      }
-      // 2) Refuerzo semántico solo si el texto no dio coincidencias.
-      final sem = await TribunalesService.buscarSemantico(q, limite: 20);
-      if (sem == null || sem.isEmpty) {
-        resultados = sem ?? <Tribunal>[];
-        buscando = false;
-        return;
-      }
-      const umbral = 0.52;
-      final relevantes = sem
-          .where((t) => t.distancia != null && t.distancia! < umbral)
-          .toList();
-      resultados = relevantes.isNotEmpty ? relevantes : sem;
-      buscando = false;
-    }
-
-    // Lista de estados disponibles (para el filtro desplegable).
-    final todosEstados = <String>{
-      ...?TribunalesService.listarEnCache()?.map((t) => t.estado),
-    }.toList()..sort();
-
-    await buscar();
-
-    return showDialog<Tribunal>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Row(
-          children: <Widget>[
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: TemaGlobal.dorado.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(Icons.account_balance,
-                  color: AppColors.acento, size: 22),
-            ),
-            const SizedBox(width: 10),
-            const Expanded(
-              child: Text('Buscar tribunal',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 18)),
-            ),
-          ],
-        ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        content: SizedBox(
-          width: MediaQuery.of(dialogContext).size.width * 0.92,
-          height: 460,
-          child: Column(
-            children: <Widget>[
-              TextField(
-                controller: buscadorCtrl,
-                autofocus: true,
-                decoration: InputDecoration(
-                  hintText: 'Ej: Los Teques, juicio de Maracaibo...',
-                  prefixIcon: Icon(Icons.search,
-                      color: TemaGlobal.textoSecundario),
-                  filled: true,
-                  fillColor: TemaGlobal.superficie,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
-                  isDense: true,
-                ),
-                onChanged: (_) => buscar(),
-              ),
-              const SizedBox(height: 10),
-              // Filtro por estado / circunscripción judicial.
-              DropdownButtonFormField<String>(
-                initialValue: filtroEstado,
-                isExpanded: true,
-                decoration: InputDecoration(
-                  labelText: 'Estado (circunscripción judicial)',
-                  prefixIcon: Icon(Icons.public,
-                      color: TemaGlobal.textoSecundario, size: 20),
-                  filled: true,
-                  fillColor: TemaGlobal.superficie,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
-                  isDense: true,
-                  contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 12, vertical: 10),
-                ),
-                items: <DropdownMenuItem<String>>[
-                  const DropdownMenuItem<String>(
-                    value: null,
-                    child: Text('Todos los estados'),
-                  ),
-                  ...todosEstados.map((e) => DropdownMenuItem<String>(
-                        value: e,
-                        child: Text(e, overflow: TextOverflow.ellipsis),
-                      )),
-                ],
-                onChanged: (v) {
-                  filtroEstado = v;
-                  buscar();
-                },
-              ),
-              const SizedBox(height: 10),
-              Expanded(
-                child: buscando
-                    ? const Center(child: CircularProgressIndicator())
-                    : resultados.isEmpty
-                        ? Center(
-                            child: Text(
-                              'No se encontraron tribunales con esos criterios',
-                              style: TextStyle(color: TemaGlobal.textoTenue),
-                              textAlign: TextAlign.center,
-                            ))
-                        : _listaTribunalesAgrupada(
-                            dialogContext, resultados, filtroEstado),
-              ),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, null),
-            child: const Text('Cancelar'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  /// Lista de tribunales agrupada por estado y circunscripción judicial.
-  /// Lista de tribunales clasificada por ESTADO y CIRCUNSCRIPCIÓN JUDICIAL:
-  /// sin filtro se agrupa en dos niveles (estado → circuito judicial → lista);
-  /// con [filtroEstado] se muestran solo los de ese estado, con un
-  /// encabezado por circuito (ej. "CIRCUITO JUDICIAL PENAL DEL ESTADO ...").
-  Widget _listaTribunalesAgrupada(BuildContext dialogContext,
-      List<Tribunal> lista, String? filtroEstado) {
-    final filas = <Widget>[];
-    // Primer nivel: estado.
-    final porEstado = <String, List<Tribunal>>{};
-    for (final t in lista) {
-      if (filtroEstado != null && t.estado != filtroEstado) continue;
-      porEstado.putIfAbsent(t.estado, () => <Tribunal>[]).add(t);
-    }
-    final estados = porEstado.keys.toList()..sort();
-    for (final estado in estados) {
-      final tribunalesEstado = porEstado[estado]!;
-      if (filtroEstado == null) {
-        filas.add(_encabezadoGrupo(estado, tribunalesEstado.length, nivel: 0));
-      }
-      // Segundo nivel: circunscripción judicial (circuito).
-      final porCircuito = <String, List<Tribunal>>{};
-      for (final t in tribunalesEstado) {
-        porCircuito
-            .putIfAbsent(t.circunscripcionJudicial, () => <Tribunal>[])
-            .add(t);
-      }
-      final circuitos = porCircuito.keys.toList()..sort();
-      for (final circuito in circuitos) {
-        final tribunales = porCircuito[circuito]!..sort((a, b) {
-          final f = a.etiquetaFuncion.compareTo(b.etiquetaFuncion);
-          if (f != 0) return f;
-          return a.nombreLimpio.compareTo(b.nombreLimpio);
-        });
-        if (filtroEstado != null || circuitos.length > 1) {
-          filas.add(
-              _encabezadoGrupo(circuito, tribunales.length, nivel: 1));
-        }
-        for (final t in tribunales) {
-          filas.add(ListTile(
-            dense: true,
-            title: Text(t.nombreLimpio,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                    fontSize: 13.5, fontWeight: FontWeight.w600)),
-            subtitle: Text(
-              '${t.etiquetaFuncion}${t.municipio != null ? ' · ${t.municipio}' : ''}',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 11.5),
-            ),
-            trailing: const Icon(Icons.chevron_right, size: 18),
-            onTap: () => Navigator.pop(dialogContext, t),
-          ));
-        }
-      }
-    }
-    return ListView(
-      padding: const EdgeInsets.only(bottom: 8),
-      children: filas,
-    );
-  }
-
-  Widget _encabezadoGrupo(String titulo, int cantidad, {int nivel = 0}) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(4, nivel == 0 ? 12 : 8, 4, 4),
-      child: Row(
-        children: <Widget>[
-          Container(
-            width: 3,
-            height: nivel == 0 ? 18 : 14,
-            decoration: BoxDecoration(
-              color: nivel == 0
-                  ? AppColors.acento
-                  : AppColors.acento.withValues(alpha: 0.5),
-              borderRadius: BorderRadius.circular(2),
-            ),
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              titulo,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: nivel == 0 ? 13 : 12,
-                  color: TemaGlobal.textoSecundario),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          Text(
-            '$cantidad',
-            style: TextStyle(
-                fontSize: 11.5,
-                color: TemaGlobal.textoTenue,
-                fontWeight: FontWeight.w600),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _mostrarFormularioNuevoDiaSinDespacho() {
-    final TextEditingController fechaCtrl = TextEditingController();
-    final TextEditingController motivoCtrl = TextEditingController();
-    final TextEditingController tribunalCtrl = TextEditingController();
-    // Tribunal del catálogo asociado (opcional; null = toda la agenda).
-    Tribunal? tribunalSel;
-
-    if (_selectedDay != null) {
-      fechaCtrl.text =
-          "${_selectedDay!.day.toString().padLeft(2, '0')}/${_selectedDay!.month.toString().padLeft(2, '0')}/${_selectedDay!.year}";
-    }
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: Row(
-          children: <Widget>[
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: TemaGlobal.dorado.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(Icons.block, color: AppColors.acento, size: 22),
-            ),
-            const SizedBox(width: 10),
-            const Expanded(
-              child: Text('Nuevo día sin despacho',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
-            ),
-          ],
-        ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-        content: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.95,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _buildModernField(fechaCtrl, 'Fecha (DD/MM/AAAA)', Icons.calendar_today, isDate: true, hint: 'Ej: 24/12/2026', esObligatorio: true),
-                _buildModernField(motivoCtrl, 'Motivo', Icons.description, maxLines: 2, hint: 'Ej: falla eléctrica, salud, etc.', esObligatorio: true),
-                _buildModernField(tribunalCtrl, 'Tribunal (opcional)', Icons.account_balance,
-                    onTap: () async {
-                      final Tribunal? elegido = await _seleccionarTribunal(
-                          context, tribunalCtrl.text);
-                      if (elegido != null && context.mounted) {
-                        tribunalSel = elegido;
-                        tribunalCtrl.text = elegido.nombreLimpio;
-                      }
-                    }),
-                const SizedBox(height: 8),
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: AppColors.warning.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: AppColors.warning.withValues(alpha: 0.3)),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Icon(Icons.info_outline, color: AppColors.warning, size: 20),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Text(
-                          'Sin tribunal: aplica a toda la agenda personal. Con tribunal: solo excluye los lapsos de ese tribunal.',
-                          style: TextStyle(fontSize: 12, color: TemaGlobal.textoSecundario, height: 1.4),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            style: TextButton.styleFrom(
-              foregroundColor: TemaGlobal.textoSecundario,
-            ),
-            child: const Text('Cancelar'),
-          ),
-          ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.azulMarino,
-              foregroundColor: AppColors.onAzulMarino,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            ),
-            onPressed: () async {
-              if (fechaCtrl.text.isEmpty || motivoCtrl.text.isEmpty) {
-                AppSnackBar.error(context, 'Fecha y Motivo son obligatorios');
-                return;
-              }
-              final DateTime? fecha = parseFecha(fechaCtrl.text);
-              if (fecha == null) {
-                AppSnackBar.error(context, 'Fecha inválida. Use DD/MM/AAAA');
-                return;
-              }
-              final NonWorkingDay newNonWorkingDay = NonWorkingDay(
-                date: fecha,
-                reason: motivoCtrl.text,
-                tribunalId: tribunalSel?.id,
-                tribunalNombre: tribunalSel?.nombreLimpio,
-              );
-              final bool success = await NonWorkingDayService.saveNonWorkingDay(newNonWorkingDay);
-              if (success) {
-                if (context.mounted) {
-                  AppSnackBar.success(context, 'Día sin despacho guardado');
-                }
-                if (context.mounted) Navigator.pop(context);
-                unawaited(_loadNonWorkingDays());
-              } else {
-                if (context.mounted) {
-                  AppSnackBar.error(context, 'No se pudo guardar el día sin despacho. Verifique su sesión y conexión.');
-                }
-              }
-            },
-            label: const Text('Guardar'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  List<NonWorkingDay> _getNonWorkingDaysForDay(DateTime day) {
-    final List<NonWorkingDay> allNonWorkingDays = <NonWorkingDay>[...nonWorkingDays2026, ..._userNonWorkingDays];
-    return allNonWorkingDays.where((NonWorkingDay nwd) => isSameDay(nwd.date, day)).toList();
-  }
-
-  Widget _buildModernField(
-    TextEditingController controller,
-    String label,
-    IconData icon, {
-    bool numeric = false,
-    bool isDate = false,
-    bool isTime = false,
-    int maxLines = 1,
-    String? hint,
-    VoidCallback? onTap,
-    bool esObligatorio = false,
-  }) => Padding(
-      padding: const EdgeInsets.only(bottom: 14),
-      child: TextFormField(
-        controller: controller,
-        maxLines: maxLines,
-        readOnly: onTap != null,
-        onTap: onTap,
-        keyboardType: (numeric || isDate || isTime) ? TextInputType.number : TextInputType.text,
-        inputFormatters: <TextInputFormatter>[
-          if (isDate) DateMaskFormatter(),
-          if (isTime) TimeMaskFormatter(),
-          if (numeric && !isDate && !isTime) FilteringTextInputFormatter.digitsOnly,
-        ],
-        style: TextStyle(fontSize: 15, color: TemaGlobal.texto),
-        decoration: InputDecoration(
-          labelText: esObligatorio ? '$label *' : label,
-          hintText: hint,
-          hintStyle: TextStyle(color: TemaGlobal.textoTenue, fontSize: 13),
-          labelStyle: TextStyle(
-              color: TemaGlobal.textoSecundario, fontSize: 13.5),
-          prefixIcon: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-            decoration: BoxDecoration(
-              color: TemaGlobal.dorado.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Icon(icon, color: AppColors.acento, size: 20),
-          ),
-          filled: true,
-          fillColor: TemaGlobal.superficie,
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(
-                color: TemaGlobal.textoTenue.withValues(alpha: 0.25)),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: AppColors.acento, width: 1.4),
-          ),
-        ),
-      ),
-    );
-
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: TemaGlobal.superficie,
@@ -791,18 +224,8 @@ class _AgendaScreenState extends State<AgendaScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-                      // Header de la pestaña
-                      Text(
-                        'Agenda',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w800,
-                          color: TemaGlobal.texto,
-                          letterSpacing: -0.5,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      // Calendario + leyenda
+                      // Calendario + leyenda (sin título: la pestaña ya se
+                      // identifica en la barra inferior).
                       Container(
                         decoration: BoxDecoration(
                           color: TemaGlobal.tarjeta,
@@ -867,8 +290,14 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                     color: AppColors.dorado.withValues(
                                         alpha: AppColors.a12),
                                     borderRadius: BorderRadius.circular(10)),
-                                selectedTextStyle: const TextStyle(
-                                    color: AppColors.onDorado,
+                                // Texto del día seleccionado: contraste según
+                                // el modo (navy en claro → blanco; dorado en
+                                // oscuro → navy). Nunca navy sobre navy.
+                                selectedTextStyle: TextStyle(
+                                    color: AppColors.acento ==
+                                            AppColors.dorado
+                                        ? AppColors.onDorado
+                                        : AppColors.onAzulMarino,
                                     fontWeight: FontWeight.bold),
                                 todayTextStyle: TextStyle(
                                     color: TemaGlobal.texto,
@@ -936,8 +365,11 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                           BorderRadius.circular(10)),
                                   child: Text(
                                     '${day.day}',
-                                    style: const TextStyle(
-                                        color: AppColors.onDorado,
+                                    style: TextStyle(
+                                        color: AppColors.acento ==
+                                                AppColors.dorado
+                                            ? AppColors.onDorado
+                                            : AppColors.onAzulMarino,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -1362,43 +794,3 @@ class _AgendaScreenState extends State<AgendaScreen> {
   }
 }
 
-class DateMaskFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
-    String text = newValue.text.replaceAll(RegExp('[^0-9]'), '');
-    if (text.length > 8) text = text.substring(0, 8);
-    final StringBuffer buffer = StringBuffer();
-    for (int i = 0; i < text.length; i++) {
-      buffer.write(text[i]);
-      if ((i == 1 || i == 3) && i != text.length - 1) buffer.write('/');
-    }
-    return TextEditingValue(text: buffer.toString(), selection: TextSelection.collapsed(offset: buffer.toString().length));
-  }
-}
-
-class TimeMaskFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
-    if (newValue.text.isEmpty) return newValue;
-    String digits = newValue.text.replaceAll(RegExp('[^0-9]'), '');
-    if (digits.length > 4) digits = digits.substring(0, 4);
-    if (digits.isEmpty) return TextEditingValue.empty;
-    String formatted = '';
-    if (digits.isNotEmpty) formatted += digits[0];
-    if (digits.length >= 2) formatted += digits[1];
-    String period = '';
-    if (digits.length >= 2) {
-      final int hour = int.tryParse(digits.substring(0, 2)) ?? 0;
-      if (hour >= 7 && hour <= 11) {
-        period = ' AM';
-      } else if (hour == 12 || (hour >= 1 && hour <= 6)) {
-        period = ' PM';
-      } else {
-        period = ' AM';
-      }
-    }
-    if (digits.length >= 3) formatted += ':${digits[2]}';
-    if (digits.length >= 4) formatted += digits[3];
-    return TextEditingValue(text: formatted + period, selection: TextSelection.collapsed(offset: formatted.length));
-  }
-}
