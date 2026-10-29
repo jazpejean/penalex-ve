@@ -55,7 +55,6 @@ class _RepositorioJurisprudenciaScreenState
   String _categoriaSeleccionada = 'Sentencias';
   String? _salaSeleccionada;
   int? _anioSeleccionado;
-  bool _soloTextoCompleto = false;
 
   // ♾️ Lazy load (scroll infinito con paginación)
   int _offset = 0;
@@ -129,7 +128,6 @@ class _RepositorioJurisprudenciaScreenState
       categoria: _categoriaSeleccionada,
       sala: _salaSeleccionada,
       anio: _anioSeleccionado,
-      soloTextoCompleto: _soloTextoCompleto,
       offset: 0,
       limit: _limitePagina,
     );
@@ -161,7 +159,6 @@ class _RepositorioJurisprudenciaScreenState
       categoria: _categoriaSeleccionada,
       sala: _salaSeleccionada,
       anio: _anioSeleccionado,
-      soloTextoCompleto: _soloTextoCompleto,
       offset: _offset,
       limit: _limitePagina,
     );
@@ -234,12 +231,11 @@ class _RepositorioJurisprudenciaScreenState
       _categoriaSeleccionada = 'Sentencias';
       _salaSeleccionada = null;
       _anioSeleccionado = null;
-      _soloTextoCompleto = false;
     });
     _buscar();
   }
 
-  /// Panel lateral de filtros (Año, Solo texto completo, Sala).
+  /// Panel lateral de filtros (Año y Sala).
   ///
   /// REGLA ESTRICTA: el filtro de Sala se oculta automáticamente en las
   /// categorías Resoluciones y Doctrinas (no aplica a esos contenidos).
@@ -339,42 +335,6 @@ class _RepositorioJurisprudenciaScreenState
                     ],
                   ),
                 ),
-                // Solo texto completo
-                const SizedBox(height: 16),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 12, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: TemaGlobal.campoTexto,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: SwitchListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(
-                      'Solo texto completo',
-                      style: TextStyle(
-                        color: TemaGlobal.texto,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    subtitle: Text(
-                      'Solo sentencias con copia íntegra en el repositorio',
-                      style: TextStyle(
-                        color: TemaGlobal.textoSecundario,
-                        fontSize: 12,
-                      ),
-                    ),
-                    value: _soloTextoCompleto,
-                    // Guía 3.3: Switch dorado/0.35/textoSecundario/capa.
-                    activeColor: AppColors.dorado,
-                    activeTrackColor: AppColors.dorado.withValues(alpha: 0.35),
-                    inactiveTrackColor: TemaGlobal.capa,
-                    inactiveThumbColor: TemaGlobal.textoSecundario,
-                    onChanged: (value) =>
-                        setSheetState(() => _soloTextoCompleto = value),
-                  ),
-                ),
                 // Sala (solo Sentencias y Jurisprudencias)
                 if (mostrarSala) ...[
                   const SizedBox(height: 16),
@@ -440,7 +400,8 @@ class _RepositorioJurisprudenciaScreenState
     );
   }
 
-  /// Fila de las 4 categorías del Super Buscador + botón Filtros.
+  /// Fila superior del Super Buscador: dropdown de categorías + Favoritas
+  /// + botón Filtros.
   Widget _buildFiltros() {
     const categorias = ['Sentencias', 'Jurisprudencias', 'Resoluciones', 'Doctrinas'];
 
@@ -473,63 +434,96 @@ class _RepositorioJurisprudenciaScreenState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 4 categorías (scroll horizontal en pantallas pequeñas)
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              // ⭐ Favoritas: solo aplica a sentencias/jurisprudencias/
-              // resoluciones (las doctrinas no se marcan como favoritas).
-              if (_categoriaSeleccionada != 'Doctrinas')
-                chip('⭐ Favoritas', activo: _soloFavoritas, onTap: () {
-                  setState(() => _soloFavoritas = !_soloFavoritas);
-                  _aplicarFiltroFavoritas();
-                }),
-              for (final categoria in categorias)
-                chip(categoria, activo: _categoriaSeleccionada == categoria,
-                    onTap: () {
-                  setState(() {
-                    _categoriaSeleccionada = categoria;
-                    // Al cambiar a Resoluciones/Doctrinas se oculta Sala
-                    // (regla estricta): limpiar el filtro de sala.
-                    if (categoria == 'Resoluciones' || categoria == 'Doctrinas') {
-                      _salaSeleccionada = null;
-                    }
-                  });
-                  _buscar();
-                }),
-              // Botón Filtros (a la derecha de los tabs)
-              Padding(
-                padding: const EdgeInsets.only(left: 4),
-                child: OutlinedButton.icon(
-                  onPressed: _abrirPanelFiltros,
-                  icon: Icon(Icons.tune, size: 16, color: AppColors.acento),
-                  label: Text(
-                    'Filtros',
+        Row(
+          children: [
+            // Dropdown de categorías (guía 3.3: acento dinámico).
+            Expanded(
+              child: Container(
+                height: 42,
+                padding: const EdgeInsets.symmetric(horizontal: 14),
+                decoration: BoxDecoration(
+                  color: TemaGlobal.campoTexto,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                      color: AppColors.acento.withValues(alpha: 0.35)),
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                    value: _categoriaSeleccionada,
+                    isExpanded: true,
+                    icon: Icon(Icons.arrow_drop_down,
+                        color: AppColors.acento, size: 22),
+                    borderRadius: BorderRadius.circular(12),
+                    dropdownColor: TemaGlobal.tarjeta,
                     style: TextStyle(
-                        color: AppColors.acento,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  style: OutlinedButton.styleFrom(
-                    side: BorderSide(
-                        color: AppColors.acento.withValues(alpha: 0.4)),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 8),
-                    visualDensity: VisualDensity.compact,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      color: TemaGlobal.texto,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
                     ),
+                    items: [
+                      for (final categoria in categorias)
+                        DropdownMenuItem(
+                          value: categoria,
+                          child: Text(categoria),
+                        ),
+                    ],
+                    onChanged: (categoria) {
+                      if (categoria == null || categoria == _categoriaSeleccionada) {
+                        return;
+                      }
+                      setState(() {
+                        _categoriaSeleccionada = categoria;
+                        // Al cambiar a Resoluciones/Doctrinas se oculta Sala
+                        // (regla estricta): limpiar el filtro de sala.
+                        if (categoria == 'Resoluciones' ||
+                            categoria == 'Doctrinas') {
+                          _salaSeleccionada = null;
+                        }
+                      });
+                      _buscar();
+                    },
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(width: 8),
+            // ⭐ Favoritas: solo aplica a sentencias/jurisprudencias/
+            // resoluciones (las doctrinas no se marcan como favoritas).
+            if (_categoriaSeleccionada != 'Doctrinas')
+              chip('⭐ Favoritas', activo: _soloFavoritas, onTap: () {
+                setState(() => _soloFavoritas = !_soloFavoritas);
+                _aplicarFiltroFavoritas();
+              }),
+            // Botón Filtros
+            Padding(
+              padding: const EdgeInsets.only(left: 4),
+              child: OutlinedButton.icon(
+                onPressed: _abrirPanelFiltros,
+                icon: Icon(Icons.tune, size: 16, color: AppColors.acento),
+                label: Text(
+                  'Filtros',
+                  style: TextStyle(
+                      color: AppColors.acento,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600),
+                ),
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide(
+                      color: AppColors.acento.withValues(alpha: 0.4)),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12, vertical: 8),
+                  visualDensity: VisualDensity.compact,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
         // Resumen de filtros activos
         if (_salaSeleccionada != null ||
-            _anioSeleccionado != null ||
-            _soloTextoCompleto) ...[
+            _anioSeleccionado != null) ...[
           const SizedBox(height: 8),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -544,11 +538,6 @@ class _RepositorioJurisprudenciaScreenState
                 if (_anioSeleccionado != null)
                   chip('Año ${_anioSeleccionado}', activo: true, onTap: () {
                     setState(() => _anioSeleccionado = null);
-                    _buscar();
-                  }),
-                if (_soloTextoCompleto)
-                  chip('Texto completo', activo: true, onTap: () {
-                    setState(() => _soloTextoCompleto = false);
                     _buscar();
                   }),
               ],
@@ -1103,7 +1092,9 @@ class _RepositorioJurisprudenciaScreenState
         side: BorderSide(color: TemaGlobal.capa, width: 1),
       ),
       child: InkWell(
-        onTap: () => _verSentencia(sentencia),
+        // Al tocar la ficha se abre la ventana flotante con toda la
+        // metadata y el botón "Leer sentencia completa".
+        onTap: () => _mostrarMetadata(sentencia),
         borderRadius: BorderRadius.circular(16),
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -1215,15 +1206,6 @@ class _RepositorioJurisprudenciaScreenState
                       sentencia.decision != 'null')
                     _chipDecision(sentencia.decision),
                   const Spacer(),
-                  IconButton(
-                    onPressed: () => _mostrarMetadata(sentencia),
-                    icon: Icon(Icons.info_outline,
-                        size: 18, color: TemaGlobal.textoSecundario),
-                    tooltip: 'Ver metadata',
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(),
-                    visualDensity: VisualDensity.compact,
-                  ),
                   TextButton(
                     onPressed: () => _verSentencia(sentencia),
                     style: TextButton.styleFrom(
@@ -1407,6 +1389,35 @@ class _RepositorioJurisprudenciaScreenState
                       ),
                     ),
                 ],
+                // 📖 Leer sentencia completa
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+                  child: FilledButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      _verSentencia(s);
+                    },
+                    // Guía 3.2: primario = AppColors.acento con su fg.
+                    style: FilledButton.styleFrom(
+                      backgroundColor: AppColors.acento,
+                      foregroundColor:
+                          AppColors.acento == AppColors.dorado
+                              ? AppColors.onDorado
+                              : AppColors.onAzulMarino,
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    icon: const Icon(Icons.menu_book_outlined, size: 20),
+                    label: Text(
+                      'Leer sentencia completa',
+                      style: const TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
