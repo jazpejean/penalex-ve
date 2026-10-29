@@ -159,29 +159,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ],
           ),
         ),
-        // Notificación → abre la agenda (donde viven audiencias y lapsos)
-        Container(
-          width: 44,
-          height: 44,
-          decoration: BoxDecoration(
-            color: TemaGlobal.tarjeta,
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: TemaGlobal.capa),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.05),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          child: IconButton(
-            icon: const Icon(Icons.notifications_none, size: 22),
-            color: TemaGlobal.texto,
-            onPressed: () => _navegar(context, '/agenda'),
-          ),
-        ),
-        const SizedBox(width: 12),
         // Avatar institucional: navy con borde dorado e iniciales
         Container(
           width: 44,
@@ -419,7 +396,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 context,
                 icon: Icons.menu_book,
                 titulo: 'Leyes',
-                subtitulo: '72 instrumentos',
+                subtitulo: 'Constitución y Código Penal',
                 route: '/repositorio_leyes',
               ),
             ),
@@ -538,6 +515,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
             const SizedBox(height: 2),
             Text(
               subtitulo,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 11,
                 color: TemaGlobal.textoSecundario,
@@ -778,15 +757,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 context,
                 icon: Icons.account_balance,
                 titulo: 'Jurisprudencia',
-                subtitulo: 'Sentencias y doctrina',
+                subtitulo: 'Sentencias clave',
                 route: '/repositorio_jurisprudencia',
               ),
               const SizedBox(height: 12),
               _buildToolSmall(
                 context,
                 icon: Icons.map,
-                titulo: 'Mapa',
-                subtitulo: 'Tribunales del país',
+                titulo: 'Tribunales',
+                subtitulo: 'Ubica tribunales',
                 route: '/mapa_tribunales',
               ),
             ],
@@ -800,15 +779,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 context,
                 icon: Icons.menu_book,
                 titulo: 'Glosario',
-                subtitulo: 'Definiciones claras',
+                subtitulo: 'Términos jurídicos',
                 route: '/glosario',
               ),
               const SizedBox(height: 12),
               _buildToolSmall(
                 context,
                 icon: Icons.quiz,
-                titulo: 'Desafío',
-                subtitulo: 'Pon a prueba tus conocimientos',
+                titulo: 'Desafío Penal',
+                subtitulo: 'Casos reales',
                 route: '/quiz_lobby',
               ),
             ],
