@@ -9,8 +9,6 @@ import '../config/app_theme.dart';
 import '../utils/main_tab_controller.dart';
 import '../config/app_colors.dart';
 import '../widgets/app_snackbar.dart';
-import 'calculadora_prescripcion_screen.dart';
-import 'escanear_documento_screen.dart';
 
 /// Pantalla principal (tab Inicio) — rediseño premium navy+oro:
 /// header con saludo y avatar, stats reales, hero Ulpiano, accesos
@@ -59,25 +57,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
     Haptics.tap();
     switch (route) {
       case '/repositorio_jurisprudencia':
-        navegarAConsulta(context, 'sentencias');
       case '/repositorio_leyes':
-        navegarAConsulta(context, 'leyes');
       case '/glosario':
-        navegarAConsulta(context, 'glosario');
       case '/prescripcion':
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const CalculadoraPrescripcionScreen(),
-          ),
-        );
       case '/escaner':
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const EscanearDocumentoScreen(),
-          ),
-        );
+        Navigator.pushNamed(context, route);
       default:
         navegarDesdeMain(context, route);
     }
