@@ -394,24 +394,14 @@ class _RepositorioJurisprudenciaScreenState
                         chip('Todas', activo: _salaSeleccionada == null, onTap: () {
                           setSheetState(() => _salaSeleccionada = null);
                         }),
-                        chip('Penal', activo: _salaSeleccionada == 'scp',
+                        // Penalex solo indexa 2 salas del TSJ: Casación Penal
+                        // (scp) y Constitucional (scon). Verificado en la BD.
+                        chip('Casación Penal', activo: _salaSeleccionada == 'scp',
                             onTap: () =>
                                 setSheetState(() => _salaSeleccionada = 'scp')),
                         chip('Constitucional', activo: _salaSeleccionada == 'scon',
                             onTap: () =>
                                 setSheetState(() => _salaSeleccionada = 'scon')),
-                        chip('Casación Social', activo: _salaSeleccionada == 'scs',
-                            onTap: () =>
-                                setSheetState(() => _salaSeleccionada = 'scs')),
-                        chip('Casación Civil', activo: _salaSeleccionada == 'scc',
-                            onTap: () =>
-                                setSheetState(() => _salaSeleccionada = 'scc')),
-                        chip('Político-Administrativa', activo: _salaSeleccionada == 'spa',
-                            onTap: () =>
-                                setSheetState(() => _salaSeleccionada = 'spa')),
-                        chip('Electoral', activo: _salaSeleccionada == 'se',
-                            onTap: () =>
-                                setSheetState(() => _salaSeleccionada = 'se')),
                       ],
                     ),
                   ),
@@ -572,12 +562,8 @@ class _RepositorioJurisprudenciaScreenState
   /// Nombre corto para mostrar una sala activa (código BD → etiqueta).
   String _nombreSalaCorto(String codigo) {
     const nombres = {
-      'scp': 'Penal',
+      'scp': 'Casación Penal',
       'scon': 'Constitucional',
-      'scs': 'Casación Social',
-      'scc': 'Casación Civil',
-      'spa': 'Político-Administrativa',
-      'se': 'Electoral',
     };
     return nombres[codigo] ?? codigo;
   }
@@ -1203,7 +1189,7 @@ class _RepositorioJurisprudenciaScreenState
                     ),
                   ),
                   Text(
-                    '${sentencia.sala} · ${sentencia.fechaSentencia}',
+                    '${_nombreSala(sentencia.sala)} · ${sentencia.fechaSentencia}',
                     style: TextStyle(color: TemaGlobal.textoSecundario, fontSize: 12),
                   ),
                 ],
@@ -1351,7 +1337,7 @@ class _RepositorioJurisprudenciaScreenState
                   ),
                 ),
                 const SizedBox(height: 14),
-                _filaMeta('Sala', s.sala),
+                _filaMeta('Sala', _nombreSala(s.sala)),
                 _filaMeta('Ponente', s.ponente),
                 _filaMeta('Fecha', s.fechaSentencia),
                 _filaMeta('Delito', s.delito),
@@ -1594,7 +1580,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
         : (s.urlTSJ.isNotEmpty && s.urlTSJ != 'null' ? s.urlTSJ : 'No disponible');
 
     final texto = '⚖️ Sentencia Nº ${s.numeroSentencia}\n'
-        'Sala: ${s.sala}\n'
+        'Sala: ${_nombreSala(s.sala)}\n'
         'Fecha: ${s.fechaSentencia}\n'
         'Delito: ${s.delito}\n\n'
         '${_textoResumen(s)}\n\n'
@@ -2161,7 +2147,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
             ),
           ),
           const SizedBox(height: 20),
-          _buildWebDato('Sala', s.sala),
+          _buildWebDato('Sala', _nombreSala(s.sala)),
           _buildWebDato('Nº de sentencia', s.numeroSentencia),
           _buildWebDato('Fecha', s.fechaSentencia),
           _buildWebDato('Ponente', s.ponente),
@@ -2198,7 +2184,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildWebDato('Sala', s.sala),
+          _buildWebDato('Sala', _nombreSala(s.sala)),
           _buildWebDato('Nº de sentencia', s.numeroSentencia),
           _buildWebDato('Fecha', s.fechaSentencia),
           _buildWebDato('Ponente', s.ponente),
@@ -2626,7 +2612,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                   ),
                 ),
                 const SizedBox(height: 14),
-                _filaMeta('Sala', s.sala),
+                _filaMeta('Sala', _nombreSala(s.sala)),
                 _filaMeta('Ponente', s.ponente),
                 _filaMeta('Fecha', s.fechaSentencia),
                 _filaMeta('Delito', s.delito),
@@ -2751,5 +2737,18 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
         );
       },
     );
+  }
+}
+
+/// Nombre legible de la sala para tarjetas y fichas (código BD → etiqueta).
+/// Penalex solo indexa 2 salas del TSJ: Casación Penal y Constitucional.
+String _nombreSala(String codigo) {
+  switch (codigo.toLowerCase()) {
+    case 'scp':
+      return 'Sala de Casación Penal';
+    case 'scon':
+      return 'Sala Constitucional';
+    default:
+      return codigo.isEmpty ? 'Sala' : codigo;
   }
 }

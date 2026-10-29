@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class SentenciaModel {
   final String id;
@@ -89,12 +90,17 @@ class SentenciaModel {
       ratioDecidendi: data['ratio_decidendi'] ?? '',
       analisisIa: data['analisis_ia'] ?? '',
       urlTSJ: data['url_tsj'] ?? '',
-      urlHTML: data['url_html'] ?? '',
-      urlTXT: data['url_txt'] ?? '',
+      // Las copias íntegras viven en Cloudflare R2: la base guarda la CLAVE
+      // del objeto (r2_html_key / r2_txt_key) y la URL pública se arma con
+      // el dominio del bucket. Antes se leía 'url_html'/'url_txt', columnas
+      // que NO existen en la base → la app mostraba el resumen en vez de la
+      // sentencia. Corregido: urlHTML/urlTXT apuntan a la copia de R2.
+      urlHTML: _urlR2(data['r2_html_key']),
+      urlTXT: _urlR2(data['r2_txt_key']),
       // La ficha es SIEMPRE la copia HTML propia en R2 (estable); nunca la
       // URL del TSJ. El WebView muestra la copia de R2; si no existe, la UI
       // avisa que la copia no está disponible.
-      urlFichaPenalex: data['url_html'] ?? '',
+      urlFichaPenalex: _urlR2(data['r2_html_key']),
       contenidoCompleto: data['extracto'] ?? '',
       esJurisprudencia: data['es_jurisprudencia'] ?? false,
       tienePDF: data['tiene_pdf'] ?? false,
@@ -133,6 +139,24 @@ class SentenciaModel {
       tienePDF: data['tiene_pdf'] ?? false,
       timestamp: (data['fecha_indexacion'] as Timestamp?)?.toDate(),
     );
+  }
+
+  /// Base de la URL pública de Cloudflare R2 donde viven las copias íntegras
+  /// de las sentencias (dominio del bucket; verificado HTTP 200).
+  ///
+  /// Se puede sobreescribir con `R2_PUBLIC_URL` en el .env; el valor por
+  /// defecto es el dominio real del bucket de Penalex.
+  static String get _r2PublicBase =>
+      dotenv.env['R2_PUBLIC_URL']?.trim().isNotEmpty == true
+          ? dotenv.env['R2_PUBLIC_URL']!.trim().replaceAll(RegExp(r'/+$'), '')
+          : 'https://pub-ccca0a4f4395464da7752af871c16943.r2.dev';
+
+  /// Convierte la clave del objeto R2 (ej. `html/scon/2005/....html`) en la
+  /// URL pública completa. Vacío si no hay clave.
+  static String _urlR2(dynamic r2Key) {
+    final key = r2Key?.toString().trim() ?? '';
+    if (key.isEmpty || key == 'null') return '';
+    return '$_r2PublicBase/${key.replaceAll(RegExp(r'^/+'), '')}';
   }
 
   Map<String, dynamic> toMap() {
