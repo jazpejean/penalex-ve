@@ -1,14 +1,51 @@
 import 'package:flutter/material.dart';
-import '../services/haptics_service.dart';
 import 'package:provider/provider.dart';
 
+import '../services/haptics_service.dart';
 import '../services/auth_service.dart';
+import '../services/agenda_service.dart';
+import '../models/audiencia.dart';
 import '../config/app_theme.dart';
 import '../utils/main_tab_controller.dart';
 import '../config/app_colors.dart';
 
-class DashboardScreen extends StatelessWidget {
+/// Pantalla principal (tab Inicio) — rediseño premium navy+oro:
+/// header con saludo y avatar, stats reales, hero Ulpiano, accesos
+/// rápidos asimétricos y próxima audiencia. Datos de audiencias reales
+/// desde [AgendaService]; si no hay datos, muestra placeholders elegantes.
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
+
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  List<Audiencia> _audiencias = const [];
+  bool _cargando = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _cargarDatos();
+  }
+
+  Future<void> _cargarDatos() async {
+    final ahora = DateTime.now();
+    try {
+      final audiencias = await AgendaService.cargarAudiencias(
+        DateTime(ahora.year, ahora.month),
+      );
+      if (!mounted) return;
+      setState(() {
+        _audiencias = audiencias;
+        _cargando = false;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _cargando = false);
+    }
+  }
 
   /// Navega desde el dashboard manteniendo la bottom bar siempre visible:
   /// - rutas-pestaña (agenda, asistente) cambian el tab del MainScreen;
@@ -29,6 +66,31 @@ class DashboardScreen extends StatelessWidget {
     }
   }
 
+  List<Audiencia> get _proximas {
+    final hoy = DateTime.now();
+    final lista = _audiencias.where((a) => !a.fecha.isBefore(hoy)).toList()
+      ..sort((a, b) => a.fecha.compareTo(b.fecha));
+    return lista;
+  }
+
+  List<Audiencia> get _proximas7Dias {
+    final hoy = DateTime.now();
+    final limite = hoy.add(const Duration(days: 7));
+    return _audiencias
+        .where((a) => !a.fecha.isBefore(hoy) && !a.fecha.isAfter(limite))
+        .toList();
+  }
+
+  Audiencia? get _siguiente => _proximas.isEmpty ? null : _proximas.first;
+
+  String _iniciales(String nombre) {
+    final partes = nombre.trim().split(RegExp(r'\s+'));
+    if (partes.isEmpty || partes.first.isEmpty) return 'U';
+    if (partes.length == 1) return partes.first.substring(0, 1).toUpperCase();
+    return (partes.first.substring(0, 1) + partes.last.substring(0, 1))
+        .toUpperCase();
+  }
+
   @override
   Widget build(BuildContext context) {
     final authService = context.read<AuthService>();
@@ -39,490 +101,720 @@ class DashboardScreen extends StatelessWidget {
       backgroundColor: TemaGlobal.superficie,
       body: SafeArea(
         child: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: <Widget>[
-            // Header institucional (tarjeta de bienvenida con el logo de la app)
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [AppColors.azulMarino, AppColors.tarjeta],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                    color: TemaGlobal.azulMarino.withValues(alpha: 0.3),
-                    blurRadius: 12,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  // Logo de Penalex (movido del AppBar a la tarjeta de bienvenida)
-                  Row(
-                    children: <Widget>[
-                      Icon(Icons.gavel, color: TemaGlobal.dorado, size: 28),
-                      SizedBox(width: 8),
-                      Text(
-                        'PENALEX VE',
-                        style: TextStyle(
-                          color: TemaGlobal.dorado,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          letterSpacing: 1.5,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: TemaGlobal.dorado.withValues(alpha: 0.15),
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: TemaGlobal.dorado.withValues(alpha: 0.3),
-                            width: 1,
-                          ),
-                        ),
-                        child: Icon(
-                          Icons.account_balance,
-                          color: TemaGlobal.dorado,
-                          size: 28,
-                        ),
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              '¡Bienvenido, $nombreUsuario!',
-                              style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: TemaGlobal.dorado,
-                                letterSpacing: 0.5,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            const Text(
-                              'Herramientas Jurídicas Profesionales',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white70,
-                                letterSpacing: 0.3,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 28),
-            
-            // ULPIANO - Feature destacada
-            _buildStarCard(
-              context,
-              title: 'Ulpiano — Asistente Legal',
-              subtitle: 'Tu equipo de estrategas legales',
-              description: 'Consulta, redacta, analiza y calcula con IA. Todo con fuentes verificables.',
-              icon: Icons.auto_awesome,
-              route: '/asistente_legal',
-              actionText: 'Hablar con Ulpiano',
-              badge: 'NUEVO',
-            ),
-            
-            // HERRAMIENTAS PRINCIPALES
-            _buildCard(
-              context,
-              title: 'Dosimetría Penal',
-              subtitle: 'Cálculo técnico de penas',
-              description: 'Determina la pena individualizada, concurso de delitos y más.',
-              icon: Icons.calculate,
-              route: '/calculadora',
-              actionText: 'Iniciar cálculo',
-            ),
-            _buildCard(
-              context,
-              title: 'Agenda Judicial',
-              subtitle: 'Organiza tus audiencias',
-              description: 'Audiencias, recordatorios y lapsos procesales de cada expediente.',
-              icon: Icons.calendar_month,
-              route: '/agenda',
-              actionText: 'Ir a mi agenda',
-            ),
-            _buildCard(
-              context,
-              title: 'Legislación Penal',
-              subtitle: 'Marco legal venezolano',
-              description: 'Constitución, Código Penal, COPP y más.',
-              icon: Icons.gavel,
-              route: '/repositorio_leyes',
-              actionText: 'Explorar leyes',
-            ),
-            _buildCard(
-              context,
-              title: 'Jurisprudencia',
-              subtitle: 'Sentencias y doctrina',
-              description: 'Consulta fallos relevantes de los tribunales venezolanos.',
-              icon: Icons.account_balance,
-              route: '/repositorio_jurisprudencia',
-              actionText: 'Ver jurisprudencia',
-            ),
-            _buildCard(
-              context,
-              title: 'Mapa de Tribunales',
-              subtitle: 'Catálogo oficial del TSJ',
-              description: 'Ubica los tribunales penales del país por estado y función.',
-              icon: Icons.map,
-              route: '/mapa_tribunales',
-              actionText: 'Ver mapa',
-            ),
-            _buildCard(
-              context,
-              title: 'Glosario Jurídico',
-              subtitle: 'Definiciones claras',
-              description: 'Aclara términos y conceptos del derecho penal.',
-              icon: Icons.menu_book,
-              route: '/glosario',
-              actionText: 'Ver glosario',
-            ),
-            _buildCard(
-              context,
-              title: 'Desafío Penal',
-              subtitle: 'Pon a prueba tus conocimientos',
-              description: 'Responde preguntas sobre derecho penal venezolano.',
-              icon: Icons.quiz,
-              route: '/quiz_lobby',
-              actionText: 'Comenzar desafío',
-            ),
-          ],
-        ),
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              _buildHeader(context, nombreUsuario),
+              const SizedBox(height: 20),
+              _buildStats(),
+              const SizedBox(height: 20),
+              _buildHeroUlpiano(context),
+              const SizedBox(height: 24),
+              _buildSeccionTitulo(context, 'Accesos Rápidos'),
+              const SizedBox(height: 12),
+              _buildAccesosRapidos(context),
+              const SizedBox(height: 24),
+              _buildSeccionTitulo(context, 'Próxima Audiencia'),
+              const SizedBox(height: 12),
+              _buildProximaAudiencia(context),
+              const SizedBox(height: 24),
+              _buildSeccionTitulo(context, 'Explorar'),
+              const SizedBox(height: 12),
+              _buildExplorar(context),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildStarCard(
-    BuildContext context, {
-    required String title,
-    required String subtitle,
-    required String description,
-    required IconData icon,
-    required String route,
-    required String actionText,
-    required String badge,
-  }) =>
-      GestureDetector(
-        onTap: () => _navegar(context, route),
-        child: Container(
-          margin: const EdgeInsets.only(bottom: 20),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [AppColors.tarjeta, AppColors.azulMarino],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: TemaGlobal.dorado,
-              width: 2,
-            ),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                color: TemaGlobal.dorado.withValues(alpha: 0.3),
-                blurRadius: 20,
-                offset: const Offset(0, 8),
+  // ---------------------------------------------------------------- Header
+  Widget _buildHeader(BuildContext context, String nombreUsuario) {
+    final iniciales = _iniciales(nombreUsuario);
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'Hola, $nombreUsuario',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w800,
+                  color: TemaGlobal.texto,
+                  letterSpacing: -0.5,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                'Tu resumen de hoy',
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  color: TemaGlobal.textoSecundario,
+                ),
               ),
             ],
           ),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: () => _navegar(context, route),
-              borderRadius: BorderRadius.circular(20),
-              splashColor: TemaGlobal.dorado.withValues(alpha: 0.2),
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Container(
-                          padding: const EdgeInsets.all(14),
-                          decoration: BoxDecoration(
-                            color: TemaGlobal.dorado.withValues(alpha: 0.2),
-                            borderRadius: BorderRadius.circular(14),
-                            border: Border.all(
-                              color: TemaGlobal.dorado.withValues(alpha: 0.5),
-                              width: 1.5,
-                            ),
-                          ),
-                          child: Icon(icon, size: 32, color: TemaGlobal.dorado),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 4,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: TemaGlobal.dorado,
-                                  borderRadius: BorderRadius.circular(6),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(
-                                      Icons.star_rounded,
-                                      size: 14,
-                                      color: AppColors.onDorado,
-                                    ),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      badge,
-                                      style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.onDorado,
-                                        letterSpacing: 0.5,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                title,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  letterSpacing: 0.3,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                subtitle,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: TemaGlobal.dorado.withValues(alpha: 0.9),
-                                  letterSpacing: 0.2,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 18,
-                          color: TemaGlobal.dorado,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      description,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.white.withValues(alpha: 0.85),
-                        height: 1.5,
-                      ),
-                    ),
-                    const SizedBox(height: 18),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      decoration: BoxDecoration(
-                        color: TemaGlobal.dorado,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                            color: TemaGlobal.dorado.withValues(alpha: 0.3),
-                            blurRadius: 8,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Icon(
-                            Icons.auto_awesome,
-                            color: TemaGlobal.texto,
-                            size: 20,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            actionText,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: TemaGlobal.texto,
-                              letterSpacing: 0.5,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
         ),
-      );
-
-  Widget _buildCard(
-    BuildContext context, {
-    required String title,
-    required String subtitle,
-    required String description,
-    required IconData icon,
-    required String route,
-    required String actionText,
-  }) =>
-      GestureDetector(
-        onTap: () => _navegar(context, route),
-        child: Container(
-          margin: const EdgeInsets.only(bottom: 14),
+        // Notificación → abre la agenda (donde viven audiencias y lapsos)
+        Container(
+          width: 44,
+          height: 44,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [AppColors.tarjeta, AppColors.azulMarino],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: TemaGlobal.dorado.withValues(alpha: 0.2),
-              width: 1,
-            ),
+            color: TemaGlobal.tarjeta,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: TemaGlobal.capa),
             boxShadow: <BoxShadow>[
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.15),
+                color: Colors.black.withValues(alpha: 0.05),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
               ),
             ],
           ),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: () => _navegar(context, route),
-              borderRadius: BorderRadius.circular(16),
-              splashColor: TemaGlobal.dorado.withValues(alpha: 0.1),
-              child: Padding(
-                padding: const EdgeInsets.all(18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Container(
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: TemaGlobal.dorado.withValues(alpha: 0.15),
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: TemaGlobal.dorado.withValues(alpha: 0.3),
-                              width: 1,
-                            ),
-                          ),
-                          child: Icon(icon, size: 28, color: TemaGlobal.dorado),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                title,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  letterSpacing: 0.3,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                subtitle,
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                  color: TemaGlobal.dorado.withValues(alpha: 0.8),
-                                  letterSpacing: 0.2,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                          color: TemaGlobal.dorado.withValues(alpha: 0.6),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 60),
-                      child: Text(
-                        description,
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.white.withValues(alpha: 0.7),
-                          height: 1.4,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 60),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                        decoration: BoxDecoration(
-                          color: TemaGlobal.dorado.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(6),
-                          border: Border.all(
-                            color: TemaGlobal.dorado.withValues(alpha: 0.3),
-                            width: 1,
-                          ),
-                        ),
-                        child: Text(
-                          actionText,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: TemaGlobal.dorado,
-                            letterSpacing: 0.5,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+          child: IconButton(
+            icon: const Icon(Icons.notifications_none, size: 22),
+            color: TemaGlobal.texto,
+            onPressed: () => _navegar(context, '/agenda'),
+          ),
+        ),
+        const SizedBox(width: 12),
+        // Avatar institucional: navy con borde dorado e iniciales
+        Container(
+          width: 44,
+          height: 44,
+          decoration: BoxDecoration(
+            color: AppColors.azulMarino,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: AppColors.dorado, width: 2),
+          ),
+          child: Center(
+            child: Text(
+              iniciales,
+              style: const TextStyle(
+                color: AppColors.dorado,
+                fontSize: 16,
+                fontWeight: FontWeight.w800,
               ),
             ),
           ),
         ),
+      ],
+    );
+  }
+
+  // ----------------------------------------------------------------- Stats
+  Widget _buildStats() {
+    final audienciasMes = _audiencias.length;
+    final proximas7 = _proximas7Dias.length;
+    final hayCritico = proximas7 > 0;
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: _buildStatCard(
+            icon: Icons.folder_open,
+            valor: _cargando ? '…' : '$audienciasMes',
+            etiqueta: 'Audiencias este mes',
+            color: TemaGlobal.texto,
+            bg: AppColors.dorado.withValues(alpha: AppColors.a12),
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: _buildStatCard(
+            icon: Icons.gavel,
+            valor: _cargando ? '…' : '$proximas7',
+            etiqueta: 'Próximos 7 días',
+            color: hayCritico ? AppColors.error : TemaGlobal.texto,
+            bg: hayCritico
+                ? AppColors.error.withValues(alpha: AppColors.a12)
+                : AppColors.dorado.withValues(alpha: AppColors.a12),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildStatCard({
+    required IconData icon,
+    required String valor,
+    required String etiqueta,
+    required Color color,
+    required Color bg,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: TemaGlobal.tarjeta,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: TemaGlobal.capa),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        children: <Widget>[
+          Container(
+            width: 36,
+            height: 36,
+            decoration: BoxDecoration(
+              color: bg,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(icon, size: 20, color: color),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  valor,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                    color: TemaGlobal.texto,
+                  ),
+                ),
+                Text(
+                  etiqueta,
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: TemaGlobal.textoSecundario,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ----------------------------------------------------- Hero Ulpiano
+  Widget _buildHeroUlpiano(BuildContext context) {
+    return GestureDetector(
+      onTap: () => _navegar(context, '/asistente_legal'),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [AppColors.azulMarino, Color(0xFF1E293B)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: AppColors.azulMarino.withValues(alpha: 0.35),
+              blurRadius: 26,
+              offset: const Offset(0, 12),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(
+                color: AppColors.dorado.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Text(
+                'ASISTENTE IA',
+                style: TextStyle(
+                  color: AppColors.dorado,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 1,
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'Ulpiano',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              'Consulta jurisprudencia, redacta escritos y analiza tu caso en segundos.',
+              style: TextStyle(
+                color: Colors.white.withValues(alpha: 0.7),
+                fontSize: 13,
+                height: 1.5,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              decoration: BoxDecoration(
+                color: AppColors.dorado,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Icon(Icons.forum, color: AppColors.onDorado, size: 20),
+                  SizedBox(width: 8),
+                  Text(
+                    'Hablar con Ulpiano',
+                    style: TextStyle(
+                      color: AppColors.onDorado,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // ------------------------------------------------- Sección genérica
+  Widget _buildSeccionTitulo(BuildContext context, String titulo) {
+    return Text(
+      titulo,
+      style: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w800,
+        color: TemaGlobal.texto,
+      ),
+    );
+  }
+
+  // ------------------------------------------------- Accesos rápidos
+  Widget _buildAccesosRapidos(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        // Tarjeta ancha: Dosimetría Penal
+        _buildToolWide(
+          context,
+          icon: Icons.calculate,
+          titulo: 'Dosimetría Penal',
+          subtitulo: 'Calcula la pena exacta (Art. 37, 88)',
+          route: '/calculadora',
+        ),
+        const SizedBox(height: 12),
+        Row(
+          children: <Widget>[
+            Expanded(
+              child: _buildToolSmall(
+                context,
+                icon: Icons.menu_book,
+                titulo: 'Leyes',
+                subtitulo: '72 instrumentos',
+                route: '/repositorio_leyes',
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: _buildToolSmall(
+                context,
+                icon: Icons.calendar_month,
+                titulo: 'Agenda',
+                subtitulo: 'Audiencias y lapsos',
+                route: '/agenda',
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildToolWide(BuildContext context, {
+    required IconData icon,
+    required String titulo,
+    required String subtitulo,
+    required String route,
+  }) {
+    return GestureDetector(
+      onTap: () => _navegar(context, route),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: TemaGlobal.tarjeta,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: TemaGlobal.capa),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Row(
+          children: <Widget>[
+            _buildIconBox(icon),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    titulo,
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800,
+                      color: TemaGlobal.texto,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitulo,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: TemaGlobal.textoSecundario,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.chevron_right,
+              color: TemaGlobal.textoSecundario,
+              size: 24,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildToolSmall(BuildContext context, {
+    required IconData icon,
+    required String titulo,
+    required String subtitulo,
+    required String route,
+  }) {
+    return GestureDetector(
+      onTap: () => _navegar(context, route),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: TemaGlobal.tarjeta,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: TemaGlobal.capa),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            _buildIconBox(icon),
+            const SizedBox(height: 12),
+            Text(
+              titulo,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w800,
+                color: TemaGlobal.texto,
+              ),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              subtitulo,
+              style: TextStyle(
+                fontSize: 11,
+                color: TemaGlobal.textoSecundario,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildIconBox(IconData icon) {
+    return Container(
+      width: 48,
+      height: 48,
+      decoration: BoxDecoration(
+        color: AppColors.dorado.withValues(alpha: AppColors.a12),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Icon(icon, size: 26, color: AppColors.dorado),
+    );
+  }
+
+  // ------------------------------------------------- Próxima audiencia
+  Widget _buildProximaAudiencia(BuildContext context) {
+    final siguiente = _siguiente;
+    if (_cargando) {
+      return _buildAudienciaCardPlaceholder();
+    }
+    if (siguiente == null) {
+      return Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: TemaGlobal.tarjeta,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: TemaGlobal.capa),
+        ),
+        child: Row(
+          children: <Widget>[
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: AppColors.dorado.withValues(alpha: AppColors.a12),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(Icons.event_available,
+                  color: AppColors.dorado, size: 24),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'Sin audiencias próximas',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
+                      color: TemaGlobal.texto,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    'Agenda una audiencia para verla aquí',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: TemaGlobal.textoSecundario,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       );
+    }
+
+    final dia = siguiente.fecha.day;
+    final mes = _mesAbrev(siguiente.fecha);
+    final tipo = siguiente.tipo?.isNotEmpty == true
+        ? siguiente.tipo!
+        : 'Audiencia';
+    final hora = siguiente.hora.isNotEmpty
+        ? '${siguiente.hora} • '
+        : '';
+    final tribunal = siguiente.tribunal?.isNotEmpty == true
+        ? siguiente.tribunal!
+        : 'Sin tribunal';
+
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: TemaGlobal.tarjeta,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: TemaGlobal.capa),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        children: <Widget>[
+          // Fecha en bloque dorado
+          Container(
+            width: 60,
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            decoration: BoxDecoration(
+              color: AppColors.dorado.withValues(alpha: AppColors.a12),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              children: <Widget>[
+                Text(
+                  '$dia',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.dorado,
+                  ),
+                ),
+                Text(
+                  mes,
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.dorado,
+                    letterSpacing: 1,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  tipo,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                    color: TemaGlobal.texto,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  '$hora$tribunal',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: TemaGlobal.textoSecundario,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Icon(
+            Icons.chevron_right,
+            color: TemaGlobal.textoSecundario,
+            size: 24,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAudienciaCardPlaceholder() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: TemaGlobal.tarjeta,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: TemaGlobal.capa),
+      ),
+      child: Row(
+        children: <Widget>[
+          Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+              color: AppColors.dorado.withValues(alpha: AppColors.a12),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(Icons.event_available,
+                color: AppColors.dorado, size: 24),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  width: 140,
+                  height: 12,
+                  decoration: BoxDecoration(
+                    color: TemaGlobal.capa,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Container(
+                  width: 90,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    color: TemaGlobal.capa,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _mesAbrev(DateTime fecha) {
+    const meses = <String>[
+      'ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN',
+      'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC',
+    ];
+    return meses[fecha.month - 1];
+  }
+
+  // ------------------------------------------------------------ Explorar
+  Widget _buildExplorar(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Expanded(
+          child: Column(
+            children: <Widget>[
+              _buildToolSmall(
+                context,
+                icon: Icons.account_balance,
+                titulo: 'Jurisprudencia',
+                subtitulo: 'Sentencias y doctrina',
+                route: '/repositorio_jurisprudencia',
+              ),
+              const SizedBox(height: 12),
+              _buildToolSmall(
+                context,
+                icon: Icons.map,
+                titulo: 'Mapa',
+                subtitulo: 'Tribunales del país',
+                route: '/mapa_tribunales',
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            children: <Widget>[
+              _buildToolSmall(
+                context,
+                icon: Icons.menu_book,
+                titulo: 'Glosario',
+                subtitulo: 'Definiciones claras',
+                route: '/glosario',
+              ),
+              const SizedBox(height: 12),
+              _buildToolSmall(
+                context,
+                icon: Icons.quiz,
+                titulo: 'Desafío',
+                subtitulo: 'Pon a prueba tus conocimientos',
+                route: '/quiz_lobby',
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 }
