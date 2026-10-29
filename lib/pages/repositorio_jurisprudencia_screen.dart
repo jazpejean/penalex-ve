@@ -172,7 +172,11 @@ class _RepositorioJurisprudenciaScreenState
           _doctrinas.addAll(resultado.doctrinas);
         } else {
           _todosResultados.addAll(resultado.sentencias);
-          if (!_soloFavoritas) {
+          if (_soloFavoritas) {
+            // Re-aplicar el filtro de favoritas para que las favoritas
+            // de las páginas nuevas aparezcan en la lista visible.
+            _aplicarFiltroFavoritas();
+          } else {
             _resultados.addAll(resultado.sentencias);
           }
         }
