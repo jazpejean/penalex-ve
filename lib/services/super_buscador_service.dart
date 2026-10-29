@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../models/condicion_busqueda_model.dart';
 import '../models/doctrina_academica_model.dart';
 import '../models/sentencia_model.dart';
 import 'jurisprudencia_service.dart';
@@ -85,6 +86,7 @@ class SuperBuscadorService {
     required String categoria,
     String? sala,
     int? anio,
+    int? decada,
     bool soloTextoCompleto = false,
     int offset = 0,
     int limit = 20,
@@ -92,6 +94,10 @@ class SuperBuscadorService {
     // primero (asc). Se aplica al FTS; la semántica conserva su orden por
     // relevancia.
     bool ordenAscendente = false,
+    // Modo Avanzado (estilo TSJ): condiciones "campo operador valor" que
+    // acotan el FTS (AND entre todas). Se aplican SOLO a las categorías de
+    // sentencias; en Doctrinas se ignoran.
+    List<CondicionBusqueda> condiciones = const [],
   }) async {
     final textoLimpio = texto.trim();
     final esDoctrina = categoria == 'Doctrinas';
@@ -103,22 +109,27 @@ class SuperBuscadorService {
       categoria: categoria,
       sala: sala,
       anio: anio,
+      decada: decada,
       soloTextoCompleto: soloTextoCompleto,
       offset: offset,
       limit: limit,
       ordenAscendente: ordenAscendente,
+      condiciones: condiciones,
     );
 
-    // 2) Búsqueda semántica en Qdrant (solo si hay texto).
-    final semantica = textoLimpio.isEmpty
-        ? <Map<String, dynamic>>[]
-        : await _buscarSemantica(
-            texto: textoLimpio,
-            esDoctrina: esDoctrina,
-            sala: _codigoSala(sala),
-            anio: anio,
-            limite: 40,
-          );
+    // 2) Búsqueda semántica en Qdrant (solo si hay texto Y no hay
+    //    condiciones avanzadas: Qdrant no las respetaría y el RRF mezclaría
+    //    resultados que no cumplen los filtros).
+    final semantica =
+        (textoLimpio.isEmpty || condiciones.isNotEmpty)
+            ? <Map<String, dynamic>>[]
+            : await _buscarSemantica(
+                texto: textoLimpio,
+                esDoctrina: esDoctrina,
+                sala: _codigoSala(sala),
+                anio: anio,
+                limite: 40,
+              );
 
     // 3) RRF: fusionar ambas fuentes (dedupe por documento_id).
     final fusion = _rrf(fts, semantica, esDoctrina: esDoctrina);
@@ -161,10 +172,12 @@ class SuperBuscadorService {
     required String categoria,
     String? sala,
     int? anio,
+    int? decada,
     required bool soloTextoCompleto,
     required int offset,
     required int limit,
     bool ordenAscendente = false,
+    List<CondicionBusqueda> condiciones = const [],
   }) async {
     try {
       if (categoria == 'Doctrinas') {
@@ -207,9 +220,11 @@ class SuperBuscadorService {
         tipoFiltro: tipoFiltro,
         salaFiltro: sala,
         anioFiltro: anio,
+        decadaFiltro: decada,
         limit: limit,
         offset: offset,
         ordenAscendente: ordenAscendente,
+        condiciones: condiciones,
       );
 
       // "Solo texto completo": quedan las que tienen copia en R2 (txt o html).
@@ -425,5 +440,45 @@ class SuperBuscadorService {
       doctrinas: const [],
       tieneMas: fts.sentencias.length == 20,
     );
+  }
+
+  // -----------------------------------------------------------------------
+  // Modo Avanzado: valores de un campo con su conteo (estilo TSJ).
+  // -----------------------------------------------------------------------
+
+  /// Mapa de campos del Modo Avanzado → vista SQL de conteos.
+  ///
+  /// Las vistas (v_conteos_*) las crea el SQL `vistas_conteos_super_buscador.sql`
+  /// que el usuario ejecuta en Supabase; devuelven `{valor, total}`.
+  static const Map<String, String> _vistaConteos = {
+    'ponente': 'v_conteos_ponente',
+    'procedimiento': 'v_conteos_procedimiento',
+    'decision': 'v_conteos_decision',
+    'sala': 'v_conteos_sala',
+    'expediente': 'v_conteos_expediente',
+  };
+
+  /// Lista los valores de [campo] con su conteo de sentencias (top [limite]),
+  /// para la lista de sugerencias del Modo Avanzado. Devuelve la lista vacía
+  /// si la vista aún no existe (el usuario debe ejecutar el SQL).
+  Future<List<Map<String, dynamic>>> listarValoresConCampo(
+    String campo, {
+    int limite = 30,
+  }) async {
+    final vista = _vistaConteos[campo];
+    if (vista == null) return const [];
+    try {
+      final data = await _supabase
+          .from(vista)
+          .select('valor,total')
+          .order('total', ascending: false)
+          .limit(limite);
+      return (data as List<dynamic>)
+          .map((e) => (e as Map<String, dynamic>))
+          .toList();
+    } catch (e) {
+      debugPrint('⚠️ Vista de conteos "$vista" no disponible: $e');
+      return const [];
+    }
   }
 }

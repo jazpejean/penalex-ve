@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import '../models/condicion_busqueda_model.dart';
 import '../models/sentencia_model.dart';
 import 'ai_service.dart';
 
@@ -68,11 +69,17 @@ class JurisprudenciaService {
     int? anioFiltro,
     int? mesFiltro,
     int? diaFiltro,
+    // Década como rango de años (ej. 2010 → 2010-2019): filtra por el
+    // prefijo del año en la columna fecha.
+    int? decadaFiltro,
     int limit = 50,
     int offset = 0,
     // Cronológico: false = más reciente primero (desc), true = más antiguo
     // primero (asc).
     bool ordenAscendente = false,
+    // Modo Avanzado (estilo TSJ): condiciones "campo operador valor"
+    // (AND entre todas) que acotan la consulta.
+    List<CondicionBusqueda> condiciones = const [],
     void Function(String mensaje)? onError,
   }) async {
     try {
@@ -108,6 +115,19 @@ class JurisprudenciaService {
         query = query.ilike('fecha', '$anioFiltro-$m%');
       } else if (anioFiltro != null) {
         query = query.ilike('fecha', '%$anioFiltro%');
+      } else if (decadaFiltro != null) {
+        // Década: prefijo del año (ej. 2010 → "201%": 2010..2019).
+        query = query.ilike('fecha', '${decadaFiltro.toString().substring(0, 3)}%');
+        debugPrint('📅 Década seleccionada: ${decadaFiltro}s');
+      }
+
+      // Modo Avanzado: condiciones "campo operador valor" (AND entre todas).
+      // Solo para categorías de sentencias (el FTS de doctrinas no las usa).
+      for (final cond in condiciones) {
+        if (cond.valor.trim().isEmpty) continue;
+        query = cond.aplicar(query);
+        debugPrint('🎯 Condición avanzada: ${cond.campo} ${cond.operador} '
+            '"${cond.valor}"');
       }
 
       // Búsqueda semántica inteligente (si hay texto)

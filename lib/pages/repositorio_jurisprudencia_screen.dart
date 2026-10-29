@@ -13,6 +13,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../config/app_colors.dart';
 import '../config/app_theme.dart';
+import '../models/condicion_busqueda_model.dart';
 import '../services/jurisprudencia_service.dart';
 import '../services/super_buscador_service.dart';
 import '../services/ai_service.dart';
@@ -58,6 +59,13 @@ class _RepositorioJurisprudenciaScreenState
   // 📅 Orden cronológico: false = más reciente primero (desc), true = más
   // antiguo primero (asc).
   bool _ordenAscendente = false;
+
+  // 🎛️ Modo Avanzado (estilo TSJ): condiciones "campo operador valor".
+  List<CondicionBusqueda> _condicionesAvanzadas = const [];
+  // Tab activo del panel de filtros.
+  String _modoFiltros = 'Simple';
+  // Década seleccionada (primer año de la década, ej. 2010 = 2010-2019).
+  int? _decadaSeleccionada;
 
   // ♾️ Lazy load (scroll infinito con paginación)
   int _offset = 0;
@@ -134,6 +142,7 @@ class _RepositorioJurisprudenciaScreenState
       offset: 0,
       limit: _limitePagina,
       ordenAscendente: _ordenAscendente,
+      condiciones: _condicionesAvanzadas,
     );
 
     if (mounted) {
@@ -166,6 +175,7 @@ class _RepositorioJurisprudenciaScreenState
       offset: _offset,
       limit: _limitePagina,
       ordenAscendente: _ordenAscendente,
+      condiciones: _condicionesAvanzadas,
     );
 
     if (mounted) {
@@ -236,90 +246,209 @@ class _RepositorioJurisprudenciaScreenState
       _categoriaSeleccionada = 'Sentencias';
       _salaSeleccionada = null;
       _anioSeleccionado = null;
+      _decadaSeleccionada = null;
+      _condicionesAvanzadas = const [];
     });
     _buscar();
   }
 
-  /// Panel lateral de filtros (Año y Sala).
-  ///
-  /// REGLA ESTRICTA: el filtro de Sala se oculta automáticamente en las
-  /// categorías Resoluciones y Doctrinas (no aplica a esos contenidos).
-  void _abrirPanelFiltros() {
-    showModalBottomSheet<void>(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: TemaGlobal.tarjeta,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (context) => StatefulBuilder(
-        builder: (context, setSheetState) {
-          final int currentYear = DateTime.now().year;
-          final List<int> years =
-              List.generate(currentYear - 1999, (index) => currentYear - index);
-          final bool mostrarSala = _categoriaSeleccionada != 'Resoluciones' &&
-              _categoriaSeleccionada != 'Doctrinas';
+  /// Panel de filtros con 2 modos (estilo TSJ):
+///   - Simple:  Fecha (décadas + año exacto) y Sala.
+///   - Avanzado: condiciones "campo operador valor" con conteos.
+///
+/// REGLA ESTRICTA: el filtro de Sala se oculta automáticamente en las
+/// categorías Resoluciones y Doctrinas (no aplica a esos contenidos).
+void _abrirPanelFiltros() {
+  // Copia editable de las condiciones (se aplican al pulsar "Aplicar").
+  final List<CondicionBusqueda> condicionesEditable =
+      List.of(_condicionesAvanzadas);
 
-          Widget chip(String label,
-              {required bool activo, required VoidCallback onTap}) {
-            return Padding(
-              padding: const EdgeInsets.only(right: 8, bottom: 4),
-              child: ChoiceChip(
-                label: Text(label),
-                selected: activo,
-                onSelected: (_) => onTap(),
-                selectedColor: AppColors.dorado,
-                backgroundColor: Colors.transparent,
-                labelStyle: TextStyle(
-                  // Guía 3.3: texto sobre dorado = onDorado.
-                  color: activo ? AppColors.onDorado : TemaGlobal.texto,
-                  fontWeight: activo ? FontWeight.bold : FontWeight.normal,
-                  fontSize: 12,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  side: BorderSide(
-                      color: activo ? AppColors.dorado : TemaGlobal.capa),
-                ),
-                visualDensity: VisualDensity.compact,
-                showCheckmark: false,
-              ),
-            );
-          }
+  showModalBottomSheet<void>(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: TemaGlobal.tarjeta,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    ),
+    builder: (context) => StatefulBuilder(
+      builder: (context, setSheetState) {
+        final int currentYear = DateTime.now().year;
+        final bool mostrarSala = _categoriaSeleccionada != 'Resoluciones' &&
+            _categoriaSeleccionada != 'Doctrinas';
 
+        // Décadas desde 2000 hasta la actual (siempre actualizado).
+        final int primeraDecada = 2000;
+        final int ultimaDecada = currentYear - (currentYear % 10);
+        final List<int> decadas = [
+          for (var d = primeraDecada; d <= ultimaDecada; d += 10) d,
+        ];
+
+        Widget chip(String label,
+            {required bool activo, required VoidCallback onTap}) {
           return Padding(
-            padding: EdgeInsets.only(
-              left: 20,
-              right: 20,
-              top: 20,
-              bottom: MediaQuery.of(context).viewInsets.bottom + 24,
+            padding: const EdgeInsets.only(right: 8, bottom: 4),
+            child: ChoiceChip(
+              label: Text(label),
+              selected: activo,
+              onSelected: (_) => onTap(),
+              selectedColor: AppColors.dorado,
+              backgroundColor: Colors.transparent,
+              labelStyle: TextStyle(
+                // Guía 3.3: texto sobre dorado = onDorado.
+                color: activo ? AppColors.onDorado : TemaGlobal.texto,
+                fontWeight: activo ? FontWeight.bold : FontWeight.normal,
+                fontSize: 12,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(
+                    color: activo ? AppColors.dorado : TemaGlobal.capa),
+              ),
+              visualDensity: VisualDensity.compact,
+              showCheckmark: false,
+            ),
+          );
+        }
+
+        // --- Widget de una condición editable ---
+        Widget condicionWidget(int i, VoidCallback onChanged) {
+          final cond = condicionesEditable[i];
+          return Container(
+            margin: const EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: TemaGlobal.campoTexto,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: TemaGlobal.capa),
             ),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Text(
-                      'Filtros',
-                      style: TextStyle(
-                        color: TemaGlobal.texto,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 20,
+                    Expanded(
+                      flex: 3,
+                      child: _dropdownCampoCondicion(
+                        _superService,
+                        cond,
+                        i,
+                        onChanged,
                       ),
                     ),
-                    const Spacer(),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      flex: 2,
+                      child: _dropdownOperadorCondicion(
+                        _superService,
+                        cond,
+                        i,
+                        onChanged,
+                      ),
+                    ),
                     IconButton(
+                      onPressed: () {
+                        condicionesEditable.removeAt(i);
+                        setSheetState(() {});
+                      },
                       icon: Icon(Icons.close,
-                          color: TemaGlobal.textoSecundario, size: 20),
-                      onPressed: () => Navigator.of(context).pop(),
+                          size: 18, color: TemaGlobal.textoSecundario),
+                      visualDensity: VisualDensity.compact,
+                      tooltip: 'Quitar condición',
                     ),
                   ],
                 ),
-                const Divider(height: 24),
-                // Año
+                const SizedBox(height: 8),
+                // Valor: con conteos (lista) o texto libre.
+                _selectorValorCondicion(
+                  _superService,
+                  cond,
+                  i,
+                  onChanged,
+                  setSheetState,
+                ),
+              ],
+            ),
+          );
+        }
+
+        return Padding(
+          padding: EdgeInsets.only(
+            left: 20,
+            right: 20,
+            top: 20,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 24,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    'Filtros',
+                    style: TextStyle(
+                      color: TemaGlobal.texto,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 20,
+                    ),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    icon: Icon(Icons.close,
+                        color: TemaGlobal.textoSecundario, size: 20),
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ],
+              ),
+              const Divider(height: 20),
+              // Tabs Simple / Avanzado (estilo TSJ)
+              Container(
+                height: 40,
+                padding: const EdgeInsets.all(3),
+                decoration: BoxDecoration(
+                  color: TemaGlobal.capa,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  children: [
+                    for (final modo in const ['Simple', 'Avanzado'])
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () => setSheetState(
+                              () => _modoFiltros = modo),
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: _modoFiltros == modo
+                                  ? AppColors.dorado
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              modo,
+                              style: TextStyle(
+                                // Guía 3.3: dorado/onDorado en el activo.
+                                color: _modoFiltros == modo
+                                    ? AppColors.onDorado
+                                    : TemaGlobal.textoSecundario,
+                                fontSize: 13,
+                                fontWeight: _modoFiltros == modo
+                                    ? FontWeight.bold
+                                    : FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 18),
+
+              if (_modoFiltros == 'Simple') ...[
+                // Fecha: décadas + año exacto
                 Text(
-                  'Año',
+                  'Fecha',
                   style: TextStyle(
                     color: TemaGlobal.textoSecundario,
                     fontWeight: FontWeight.w600,
@@ -331,12 +460,28 @@ class _RepositorioJurisprudenciaScreenState
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      chip('Todos', activo: _anioSeleccionado == null, onTap: () {
-                        setSheetState(() => _anioSeleccionado = null);
-                      }),
-                      ...years.map((y) => chip('$y',
-                          activo: _anioSeleccionado == y,
-                          onTap: () => setSheetState(() => _anioSeleccionado = y))),
+                      chip('Todas',
+                          activo: _anioSeleccionado == null &&
+                              _decadaSeleccionada == null,
+                          onTap: () => setSheetState(() {
+                                _anioSeleccionado = null;
+                                _decadaSeleccionada = null;
+                              })),
+                      for (final d in decadas)
+                        chip('${d}s',
+                            activo: _decadaSeleccionada == d,
+                            onTap: () => setSheetState(() {
+                                  _decadaSeleccionada = d;
+                                  _anioSeleccionado = null;
+                                })),
+                      if (_decadaSeleccionada != null)
+                        for (var y = _decadaSeleccionada!;
+                            y <= _decadaSeleccionada! + 9 && y <= currentYear;
+                            y++)
+                          chip('$y',
+                              activo: _anioSeleccionado == y,
+                              onTap: () => setSheetState(
+                                  () => _anioSeleccionado = y)),
                     ],
                   ),
                 ),
@@ -356,54 +501,347 @@ class _RepositorioJurisprudenciaScreenState
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        chip('Todas', activo: _salaSeleccionada == null, onTap: () {
-                          setSheetState(() => _salaSeleccionada = null);
-                        }),
+                        chip('Todas',
+                            activo: _salaSeleccionada == null,
+                            onTap: () => setSheetState(
+                                () => _salaSeleccionada = null)),
                         // Penalex solo indexa 2 salas del TSJ: Casación Penal
                         // (scp) y Constitucional (scon). Verificado en la BD.
-                        chip('Casación Penal', activo: _salaSeleccionada == 'scp',
-                            onTap: () =>
-                                setSheetState(() => _salaSeleccionada = 'scp')),
-                        chip('Constitucional', activo: _salaSeleccionada == 'scon',
-                            onTap: () =>
-                                setSheetState(() => _salaSeleccionada = 'scon')),
+                        chip('Casación Penal',
+                            activo: _salaSeleccionada == 'scp',
+                            onTap: () => setSheetState(
+                                () => _salaSeleccionada = 'scp')),
+                        chip('Constitucional',
+                            activo: _salaSeleccionada == 'scon',
+                            onTap: () => setSheetState(
+                                () => _salaSeleccionada = 'scon')),
                       ],
                     ),
                   ),
                 ],
-                const SizedBox(height: 24),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      _buscar();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      // Guía 3.2: primario = acento dinámico.
-                      backgroundColor: AppColors.acento,
-                      foregroundColor: AppColors.acento == AppColors.dorado
-                          ? AppColors.onDorado
-                          : AppColors.onAzulMarino,
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+              ] else ...[
+                // --- Modo Avanzado (estilo TSJ) ---
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: TemaGlobal.capa,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(Icons.info_outline,
+                          size: 16, color: TemaGlobal.textoSecundario),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          'Cada condición acota la búsqueda. Todas se '
+                          'aplican juntas (Y).',
+                          style: TextStyle(
+                            color: TemaGlobal.textoSecundario,
+                            fontSize: 12,
+                            height: 1.4,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 14),
+                if (condicionesEditable.isEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Text(
+                      'Muestra las sentencias donde…',
+                      style: TextStyle(
+                        color: TemaGlobal.textoSecundario,
+                        fontSize: 13,
                       ),
                     ),
-                    child: const Text(
-                      'Aplicar filtros',
-                      style: TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w700),
-                    ),
+                  ),
+                for (var i = 0; i < condicionesEditable.length; i++)
+                  condicionWidget(i, () => setSheetState(() {})),
+                // Agregar condición
+                TextButton.icon(
+                  onPressed: () {
+                    condicionesEditable.add(CondicionBusqueda(
+                      campo: 'ponente',
+                      operador: 'contiene',
+                      valor: '',
+                    ));
+                    setSheetState(() {});
+                  },
+                  icon: Icon(Icons.add_circle_outline,
+                      size: 18, color: AppColors.acento),
+                  label: Text(
+                    'Agregar condición',
+                    style: TextStyle(
+                        color: AppColors.acento,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
               ],
-            ),
-          );
-        },
+
+              const SizedBox(height: 20),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Aplicar condiciones no vacías.
+                    _condicionesAvanzadas = condicionesEditable
+                        .where((c) => c.valor.trim().isNotEmpty)
+                        .toList();
+                    Navigator.of(context).pop();
+                    _buscar();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    // Guía 3.2: primario = acento dinámico.
+                    backgroundColor: AppColors.acento,
+                    foregroundColor: AppColors.acento == AppColors.dorado
+                        ? AppColors.onDorado
+                        : AppColors.onAzulMarino,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text(
+                    'Aplicar filtros',
+                    style: TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    ),
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// Widgets del Modo Avanzado (campo / operador / valor con conteos)
+// ═══════════════════════════════════════════════════════════════════════
+
+/// Dropdown del campo de una condición avanzada.
+Widget _dropdownCampoCondicion(
+  SuperBuscadorService superService,
+  CondicionBusqueda cond,
+  int i,
+  VoidCallback onChanged,
+) {
+  const campos = [
+    ('ponente', 'Ponente'),
+    ('procedimiento', 'Materia'),
+    ('decision', 'Decisión'),
+    ('expediente', 'Expediente'),
+    ('num_sentencia', 'Nº de sentencia'),
+  ];
+  return DropdownButtonHideUnderline(
+    child: DropdownButton<String>(
+      value: cond.campo,
+      isExpanded: true,
+      isDense: true,
+      borderRadius: BorderRadius.circular(10),
+      dropdownColor: TemaGlobal.tarjeta,
+      style: TextStyle(
+        color: TemaGlobal.texto,
+        fontSize: 13,
+        fontWeight: FontWeight.w600,
       ),
+      items: [
+        for (final c in campos)
+          DropdownMenuItem(value: c.$1, child: Text(c.$2)),
+      ],
+      onChanged: (v) {
+        if (v == null) return;
+        onChanged();
+        // Al cambiar el campo se limpia el valor (cambia la semántica).
+        cond.campo = v;
+        cond.valor = '';
+      },
+    ),
+  );
+}
+
+/// Dropdown del operador de una condición avanzada.
+Widget _dropdownOperadorCondicion(
+  SuperBuscadorService superService,
+  CondicionBusqueda cond,
+  int i,
+  VoidCallback onChanged,
+) {
+  const operadores = [
+    ('contiene', 'contiene'),
+    ('no contiene', 'no contiene'),
+    ('es', 'es'),
+    ('no es', 'no es'),
+  ];
+  return DropdownButtonHideUnderline(
+    child: DropdownButton<String>(
+      value: cond.operador,
+      isExpanded: true,
+      isDense: true,
+      borderRadius: BorderRadius.circular(10),
+      dropdownColor: TemaGlobal.tarjeta,
+      style: TextStyle(
+        color: TemaGlobal.texto,
+        fontSize: 13,
+        fontWeight: FontWeight.w600,
+      ),
+      items: [
+        for (final o in operadores)
+          DropdownMenuItem(value: o.$1, child: Text(o.$2)),
+      ],
+      onChanged: (v) {
+        if (v == null) return;
+        onChanged();
+        cond.operador = v;
+      },
+    ),
+  );
+}
+
+/// Valor de una condición: si el campo tiene vista de conteos muestra un
+/// dropdown de valores con conteos (estilo TSJ); si no, campo de texto.
+Widget _selectorValorCondicion(
+  SuperBuscadorService superService,
+  CondicionBusqueda cond,
+  int i,
+  VoidCallback onChanged,
+  StateSetter setSheetState,
+) {
+  // Campos con vista de conteos (listado de valores con total).
+  const camposConConteos = {'ponente', 'procedimiento', 'decision', 'expediente'};
+
+  if (!camposConConteos.contains(cond.campo)) {
+    // Texto libre (ej. Nº de sentencia)
+    return TextField(
+      controller: TextEditingController(text: cond.valor),
+      style: TextStyle(
+          color: TemaGlobal.texto, fontSize: 13),
+      decoration: InputDecoration(
+        hintText: 'Valor…',
+        hintStyle: TextStyle(
+            color: TemaGlobal.textoTenue, fontSize: 13),
+        isDense: true,
+        filled: true,
+        fillColor: TemaGlobal.superficie,
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: TemaGlobal.capa),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: TemaGlobal.capa),
+        ),
+      ),
+      onChanged: (v) {
+        cond.valor = v;
+        onChanged();
+      },
     );
   }
+
+  // Lista de valores con conteos (futuro: se carga por campo).
+  return FutureBuilder<List<Map<String, dynamic>>>(
+    future: superService.listarValoresConCampo(cond.campo, limite: 15),
+    builder: (context, snapshot) {
+      if (snapshot.connectionState != ConnectionState.done ||
+          snapshot.data == null || snapshot.data!.isEmpty) {
+        // Vista aún no creada o sin datos: texto libre.
+        return TextField(
+          controller: TextEditingController(text: cond.valor),
+          style: TextStyle(color: TemaGlobal.texto, fontSize: 13),
+          decoration: InputDecoration(
+            hintText: 'Valor…',
+            hintStyle: TextStyle(
+                color: TemaGlobal.textoTenue, fontSize: 13),
+            isDense: true,
+            filled: true,
+            fillColor: TemaGlobal.superficie,
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: TemaGlobal.capa),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: TemaGlobal.capa),
+            ),
+          ),
+          onChanged: (v) {
+            cond.valor = v;
+            onChanged();
+          },
+        );
+      }
+      final valores = snapshot.data!;
+      return DropdownButtonHideUnderline(
+        child: DropdownButtonFormField<String>(
+          value: valores.any((v) => v['valor'] == cond.valor)
+              ? cond.valor
+              : null,
+          isExpanded: true,
+          isDense: true,
+          decoration: InputDecoration(
+            isDense: true,
+            filled: true,
+            fillColor: TemaGlobal.superficie,
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: TemaGlobal.capa),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: TemaGlobal.capa),
+            ),
+          ),
+          style: TextStyle(color: TemaGlobal.texto, fontSize: 13),
+          dropdownColor: TemaGlobal.tarjeta,
+          hint: Text('Elegir…',
+              style: TextStyle(
+                  color: TemaGlobal.textoTenue, fontSize: 13)),
+          items: [
+            for (final v in valores)
+              DropdownMenuItem(
+                value: v['valor'] as String,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text('${v['valor']}',
+                          maxLines: 1, overflow: TextOverflow.ellipsis),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      '${v['total']}',
+                      style: TextStyle(
+                        color: TemaGlobal.textoSecundario,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+          ],
+          onChanged: (v) {
+            if (v == null) return;
+            cond.valor = v;
+            onChanged();
+          },
+        ),
+      );
+    },
+  );
+}
 
   /// Fila superior del Super Buscador: dropdown de categorías + Favoritas
   /// + botón Filtros.
@@ -546,7 +984,9 @@ class _RepositorioJurisprudenciaScreenState
         ),
         // Resumen de filtros activos
         if (_salaSeleccionada != null ||
-            _anioSeleccionado != null) ...[
+            _anioSeleccionado != null ||
+            _decadaSeleccionada != null ||
+            _condicionesAvanzadas.isNotEmpty) ...[
           const SizedBox(height: 8),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -563,12 +1003,42 @@ class _RepositorioJurisprudenciaScreenState
                     setState(() => _anioSeleccionado = null);
                     _buscar();
                   }),
+                if (_decadaSeleccionada != null && _anioSeleccionado == null)
+                  chip('Década ${_decadaSeleccionada}s', activo: true,
+                      onTap: () {
+                    setState(() => _decadaSeleccionada = null);
+                    _buscar();
+                  }),
+                for (final c in _condicionesAvanzadas)
+                  chip(
+                      '${_nombreCampoCondicion(c.campo)} ${c.operador} "${c.valor}"',
+                      activo: true,
+                      onTap: () {
+                    setState(() {
+                      _condicionesAvanzadas = _condicionesAvanzadas
+                          .where((x) => x != c)
+                          .toList();
+                    });
+                    _buscar();
+                  }),
               ],
             ),
           ),
         ],
       ],
     );
+  }
+
+  /// Etiqueta legible del campo de una condición avanzada.
+  String _nombreCampoCondicion(String campo) {
+    const nombres = {
+      'ponente': 'Ponente',
+      'procedimiento': 'Materia',
+      'decision': 'Decisión',
+      'expediente': 'Expediente',
+      'num_sentencia': 'Nº',
+    };
+    return nombres[campo] ?? campo;
   }
 
   /// Nombre corto para mostrar una sala activa (código BD → etiqueta).
