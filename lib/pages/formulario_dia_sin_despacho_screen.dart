@@ -120,11 +120,13 @@ class _FormularioDiaSinDespachoScreenState
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              CampoModerno(_fechaCtrl, 'Fecha (DD/MM/AAAA)',
+              // ── Sección: Datos del día ───────────────────────────────
+              const _TituloSeccion('Datos del día'),
+              CampoModerno(_fechaCtrl, 'Fecha',
                   Icons.calendar_today,
                   isDate: true,
                   hint: 'Ej: 24/12/2026',
@@ -133,19 +135,23 @@ class _FormularioDiaSinDespachoScreenState
                   maxLines: 2,
                   hint: 'Ej: falla eléctrica, salud, etc.',
                   esObligatorio: true),
+              const SizedBox(height: 8),
+              // ── Sección: Tribunal ────────────────────────────────────
+              const _TituloSeccion('Tribunal'),
               CampoModerno(
                 _tribunalCtrl,
-                'Tribunal',
+                'Tribunal competente',
                 Icons.account_balance,
                 onTap: _seleccionarTribunal,
+                hint: 'Toca para buscar por estado',
                 esObligatorio: true,
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 12),
               Container(
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
                   color: AppColors.warning.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(12),
                   border: Border.all(
                       color: AppColors.warning.withValues(alpha: 0.3)),
                 ),
@@ -154,7 +160,7 @@ class _FormularioDiaSinDespachoScreenState
                   children: <Widget>[
                     Icon(Icons.info_outline,
                         color: AppColors.warning, size: 20),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 10),
                     Expanded(
                       child: Text(
                         'El día sin despacho excluye los lapsos de ese '
@@ -162,16 +168,16 @@ class _FormularioDiaSinDespachoScreenState
                         'depende del procedimiento (continuo, hábil o de '
                         'despacho).',
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 13,
                           color: TemaGlobal.textoSecundario,
-                          height: 1.4,
+                          height: 1.45,
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 20),
               FilledButton.icon(
                 onPressed: _guardando ? null : _guardar,
                 icon: const Icon(Icons.save_outlined, size: 18),
@@ -181,7 +187,7 @@ class _FormularioDiaSinDespachoScreenState
                   foregroundColor: AppColors.acento == AppColors.dorado
                       ? AppColors.onDorado
                       : AppColors.onAzulMarino,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -189,6 +195,28 @@ class _FormularioDiaSinDespachoScreenState
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Título de sección del formulario (guía 3.6: 15px w800, como expediente).
+class _TituloSeccion extends StatelessWidget {
+  const _TituloSeccion(this.titulo);
+
+  final String titulo;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Text(
+        titulo,
+        style: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w800,
+          color: TemaGlobal.texto,
         ),
       ),
     );

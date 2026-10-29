@@ -5,7 +5,7 @@ import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 
 /// Campo de formulario moderno de Penalex (icono dorado a12, fondo
-/// superficie, bordes redondeados 12). Usado por los formularios de la
+/// `campoTexto`, bordes redondeados 12). Usado por los formularios de la
 /// agenda (audiencia, día sin despacho) y cualquier otro formulario.
 class CampoModerno extends StatelessWidget {
   const CampoModerno(
@@ -36,7 +36,7 @@ class CampoModerno extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 14),
+      padding: const EdgeInsets.only(bottom: 16),
       child: TextFormField(
         controller: controller,
         maxLines: maxLines,
@@ -51,15 +51,17 @@ class CampoModerno extends StatelessWidget {
           if (numeric && !isDate && !isTime)
             FilteringTextInputFormatter.digitsOnly,
         ],
-        style: TextStyle(fontSize: 15, color: TemaGlobal.texto),
+        // Guía 3.6: texto de cuerpo 14px; el hint y el label usan la escala
+        // secundaria (12 y 13).
+        style: TextStyle(fontSize: 14, color: TemaGlobal.texto),
         decoration: InputDecoration(
           labelText: esObligatorio ? '$label *' : label,
           hintText: hint,
-          hintStyle: TextStyle(color: TemaGlobal.textoTenue, fontSize: 13),
+          hintStyle: TextStyle(color: TemaGlobal.textoTenue, fontSize: 12),
           labelStyle: TextStyle(
-              color: TemaGlobal.textoSecundario, fontSize: 13.5),
+              color: TemaGlobal.textoSecundario, fontSize: 13),
           prefixIcon: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
               color: TemaGlobal.dorado.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(8),
@@ -67,9 +69,11 @@ class CampoModerno extends StatelessWidget {
             child: Icon(icon, color: AppColors.acento, size: 20),
           ),
           filled: true,
-          fillColor: TemaGlobal.superficie,
+          // Guía: campoTexto es el fondo de inputs (no superficie, que se
+          // funde con el fondo de la pantalla).
+          fillColor: TemaGlobal.campoTexto,
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide(

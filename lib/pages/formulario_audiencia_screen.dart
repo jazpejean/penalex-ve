@@ -171,10 +171,12 @@ class _FormularioAudienciaScreenState extends State<FormularioAudienciaScreen> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              // ── Sección: Datos de la causa ────────────────────────────
+              const _TituloSeccion('Datos de la causa'),
               CampoModerno(_expedienteCtrl, 'Expediente',
                   Icons.folder_open,
                   esObligatorio: true),
@@ -184,29 +186,40 @@ class _FormularioAudienciaScreenState extends State<FormularioAudienciaScreen> {
               CampoModerno(_cedulaCtrl, 'Cédula de Identidad',
                   Icons.badge_outlined,
                   numeric: true),
-              CampoModerno(_fechaCtrl, 'Fecha de Audiencia (DD/MM/AAAA)',
+              CampoModerno(_delitosCtrl, 'Delitos imputados', Icons.gavel,
+                  maxLines: 2),
+              const SizedBox(height: 8),
+              // ── Sección: Audiencia ───────────────────────────────────
+              const _TituloSeccion('Audiencia'),
+              CampoModerno(_fechaCtrl, 'Fecha',
                   Icons.calendar_today,
                   isDate: true,
                   hint: 'Ej: 24/12/2026',
                   esObligatorio: true),
-              CampoModerno(_horaCtrl, 'Hora (HH:MM)', Icons.access_time,
+              CampoModerno(_horaCtrl, 'Hora', Icons.access_time,
                   isTime: true,
-                  hint: 'Ej: 0230 (Aplica PM automáticamente)',
+                  hint: 'Ej: 0230 → 02:30 PM',
                   esObligatorio: true),
+              CampoModerno(_tipoCtrl, 'Tipo de Audiencia', Icons.merge_type),
+              const SizedBox(height: 8),
+              // ── Sección: Tribunal y Fiscalía ─────────────────────────
+              const _TituloSeccion('Tribunal y Fiscalía'),
               CampoModerno(
                 _tribunalCtrl,
                 'Tribunal competente',
                 Icons.account_balance,
                 onTap: _seleccionarTribunal,
+                hint: 'Toca para buscar por estado',
               ),
               CampoModerno(_fiscaliaCtrl, 'Fiscalía', Icons.shield),
-              CampoModerno(_delitosCtrl, 'Delitos imputados', Icons.gavel,
-                  maxLines: 2),
-              CampoModerno(_tipoCtrl, 'Tipo de Audiencia', Icons.merge_type),
+              const SizedBox(height: 8),
+              // ── Sección: Notas ───────────────────────────────────────
+              const _TituloSeccion('Notas'),
               CampoModerno(_notasCtrl, 'Notas adicionales',
                   Icons.note_alt_outlined,
-                  maxLines: 2),
-              const SizedBox(height: 8),
+                  maxLines: 2,
+                  hint: 'Observaciones del caso (opcional)'),
+              const SizedBox(height: 12),
               FilledButton.icon(
                 onPressed: _guardando ? null : _guardar,
                 icon: const Icon(Icons.save_outlined, size: 18),
@@ -216,7 +229,7 @@ class _FormularioAudienciaScreenState extends State<FormularioAudienciaScreen> {
                   foregroundColor: AppColors.acento == AppColors.dorado
                       ? AppColors.onDorado
                       : AppColors.onAzulMarino,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -224,6 +237,28 @@ class _FormularioAudienciaScreenState extends State<FormularioAudienciaScreen> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Título de sección del formulario (guía 3.6: 15px w800, como expediente).
+class _TituloSeccion extends StatelessWidget {
+  const _TituloSeccion(this.titulo);
+
+  final String titulo;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Text(
+        titulo,
+        style: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w800,
+          color: TemaGlobal.texto,
         ),
       ),
     );
