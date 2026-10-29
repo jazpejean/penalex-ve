@@ -123,7 +123,7 @@ class _SelectorTribunalScreenState extends State<SelectorTribunalScreen> {
       appBar: AppBarInstitucional(
         title: 'Tribunales',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: SafeArea(
         child: Padding(

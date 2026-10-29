@@ -167,7 +167,7 @@ class _FormularioAudienciaScreenState extends State<FormularioAudienciaScreen> {
       appBar: AppBarInstitucional(
         title: 'Nueva Audiencia',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: SafeArea(
         child: SingleChildScrollView(

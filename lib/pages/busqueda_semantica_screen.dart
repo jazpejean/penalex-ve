@@ -82,7 +82,7 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
             appBar: AppBarInstitucional(
         title: 'Búsqueda Semántica',
         mostrarBack: true,
-        mostrarHome: true,
+
         actions: [
           IconButton(
             icon: const Icon(Icons.history),

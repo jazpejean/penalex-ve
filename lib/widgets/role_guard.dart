@@ -66,7 +66,7 @@ class RoleGuard extends StatelessWidget {
             appBar: AppBarInstitucional(
         title: 'Acceso Denegado',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: Center(
         child: Padding(

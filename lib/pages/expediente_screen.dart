@@ -117,7 +117,7 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
       appBar: AppBarInstitucional(
         title: 'Expediente',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: _cargando
           ? const Center(child: CircularProgressIndicator())

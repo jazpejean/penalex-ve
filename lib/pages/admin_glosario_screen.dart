@@ -128,7 +128,7 @@ class _AdminGlosarioScreenState extends State<AdminGlosarioScreen> {
             appBar: AppBarInstitucional(
         title: 'Gestionar Glosario',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       backgroundColor: fondoGris,
       body: Column(

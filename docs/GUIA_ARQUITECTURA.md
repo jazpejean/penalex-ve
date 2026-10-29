@@ -78,19 +78,29 @@ Prohibido `withOpacity`/`withAlpha` (deprecados) y alphas libres arbitrarios.
 
 ### 2.1 AppBarInstitucional
 
-Componente obligatorio (`lib/widgets/app_bar_institucional.dart`). Fondo navy,
-título dorado bold centrado, iconos (back, ☰, home) **dorados**.
+Componente obligatorio (`lib/widgets/app_bar_institucional.dart`). **Patrón
+moderno** (como X, Instagram, Gemini, DeepSeek): barra INTEGRADA al contenido,
+no una franja de color.
 
-| Situación | `mostrarBack` | `mostrarHome` | `mostrarDrawer` |
-|---|---|---|---|
-| Pantalla **pushed** (con `Navigator.push`) | ✅ `true` | ✅ `true` | ❌ `false` |
-| Pantalla **pushed con AppDrawer** | ❌ `false` | ✅ `true` | ✅ `true` (el ☰ abre su drawer) |
-| Pestaña principal (dashboard, agenda, hub consulta, asistente hub) | No usa AppBarInstitucional: header propio | — | — |
+- Fondo: `TemaGlobal.superficie` (igual que el body) — `elevation: 0`.
+- Título: `TemaGlobal.texto`, w800, 20px, **alineado a la izquierda**.
+- Iconos (back/☰): `TemaGlobal.texto`.
+- **NO existe botón home (🏠).** El back es el único camino de regreso; el
+  inicio vive solo en la barra de pestañas (`MainBottomBar`). Nunca una casita
+  en pantallas pushed.
+- **No hay navy ni dorado forzados en la barra**: la marca (azul marino/dorado)
+  queda en logos, heroes y acentos, no en el AppBar.
+
+| Situación | `mostrarBack` | `mostrarDrawer` |
+|---|---|---|
+| Pantalla **pushed** (con `Navigator.push`) | ✅ `true` | ❌ `false` |
+| Pantalla **pushed con AppDrawer** | ❌ `false` | ✅ `true` (el ☰ abre su drawer) |
+| Pestaña principal (dashboard, agenda, hub consulta, asistente hub) | No usa AppBarInstitucional: header propio | — |
 
 **Reglas:**
 - El drawer se abre con el ☰ (si `mostrarDrawer`) o por swipe lateral. Nunca back + drawer a la vez.
 - `document_editor_screen.dart` es la **única** excepción (AppBar manual con título TextField editable) — documentada.
-- Iconos en `actions` del AppBarInstitucional: siempre `color: AppColors.dorado` explícito.
+- Iconos en `actions` del AppBarInstitucional: color del tema (heredado de `foregroundColor`), nunca dorado a mano.
 
 ### 2.2 Patrones de navegación
 
@@ -101,10 +111,9 @@ título dorado bold centrado, iconos (back, ☰, home) **dorados**.
 
 | Acción | Regla | Código |
 |---|---|---|
-| Ir a detalle (nueva pantalla en el stack) | `Navigator.push`; el destino usa `mostrarBack: true, mostrarHome: true` | `Navigator.push(context, MaterialPageRoute(builder: …))` |
+| Ir a detalle (nueva pantalla en el stack) | `Navigator.push`; el destino usa `mostrarBack: true` | `Navigator.push(context, MaterialPageRoute(builder: …))` |
 | Reemplazar pantalla (login → inicio, sin volver atrás) | `Navigator.pushReplacement` — **nunca** `push` para flujos de login/onboarding | `Navigator.pushReplacement(...)` |
 | Limpiar todo el stack (logout / cerrar sesión) | `Navigator.pushAndRemoveUntil` hasta MainScreen | `pushAndRemoveUntil(context, MainScreen(), (r) => false)` |
-| Volver al inicio (botón 🏠 en AppBarInstitucional) | `mainTabIndex.value = 0` + `pushAndRemoveUntil` a MainScreen | ver `AppBarInstitucional.mostrarHome` |
 | Cerrar/atrás | `Navigator.pop` | — |
 | Restricción por rol | `role_guard` **antes** de construir la pantalla — nunca dentro del `build` | `lib/widgets/role_guard.dart` |
 | Navegación con datos | pasar por constructor de la pantalla destino (argumentos tipados) | `Screen(id: x, caso: y)` |
@@ -113,7 +122,7 @@ título dorado bold centrado, iconos (back, ☰, home) **dorados**.
 **Reglas duras de navegación:**
 - Una pantalla **pushed** nunca se alcanza con `pushReplacement` salvo login/onboarding/logout (documentado arriba).
 - Nunca navegar con `Navigator` dentro del `build()` de un widget — siempre en callbacks (`onPressed`, `onTap`, gestos).
-- El botón 🏠 es el único camino para "volver al inicio"; no se duplica con back + home en la misma pantalla (ver 2.1).
+- No existe botón 🏠 en pantallas pushed (ver 2.1): el back devuelve al nivel anterior; el inicio se alcanza con back hasta la pestaña o desde `MainBottomBar`.
 
 ### 2.3 El AppScaffold (esqueleto unificado)
 
@@ -125,8 +134,8 @@ título dorado bold centrado, iconos (back, ☰, home) **dorados**.
 >
 > **Patrón VIGENTE hasta que exista AppScaffold** (verificado en las pantallas
 > nuevas): las pantallas pushed construyen `Scaffold(backgroundColor:
-> TemaGlobal.superficie)` + `AppBarInstitucional(mostrarBack: true,
-> mostrarHome: true)` directamente. Ejemplo: `expediente_screen.dart`.
+> TemaGlobal.superficie)` + `AppBarInstitucional(mostrarBack: true)`
+> directamente (sin 🏠, ver 2.1). Ejemplo: `expediente_screen.dart`.
 
 ```dart
 // Contrato propuesto (API):
@@ -135,8 +144,8 @@ AppScaffold(
   body: ...,
   showBottomBar: false,          // false en pantallas pushed
   showBack: true,                // true en pantallas pushed
-  showHome: true,                // true en pantallas pushed
-  // derivado: pushed → mostrarBack+mostrarHome+sin bottom bar
+  // sin showHome: no existe 🏠 en pushed (ver 2.1)
+  // derivado: pushed → mostrarBack + sin bottom bar
   //           tab     → bottom bar + header (AppBarInstitucional o header propio)
 )
 ```
@@ -144,8 +153,8 @@ AppScaffold(
 | Tipo de pantalla | `showBottomBar` | `showBack` | `showHome` | Esqueleto resultante |
 |---|---|---|---|---|
 | **Pestaña principal** (dashboard, agenda, hub consulta, glosario, repositorio…) | ✅ `true` | ❌ | ❌ | `MainBottomBar` + header propio o `AppBarInstitucional` (ver 2.1) |
-| **Pantalla pushed** (detalle, calculadora, editor…) | ❌ `false` | ✅ `true` | ✅ `true` | `AppBarInstitucional(mostrarBack, mostrarHome)` sin bottom bar |
-| **Pantalla pushed con drawer** | ❌ `false` | ❌ | ✅ `true` | `AppBarInstitucional(mostrarDrawer, mostrarHome)` — drawer vía ☰/swipe |
+| **Pantalla pushed** (detalle, calculadora, editor…) | ❌ `false` | ✅ `true` | ❌ (no existe) | `AppBarInstitucional(mostrarBack: true)` sin bottom bar |
+| **Pantalla pushed con drawer** | ❌ `false` | ❌ | ❌ (no existe) | `AppBarInstitucional(mostrarDrawer: true)` — drawer vía ☰/swipe |
 | **Sin esqueleto** (ver excepciones abajo) | ❌ | ❌ | ❌ | `Scaffold` pelado, sin AppBar ni bottom bar |
 
 **Reglas del AppScaffold:**

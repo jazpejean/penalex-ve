@@ -181,7 +181,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
             appBar: AppBarInstitucional(
         title: 'REPORTES LOCALES',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: _cargando
           ? const Center(child: CircularProgressIndicator())

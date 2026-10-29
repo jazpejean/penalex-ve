@@ -179,7 +179,7 @@ class _WordEditorScreenState extends State<WordEditorScreen> {
             appBar: AppBarInstitucional(
         title: '✏️ Editar documento',
         mostrarBack: true,
-        mostrarHome: true,
+
         actions: [
           IconButton(
             onPressed: _ocupado ? null : _exportarWord,

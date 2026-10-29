@@ -286,7 +286,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
             appBar: AppBarInstitucional(
         title: 'Glosario Jurídico',
         mostrarBack: true,
-        mostrarHome: true,
+
         actions: [
           // Contador de términos
           Padding(

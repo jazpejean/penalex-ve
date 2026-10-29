@@ -558,7 +558,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
             appBar: AppBarInstitucional(
         title: 'Redactor de Documentos',
         mostrarBack: true,
-        mostrarHome: true,
+
         actions: [
           IconButton(
             icon: const Icon(Icons.badge_outlined),

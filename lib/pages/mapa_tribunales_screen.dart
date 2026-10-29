@@ -261,7 +261,7 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
             appBar: AppBarInstitucional(
         title: 'Mapa de Tribunales Penales',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       bottomNavigationBar: const MainBottomBar(),
       body: _cargando

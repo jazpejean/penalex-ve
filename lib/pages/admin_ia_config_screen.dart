@@ -169,7 +169,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
               appBar: AppBarInstitucional(
         title: 'Configuración de IA',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       backgroundColor: fondoGris,
       body: SingleChildScrollView(

@@ -124,7 +124,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
             appBar: AppBarInstitucional(
         title: widget.ley.nombre,
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: _cargando
           ? Center(child: CircularProgressIndicator(color: AppColors.acento))
@@ -866,7 +866,7 @@ class _LeyChatIAPageState extends State<LeyChatIAPage> {
             appBar: AppBarInstitucional(
         title: 'Asistente Legal IA',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: Column(
         children: [

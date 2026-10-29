@@ -95,7 +95,7 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
             appBar: AppBarInstitucional(
         title: 'CÁLCULOS GUARDADOS',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: _cargando
           ? const Center(child: CircularProgressIndicator())

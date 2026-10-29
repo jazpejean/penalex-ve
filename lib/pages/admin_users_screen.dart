@@ -159,7 +159,7 @@ class _AdminUsersScreenState extends State<AdminUsersScreen> {
               appBar: AppBarInstitucional(
         title: 'Gestión de Usuarios',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
         body: Column(
           children: [

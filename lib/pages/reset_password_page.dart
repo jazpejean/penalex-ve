@@ -125,7 +125,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               appBar: AppBarInstitucional(
         title: 'Nueva contraseña',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
         body: SafeArea(
           child: SingleChildScrollView(

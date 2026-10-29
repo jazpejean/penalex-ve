@@ -105,7 +105,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             appBar: AppBarInstitucional(
         title: 'Recuperar cuenta',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: SafeArea(
         child: Padding(

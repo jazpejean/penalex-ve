@@ -154,7 +154,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
       appBar: AppBarInstitucional(
         title: 'Calculadora de Prescripción',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),

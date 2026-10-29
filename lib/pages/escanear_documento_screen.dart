@@ -97,7 +97,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
             appBar: AppBarInstitucional(
         title: 'Mis Documentos',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: Column(
         children: [
@@ -476,7 +476,7 @@ class _DocumentViewerScreenState extends State<DocumentViewerScreen> {
             appBar: AppBarInstitucional(
         title: doc.titulo,
         mostrarBack: true,
-        mostrarHome: true,
+
         actions: [
           if (_exportando)
             const Padding(

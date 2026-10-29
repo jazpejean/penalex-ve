@@ -116,7 +116,7 @@ class _FormularioDiaSinDespachoScreenState
       appBar: AppBarInstitucional(
         title: 'Día sin Despacho',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: SafeArea(
         child: SingleChildScrollView(

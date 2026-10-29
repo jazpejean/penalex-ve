@@ -73,7 +73,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
             appBar: AppBarInstitucional(
         title: 'Aplicar Filtro',
         mostrarBack: true,
-        mostrarHome: true,
+
         actions: [
           if (_isApplying)
             const Center(

@@ -289,7 +289,7 @@ class _RepositorioJurisprudenciaScreenState
             appBar: AppBarInstitucional(
         title: 'Jurisprudencia',
         mostrarBack: true,
-        mostrarHome: true,
+
         actions: [
           // ✅ Contador de resultados simple
           if (!_cargando && _resultados.isNotEmpty)
@@ -1237,7 +1237,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
             appBar: AppBarInstitucional(
         title: 'Sentencia ${widget.sentencia.numeroSentencia}',
         mostrarBack: true,
-        mostrarHome: true,
+
         actions: [
           // ⭐ Marcar como favorita/importante
           IconButton(

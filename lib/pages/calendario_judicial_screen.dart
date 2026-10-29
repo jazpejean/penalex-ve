@@ -286,7 +286,7 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
             appBar: AppBarInstitucional(
         title: 'Lapsos del expediente',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: RefreshIndicator(
         onRefresh: _recargarExcluidos,

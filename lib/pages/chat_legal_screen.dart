@@ -784,7 +784,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
             appBar: AppBarInstitucional(
         title: 'Ulpiano',
         mostrarBack: true,
-        mostrarHome: true,
+
         actions: [
           IconButton(
             icon: const Icon(Icons.history),
@@ -1566,7 +1566,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
             appBar: AppBarInstitucional(
         title: 'Conversaciones',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: FutureBuilder<List<ChatConversation>>(
         future: _future,

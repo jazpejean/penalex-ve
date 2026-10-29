@@ -120,7 +120,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
               appBar: AppBarInstitucional(
         title: 'Verificar Correo',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
         body: SafeArea(
           child: SingleChildScrollView(

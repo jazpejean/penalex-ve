@@ -378,7 +378,7 @@ Puedo ayudarte a:
             appBar: AppBarInstitucional(
         title: 'Asistente Legal IA',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: Column(
         children: [

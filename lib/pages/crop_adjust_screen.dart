@@ -61,7 +61,7 @@ class _CropAdjustScreenState extends State<CropAdjustScreen> {
             appBar: AppBarInstitucional(
         title: 'Ajustar Bordes',
         mostrarBack: true,
-        mostrarHome: true,
+
       ),
       body: Column(
         children: [
