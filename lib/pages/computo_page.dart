@@ -847,7 +847,10 @@ class _ComputoPageState extends State<ComputoPage> {
                               });
                             },
                             controlAffinity: ListTileControlAffinity.leading,
-                            activeColor: AppColors.acento,
+                            // Patrón de la guía (3.3): controles de selección
+                            // dorados, independientes del modo.
+                            activeColor: AppColors.dorado,
+                            checkColor: AppColors.onDorado,
                             contentPadding: EdgeInsets.zero,
                           ),
                         ),
@@ -946,7 +949,11 @@ class _ComputoPageState extends State<ComputoPage> {
                           _calcularTodo();
                         });
                       },
-                      activeThumbColor: AppColors.acento,
+                      activeColor: AppColors.dorado,
+                      activeTrackColor:
+                          AppColors.dorado.withValues(alpha: 0.35),
+                      inactiveThumbColor: AppColors.textoSecundario,
+                      inactiveTrackColor: AppColors.capa,
                       contentPadding: EdgeInsets.zero,
                     ),
                     if (!_usarFechaActual) ...[
@@ -1065,8 +1072,13 @@ class _ComputoPageState extends State<ComputoPage> {
                     icon: const Icon(Icons.home),
                     label: const Text('INICIO'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.azulMarino,
-                      foregroundColor: AppColors.dorado,
+                      // Guía 3.2: primario = acento dinámico (navy en claro /
+                      // dorado en oscuro). El navy fijo se funde con el fondo
+                      // oscuro.
+                      backgroundColor: AppColors.acento,
+                      foregroundColor: AppColors.acento == AppColors.dorado
+                          ? AppColors.onDorado
+                          : AppColors.onAzulMarino,
                       fixedSize: const Size.fromHeight(48),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14)),
@@ -1256,7 +1268,7 @@ class _Linea extends StatelessWidget {
       child: Container(
         height: 2,
         margin: const EdgeInsets.only(bottom: 24),
-        color: gris ? TemaGlobal.capa : AppColors.azulMarino.withValues(alpha: 0.35),
+        color: gris ? TemaGlobal.capa : AppColors.acento.withValues(alpha: 0.35),
       ),
     );
   }
@@ -1287,7 +1299,7 @@ class _Nodo extends StatelessWidget {
             width: 14,
             height: 14,
             decoration: BoxDecoration(
-              color: gris ? TemaGlobal.capa : AppColors.azulMarino,
+              color: gris ? TemaGlobal.capa : AppColors.acento,
               shape: BoxShape.circle,
               border: Border.all(
                 color: gris ? TemaGlobal.capa : AppColors.dorado,

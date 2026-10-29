@@ -12,6 +12,7 @@ import '../config/app_theme.dart';
 import '../widgets/buscador_articulos_sheet.dart';
 import '../widgets/dosimetria_stepper.dart';
 import '../widgets/app_drawer.dart';
+import '../widgets/app_snackbar.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'concurso_page.dart';
 
@@ -65,12 +66,9 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
       delitos =
           calc.delitos.map((Delito d) => Delito.fromMap(d.toMap())).toList();
     });
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('"${calc.nombre}" cargado'),
-        backgroundColor: AppColors.azulMarino,
-      ),
-    );
+    // Guía 3.4: AppSnackBar siempre (el navy fijo se funde con el fondo
+    // oscuro).
+    AppSnackBar.success(context, '"${calc.nombre}" cargado');
   }
 
   void _resetCalculation() {
@@ -333,7 +331,10 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                   divisions: divisions,
                   label: _fraccionTexto(currentValue),
                   onChanged: onChanged,
-                  activeColor: AppColors.acento,
+                  // Patrón de la guía (3.3): controles de selección dorados,
+                  // independientes del modo.
+                  activeColor: AppColors.dorado,
+                  inactiveColor: AppColors.capa,
                 ),
               ),
               SizedBox(
@@ -765,12 +766,16 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                               icon: const Icon(Icons.arrow_forward),
                               label: const Text("SIGUIENTE"),
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.azulMarino,
-                                foregroundColor: AppColors.dorado,
+                                // Guía 3.2: primario = acento dinámico (navy
+                                // en claro / dorado en oscuro).
+                                backgroundColor: AppColors.acento,
+                                foregroundColor: AppColors.acento ==
+                                        AppColors.dorado
+                                    ? AppColors.onDorado
+                                    : AppColors.onAzulMarino,
                                 fixedSize: const Size.fromHeight(48),
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(14),
-                                    side: const BorderSide(color: AppColors.dorado)),
+                                    borderRadius: BorderRadius.circular(14)),
                               ),
                             ),
                           ),
@@ -951,9 +956,10 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
               icon: const Icon(Icons.add),
               label: const Text('Agregar ajuste'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.azulMarino,
-                foregroundColor: AppColors.dorado,
-                side: const BorderSide(color: AppColors.dorado, width: 1.2),
+                backgroundColor: AppColors.acento,
+                foregroundColor: AppColors.acento == AppColors.dorado
+                    ? AppColors.onDorado
+                    : AppColors.onAzulMarino,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14)),
               ),
@@ -1111,10 +1117,10 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     delito.delitoContinuado = val;
                     _actualizarDelito(index, delito);
                   },
-                  activeColor: TemaGlobal.dorado,
-                  activeTrackColor: TemaGlobal.dorado.withValues(alpha: 0.55),
-                  inactiveTrackColor: TemaGlobal.capa,
-                  inactiveThumbColor: TemaGlobal.texto,
+                  activeColor: AppColors.dorado,
+                  activeTrackColor: AppColors.dorado.withValues(alpha: 0.35),
+                  inactiveTrackColor: AppColors.capa,
+                  inactiveThumbColor: AppColors.textoSecundario,
                 ),
               ],
             ),
@@ -1174,17 +1180,20 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                       });
                     },
                     style: ButtonStyle(
+                      // Guía 3.3: seleccionado = fondo dorado, texto onDorado;
+                      // no seleccionado = fondo capa, texto texto. Nunca navy
+                      // con texto dorado (ilegible y se funde en oscuro).
                       backgroundColor: WidgetStateProperty.resolveWith(
                           (Set<WidgetState> states) {
                         if (states.contains(WidgetState.selected)) {
-                          return AppColors.azulMarino;
+                          return AppColors.dorado;
                         }
                         return TemaGlobal.capa;
                       }),
                       foregroundColor: WidgetStateProperty.resolveWith(
                           (Set<WidgetState> states) {
                         if (states.contains(WidgetState.selected)) {
-                          return AppColors.dorado;
+                          return AppColors.onDorado;
                         }
                         return TemaGlobal.texto;
                       }),
@@ -1275,12 +1284,13 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     icon: const Icon(Icons.add),
                     label: const Text('AGREGAR OTRO'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.azulMarino,
-                      foregroundColor: AppColors.dorado,
+                      backgroundColor: AppColors.acento,
+                      foregroundColor: AppColors.acento == AppColors.dorado
+                          ? AppColors.onDorado
+                          : AppColors.onAzulMarino,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14)),
                       fixedSize: const Size.fromHeight(48),
-                      side: const BorderSide(color: AppColors.dorado),
                     ),
                   ),
                 ),

@@ -381,8 +381,10 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                   ),
                                   controlAffinity:
                                       ListTileControlAffinity.leading,
-                                  activeColor: AppColors.acento,
-                                  checkColor: AppColors.azulMarino,
+                                  // Patrón de la guía (3.3): controles de
+                                  // selección dorados, independientes del modo.
+                                  activeColor: AppColors.dorado,
+                                  checkColor: AppColors.onDorado,
                                 );
                               },
                             ),
@@ -440,7 +442,10 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                   _calcularTotal();
                                 });
                               },
-                              activeThumbColor: AppColors.acento,
+                              activeColor: AppColors.dorado,
+                              activeTrackColor: AppColors.dorado.withValues(alpha: 0.35),
+                              inactiveThumbColor: AppColors.textoSecundario,
+                              inactiveTrackColor: AppColors.capa,
                               contentPadding: EdgeInsets.zero,
                             ),
                             if (_admisionHechos) ...<Widget>[
@@ -465,8 +470,8 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                     _calcularTotal();
                                   });
                                 },
-                                activeColor: AppColors.acento,
-                                inactiveColor: TemaGlobal.capa,
+                                activeColor: AppColors.dorado,
+                                inactiveColor: AppColors.capa,
                               ),
                             ],
                           ],
@@ -695,9 +700,13 @@ const SizedBox(height: 16),
                             icon: const Icon(Icons.arrow_forward),
                             label: const Text("CONTINUAR"),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.azulMarino,
-                              foregroundColor: AppColors.dorado,
-                              side: const BorderSide(color: AppColors.dorado),
+                              // Guía 3.2: primario = acento dinámico (navy en
+                              // claro / dorado en oscuro).
+                              backgroundColor: AppColors.acento,
+                              foregroundColor: AppColors.acento ==
+                                      AppColors.dorado
+                                  ? AppColors.onDorado
+                                  : AppColors.onAzulMarino,
                               fixedSize: const Size.fromHeight(48),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(14)),
