@@ -119,7 +119,9 @@ class SuperBuscadorService {
     final fusion = _rrf(fts, semantica, esDoctrina: esDoctrina);
 
     // 4) Fallback semántico: si el FTS no dio nada pero Qdrant sí,
-    //    devolver los resultados semánticos con la etiqueta.
+    //    devolver los resultados semánticos con la etiqueta. La semántica
+    //    es un top-k (no se pagina): tieneMas = false para que el lazy
+    //    load no pida páginas duplicadas.
     if (fusion.isEmpty && semantica.isNotEmpty) {
       final porSemantica = await _cargarPorSemantica(
         semantica,
@@ -130,7 +132,7 @@ class SuperBuscadorService {
         sentencias: esDoctrina ? const [] : porSemantica.sentencias,
         doctrinas: esDoctrina ? porSemantica.doctrinas : const [],
         usoSemantica: true,
-        tieneMas: semantica.length > limit,
+        tieneMas: false,
       );
     }
 
@@ -299,7 +301,7 @@ class SuperBuscadorService {
         return ResultadoSuperBusqueda(
           doctrinas: doctrinas,
           usoSemantica: true,
-          tieneMas: semantica.length > limit,
+          tieneMas: false,
         );
       }
 
@@ -326,7 +328,7 @@ class SuperBuscadorService {
       return ResultadoSuperBusqueda(
         sentencias: sentencias,
         usoSemantica: true,
-        tieneMas: semantica.length > limit,
+        tieneMas: false,
       );
     } catch (e) {
       debugPrint('❌ cargarPorSemantica: $e');
