@@ -36,6 +36,8 @@ import 'pages/repositorio_leyes_screen.dart';
 import 'pages/repositorio_jurisprudencia_screen.dart';
 import 'pages/calculadora_prescripcion_screen.dart';
 import 'pages/escanear_documento_screen.dart';
+import 'pages/expediente_screen.dart';
+import 'models/audiencia.dart';
 
 import 'pages/reportes_guardados_page.dart';
 import 'pages/reset_password_page.dart';
@@ -143,6 +145,13 @@ class DosimetriaPenalApp extends StatelessWidget {
           '/reset-password': (context) => const ResetPasswordPage(),
         },
         onGenerateRoute: (settings) {
+          if (settings.name == '/expediente' && settings.arguments != null) {
+            final audiencia =
+                settings.arguments as Audiencia;
+            return MaterialPageRoute(
+              builder: (context) => ExpedienteScreen(audiencia: audiencia),
+            );
+          }
           if (settings.name == '/computo' && settings.arguments != null) {
             final args = settings.arguments as Map<String, dynamic>;
             final delitos = (args['delitos'] as List)

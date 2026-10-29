@@ -6,6 +6,7 @@ class DocumentoEscaneado {
   final String? textoOcr;
   final DateTime fechaCreacion;
   final String? thumbnailUrl;
+  final String? expedienteId; // Portafolio: expedientes.id (si está vinculado)
 
   DocumentoEscaneado({
     required this.id,
@@ -15,6 +16,7 @@ class DocumentoEscaneado {
     this.textoOcr,
     required this.fechaCreacion,
     this.thumbnailUrl,
+    this.expedienteId,
   });
 
   Map<String, dynamic> toJson() => {
@@ -25,6 +27,7 @@ class DocumentoEscaneado {
         'texto_ocr': textoOcr,
         'fecha_creacion': fechaCreacion.toIso8601String(),
         'thumbnail_url': thumbnailUrl,
+        'expediente_id': expedienteId,
       };
 
   factory DocumentoEscaneado.fromJson(Map<String, dynamic> json) {
@@ -38,6 +41,7 @@ class DocumentoEscaneado {
       textoOcr: json['texto_ocr'] as String?,
       fechaCreacion: DateTime.parse(json['fecha_creacion'] as String),
       thumbnailUrl: json['thumbnail_url'] as String?,
+      expedienteId: json['expediente_id'] as String?,
     );
   }
 

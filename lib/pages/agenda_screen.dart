@@ -293,6 +293,13 @@ class _AgendaScreenState extends State<AgendaScreen> {
   }
 
   /// Abre los LAPSOS del expediente agendado: línea de tiempo guiada
+  /// Abre el Workspace del Expediente (portafolio de la causa).
+  void _abrirExpediente(Audiencia aud) {
+    Haptics.tap();
+    Navigator.of(context).pushNamed('/expediente', arguments: aud);
+  }
+
+  /// Abre el Calendario Judicial de lapsos del expediente (se calcula
   /// desde la fecha de la audiencia (la presentación es la primera que
   /// se agenda). El motor calcula vencimientos/hitos según la vía.
   void _abrirLapsosExpediente(Audiencia aud) {
@@ -1262,6 +1269,12 @@ class _AgendaScreenState extends State<AgendaScreen> {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
+                        IconButton(
+                          tooltip: 'Portafolio del expediente',
+                          icon: Icon(Icons.folder_open,
+                              color: AppColors.dorado, size: 20),
+                          onPressed: () => _abrirExpediente(aud),
+                        ),
                         IconButton(
                           tooltip: 'Lapsos del expediente',
                           icon: Icon(Icons.timeline,
