@@ -89,9 +89,9 @@ jobs:
             ~/.gradle/wrapper
             ~/.android/build-cache
             ${{ runner.temp }}/ndk
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          key: gradle-${{ runner.os }}-arm64-v1-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
-            gradle-${{ runner.os }}-
+            gradle-${{ runner.os }}-arm64-v1-
 
       - name: Análisis estático
         run: flutter analyze --no-pub
