@@ -101,6 +101,9 @@ class SuperBuscadorService {
     // acotan el FTS (AND entre todas). Se aplican SOLO a las categorías de
     // sentencias; en Doctrinas se ignoran.
     List<CondicionBusqueda> condiciones = const [],
+    // ⚠️ Callback de error: la UI muestra el mensaje REAL (fallo de red/
+    // consulta) en vez de un "no se encontraron resultados" engañoso.
+    void Function(String mensaje)? onError,
   }) async {
     final textoLimpio = texto.trim();
     final esDoctrina = categoria == 'Doctrinas';
@@ -119,6 +122,7 @@ class SuperBuscadorService {
       ordenAscendente: ordenAscendente,
       forzarOrdenCronologico: forzarOrdenCronologico,
       condiciones: condiciones,
+      onError: onError,
     );
 
     // 2) Búsqueda semántica en Qdrant (solo si hay texto Y no hay
@@ -138,7 +142,49 @@ class SuperBuscadorService {
     // 3) RRF: fusionar ambas fuentes (dedupe por documento_id).
     final fusion = _rrf(fts, semantica, esDoctrina: esDoctrina);
 
-    // 4) Fallback semántico: si el FTS no dio nada pero Qdrant sí,
+    // 4) Reintento automático: la PRIMERA llamada con conexión fría puede
+    //    fallar silenciosamente (timeout TLS/DNS en el arranque) y su catch
+    //    devuelve [] — el usuario veía "no se encontraron resultados" al
+    //    entrar y solo aparecían sentencias tras presionar Limpiar búsqueda
+    //    varias veces (la conexión ya estaba caliente). Si no hay criterios
+    //    de búsqueda (texto/filtros) y no llegó nada, se reintenta UNA vez.
+    final vacioSinCriterios = fusion.sentencias.isEmpty &&
+        fusion.doctrinas.isEmpty &&
+        semantica.isEmpty &&
+        textoLimpio.isEmpty &&
+        sala == null &&
+        anio == null &&
+        decada == null &&
+        condiciones.isEmpty;
+    if (vacioSinCriterios) {
+      debugPrint('🔁 Reintento automático (primera conexión fría)…');
+      await Future<void>.delayed(const Duration(milliseconds: 400));
+      final fts2 = await _buscarFts(
+        texto: textoLimpio,
+        categoria: categoria,
+        sala: sala,
+        anio: anio,
+        decada: decada,
+        soloTextoCompleto: soloTextoCompleto,
+        offset: offset,
+        limit: limit,
+        ordenAscendente: ordenAscendente,
+        forzarOrdenCronologico: forzarOrdenCronologico,
+        condiciones: condiciones,
+        onError: onError,
+      );
+      final fusion2 = _rrf(fts2, semantica, esDoctrina: esDoctrina);
+      if (fusion2.sentencias.isNotEmpty || fusion2.doctrinas.isNotEmpty) {
+        return ResultadoSuperBusqueda(
+          sentencias: esDoctrina ? const [] : fusion2.sentencias,
+          doctrinas: esDoctrina ? fusion2.doctrinas : const [],
+          usoSemantica: false,
+          tieneMas: fusion2.tieneMas,
+        );
+      }
+    }
+
+    // 5) Fallback semántico: si el FTS no dio nada pero Qdrant sí,
     //    devolver los resultados semánticos con la etiqueta. La semántica
     //    es un top-k (no se pagina): tieneMas = false para que el lazy
     //    load no pida páginas duplicadas.
@@ -183,10 +229,16 @@ class SuperBuscadorService {
     bool ordenAscendente = false,
     bool forzarOrdenCronologico = false,
     List<CondicionBusqueda> condiciones = const [],
+    void Function(String mensaje)? onError,
   }) async {
     try {
       if (categoria == 'Doctrinas') {
-        var query = _supabase.from('doctrinas_academicas').select();
+        // Columnas explícitas (nunca select() desnudo: evita payload gigante
+        // y columnas inexistentes que harían fallar toda la consulta).
+        var query = _supabase
+            .from('doctrinas_academicas')
+            .select(
+                'id, sentencia_id, autor, obra, pagina, parrafo_evidencia');
 
         if (texto.isNotEmpty) {
           final terminos = texto.split(RegExp(r'\s+')).where((t) => t.length > 2);
@@ -231,6 +283,7 @@ class SuperBuscadorService {
         ordenAscendente: ordenAscendente,
         forzarOrdenCronologico: forzarOrdenCronologico,
         condiciones: condiciones,
+        onError: onError,
       );
 
       // "Solo texto completo": quedan las que tienen copia en R2 (txt o html).
@@ -246,6 +299,10 @@ class SuperBuscadorService {
       return (sentencias: sentencias, doctrinas: <DoctrinaAcademicaModel>[]);
     } catch (e) {
       debugPrint('❌ SuperBuscador FTS: $e');
+      // Propagar el error real a la UI (no silenciarlo con resultados
+      // vacíos: el usuario veía "no se encontraron resultados" cuando en
+      // realidad la llamada falló por red).
+      onError?.call('No se pudo consultar la base. Verifica tu conexión.');
       return (
         sentencias: <SentenciaModel>[],
         doctrinas: <DoctrinaAcademicaModel>[],

@@ -10,6 +10,16 @@ import 'ai_service.dart';
 class JurisprudenciaService {
   final SupabaseClient _supabase = Supabase.instance.client;
 
+  /// Columnas de `sentencias` que la app realmente usa (verificadas contra el
+  /// esquema real de Supabase). SOLO estas, nunca `select()` desnudo: un
+  /// `select=*` arrastra `search_vector` (tsvector) y columnas de relleno,
+  /// inflando el payload y haciendo lenta/frágil la primera búsqueda con
+  /// conexión fría (síntoma: "no se encontraron resultados" que sí aparece
+  /// al reintentar).
+  static const String _columnasSentencias = 'id,tipo,sala,num_sentencia,fecha,'
+      'ponente,procedimiento,partes,decision,extracto,ratio_decidendi,url_tsj,'
+      'r2_html_key,r2_txt_key,expediente,es_jurisprudencia,created_at';
+
   /// Caché local de expansiones semánticas para evitar llamadas repetidas a DeepSeek
   static final Map<String, List<String>> _cacheExpansiones = {};
 
@@ -93,7 +103,7 @@ class JurisprudenciaService {
       // Se rellenan dentro del bloque de texto; vacíos si no hay consulta.
       List<String> terminosExpandidos = <String>[];
 
-      var query = _supabase.from('sentencias').select();
+      var query = _supabase.from('sentencias').select(_columnasSentencias);
 
       // Filtro por tipo
       if (tipoFiltro == 'sentencias') {
@@ -576,7 +586,7 @@ class JurisprudenciaService {
         orConditions.add('ponente.ilike.%$termino%');
       }
 
-      var query = _supabase.from('sentencias').select();
+      var query = _supabase.from('sentencias').select(_columnasSentencias);
 
       // Aplicar filtros de tipo
       if (tipoFiltro == 'sentencias') {

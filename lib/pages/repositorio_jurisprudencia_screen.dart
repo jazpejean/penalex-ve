@@ -47,6 +47,11 @@ class _RepositorioJurisprudenciaScreenState
 
   bool _cargando = false;
 
+  // ⚠️ Error de red/consulta en la ÚLTIMA búsqueda. Si no es null, el empty
+  // state muestra el mensaje real (no "no se encontraron resultados", que
+  // engañaba al usuario cuando la primera llamada con conexión fría fallaba).
+  String? _errorBusqueda;
+
   // ⭐ Favoritas / Importantes
   final FavoritosService _favoritosService = FavoritosService();
   Set<String> _idsFavoritos = {};
@@ -128,6 +133,7 @@ class _RepositorioJurisprudenciaScreenState
       _offset = 0;
       _tieneMas = false;
       _usoSemantica = false;
+      _errorBusqueda = null;
     });
     _animationController.forward();
 
@@ -144,6 +150,10 @@ class _RepositorioJurisprudenciaScreenState
       ordenAscendente: _ordenVenley == 'antiguas',
       forzarOrdenCronologico: _ordenVenley != 'relevancia',
       condiciones: _condicionesAvanzadas,
+      onError: (mensaje) {
+        // No llamar setState aquí: se aplica en el setState de abajo.
+        _errorBusqueda = mensaje;
+      },
     );
 
     if (mounted) {
@@ -1013,59 +1023,64 @@ Widget _selectorValorCondicion(
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // Dropdown de categorías PROMINENTE en su propia fila (el usuario
+        // reportó que quedaba diminuto comprimido junto a Favoritas/Orden/
+        // Filtros): altura 54, texto 16, ocupa todo el ancho.
+        Container(
+          width: double.infinity,
+          height: 54,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          decoration: BoxDecoration(
+            color: TemaGlobal.campoTexto,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+                color: AppColors.acento.withValues(alpha: 0.45),
+                width: 1.2),
+          ),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<String>(
+              value: _categoriaSeleccionada,
+              isExpanded: true,
+              icon: Icon(Icons.arrow_drop_down,
+                  color: AppColors.acento, size: 30),
+              borderRadius: BorderRadius.circular(14),
+              dropdownColor: TemaGlobal.tarjeta,
+              style: TextStyle(
+                color: TemaGlobal.texto,
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+              ),
+              items: [
+                for (final categoria in categorias)
+                  DropdownMenuItem(
+                    value: categoria,
+                    child: Text(categoria),
+                  ),
+              ],
+              onChanged: (categoria) {
+                if (categoria == null ||
+                    categoria == _categoriaSeleccionada) {
+                  return;
+                }
+                setState(() {
+                  _categoriaSeleccionada = categoria;
+                  // Al cambiar a Resoluciones/Doctrinas se oculta Sala
+                  // (regla estricta): limpiar el filtro de sala.
+                  if (categoria == 'Resoluciones' ||
+                      categoria == 'Doctrinas') {
+                    _salaSeleccionada = null;
+                  }
+                });
+                _buscar();
+              },
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        // Segunda fila: Favoritas + Orden + Filtros (accesorios, sin
+        // robarle protagonismo al dropdown de categorías).
         Row(
           children: [
-            // Dropdown de categorías (guía 3.3: acento dinámico).
-            Expanded(
-              child: Container(
-                height: 42,
-                padding: const EdgeInsets.symmetric(horizontal: 14),
-                decoration: BoxDecoration(
-                  color: TemaGlobal.campoTexto,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                      color: AppColors.acento.withValues(alpha: 0.35)),
-                ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    value: _categoriaSeleccionada,
-                    isExpanded: true,
-                    icon: Icon(Icons.arrow_drop_down,
-                        color: AppColors.acento, size: 22),
-                    borderRadius: BorderRadius.circular(12),
-                    dropdownColor: TemaGlobal.tarjeta,
-                    style: TextStyle(
-                      color: TemaGlobal.texto,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                    ),
-                    items: [
-                      for (final categoria in categorias)
-                        DropdownMenuItem(
-                          value: categoria,
-                          child: Text(categoria),
-                        ),
-                    ],
-                    onChanged: (categoria) {
-                      if (categoria == null || categoria == _categoriaSeleccionada) {
-                        return;
-                      }
-                      setState(() {
-                        _categoriaSeleccionada = categoria;
-                        // Al cambiar a Resoluciones/Doctrinas se oculta Sala
-                        // (regla estricta): limpiar el filtro de sala.
-                        if (categoria == 'Resoluciones' ||
-                            categoria == 'Doctrinas') {
-                          _salaSeleccionada = null;
-                        }
-                      });
-                      _buscar();
-                    },
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(width: 8),
             // ⭐ Favoritas: solo aplica a sentencias/jurisprudencias/
             // resoluciones (las doctrinas no se marcan como favoritas).
             if (_categoriaSeleccionada != 'Doctrinas')
@@ -1704,6 +1719,9 @@ Widget _selectorValorCondicion(
   }
 
   Widget _buildEmptyState() {
+    // ⚠️ Si la última búsqueda FALLÓ por red/Supabase, no mentir con
+    // "no se encontraron resultados": mostrar el error real + Reintentar.
+    final huboError = _errorBusqueda != null;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
@@ -1711,13 +1729,17 @@ Widget _selectorValorCondicion(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              Icons.search_off_rounded,
+              huboError
+                  ? Icons.wifi_off_rounded
+                  : Icons.search_off_rounded,
               size: 80,
-              color: TemaGlobal.textoTenue,
+              color: huboError
+                  ? AppColors.dorado
+                  : TemaGlobal.textoTenue,
             ),
             const SizedBox(height: 24),
             Text(
-              'No se encontraron resultados',
+              huboError ? 'No se pudo consultar' : 'No se encontraron resultados',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -1727,7 +1749,9 @@ Widget _selectorValorCondicion(
             ),
             const SizedBox(height: 12),
             Text(
-              'Intenta con otros términos de búsqueda',
+              huboError
+                  ? _errorBusqueda!
+                  : 'Intenta con otros términos de búsqueda',
               style: TextStyle(
                 fontSize: 14,
                 color: TemaGlobal.texto.withValues(alpha: 0.5),
@@ -1736,9 +1760,9 @@ Widget _selectorValorCondicion(
             ),
             const SizedBox(height: 24),
             ElevatedButton.icon(
-              onPressed: _limpiarBusqueda,
-              icon: const Icon(Icons.refresh, size: 20),
-              label: const Text('Limpiar búsqueda'),
+              onPressed: huboError ? _buscar : _limpiarBusqueda,
+              icon: Icon(huboError ? Icons.refresh : Icons.refresh, size: 20),
+              label: Text(huboError ? 'Reintentar' : 'Limpiar búsqueda'),
               style: ElevatedButton.styleFrom(
                 // Guía 3.2: primario = acento dinámico (navy en claro /
                 // dorado en oscuro).
