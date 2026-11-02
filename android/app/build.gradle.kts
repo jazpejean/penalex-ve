@@ -25,12 +25,6 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-
-        // Solo ARM64: el APK se reduce de ~238MB a ~55MB (elimina las libs
-        // nativas de x86_64 y armeabi-v7a que ningún teléfono moderno usa).
-        ndk {
-            abiFilters += listOf("arm64-v8a")
-        }
     }
 
     // Configuración de signing para release
