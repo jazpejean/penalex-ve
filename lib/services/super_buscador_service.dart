@@ -94,6 +94,9 @@ class SuperBuscadorService {
     // primero (asc). Se aplica al FTS; la semántica conserva su orden por
     // relevancia.
     bool ordenAscendente = false,
+    // Orden estilo Venley: si el usuario eligió explícitamente orden por
+    // fecha ("Más recientes"/"Más antiguas") se respeta aunque haya texto.
+    bool forzarOrdenCronologico = false,
     // Modo Avanzado (estilo TSJ): condiciones "campo operador valor" que
     // acotan el FTS (AND entre todas). Se aplican SOLO a las categorías de
     // sentencias; en Doctrinas se ignoran.
@@ -114,6 +117,7 @@ class SuperBuscadorService {
       offset: offset,
       limit: limit,
       ordenAscendente: ordenAscendente,
+      forzarOrdenCronologico: forzarOrdenCronologico,
       condiciones: condiciones,
     );
 
@@ -177,6 +181,7 @@ class SuperBuscadorService {
     required int offset,
     required int limit,
     bool ordenAscendente = false,
+    bool forzarOrdenCronologico = false,
     List<CondicionBusqueda> condiciones = const [],
   }) async {
     try {
@@ -224,6 +229,7 @@ class SuperBuscadorService {
         limit: limit,
         offset: offset,
         ordenAscendente: ordenAscendente,
+        forzarOrdenCronologico: forzarOrdenCronologico,
         condiciones: condiciones,
       );
 

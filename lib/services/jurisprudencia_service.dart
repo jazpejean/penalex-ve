@@ -77,6 +77,10 @@ class JurisprudenciaService {
     // Cronológico: false = más reciente primero (desc), true = más antiguo
     // primero (asc).
     bool ordenAscendente = false,
+    // Si el usuario eligió explícitamente orden por fecha (Venley:
+    // "Más recientes"/"Más antiguas"), se respeta aunque haya texto de
+    // búsqueda (no se reordena por relevancia).
+    bool forzarOrdenCronologico = false,
     // Modo Avanzado (estilo TSJ): condiciones "campo operador valor"
     // (AND entre todas) que acotan la consulta.
     List<CondicionBusqueda> condiciones = const [],
@@ -121,13 +125,14 @@ class JurisprudenciaService {
         debugPrint('📅 Década seleccionada: ${decadaFiltro}s');
       }
 
-      // Modo Avanzado: condiciones "campo operador valor" (AND entre todas).
-      // Solo para categorías de sentencias (el FTS de doctrinas no las usa).
+      // Modo Avanzado: condiciones "campo operador valor(es)" (AND entre
+      // todas). Solo para categorías de sentencias (el FTS de doctrinas no
+      // las usa).
       for (final cond in condiciones) {
-        if (cond.valor.trim().isEmpty) continue;
+        if (cond.valores.isEmpty) continue;
         query = cond.aplicar(query);
         debugPrint('🎯 Condición avanzada: ${cond.campo} ${cond.operador} '
-            '"${cond.valor}"');
+            '"${cond.valores.join(', ')}"');
       }
 
       // Búsqueda semántica inteligente (si hay texto)
@@ -194,7 +199,10 @@ class JurisprudenciaService {
       // Ranking por relevancia real: los términos expandidos pesan según
       // cuántos aparecen en el documento (delito, resumen, decisión, número,
       // expediente). Deja de ser "los 50 más recientes".
-      if (data.length > 1 && textoBusqueda != null && textoBusqueda.isNotEmpty) {
+      if (data.length > 1 &&
+          textoBusqueda != null &&
+          textoBusqueda.isNotEmpty &&
+          !forzarOrdenCronologico) {
         data.sort((a, b) {
           final ra = _scoreRelevancia(a, terminosExpandidos);
           final rb = _scoreRelevancia(b, terminosExpandidos);
@@ -219,7 +227,10 @@ class JurisprudenciaService {
       }
 
       // Re-sort final: el fallback ilike pudo añadir filas fuera de orden.
-      if (data.length > 1 && textoBusqueda != null && textoBusqueda.isNotEmpty) {
+      if (data.length > 1 &&
+          textoBusqueda != null &&
+          textoBusqueda.isNotEmpty &&
+          !forzarOrdenCronologico) {
         data.sort((a, b) {
           final ra = _scoreRelevancia(a, terminosExpandidos);
           final rb = _scoreRelevancia(b, terminosExpandidos);

@@ -22,6 +22,7 @@ class SentenciaModel {
   final String urlTXT;
   final String urlFichaPenalex;
   final String contenidoCompleto;
+  final String expediente;
   final bool esJurisprudencia;
   final bool tienePDF;
   final DateTime? timestamp;
@@ -47,6 +48,7 @@ class SentenciaModel {
     required this.urlTXT,
     required this.urlFichaPenalex,
     required this.contenidoCompleto,
+    this.expediente = '',
     required this.esJurisprudencia,
     required this.tienePDF,
     this.timestamp,
@@ -102,6 +104,7 @@ class SentenciaModel {
       // avisa que la copia no está disponible.
       urlFichaPenalex: _urlR2(data['r2_html_key']),
       contenidoCompleto: data['extracto'] ?? '',
+      expediente: data['expediente'] ?? '',
       esJurisprudencia: data['es_jurisprudencia'] ?? false,
       tienePDF: data['tiene_pdf'] ?? false,
       timestamp: data['created_at'] != null 

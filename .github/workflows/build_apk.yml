@@ -114,6 +114,7 @@ jobs:
         id: build
         run: >
           flutter build apk --release
+          --target-platform android-arm64
           --dart-define=WORKER_URL=${{ secrets.WORKER_URL }}
           --dart-define=INGEST_TOKEN=${{ secrets.INGEST_TOKEN }}
 
