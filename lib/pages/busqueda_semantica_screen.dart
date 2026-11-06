@@ -85,12 +85,14 @@ class _BusquedaSemanticaScreenState extends State<BusquedaSemanticaScreen> {
 
         actions: [
           IconButton(
+color: AppColors.dorado,
             icon: const Icon(Icons.history),
             onPressed: () => _mostrarHistorial(),
             tooltip: 'Historial',
           ),
           IconButton(
             icon: const Icon(Icons.help_outline),
+            color: AppColors.dorado,
             onPressed: () => _mostrarAyuda(),
             tooltip: 'Ayuda',
           ),

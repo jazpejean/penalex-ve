@@ -29,7 +29,11 @@ class BuscadorJuridicoScreen extends StatefulWidget {
 }
 
 class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
-  
+  static const List<String> _nombresMes = [
+    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
+  ];
+
   final JurisprudenciaService _serviceSentencias = JurisprudenciaService();
   final LeyesRepositorioService _serviceLeyes = LeyesRepositorioService();
   final TextEditingController _searchController = TextEditingController();
@@ -46,6 +50,8 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
   String _tipoSeleccionado = 'Sentencias';
   String? _salaSeleccionada;
   int? _anioSeleccionado;
+  int? _mesSeleccionado;
+  int? _diaSeleccionado;
 
   // Leyes
   List<ResultadoLey> _leyes = [];
@@ -134,6 +140,8 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
       tipo: tipoParam,
       sala: _salaSeleccionada,
       anio: _anioSeleccionado,
+      mes: _mesSeleccionado,
+      dia: _diaSeleccionado,
       limit: 50,
       onError: (mensaje) {
         if (mounted && miSecuencia == _secuenciaBusqueda) {
@@ -1252,14 +1260,85 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                     runSpacing: 8,
                     children: [
                       chip('Todos', activo: _anioSeleccionado == null, onTap: () {
-                        setSheetState(() => _anioSeleccionado = null);
+                        setSheetState(() {
+                          _anioSeleccionado = null;
+                          _mesSeleccionado = null;
+                          _diaSeleccionado = null;
+                        });
                       }),
                       ...years.take(8).map((y) => chip('$y',
                           activo: _anioSeleccionado == y, onTap: () {
-                        setSheetState(() => _anioSeleccionado = y);
+                        setSheetState(() {
+                          _anioSeleccionado = y;
+                          // Cambiar de año invalida mes/día previos.
+                          _mesSeleccionado = null;
+                          _diaSeleccionado = null;
+                        });
                       })),
                     ],
                   ),
+                  // Mes: solo tiene sentido con año elegido.
+                  if (_anioSeleccionado != null) ...[
+                    const SizedBox(height: 16),
+                    Text(
+                      'Mes',
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: TemaGlobal.textoSecundario,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          chip('Todos', activo: _mesSeleccionado == null,
+                              onTap: () {
+                            setSheetState(() {
+                              _mesSeleccionado = null;
+                              _diaSeleccionado = null;
+                            });
+                          }),
+                          for (var m = 1; m <= 12; m++)
+                            chip(_nombresMes[m - 1],
+                                activo: _mesSeleccionado == m, onTap: () {
+                              setSheetState(() {
+                                _mesSeleccionado = m;
+                                _diaSeleccionado = null;
+                              });
+                            }),
+                        ],
+                      ),
+                    ),
+                  ],
+                  // Día: solo con año y mes elegidos.
+                  if (_anioSeleccionado != null && _mesSeleccionado != null) ...[
+                    const SizedBox(height: 16),
+                    Text(
+                      'Día',
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: TemaGlobal.textoSecundario,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          chip('Todos', activo: _diaSeleccionado == null,
+                              onTap: () {
+                            setSheetState(() => _diaSeleccionado = null);
+                          }),
+                          for (var d = 1; d <= 31; d++)
+                            chip('$d', activo: _diaSeleccionado == d,
+                                onTap: () {
+                              setSheetState(() => _diaSeleccionado = d);
+                            }),
+                        ],
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: 20),
                   Row(
                     children: [
@@ -1271,6 +1350,8 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                               _tipoSeleccionado = 'Sentencias';
                               _salaSeleccionada = null;
                               _anioSeleccionado = null;
+                              _mesSeleccionado = null;
+                              _diaSeleccionado = null;
                             });
                             _buscar();
                           },

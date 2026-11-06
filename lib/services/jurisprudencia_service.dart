@@ -119,20 +119,28 @@ class JurisprudenciaService {
         query = query.eq('sala', salaFiltro.toLowerCase());
       }
 
-      // Filtro por año/mes/día
+      // Filtro por año/mes/día. La columna fecha guarda texto en español
+      // ("9 de septiembre de 2004", día SIN cero inicial) y anio es texto
+      // ("2004") — ambos indexados. NUNCA usar "YYYY-MM-DD" ni ilike con
+      // "%" al inicio sobre fecha (timeout / cero resultados).
       if (diaFiltro != null && anioFiltro != null && mesFiltro != null) {
-        final m = mesFiltro.toString().padLeft(2, '0');
-        final d = diaFiltro.toString().padLeft(2, '0');
-        query = query.ilike('fecha', '$anioFiltro-$m-$d%');
+        // Día exacto: eq sobre el texto normalizado (indexado, rápido).
+        query = query.eq('fecha',
+            '$diaFiltro de ${_nombreMes(mesFiltro)} de $anioFiltro');
       } else if (mesFiltro != null && anioFiltro != null) {
-        final m = mesFiltro.toString().padLeft(2, '0');
-        query = query.ilike('fecha', '$anioFiltro-$m%');
+        // Mes completo: like con terminación exacta "%de septiembre de 2004"
+        // (indexado; el "%" inicial con nombre de mes matchea cualquier día).
+        query = query.like('fecha',
+            '%de ${_nombreMes(mesFiltro)} de $anioFiltro');
       } else if (anioFiltro != null) {
-        query = query.ilike('fecha', '%$anioFiltro%');
+        // Año: columna anio (texto), eq exacto indexado.
+        query = query.eq('anio', anioFiltro.toString());
       } else if (decadaFiltro != null) {
-        // Década: prefijo del año (ej. 2010 → "201%": 2010..2019).
-        query = query.ilike('fecha', '${decadaFiltro.toString().substring(0, 3)}%');
-        debugPrint('📅 Década seleccionada: ${decadaFiltro}s');
+        // Década: rango sobre la columna anio (gte + lt = AND), igual que
+        // la web. "2010" → anio >= 2010 y < 2020.
+        query = query
+            .gte('anio', decadaFiltro.toString())
+            .lt('anio', (decadaFiltro + 10).toString());
       }
 
       // Modo Avanzado: condiciones "campo operador valor(es)" (AND entre
@@ -427,17 +435,22 @@ class JurisprudenciaService {
   /// Meses (1-12) que tienen al menos una sentencia en [anio].
   Future<List<int>> obtenerMesesDisponibles(int anio) async {
     try {
+      // La columna fecha es texto en español ("9 de septiembre de 2004").
+      // El like con terminación "%de 2004" matchea cualquier mes de ese año
+      // (indexado, rápido); los nombres se extraen del texto.
       final resp = await _supabase
           .from('sentencias')
           .select('fecha')
-          .ilike('fecha', '$anio-%')
+          .like('fecha', '%de $anio')
           .limit(10000);
       final meses = <int>{};
       for (final r in resp as List) {
         final f = r['fecha'] as String?;
-        if (f != null && f.length >= 7) {
-          final m = int.tryParse(f.substring(5, 7));
-          if (m != null) meses.add(m);
+        if (f == null) continue;
+        final m = RegExp(r'^(\d{1,2}) de ([a-záéíóú]+) de ').firstMatch(f);
+        if (m != null) {
+          final num = _numeroMes(m.group(2)!);
+          if (num != null) meses.add(num);
         }
       }
       return meses.toList()..sort();
@@ -450,18 +463,22 @@ class JurisprudenciaService {
   /// Días (1-31) que tienen al menos una sentencia en [anio]/[mes].
   Future<List<int>> obtenerDiasDisponibles(int anio, int mes) async {
     try {
-      final prefijo = '$anio-${mes.toString().padLeft(2, '0')}-';
+      // La columna fecha es texto en español ("9 de septiembre de 2004").
+      // Un like con terminación "%de septiembre de 2004" matchea cualquier
+      // día de ese mes/año (indexado, rápido).
       final resp = await _supabase
           .from('sentencias')
           .select('fecha')
-          .ilike('fecha', '$prefijo%')
+          .like('fecha', '%de ${_nombreMes(mes)} de $anio')
           .limit(10000);
       final dias = <int>{};
       for (final r in resp as List) {
         final f = r['fecha'] as String?;
-        if (f != null && f.length >= 10) {
-          final d = int.tryParse(f.substring(8, 10));
-          if (d != null) dias.add(d);
+        if (f == null) continue;
+        final m = RegExp(r'^(\d{1,2}) de ').firstMatch(f);
+        if (m != null) {
+          final d = int.tryParse(m.group(1)!);
+          if (d != null && d >= 1 && d <= 31) dias.add(d);
         }
       }
       return dias.toList()..sort();
@@ -475,6 +492,21 @@ class JurisprudenciaService {
   Future<List<int>> obtenerAniosDisponibles() async {
     final currentYear = DateTime.now().year;
     return List.generate(currentYear - 1999, (index) => currentYear - index);
+  }
+
+  static const List<String> _nombresMeses = [
+    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre',
+  ];
+
+  /// Nombre en minúsculas del mes [1..12] ("septiembre" para 9).
+  String _nombreMes(int mes) => _nombresMeses[mes - 1];
+
+  /// Número [1..12] del mes dado por su nombre en español, o null.
+  int? _numeroMes(String nombre) {
+    final n = nombre.toLowerCase();
+    final i = _nombresMeses.indexOf(n);
+    return i >= 0 ? i + 1 : null;
   }
 
   /// Expande una consulta de búsqueda usando DeepSeek para obtener términos relacionados

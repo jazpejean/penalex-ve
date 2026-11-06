@@ -561,17 +561,20 @@ Analiza los documentos adjuntos y extrae información relevante para el document
 
         actions: [
           IconButton(
+color: AppColors.dorado,
             icon: const Icon(Icons.badge_outlined),
             onPressed: _mostrarMembrete,
             tooltip: 'Membrete / logo',
           ),
           IconButton(
             icon: const Icon(Icons.history),
+            color: AppColors.dorado,
             onPressed: _mostrarHistorial,
             tooltip: 'Historial',
           ),
           IconButton(
             icon: const Icon(Icons.refresh),
+            color: AppColors.dorado,
             onPressed: () {
               setState(() {
                 _chatService.reset();

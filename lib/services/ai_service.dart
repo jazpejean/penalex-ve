@@ -12,13 +12,13 @@ class AIService {
 
   // Configuración (debe estar en .env o Firebase Remote Config)
   static String _deepseekKey = '';
-  
+
   // Modelo activo (proveedor único: DeepSeek)
   static AIModel _modeloActivo = AIModel.deepseekChat;
-  
+
   // Cache de configuración
   static final Map<String, dynamic> _configCache = {};
-  
+
   /// Inicializa el servicio con la API key de DeepSeek desde .env
   static Future<void> inicializar() async {
     try {
@@ -32,7 +32,7 @@ class AIService {
       debugPrint('❌ Error inicializando AIService: $e');
     }
   }
-  
+
   /// Genera el análisis profundo estructurado de una sentencia:
   /// Problema Jurídico / Tesis de la Sala / Implicación Práctica.
   static Future<String> generarAnalisisJurisprudencial(
@@ -41,9 +41,11 @@ class AIService {
     final ratio = ratioDecidendi.length > 3500
         ? ratioDecidendi.substring(0, 3500)
         : ratioDecidendi;
-    final texto =
-        textoCompleto.length > 3500 ? textoCompleto.substring(0, 3500) : textoCompleto;
-    final prompt = 'Eres un analista de jurisprudencia penal venezolana. Analiza '
+    final texto = textoCompleto.length > 3500
+        ? textoCompleto.substring(0, 3500)
+        : textoCompleto;
+    final prompt =
+        'Eres un analista de jurisprudencia penal venezolana. Analiza '
         'la sentencia y redacta EXACTAMENTE tres secciones con formato markdown '
         '(títulos con "##"):\n\n'
         '## Problema Jurídico\n[plantea la cuestión jurídica que resuelve la sala]\n\n'
@@ -77,7 +79,8 @@ class AIService {
 
   /// Genera una "Tesis Jurisprudencial" (máxima penal de autoridad, estilo
   /// Rionero) de 3-5 líneas a partir del ratio decidendi.
-  static Future<String> generarTesisJurisprudencial(String ratioDecidendi) async {
+  static Future<String> generarTesisJurisprudencial(
+      String ratioDecidendi) async {
     await inicializar();
     final texto = ratioDecidendi.length > 3500
         ? ratioDecidendi.substring(0, 3500)
@@ -109,7 +112,7 @@ class AIService {
       throw Exception('Error procesando consulta: $e');
     }
   }
-  
+
   /// Interpreta una ley o artículo específico
   static Future<AIInterpretation> interpretarLey({
     required String tituloLey,
@@ -119,16 +122,16 @@ class AIService {
   }) async {
     try {
       debugPrint('🤖 Interpretando ley: $tituloLey - $articulo');
-      
+
       final String prompt = _construirPromptLey(
         tituloLey: tituloLey,
         articulo: articulo,
         textoArticulo: textoArticulo,
         contextoAdicional: contextoAdicional,
       );
-      
+
       final String respuesta = await _llamarIA(prompt);
-      
+
       return AIInterpretation(
         tipo: TipoInterpretacion.ley,
         titulo: '$tituloLey - $articulo',
@@ -141,7 +144,7 @@ class AIService {
       rethrow;
     }
   }
-  
+
   /// Interpreta una sentencia o jurisprudencia
   static Future<AIInterpretation> interpretarJurisprudencia({
     required String numeroSentencia,
@@ -152,7 +155,7 @@ class AIService {
   }) async {
     try {
       debugPrint('🤖 Interpretando jurisprudencia: $numeroSentencia');
-      
+
       final String prompt = _construirPromptJurisprudencia(
         numeroSentencia: numeroSentencia,
         tribunal: tribunal,
@@ -160,9 +163,9 @@ class AIService {
         doctrina: doctrina,
         preguntaEspecifica: preguntaEspecifica,
       );
-      
+
       final String respuesta = await _llamarIA(prompt);
-      
+
       return AIInterpretacion(
         tipo: TipoInterpretacion.jurisprudencia,
         titulo: numeroSentencia,
@@ -175,7 +178,7 @@ class AIService {
       rethrow;
     }
   }
-  
+
   /// Pregunta libre sobre un texto legal
   static Future<AIInterpretation> preguntarSobreTexto({
     required String titulo,
@@ -184,15 +187,15 @@ class AIService {
   }) async {
     try {
       debugPrint('🤖 Pregunta sobre: $titulo');
-      
+
       final String prompt = _construirPromptPregunta(
         titulo: titulo,
         texto: texto,
         pregunta: pregunta,
       );
-      
+
       final String respuesta = await _llamarIA(prompt);
-      
+
       return AIInterpretation(
         tipo: TipoInterpretacion.pregunta,
         titulo: pregunta,
@@ -205,7 +208,7 @@ class AIService {
       rethrow;
     }
   }
-  
+
   /// Resume un texto legal extenso
   static Future<AIInterpretation> resumirTexto({
     required String titulo,
@@ -214,15 +217,15 @@ class AIService {
   }) async {
     try {
       debugPrint('🤖 Resumiendo: $titulo');
-      
+
       final String prompt = _construirPromptResumen(
         titulo: titulo,
         texto: texto,
         nivel: nivel,
       );
-      
+
       final String respuesta = await _llamarIA(prompt);
-      
+
       return AIInterpretation(
         tipo: TipoInterpretacion.resumen,
         titulo: 'Resumen: $titulo',
@@ -235,7 +238,7 @@ class AIService {
       rethrow;
     }
   }
-  
+
   /// Llama a la API de IA (proveedor único: DeepSeek).
   static Future<String> _llamarIA(String prompt) async {
     debugPrint('🤖 Usando modelo: ${_modeloActivo.nombre}');
@@ -245,8 +248,9 @@ class AIService {
   /// DeepSeek (compatible con OpenAI API)
   static Future<String> _llamarDeepSeek(String prompt, String model) async {
     final url = Uri.parse('https://api.deepseek.com/v1/chat/completions');
-    
-    final response = await http.post(
+
+    final response = await http
+        .post(
       url,
       headers: {
         'Content-Type': 'application/json',
@@ -269,21 +273,24 @@ class AIService {
         'max_tokens': 2000,
         'stream': false,
       }),
-    ).timeout(
+    )
+        .timeout(
       const Duration(seconds: 120),
       onTimeout: () {
-        throw Exception('Timeout: La solicitud a DeepSeek tomó demasiado tiempo.');
+        throw Exception(
+            'Timeout: La solicitud a DeepSeek tomó demasiado tiempo.');
       },
     );
-    
+
     if (response.statusCode != 200) {
-      throw Exception('DeepSeek API error: ${response.statusCode} - ${response.body}');
+      throw Exception(
+          'DeepSeek API error: ${response.statusCode} - ${response.body}');
     }
-    
+
     final data = jsonDecode(utf8.decode(response.bodyBytes));
     return data['choices'][0]['message']['content'] as String;
   }
-  
+
   /// System prompt especializado en derecho penal venezolano
   static String _obtenerSystemPrompt() {
     return '''Eres un asistente legal especializado en derecho penal venezolano. Tu función es interpretar textos legales (leyes, artículos, sentencias) de manera clara, precisa y profesional.
@@ -311,7 +318,7 @@ RESTRICCIONES:
 
 CONTEXTO: Venezuela - Sistema penal continental - Código Penal Venezolano vigente''';
   }
-  
+
   /// Construye prompt para interpretar una ley
   static String _construirPromptLey({
     required String tituloLey,
@@ -336,7 +343,7 @@ Proporciona:
 4. Implicaciones prácticas
 5. Ejemplos de aplicación''';
   }
-  
+
   /// Construye prompt para interpretar jurisprudencia
   static String _construirPromptJurisprudencia({
     required String numeroSentencia,
@@ -365,7 +372,7 @@ Proporciona:
 4. Aplicabilidad práctica
 5. Precedentes relacionados (si los conoces)''';
   }
-  
+
   /// Construye prompt para pregunta libre
   static String _construirPromptPregunta({
     required String titulo,
@@ -382,7 +389,7 @@ $pregunta
 
 Responde de forma directa, precisa y fundamentada en el texto proporcionado.''';
   }
-  
+
   /// Construye prompt para resumir
   static String _construirPromptResumen({
     required String titulo,
@@ -394,7 +401,7 @@ Responde de forma directa, precisa y fundamentada en el texto proporcionado.''';
       NivelResumen.medio => 'Resumen conciso (máximo 250 palabras)',
       NivelResumen.detallado => 'Resumen detallado (máximo 500 palabras)',
     };
-    
+
     return '''Resume el siguiente texto legal:
 
 TÍTULO: $titulo
@@ -409,14 +416,14 @@ Incluye:
 2. Conceptos clave
 3. Conclusiones relevantes''';
   }
-  
+
   // ==================== CONFIGURACIÓN DINÁMICA ====================
-  
+
   /// Cambia el modelo activo
   static Future<void> setModelo(AIModel modelo) async {
     _modeloActivo = modelo;
     debugPrint('🔄 Modelo cambiado a: ${modelo.nombre}');
-    
+
     // Guardar en Firebase Remote Config o SharedPreferences
     try {
       await _guardarConfiguracion('modelo_activo', modelo.modelId);
@@ -424,13 +431,13 @@ Incluye:
       debugPrint('⚠️ No se pudo guardar configuración: $e');
     }
   }
-  
+
   /// Obtiene el modelo actual
   static AIModel getModeloActivo() => _modeloActivo;
-  
+
   /// Obtiene todos los modelos disponibles
   static List<AIModel> getModelosDisponibles() => AIModel.values;
-  
+
   /// Configura las API keys
   static void configurarKeys({
     String? deepseek,
@@ -438,7 +445,7 @@ Incluye:
     if (deepseek != null) _deepseekKey = deepseek;
     debugPrint('🔑 API Key DeepSeek actualizada');
   }
-  
+
   /// Carga configuración desde Firebase Remote Config
   static Future<void> cargarConfiguracion() async {
     try {
@@ -447,37 +454,39 @@ Incluye:
       // await remoteConfig.fetchAndActivate();
       // _deepseekKey = remoteConfig.getString('deepseek_key');
       // etc.
-      
+
       debugPrint('✅ Configuración cargada');
     } catch (e) {
       debugPrint('⚠️ Error cargando configuración: $e');
     }
   }
-  
+
   /// Guarda configuración
   static Future<void> _guardarConfiguracion(String key, String value) async {
     _configCache[key] = value;
     // Aquí puedes guardar en SharedPreferences o Firebase
   }
-  
+
   /// Obtiene información del modelo actual
   static Map<String, dynamic> getInfoModelo() => {
-    'nombre': _modeloActivo.nombre,
-    'proveedor': _modeloActivo.proveedor.nombre,
-    'costoPor1000Tokens': _modeloActivo.costoPor1000Tokens,
-    'descripcion': _modeloActivo.descripcion,
-    'velocidad': _modeloActivo.velocidad.name,
-    'calidad': _modeloActivo.calidad.name,
-  };
-  
+        'nombre': _modeloActivo.nombre,
+        'proveedor': _modeloActivo.proveedor.nombre,
+        'costoPor1000Tokens': _modeloActivo.costoPor1000Tokens,
+        'descripcion': _modeloActivo.descripcion,
+        'velocidad': _modeloActivo.velocidad.name,
+        'calidad': _modeloActivo.calidad.name,
+      };
+
   /// Verifica si un modelo está disponible (tiene API key DeepSeek).
   static bool isModeloDisponible(AIModel modelo) {
     return _deepseekKey != 'YOUR_DEEPSEEK_API_KEY' && _deepseekKey.isNotEmpty;
   }
-  
+
   /// Obtiene modelos disponibles (con API key configurada)
   static List<AIModel> getModelosConAPIKey() {
-    return AIModel.values.where((modelo) => isModeloDisponible(modelo)).toList();
+    return AIModel.values
+        .where((modelo) => isModeloDisponible(modelo))
+        .toList();
   }
 
   /// Chat legal conversacional con contexto
@@ -486,12 +495,19 @@ Incluye:
     String? contexto,
     Map<String, dynamic>? fuentes,
   }) async {
-    debugPrint('🤖 Chat conversacional - Pregunta: ${pregunta.length > 50 ? pregunta.substring(0, 50) : pregunta}...');
+    debugPrint(
+        '🤖 Chat conversacional - Pregunta: ${pregunta.length > 50 ? pregunta.substring(0, 50) : pregunta}...');
+
+    // Fuentes verificadas (jurisprudencia real + artículos de ley) que el
+    // asistente DEBE citar tal cual, sin inventar nada fuera de ellas.
+    final fuentesTexto =
+        fuentes == null || fuentes.isEmpty ? null : _formatearFuentes(fuentes);
 
     final prompt = '''
 Eres un asistente legal especializado en derecho penal venezolano. Responde de forma conversacional, clara y precisa.
 
 ${contexto != null ? 'CONTEXTO DE LA CONVERSACIÓN:\n$contexto\n' : ''}
+${fuentesTexto != null ? 'FUENTES VERIFICADAS (jurisprudencia real del TSJ y artículos de ley):\n$fuentesTexto\n\nREGLAS SOBRE LAS FUENTES:\n- Cita SOLO estas fuentes: copia la sentencia [Nº, Sala, fecha] y el artículo EXACTAMENTE como aparecen.\n- Si una sentencia indica "criterio reiterado desde X hasta Y en N sentencias", menciónalo.\n- Si un criterio está "superado" o un artículo "derogado/sustituido", ADVIÉRTELO explícitamente.\n- NO inventes sentencias, números, fechas ni artículos que no estén en las fuentes.\n- Si las fuentes no cubren la pregunta, dilo claramente.\n' : ''}
 
 PREGUNTA DEL USUARIO:
 $pregunta
@@ -516,6 +532,47 @@ RESPUESTA:''';
     );
   }
 
+  /// Formatea las fuentes (jurisprudencia/leyes/doctrina) para el prompt.
+  static String _formatearFuentes(Map<String, dynamic> fuentes) {
+    final buffer = StringBuffer();
+    final juris = fuentes['jurisprudencia'];
+    if (juris is List && juris.isNotEmpty) {
+      buffer.writeln('JURISPRUDENCIA:');
+      for (final j in juris.take(6)) {
+        if (j is Map) {
+          final criterio = j['criterio'] ?? '';
+          final sentencia = j['sentencia'] ?? '';
+          buffer.writeln('- ${j['estado'] == 'superado' ? "[SUPERADO] " : ""}'
+              '$criterio | $sentencia');
+        }
+      }
+    }
+    final leyes = fuentes['leyes'];
+    if (leyes is List && leyes.isNotEmpty) {
+      buffer.writeln('LEYES:');
+      for (final l in leyes.take(8)) {
+        if (l is Map) {
+          final titulo = l['tituloCorto'] ?? '';
+          final texto = (l['texto'] as String? ?? '');
+          buffer.writeln(
+              '- $titulo: ${texto.length > 400 ? texto.substring(0, 400) : texto}');
+        }
+      }
+    }
+    final doctrina = fuentes['doctrina'];
+    if (doctrina is List && doctrina.isNotEmpty) {
+      buffer.writeln('DOCTRINA ACADÉMICA:');
+      for (final d in doctrina.take(3)) {
+        if (d is Map) {
+          final cita = (d['cita'] as String? ?? '');
+          buffer.writeln('- ${d['autor'] ?? ''} — ${d['obra'] ?? ''}: '
+              '${cita.length > 300 ? cita.substring(0, 300) : cita}');
+        }
+      }
+    }
+    return buffer.toString().trim();
+  }
+
   /// Genera resumen de sentencia para cards (corto, 2-3 líneas)
   static Future<String> generarResumenSentencia({
     required String numeroSentencia,
@@ -525,7 +582,8 @@ RESPUESTA:''';
   }) async {
     debugPrint('📝 Generando resumen corto para sentencia: $numeroSentencia');
 
-    final prompt = '''Eres un asistente legal experto. Resume esta sentencia del TSJ en MÁXIMO 2 líneas (120 palabras):
+    final prompt =
+        '''Eres un asistente legal experto. Resume esta sentencia del TSJ en MÁXIMO 2 líneas (120 palabras):
 
 SENTENCIA: $numeroSentencia
 SALA: $sala
@@ -616,10 +674,13 @@ Mantén un lenguaje técnico pero accesible. Usa formato markdown.''';
       resumenEjecutivo: _extraerSeccion(respuesta, 'RESUMEN EJECUTIVO'),
       ratioDecidendi: _extraerSeccion(respuesta, 'RATIO DECIDENDI'),
       precedentesClave: _extraerSeccion(respuesta, 'PRECEDENTES Y CITAS CLAVE'),
-      argumentosPrincipales: _extraerSeccion(respuesta, 'ARGUMENTOS LEGALES PRINCIPALES'),
-      impactoAplicabilidad: _extraerSeccion(respuesta, 'IMPACTO Y APLICABILIDAD'),
+      argumentosPrincipales:
+          _extraerSeccion(respuesta, 'ARGUMENTOS LEGALES PRINCIPALES'),
+      impactoAplicabilidad:
+          _extraerSeccion(respuesta, 'IMPACTO Y APLICABILIDAD'),
       puntosCriticos: _extraerSeccion(respuesta, 'PUNTOS CRÍTICOS'),
-      recomendacionesPracticas: _extraerSeccion(respuesta, 'RECOMENDACIONES PRÁCTICAS'),
+      recomendacionesPracticas:
+          _extraerSeccion(respuesta, 'RECOMENDACIONES PRÁCTICAS'),
       analisisCompleto: respuesta,
       timestamp: DateTime.now(),
     );
@@ -658,10 +719,11 @@ Mantén un lenguaje técnico pero accesible. Usa formato markdown.''';
   static Future<List<String>> expandirQueryLegal(String query) async {
     try {
       await inicializar();
-      
+
       debugPrint('🔍 Expandiendo query: $query');
-      
-      final String prompt = '''Eres un asistente legal venezolano experto. El usuario busca jurisprudencias con: "$query"
+
+      final String prompt =
+          '''Eres un asistente legal venezolano experto. El usuario busca jurisprudencias con: "$query"
 
 Genera términos legales relevantes del Código Penal venezolano que deberían encontrar sentencias relacionadas.
 
@@ -680,22 +742,21 @@ Consulta: "$query"
 Términos legales:''';
 
       final respuesta = await _llamarDeepSeek(prompt, 'deepseek-chat');
-      
+
       // Parsear respuesta (eliminar espacios y separar por comas)
       final terminos = respuesta
           .split(',')
           .map((t) => t.trim().toLowerCase())
           .where((t) => t.isNotEmpty)
           .toList();
-      
+
       // Agregar el query original si no está incluido
       if (!terminos.contains(query.toLowerCase())) {
         terminos.insert(0, query.toLowerCase());
       }
-      
+
       debugPrint('✅ Query expandido: $query → ${terminos.join(", ")}');
       return terminos;
-      
     } catch (e) {
       debugPrint('❌ Error expandiendo query: $e');
       // Fallback: retornar solo el query original
@@ -718,9 +779,17 @@ enum ProveedorIA {
 
 /// Modelos de IA disponibles (solo DeepSeek: proveedor único de Penalex VE)
 enum AIModel {
-  deepseekChat('deepseek-chat', 'DeepSeek Chat', ProveedorIA.deepseek, 0.00014, 'Muy económico, buena calidad', Velocidad.rapida, Calidad.buena),
-  deepseekCoder('deepseek-coder', 'DeepSeek Coder', ProveedorIA.deepseek, 0.00014, 'Especializado en código/lógica', Velocidad.rapida, Calidad.buena);
-  
+  deepseekChat('deepseek-chat', 'DeepSeek Chat', ProveedorIA.deepseek, 0.00014,
+      'Muy económico, buena calidad', Velocidad.rapida, Calidad.buena),
+  deepseekCoder(
+      'deepseek-coder',
+      'DeepSeek Coder',
+      ProveedorIA.deepseek,
+      0.00014,
+      'Especializado en código/lógica',
+      Velocidad.rapida,
+      Calidad.buena);
+
   const AIModel(
     this.modelId,
     this.nombre,
@@ -730,7 +799,7 @@ enum AIModel {
     this.velocidad,
     this.calidad,
   );
-  
+
   final String modelId;
   final String nombre;
   final ProveedorIA proveedor;
@@ -738,7 +807,7 @@ enum AIModel {
   final String descripcion;
   final Velocidad velocidad;
   final Calidad calidad;
-  
+
   /// Costo estimado por interpretación (asumiendo ~1500 tokens)
   double get costoEstimadoPorInterpretacion => (costoPor1000Tokens * 1.5);
 }
@@ -780,7 +849,7 @@ class AIInterpretation {
   final String textoOriginal;
   final String interpretacion;
   final DateTime timestamp;
-  
+
   AIInterpretation({
     required this.tipo,
     required this.titulo,
@@ -788,27 +857,28 @@ class AIInterpretation {
     required this.interpretacion,
     required this.timestamp,
   });
-  
+
   Map<String, dynamic> toMap() => {
-    'tipo': tipo.name,
-    'titulo': titulo,
-    'textoOriginal': textoOriginal,
-    'interpretacion': interpretacion,
-    'timestamp': timestamp.toIso8601String(),
-  };
-  
-  factory AIInterpretation.fromMap(Map<String, dynamic> map) => AIInterpretation(
-    tipo: TipoInterpretacion.values.firstWhere((e) => e.name == map['tipo']),
-    titulo: map['titulo'] as String,
-    textoOriginal: map['textoOriginal'] as String,
-    interpretacion: map['interpretacion'] as String,
-    timestamp: DateTime.parse(map['timestamp'] as String),
-  );
+        'tipo': tipo.name,
+        'titulo': titulo,
+        'textoOriginal': textoOriginal,
+        'interpretacion': interpretacion,
+        'timestamp': timestamp.toIso8601String(),
+      };
+
+  factory AIInterpretation.fromMap(Map<String, dynamic> map) =>
+      AIInterpretation(
+        tipo:
+            TipoInterpretacion.values.firstWhere((e) => e.name == map['tipo']),
+        titulo: map['titulo'] as String,
+        textoOriginal: map['textoOriginal'] as String,
+        interpretacion: map['interpretacion'] as String,
+        timestamp: DateTime.parse(map['timestamp'] as String),
+      );
 }
 
 // Alias para compatibilidad
 typedef AIInterpretacion = AIInterpretation;
-
 
 /// Modelo de análisis profundo de sentencia
 class AnalisisProfundoSentencia {
@@ -837,15 +907,15 @@ class AnalisisProfundoSentencia {
   });
 
   Map<String, dynamic> toMap() => {
-    'numeroSentencia': numeroSentencia,
-    'resumenEjecutivo': resumenEjecutivo,
-    'ratioDecidendi': ratioDecidendi,
-    'precedentesClave': precedentesClave,
-    'argumentosPrincipales': argumentosPrincipales,
-    'impactoAplicabilidad': impactoAplicabilidad,
-    'puntosCriticos': puntosCriticos,
-    'recomendacionesPracticas': recomendacionesPracticas,
-    'analisisCompleto': analisisCompleto,
-    'timestamp': timestamp.toIso8601String(),
-  };
+        'numeroSentencia': numeroSentencia,
+        'resumenEjecutivo': resumenEjecutivo,
+        'ratioDecidendi': ratioDecidendi,
+        'precedentesClave': precedentesClave,
+        'argumentosPrincipales': argumentosPrincipales,
+        'impactoAplicabilidad': impactoAplicabilidad,
+        'puntosCriticos': puntosCriticos,
+        'recomendacionesPracticas': recomendacionesPracticas,
+        'analisisCompleto': analisisCompleto,
+        'timestamp': timestamp.toIso8601String(),
+      };
 }

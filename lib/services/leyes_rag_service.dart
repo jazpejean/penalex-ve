@@ -6,6 +6,9 @@
 library;
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import '../models/ley_estructurada.dart';
 import 'deepseek_service.dart';
@@ -18,13 +21,69 @@ class LeyesRAGService {
 
   final LeyesRepositorioService _repo = LeyesRepositorioService();
 
+  /// URL del worker penalex-auth-bridge (misma que usa el puente de identidad).
+  static String get _workerUrl => dotenv.env['BRIDGE_URL'] ?? '';
+
+  /// Búsqueda semántica de artículos en Qdrant (colección articulos_vectores)
+  /// vía el worker. Devuelve [] si no hay worker configurado o falla.
+  Future<List<ResultadoLey>> _buscarSemantica(String consulta,
+      {int limite = 6}) async {
+    final url = _workerUrl;
+    if (url.isEmpty) return [];
+    try {
+      final res = await http
+          .post(
+            Uri.parse('$url/buscar/semantica'),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({
+              'query': consulta,
+              'categoria': 'articulo',
+              'limite': limite,
+            }),
+          )
+          .timeout(const Duration(seconds: 12));
+      if (res.statusCode != 200) return [];
+      final body = jsonDecode(res.body) as Map<String, dynamic>;
+      final resultados = (body['resultados'] as List<dynamic>? ?? [])
+          .cast<Map<String, dynamic>>();
+      return resultados.map((r) {
+        final reg = RegistroArticulo(
+          slug: (r['ley'] as String? ?? '').toLowerCase().replaceAll(' ', '-'),
+          leyNombre: r['ley'] as String? ?? '',
+          titulo: r['titulo'] as String?,
+          capitulo: r['capitulo'] as String?,
+          identificador: r['articulo'] as String? ?? '',
+          tipoNorma: 'Artículo',
+          encabezado: r['encabezado'] as String?,
+          texto: r['texto'] as String? ?? '',
+        );
+        return ResultadoLey(
+          registro: reg,
+          puntaje: (r['score'] as num? ?? 0).toDouble(),
+          extracto: (r['encabezado'] as String? ?? ''),
+        );
+      }).toList();
+    } catch (e) {
+      debugPrint('⚠️ semántica leyes falló: $e');
+      return [];
+    }
+  }
+
   /// Recupera artículos relevantes a [consulta] (parte "Retrieval" del RAG).
+  ///
+  /// Semántica Qdrant primero (artículos_vectores, bge-m3); si no hay worker
+  /// o no devuelve resultados, fallback al scoring de keywords local.
   Future<List<ResultadoLey>> buscarRelevantes(
     String consulta, {
     int limite = 6,
   }) async {
     if (consulta.trim().isEmpty) return [];
     try {
+      final sem = await _buscarSemantica(consulta, limite: limite);
+      if (sem.isNotEmpty) {
+        debugPrint('⚖️ RAG leyes semántica: ${sem.length} artículos');
+        return sem;
+      }
       return await _repo.buscar(consulta, limite: limite);
     } catch (e) {
       debugPrint('❌ LeyesRAGService.buscarRelevantes: $e');
@@ -40,9 +99,16 @@ class LeyesRAGService {
       final r = resultados[i];
       buffer.writeln('FUENTE NORMATIVA ${i + 1}:');
       buffer.writeln('- Ley: ${r.registro.leyNombre}');
-      if (r.registro.titulo != null) buffer.writeln('- Título: ${r.registro.titulo}');
-      if (r.registro.capitulo != null) buffer.writeln('- Capítulo: ${r.registro.capitulo}');
-      if (r.registro.encabezado != null) buffer.writeln('- ${r.registro.tipoNorma} ${r.registro.identificador}: ${r.registro.encabezado}');
+      if (r.registro.titulo != null) {
+        buffer.writeln('- Título: ${r.registro.titulo}');
+      }
+      if (r.registro.capitulo != null) {
+        buffer.writeln('- Capítulo: ${r.registro.capitulo}');
+      }
+      if (r.registro.encabezado != null) {
+        buffer.writeln(
+            '- ${r.registro.tipoNorma} ${r.registro.identificador}: ${r.registro.encabezado}');
+      }
       buffer.writeln('- Texto: ${r.registro.texto}');
       buffer.writeln();
     }
@@ -53,7 +119,8 @@ class LeyesRAGService {
   ///
   /// Si se pasa [contextoAdicional] (p. ej. el texto de un artículo ya
   /// seleccionado), se antepone a las fuentes recuperadas.
-  Future<RespuestaLey> responder(String consulta, {String? contextoAdicional}) async {
+  Future<RespuestaLey> responder(String consulta,
+      {String? contextoAdicional}) async {
     final resultados = await buscarRelevantes(consulta);
     var contexto = construirContexto(resultados);
     if (contextoAdicional != null && contextoAdicional.trim().isNotEmpty) {

@@ -5,12 +5,13 @@ import 'template_service.dart';
 import 'ai_service.dart';
 import 'ai_analytics_service.dart';
 import 'rag_service.dart';
+import 'leyes_rag_service.dart';
 import 'leyes_repositorio_service.dart';
 import 'catalogo_documentos.dart';
 
 class DocumentChatService {
   final TemplateService _templateService = TemplateService();
-  
+
   String _currentTemplateId = '';
   String _procesalPhase = '';
   Map<String, String> _collectedData = {};
@@ -35,7 +36,8 @@ class DocumentChatService {
     final consulta =
         userMessage.length > 500 ? userMessage.substring(0, 500) : userMessage;
     final contextoLegal = await _obtenerLeyesContexto(consulta);
-    final contextoJurisprudencial = await _obtenerJurisprudenciaContexto(consulta);
+    final contextoJurisprudencial =
+        await _obtenerJurisprudenciaContexto(consulta);
 
     final prompt = 'Redacta un escrito/documento legal venezolano a partir de '
         'la siguiente indicación del usuario. Determina el tipo de documento y '
@@ -65,13 +67,14 @@ class DocumentChatService {
     // 1. Clasificación por lenguaje natural (catálogo + requisitos del COPP)
     final tipoCatalogo = CatalogoDocumentos.clasificar(userMessage);
     if (tipoCatalogo != null) {
-      return await _iniciarDocumentoCatalogo(tipoCatalogo, promptOriginal: userMessage);
+      return await _iniciarDocumentoCatalogo(tipoCatalogo,
+          promptOriginal: userMessage);
     }
 
     // 2. Buscar template JSON por palabras clave
     final templates = _templateService.getAllTemplates();
     DocumentTemplate? selectedTemplate;
-    
+
     // Buscar coincidencias por palabras clave
     final messageLower = userMessage.toLowerCase();
     for (final template in templates) {
@@ -82,20 +85,23 @@ class DocumentChatService {
         break;
       }
     }
-    
+
     // Si no encuentra coincidencia directa, usar palabras clave comunes
     if (selectedTemplate == null) {
-      if (messageLower.contains('acusatorio') || messageLower.contains('acusación')) {
+      if (messageLower.contains('acusatorio') ||
+          messageLower.contains('acusación')) {
         selectedTemplate = templates.firstWhere(
           (t) => t.name.contains('Acusatorio'),
           orElse: () => templates.first,
         );
-      } else if (messageLower.contains('apelación') || messageLower.contains('recurso')) {
+      } else if (messageLower.contains('apelación') ||
+          messageLower.contains('recurso')) {
         selectedTemplate = templates.firstWhere(
           (t) => t.name.contains('Apelación'),
           orElse: () => templates.first,
         );
-      } else if (messageLower.contains('libertad') || messageLower.contains('excarcelación')) {
+      } else if (messageLower.contains('libertad') ||
+          messageLower.contains('excarcelación')) {
         selectedTemplate = templates.firstWhere(
           (t) => t.name.contains('Libertad'),
           orElse: () => templates.first,
@@ -110,14 +116,15 @@ class DocumentChatService {
           (t) => t.name.contains('Nulidad'),
           orElse: () => templates.first,
         );
-      } else if (messageLower.contains('oposición') || messageLower.contains('medida cautelar')) {
+      } else if (messageLower.contains('oposición') ||
+          messageLower.contains('medida cautelar')) {
         selectedTemplate = templates.firstWhere(
           (t) => t.name.contains('Oposición'),
           orElse: () => templates.first,
         );
       }
     }
-    
+
     // Si no hay tipo ni template reconocido, generar un documento libre
     // a partir del prompt (sin entrar en un bucle de preguntas).
     if (selectedTemplate == null) {
@@ -132,9 +139,9 @@ class DocumentChatService {
     _procesalPhase = selectedTemplate.category;
 
     return '✅ Perfecto, vamos a redactar un **${selectedTemplate.name}**.\n\n'
-           '${selectedTemplate.description ?? ''}\n\n'
-           '━━━━━━━━━━━━━━━━━━━━━━\n\n'
-           '${_generateNextQuestion(selectedTemplate)}';
+        '${selectedTemplate.description ?? ''}\n\n'
+        '━━━━━━━━━━━━━━━━━━━━━━\n\n'
+        '${_generateNextQuestion(selectedTemplate)}';
   }
 
   Future<String> processUserResponse(String userMessage) async {
@@ -161,11 +168,11 @@ class DocumentChatService {
     // Guardar respuesta del campo actual
     if (_currentFieldIndex < _remainingFields.length) {
       final currentField = _remainingFields[_currentFieldIndex];
-      
+
       // Extraer valor con IA si es necesario
       String extractedValue = await _extractValue(userMessage, currentField);
       _collectedData[currentField.key] = extractedValue;
-      
+
       _currentFieldIndex++;
     }
 
@@ -356,7 +363,8 @@ class DocumentChatService {
           final texto = '${art.encabezado ?? ''} ${art.texto}'.trim();
           final corto =
               texto.length > 600 ? '${texto.substring(0, 600)}...' : texto;
-          buffer.writeln('- Art. ${art.identificador} ${ref.leyNombre}: $corto');
+          buffer
+              .writeln('- Art. ${art.identificador} ${ref.leyNombre}: $corto');
         }
       } catch (e) {
         debugPrint('⚠️ No se pudo recuperar base legal ${ref.leyNombre}: $e');
@@ -382,50 +390,50 @@ class DocumentChatService {
     final consultaRAG = '${tipo.nombre} $datos';
     final corta =
         consultaRAG.length > 500 ? consultaRAG.substring(0, 500) : consultaRAG;
-    final contextoJurisprudencial =
-        await _obtenerJurisprudenciaContexto(corta);
+    final contextoJurisprudencial = await _obtenerJurisprudenciaContexto(corta);
 
     final rolInstruccion = tipo.rol == 'juez'
         ? 'Es una DECISIÓN JUDICIAL. Usa la estructura de una decisión venezolana: '
-              'encabezado "REPÚBLICA BOLIVARIANA DE VENEZUELA" / "PODER JUDICIAL", '
-              'tribunal, fecha, secciones en MAYÚSCULAS (IDENTIFICACIÓN DE LAS PARTES, '
-              'DE LOS HECHOS, CONSIDERACIONES PARA DECIDIR, DISPOSITIVA) y cierre con firmas.'
+            'encabezado "REPÚBLICA BOLIVARIANA DE VENEZUELA" / "PODER JUDICIAL", '
+            'tribunal, fecha, secciones en MAYÚSCULAS (IDENTIFICACIÓN DE LAS PARTES, '
+            'DE LOS HECHOS, CONSIDERACIONES PARA DECIDIR, DISPOSITIVA) y cierre con firmas.'
         : 'Es un ESCRITO/SOLICITUD de parte. Usa la estructura forense venezolana: '
-              'encabezado "Ciudadano(a) Juez del Tribunal... Su despacho.-" dirigido a '
-              '"${tipo.destinatarioEfectivo}", identificación de las partes, '
-              'capítulos (DE LOS HECHOS, DEL DERECHO, PETITORIO) y firma del abogado.';
+            'encabezado "Ciudadano(a) Juez del Tribunal... Su despacho.-" dirigido a '
+            '"${tipo.destinatarioEfectivo}", identificación de las partes, '
+            'capítulos (DE LOS HECHOS, DEL DERECHO, PETITORIO) y firma del abogado.';
 
     final jurisprudenciaSection = contextoJurisprudencial.isNotEmpty
         ? '\n\nJURISPRUDENCIA REAL DEL TSJ DISPONIBLE PARA CITAR:\n'
-              '$contextoJurisprudencial\n\n'
-              'INSTRUCCIONES DE JURISPRUDENCIA (CRÍTICAS — cero margen de error):\n'
-              '- Cuando el contexto indique "Sentencia citada (fuente del criterio)", '
-              'copia ESA referencia EXACTA tal cual (número, fecha, sala, ponente). '
-              'NO la cambies, NO la reformules, NO la completes con datos que no '
-              'aparezcan en el contexto.\n'
-              '- Cita TEXTUALMENTE (entre comillas) SOLO el texto de "Cita textual" '
-              'del contexto. Nunca atribuyas un criterio a una sentencia distinta '
-              'de la indicada.\n'
-              '- Si NO hay sentencia citada en el contexto, NO inventes número, '
-              'fecha ni ponente: cita el criterio sin atribución a sentencia '
-              'específica.\n'
-              '- NO inventes sentencias, números, fechas, ponentes ni criterios.\n'
-               'INSTRUCCIONES DE DOCTRINA ACADÉMICA (CRÍTICAS — cero margen de error):\n'
-               '- Si el contexto incluye "DOCTRINA ACADÉMICA", puedes fundamentar '
-               'con esas obras: cita SOLO el autor, la obra y la página que '
-               'aparezcan EXACTAMENTE en el contexto.\n'
-               '- Formato de cita: "Autor, Nombre de la Obra, p. X" (usa la página '
-               'solo si el contexto la indica; si dice "(no indicada)", omite la página).\n'
-               '- NO inventes autores, obras ni páginas que no estén en el contexto '
-               'de doctrina académica.'
+            '$contextoJurisprudencial\n\n'
+            'INSTRUCCIONES DE JURISPRUDENCIA (CRÍTICAS — cero margen de error):\n'
+            '- Cuando el contexto indique "Sentencia citada (fuente del criterio)", '
+            'copia ESA referencia EXACTA tal cual (número, fecha, sala, ponente). '
+            'NO la cambies, NO la reformules, NO la completes con datos que no '
+            'aparezcan en el contexto.\n'
+            '- Cita TEXTUALMENTE (entre comillas) SOLO el texto de "Cita textual" '
+            'del contexto. Nunca atribuyas un criterio a una sentencia distinta '
+            'de la indicada.\n'
+            '- Si NO hay sentencia citada en el contexto, NO inventes número, '
+            'fecha ni ponente: cita el criterio sin atribución a sentencia '
+            'específica.\n'
+            '- NO inventes sentencias, números, fechas, ponentes ni criterios.\n'
+            'INSTRUCCIONES DE DOCTRINA ACADÉMICA (CRÍTICAS — cero margen de error):\n'
+            '- Si el contexto incluye "DOCTRINA ACADÉMICA", puedes fundamentar '
+            'con esas obras: cita SOLO el autor, la obra y la página que '
+            'aparezcan EXACTAMENTE en el contexto.\n'
+            '- Formato de cita: "Autor, Nombre de la Obra, p. X" (usa la página '
+            'solo si el contexto la indica; si dice "(no indicada)", omite la página).\n'
+            '- NO inventes autores, obras ni páginas que no estén en el contexto '
+            'de doctrina académica.'
         : '';
 
     final requisitosSection = _requisitosTexto.isNotEmpty
         ? '\n\nREQUISITOS LEGALES (deben cumplirse/verificarse en el documento):\n'
-              '$_requisitosTexto\n'
+            '$_requisitosTexto\n'
         : '';
 
-    final prompt = 'Redacta un(a) **${tipo.nombre}** con base en la ley venezolana vigente.\n'
+    final prompt =
+        'Redacta un(a) **${tipo.nombre}** con base en la ley venezolana vigente.\n'
         '$rolInstruccion\n'
         '\nDATOS DEL CASO:\n'
         '${datos.isEmpty ? '(No se proporcionaron datos; usa marcadores [DATOS] donde corresponda)' : datos}'
@@ -467,9 +475,10 @@ class DocumentChatService {
     }
 
     // Para campos complejos, usar IA para extraer
-    final prompt = 'Del siguiente texto, extrae SOLO el valor para "${field.label}": "$userMessage". '
-                   'Responde únicamente con el valor extraído, sin explicaciones.';
-    
+    final prompt =
+        'Del siguiente texto, extrae SOLO el valor para "${field.label}": "$userMessage". '
+        'Responde únicamente con el valor extraído, sin explicaciones.';
+
     try {
       return await _askAI(prompt);
     } catch (e) {
@@ -519,31 +528,45 @@ class DocumentChatService {
 
     final leyesSeccion = contextoLegal.isNotEmpty
         ? '\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n'
-              '📚 **LEYES CONSULTADAS:**\n\n'
-              '$contextoLegal'
+            '📚 **LEYES CONSULTADAS:**\n\n'
+            '$contextoLegal'
         : '';
 
     final fuentesSeccion = contextoJurisprudencial.isNotEmpty
         ? '\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n'
-              '⚖️ **JURISPRUDENCIA DE RESPALDO CONSULTADA (TSJ):**\n\n'
-              '$contextoJurisprudencial'
+            '⚖️ **JURISPRUDENCIA DE RESPALDO CONSULTADA (TSJ):**\n\n'
+            '$contextoJurisprudencial'
         : '';
 
     return '✅ Documento generado:\n\n'
-           '━━━━━━━━━━━━━━━━━━━━━━\n\n'
-           '$improvedDocument$leyesSeccion$fuentesSeccion\n\n'
-           '━━━━━━━━━━━━━━━━━━━━━━\n\n'
-           '⚠️ **IMPORTANTE**: Este documento fue generado por IA. '
-           'Debe ser revisado y ajustado por un abogado antes de presentarlo ante tribunales.\n\n'
-           '¿Deseas redactar otro documento?';
+        '━━━━━━━━━━━━━━━━━━━━━━\n\n'
+        '$improvedDocument$leyesSeccion$fuentesSeccion\n\n'
+        '━━━━━━━━━━━━━━━━━━━━━━\n\n'
+        '⚠️ **IMPORTANTE**: Este documento fue generado por IA. '
+        'Debe ser revisado y ajustado por un abogado antes de presentarlo ante tribunales.\n\n'
+        '¿Deseas redactar otro documento?';
   }
 
   bool _esRevision(String msg) {
     final m = msg.toLowerCase();
     const claves = [
-      'cambia', 'cambie', 'quita', 'quite', 'elimina', 'agrega', 'agregue',
-      'añade', 'corrige', 'corrija', 'modifica', 'modifique', 'sustituye',
-      'sustituya', 'ajusta', 'ajuste', 'pon ',
+      'cambia',
+      'cambie',
+      'quita',
+      'quite',
+      'elimina',
+      'agrega',
+      'agregue',
+      'añade',
+      'corrige',
+      'corrija',
+      'modifica',
+      'modifique',
+      'sustituye',
+      'sustituya',
+      'ajusta',
+      'ajuste',
+      'pon ',
     ];
     return claves.any((c) => m.contains(c));
   }
@@ -595,7 +618,8 @@ class DocumentChatService {
   Future<String> _obtenerLeyesContexto(String consulta) async {
     if (consulta.trim().isEmpty) return '';
     try {
-      final resultados = await LeyesRepositorioService().buscar(consulta, limite: 6);
+      final resultados =
+          await LeyesRAGService().buscarRelevantes(consulta, limite: 6);
       if (resultados.isEmpty) return '';
       final buffer = StringBuffer();
       for (final r in resultados) {
@@ -623,36 +647,37 @@ class DocumentChatService {
   }) async {
     final jurisprudenciaSection = jurisprudenciaContexto.isNotEmpty
         ? '\n\nJURISPRUDENCIA REAL DEL TSJ DISPONIBLE PARA CITAR:\n'
-              '$jurisprudenciaContexto\n\n'
-              'INSTRUCCIONES DE JURISPRUDENCIA (CRÍTICAS — cero margen de error):\n'
-              '- Si el documento requiere fundamento jurisprudencial, cita SOLO '
-              'estas sentencias reales.\n'
-              '- Cuando el contexto indique "Sentencia citada (fuente del criterio)", '
-              'copia ESA referencia EXACTA tal cual (número, fecha, sala, ponente). '
-              'NO la cambies ni la completes con datos ausentes.\n'
-              '- Cita TEXTUALMENTE (entre comillas) el criterio de la sala con el '
-              'texto exacto del contexto, sin atribuirlo a otra sentencia.\n'
-              '- Si no hay sentencia citada, cita el criterio sin número de '
-              'sentencia (solo "la Sala de Casación Penal ha sostenido que...").\n'
-              '- NO inventes sentencias, números, ponentes, fechas ni criterios.\n'
-              '- Incorpóralas en la fundamentación del escrito cuando sea pertinente.'
+            '$jurisprudenciaContexto\n\n'
+            'INSTRUCCIONES DE JURISPRUDENCIA (CRÍTICAS — cero margen de error):\n'
+            '- Si el documento requiere fundamento jurisprudencial, cita SOLO '
+            'estas sentencias reales.\n'
+            '- Cuando el contexto indique "Sentencia citada (fuente del criterio)", '
+            'copia ESA referencia EXACTA tal cual (número, fecha, sala, ponente). '
+            'NO la cambies ni la completes con datos ausentes.\n'
+            '- Cita TEXTUALMENTE (entre comillas) el criterio de la sala con el '
+            'texto exacto del contexto, sin atribuirlo a otra sentencia.\n'
+            '- Si no hay sentencia citada, cita el criterio sin número de '
+            'sentencia (solo "la Sala de Casación Penal ha sostenido que...").\n'
+            '- NO inventes sentencias, números, ponentes, fechas ni criterios.\n'
+            '- Incorpóralas en la fundamentación del escrito cuando sea pertinente.'
         : '';
 
     final leyesSection = leyesContexto.isNotEmpty
         ? '\n\nLEYES DISPONIBLES PARA CITAR:\n'
-              '$leyesContexto\n\n'
-              'INSTRUCCIONES DE LEYES:\n'
-              '- Fundamenta el escrito en estos artículos reales, citándolos '
-              'correctamente (ley y artículo).\n'
-              '- Usa SOLO artículos vigentes (no derogados ni reformados).\n'
-              '- NO inventes artículos ni números.\n'
-              '- Incorpóralos en la fundamentación jurídica del escrito.'
+            '$leyesContexto\n\n'
+            'INSTRUCCIONES DE LEYES:\n'
+            '- Fundamenta el escrito en estos artículos reales, citándolos '
+            'correctamente (ley y artículo).\n'
+            '- Usa SOLO artículos vigentes (no derogados ni reformados).\n'
+            '- NO inventes artículos ni números.\n'
+            '- Incorpóralos en la fundamentación jurídica del escrito.'
         : '';
 
-    final prompt = 'Mejora la redacción legal de este $documentType venezolano. '
-                   'Mantén el contenido pero perfecciona el lenguaje jurídico, la estructura y la coherencia. '
-                   'NO inventes información nueva, solo mejora la redacción:'
-                   '$leyesSection$jurisprudenciaSection\n\n$document';
+    final prompt =
+        'Mejora la redacción legal de este $documentType venezolano. '
+        'Mantén el contenido pero perfecciona el lenguaje jurídico, la estructura y la coherencia. '
+        'NO inventes información nueva, solo mejora la redacción:'
+        '$leyesSection$jurisprudenciaSection\n\n$document';
 
     try {
       return await _askAI(prompt);
@@ -670,10 +695,10 @@ class DocumentChatService {
         try {
           // Inicializar AIService si no está inicializado
           await AIService.inicializar();
-          
+
           // Usar el método de consulta general del AIService
           final response = await AIService.procesarConsultaGeneral(prompt);
-          
+
           return response;
         } catch (e) {
           debugPrint('❌ Error en _askAI: $e');

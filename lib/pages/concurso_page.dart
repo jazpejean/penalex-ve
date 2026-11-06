@@ -487,14 +487,8 @@ const SizedBox(height: 16),
                       ),
                       child: Container(
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: <Color>[
-                              AppColors.azulMarino,
-                              AppColors.tarjeta,
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
+                          // Azul marino sólido (sin degradado a blanco), paleta acordada.
+                          color: AppColors.azulMarino,
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: Padding(

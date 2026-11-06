@@ -279,9 +279,8 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [AppColors.azulMarino, AppColors.tarjeta],
-        ),
+        // Azul marino sólido (sin degradado a blanco), según paleta acordada.
+        color: AppColors.azulMarino,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(

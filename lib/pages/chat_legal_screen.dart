@@ -787,6 +787,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
 
         actions: [
           IconButton(
+color: AppColors.dorado,
             icon: const Icon(Icons.history),
             onPressed: _mostrarHistorial,
             tooltip: 'Ver conversaciones',

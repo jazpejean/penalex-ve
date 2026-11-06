@@ -7,6 +7,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/chat_message.dart';
 import 'ai_service.dart';
 import 'ai_analytics_service.dart';
+import 'leyes_rag_service.dart';
+import 'rag_service.dart';
 
 class ChatService {
   static final _supabase = Supabase.instance.client;
@@ -21,14 +23,18 @@ class ChatService {
       final userId = _currentUserId;
       if (userId == null) throw Exception('Usuario no autenticado');
 
-      final response = await _supabase.from('chat_conversaciones').insert({
-        'user_id': userId,
-        'title': titulo ?? 'Nueva conversación',
-        'created_at': DateTime.now().toIso8601String(),
-        'updated_at': DateTime.now().toIso8601String(),
-        'message_count': 0,
-        'is_pinned': false,
-      }).select().single();
+      final response = await _supabase
+          .from('chat_conversaciones')
+          .insert({
+            'user_id': userId,
+            'title': titulo ?? 'Nueva conversación',
+            'created_at': DateTime.now().toIso8601String(),
+            'updated_at': DateTime.now().toIso8601String(),
+            'message_count': 0,
+            'is_pinned': false,
+          })
+          .select()
+          .single();
 
       debugPrint('✅ Conversación creada: ${response['id']}');
       return ChatConversation.fromMap(response);
@@ -48,7 +54,8 @@ class ChatService {
         .stream(primaryKey: ['id'])
         .eq('user_id', userId)
         .order('updated_at', ascending: false)
-        .map((data) => data.map((item) => ChatConversation.fromMap(item)).toList());
+        .map((data) =>
+            data.map((item) => ChatConversation.fromMap(item)).toList());
   }
 
   /// Obtiene las conversaciones del usuario (fetch único, sin realtime).
@@ -64,9 +71,7 @@ class ChatService {
           .filter('message_count', 'gt', 0)
           .order('updated_at', ascending: false);
 
-      return response
-          .map((item) => ChatConversation.fromMap(item))
-          .toList();
+      return response.map((item) => ChatConversation.fromMap(item)).toList();
     } catch (e) {
       debugPrint('❌ Error obteniendo conversaciones: $e');
       return [];
@@ -74,7 +79,8 @@ class ChatService {
   }
 
   /// Obtiene mensajes de una conversación
-  static Future<List<ChatMessage>> obtenerMensajes(String conversationId) async {
+  static Future<List<ChatMessage>> obtenerMensajes(
+      String conversationId) async {
     try {
       final response = await _supabase
           .from('chat_messages')
@@ -121,9 +127,8 @@ class ChatService {
           .uploadBinary(storagePath, file);
 
       // Obtener URL pública
-      final publicUrl = _supabase.storage
-          .from('chat-files')
-          .getPublicUrl(storagePath);
+      final publicUrl =
+          _supabase.storage.from('chat-files').getPublicUrl(storagePath);
 
       debugPrint('✅ Archivo subido: $publicUrl');
       return publicUrl;
@@ -210,6 +215,45 @@ class ChatService {
     }
   }
 
+  /// Recupera fuentes verificadas (jurisprudencia + leyes) para el chat.
+  static Future<Map<String, dynamic>> _recuperarFuentes(String consulta) async {
+    if (consulta.trim().isEmpty) return {};
+    try {
+      final juris = await RAGService.obtenerContextoYFuentes(
+        consulta: consulta,
+        limit: 4,
+      );
+      final leyes =
+          await LeyesRAGService().buscarRelevantes(consulta, limite: 4);
+      final jurisprudencia = <Map<String, dynamic>>[];
+      if (juris.fuentes.isNotEmpty) {
+        for (final f in juris.fuentes) {
+          jurisprudencia.add({
+            'criterio': f.excerpt ?? '',
+            'sentencia': f.title,
+            'estado': 'vigente',
+          });
+        }
+      }
+      final leyesList = <Map<String, dynamic>>[];
+      for (final r in leyes) {
+        leyesList.add({
+          'tituloCorto': r.tituloCorto,
+          'texto': '${r.registro.leyNombre}: '
+                  '${r.registro.encabezado ?? ''} ${r.registro.texto}'
+              .trim(),
+        });
+      }
+      return {
+        'jurisprudencia': jurisprudencia,
+        'leyes': leyesList,
+      };
+    } catch (e) {
+      debugPrint('⚠️ chat fuentes no disponible: $e');
+      return {};
+    }
+  }
+
   /// Genera respuesta del asistente con DeepSeek
   static Future<ChatMessage> generarRespuestaAsistente({
     required String conversationId,
@@ -236,21 +280,30 @@ class ChatService {
           final contexto = _construirContexto(historial);
           final ultimoMensaje = historial.lastWhere((m) => m.isUser).content;
 
+          // Fuentes verificadas: jurisprudencia real + leyes, recuperadas
+          // en paralelo (RAG semántico Qdrant + fallback FTS/keywords).
+          final fuentes = await _recuperarFuentes(ultimoMensaje);
+
           // Generar respuesta
           final response = await AIService.chatLegalConversacional(
             pregunta: ultimoMensaje,
             contexto: contexto,
+            fuentes: fuentes,
           );
 
           // Guardar respuesta del asistente
-          final messageResponse = await _supabase.from('chat_messages').insert({
-            'conversation_id': conversationId,
-            'user_id': userId,
-            'role': 'assistant',
-            'content': response.interpretacion,
-            'timestamp': DateTime.now().toIso8601String(),
-            'model_used': 'deepseek-chat',
-          }).select().single();
+          final messageResponse = await _supabase
+              .from('chat_messages')
+              .insert({
+                'conversation_id': conversationId,
+                'user_id': userId,
+                'role': 'assistant',
+                'content': response.interpretacion,
+                'timestamp': DateTime.now().toIso8601String(),
+                'model_used': 'deepseek-chat',
+              })
+              .select()
+              .single();
 
           await _actualizarConversacion(conversationId, null);
 
@@ -351,8 +404,7 @@ class ChatService {
     try {
       await _supabase
           .from('chat_conversaciones')
-          .update({'is_pinned': !isPinned})
-          .eq('id', conversationId);
+          .update({'is_pinned': !isPinned}).eq('id', conversationId);
 
       debugPrint('✅ Pin actualizado');
     } catch (e) {
@@ -369,8 +421,7 @@ class ChatService {
     try {
       await _supabase
           .from('chat_conversaciones')
-          .update({'title': nuevoTitulo})
-          .eq('id', conversationId);
+          .update({'title': nuevoTitulo}).eq('id', conversationId);
 
       debugPrint('✅ Conversación renombrada');
     } catch (e) {

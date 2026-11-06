@@ -18,6 +18,8 @@ class TemaGlobal {
 
   // --- Semántica unificada (la app debe leer SIEMPRE de aquí) ---
   /// Fondo de página: gris claro (light) / navy profundo (dark).
+  /// Light = fondoGris 0xFFF1F5F9 (acuerdo CONTEXTO_TRABAJO.md, igual al
+  /// repositorio de jurisprudencia).
   static Color get superficie =>
       isDark ? const Color(0xFF0F172A) : const Color(0xFFF1F5F9);
 
@@ -40,7 +42,7 @@ class TemaGlobal {
   static Color get textoTenue =>
       isDark ? const Color(0xFF64748B) : const Color(0xFF9CA3AF);
 
-  /// Relleno de campos de texto.
+  /// Relleno de campos de texto (gris claro en light, slate en dark).
   static Color get campoTexto =>
       isDark ? const Color(0xFF1E293B) : const Color(0xFFF1F5F9);
 

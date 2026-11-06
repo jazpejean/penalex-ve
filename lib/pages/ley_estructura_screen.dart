@@ -277,9 +277,8 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [AppColors.tarjeta, AppColors.azulMarino],
-        ),
+        // Azul marino sólido (sin degradado), coherente con el resto de la app.
+        color: AppColors.azulMarino,
         border: Border(bottom: BorderSide(color: AppColors.dorado.withValues(alpha: AppColors.a24))),
       ),
       child: Column(

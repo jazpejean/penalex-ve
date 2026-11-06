@@ -182,21 +182,23 @@ class _WordEditorScreenState extends State<WordEditorScreen> {
 
         actions: [
           IconButton(
+color: AppColors.dorado,
             onPressed: _ocupado ? null : _exportarWord,
             icon: const Icon(Icons.description),
             tooltip: 'Exportar Word (.docx)',
           ),
           IconButton(
             onPressed: _ocupado ? null : _exportarPDF,
+            color: AppColors.dorado,
             icon: const Icon(Icons.picture_as_pdf),
             tooltip: 'Exportar PDF',
           ),
           TextButton.icon(
             onPressed: _ocupado ? null : _guardar,
-            icon: const Icon(Icons.check, color: AppColors.onAzulMarino),
+            icon: const Icon(Icons.check, color: AppColors.dorado),
             label: const Text(
               'Guardar',
-              style: TextStyle(color: AppColors.onAzulMarino, fontWeight: FontWeight.bold),
+              style: TextStyle(color: AppColors.dorado, fontWeight: FontWeight.bold),
             ),
           ),
         ],

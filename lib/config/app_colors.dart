@@ -12,6 +12,13 @@ class AppColors {
   static const Color azulMarino = Color(0xFF0F172A);
   static const Color dorado = Color(0xFFC5A059);
 
+  /// Acento dorado puro — independiente del modo. Uso exclusivo:
+  /// iconos, bordes, indicadores, subrayados, "puntos" visuales sobre
+  /// superficies claras. NO usar como color de TEXTO sobre superficies
+  /// claras (usar AppColors.texto o textoSecundario) ni sobre fondos
+  /// dorados (usar AppColors.onDorado).
+  static const Color acentoDorado = dorado;
+
   // ── Superficies (cambian con el modo) ───────────────────────
   static Color get superficie => TemaGlobal.superficie;
   static Color get tarjeta => TemaGlobal.tarjeta;
