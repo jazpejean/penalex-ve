@@ -1,0 +1,1151 @@
+{
+  "ley_nombre": "LEY DE ABOGADOS",
+  "estructura": [
+    {
+      "libro": null,
+      "titulo": "TITULO I. Disposiciones Generales",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "1",
+          "encabezado": null,
+          "texto_principal": "La profesión de abogado y su ejercicio se regirá por la presente Ley y su Reglamento, los reglamentos internos y el código de ética profesional que dictare la Federación de Colegios de Abogados.\n\nLas personas que hayan obtenido título de Procurador en conformidad con las leyes anteriores quedarán sometidas en el ejercicio de su profesión a dichas disposiciones, reglamentos y normas en cuanto le sean aplicables.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "2",
+          "encabezado": null,
+          "texto_principal": "El ejercicio de la abogacía impone dedicación al estudio de las disciplinas que impliquen la defensa del derecho, de la libertad y de la Justicia. No puede considerarse como comercio o industria y, en tal virtud, no será -gravado con Impuestos de esta naturaleza.\n\nLos despachos de abogados no podrán usar denominaciones comerciales, y sólo se distinguirán mediante el uso del nombre propio del abogado o de los abogados que ejercieren en él, de sus causantes, o de los que habiendo fallecido hubiesen ejercido en el mismo, previo consentimiento de sus herederos, y la calificación de bufete, escritorio o despacho de abogados.\n\nTambién se permitirá una denominación impersonal cónsona con la dignidad de la profesión.\n\nNo le está permitido a ningún abogado establecer en su escritorio o bufete actividades que por su naturaleza comercial o industrial puedan crear confusiones en cuanto al ejercicio profesional.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "3",
+          "encabezado": null,
+          "texto_principal": "Para comparecer por otro en juicio, evacuar consultas jurídicas, verbales o escritas y realizar cualquier gestión inherente a la abogacía, se requiere poseer el título de abogado, salvo las excepciones contempladas en la Ley.\n\nLos representantes legales de personas o de derechos ajenos, los presidentes o representantes de sociedades cooperativas, asociaciones o sociedades civiles o mercantiles que no fueren abogados, no podrán comparecer en juicio a nombre de sus representados sin la asistencia de abogados en ejercicio.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "4",
+          "encabezado": null,
+          "texto_principal": "Toda persona puede utilizar los órganos de la administración de justicia para la defensa de sus derechos e intereses. Sin embargo, quien sin ser abogado deba estar en juicio como actor, como demandado o cuando se trate de quien ejerza la representación por disposición de la Ley o en virtud de contrato, deberá nombrar abogado, para que lo represente o asista en todo el proceso.\n\nSi la parte se negare a designar abogado esta designación la hará el Juez. En este caso la contestación de la demanda se diferirá por cinco audiencias. La falta de nombramiento a que se refiere este artículo será motivo de reposición de la causa, sin perjuicio de la responsabilidad que corresponde al Juez de conformidad con la Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "5",
+          "encabezado": null,
+          "texto_principal": "Los Jueces, los Registradores, los Notarios y demás autoridades civiles, políticas y administrativas sólo admitirán como representantes o asistentes de terceros a abogados en ejercicio, en los asuntos reservados a éstos en virtud de la Ley, sin perjuicio de lo dispuesto en las Leyes y disposiciones, que regulan las relaciones obrero-patronales.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "6",
+          "encabezado": null,
+          "texto_principal": "Los Jueces, los Registradores, los Notarios y los inspectores Fiscales se abstendrán de protocolizar o dar curso a escrituras contentivas de actos traslativos o declarativos de la propiedad de bienes, títulos supletorios, documentos relativos a constitución o liberación de gravámenes, contratos de cualquier naturaleza, poderes, documentos que deban inscribirse en el Registro de Comercio, declaraciones de herencia y en general toda especie de escrituras que versen sobre cualquier derecho, si dichos documentos no han sido redactados por un abogado en ejercicio.\n\nCuando se pretenda que un documento redactado en el extranjero surta efecto en Venezuela, deberá ser visado por un abogado en ejercicio en el país.\n\nSi uno de los otorgantes es abogado, o cuando su cónyuge, ascendientes, descendientes o hermanos tengan participación directa en el asunto, podrá redactar el documento aunque no se encuentre en ejercicio.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TITULO II. Del ejercicio de la profesión del abogado",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "7",
+          "encabezado": null,
+          "texto_principal": "Quien haya obtenido el título de Abogado de la República, de conformidad con la Ley, deberá inscribirse en un Colegio de Abogados y en el Instituto de Previsión Social del Abogado para dedicarse a la actividad profesional.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "8",
+          "encabezado": null,
+          "texto_principal": "La solicitud de inscripción del título se formulará por escrito ante el Colegio respectivo y se acompañará:",
+          "numerales_literales": [
+          "1. El título de Abogado de la República expedido de conformidad con la Ley debidamente protocolizado, o el certificado de revalida si ha obtenido su título en el extranjero.",
+          "2. Los derechos de registro correspondientes.\n\nCumplidos los requisitos anteriores, la Junta Directiva del Colegio señalará uno de los cinco días siguientes para que el solicitante preste ante ella el juramento de obedecer la Constitución y Leyes de la República y de cumplir las normas de ética profesional y demás deberes que le impone la profesión de abogado. Llenadas estas formalidades, la Junta Directiva del Colegio ordenará la anotación del título en el libro denominado \"Libro de Inscripción de Títulos de Abogados\", expedirá al interesado constancia de la inscripción y lo participará al Director de la Federación de Colegios de Abogados de Venezuela, al Ministerio de Justicia y a la Corte Suprema de Justicia."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "9",
+          "encabezado": null,
+          "texto_principal": "Si la solicitud fuese negada, o no se decidiere en el término de treinta días, podrá apelarse dentro de los cinco días hábiles siguientes para ante el Directorio de la Federación de Colegios de Abogados, el cual deberá decidir dentro de los treinta días consecutivos siguientes. La falta de decisión del Directorio de la Federación podrá recurrirse para ante la Corte Suprema de Justicia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "10",
+          "encabezado": null,
+          "texto_principal": "El Abogado inscrito en un colegio de Abogados, puede ejercer legalmente en todo el territorio de la República; cuando pase a ejercer habitualmente su profesión en una entidad que territorialmente corresponda a otro Colegio, o cambiare de residencia o domicilio en virtud de la función que desempeñe, deberé incorporarse en este último dentro del término de 30 días. A la solicitud de incorporación deberá acompañar la constancia de la Inscripción en el anterior Colegio y la prueba de la solvencia en el pago de las contribuciones con los organismos indicados en el Artículo 7o. Si la solicitud de incorporación fuere negada, podrá apelarse dentro de los cinco días hábiles siguientes para ante el Directorio de la Federación de Colegios de Abogados de Venezuela, caso en el cual se observará el procedimiento establecido en el artículo anterior.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "11",
+          "encabezado": null,
+          "texto_principal": "A los efectos de la presente Ley se entiende por actividad profesional del abogado el desempeño de una función propia de la abogacía o de una labor atribuida en razón de una Ley especial a un egresado universitario en Derecho, o aquellas ocupaciones que exijan necesariamente conocimientos jurídicos.\n\nSe entiende por ejercicio profesional la realización habitual de labores o la prestación de servicios a título oneroso o gratuito, propios de la abogacía, sin que medie nombramiento o designación oficial alguna.",
+          "numerales_literales": [],
+          "paragrafos": [
+            "Parágrafo Único: Quedan sometidos a la presente Ley, y en consecuencia, sujetos a los mismos derechos y obligaciones los abogados que sean: Profesores en las Universidades del país; Magistrados de la Corte Suprema de Justicia o Jueces de la República; Secretarios de los tribunales; Defensores; Fiscales del Ministerio Público; Registradores; Notarlos, Consultores o Asesores Jurídicos de personas individuales o colectivas públicas o privadas y, en general, todo abogado que en ejercicio de una función y en razón de sus conocimientos especiales en Derecho, preste a terceros, pública o privadamente, el concurso de su asesoramiento."
+          ],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "12",
+          "encabezado": null,
+          "texto_principal": "No podrán ejercer la abogacía los ministros de culto, los militares en servicio activo ni los funcionarios públicos. Se exceptúan de esta inhabilitación los que desempeñan cargos ad honorem y funciones judiciales accidentales; y los que sirvan empleos académicos, asistenciales, electorales, docentes o edilicios, salvo que estos últimos cargos exijan por la naturaleza de sus funciones o por las leyes o reglamentos que las rijan, dedicación a tiempo completo.\n\nLos abogados Senadores y Diputados, incorporados a las Cámaras, no podrán ejercer la abogacía en asuntos judiciales contenciosos ni realizar gestiones profesionales directas o indirectas ante la Administración Pública o ante empresas en las cuales tenga participación mayoritaria el Estado Venezolano; tampoco podrán intervenir profesionalmente como representantes de terceros, en contratos, negociaciones o gestiones en las cuales sea parte la Nación, los Estados, los Municipios, los Institutos Autónomos o empresas en las cuales dichos organismos tengan participación.\n\nLos abogados incorporados a las Asambleas Legislativas de los Estados o a sus Comisiones Permanentes no podrán ejercer la abogacía en su jurisdicción durante las sesiones de dichos Cuerpos. Tampoco podrán ejercer, los abogados que presten sus servicios profesionales a tiempo completo en organismos oficiales nacionales, estadales o municipales o en institutos autónomos salvo que actúen en representación de tales entes.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "13",
+          "encabezado": null,
+          "texto_principal": "Sin perjuicio de lo que establezcan los tratados internacionales de los cuales sea parte Venezuela, no se permitirá el ejercicio de la profesión a los abogados extranjeros, originarlos de países en los cuales no se permita el ejercicio de dicha profesión u otra equivalente a los venezolanos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "14",
+          "encabezado": null,
+          "texto_principal": "En el mes de enero de cada año, el Ministerio de Justicia publicará en la Gaceta Oficial, la lista que contenga en orden alfabético por apellido, los nombres de los abogados cuyos títulos hayan sido inscritos hasta el 31 de diciembre del año anterior indicándose el Colegio en el cual quedó anotado el título y la fecha de inscripción. Lo dispuesto en este artículo no impide el ejercicio profesional a los abogados que no aparezcan en la lista, siempre que comprueben que han cumplido los requisitos de Ley al respecto.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TITULO III. De los deberes y derechos de los abogados",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "15",
+          "encabezado": null,
+          "texto_principal": "El abogado tiene el deber de ofrecer al cliente el concurso de la cultura y de la técnica que posee; aplicarlas con rectitud de conciencia y esmero en la defensa; ser prudente en el consejo, sereno en la acción, y proceder con lealtad, colaborando con el Juez, en el triunfo de la Justicia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "16",
+          "encabezado": null,
+          "texto_principal": "Los abogados en ejercicio están obligados a aceptar las defensas que se les confíen de oficio, salvo negativa razonada, y podrán exigir a sus defendidos el pago de honorarlos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "17",
+          "encabezado": null,
+          "texto_principal": "Es obligatorio para los abogados la defensa gratuita de los que han sido declarados pobres por los Tribunales.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "18",
+          "encabezado": null,
+          "texto_principal": "Los abogados están obligados a cumplir los reglamentos, acuerdos, resoluciones y demás decisiones de la Federación de Colegios de Abogados, de los Colegios en cuya jurisdicción ejerzan su profesión y del Instituto de Previsión Social del Abogado.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "19",
+          "encabezado": null,
+          "texto_principal": "Es función propia del abogado, informar y presentar conclusiones escritas en cualquier causa sin necesidad de poder especial ni de que la parte por quien abogue esté presente o se lo exija, a menos que exista oposición de ésta. Esta actuación no causará honorarlos, salvo pacto en contrario.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "20",
+          "encabezado": null,
+          "texto_principal": "El abogado tiene derecho a anunciarse para el ejercicio de su profesión en general. Para ofrecerse como especialista en una rama determinada del Derecho, es necesaria la anuencia del respectivo Colegio o Delegación, la que será otorgada previa comprobación de la circunstancia del caso, debiendo los anuncios ser sometidos a la consideración y aprobación del Colegio.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "21",
+          "encabezado": null,
+          "texto_principal": "Los abogados deben estar solventes en el pago de las contribuciones reglamentarias con el respectivo Colegio de Abogados y con el Instituto de Previsión Social del Abogado.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "22",
+          "encabezado": null,
+          "texto_principal": "El ejercicio de la profesión da derecho al abogado a percibir honorarios por los trabajos judiciales y extrajudiciales que realice, salvo en los casos previstos en las Leyes.\n\nCuando exista inconformidad entre el abogado y su cliente en cuanto al monto de honorarios por servicios profesionales extrajudiciales, la controversia se resolverá por la vía del juicio breve y ante el Tribunal Civil competente por la cuantía. La parte demandada podrá acogerse al derecho de retasa en el acto de la contestación de la demanda.\n\nLa reclamación que surja en juicio contencioso acerca del derecho a cobrar honorarios por parte del abogado, será sustanciada y decidida de conformidad con lo establecido en el artículo 386 del Código de Procedimiento Civil y, la relación de la incidencia, si surgiere, no excederá de diez audiencias.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "23",
+          "encabezado": null,
+          "texto_principal": "Las costas pertenecen a la parte, quien pagará los honorarios a sus apoderados, asistentes o defensores. Sin embargo, el abogado podrá estimar sus honorarios y pedir la intimación al respectivo obligado, sin otras formalidades que las establecidas en esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "24",
+          "encabezado": null,
+          "texto_principal": "Para los efectos de la condenatoria en costas los abogados podrán anotar al margen de todo escrito o diligencia el valor en que estimen la actuación profesional y, en su defecto, podrán hacerlo en diligencia o escrito dirigido al Tribunal, que se anexará al expediente respectivo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "25",
+          "encabezado": null,
+          "texto_principal": "La retasa de honorarios, siempre que sea solicitada dentro de los diez días hábiles siguientes a la intimación del pago, de los mismos, la decretará el Tribunal de la causa o el que estuviere conociendo de ella cuando se los estime, asociado con dos abogados, y a falta de éstos con personas de reconocida solvencia e idoneidad, domiciliados o residenciados en jurisdicción del Tribunal, nombrados uno por cada parte.\n\nLa intimación puede hacerse personalmente al obligado o a su apoderado en el juicio.\n\nSi no fuere localizado el obligado ni existiere apoderado, la intimación podrá hacerse por medio de carteles, de conformidad con lo establecido en el Código de Procedimiento Civil.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "26",
+          "encabezado": null,
+          "texto_principal": "La retasa es obligatoria para quienes representen en juicio personas morales de carácter público, derechos o intereses de menores, entredichos, inhabilitados, no presentes y presuntos o declarados ausentes.\n\nA falta de solicitud el Tribunal la ordenará de oficio. Responderán solidariamente los representantes de las personas antes nombradas por el pago de los honorarios cuya retasa no hayan solicitado.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "27",
+          "encabezado": null,
+          "texto_principal": "Cuando la retasa sea acordada a solicitud de parte, éstas concurrirán el día y hora señalados por el Tribunal para nombrar los retasadores, debiendo presentar en el mismo acto, constancia de que los retasadores designados aceptan el cargo.\n\nLa inasistencia de alguna de las partes al acto de nombramiento de retasadores, la negativa a nombrarlo o la falta de presentación de la constancia de aceptación al cargo, autoriza al Tribunal para designar retasadores dejando a salvo el derecho de la parte que concurra. Cuando el Tribunal decrete de oficio la retasa sólo designará al retasador de la parte que estando obligado a solicitarla no lo hizo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "28",
+          "encabezado": null,
+          "texto_principal": "En la tercera audiencia siguiente al nombramiento de los retasadores por las partes o por el juez, según el caso, y a la hora fijada, los nombrados deberán concurrir al Tribunal a prestar juramento de desempeñar fielmente su cargo.\n\nEn la retasa acordada de oficio, y en los casos en que el Tribunal deba designar retasadores, éstos prestarán juramento en la tercera audiencia siguiente a la notificación.\n\nSi el retasador no compareciere oportunamente o incumpliere sus funciones, el Tribunal designará otro en su lugar.\n\nLos honorarios de los retasadores los pagará la parte interesada cuyo monto determinará el Tribunal prudencialmente, fijando fecha para su consignación, y, en caso de que ésta no se produzca en su oportunidad, se entenderá renunciado el derecho de retasa, salvo lo dispuesto en el artículo 26.\n\nLas decisiones sobre retasa son inapelables.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "29",
+          "encabezado": null,
+          "texto_principal": "En el mismo acto de la consignación de los emolumentos o dentro de las dos audiencias siguientes, se constituirá el Tribunal retasador. La decisión se dictará como Tribunal Colegiado, dentro de los ocho días hábiles siguientes a partir de su constitución.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TITULO IV. Del ejercicio ilegal de la profesión",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "30",
+          "encabezado": null,
+          "texto_principal": "Ejercen ilegalmente la profesión de abogado:\n\n1o Quienes sin poseer el título respectivo se anuncien como abogados, se atribuyan ese carácter, ostenten placas, insignias, emblemas o membretes de tal, o quienes realicen los actos o gestiones reservados a los abogados en los artículos 3 y 6 de esta Ley, salvo las excepciones legales;\n\n2o Quienes habiendo obtenido el Título de Abogado de la República, realicen actos y gestiones profesionales sin haber cumplido los requisitos para ejercer legítimamente la profesión o se encuentren impedidos de ejercerla conforme al artículo 12;\n\n3o Quienes habiendo sido sancionados con la suspensión del ejercicio profesional ejerzan durante el tiempo de la suspensión;\n\n4o Los abogados que presten su concurso profesional, encubran o amparen a personas naturales o jurídicas u oficinas que realicen actos de ejercicio ilegal de la profesión;\n\n5o Quienes establezcan, representen o regenten oficinas, firmas o sociedades destinadas a cobro, ya directamente o haciéndose habitualmente cesionarios, endosatarios, acreedores o tenedores de la deuda, cualquiera que ella fuere.\n\nTambién incurren en ejercicio ilegal de la profesión y serán sancionados con las penas previstas para los responsables directos, los abogados que en alguna forma patrocinen o encubran a las personas de que trata este artículo;\n\n6o Los abogados que ejerzan su profesión contrariando las disposiciones de la presente Ley y su reglamento, de los reglamentos, acuerdos y demás resoluciones de la Federación de Colegios de Abogados, de los Colegios o Delegaciones respectivas y del Instituto de Previsión Social del Abogado.\n\n7o Quienes ejerzan un cargo público para el cual se requiera el título de abogado y no estén inscritos en un Colegio de Abogados, o incorporados al del lugar, según el caso, o cuando no cumplan las obligaciones que les impone esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "31",
+          "encabezado": null,
+          "texto_principal": "En todos los casos de ejercicio ilegal de la profesión de abogados, el Tribunal Disciplinario en cuya jurisdicción se haya cometido el hecho abrirá la averiguación de oficio o a instancia de parte, levantará el expediente respectivo y pasará copia al Fiscal del Ministerio Público, quien actuará de oficio ante los Tribunales competentes, sin perjuicio de la sanción disciplinarla a que hubiese lugar.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TITULO V. DE LOS ORGANISMOS PROFESIONALES",
+      "capitulo": null,
+      "seccion": "SECCIÓN PRIMERA. De los Colegios y sus Delegaciones",
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "32",
+          "encabezado": null,
+          "texto_principal": "En el Distrito Federal, en cada uno de los Estados de la República y en los Territorios Federales, existirá un Colegio de Abogados, en la Capital respectiva.\n\nPara que un Colegio de Abogados pueda establecerse, deben estar domiciliados o residenciados en la respectiva Entidad un número no menor de diez abogados.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "33",
+          "encabezado": null,
+          "texto_principal": "Los Colegios de Abogados son corporaciones profesionales con personería jurídica y patrimonio propio, encargados de velar por el cumplimiento de las normas y principios de ética profesional de sus miembros y defender los intereses de la abogacía.\n\nTienen, además, la obligación de procurar que sus asociados se guarden entre sí el debido respeto y consideración, observen intachable conducta en todos sus actos públicos y privados y contribuyan a enaltecer la profesión de la abogacía y al mejoramiento de la doctrina, de la legislación y de la jurisprudencia nacionales.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "34",
+          "encabezado": null,
+          "texto_principal": "Son miembros de los Colegios, los abogados cuyos títulos han sido debidamente inscritos en ellos, hállense o no en el ejercicio de la profesión.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "35",
+          "encabezado": null,
+          "texto_principal": "Son órganos del Colegio de Abogados la Asamblea, la Junta Directiva y el Tribunal Disciplinario.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "36",
+          "encabezado": null,
+          "texto_principal": "La Asamblea es la suprema autoridad de los Colegios y se reunirá ordinariamente, todos los años durante la primera quincena del mes de diciembre y extraordinariamente, cuando fuere convocada por la Junta Directiva.\n\nLa Asamblea estará integrada por todos los abogados, hábiles para elegir y ser elegidos, inscritos o incorporados en el respectivo Colegio o Delegaciones de su dependencia.",
+          "numerales_literales": [],
+          "paragrafos": [
+            "Parágrafo Único.- Para elegir o ser elegido o tomar parte en las decisiones de la Asamblea, es indispensable la solvencia con el respectivo Colegio o Delegación y con el Instituto de Previsión Social del Abogado."
+          ],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "37",
+          "encabezado": null,
+          "texto_principal": "La Asamblea se instalará con no menos de las dos terceras partes de sus miembros, pero podrá deliberar con la mitad más uno de los asistentes. Si no existiere el quórum reglamentario para la instalación de la Asamblea los abogados asistentes se constituirán en Comisión Preparatoria y tomarán las medidas necesarias para asegurar la asistencia del número de abogados requeridos. Si el día fijado por la Comisión Preparatoria para la instalación de la Asamblea, no se obtuviere el quórum reglamentarlo, ésta se instalará con los asistentes.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "38",
+          "encabezado": null,
+          "texto_principal": "Corresponde a la Asamblea:",
+          "numerales_literales": [
+            "a) Calificar a sus miembros y examinar sus credenciales.",
+            "b) Nombrar la Mesa Directiva, que estará compuesta por un Presidente, un Primero y Segundo Vice-Presidente, electos de su seno, en votación pública y por mayoría absoluta de los delegados presentes, y un Secretario que podrá ser de fuera de su seno.",
+            "c) Elegir la Junta Directiva del Colegio y del Tribunal Disciplinario.",
+            "d) Examinar el Informe que anualmente debe presentarle la Junta Directiva del Colegio sobre su gestión administrativa y demás realizaciones relacionadas con sus funciones.",
+            "e) Las demás que le señalen el Reglamento de esta Ley y los reglamentos internos."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "39",
+          "encabezado": null,
+          "texto_principal": "La Dirección y Administración de los Colegios de Abogados estará a cargo de una Junta Directiva compuesta por un Presidente, un Vice-Presidente, un Secretario, un Tesorero y un Bibliotecario y tres Suplentes, que serán elegidos cada dos años, durante la primera quincena del mes de diciembre y tomará posesión en la primera quincena del mes de enero del año siguiente.\n\nEl Presidente ejercerá la representación jurídica del Colegio, pudiendo delegarla previa autorización de la Junta. Las faltas absolutas y temporales del Presidente las llenará el Vice-Presidente y las de éste, el primer Suplente.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "40",
+          "encabezado": null,
+          "texto_principal": "La Junta Directiva será electa el día y hora que fije la Asamblea, con tres días de anticipación por lo menos, en votación secreta, salvo que la Asamblea, con el voto de las dos terceras partes de sus asistentes, decida hacerlo público. Los escrutinios se efectuarán en acto público.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "41",
+          "encabezado": null,
+          "texto_principal": "Cuando en una Entidad Federal no exista Colegio de Abogados por no estar domiciliados en ella el número de profesionales previstos en el Artículo 32 de esta Ley, quienes hayan cumplido los requisitos establecidos en el Artículo 7 podrán constituirse en Delegación, la cual dependerá de la Federación de Colegios de Abogados.\n\nLas Delegaciones tendrán las mismas atribuciones de los Colegios de Abogados en cuanto les sean aplicables, salvo la de inscribir títulos y estarán dirigidas por un Presidente, un Secretario y un Tesorero, elegidos por mayoría absoluta.\n\nEn las ciudades donde estén residenciados un número de abogados no menor de seis, éstos podrán constituirse en Delegación, la cual dependerá del Colegio de Abogados de la respectiva Entidad.",
+          "numerales_literales": [],
+          "paragrafos": [
+            "Parágrafo Único.- Las atribuciones de los miembros de la Junta Directiva de los Colegios y Delegaciones, serán establecidas en el Reglamento Interno que dicten dichas Juntas."
+          ],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "42",
+          "encabezado": null,
+          "texto_principal": "Corresponde a los Colegios de Abogados:\n\n1o Fomentar el espíritu de solidaridad entre sus asociados y proveer a la defensa de sus miembros;\n\n2o Conocer de todo lo relativo a la Inscripción de sus miembros;\n\n3o Fomentar el estudio del derecho y demás ciencias afines;\n\n4o Organizar y acrecentar sus bibliotecas;\n\n5o Sostener una publicación periódica que le sirva de órgano;\n\n6o Estudiar y redactar Ante Proyectos de Leyes, y enviar al Congreso Nacional, a las Asambleas Legislativas, a los Concejos Municipales, al Ejecutivo Nacional, al de los Estados y a las Comisiones Revisoras de leyes, cuando lo juzguen oportuno y a título de información, observaciones relativas a las reformas legislativas que estimen procedentes;\n\n7o Asesorar a los organismos señalados en el número anterior y evacuar las consultas que éstos les hagan sobre cuestiones de derecho o sobre el mérito científico de obras o ponencias relacionadas con la profesión, salvo las prohibiciones contenidas en esta Ley;\n\n8o Cumplir y hacer cumplir sus decisiones, las normas que establezcan la Federación de Colegios de abogados y el Instituto de Previsión Social del Abogado y mantener una estrecha vigilancia sobre la disciplina y moralidad de sus socios;\n\n9o Expedir credenciales a sus miembros;\n\n10o Supervisar el funcionamiento de las Delegaciones;\n\n11o Acordar dentro de los treinta días siguientes a la elección de su Junta Directiva, el Presupuesto anual de gastos del Colegio y proveer los fondos para realizarlo.\n\n12o Promover ante las autoridades competentes todo lo que juzguen conveniente a los intereses de la profesión de la abogacía;\n\n13o Hace cumplir las normas y medidas sobre previsión social que dicten los organismos gremiales competentes;\n\n14o Fijar la cuota que deben pagar sus asociados; y\n\n15o Las demás funciones que les señalen las Leyes y Reglamentos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TITULO V. DE LOS ORGANISMOS PROFESIONALES",
+      "capitulo": null,
+      "seccion": "SECCION II. DE LA FEDERACION DE COLEGIOS DE ABOGADOS. DE VENEZUELA",
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "43",
+          "encabezado": null,
+          "texto_principal": "La Federación de Colegios de Abogados de Venezuela estará integrada por los Colegios de Abogados existentes y por las Delegaciones que de ella dependan de conformidad con la Ley. Tiene carácter exclusivamente profesional, personería jurídica y patrimonio propio.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "44",
+          "encabezado": null,
+          "texto_principal": "La Federación de Colegios de Abogados de Venezuela, fomentará el perfeccionamiento moral y científico de los abogados, su bienestar material y social; promoverá la defensa de los intereses y fueros de los Colegios y Delegaciones que la integran e incrementará en la sociedad el público reconocimiento de la misión fundamental que atañe a la profesión de la abogacía.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "45",
+          "encabezado": null,
+          "texto_principal": "La Federación de Colegios de Abogados de Venezuela tendrá su sede en la Capital de la República.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "46",
+          "encabezado": null,
+          "texto_principal": "Corresponde a la Federación de Colegios de Abogados de Venezuela:\n\n1o Establecer las reglas de ética profesional y las medidas de disciplina que aseguren la dignidad del ejercicio de la abogacía, y la estimación pública que ésta merece;\n\n2o Ejercer una acción vigilante de protección hacia el libre e independiente ejercicio de la abogacía, reivindicando sus fueros y el respeto público a su dignidad;\n\n3o Exaltar a los Colegios de Abogados y Delegaciones a tomar medidas conducentes, para la mejor defensa del honor, la dignidad y el decoro de la profesión de abogado;\n\n4o Dirimir los conflictos que pudieren surgir entre los Colegios de Abogados;\n\n5o Coordinar y orientar las actividades de los Colegios de Abogados;\n\n6o Colaborar con las instituciones que se ocupan del estudio del Derecho y con el Poder Judicial para lograr la mejor forma de enseñanza y divulgación de las ciencias jurídicas y velar por la más perfecta administración de Justicia en escala nacional.\n\n7o Publicar una revista que le sirva de órgano para la mejor difusión de los estudios jurídicos y de la Jurisprudencia;\n\n8o Estimular y preparar la realización de conferencias en distintos lugares de la República, con el fin de robustecer los conocimientos de los profesionales del derecho y orientar a la opinión pública sobre los beneficios que derivan de las instituciones jurídicas;\n\n9o Promover la celebración de Congresos Jurídicos, donde se trate a la luz de los principios, temas relacionados con el Derecho y disponer todo lo necesario para su mejor realización;\n\n10o Mantener un servicio de bibliografía y publicaciones jurídicas nacionales y extranjeras;\n\n11o Mantener intercambio cultural con los organismos profesionales y con las Escuelas Universitarias de Derecho, nacional o extranjeras;\n\n12o Poner en práctica los más adecuados medios de previsión social, para asegurar el bienestar del profesional y de sus familiares.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "47",
+          "encabezado": null,
+          "texto_principal": "Son órganos de la Federación de Colegios de Abogados:\n\nLa Asamblea, el Consejo Superior, el Directorio y el Tribunal Disciplinario.\n\nLa Asamblea es la máxima autoridad de la Federación y estará formada por los delegados que elijan los Colegios de Abogados de la República y las Delegaciones que de ella dependan. Se reunirá cada dos años, el 16 de agosto o el día más inmediato posible, en el lugar que se haya designado al efecto en la última reunión, previa convocatoria hecha por su Directorio, con treinta días de anticipación por lo menos.\n\nLa Asamblea sesionará también extraordinariamente cuando así lo decida el Directorio o a solicitud de cinco Colegios de Abogados por lo menos.\n\nLos Colegios de Abogados estarán representados en la Asamblea de la Federación, por tres Delegados Principales elegidos por la Asamblea del respectivo Colegio. Elegirá también tres suplentes para llenar las faltas de los principales.\n\nLos Colegios cuyo número de miembros fuere superior a cien, podrán elegir un delegado más por cada cincuenta o fracción de veinticinco.\n\nLas Delegaciones estarán representadas por un Delegado principal, elegido en la misma forma que los representantes de los Colegios. Asimismo elegirá un suplente para llenar la falta del principal. El nombramiento podrá recaer en cualquier inscrito, siempre que esté solvente con el Colegio y con el Instituto de Previsión Social del Abogado, sea o no miembro de la Junta Directiva.",
+          "numerales_literales": [],
+          "paragrafos": [
+            "Parágrafo Único.- No se declarará abierta ninguna sesión de la Asamblea sin estar presente la mitad más uno del número total de Colegios y Delegaciones dependientes de la Federación."
+          ],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "48",
+          "encabezado": null,
+          "texto_principal": "El Consejo Superior de la Federación estará Integrado por: el Presidente de la Federación; los Presidentes de los Colegios de Abogados y de las Delegaciones que de ella dependan, o en su defecto, por un representante elegido por la Junta Directiva; por el Presidente del Instituto de Previsión Social del Abogado y el Presidente del Tribunal Disciplinario de la Federación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "49",
+          "encabezado": null,
+          "texto_principal": "El Consejo Superior se reunirá ordinariamente, una vez al año, por lo menos, y extraordinariamente a solicitud de cinco o más colegios, en el lugar elegido en su última reunión cuya convocatoria la hará el Colegio sede, indicando su duración y la materia a tratar.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "50",
+          "encabezado": null,
+          "texto_principal": "El Consejo Superior conocerá y decidirá de las materias correspondientes a la Federación, enunciadas en los numerales 1 , 2 , 3 , 4 , 5 , 6 , 8 , 9 , 11 y 12 del Artículo 46 de la presente Ley y las demás que le señalare el reglamento de la misma.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "51",
+          "encabezado": null,
+          "texto_principal": "El Consejo Superior podrá conocer además cuando la convocatoria lo prevea, de las apelaciones cuyo conocimiento se haya reservado a la Federación en la presente Ley o en su Reglamento.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "52",
+          "encabezado": null,
+          "texto_principal": "Los fondos de la Federación estarán formados por los aportes de los Colegios de Abogados y Delegaciones que de ella dependen, y por las contribuciones extraordinarias que determine la Asamblea, a cuyo efecto este mismo órgano elaborará y aprobará el Presupuesto respectivo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "53",
+          "encabezado": null,
+          "texto_principal": "El Directorio es el órgano Ejecutivo de la Federación de Colegios de Abogados de Venezuela y funcionará en la Capital de la República.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "54",
+          "encabezado": null,
+          "texto_principal": "El Directorio de la Federación estará compuesto por cinco miembros que se denominarán Presidente, Vice-Presidente, Tesorero, Bibliotecario y Secretario, y tres Suplentes para llenar las faltas absolutas o temporales de los principales.\n\nEl Presidente del Directorio ejercerá la representación jurídica de la Federación. Pudiendo delegar con aprobación de dicho órgano.\n\nLas faltas del Presidente las llenará el Vice-Presidente y las de éste, el primero de los suplentes designados.\n\nLa elección de estos funcionarios se hará cada dos años por la Asamblea, en la oportunidad y forma que señale el Reglamento de esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "55",
+          "encabezado": null,
+          "texto_principal": "La afiliación de un Colegio de Abogados a la Federación no impide que ésta pueda llevar relaciones con organismos internacionales afines; y aun afiliarse a ellos a los efectos de promover el estudio científico de la Disciplina Jurídica.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "56",
+          "encabezado": null,
+          "texto_principal": "Son atribuciones del Directorio de la Federación:\n\n1o- Cumplir y hacer cumplir los fines de la Federación y los acuerdos y resoluciones de la Asamblea;\n\n2o- Interpretar las normas de ética profesional, cuando le fuere solicitada por algún Colegio y dictar aquellas normas no previstas en el Código de Ética Profesional, mediante Acuerdos que serán sometidos a consideración de la Asamblea;\n\n3o- Convocar la Asamblea a reunión ordinaria o extraordinaria, según el caso;\n\n4o- Preparar el Presupuesto de Gastos de la Federación y disponer las medidas adecuadas para realizarlo;\n\n5o- Adoptar las medidas necesarias para la ejecución de los Acuerdos y Resoluciones de la Asamblea;\n\n6o- Informar a la Corte Suprema de Justicia, al Ejecutivo Nacional y al Consejo de la Magistratura, de las faltas o incorrecciones que observe en la administración de Justicia y recomendar la forma de evitarlas y subsanarlas, pudiendo formular las denuncias correspondientes cuando lo creyere conveniente.\n\n7o- Las demás que le señalen las Leyes y Reglamentos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "57",
+          "encabezado": null,
+          "texto_principal": "La Federación de Colegios de Abogados de Venezuela, los Colegios de Abogados y las Delegaciones, no podrán pronunciarse sobre las cuestiones que estuvieren sometidas o hubieren de someterse a discusión judicial, ni evacuar consultas de interés meramente privado, salvo las excepciones contenidas en la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TITULO V. DE LOS ORGANISMOS PROFESIONALES",
+      "capitulo": null,
+      "seccion": "SECCION III. DE LOS TRIBUNALES DISCIPLINARLOS DEL PRO-. CEDIMIENTO Y DE LAS SANCIONES",
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "58",
+          "encabezado": null,
+          "texto_principal": "Cada Colegio de Abogados tendrá un Tribunal Disciplinario, independiente de la Junta Directiva, compuesto de cinco miembros Principales y tres Suplentes, que deberán estar domiciliados en la capital de la Entidad respectiva y tener más de tres años de actividad o ejercicio profesional. La elección del Tribunal Disciplinario la hará la Asamblea cada dos años, en la oportunidad y forma en que elija la Junta Directiva.\n\nEn la misma oportunidad, la Asamblea designará un Abogado, y su respectivo Suplente, para que actúe como Fiscal en los casos que le pasare el Tribunal Disciplinario, de conformidad con lo establecido en el Artículo 64 de esta Ley, y, en defecto de esto, la designación la hará el Tribunal.\n\nLos cargos de miembros del Tribunal Disciplinario y de Fiscal, son ad honorem y de obligatoria aceptación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "59",
+          "encabezado": null,
+          "texto_principal": "Dentro de los diez días siguientes a su elección, se instalará el Tribunal Disciplinario y designará de su seno un Presidente, un Vice-Presidente, un Secretario y dos Vocales. Las faltas del Presidente, las suplirá el Vice-Presidente y las de éste, el Primer Vocal designado.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "60",
+          "encabezado": null,
+          "texto_principal": "El Tribunal Disciplinario de la Federación estará integrado por siete miembros principales que se denominarán: Presidente, Vice-Presidente, Secretario y cuatro Vocales. Además, se elegirán cuatro Suplentes, quo sustituirán en el orden de su elección a los Vocales. Las faltas absolutas o temporales del Presidente, serán llenadas por el Vice-Presidente y las de éste por el Primer Vocal. Todos estos funcionarios serán elegidos en la Asamblea General en la cual se designe el Directorio de la Federación, en la misma forma que éste y durarán dos años en el ejercicio de sus funciones, pudiendo el Consejo Superior prorrogar su duración por igual tiempo.",
+          "numerales_literales": [],
+          "paragrafos": [
+            "Parágrafo Único.- Para ser miembro del Tribunal Disciplinario de la Federación se requiere estar domiciliado en la Capital de la República; la función es ad honorem y de obligatoria aceptación."
+          ],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "61",
+          "encabezado": null,
+          "texto_principal": "Los Tribunales Disciplinarlos de los Colegios de Abogados, conocerán en Primera Instancia de las infracciones a la presente Ley y su Reglamento, a las normas de ética profesional, las resoluciones y acuerdos que dicten las Asambleas y demás órganos y organismos profesionales, así como las ofensas inferidas a los miembros de la judicatura, abogados o representantes de las partes; del abandono de la causa, negligencia manifiesta en la defensa asumida, cohecho, ejercicio ilegal de la profesión y la violación del secreto profesional, salvo que este ocurra para evitar o denunciar la perpetración de un hecho punible.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "62",
+          "encabezado": null,
+          "texto_principal": "A los efectos del artículo anterior, se entiende que hay negligencia manifiesta cuando el abogado, sin justa causa, no concurre a la contestación de la demanda, no promueve pruebas cuando se le han suministrado oportunamente los datos y elementos necesarios o si por su culpa queda desierto algún acto, se dicta y ejecuta alguna providencia que cause gravamen irreparable a su representado o no hace valer las defensas legales que el Juez no puede suplir de oficio.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "63",
+          "encabezado": null,
+          "texto_principal": "Al tener conocimiento el Tribunal de la comisión de un hecho punible de los contemplados en el Artículo 61 o incoada que sea la causa por denuncia o acusación, el Tribunal practicará las diligencias conducentes a la averiguación y comprobación del hecho y de la culpabilidad del autor.\n\nCumplidas estas formalidades, declarará si hay lugar o no a la formación de la causa. En caso afirmativo, el Indicado será citado personalmente, y si esto no fuere posible, se le nombrará un defensor con quien se entenderá la citación en toda la secuela del proceso.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "64",
+          "encabezado": null,
+          "texto_principal": "Después de la declaratoria de haber lugar a la formación de la causa, el Tribunal pasará las actuaciones al Fiscal, una vez tomado el Juramento de Ley, para que actúe de conformidad con lo establecido en el Artículo 219 del Código de Enjuiciamiento Criminal, en cuanto resulte aplicable al caso, y decida dentro de los diez días hábiles siguientes, sin perjuicio de que el acusador particular formulare cargos por su parte.\n\nHaya o no cargo, se abrirá la causa a pruebas durante el lapso de veinte días, al cabo del cual, se fijará uno de los tres días hábiles siguientes para oír informes de las partes.\n\nEl Tribunal podrá mandar a evacuar las pruebas que considere necesario al esclarecimiento del hecho.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "65",
+          "encabezado": null,
+          "texto_principal": "Artículo 65. Concluido el acto de informes el Tribunal entrará de inmediato en conferencia y permanecerá en sesión hasta dictar sentencia. En la determinación, calificación de los hechos y de la culpabilidad, el Tribunal actuará como jurado y decidirá por mayoría.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "66",
+          "encabezado": null,
+          "texto_principal": "Contra las decisiones definitivas del Tribunal Disciplinario, se podrá apelar para ante el Tribunal Disciplinario de la Federación dentro de los cinco días hábiles siguientes, después de haberse notificado al interesado el fallo. La apelación se oirá libremente. Las amonestaciones son inapelables.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "67",
+          "encabezado": null,
+          "texto_principal": "Si la causa se incoare contra un miembro del Tribunal Disciplinario el inculpado se separará de éste en tanto se decida aquella convocándose al Suplente. Si fuere encontrado culpable, su separación será definitiva cualquiera que sea el grado de la sanción. Igual procedimiento se seguirá con los miembros de las Juntas Directivas de la Federación, de los Colegios y de las Delegaciones.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "68",
+          "encabezado": null,
+          "texto_principal": "Las incidencias de inhibición y recusación contra los miembros del Tribunal Disciplinario o el Fiscal, se sustanciarán y decidirán de conformidad con lo que disponga el respectivo Reglamento.\n\nNinguna de la parte podrá intentar más de dos recusaciones, las cuales sólo podrán fundamentarse en las causales previstas en el Código de Enjuiciamiento Criminal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "69",
+          "encabezado": null,
+          "texto_principal": "A falta de disposición expresa en la presente Ley, o en sus Reglamentos, se aplicarán las disposiciones del Código de Enjuiciamiento Criminal, o Procedimiento Civil, según el caso. El procedimiento en Segunda Instancia será igual al de Primera.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "70",
+          "encabezado": null,
+          "texto_principal": "Las infracciones a la presente Ley y al Código de Ética Profesional, serán sancionadas así:",
+          "numerales_literales": [
+            "a) Las previstas en el Artículo 30 con multa de quinientos a tres mil bolívares o arresto proporcional. Esta sanción será aplicada por el Juez de Parroquia o Municipio del lugar donde haya incurrido la infracción, a requerimiento del Directorio del Colegio o del de la Federación de Colegios de Abogados, quienes remitirán al Juez copia de la decisión del Tribunal Disciplinario, que deba ejecutarse;",
+            "b) La prevista en el Artículo 16 con suspensión del ejercicio profesional de uno a tres meses;",
+            "c) La falta de pago de las contribuciones reglamentarias, las ofensas a los funcionarios judiciales y abogados; y cualesquiera otras faltas disciplinarias, con amonestación privada ante el Directorio de la Federación o ante la Junta Directiva del Colegio de Abogados o de la Delegación en que haya ocurrido el hecho;",
+            "d) En los casos de reincidencia s y de ofensas y faltas graves de las previstas en el ordinal anterior la pena será de amonestación pública ante las autoridades indicadas;",
+            "e) Los abogados que no atiendan al requerimiento que se les hace para oír las amonestaciones y los que incurran en graves infracciones a la ética, al honor o a la disciplina profesional, serán sancionados con la suspensión del ejercicio profesional de un mes a un año según la gravedad de la falta;",
+            "f) Los que se nieguen a cancelar las contribuciones reglamentarias después de haber sido amonestados conforme a las letras c) y d), serán sancionados con la suspensión del ejercicio profesional hasta que sean canceladas dichas contribuciones;",
+            "g) Los que hayan sido condenados a penas de prisión o de presidio serán suspendidos en el ejercicio profesional por todo el tiempo que dure la condena y desde el momento en que ésta quede firme."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "71",
+          "encabezado": null,
+          "texto_principal": "Los Jueces que admitan como representantes de otras a personas quienes carezcan de las condiciones legales para ello, o que violen las disposiciones de los Artículos 3, 5, 6 y 10 de esta Ley, serán sancionados disciplinariamente de conformidad con lo dispuesto por la Ley Orgánica del Poder Judicial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "72",
+          "encabezado": null,
+          "texto_principal": "La suspensión de un abogado no cancela su inscripción, pero deberá hacerse constar al margen del asiento respectivo en el \"Libro de Inscripciones de Títulos de Abogados\" y será participada a la Corte Suprema de Justicia, al Ministerio de Justicia, a los Colegios de Abogados y Delegaciones, a las Cortes y Tribunales Superiores y éstos últimos a su vez, lo comunicarán a los demás Tribunales de su jurisdicción. Comprobado por el interesado el cumplimiento de la pena o su prescripción, el Colegio le dará constancia de cese de la suspensión y la participará a los organismos mencionados en este artículo a Los fines consiguientes.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "73",
+          "encabezado": null,
+          "texto_principal": "La aplicación de las sanciones previstas en esta Ley no obsta el ejercicio de las acciones civiles y penales a que haya lugar.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "74",
+          "encabezado": null,
+          "texto_principal": "Quien sin ser abogado se anuncie como tal se atribuya ese carácter o ejerza la abogacía sin llenar los requisitos legales, será castigado con pena de tres a nueve meses de prisión. El enjuiciamiento será de oficio y por ante la jurisdicción ordinaria. En ningún caso, se acordará la libertad bajo fianza.",
+          "numerales_literales": [],
+          "paragrafos": [
+            "Parágrafo Único.- A los efectos de la aplicación de esta sanción se considera el delito como usurpación de funciones públicas."
+          ],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TITULO VI. De La Previsión Social Del Abogado",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "75",
+          "encabezado": null,
+          "texto_principal": "Todo lo relativo a la previsión social del abogado se regirá por la presente Ley, por el Reglamento de ésta y por los Reglamentos internos que dicten los organismos competentes, los cuales se publicarán en la Gaceta Oficial de la República.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "76",
+          "encabezado": null,
+          "texto_principal": "Se crea el Instituto de Previsión Social del Abogado, con personalidad Jurídica y patrimonio propio.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "77",
+          "encabezado": null,
+          "texto_principal": "El Instituto tiene por objeto procurar el bienestar social y económico de los profesionales del derecho y a sus familiares y en tal sentido, deberá asegurarles medios idóneos de protección social frente a las eventualidades derivadas de la muerte, enfermedad o incapacidad de aquel, fomentar el ahorro entre sus miembros y propiciar la adquisición de viviendas propias y en general, cualesquiera otras actividades encaminadas a cumplir el objeto esencial de su existencia. En tal virtud el Instituto podrá promover la constitución y funcionamiento de otras entidades que coadyuven al mejor logro de sus fines.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "78",
+          "encabezado": null,
+          "texto_principal": "Son miembros del Instituto de Previsión Social del Abogado todos los Abogados de la República que se hayan inscrito en un Colegio de Abogados, de conformidad con el Artículo 7 de la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "79",
+          "encabezado": null,
+          "texto_principal": "El Instituto tendrá su domicilio en Caracas y cada Colegio del interior de la República es una Delegación nata de él y tendrá las atribuciones que le fijen los Reglamentos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "80",
+          "encabezado": null,
+          "texto_principal": "Los órganos del Instituto son:",
+          "numerales_literales": [
+            "a) La Asamblea General que estará integrada hasta por cinco (5) representantes de cada Colegio de Abogados;",
+            "b) El Consejo Directivo formado por siete (7) miembros, que se denominarán: Presidente, Primer Vice-Presidente, Segundo Vice-Presidente, Secretario, Subsecretario, Tesorero y Sub-tesorero. El Instituto funcionará de acuerdo con lo que al efecto establezcan la presente Ley, el Reglamento Ejecutivo de ésta y sus Reglamentos Internos. El Presidente del Consejo Directivo ejercerá la representación jurídica del Instituto. Las faltas absolutas o temporales del Presidente, las llenarán los Vice-Presidentes en orden sucesivo."
+          ],
+          "paragrafos": [
+            "Parágrafo Primero.- Los Reglamentos del Instituto determinarán las atribuciones de cada uno de sus órganos y la fecha en que habrá de reunirse la Asamblea General, en la cual cada Delegación de Colegio de Abogados, tendrá un voto, decidido por la mayoría de sus integrantes. El Consejo Directivo tendrá voto en los asuntos que no versen sobre su gestión.",
+            "Parágrafo Segundo.- Los miembros del Consejo Directivo del Instituto, serán designados por la Asamblea General del mismo, deberán estar domiciliados en el área metropolitana de Caracas y durarán dos años en el ejercicio de sus funciones."
+          ],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "81",
+          "encabezado": null,
+          "texto_principal": "El patrimonio del Instituto estará integrado:",
+          "numerales_literales": [
+            "a) Por los bienes que pertenezcan al Montepío de Abogados;",
+            "b) Por las cuotas de inscripción y los aportes ordinarios y extraordinarios de sus miembros;",
+            "c) Por los aportes anuales que haga el Estado para cubrir sus gastos de administración, a cuyo efecto, el Consejo Directivo enviará anualmente la estimación al Ministerio de Justicia, a fin de que incluya la partida correspondiente en la Ley de Presupuesto;",
+            "d) Por los aportes que le hagan las entidades públicas o privadas;",
+            "e) Por un 5% del monto de las cantidades recaudadas mensualmente por concepto de arancel y contribuciones, que será también deducido por el funcionario receptor, cuando haga el balance a que se refiere el Artículo 38 de la Ley de Arancel Judicial."
+          ],
+          "paragrafos": [
+            "Parágrafo Único.- Los bienes a que se refiere la letra a) comprenden los créditos que el Montepío de Abogados tenga a su favor y a cargo de sus asociados, provenientes del no pago de las cuotas previstas en la Ley de Montepío de Abogados como de las decretadas por Resoluciones del Consejo Directivo."
+          ],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "82",
+          "encabezado": null,
+          "texto_principal": "El Consejo Directivo del Instituto queda facultado para reglamentar internamente la estructura y funcionamiento del Instituto.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "83",
+          "encabezado": null,
+          "texto_principal": "El Consejo Directivo deberá presentar anualmente a la Asamblea General, Memoria y Cuenta de su actuación en el año inmediatamente anterior, a los fines de su estudio y resolución.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TITULO VII",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "84",
+          "encabezado": null,
+          "texto_principal": "Se mantendrá la actual composición de la Junta Directiva de los Colegios de Abogados y de la Federación de Colegios de Abogados, hasta tanto se realice una nueva elección. Aquellos Colegios que no hayan elegido Tribunal Disciplinario procederán a su elección en un plazo no mayor de treinta días a contar de la vigencia de esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "85",
+          "encabezado": null,
+          "texto_principal": "Los abogados y procuradores de la República deberán inscribirse en el Instituto de Previsión Social del Abogado dentro de los seis meses siguientes a la fecha de promulgación de la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "86",
+          "encabezado": null,
+          "texto_principal": "Mientras el Ejecutivo Nacional dicta el Reglamento de esta Ley, la Federación, los Colegios de Abogados y el Instituto de Previsión Social del Abogado se regirán por los suyos internos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "87",
+          "encabezado": null,
+          "texto_principal": "Elegidos que sean los Tribunales Disciplinarlos de cada Colegio de Abogados, el Tribunal Disciplinario de la Federación de Colegios de Abogados, devolverá a éstos los expedientes de los casos que actualmente está conociendo para que continúe la causa conforme a lo previsto en el Artículo 63 de la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "88",
+          "encabezado": null,
+          "texto_principal": "Dentro de los sesenta días siguientes a la vigencia de la presente Ley, los Colegios de Abogados de la República designarán sus Delegados a una Asamblea General del Instituto, la cual elegirá el Consejo Directivo. Hasta tanto se reúna dicha Asamblea, las personas que integran el Consejo Directivo del Montepío de Abogados, desempeñarán iguales funciones en el Consejo Directivo del Instituto.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "89",
+          "encabezado": null,
+          "texto_principal": "Lo dispuesto en el Artículo 13 no se aplicará a los abogados extranjeros que se encuentren en el ejercicio de la profesión para la fecha de promulgación de la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "90",
+          "encabezado": null,
+          "texto_principal": "El Consejo Superior que haya de reunirse con posterioridad inmediata la promulgación de la presente Ley, ocupará la sede escogida por la última Convención de Presidentes de Colegios de Abogados para el próximo evento de esta naturaleza que ha debido realizarse.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TITULO VII. Disposiciones Finales",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "91",
+          "encabezado": null,
+          "texto_principal": "A partir de la vigencia de la presente Ley, el patrimonio del Montepío de Abogados pasará a integrar el patrimonio del Instituto de Previsión Social del Abogado.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "92",
+          "encabezado": null,
+          "texto_principal": "El Ejecutivo Nacional dictará el Reglamento de la presente Ley, dentro de los seis meses siguientes a su promulgación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "93",
+          "encabezado": null,
+          "texto_principal": "Se deroga la Ley de Abogados de fecha 25 de julio de 1957, la de Montepío de Abogados de la República de fecha 3 de agosto de 1942 y cualesquiera otras disposiciones que colidan con la presente Ley.\n\nDada, firmada y sellada en el Palacio Federal Legislativo, en Caracas, a los doce días del mes de diciembre de mil novecientos sesenta y seis. Año 157o de la Independencia y 108o de la Federación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    }
+  ]
+}

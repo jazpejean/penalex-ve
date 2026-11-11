@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /sentencias/
+Allow: /leyes/
+
+Sitemap: https://penalexve.com/sitemap.xml

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dosimetría Penal — Preview UI (fiel a la APK)</title>
+<style>
+  :root {
+    --navy: #0F172A;
+    --dorado: #C5A059;
+    --fondo: #F1F5F9;
+    --tarjeta: #FFFFFF;
+    --capa: #E2E8F0;
+    --texto: #0F172A;
+    --texto2: #475569;
+    --campo: #F1F5F9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+  }
+  /* Header web (navegación propia, NO drawer ni bottom bar) */
+  .header {
+    position: sticky; top: 0; z-index: 40;
+    background: #fff; border-bottom: 1px solid var(--capa);
+    padding: 10px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .header .logo { height: 40px; }
+  .header nav { display: flex; gap: 4px; }
+  .header nav a {
+    padding: 8px 12px; border-radius: 6px;
+    font-size: 14px; color: #475569; text-decoration: none;
+  }
+  .header nav a:hover { background: #f1f5f9; color: var(--navy); }
+  .header .btn {
+    padding: 8px 14px; border-radius: 6px; font-size: 14px; font-weight: 600;
+    border: 1px solid var(--capa); color: #475569; background: #fff;
+    text-decoration: none;
+  }
+  .header .btn-primary {
+    background: var(--navy); color: #fff; border: none;
+  }
+  .main { max-width: 560px; margin: 0 auto; padding: 16px; }
+
+  /* Stepper fiel a dosimetria_stepper.dart */
+  .stepper { display: flex; align-items: center; margin-bottom: 16px; }
+  .chip {
+    display: flex; align-items: center; gap: 5px;
+    padding: 6px 10px; border-radius: 20px;
+    border: 1px solid var(--capa); background: var(--capa);
+    font-size: 10px; font-weight: 800; letter-spacing: 0.4px;
+    color: var(--texto2); white-space: nowrap;
+  }
+  .chip.resaltado { background: var(--navy); border-color: var(--dorado); color: var(--dorado); }
+  .linea { flex: 1; height: 2px; margin: 0 6px; background: var(--capa); }
+  .linea.activa { background: var(--navy); }
+
+  /* Tarjeta de delito (fiel a _buildDelitoForm) */
+  .card {
+    background: var(--tarjeta);
+    border: 1px solid var(--capa);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .card-head { display: flex; align-items: center; justify-content: space-between; }
+  .card-title { font-size: 15px; font-weight: 700; }
+  .badge-pena {
+    background: var(--capa); border-radius: 20px; padding: 5px 10px;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .badge-pena span { color: var(--navy); font-size: 11px; font-weight: 800; }
+
+  .campo { margin-bottom: 16px; }
+  .label { display: flex; align-items: center; gap: 6px; font-weight: 500; font-size: 14px; }
+  .info { color: var(--navy); font-size: 16px; cursor: help; }
+
+  input, select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 14px;
+    border: 1px solid var(--capa);
+    background: var(--campo);
+    color: var(--texto);
+    font-size: 15px;
+    outline: none;
+  }
+  input:focus, select:focus { border-color: var(--navy); }
+
+  .pena-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .triple { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 4px; }
+  .triple .etq { text-align: center; font-size: 10px; text-transform: uppercase; color: var(--texto2); margin-top: 2px; }
+
+  .seccion-titulo { font-size: 13px; font-weight: 700; margin: 14px 0 8px; }
+  .segment {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    border: 1px solid var(--capa); border-radius: 14px; padding: 4px;
+  }
+  .segment button {
+    padding: 9px; border-radius: 10px; border: none; font-size: 13px;
+    background: var(--capa); color: var(--texto); cursor: pointer; font-weight: 500;
+  }
+  .segment button.sel { background: var(--dorado); color: var(--navy); font-weight: 700; }
+
+  /* Slider (fiel: activeColor dorado, inactive capa) */
+  .slider-row { margin-bottom: 14px; }
+  .slider-row .lbl { font-weight: 500; font-size: 14px; }
+  .slider { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+  .slider input[type=range] { flex: 1; accent-color: var(--dorado); padding: 0; background: none; }
+  .slider .val { width: 46px; text-align: center; font-size: 14px; }
+
+  .switch-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .switch { position: relative; width: 50px; height: 28px; }
+  .switch input { opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer; }
+  .switch .track {
+    position: absolute; inset: 0; border-radius: 999px; background: var(--capa);
+    transition: 0.2s;
+  }
+  .switch input:checked + .track { background: rgba(197,160,89,0.35); }
+  .switch .thumb {
+    position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--texto2); transition: 0.2s;
+  }
+  .switch input:checked + .track + .thumb { left: 25px; background: var(--dorado); }
+
+  .ajuste {
+    border: 1px solid var(--navy); border-radius: 12px;
+    padding: 10px 12px; margin-bottom: 8px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .ajuste .nombre { font-weight: 600; font-size: 14px; }
+  .ajuste .detalle { font-size: 12px; color: var(--texto2); }
+  .btn-agregar {
+    width: 100%; padding: 11px; border-radius: 14px; border: none;
+    background: var(--navy); color: #fff; font-size: 14px; font-weight: 600;
+    cursor: pointer;
+  }
+
+  .termino-medio {
+    background: rgba(15,23,42,0.10); border: 1px solid rgba(15,23,42,0.22);
+    border-radius: 12px; padding: 8px 12px; margin-top: 20px;
+  }
+  .termino-medio .tm-lbl { font-weight: 500; font-size: 13px; }
+  .termino-medio .tm-val { font-weight: 700; font-size: 15px; margin-top: 4px; }
+
+  /* Sumatoria (fiel: borde navy 1.5, título navy w800) */
+  .sumatoria {
+    margin-top: 24px;
+    border: 1.5px solid var(--navy); border-radius: 16px;
+    background: var(--tarjeta); padding: 14px 16px;
+  }
+  .sumatoria .tit { font-size: 13px; font-weight: 800; letter-spacing: 0.7px; color: var(--navy); }
+  .sumatoria .val { font-size: 16px; font-weight: 800; color: var(--navy); margin-top: 6px; }
+
+  .botones { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  .boton-sec {
+    padding: 14px; border-radius: 14px; border: 1px solid var(--capa);
+    background: #fff; color: var(--texto); font-size: 13px; font-weight: 700;
+    cursor: pointer;
+  }
+  .boton-prim {
+    padding: 14px; border-radius: 14px; border: none;
+    background: var(--navy); color: #fff; font-size: 13px; font-weight: 700;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Header web: navegación propia, sin drawer ni bottom bar -->
+  <header class="header">
+    <img class="logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='40'><rect width='160' height='40' fill='%230F172A' rx='6'/><text x='14' y='26' font-family='Georgia' font-size='17' fill='%23C5A059'>Penalex</text></svg>" alt="Penalex VE">
+    <nav>
+      <a href="#">Jurisprudencias</a>
+      <a href="#">Leyes</a>
+      <a href="#">Blog</a>
+    </nav>
+    <div>
+      <a class="btn" href="#">Iniciar sesión</a>
+      <a class="btn btn-primary" href="#">Crear cuenta</a>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Stepper: DELITOS activo (navy + dorado) -->
+    <div class="stepper">
+      <div class="chip resaltado"><span>1</span><span>DELITOS</span></div>
+      <div class="linea"></div>
+      <div class="chip"><span>2</span><span>CONCURSO</span></div>
+      <div class="linea"></div>
+      <div class="chip"><span>3</span><span>CÓMPUTO</span></div>
+    </div>
+
+    <!-- Tarjeta de delito -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">Delito 1</div>
+        <div class="badge-pena"><span>⚖</span><span>12 años 6 meses</span></div>
+      </div>
+
+      <div class="campo" style="margin-top:14px">
+        <div class="label">Nombre del delito <span class="info">ⓘ</span></div>
+        <input type="text" value="Homicidio Calificado" style="margin-top:6px">
+      </div>
+
+      <div class="campo">
+        <div class="label">Tipo de pena <span class="info">ⓘ</span></div>
+        <select style="margin-top:6px">
+          <option>Presidio</option>
+          <option>Prisión</option>
+        </select>
+      </div>
+
+      <div class="pena-row">
+        <div>
+          <div class="label">PENA MÍNIMA <span class="info">ⓘ</span></div>
+          <div class="triple">
+            <div><input type="number" value="8"><div class="etq">años</div></div>
+            <div><input type="number" value="0"><div class="etq">meses</div></div>
+            <div><input type="number" value="0"><div class="etq">días</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="label">PENA MÁXIMA <span class="info">ⓘ</span></div>
+          <div class="triple">
+            <div><input type="number" value="20"><div class="etq">años</div></div>
+            <div><input type="number" value="0"><div class="etq">meses</div></div>
+            <div><input type="number" value="0"><div class="etq">días</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="seccion-titulo">AJUSTES ADICIONALES</div>
+      <div class="ajuste">
+        <div>
+          <div class="nombre">Aumento por autoridad</div>
+          <div class="detalle">Agravante (+) 1/3</div>
+        </div>
+        <div>✎ 🗑</div>
+      </div>
+      <button class="btn-agregar">+ Agregar ajuste</button>
+
+      <div class="termino-medio">
+        <div class="tm-lbl">Término medio (Art. 37 CP):</div>
+        <div class="tm-val">14 años 0 meses 0 días</div>
+      </div>
+
+      <div class="seccion-titulo">AJUSTES LEGALES</div>
+
+      <div class="campo">
+        <div class="label">Grado de ejecución <span class="info">ⓘ</span></div>
+        <select style="margin-top:6px">
+          <option>Consumado</option>
+          <option>Frustrado</option>
+          <option>Tentativa</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <div class="label">Grado de participación <span class="info">ⓘ</span></div>
+        <select style="margin-top:6px">
+          <option>Autor</option>
+          <option>Coautor</option>
+          <option>Cooperador Inmediato</option>
+          <option>Cómplice Necesario</option>
+          <option>Cómplice No Necesario</option>
+        </select>
+      </div>
+
+      <div class="switch-row">
+        <div style="display:flex;align-items:center;gap:8px">Delito continuado <span class="info">ⓘ</span></div>
+        <span class="switch"><input type="checkbox"><span class="track"></span><span class="thumb"></span></span>
+      </div>
+
+      <div class="seccion-titulo">ATENUANTES / AGRAVANTES (Arts. 74 y 77 CP)</div>
+      <div class="segment">
+        <button class="sel">Atenuante</button>
+        <button>Agravante</button>
+      </div>
+      <div class="slider-row" style="margin-top:12px">
+        <div class="lbl">Cantidad</div>
+        <div class="triple">
+          <div><input type="number" value="1"><div class="etq">años</div></div>
+          <div><input type="number" value="0"><div class="etq">meses</div></div>
+          <div><input type="number" value="0"><div class="etq">días</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:12px">
+      <button style="width:100%;padding:13px;border-radius:14px;border:2px dashed #E2E8F0;background:#fff;font-size:14px;font-weight:700;color:#475569;cursor:pointer">
+        + AGREGAR OTRO DELITO
+      </button>
+    </div>
+
+    <!-- Sumatoria fiel a la app -->
+    <div class="sumatoria">
+      <div class="tit">SUMATORIA DE PENAS</div>
+      <div class="val">20 años 6 meses 0 días</div>
+    </div>
+
+    <div class="botones">
+      <button class="boton-sec">← REGRESAR</button>
+      <button class="boton-prim">SIGUIENTE →</button>
+    </div>
+
+  </main>
+</body>
+</html>

@@ -1,0 +1,260 @@
+{
+ "ley_nombre": "Reglamento del Servicio de Alguacilazgo de los Circuitos Judiciales Penales",
+ "estructura": [
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": "Capítulo I — Disposiciones Generales",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "1",
+     "encabezado": "Objeto",
+     "texto_principal": "El presente Reglamento tiene por objeto establecer las normas que regirán el funcionamiento del Servicio de Alguacilazgo de los Circuitos Judiciales Penales del país, de conformidad con lo previsto en la Constitución de la República Bolivariana de Venezuela, el Código Orgánico Procesal Penal y demás leyes aplicables.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "2",
+     "encabezado": "Ámbito de aplicación",
+     "texto_principal": "El presente Reglamento es aplicable a todos los Circuitos Judiciales Penales que integran la competencia penal ordinaria y especial en los términos previstos en el Código Orgánico Procesal Penal, en las leyes y demás normas penales especiales.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": "Capítulo II — De los Alguaciles",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "3",
+     "encabezado": "Perfil del Alguacil",
+     "texto_principal": "Los alguaciles deberán ser venezolanos, mayores de edad, ser ciudadanos de reconocida solvencia moral, llenar los requisitos del cargo de acuerdo al perfil establecido por la Dirección Ejecutiva de la Magistratura, tener y acreditar buena conducta, aprobar las evaluaciones establecidas para el proceso de selección de personal; no haber sido destituido de algún otro organismo o ente público y cualquier otro requisito exigido por la ley o las normas que regulen la materia.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "4",
+     "encabezado": "Selección del Alguacil",
+     "texto_principal": "Quien postule deberá asegurar la idoneidad ética y laboral de los ciudadanos que proponga para desempeñar las funciones de alguacilazgo en los Circuitos Judiciales Penales, de acuerdo a lo previsto en el artículo 3 de este Reglamento.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": "Capítulo III — Del servicio de Alguacilazgo",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "5",
+     "encabezado": "Funciones del Servicio de Alguacilazgo",
+     "texto_principal": "El Servicio de Alguacilazgo tendrá como atribuciones las siguientes:",
+     "numerales_literales": [
+      "1.- La recepción de la correspondencia, escritos y diligencias que se presenten en el Circuito Judicial Penal ante la Unidad u Oficina correspondiente.",
+      "2.- El transporte y la distribución interna y externa de los documentos.",
+      "3.- La custodia y mantenimiento del orden dentro de las salas de audiencia y los despachos jurisdiccionales.",
+      "4.- La práctica de las citaciones, notificaciones y la ejecución de las órdenes emanadas de los tribunales.",
+      "5.- Recibir al imputado, libre de apremio, en la sala de audiencia o despacho jurisdiccional, en los términos previstos en este Reglamento.",
+      "6.- Realizar las labores correspondientes para la verificación en el cumplimiento de la medida cautelar sustitutiva referida a la presentación periódica del imputado en el Circuito Judicial Penal.",
+      "7.- Las previstas en leyes especiales penales y demás textos normativos."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "6",
+     "encabezado": "Prohibiciones para los alguaciles",
+     "texto_principal": ":\n\n2 - Desempeñar sus funciones, dentro o fuera del recinto judicial, sin portar en un lugar visible la credencial que los identifique como funcionarios del Poder Judicial.",
+     "numerales_literales": [
+      "1.- Queda prohibido a los alguaciles comunicarse de cualquier forma con las partes del proceso, so pena de destitución.",
+      "3.- Cualquier otra que atente contra el adecuado funcionamiento y la seguridad de las instalaciones de los Palacios de Justicia."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "7",
+     "encabezado": "Servicio de Alguacilazgo",
+     "texto_principal": "El Servicio de Alguacilazgo prestará apoyo en las siguientes Oficinas:",
+     "numerales_literales": [
+      "1.- La Unidad de Recepción y Distribución de documentos.",
+      "2.- La Unidad de Actos de Comunicación.",
+      "3.- La Unidad de Correo Interno."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "8",
+     "encabezado": "Creación de Unidades u Oficinas adicionales",
+     "texto_principal": "Queda prohibida la creación de nuevas unidades u oficinas al Servicio de Alguacilazgo, distintas a las establecidas en este Reglamento.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "9",
+     "encabezado": "Cantidad de alguaciles",
+     "texto_principal": "El número de los funcionarios requerido para cubrir el Servicio de Alguacilazgo en cada Circuito Judicial Penal, se determinará con base a las estadísticas judiciales, que a tal efecto analice la Dirección Ejecutiva de la Magistratura.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "10",
+     "encabezado": "La Unidad de Recepción y Distribución de Documentos (URDD)",
+     "texto_principal": "La Unidad de Recepción y Distribución de Documentos (URDD) se encarga de recibir y distribuir, de forma automatizada o manual, según sea el caso, cualquier documento que esté dirigido al Circuito Judicial Penal. Los tipos de documentos que se recibirán, entre otros, serán referentes a:",
+     "numerales_literales": [
+      "1.- Asuntos nuevos.",
+      "2.- Escritos, solicitudes, recursos y otras actuaciones que guarden relación con asuntos que correspondan al Circuito Judicial.",
+      "3.- Correspondencia dirigida a la sede judicial.",
+      "4.- Los Funcionarios que desempeñen estas funciones, deberán ingresar de forma clara y precisa todos los datos requeridos en el registro, manual o automatizado, mediante el cual se haga la recepción y distribución de los documentos descritos en los numerales anteriores."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "11",
+     "encabezado": "La Unidad de Actos de Comunicación (UAC)",
+     "texto_principal": "La Unidad de Actos de Comunicación (UAC) se encarga de practicar las citaciones, notificaciones, enviar oficios, expedientes, comisiones u otro tipo de comunicación a organismos externos al Poder Judicial, debiendo dejar debida constancia del resultado de sus actuaciones en el sistema automatizado o de manera manual, de ser el caso; así como en el respectivo expediente.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "12",
+     "encabezado": "La Unidad de Correo Interno (UCI)",
+     "texto_principal": "La Unidad de Correo Interno (UCI) se encarga de transportar todos los documentos, expedientes y correspondencias o comunicaciones dentro de la sede judicial. Los alguaciles que conformen esta Unidad deberán realizar por lo menos dos veces al día un recorrido por cada una de las oficinas administrativas y despachos judiciales para el cumplimiento de las funciones que tengan asignadas. Asimismo, retirarán y entregarán en el Archivo de la Sede los asuntos que sean solicitados o devueltos por los Jueces y Secretarios a esta Unidad.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "13",
+     "encabezado": "Distribución de los Alguaciles",
+     "texto_principal": "Corresponderá a la Presidencia del Circuito Judicial Penal fijar las guardias y realizar la rotación de los alguaciles en cada una de las Oficinas que integran el Servicio de Alguacilazgo, de manera transparente, oportuna e imparcial. Los Jueces Coordinadores de las competencias especiales, que corresponda informarán a la Presidencia del Circuito sobre sus respectivos roles de guardia del Servicio de Alguacilazgo, a los efectos de su implementación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "14",
+     "encabezado": "Atribuciones del Jefe del Servicio de Alguacilazgo",
+     "texto_principal": "El Servicio de Alguacilazgo, integrado por las Unidades previstas en el artículo 6 del presente Reglamento, será coordinado por un Jefe de Alguacilazgo, designado por la Presidencia del Circuito, quien será su superior directo. Tendrá como atribuciones las siguientes:",
+     "numerales_literales": [
+      "1.- Velar por el buen funcionamiento de las Unidades que integran el Servicio de Alguacilazgo, en atención a los principios de transparencia, oportunidad, gratuidad, imparcialidad y equidad que rigen la prestación del servicio de administración de justicia previstos en la Constitución de la República Bolivariana de Venezuela, el Código Orgánico Procesal Penal y demás leyes que regulan la materia.",
+      "2.- Ejecutar las rotaciones y cronograma de guardias indicados por la Presidencia del Circuito Judicial Penal.",
+      "3.- Elaborar y remitir a la Presidencia del Circuito Judicial Penal propuestas dirigidas al óptimo funcionamiento del Servicio de Alguacilazgo.",
+      "4.- Informar oportunamente a la Presidencia del Circuito Judicial Penal sobre cualquier irregularidad o novedad relacionada con el funcionamiento de las Unidades que integran el Servicio de Alguacilazgo."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": "Capítulo IV — Del Traslado y custodia de los Procesados",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "15",
+     "encabezado": "Traslado y custodia de imputados",
+     "texto_principal": "El traslado y custodia de los imputados con medida de privación judicial preventiva de libertad o medida cautelar sustitutiva, para las celebraciones de audiencias será realizado por los funcionarios de la Guardia Nacional Bolivariana, en cumplimiento de las atribuciones señaladas en la respectiva ley orgánica.\n\nIgualmente, le corresponderá a la Guardia Nacional Bolivariana el apoyo necesario para la comparecencia del imputado o imputada para la práctica del reconocimiento solicitado por el Ministerio Público como parte de la actividad probatoria.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "16",
+     "encabezado": "Custodia del imputado en los calabozos",
+     "texto_principal": "Queda expresamente prohibida la presencia, permanencia y cualquier tipo de comunicación de los alguaciles, así como de cualquier persona, en los calabozos de los Circuitos Judiciales Penales. De igual manera, se prohíbe la intervención del alguacilazgo en las labores de traslado de los imputados.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "17",
+     "encabezado": "Seguridad de la sede judicial",
+     "texto_principal": "La preservación del orden externo de la sede corresponderá a los funcionarios de seguridad que la Dirección Ejecutiva de la Magistratura designe, pudiendo contar con el apoyo de los organismos de seguridad del Estado, en los casos que así lo amerite.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": "Capítulo V — ",
+   "seccion": "Disposiciones Finales",
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "18",
+     "encabezado": "Ejecución",
+     "texto_principal": "Corresponde a la Dirección Ejecutiva de la Magistratura y a las Presidencias de los Circuitos Judiciales Penales la ejecución y debido cumplimiento del presente Reglamento.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "19",
+     "encabezado": "Vigencia",
+     "texto_principal": "El presente Reglamento entrará en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela. Queda derogada cualquier normativa atinente a la materia regulada en este Reglamento que colida o contradiga sus disposiciones.\n\nDado, firmado y sellado en el Salón de Sesiones del Tribunal Supremo de Justicia, en Caracas, a los dieciséis (16) días del mes de mayo de dos mil doce (2012). Años: 202 de la Independencia y 153 de la Federación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  }
+ ]
+}

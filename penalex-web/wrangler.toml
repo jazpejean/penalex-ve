@@ -1,0 +1,7 @@
+# Cloudflare Pages — penalex-web (dominio raíz: penalexve.com)
+# Deploy: npx wrangler pages deploy out --project-name=penalex-web
+# Dominio raíz: Cloudflare Dashboard → Pages → penalex-web → Custom domains
+#   → añadir penalexve.com (Cloudflare gestiona el DNS automáticamente).
+name = "penalex-web"
+
+compatibility_date = "2024-11-01"

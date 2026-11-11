@@ -1,0 +1,345 @@
+{
+  "ley_nombre": "LEY PARA LA PREVENCIÓN Y ERRADICACIÓN DEL ABUSO SEXUAL CONTRA NIÑAS, NIÑOS Y ADOLESCENTES",
+  "estructura": [
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": "CAPÍTULO I. DISPOSICIONES GENERALES",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "1",
+          "encabezado": "Objeto",
+          "texto_principal": "La presente Ley tiene por objeto garantizar a todas las niñas, niños y adolescentes su derecho a ser protegidas y protegidos contra cualquier forma de abuso sexual, a la integridad personal y el libre desarrollo de su personalidad como sujetos plenos de derecho bajo el principio de corresponsabilidad entre el Estado, las familias y la sociedad.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "2",
+          "encabezado": "Finalidad",
+          "texto_principal": "La presente Ley tiene por finalidad:",
+          "numerales_literales": [
+            "1. Desarrollar las estrategias, políticas, programas y regulaciones dirigidos a prevenir todas las formas de abuso sexual contra niñas, niños y adolescentes, a través de la articulación de las acciones del Estado, las familias y la sociedad.",
+            "2. Garantizar los medios para proteger integralmente y brindar atención a las niñas, niños y adolescentes víctimas de abuso sexual, así como a sus familias, entre otros a través de programas de protección permanentes y gratuitos.",
+            "3. Establecer las responsabilidades y sanciones con el objeto de erradicar cualquier forma de abuso sexual contra niñas, niños y adolescentes.",
+            "4. Fomentar el estudio, investigación y diagnóstico sobre el abuso sexual contra niñas, niños y adolescentes para desarrollar medidas dirigidas a su prevención y erradicación.",
+            "5. Promover la participación solidaria y activa de la sociedad en las políticas, programas y acciones dirigidas a la prevención y erradicación del abuso sexual contra niñas, niños y adolescentes.",
+            "6. Fomentar la sensibilización y especialización de servidoras públicas, servidores públicos y profesionales responsables de la prevención, protección integral y erradicación del abuso sexual.",
+            "7. Integrar al poder popular a los procesos de detección temprana y atención inmediata de los casos de abuso sexual dentro de las comunidades."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "3",
+          "encabezado": "Ámbito de aplicación",
+          "texto_principal": "La presente Ley se aplica a todas las niñas, niños y adolescentes que se encuentren en el territorio nacional.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "4",
+          "encabezado": "Principios",
+          "texto_principal": "La presente Ley se rige por los siguientes principios:",
+          "numerales_literales": [
+            "1. Las niñas, niños y adolescentes como sujetos plenos de derecho que ejercen la ciudadanía.",
+            "2. Interés Superior de las Niñas, Niños y Adolescentes.",
+            "3. Prioridad absoluta.",
+            "4. Igualdad y no discriminación.",
+            "5. Igualdad y equidad de género.",
+            "6. Responsabilidad fundamental de las familias en la crianza de las niñas, niños y adolescentes.",
+            "7. Corresponsabilidad del Estado, las familias y la sociedad en la protección integral de las niñas, niños y adolescentes.",
+            "8. Protección a la víctima y no revictimización.",
+            "9. Respeto absoluto a la dignidad humana.",
+            "10. Reconocimiento de la libertad, la autonomía y el derecho al libre desenvolvimiento de la personalidad de las niñas, niños y adolescentes.",
+            "11. La protección, seguridad y apoyo a la niña, niño y adolescente en condición de víctima de abuso sexual.",
+            "12. La imprescriptibilidad de los delitos de abuso sexual a las niñas, niños y adolescentes en todas sus formas.",
+            "13. Confidencialidad."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "5",
+          "encabezado": "Igualdad y no discriminación",
+          "texto_principal": "Las disposiciones de esta Ley se aplicarán con igualdad a todas las niñas, niños y adolescentes y sus familias, sin discriminaciones fundadas en la raza, sexo, credo, condición social, pensamiento, conciencia, opinión política, cultura, idioma, origen étnico, social o nacional, orientación sexual, identidad y expresión de género, edad, posición económica, discapacidad, condición de salud o, aquellas que, en general, tengan por objeto o resultado anular o menoscabar el reconocimiento, goce o ejercicio en condiciones de igualdad de los derechos, garantías y deberes de las personas.\n\nEl Estado, las familias y la sociedad garantizarán que la igualdad reconocida en esta disposición sea real y efectiva. A tal efecto, adoptarán todas las medidas positivas a favor de las personas o grupos que puedan ser discriminados, marginados o vulnerables.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "6",
+          "encabezado": "Interés general y orden público",
+          "texto_principal": "Se declara de interés general y social la prevención y erradicación del abuso sexual contra las niñas, niños y adolescentes como una grave violación a los derechos humanos. Las disposiciones de la presente Ley son de orden público.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "7",
+          "encabezado": "Prioridad Absoluta",
+          "texto_principal": "El Estado, las familias y la sociedad deben asegurar, con Prioridad Absoluta, todos los derechos y garantías de las niñas, niños y adolescentes víctimas de abuso sexual. La prioridad absoluta es imperativa para todos y comprende:",
+          "numerales_literales": [
+            "1. Precedencia de las niñas, niños y adolescentes víctimas de abuso sexual en el acceso y la atención a los servicios especializados de medicina y ciencias forenses.",
+            "2. Precedencia de las niñas, niños y adolescentes víctimas de abuso sexual en el acceso y la atención en los servicios especializados de policía de investigación penal.",
+            "3. Especial preferencia y celeridad en el trámite y decisión de los procedimientos administrativos y judiciales referidos a abuso sexual contra niñas, niños y adolescentes."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "8",
+          "encabezado": "Derechos específicos de las víctimas de abuso sexual",
+          "texto_principal": "Las niñas, niños y adolescentes víctimas de abuso sexual, tienen además de los derechos y garantías reconocidos en el ordenamiento jurídico, los siguientes derechos específicos:",
+          "numerales_literales": [
+            "1. Contar con protección inmediata y efectiva por parte de los órganos y entes del Poder Público especializados.",
+            "2. A la protección del libre desarrollo de su personalidad, integridad personal, seguridad, identidad, honor, reputación, imagen y vida privada durante los procedimientos administrativos y judiciales",
+            "3. Recibir información veraz, suficiente, sencilla, con calidez y humanidad, adecuada a su edad y desarrollo evolutivo sobre su situación y sus derechos.",
+            "4. Recibir asesoría jurídica gratuita, oportuna, de calidad, con calidez y humanidad.",
+            "5. Recibir información sobre sus derechos y el progreso de los trámites judiciales y administrativos de forma adecuada a su edad y desarrollo evolutivo.",
+            "6. Contar con mecanismos expeditos para informar de los actos cometidos contra ellas o ellos e interponer denuncias al respecto en condiciones de seguridad y confidencialidad.",
+            "7. Recibir atención médica y psicológica por parte de los órganos y entes del Poder Público especializados.",
+            "8. A que las experticias que deban practicarse se realicen a través de servicios de ciencias forenses especializados."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": "CAPÍTULO II. PREVENCIÓN DEL ABUSO SEXUAL. CONTRA NIÑAS, NIÑOS Y ADOLESCENTES",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "9",
+          "encabezado": "Obligaciones generales de prevención",
+          "texto_principal": "El Estado, las familias y la sociedad tienen la obligación de desarrollar todas las acciones necesarias y adecuadas para la prevención y erradicación de cualquier forma de abuso sexual contra las niñas, niños y adolescentes, así como para la protección integral de las víctimas directas e indirectas de estas situaciones.\n\nEl Estado, con la activa participación de las familias y la sociedad, debe garantizar políticas y programas de prevención, protección integral y erradicación del abuso sexual infantil y adolescente.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "10",
+          "encabezado": "Prevención del abuso sexual contra niñas, niños y adolescentes en el Subsistema de Educación",
+          "texto_principal": "En todas las instituciones y centros educativos, oficiales y privados, del Subsistema de Educación, en los niveles de educación inicial, primaria, bachillerato y universitaria, deben desarrollarse acciones para la prevención del abuso sexual contra niñas, niños y adolescentes. A tal efecto, deberán garantizar programas permanentes de información y educación dirigidos a las niñas, niños y adolescentes, de acuerdo a su desarrollo, en salud sexual y reproductiva para la prevención de todas las formas de abuso sexual.\n\nPara la puesta en práctica de esta acción, como política pública de protección integral de las niñas, niños y adolescentes, se coordinarán acciones con los integrantes de los servicios educativos y de las defensorías educativas de niñas, niños y adolescentes.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "11",
+          "encabezado": "Día nacional de prevención del abuso sexual contra las niñas, niños y adolescentes",
+          "texto_principal": "Se establece el diecinueve de noviembre de cada año como el Día Nacional para la Prevención del Abuso Sexual Contra las Niñas, Niños y Adolescentes.\n\nDurante este día, las instituciones educativas oficiales y privadas, en todos sus niveles y modalidades, deberán realizar actividades dirigidas a la prevención del abuso sexual contra las niñas, niños y adolescentes. Así mismo, en cumplimiento de los deberes de corresponsabilidad los medios de comunicación públicos, privados y comunitarios deben emitir mensajes dirigidos a la prevención del abuso sexual contra las niñas, niños y adolescentes.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "12",
+          "encabezado": "Edad mínima para el matrimonio y uniones estables de hecho",
+          "texto_principal": "Se establece la edad de dieciséis años como edad mínima de hombres y mujeres para contraer válidamente matrimonio y uniones estables de hecho. Las y los adolescentes con dieciséis o más años de edad requerirán autorización previa del Tribunal de Protección de Niñas, Niños y Adolescentes para contraer válidamente matrimonio y uniones estables de hecho.\n\nSe prohíbe a las funcionarias públicas y funcionarios públicos celebrar matrimonios o registrar uniones estables de hecho en contra de lo establecido en esta disposición. El incumplimiento de esta prohibición será sancionado con pena de uno a tres años de prisión.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "13",
+          "encabezado": "Comisión Nacional para la Prevención, Protección Integral y Erradicación contra el Abuso Sexual de las Niñas, Niños y Adolescentes",
+          "texto_principal": "Se crea la Comisión Nacional para la Prevención, Protección Integral y Erradicación contra el Abuso Sexual de las Niñas, Niños y Adolescentes como espacio de coordinación entre los órganos y entes del Poder Público para garantizar la efectividad, eficiencia y calidad de la acción del Estado en la lucha contra el abuso sexual de las niñas, niños y adolescentes. La Comisión estará integrada por:",
+          "numerales_literales": [
+            "1. Una o un representante del ministerio del poder popular con competencia en materia de protección integral de niñas, niños y adolescentes, quien presidirá la comisión.",
+            "2. Una o un representante del ministerio del poder popular con competencia en materia de educación básica.",
+            "3. Una o un representante del ministerio del poder popular con competencia en materia de salud.",
+            "4. Una o un representante del ministerio del poder popular con competencia en materia de interiores, justicia y paz.",
+            "5. Una o un representante del ministerio del poder popular con competencia en materia de mujer e igualdad de género.",
+            "6. Una o un representante del ministerio del poder popular con competencia en materia de comunas.",
+            "7. Una o un representante del Tribunal Supremo de Justica.",
+            "8. Una o un representante del Ministerio Público.",
+            "9. Una o un representante de la Defensoría del Pueblo.",
+            "10. Una o un representante de la Defensa Pública.\n\nLa organización y funcionamiento se regulará por esta Ley y su reglamento interno. La Comisión contará con una Secretaría Ejecutiva."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "14",
+          "encabezado": "Atribuciones de la Comisión Nacional para la Prevención, Protección Integral y Erradicación contra el Abuso Sexual de las Niñas, Niños y Adolescentes",
+          "texto_principal": "La Comisión Nacional para la Prevención, Protección Integral y Erradicación contra el Abuso Sexual de las Niñas, Niños y Adolescentes tiene las siguientes atribuciones:",
+          "numerales_literales": [
+            "1. Coordinar con los órganos y entes del Estado para desarrollar las políticas, programas de protección y acciones dirigidas a la prevención, protección integral y erradicación contra abuso sexual de las niñas, niños y adolescentes, incluyendo las entidades federales y municipios.",
+            "2. Promover la participación activa de las familias y la sociedad en la prevención, protección integral y erradicación contra el abuso sexual de las niñas, niños y adolescentes.",
+            "3. Contribuir a la generación de estudios, investigación y estadísticas del fenómeno contra abuso sexual de las niñas, niños y adolescentes para generar información que permita su prevención y erradicación.",
+            "4. Generar espacios para la construcción de criterios uniformes para la atención de las niñas, niños y adolescentes víctimas de abuso sexual.",
+            "5. Desarrollar espacios de formación sobre la prevención, protección integral y sanción del abuso sexual contra niñas, niños y adolescentes.",
+            "6. Desarrollar alianzas y acuerdos con organizaciones sociales para la prevención, protección integral y erradicación contra abuso sexual de las niñas, niños y adolescentes.",
+            "7. Establecer estrategias para fortalecer las capacidades técnicas y de funcionamiento de los órganos y servicios competentes para la investigación y el establecimiento oportuno de las responsabilidades y sanciones a que hubiere lugar en los casos de abuso sexual contra las niñas, niños y adolescentes.",
+            "8. Dictar su reglamento interno.",
+            "9. Las demás establecidas en las leyes y el reglamento de la presente Ley."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": "CAPÍTULO III. PROTECCIÓN INTEGRAL DE LAS NIÑAS, NIÑOS Y ADOLESCENTES. VÍCTIMAS DEL ABUSO SEXUAL",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "15",
+          "encabezado": "Programas de protección en caso de abuso sexual",
+          "texto_principal": "El Estado, con la participación solidaria y activa de la sociedad, desarrollará programas de protección dirigidos específicamente a las niñas, niños y adolescentes víctimas de abuso sexual y a sus familiares. Estos programas deben orientarse de manera preferente a las niñas, niños y adolescentes en condición de vulnerabilidad, entre ellas por motivos de género, origen étnico, situación social, discapacidad o salud.\n\nEstos programas deben incluir la atención en salud física y mental de las niñas, niños y adolescentes, así como acompañamiento integral a las niñas, niños y adolescentes en condición de abuso sexual y a sus familias.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "16",
+          "encabezado": "Servicios de medicina y ciencias forenses especializados",
+          "texto_principal": "El Servicio Nacional de Medicina y Ciencias Forenses deberá crear y desarrollar servicios especializados dirigidos a la atención diferenciada de las niñas, niños y adolescentes en condición de víctimas de abuso sexual. Estos servicios deberán ser diferentes de los que se brinda a las personas mayores de dieciocho años. Estos servicios deben contar con personal debidamente formado para brindar una atención oportuna, especializada, diferenciada, de calidad, con calidez, aceptabilidad y humanidad, adecuada a la edad y desarrollo evolutivo de las niñas, niños y adolescentes.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "17",
+          "encabezado": "Protección contra la revictimización en procesos administrativos y judiciales",
+          "texto_principal": "El Estado adoptará las medidas necesarias para evitar la revictimización de las niñas, niños y adolescentes en condición de víctimas de abuso sexual en los procesos administrativos y judiciales. A tal efecto, se propenderá a establecer mecanismos que protejan su integridad personal durante su intervención en los procesos, evitando la repetición innecesaria de declaraciones, testimonios y experticias, así como su presencia ante los presuntos responsables.\n\nLas servidoras públicas y servidores públicos deberán garantizar en todas las etapas del proceso la protección de la integridad física y psicológica de las niñas, niños y adolescentes en condición de víctimas, procurando que el daño sufrido no se vea incrementado con acciones, omisiones o retardos innecesarios. En virtud de ello, deberán evitar cualquier práctica injustificada que tenga por objeto o resultado su revictimización.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "18",
+          "encabezado": "Medidas Generales Protección contra la revictimización en procesos administrativos y judiciales",
+          "texto_principal": "Para evitar la revictimización de las niñas, niños y adolescentes, todas las servidoras públicas y servidores públicos del Estado, especialmente del Sistema de Justicia, deberán:",
+          "numerales_literales": [
+            "1. Adoptar todas las medidas necesarias para asegurar que las niñas, niños y adolescentes víctimas de abuso sexual y sus familiares reciban un trato digno, respetuoso y cálido.",
+            "2. Simplificar el lenguaje judicial, utilizando una terminología sencilla y adecuada a la edad y desarrollo integral de las niñas, niños y adolescentes, especialmente aquellas o aquellos con algún tipo de discapacidad.",
+            "3. Garantizar la seguridad de las niñas, niños y adolescentes durante su permanencia en el órgano administrativo o jurisdiccional.",
+            "4. Prevenir toda situación de riesgo que pueda poner en peligro a la niña, niño o adolescentes de ser víctima de cualquier tipo de violencia física, psicológica o moral, adoptando las medidas apropiadas para mitigar los riesgos y protegerlas antes, durante y después de concluido el procedimiento administrativo o judicial.",
+            "5. Tomar las previsiones necesarias para que las niñas, niños y adolescentes que acudan a los órganos administrativos y jurisdiccionales permanezcan el menor tiempo posible para la realización de cualquier diligencia o acto procesal. En consecuencia, la intervención dela niña, niño y adolescente deberá planificarse con antelación, previendo todo lo indispensable para que su comparecencia ente el órgano administrativo o jurisdiccional sea lo más breve posible.",
+            "6. Formular sus preguntas neutralizando o disminuyendo la victimización dela niña, niño o adolescente. En el caso de las y los adolescentes deberá instar a las partes, abogados y abogadas a evitar la revictimización dela o el adolescente con sus conductas, expresiones y preguntas, así como adoptar todas las decisiones y medidas que sean necesarias para proteger su integridad personal. En este sentido, debe evitar y prohibir que:",
+            "a. Se expresen juicios de valor sobre la conducta o relato dela niña, niño o adolescente, ya sean positivos o negativos.",
+            "b. Se realicen preguntas inquisitivas que exacerben los sentimientos de culpa, vergüenza, rabia o tristeza.",
+            "c. Se utilicen frases ofensivas, denigrantes, estigmatizantes o discriminadoras, que atenten contra el derecho al honor, reputación, propia imagen, vida privada e intimidad familiar.",
+            "d. Se irrespeten los silencios y ritmos del testimonio de las niñas, niños y adolescentes.",
+            "7. Garantizar el acompañamiento emocional antes, durante y después del testimonio de niñas, niños y adolescentes, lo que incluye el acompañamiento de una tercera persona o una o un profesional del Equipo Multidisciplinario, antes, durante y después de su intervención en el procedimiento, a fin de generar un ambiente de confianza y seguridad, maximizando así la posibilidad de obtener información fidedigna y garantizando condiciones que protejan su integridad emocional.",
+            "8. Adoptar todas las medidas necesarias procesales adecuadas para que en la actividad probatoria se evite la declaración reiterada de las niñas, niños y adolescentes víctimas de abuso sexual."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "19",
+          "encabezado": "Privación de patria potestad",
+          "texto_principal": "La persona condenada por cualquier forma de abuso sexual contra un niño, niña o adolescentes será privada de pleno derecho del ejercicio de la patria potestad con respecto a todos sus hijos e hijas. La privación será declarada en la sentencia del tribunal penal que declare la responsabilidad de la persona e imponga las sanciones a que hubiere lugar. En estos casos no procederá la restitución de la patria potestad.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "DISPOSICION DEROGATORIA",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Derogatoria",
+          "identificador": "Única",
+          "encabezado": null,
+          "texto_principal": "Se derogan los artículos 46, 59, 60, 61, 62 y 63 del Código Civil.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "DISPOSICION FINAL",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Final",
+          "identificador": "Única",
+          "encabezado": null,
+          "texto_principal": "La presente Ley entrará en vigencia al momento de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.\n\nDado, firmado y sellado en el Palacio Federal Legislativo, en Caracas a los veintinueve días del mes de septiembre del 2021. Año 211 de la Independencia y 162 de la Federación y 22 de la Revolución Bolivariana.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    }
+  ]
+}

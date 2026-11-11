@@ -1,0 +1,1196 @@
+{
+ "ley_nombre": "Reglamento de la Ley de Abogados",
+ "estructura": [
+  {
+   "libro": null,
+   "titulo": "TÍTULO I DISPOSICIONES GENERALES",
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "1",
+     "encabezado": "Decreta:",
+     "texto_principal": "Los Reglamentos, Resoluciones y Acuerdos que dictaren la Federación de Colegios de Abogados y el Instituto de Previsión Social del Abogado son de obligatorio cumplimiento para todos los Abogados de la República.\n\nLos Reglamentos, Resoluciones y Acuerdos que dictaren los respectivos Colegios de Abogados y Delegaciones, sólo serán de obligatorio cumplimiento para sus miembros Inscritos o incorporados.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "2",
+     "encabezado": "",
+     "texto_principal": "Los Reglamentos internos a que se refiere el artículo 1 de la Ley, son los que dictaren los respectivos Colegios o Delegaciones y los mismos, así como sus Acuerdos y Resoluciones no podrán ser contrarios a las disposiciones contenidas en los Reglamentos, Resoluciones y Acuerdos que dictare la Federación de Colegios de Abogados.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "3",
+     "encabezado": "",
+     "texto_principal": "Sin perjuicio de la prohibición contenida en el último párrafo del artículo 2 de la Ley, los Abogados podrán ejercer otras actividades tales como las de corredor o contador con carácter público, de intérpretes, de peritos y de depositarios.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "4",
+     "encabezado": "",
+     "texto_principal": "La obligación de nombrar Abogado establecida en el artículo 4 de la Ley, por lo que respecta a la parte demandada para que la represente o asista en el proceso, sólo se hará exigible a partir del acto de la contestación de la demanda, inclusive.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "5",
+     "encabezado": "",
+     "texto_principal": "La excepción contemplada en el artículo 5 de la Ley, se entenderá siempre referida a los trabajadores.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "6",
+     "encabezado": "",
+     "texto_principal": "La firma del Abogado al margen de los documentos que deban ser presentados a los funcionarios señalados en el artículo 6 de la Ley, significa que los mismos han sido redactados por aquél. Queda a salvo lo relativo a los documentos redactados en el extranjero.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO II DEL EJERCICIO DE LA PROFESIÓN DE ABOGADO",
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "7",
+     "encabezado": "",
+     "texto_principal": "Además de los documentos y actuaciones de que debe acompañarse la solicitud de inscripción en un Colegio de Abogados de acuerdo a lo dispuesto en el artículo 8 de la Ley, el solicitante, si es extranjero, deberá adjuntar constancia auténtica debidamente legalizada acreditativa de que en el país del que es nacional pueden los venezolanos ejercer la profesión de Abogado u otra equivalente, a los efectos del artículo 13 ejusdem. Tal constancia podrá suplirse mediante un ejemplar del órgano oficial de publicación de Leyes en el que se encuentre inserta la norma que permita la actuación profesional en los términos señalados, siempre y cuando se acredite su vigencia.\n\nEmpero, no será preciso el cumplimiento del requisito establecido en el párrafo anterior cuando sea notoria, por conocimiento general o por la información procurada en casos anteriores, la existencia de la reciprocidad exigida.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "8",
+     "encabezado": "",
+     "texto_principal": "Si se llenan los requisitos legales y reglamentarios, la Junta Directiva del Colegio aprobará por escrito la solicitud de inscripción, notificará la aprobación al interesado y señalará uno de los cinco días hábiles siguientes a la misma para que tenga lugar la juramentación prevista en el artículo 8 de la Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "9",
+     "encabezado": "",
+     "texto_principal": "La negativa de inscripción deberá ser razonada, pronunciarse por escrito y notificarse el interesado. Transcurridos treinta días consecutivos desde la fecha de introducción de la solicitud sin que la Junta Directiva del Colegio se pronuncie favorable o negativamente, se entenderá negada la inscripción.\n\nEl lapso de cinco días hábiles que el artículo 9 de la Ley señala para poder apelar ante el Directorio de la Federación de Colegios de Abogados se contará a partir de la fecha de notificación del acuerdo adverso o en que se venza en el término de treinta días señalado, según el caso.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "10",
+     "encabezado": "",
+     "texto_principal": "Si el Directorio de la Federación de Colegios de Abogados no decidiere dentro de los treinta días consecutivos siguientes a la apelación, se entenderá confirmada la negativa de inscripción. Tanto en este caso como en el que el Directorio de la Federación ratificare el rechazo de la solicitud emanada de la Junta Directiva de un Colegio, el interesado podrá recurrir ante la Sala Político-Administrativa de la Corte Suprema de Justicia de acuerdo a lo dispuesto en el artículo 9 de la Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "11",
+     "encabezado": "",
+     "texto_principal": "En cuanto el artículo 11 de la Ley distingue entre actividad profesional y ejercicio profesional del Abogado y en cuanto la misma se contrae a regular este último los supuestos en que sus normas prohíben ejercer la abogacía se considerarán referidos al ejercicio profesional libre salvo que la Ley disponga expresamente otra cosa.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "12",
+     "encabezado": "",
+     "texto_principal": "A los efectos de la Ley y de este Reglamento se considerará Abogado la persona nacional o extranjera que haya obtenido título de Abogado de la República o revalidado el expedido en el extranjero.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "13",
+     "encabezado": "",
+     "texto_principal": "La prohibición de ejercer la abogacía en los términos del artículo 11 de este Reglamento establecida en el párrafo primero del artículo 12 de la Ley a quienes sirvan empleos académicos, asistenciales, electorales, docentes o edilicios cuando sus cargos, por la naturaleza de sus funciones o por las leyes o reglamentos que los rijan exijan dedicación a tiempo completo, no operará cuando tales leyes o reglamentos con las condiciones en ellos señalados, permitan el desempeño de actividades extrañas no obstante el carácter, legal o convencional, del tiempo completo del empleo o cargo en cuestión.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "14",
+     "encabezado": "",
+     "texto_principal": "A los nacionales o extranjeros, graduados en Universidades del exterior, que no hayan obtenido en Venezuela el título de Abogado de la República o la revalida del suyo les está prohibido el ejercicio de la profesión de Abogado. Sin embargo las personas que se encuentren en esta situación podrán desarrollar labores y desempeñar funciones donde se requiera algún conocimiento jurídico, cuando esas actividades no estén reservadas por la Ley a quienes tengan título venezolano originario o revalidado, siempre que hayan sido contratadas por un organismo público o por personas o empresas privadas, previa autorización en este último caso, de la Junta Directiva del respectivo Colegio de Abogados o Delegación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "15",
+     "encabezado": "",
+     "texto_principal": "La incorporación de un Abogado a otro Colegio o delegación, por haber pasado a ejercer habitualmente en su jurisdicción o por haber cambiado de residencia o domicilio en razón de la función que desempeñe, deberá hacerse en el primer caso en el término de 30 días contados a partir de la fecha en que el Abogado hubiere solicitado su incorporación o desde la fecha en que el Colegio de la nueva jurisdicción le hubiere notificado la obligación de hacerlo y en el segundo caso, a partir del momento en que deba comenzar a ejercer la función para la cual ha sido designado.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "16",
+     "encabezado": "",
+     "texto_principal": "La incorporación de un Abogado a uno o más Colegios contemplada en el artículo 10 de la Ley no implica pérdida de la inscripción en el Colegio donde originalmente ingresó.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO III DE LOS DEBERES Y DERECHOS DE LOS ABOGADOS",
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "17",
+     "encabezado": "",
+     "texto_principal": "La obligación en que están los Abogados de aceptar las defensas que se les confíen de oficio, de acuerdo a lo establecido en el artículo 16 de la Ley, se entiende referida a las causas criminales. En cuanto a su excusa se seguirá el procedimiento pautado por el Código de Enjuiciamiento Criminal.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "18",
+     "encabezado": "",
+     "texto_principal": "La solicitud de autorización a que se contrae el artículo 20 de la Ley, deberá acompañarse con el texto del anuncio correspondiente y será decidida por la Junta Directiva del respectivo Colegio Delegación, dentro del plazo de diez días hábiles contados a partir de la fecha de su presentación. La falta de decisión o la negativa que recaiga sobre dicha solicitud podrá apelarse por ante el Directorio de la Federación de Colegios de Abogados, en el término de cinco días hábiles contados a partir de la fecha de vencimiento del plazo señalado en la primera parte de este artículo, el cual decidirá dentro de los diez (10) días hábiles siguientes a la apelación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "19",
+     "encabezado": "",
+     "texto_principal": "La retribución económica de los Abogados se fijará en concepto de honorarios. Los Colegios de Abogados podrán únicamente adoptar tarifas de orientación de carácter mínimo o máximo, para conocimiento de los colegiados.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "20",
+     "encabezado": "",
+     "texto_principal": "Los Colegios y el Instituto de Previsión Social del Abogado, requerirán periódicamente de sus miembros el pago de las contribuciones a que están obligados. No se aplicarán las sanciones establecidas en el aparte c) del artículo 70 de la Ley para la falta de pago de las referidas contribuciones, sino después de que habiendo sido requerido el Abogado dos veces por escrito, en el lugar de su residencia o trabajo, que él hubiere señalado al efectuar su inscripción en el respectivo Colegio de Abogados o Delegación y el Instituto de Previsión Social, no cumpliere con sus obligaciones en el plazo que se le hubiere fijado.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "21",
+     "encabezado": "",
+     "texto_principal": "Lo señalado en el segundo aparte del artículo 22 de la Ley, debe entenderse sin perjuicio de que el Abogado pueda estimar sus honorarios en cualquier estado y grado de la causa, antes de sentencia y pedir que se le intimen a su cliente, quien podrá ejercer el derecho de retasa de conformidad con el procedimiento establecido en el artículo 24 y siguientes de la Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "22",
+     "encabezado": "",
+     "texto_principal": "Establecido el derecho de cobrar honorarios en la sentencia que decida la incidencia a que se refiere el segundo aparte del artículo 22 de la Ley, el Abogado estimará el monto de sus honorarios, intimados los cuales, el cliente que hubiere sido condenado a pagarlos, podrá ejercer la retasa de conformidad con el procedimiento señalado en el artículo 24 y siguientes de la Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "23",
+     "encabezado": "",
+     "texto_principal": "Se resolverán por la vía del juicio ordinario todas las cuestiones que se susciten entre el abogado y su cliente sobre honorarios judiciales o extrajudiciales, cuando éstos hayan sido previamente estipulados mediante contrato.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "24",
+     "encabezado": "",
+     "texto_principal": "A los efectos del artículo 23 de la Ley se entenderá por obligado, la parte condenada en costas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "25",
+     "encabezado": "",
+     "texto_principal": "La Constancia a que se refiere el artículo 27 de la Ley, deberá estar firmada por el retasador designado y contendrá mención expresa de su disposición de aceptar el cargo así como de su identificación y residencia.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO IV DEL EJERCICIO ILEGAL DE LA PROFESIÓN",
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "26",
+     "encabezado": "",
+     "texto_principal": "Cuando conforme al artículo 31 de la Ley, el Tribunal Disciplinario tenga que pasar al Fiscal del Ministerio Público copia del expediente levantado con motivo de un caso de ejercicio ilegal, si el denunciado fuere abogado, se dará cumplimiento previo al procedimiento pautado en el artículo 63 y siguientes de la misma.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO V (Derogadas las disposiciones contenidas en el Título V y VI únicamente en las materias reguladas en el Reglamento de la Ley de Abogados sobre Elección en los Organismos Profesionales y en el Instituto de Previsión Social del Abogado, publicado en la Gaceta Oficial de la República de Venezuela N 31.854 de fecha 2 de noviembre de 1979, de conformidad con lo establecido en el Artículo 34 de este último)DE LOS ORGANISMOS PROFESIONALES",
+   "capitulo": "Capítulo I Colegios y Delegaciones",
+   "seccion": "Sección I La Asamblea",
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "27",
+     "encabezado": "",
+     "texto_principal": "Toda Asamblea, ordinaria o extraordinaria, será convocada por la Junta Directiva mediante aviso publicado por dos veces, en días diferentes, en un diario de la localidad si lo hubiere, debiendo hacerse la última publicación, con tres días de anticipación, por lo menos, a la fecha fijada para su celebración. De igual manera se fijará la convocatoria en la Cartelera del Colegio.\n\nEn los lugares donde no hubiere diario, la convocatoria se fijará en la cartelera del Colegio, en la sede de los tribunales y en cualquier otro lugar público con la misma anticipación.\n\nEn la convocatoria de la Asamblea se determinarán las materias a tratar.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "28",
+     "encabezado": "",
+     "texto_principal": "Habrá lugar a Asamblea extraordinaria cuando lo disponga la Junta Directiva, o lo soliciten, por escrito, por lo menos veinticinco (25) miembros en los Colegios que tengan un número de colegiados inscritos o incorporados de cien (100) o más. En los Colegios cuyo número de miembros sea inferior a cien (100), la convocatoria de la Asamblea podrá ser solicitada por el veinte por ciento (20%) de ellos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "29",
+     "encabezado": "",
+     "texto_principal": "Si no asistiere a la Asamblea un número de miembros del Colegio que representen por lo menos las dos terceras partes del total de inscritos o incorporados los abogados asistentes, constituidos en Comisión Preparatoria, deberán encomendar a la Junta Directiva que haga una nueva convocatoria en la forma fijada en el artículo 27 de este Reglamento, advirtiéndose en la misma que la Asamblea se instalará en la oportunidad señalada con el número de colegiados que concurriere.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "30",
+     "encabezado": "",
+     "texto_principal": "Toda Asamblea será presidida por la Junta Directiva, pero si no concurriere el Presidente o el Vice-Presidente de la misma los colegiados asistentes dirigidos por cualquier otro miembro de la Junta Directiva que esté presente, si fuere el caso, nombrarán para que la presida una Mesa Directiva compuesta de un Presidente, un Primero y un Segundo Vice-Presidente y un Secretario, electos entre los presentes por votación pública y por mayoría absoluta de votos.",
+     "numerales_literales": [],
+     "paragrafos": [
+      "Parágrafo Único: El Presidente o el Vice-Presidente de la Junta Directiva o en su caso el de la Mesa Directiva, dirigirá los debates; pero podrá designar a cualquiera de los abogados presentes para que actúe como Director de Debates."
+     ],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "31",
+     "encabezado": "Parágrafo Único:",
+     "texto_principal": "Las decisiones de toda Asamblea se tomarán por mayoría absoluta de votos de los miembros presentes.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "32",
+     "encabezado": "",
+     "texto_principal": "La Junta Directiva del Colegio se considerará legalmente constituida para deliberar con la mayoría absoluta de sus miembros, por lo menos, y sus decisiones se tomarán, con igual mayoría de los presentes. Las atribuciones que el artículo 42 señala a los Colegios de Abogados serán ejercidas a través de sus Juntas Directivas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "33",
+     "encabezado": "",
+     "texto_principal": "La facultad de calificar a sus miembros y examinar sus credenciales, podrá ser delegada por la Asamblea en el órgano que la presida o en una Comisión especial, designada a tales efectos. Cualquier decisión adversa sobre la calificación o examen de credenciales podrá ser reconsiderada por la Asamblea a petición del interesado.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "34",
+     "encabezado": "",
+     "texto_principal": "La Asamblea estará facultada para aprobar el Reglamento Interno del respectivo Colegio, así como todas aquellas Resoluciones y Acuerdos atinentes al funcionamiento y actividades que les son propias.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "35",
+     "encabezado": "",
+     "texto_principal": "La supervisión que corresponde a los Colegios sobre las Delegaciones, se entiende referida a las Delegaciones previstas en el segundo aparte del artículo 41 de la Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO V (Derogadas las disposiciones contenidas en el Título V y VI únicamente en las materias reguladas en el Reglamento de la Ley de Abogados sobre Elección en los Organismos Profesionales y en el Instituto de Previsión Social del Abogado, publicado en la Gaceta Oficial de la República de Venezuela N 31.854 de fecha 2 de noviembre de 1979, de conformidad con lo establecido en el Artículo 34 de este último)DE LOS ORGANISMOS PROFESIONALES",
+   "capitulo": null,
+   "seccion": "Sección II Sistemas de Elecciones",
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "36",
+     "encabezado": "",
+     "texto_principal": "Las elecciones de la Junta Directiva y del Tribunal Disciplinario de los Colegios de Abogados así como del Fiscal de dicho Tribunal, se realizarán cada dos años, en la primera quincena de diciembre.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "37",
+     "encabezado": "",
+     "texto_principal": "Las votaciones para la elección de la Junta Directiva, del Tribunal Disciplinario y del Fiscal, serán directas y secretas, salvo que la Asamblea, con el voto de las dos terceras partes de sus asistentes, decida hacerlas públicas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "38",
+     "encabezado": "",
+     "texto_principal": "En la segunda quincena del mes de octubre del año en que corresponda la elección de los órganos referidos en los artículos anteriores, la Junta Directiva en ejercicio, ampliada progresivamente con un representante de cada lista de candidatos que se vaya presentando, se constituirá en Comisión Electoral y tendrá las atribuciones y facultades determinadas en esta Sección.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "39",
+     "encabezado": "",
+     "texto_principal": "Para presentar listas de candidatos a miembros de la Junta Directiva, del Tribunal Disciplinario y del Fiscal, se requiere el número o porcentaje de colegiados establecido en el artículo 28 de este Reglamento. La postulación deberá hacerse por escrito, con indicación del nombre, apellido y número de tarjeta de inscripción de los postulantes y de los postulados; y la constancia de la aceptación, por parte de éstos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "40",
+     "encabezado": "",
+     "texto_principal": "La inscripción de las listas se efectuará en la Secretaría del Colegio, entre el 1 y el 15 de noviembre del año en que corresponda la elección. Dentro de los diez (10) primeros días de la segunda quincena del mes de noviembre, la Comisión Electoral procederá a publicar, en las Carteleras del Colegio, en uno o más diarios y durante tres días por lo menos, las listas de candidatos debidamente inscritas, con indicación del número que les haya correspondido. En los lugares donde no hubiere diario la convocatoria se fijará en la Cartelera del Colegio, en la sede de los Tribunales y en cualquier otro lugar público.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "41",
+     "encabezado": "",
+     "texto_principal": "Al ser recibida una lista de candidatos, el Secretario del Colegio firmará, al presentante, un duplicado de dicha lista, y la pasará de inmediato a la Comisión Electoral, la cual procederá a comprobar si los postulantes y los candidatos cumplen con los requisitos exigidos por la Ley y este Reglamento. En caso de que la postulación sea correcta, procederá a inscribir la lista, distinguiéndola con el número que le corresponda en orden a su presentación. En caso contrario, la lista será devuelta a los postulantes, dentro del término de veinticuatro (24) horas, con indicación de las infracciones observadas. De esta decisión de la Comisión Electoral se oirá apelación, en el mismo día, o en el siguiente, para ante una Asamblea extraordinaria que deberá ser convocada dentro de los dos (2) días consecutivos siguientes, contados a partir de la fecha de la apelación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "42",
+     "encabezado": "",
+     "texto_principal": "Las postulaciones extemporáneas o las que, conforme al artículo anterior haya rechazado la Asamblea, se tendrán como no presentadas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "43",
+     "encabezado": "",
+     "texto_principal": "Los postulantes de una lista, designarán en el mismo acto de la postulación, a uno de ellos como representante que deberá actuar con la Junta Directiva en la forma determinada en el artículo 38.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "44",
+     "encabezado": "",
+     "texto_principal": "La Comisión Electoral, entre los días 25 y 30 de noviembre fijará la fecha de la elección de los miembros de la Junta Directiva del Tribunal Disciplinario y del Fiscal, la cual se realizará en la primera quincena del mes de diciembre del año a que corresponde la elección. La fecha para la celebración de las elecciones será publicada en la forma establecida en el artículo 40 de este Reglamento.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "45",
+     "encabezado": "",
+     "texto_principal": "Las votaciones se realizarán en la sede del Colegio, el día previamente determinado, comenzando a las 8 a.m. y terminando a las 8 p.m.",
+     "numerales_literales": [],
+     "paragrafos": [
+      "Parágrafo Único: Si a la hora del cierre de la votación hubiesen miembros del Colegio presentes, sin haber votado, la misma se prorrogará a petición de los interesados hasta que todos depositen su voto. Esta prórroga no excederá en ningún caso, de una hora."
+     ],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "46",
+     "encabezado": "Parágrafo Único:",
+     "texto_principal": "El día señalado para efectuarse las elecciones, e inmediatamente antes de la hora fijada para iniciar la votación, la Comisión Electoral, procederá a sellar las urnas que fuesen necesarias para los votos y todos deberán firmar, tanto el sello de las urnas, como el acta elaborada al efecto. Si alguno o algunos de los presentes se negase a firmar, tal circunstancia no invalidará el acto pero se hará constar en el Acta.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "47",
+     "encabezado": "",
+     "texto_principal": "La Comisión Electoral podrá disponer la constitución de varias mesas electorales con representación de las listas presentadas. En este caso, señalará, con cinco (5) días de anticipación a la fecha de la elección, en la cartelera del Colegio, el número de las mesas y los abogados que deberán votar en ellas.\n\nLa Comisión Electoral deberá tener preparado un registro de los miembros del Colegio, elaborado por riguroso orden alfabético.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "48",
+     "encabezado": "",
+     "texto_principal": "A cada votante, quien deberá identificarse, se le suministrará en la correspondiente mesa electoral, una tarjeta, la cual se sellará con el sello del Colegio en el momento de la entrega. Dicha tarjeta llevará inscritas las listas postuladas, con indicación del número que corresponde a cada una de ellas. Una vez que el votante haya hecho la elección de su preferencia. La depositará en la urna destinada a tal efecto: y la mesa electoral pondrá la indicación respectiva del elector en el registro elaborado con tal fin.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "49",
+     "encabezado": "",
+     "texto_principal": "El miembro podrá indicar su voto en la forma siguiente:",
+     "numerales_literales": [
+      "a) Señalando la lista de su preferencia.",
+      "b) Marcando los postulados por quienes vota, independientemente de las listas en las cuales aparezcan, hasta completar el número de cargos a cubrir."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "50",
+     "encabezado": "",
+     "texto_principal": "El escrutinio lo efectuará la Comisión Electoral inmediatamente después del cierre de las votaciones.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "51",
+     "encabezado": "",
+     "texto_principal": "El escrutinio se practicará en la forma siguiente:",
+     "numerales_literales": [
+      "a) Se computarán los votos obtenidos por cada lista.",
+      "b) Seguidamente se computarán los votos obtenidos por cada candidato de los postulados en cada lista."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "52",
+     "encabezado": "",
+     "texto_principal": "Para la adjudicación de cargos se procederá así:",
+     "numerales_literales": [
+      "a) El total de votos válidos obtenidos por cada lista se dividirá sucesivamente entre 1, 2, 3, 4 y 5, para los funcionarios de la Junta Directiva. Entre 1, 2 y 3, para los Suplentes. Y entre 1, 2, 3, 4 y 5, para los miembros principales del Tribunal Disciplinario, y entre 1, 2 y 3, para los Suplentes. Y entre 1 y 2 para el Fiscal y su Suplente.",
+      "b) Los cuocientes así obtenidos por cada lista se anotarán en columnas separadas y en orden decreciente, encabezadas por el total de votos obtenidos por cada lista.",
+      "c) Se formará luego una columna final, colocando en ella en primer término el más elevado de entre todos los cuocientes obtenidos por las diversas listas, y a continuación, en orden decreciente, los que le sigan en cantidad. Cualquiera que sea la lista a que pertenezcan hasta completar en la columna tantos cuocientes como candidatos deben ser elegidos."
+     ],
+     "paragrafos": [
+      "Parágrafo Primero: Antes de procederse a lo que establece el aparte c) de este artículo, se agregarán a los cuocientes de cada lista los votos obtenidos por el candidato a quien corresponda el respectivo cuociente, y se subirá su colocación en la columna, si resultare superior al que le precede.",
+      "Parágrafo Segundo: Si uno o más cuocientes resultaren iguales, se colocarán todos en la columna final, ordenando primero el correspondiente a la lista que obtuvo mayor número de votos; y así sucesivamente."
+     ],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "53",
+     "encabezado": "Parágrafo Segundo:",
+     "texto_principal": "Terminada la adjudicación de cargos, el presidente de la Junta Directiva del Colegio, proclamará los candidatos electos y ordenará la publicación respectiva en las carteleras del Colegio y por la prensa donde la hubiere.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "54",
+     "encabezado": "",
+     "texto_principal": "Cuando la Asamblea del respectivo Colegio o Delegación decida que la elección de sus órganos se haga por votación pública, se atenderá a lo que resuelva la Asamblea o haya previsto el Reglamento Interno correspondiente.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "55",
+     "encabezado": "",
+     "texto_principal": "Las Disposiciones contenidas en el presente Capítulo se extenderán en las delegaciones en cuanto les sean aplicables.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO V (Derogadas las disposiciones contenidas en el Título V y VI únicamente en las materias reguladas en el Reglamento de la Ley de Abogados sobre Elección en los Organismos Profesionales y en el Instituto de Previsión Social del Abogado, publicado en la Gaceta Oficial de la República de Venezuela N 31.854 de fecha 2 de noviembre de 1979, de conformidad con lo establecido en el Artículo 34 de este último)DE LOS ORGANISMOS PROFESIONALES",
+   "capitulo": "Capítulo II De la Federación de Colegios de Abogados",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "56",
+     "encabezado": "",
+     "texto_principal": "Caso de no hacerse la designación de los delegados que deban representar a la Asamblea de la Federación al respectivo Colegio o Delegación en la oportunidad de la elección de la Junta Directiva, del Tribunal Disciplinario y del Fiscal, aquélla podrá hacerse por Asamblea del correspondiente Colegio o Delegación especialmente convocada a tales efectos y por votación pública o secreta.\n\nLos delegados durarán dos años en el ejercicio de su mandato sin perjuicio de que lo ejerzan válidamente hasta que se proceda a efectuar nueva designación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "57",
+     "encabezado": "",
+     "texto_principal": "Las Asambleas Extraordinarias de la Federación de Colegios de Abogados se reunirán en la Capital de la República.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "58",
+     "encabezado": "",
+     "texto_principal": "Cada Colegio o Delegación representa un voto en las Asambleas de la Federación de Colegios de Abogados de Venezuela.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "59",
+     "encabezado": "",
+     "texto_principal": "La Asamblea de la Federación de Colegios de Abogados de Venezuela dictará su propio Reglamento.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "60",
+     "encabezado": "",
+     "texto_principal": "El Directorio de la Federación del Colegio de Abogados será elegido cada dos (2) años por la Asamblea Ordinaria, reunida de conformidad con el artículo 47 de la Ley, mediante votación pública o secreta según en ella se acuerde.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO V (Derogadas las disposiciones contenidas en el Título V y VI únicamente en las materias reguladas en el Reglamento de la Ley de Abogados sobre Elección en los Organismos Profesionales y en el Instituto de Previsión Social del Abogado, publicado en la Gaceta Oficial de la República de Venezuela N 31.854 de fecha 2 de noviembre de 1979, de conformidad con lo establecido en el Artículo 34 de este último)DE LOS ORGANISMOS PROFESIONALES",
+   "capitulo": "Capítulo III De los Tribunales Disciplinarios",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "61",
+     "encabezado": "",
+     "texto_principal": "Los Tribunales Disciplinarios de los Colegios de Abogados conocerán de oficio por denuncia o acusación de las infracciones a la Ley y al presente Reglamento. Cuando conozcan en virtud de denuncia, el denunciante deberá ratificarla bajo juramento.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "62",
+     "encabezado": "",
+     "texto_principal": "La denuncia o la acusación se propondrán por escrito consignado personalmente, o por medio de apoderado en la Secretaría del Tribunal Disciplinario.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "63",
+     "encabezado": "",
+     "texto_principal": "Dentro de los ocho días hábiles siguientes al recibo de la denuncia o de la acusación, o de haberse acordado el procedimiento de oficio, el Tribunal Disciplinario practicará las diligencias sumariales necesarias entre ellas, de ser posible, la declaración del Abogado sometido a investigación, que le permitan apreciar si es o no procedente la formación del expediente, la cual declarará por auto dentro del plazo fijado en esta disposición.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "64",
+     "encabezado": "",
+     "texto_principal": "En el mismo auto a que se contrae el artículo anterior, si la averiguación hubiese sido declarada procedente, se ordenará la notificación personal del Abogado sometido a investigación, a cuyo efecto se le pasará un resumen de los hechos que se averiguan.\n\nSi no se lograre su notificación personal, se le nombrará defensor con quien se entenderá todo lo relativo al expediente.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "65",
+     "encabezado": "",
+     "texto_principal": "Al día siguiente de haberse declarado que hay lugar a la formación del expediente se pasarán todas las actuaciones al Fiscal del Tribunal Disciplinario, a fin de que presente los cargos a que haya lugar dentro del plazo de diez días hábiles, a cuyo vencimiento el Fiscal devolverá el expediente al Tribunal.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "66",
+     "encabezado": "",
+     "texto_principal": "Formulados o no los cargos, quedará abierto de pleno derecho a partir del vencimiento del plazo fijado en el artículo anterior un lapso de veinte días hábiles para que sean promovidas y evacuadas las pruebas que se estimen pertinentes, al cabo del cual se fijará uno de los tres días hábiles siguientes para oír los informes de las partes.\n\nEl Tribunal Disciplinario podrá mandar evacuar de oficio durante la información del expediente las pruebas que considere necesarias al esclarecimiento del hecho.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "67",
+     "encabezado": "",
+     "texto_principal": "La decisión del Tribunal Disciplinario contendrá un resumen de los hechos, la exposición de los motivos del fallo, y la decisión de condena o absolución, según el caso.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "68",
+     "encabezado": "",
+     "texto_principal": "El Tribunal Disciplinario podrá actuar con un mínimo de cuatro miembros, pero las decisiones serán dictadas, en todo caso, con tres votos conformes por lo menos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "69",
+     "encabezado": "",
+     "texto_principal": "Las apelaciones que conforme a lo dispuesto en el artículo 66 de la Ley de Abogados deban ser conocidas por el Tribunal Disciplinario de la Federación de Colegios de Abogados se decidirán dentro de un plazo no mayor de treinta días continuos, aplicándose en ellas lo dispuesto en los dos artículos anteriores.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "70",
+     "encabezado": "",
+     "texto_principal": "Los Miembros de los Tribunales Disciplinarios y el Fiscal, que estén comprendidos en cualquiera de los casos del artículo 34 del Código de Enjuiciamiento Criminal, se inhibirán del conocimiento del asunto, sin esperar a que se los recuse.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "71",
+     "encabezado": "",
+     "texto_principal": "El Abogado sometido a investigación podrá recusar a uno o varios miembros del Tribunal Disciplinario y al Fiscal con fundamento en las causales establecidas en el artículo 34 del Código de Enjuiciamiento Criminal. Dicha recusación deberá proponerse por escrito, o por medio de diligencia ante el Tribunal, y el expediente se pasará al miembro del Tribunal que deba decidir.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "72",
+     "encabezado": "",
+     "texto_principal": "El Abogado sometido a investigación podrá intentar la recusación a partir de la fecha en que se haya dictado el auto de proceder a la formación del expediente hasta la fecha fijada para informes.\n\nSi el recusado fuere el Fiscal, la recusación podrá proponerse desde el día en que se le haya pasado el expediente para la formulación de los cargos hasta la fecha fijada para informes.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "73",
+     "encabezado": "",
+     "texto_principal": "La decisión de la incidencia de recusación o de inhibición corresponderá al Presidente del Tribunal, cuando el recusado o inhibido fuere el Fiscal, o uno de los miembros del Tribunal; si el recusado o inhibido fuere el Presidente, conocerá de la incidencia el Vice-Presidente: y si lo fueren todos los miembros del Tribunal, el Presidente designará por la suerte, en audiencia pública, señalada en la Cartelera del Colegio por lo menos, con un día de anticipación, el nombre del Abogado que ha de conocer de la incidencia, de entre un número de los miembros inscritos en el Colegio, residentes, en la jurisdicción, que el Presidente de la Junta Directiva del Colegio o Delegación haya señalado.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "74",
+     "encabezado": "",
+     "texto_principal": "El Abogado a quien corresponda decidir la recusación o inhibición deberá resolver en el término de tres (3) días hábiles, a menos que una de las partes, o ambas, pidiere, dentro del primer día después de la recusación o inhibición, que se abra a pruebas la incidencia, en cuyo caso se concederán cuatro (4) días hábiles para promoción y evacuación. Si se promoviere prueba testifical, los testigos podrán ser citados de un día para otro.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "75",
+     "encabezado": "",
+     "texto_principal": "Son inadmisibles: la recusación que se intente sin expresar motivos legales para ello; la intentada fuera de término; la que se intente después de haberse propuesto dos (2) recusaciones en el mismo expediente, o sin pagar la multa a que se refiere el artículo siguiente.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "76",
+     "encabezado": "",
+     "texto_principal": "Declarada sin lugar o desistida la recusación, el recusante será sancionado con multa de quinientos bolívares (Bs. 500,00), a favor de la Tesorería del Colegio si la causa de la recusación no fuere criminosa o de manifiesta mala fe; y de mil bolívares (Bs. 1.000,00), si lo fuera.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "77",
+     "encabezado": "",
+     "texto_principal": "A quien corresponda decidir la incidencia sobre recusación o inhibición, la declarará con lugar si estuviere hecha en forma legal y fundada en las causales establecidas en el artículo 34 del Código de Enjuiciamiento Criminal y el miembro o miembros impedidos serán sustituidos por los respectivos suplentes. Agotados los suplentes, se elegirán por insaculación, los miembros que falten de una lista de Abogados inscritos, procediéndose de la manera prevista en el artículo 73 de este Reglamento. Si no prosperare la recusación se declarará sin lugar la incidencia y el miembro o miembros recusados o inhibidos continuarán conociendo del expediente. Contra la decisión recaída en esta incidencia no habrá ningún recurso.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO VI (Derogadas las disposiciones contenidas en el Título V y VI únicamente en las materias reguladas en el Reglamento de la Ley de Abogados sobre Elección en los Organismos Profesionales y en el Instituto de Previsión Social del Abogado, publicado en la Gaceta Oficial de la República de Venezuela N 31.854 de fecha 2 de noviembre de 1979, de conformidad con lo establecido en el Artículo 34 de este último)PREVISIÓN SOCIAL DEL ABOGADO",
+   "capitulo": "Capítulo I Nombre, Objeto y Domicilio",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "78",
+     "encabezado": "",
+     "texto_principal": "El Instituto de Previsión Social del Abogado, cuya denominación abreviada será INPREABOGADO, tiene personalidad jurídica y patrimonio propio, y se regirá por las disposiciones del Título VI de la Ley de Abogados, por este Reglamento y por las demás normas que dicten para regular su estructura y funcionamiento.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "79",
+     "encabezado": "",
+     "texto_principal": "El Instituto tiene por objeto procurar el bienestar social y económico de los Abogados inscritos y de sus familiares.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "80",
+     "encabezado": "",
+     "texto_principal": "Para el más eficaz cumplimiento de sus fines, el Instituto podrá constituir otras entidades y encomendarles algunas de las actividades propias de su objeto y contratar los servicios de entidades ajenas a los mismos fines.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "81",
+     "encabezado": "",
+     "texto_principal": "El Instituto tiene su domicilio en Caracas y cada Colegio de Abogados de los Estados constituyen delegaciones suyas, con las atribuciones que se determinan en este Reglamento, en los Reglamentos internos del Instituto y las que procedentemente le otorguen la Asamblea o el Consejo Directivo.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO VI (Derogadas las disposiciones contenidas en el Título V y VI únicamente en las materias reguladas en el Reglamento de la Ley de Abogados sobre Elección en los Organismos Profesionales y en el Instituto de Previsión Social del Abogado, publicado en la Gaceta Oficial de la República de Venezuela N 31.854 de fecha 2 de noviembre de 1979, de conformidad con lo establecido en el Artículo 34 de este último)PREVISIÓN SOCIAL DEL ABOGADO",
+   "capitulo": "Capítulo II Miembros del Instituto",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "82",
+     "encabezado": "",
+     "texto_principal": "Son miembros del Instituto todos los Abogados que, perteneciendo a un Colegio de Abogados, se inscriban en él.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "83",
+     "encabezado": "",
+     "texto_principal": "Los miembros del Instituto están obligados a cumplir con todos los deberes que, respecto al mismo, se indican en la Ley de Abogados y en los Reglamentos, y las infracciones a esas disposiciones se sancionarán conforme a las normas de la citada Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO VI (Derogadas las disposiciones contenidas en el Título V y VI únicamente en las materias reguladas en el Reglamento de la Ley de Abogados sobre Elección en los Organismos Profesionales y en el Instituto de Previsión Social del Abogado, publicado en la Gaceta Oficial de la República de Venezuela N 31.854 de fecha 2 de noviembre de 1979, de conformidad con lo establecido en el Artículo 34 de este último)PREVISIÓN SOCIAL DEL ABOGADO",
+   "capitulo": "Capítulo III Órganos del Instituto",
+   "seccion": "Sección I La Asamblea General",
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "84",
+     "encabezado": "",
+     "texto_principal": "La suprema autoridad del Instituto es la Asamblea General, constituida por representantes de todos los Colegios de Abogados de la República, cuyo número no excederá de cinco por cada Colegio.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "85",
+     "encabezado": "",
+     "texto_principal": "La Asamblea se considerará válidamente constituida para deliberar si en ella estuvieren representados la mitad más uno de los Colegios de Abogados.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "86",
+     "encabezado": "",
+     "texto_principal": "Las Asambleas son ordinarias o extraordinarias. Las ordinarias tendrán lugar en la oportunidad que indique el Reglamento Interno del Instituto. Las extraordinarias se reunirán cuando el Consejo Directivo lo crea necesario, o cuando lo soliciten por escrito por lo menos cinco Colegios de Abogados.\n\nEn cada Asamblea ordinaria se fijará la sede de la próxima.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "87",
+     "encabezado": "",
+     "texto_principal": "La convocatoria para cualquier Asamblea la hará directamente el Consejo Directivo, a través del Presidente, a todos los Colegios de Abogados, mediante correspondencia remitida con la debida anticipación; y, además, se publicará en un periódico de Caracas, de los de mayor circulación, con diez días de anterioridad, por lo menos, a la fecha de la reunión. En la convocatoria se expresará el lugar, día, hora y el objeto a tratar.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "88",
+     "encabezado": "",
+     "texto_principal": "Cada Colegio de Abogados tendrá un voto en la Asamblea, cualquiera que sea el número de los delegados que lo represente. El Consejo Directivo tendrá voto en los asuntos que no versen sobre su gestión.\n\nLas decisiones se tomarán en todo caso por mayoría absoluta de votos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "89",
+     "encabezado": "",
+     "texto_principal": "Cuando a la Asamblea no concurriere el número de Colegios que para formar quórum determina este Reglamento, se hará una nueva convocatoria en la forma pautada en el artículo 87, y la nueva Asamblea así convocada sesionará válidamente con el número de Colegios que están representados. Esta circunstancia se advertirá en la segunda convocatoria.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "90",
+     "encabezado": "",
+     "texto_principal": "Las atribuciones de la Asamblea ordinaria serán determinadas en el Reglamento Interno del Instituto.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "91",
+     "encabezado": "",
+     "texto_principal": "En las Asambleas extraordinarias se tratarán únicamente los asuntos para los cuales sean convocadas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO VI (Derogadas las disposiciones contenidas en el Título V y VI únicamente en las materias reguladas en el Reglamento de la Ley de Abogados sobre Elección en los Organismos Profesionales y en el Instituto de Previsión Social del Abogado, publicado en la Gaceta Oficial de la República de Venezuela N 31.854 de fecha 2 de noviembre de 1979, de conformidad con lo establecido en el Artículo 34 de este último)PREVISIÓN SOCIAL DEL ABOGADO",
+   "capitulo": null,
+   "seccion": "Sección II El Consejo Directivo",
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "92",
+     "encabezado": "",
+     "texto_principal": "El Consejo Directivo será el órgano de administración del Instituto, y estará formado por siete miembros denominados así:\n\nLas del Primer Vice-Presidente serán cubiertas por el Segundo Vice-Presidente, las del Secretario por el Sub-Secretario y las del Tesorero por el Sub-Tesorero.\n\nEn la oportunidad en que se elijan los miembros principales del Consejo Directivo, se elegirán tres suplentes para llenar las faltas absolutas o temporales del Segundo Vice-Presidente, del Sub-Secretario y del Sub-Tesorero.",
+     "numerales_literales": [
+      "a) Presidente;",
+      "b) Primer Vice-Presidente;",
+      "c) Segundo Vice-Presidente;",
+      "d) Secretario;",
+      "e) Sub-Secretario;",
+      "f) Tesorero; y",
+      "g) Sub-Tesorero."
+     ],
+     "paragrafos": [
+      "Parágrafo Único: Las faltas absolutas o temporales del Presidente las llenarán los Vice-Presidentes en orden sucesivo."
+     ],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "93",
+     "encabezado": "Parágrafo Único:",
+     "texto_principal": "Los miembros principales del Consejo Directivo y sus suplentes deberán estar inscritos en el Instituto, domiciliados en el área metropolitana de Caracas, ejercerán sus cargos durante dos años y podrán ser reelegidos. En caso de renuncia, continuarán en el cargo hasta que sean reemplazados.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "94",
+     "encabezado": "",
+     "texto_principal": "El Consejo Directivo debe reunirse por lo menos una vez a la semana, previa convocatoria del Presidente o de quien haga sus veces o de cuatro de los otros miembros. Para la validez de sus reuniones se requiere que esté presente la mayoría de sus integrantes, y las decisiones se aprobarán por no menos de cuatro votos.\n\nDe cada reunión del Consejo Directivo se levantará un acta que se insertará en el libro correspondiente, y deberá ser firmada por el presidente y el Secretario. En la misma acta se harán constar los votos disidentes.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "95",
+     "encabezado": "",
+     "texto_principal": "Si un miembro del Consejo Directivo dejare de asistir a dos o más sesiones en un mes sin acreditar un motivo justificado, el Consejo por órgano de quien lo presida, lo excitará al cumplimiento de sus deberes y en caso de reincidencia se elevará el asunto a conocimiento de la Asamblea.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "96",
+     "encabezado": "",
+     "texto_principal": "Las atribuciones del Consejo Directivo serán las determinadas en el Reglamento Interno del Instituto.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO VI (Derogadas las disposiciones contenidas en el Título V y VI únicamente en las materias reguladas en el Reglamento de la Ley de Abogados sobre Elección en los Organismos Profesionales y en el Instituto de Previsión Social del Abogado, publicado en la Gaceta Oficial de la República de Venezuela N 31.854 de fecha 2 de noviembre de 1979, de conformidad con lo establecido en el Artículo 34 de este último)PREVISIÓN SOCIAL DEL ABOGADO",
+   "capitulo": "Capítulo IV El Patrimonio",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "97",
+     "encabezado": "",
+     "texto_principal": "El patrimonio del Instituto está integrado así:\n\nEstas cuotas serán canceladas directamente al Instituto o a través de los Colegios de Abogados. Las cuotas de inscripción y mensuales podrán ser modificadas por el Consejo Directivo de acuerdo con los estudios que se realicen en relación con los servicios prestados.",
+     "numerales_literales": [
+      "a) Por todos los bienes que pertenecían al Montepío de Abogados, incluyendo los créditos que a favor de esa institución existían a cargo de sus asociados por no haber cancelado las cuotas previstas en la Ley de Montepío de Abogados y las decretadas por Resoluciones del Consejo Directivo.",
+      "b) Por las cuotas de inscripción en el Instituto.",
+      "c) Por las cuotas mensuales que deben pagar todos los abogados inscritos, cuyo monto se fijará en la oportunidad de establecer los planes de protección.",
+      "d) Por los aportes anuales que haga el Estado para cubrir los gastos de administración. A este efecto, el Consejo Directivo presentará anualmente al Ministerio de Justicia la estimación de este aporte a fin de que se incluya la correspondiente partida en la Ley General de Presupuesto.",
+      "e) Por los aportes que hagan entidades públicas o privadas.",
+      "f) Por un cinco por ciento (5%) del monto de las cantidades recaudadas mensualmente por concepto de arancel y contribuciones abonadas por actuaciones ante Tribunales, Notarías y Registro Mercantil. Este porcentaje se liquidará y abonará al Instituto por el correspondiente funcionario receptor, deduciéndola cuando haga el balance a que se refiere el artículo 38 de la Ley de Arancel Judicial, y en la misma forma y condiciones como se liquida y paga, a los Colegios de Abogados, el porcentaje que a estos se consagra en la disposición citada.",
+      "g) Por todos los demás ingresos que provengan de las actividades propias del Instituto."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "98",
+     "encabezado": "",
+     "texto_principal": "El pago de las cuotas que se fijan en las letras b) y c) del artículo anterior es obligatoria, y quienes no las cancelen incurrirán en las sanciones previstas en las letras c), d) y f) del artículo 70 de la Ley de Abogados. A estos efectos el Consejo Directivo del Instituto remitirá periódicamente a la Junta Directiva de cada Colegio, la nómina de los abogados miembros del mismo que no hayan pagado las cuotas respectivas, para que sean requeridos a su cancelación, siguiéndose en este sentido lo previsto en el artículo 20 de este Reglamento, y, en caso negativo, se les aplique la sanción correspondiente.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO VI (Derogadas las disposiciones contenidas en el Título V y VI únicamente en las materias reguladas en el Reglamento de la Ley de Abogados sobre Elección en los Organismos Profesionales y en el Instituto de Previsión Social del Abogado, publicado en la Gaceta Oficial de la República de Venezuela N 31.854 de fecha 2 de noviembre de 1979, de conformidad con lo establecido en el Artículo 34 de este último)PREVISIÓN SOCIAL DEL ABOGADO",
+   "capitulo": "Capítulo V Memoria, Cuenta y Presupuesto",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "99",
+     "encabezado": "",
+     "texto_principal": "El Consejo Directivo elaborará cada año una Memoria que contenga en forma completa y discriminada las realizaciones cumplidas en el año que finaliza y un programa de las que deban realizarse en el año siguiente, con determinación de los medios y recursos correspondientes.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "100",
+     "encabezado": "",
+     "texto_principal": "El período económico del Instituto está comprendido entre el primero de enero y el treinta y uno de diciembre de cada año. En esta última fecha se hará el corte de las cuentas, se formará inventario de todos los bienes y el balance general, determinándose con precisión el capital existente y el estado económico.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "101",
+     "encabezado": "",
+     "texto_principal": "La Memoria, el balance y las cuentas serán sometidos a la consideración de la Asamblea Ordinaria anual.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "102",
+     "encabezado": "",
+     "texto_principal": "El Consejo Directivo determinará las cantidades que deban aportarse para formar un fondo de garantía y reserva.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO VI (Derogadas las disposiciones contenidas en el Título V y VI únicamente en las materias reguladas en el Reglamento de la Ley de Abogados sobre Elección en los Organismos Profesionales y en el Instituto de Previsión Social del Abogado, publicado en la Gaceta Oficial de la República de Venezuela N 31.854 de fecha 2 de noviembre de 1979, de conformidad con lo establecido en el Artículo 34 de este último)PREVISIÓN SOCIAL DEL ABOGADO",
+   "capitulo": "Capítulo VI Colegios de Abogados",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "103",
+     "encabezado": "",
+     "texto_principal": "Los Colegios de Abogados, como Delegaciones natas del Instituto en el Interior de la República, cumplirán las siguientes funciones:\n\nPalacio de Miraflores, en Caracas, a los doce días del mes de septiembre de mil novecientos sesenta y siete.",
+     "numerales_literales": [
+      "a) Cobrar las cuotas que sus miembros deben abonar al Instituto, y remitir a éste su importe.",
+      "b) Seguir a los miembros insolventes con el instituto, el procedimiento disciplinario previsto en la Ley de Abogados.",
+      "c) Suministrar al Instituto toda la información que éste solicite en relación con sus fines.",
+      "d) Cumplir todas las funciones que, para la realización de su objeto, le encomiende el Consejo Directivo del Instituto.",
+      "e) Nombrar los delegados a las Asambleas y darles las instrucciones pertinentes."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  }
+ ]
+}

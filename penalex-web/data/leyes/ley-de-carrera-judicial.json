@@ -1,0 +1,736 @@
+{
+ "ley_nombre": "Ley de Carrera Judicial",
+ "estructura": [
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "1",
+     "encabezado": "",
+     "texto_principal": "La Ley de Carrera Judicial tiene por finalidad asegurar la idoneidad, estabilidad e independencia de los jueces y regular las condiciones para su ingreso, permanencia y terminación en el ejercicio de la Judicatura, así como determinar la responsabilidad disciplinaria en que incurran los jueces en el ejercicio de sus funciones.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "2",
+     "encabezado": "",
+     "texto_principal": "La administración de justicia es una función pública esencial del Estado. La garantía de estabilidad que asegura a los jueces esta Ley no podrá sobrepasar nunca el interés general en la recta administración de justicia.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "3",
+     "encabezado": "",
+     "texto_principal": "Los jueces gozarán de estabilidad en el desempeño de sus cargos. En consecuencia, sólo podrán ser removidos o suspendidos en el ejercicio de sus funciones en los casos y mediante el procedimiento que determina esta Ley. Los jueces están obligados a procurar un rendimiento satisfactorio en el ejercicio de sus funciones, de manera que contribuyan a una pronta y eficaz administración de Justicia.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "4",
+     "encabezado": "",
+     "texto_principal": "Gozarán de los beneficios de la Carrera Judicial los jueces de la jurisdicción ordinaria y de la especial. Igualmente gozarán de los beneficios de la Carrera Judicial, pero solamente en lo relativo a la Seguridad Social, los Consejeros del Consejo de la Judicatura así como los Magistrados de las Cortes de lo Contencioso-Administrativo.\n\nQuedan exceptuados de la aplicación de esta Ley los Magistrados de la Corte Suprema de Justicia y los Jueces de la Jurisdicción Militar.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "5",
+     "encabezado": "",
+     "texto_principal": "El Consejo de la Judicatura llevará un expediente de cada juez que contendrá sus datos personales, la fecha y la forma de su ingreso a la judicatura; la Circunscripción Judicial o región a que pertenece y la categoría que tiene; la hoja de servicios; el informe anual de su rendimiento y la cantidad de sentencias dictadas; la duración de los procesos; la observancia de los plazos y términos procesales; los diferimientos de las sentencias; las denuncias interpuestas contra el juez y las decisiones recaídas; los ascensos, traslados y cambios; la declaración jurada de bienes, en la forma que lo disponga la Contraloría General de la República, y todas las demás informaciones relativas a la conducta moral y al rendimiento del juez.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "6",
+     "encabezado": "",
+     "texto_principal": "El sueldo de los jueces se fijará en armonía con la categoría a que pertenezcan en el escalafón judicial. Sin embargo, podrán establecerse bonificaciones especiales para los titulares de aquellos Tribunales y Cortes que acusen un volumen de trabajo que las justifiquen, todo a juicio del Consejo de la Judicatura.\n\nEl Consejo de la Judicatura determinará lo relativo a la prima de antigüedad conforme a esta Ley.\n\nEl sueldo de los jueces no podrá ser disminuido, salvo que se trate de una medida de carácter general, aplicable también a las otras ramas del Poder Público.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "7",
+     "encabezado": "",
+     "texto_principal": "Se crea el escalafón judicial para el ascenso de los jueces. El escalafón será uniforme para todas las Circunscripciones Judiciales y no se interrumpirá con el traslado del funcionario de una a otra Circunscripción Judicial.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "8",
+     "encabezado": "",
+     "texto_principal": "El escalafón permitirá a los jueces pasar progresivamente por las diversas categorías existentes en la Circunscripción a que pertenecen, acumulando para ello el tiempo, los méritos y credenciales necesarios para su tránsito por la Carrera, conforme a lo previsto en esta Ley.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "9",
+     "encabezado": "",
+     "texto_principal": "El escalafón comprenderá tres categorías:\n\nCategoría A , los jueces de las Cortes de Apelaciones o Juzgados Superiores.\n\nCategoría B , los jueces de los Tribunales de Primera Instancia.\n\nCategoría C , los jueces de Municipio.\n\nA los jueces de Categoría A se equiparan los jueces de impuesto sobre la renta, de inquilinato, de la carrera administrativa, y los demás de jurisdicciones especiales que se califiquen como Jueces de Cortes de Apelaciones o Superiores en las respectivas leyes.\n\nA los jueces de la Categoría B se equiparan los jueces de jurisdicciones especiales que se califiquen como jueces de primera instancia en las leyes respectivas.\n\nEl ganador del concurso de oposición para la provisión del cargo, deberá haber aprobado el curso organizado por el Consejo de la Judicatura a tal efecto, y realizado las prácticas que se establezcan en el tribunal que se le designe.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "10",
+     "encabezado": "",
+     "texto_principal": "Para ingresar a la Carrera Judicial se requiere aprobar un concurso de oposición con la mayor calificación y ser declarado apto en una evaluación neurosiquiátrica. Para participar en dicho concurso se requiere ser venezolano, abogado, de conducta intachable, mayor de veinticinco años de edad, y estar en el libre ejercicio de los derechos civiles y políticos; y haber ejercido la profesión de abogado durante tres años comprobados como mínimo, o haber aprobado curso de postgrado en materia jurídica.\n\nEl ingreso a la Carrera Judicial se hará por la categoría C prevista en el escalafón judicial. También podrán ingresar a la Carrera Judicial y admitidos a concurso en las categorías A y B aquellos aspirantes, mayores de treinta años, que se hubieren distinguido en su especialidad, sean autores de trabajos jurídicos valiosos o profesores universitarios de reconocida competencia, o sean abogados con diez años de ejercicio comprobado; o defensores públicos o fiscales del Ministerio Público con no menos de seis años de servicio.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "11",
+     "encabezado": "",
+     "texto_principal": "No podrán ser designados Jueces: los militares en servicio activo; los ministros de algún culto; los dirigentes o militantes activos de partidos políticos; los que tengan antecedentes penales o hayan sido sujetos de condenas por Tribunales o por organismos disciplinarios profesionales que comprometan su intachable conducta; los que tengan algún comportamiento que comprometa la dignidad del cargo o le hagan desmerecer en el concepto público.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "12",
+     "encabezado": "",
+     "texto_principal": "A falta de abogados aspirantes para ingresar a la Carrera Judicial en la Categoría C , podrán ser designadas personas idóneas para servir aquellos cargos, mientras se presenten abogados que reúnan los requisitos exigidos por esta Ley.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "13",
+     "encabezado": "",
+     "texto_principal": "El cargo de Juez es incompatible con el ejercicio de cualquier otro cargo público remunerado y con el ejercicio de la abogacía, ni siquiera a título de consultas.\n\nSe exceptúan de esta disposición los cargos docentes y los de miembros de comisiones codificadoras o revisoras de leyes, ordenanzas y reglamentos que, según las disposiciones que la rijan, no constituyan cargos públicos remunerados y no interfieran en el ejercicio normal de sus actividades a juicio del Consejo de la Judicatura.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "14",
+     "encabezado": "",
+     "texto_principal": "No podrán ser simultáneamente Jueces en una misma Circunscripción Judicial, quienes sean entre sí parientes en línea recta o cónyuges, ni los colaterales que se hallen dentro del tercer grado de consanguinidad o segundo de afinidad, ambos inclusive. Tampoco podrán serlo en las mismas circunstancias quienes estén unidos por lazos de adopción.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "15",
+     "encabezado": "",
+     "texto_principal": "No podrán ser Secretario ni Alguacil de un mismo Tribunal quienes estuvieran ligados por parentesco, en los mismos grados expresados en el artículo anterior, o por adopción con el Juez o con alguno de los Jueces que lo constituyan.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "16",
+     "encabezado": "",
+     "texto_principal": "Si al hacerse el nombramiento de los Jueces se ignorase la existencia del motivo de incompatibilidad, deberá ser reemplazado el último nombrado.\n\nSi ambos nombramientos fuesen de la misma fecha se reemplazará el funcionario de menor edad.\n\nSi la incompatibilidad se produjere después del nombramiento, el funcionario judicial que la originó no entrará en el ejercicio de sus funciones o cesará en éstas, según sea el caso.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "17",
+     "encabezado": "",
+     "texto_principal": "La provisión de los cargos de jueces la hará el Consejo de la Judicatura de conformidad con el artículo 10 entre los aspirantes que reúnan las condiciones de aptitud exigidas en esta Ley.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "18",
+     "encabezado": "",
+     "texto_principal": "El Consejo de la Judicatura designará juez titular del tribunal al concursante que haya obtenido la calificación mayor en el concurso de oposición, dentro de la escala de puntuación comprendida entre un mínimo de las tres cuartas partes del total de puntos establecidos para el concurso y dicha cantidad de puntos.\n\nLos concursantes que hayan obtenido el segundo y tercer puestos, respectivamente, en la mencionada escala de puntuación, serán designados en el mismo orden primero y segundo suplentes del titular. El Consejo de la Judicatura, por necesidades del servicio, podrá asignar dichos suplentes a cualquier tribunal de la misma categoría y especialidad de aquel para el cual concursaron los aspirantes.\n\nSe declarará desierto el concurso de oposición si los concursantes obtuvieren calificaciones inferiores al mínimo de las tres cuartas partes del total de puntos establecidos para el concurso.\n\nPara la provisión de los cargos de juez titular y de suplentes de la Jurisdicción Penal se preferirá, en igualdad de circunstancias, a aquellos concursantes que sean defensores públicos o fiscales del Ministerio Público, con más de cinco años de ejercicio en la función correspondiente.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "19",
+     "encabezado": "",
+     "texto_principal": "Los suplentes designados conforme a lo previsto en el artículo anterior, llenarán las faltas temporales y accidentales del juez titular.\n\nCuando por cualquier motivo no fuere posible la designación de suplentes con arreglo a lo previsto en el artículo 18, el Consejo de la Judicatura proveerá el cargo con un abogado que reúna las condiciones exigidas en el artículo 10. Si no los hubiere, lo proveerá con personas idóneas conforme a la ley. Los suplentes lo serán hasta tanto tome posesión el nuevo titular designado mediante concurso, el cual deberá realizarse dentro de los tres meses siguientes a la fecha de la vacante. El juez suplente podrá participar en él.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "20",
+     "encabezado": "",
+     "texto_principal": "Para la provisión de los cargos vacantes y de los que se crearen conforme a la Ley, tendrán preferencia en orden de prelación, los funcionarios que se indican a continuación:\n\nJueces de Circunscripciones Judiciales diferentes pero de la misma categoría del que debe ser provisto, que soliciten el traslado al circuito y reúnan los requisitos establecidos en esta Ley para los traslados.\n\nde los anteriores, los Jueces del mismo circuito o región que hayan servido en la Categoría inmediatamente inferior a la del cargo que debe llenarse, y que reúnan las condiciones establecidas en esta Ley para los ascensos.\n\nSuplentes del Titular que haya de ser suplido, designados conforme a lo previsto en el artículo 22.\n\nCuando sean más de uno de los Jueces comprendidos en la preferencia de que trata este artículo, el Consejo de la Judicatura sacará a concurso la provisión del cargo entre los Jueces interesados.",
+     "numerales_literales": [
+      "1. Los",
+      "2. A falta",
+      "3. Los"
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "21",
+     "encabezado": "",
+     "texto_principal": "El Consejo de la Judicatura organizará y dirigirá de acuerdo con el reglamento que dictará a estos efectos los Concursos de Oposición a que se refiere esta Ley.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "22",
+     "encabezado": "",
+     "texto_principal": "Cuando se trate de la provisión de cargos de las Categorías A y B , el jurado de los concursos estará integrado por un Magistrado de la Corte Suprema de Justicia, designado por su Presidente de entre los integrantes de la Sala afín con la materia del concurso; un miembro designado por el Consejo de la Judicatura, y un profesor titular de la materia de que se trate de las Facultades de Derecho de las universidades públicas nacionales, convocado por el Consejo de la Judicatura, en orden consecutivo de antigüedad.\n\nSi se tratare de la provisión de cargos de la categoría C , el jurado será constituido por un miembro designado por el Consejo de la Judicatura, un juez de Corte de Apelaciones designado por el Presidente de la Corte Suprema de Justicia, y un profesor titular de la materia de que se trate de las Facultades de Derecho de las universidades públicas nacionales convocado por el Consejo de la Judicatura, en orden consecutivo de antigüedad.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "23",
+     "encabezado": "",
+     "texto_principal": "Los concursos serán públicos y se notificarán, con diez días por lo menos de anticipación a la fecha fijada para su celebración, en un diario de circulación regional, indicando el día, hora y donde se realizará. Constarán de tres pruebas: una de credenciales y de méritos; una escrita, de carácter práctico; y una oral de carácter teórico.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "24",
+     "encabezado": "",
+     "texto_principal": "En todos los casos en que el concurso resultare desierto, el Consejo de la Judicatura convocará a un segundo concurso y si éste resultare también desierto, el Consejo podrá proceder a la provisión de cargo con un Juez interino que reúna las condiciones exigidas en el artículo 10 hasta que la designación se pueda realizar por concurso, el cual se convocará en un lapso no mayor de seis meses, todo sin perjuicio de lo dispuesto en el artículo 20 en cuanto sea aplicable.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "25",
+     "encabezado": "",
+     "texto_principal": "Cuando hubiere cargos a proveer, los jueces ascenderán por concurso en el escalafón a la categoría inmediatamente superior, según los méritos acumulados, el tiempo de servicio que tenga en la categoría y la aprobación de las pruebas selectivas organizadas por el Consejo de la Judicatura.\n\nLos jueces que no hayan aprobado las pruebas selectivas no podrán ascender.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "26",
+     "encabezado": "",
+     "texto_principal": "Los ascensos se harán previa calificación de méritos de los jueces de la misma categoría, sin perjuicio de la preferencia establecida en el ordinal 2 del artículo 20 de esta Ley.\n\nLa evaluación se hará como se indica en el artículo 32 de esta Ley, en un lapso no mayor de sesenta días continuos a partir de la fecha en que se produzca la vacante o se cree el nuevo cargo.\n\nLa convocatoria a las pruebas selectivas para la promoción a una categoría superior se hará por el Consejo de la Judicatura cada vez que existan cargos vacantes o se creare uno nuevo.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "27",
+     "encabezado": "",
+     "texto_principal": "Los ascensos serán acordados a los Jueces de Carrera por el Consejo de la Judicatura, de oficio o a solicitud del interesado.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "28",
+     "encabezado": "",
+     "texto_principal": "Los Jueces podrán ser trasladados dentro de una misma región o a una región diferente, a cargo de la misma Categoría y competencia, por las causas siguientes:\n\nrazones de servicio, calificadas mediante resolución motivada del Consejo de la Judicatura, previa audiencia y aceptación del funcionario y compensación económica de los gastos de traslado.\n\nsolicitarlo así el interesado, y si a juicio del Consejo de la Judicatura aquél haya acumulado méritos en el ejercicio del cargo, tenga una causa justificada y el traslado no sea inconveniente para el servicio de la administración de justicia.\n\ncasos de preferencia a que se refiere el ordinal 1 del artículo 20 de esta Ley.\n\nEl traslado a una Categoría inferior o de competencia diferente, sólo podrá hacerse a solicitud del interesado.\n\n",
+     "numerales_literales": [
+      "4. Por",
+      "5. Por",
+      "6. En los"
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "29",
+     "encabezado": "",
+     "texto_principal": "El Consejo de la Judicatura a solicitud de los interesados podrá autorizar cambios entre jueces, si los tribunales son de competencias análogas, aunque pertenezcan a Circunscripciones Judiciales distintas.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "30",
+     "encabezado": "",
+     "texto_principal": "Los ascensos, traslados y cambios no interrumpirán el tiempo de servicio de los funcionarios para todos los fines de la Carrera Judicial.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "31",
+     "encabezado": "",
+     "texto_principal": "El rendimiento de los Jueces será evaluado por el Consejo de la Judicatura anualmente o cuando lo considere conveniente.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "32",
+     "encabezado": "",
+     "texto_principal": "Para evaluar el rendimiento de los jueces el Consejo de la Judicatura tomará en consideración, entre otros, los siguientes elementos:\n\nde sentencias definitivas o interlocutorias dictadas mensualmente y la calidad de ellas;\n\nde audiencias o días de despacho en el tribunal en cada mes del año;\n\nobservancia de los plazos o términos legales a que esté sujeto el juez;\n\ndiferimientos de las sentencias, autos y decretos;\n\ninhibiciones y las recusaciones introducidas contra el juez y el número de las declaradas con lugar y las desechadas;\n\nsanciones a que haya sido sometido el juez;\n\nmovimiento general de trabajo del tribunal, representado por el número de asuntos ingresados mensualmente, el número de casos resueltos y en tramitación, los procesos paralizados y sus causas, el número de sentencias dictadas, definitivas o interlocutorias.\n\nLa escala de rendimiento satisfactorio de los jueces la hará el Consejo de la Judicatura, previa consulta con la Corte Suprema de Justicia, cuya opinión será vinculante. Esa escala se publicará en la",
+     "numerales_literales": [
+      "7. El número",
+      "8. El número",
+      "9. La",
+      "10. Los",
+      "11. Las",
+      "12. Las",
+      "13. El"
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "33",
+     "encabezado": "",
+     "texto_principal": "Los Jueces tendrán derecho a los permisos y licencias establecidos en esta Ley.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "34",
+     "encabezado": "",
+     "texto_principal": "El Consejo de la Judicatura podrá conceder permisos hasta por un mes, prorrogable por igual término, a los Jueces que lo soliciten por causas graves, debidamente justificadas, distintas a la de enfermedad.\n\nDurante el lapso del permiso devengará el sueldo. Si vencido el permiso o su prórroga el funcionario no se reintegrase a sus funciones, se considerará que ha renunciado y se procederá seguidamente a proveer el cargo, salvo que motivos justificados, a juicio del Consejo de la Judicatura, le hayan impedido reintegrarse a las labores.\n\nEn los casos de maternidad se concederán los permisos que establece la Ley Orgánica del Trabajo.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "35",
+     "encabezado": "",
+     "texto_principal": "El Consejo de la Judicatura podrá conceder permisos o licencias por lapsos mayores al señalado en el artículo 34 sin remuneración.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "36",
+     "encabezado": "",
+     "texto_principal": "Las faltas temporales de los Jueces, producidas por licencias o permisos concedidos, serán llenadas en los Tribunales unipersonales y colegiados, por los Suplentes en el orden de su designación y, agotada la lista de éstos, por los Conjueces nombrados por el Consejo de la Judicatura de acuerdo a lo establecido en la Ley Orgánica del Poder Judicial y deberán reunir las mismas condiciones exigidas por esta Ley para ser Titular del respectivo Tribunal.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "37",
+     "encabezado": "",
+     "texto_principal": "Los Jueces impedidos de actuar por causa de enfermedad serán suplidos como se establece en el artículo anterior. En caso de enfermedad grave comprobada mediante certificación facultativa razonada, suscrita por dos médicos, por lo menos, los Jueces gozarán de su sueldo completo durante los seis primeros meses, beneficio prorrogable por un lapso que no excederá de seis meses más.\n\nA los fines de lo dispuesto en este artículo, el Consejo de la Judicatura dictará la resolución correspondiente.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "38",
+     "encabezado": "",
+     "texto_principal": "Los Jueces podrán ser amonestados por las causas siguientes:\n\nofendieren de palabra, por escrito o vías de hecho a sus superiores o a sus iguales o inferiores.\n\ntraspasen los límites racionales de su autoridad respecto a sus auxiliares y subalternos; a los que acudan a ellos en asuntos de justicia; o a los que asistan a estrados, cualquiera que sea el objeto con que lo hagan.\n\nembriaguen en lugares expuestos a la vista del público.\n\ndejen de dar audiencia o despachar sin causa justificada o incumplan el horario establecido.\n\nausenten del lugar donde ejerzan sus funciones en tiempo hábil y en forma injustificada, sin la licencia respectiva.\n\nsea llevado en forma regular el libro Diario del Tribunal.\n\nincurran en retrasos y descuidos injustificados en la tramitación de los procesos o de cualquier diligencia en los mismos.\n\nLos Jueces que conozcan en grado de una causa están en la obligación de amonestar de oficio al inferior, cuando observaren los retrasos y descuidos a los que se refiere el ordinal 7 de este artículo y de enviar al Consejo de la Judicatura copia de la decisión que se agregará al expediente del Juez. El incumplimiento de este deber por parte de los Jueces que conocen en grado de una causa, será motivo de amonestación por parte del Consejo de la Judicatura.\n\n",
+     "numerales_literales": [
+      "14. Cuando",
+      "15. Cuando",
+      "16. Cuando se",
+      "17. Cuando",
+      "18. Cuando se",
+      "19. Cuando no",
+      "20. Cuando"
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "39",
+     "encabezado": "",
+     "texto_principal": "Los Jueces serán suspendidos de sus cargos por las causas siguientes:\n\nsoliciten préstamos en dinero o en efectos, u otros favores o servicios, que por su frecuencia u otras circunstancias, pongan en tela de juicio el decoro o la imparcialidad del funcionario.\n\ncontraigan obligaciones que den lugar a reclamaciones judiciales en las que fueren declarados responsables.\n\nden el rendimiento satisfactorio anual, evaluado como se indica en el artículo 32 de esta Ley.\n\nsean reincidentes en los retrasos y descuidos a que se refiere el ordinal 7 del artículo 38 de esta Ley.\n\nobserven una conducta censurable que comprometa la dignidad del cargo o le hagan desmerecer en el concepto público.\n\nincurran en nueva infracción después de haber sufrido dos amonestaciones en un año.\n\nobserven la exactitud de los plazos y términos judiciales a que están sujetos conforme a las leyes, o difieran las sentencias sin causa justificada.\n\nhicieren el nombramiento de depositarios en la forma señalada por la ley.\n\nabstengan de decidir so pretexto de silencio, contradicción o deficiencia de la Ley, de oscuridad en sus términos, o cuando retardaren ilegalmente dictar alguna medida, providencia, decreto, decisión o sentencia, aunque no se hubiere interpuesto por estos motivos la queja para hacer efectiva la responsabilidad civil ni la acción penal correspondiente a la denegación de justicia.\n\nLa suspensión será por un tiempo de tres meses a un año a juicio del Consejo de la Judicatura y según la gravedad de la falta.",
+     "numerales_literales": [
+      "21. Cuando",
+      "22. Cuando",
+      "23. Cuando no",
+      "24. Cuando",
+      "25. Cuando",
+      "26. Cuando",
+      "27. Cuando no",
+      "28. Cuando no",
+      "29. Cuando se"
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "40",
+     "encabezado": "",
+     "texto_principal": "Sin perjuicio de las responsabilidades penal y civil a que hubiere lugar, los jueces serán destituidos de sus cargos, previo el debido proceso, por las causas siguientes:\n\nhabiendo sido sancionados con suspensión del cargo, cometieren otra falta de la misma índole de la que motivó la suspensión;\n\natenten contra la respetabilidad del Poder Judicial, o cometan hechos graves que, sin constituir delitos, violen el Código de Ética Judicial, comprometan la dignidad del cargo o le hagan desmerecer en el concepto público;\n\nsoliciten o reciban dádivas, préstamos, regalos o cualquiera otra clase de lucro de alguna de las partes, apoderados o terceros;\n\nhubieren incurrido en grave error judicial inexcusable reconocido en sentencia por la Corte de Apelaciones o el juzgado superior o la respectiva Sala de la Corte Suprema de Justicia, según el caso, y se haya solicitado la destitución;\n\nfuere injustificada y reiterada la inobservancia de los plazos o términos legales o en el diferimiento de las sentencias;\n\nrealicen actos propios del ejercicio de la profesión de abogado;\n\nejerzan influencias directas o indirectas sobre otros jueces para que procedan en determinado sentido en los asuntos de que conocen, tramiten o han de conocer;\n\nsean militantes activos de partidos políticos o realicen actividad política de cualquier naturaleza, excepto el derecho al sufragio;\n\nencuentren comprendidos en alguno de los motivos de incompatibilidad, previstos en la ley;\n\nactúen estando suspendidos legalmente;\n\ninfrinjan las prohibiciones o deberes que les establecen las leyes;\n\npropicien, auspicien u organicen huelgas, paros, suspensión total o parcial de actividades o disminución del ritmo de trabajo o participen en tales actos o los toleren;\n\nhagan constar en cualquier actuación judicial hechos que no sucedieron o dejen de relacionar los que ocurrieron;\n\nomitan la distribución de los expedientes cuando ésta sea obligatoria, o la realicen en forma irregular;\n\ninobservaren las disposiciones de la Ley de Arancel Judicial;\n\nincurran en abuso o exceso de autoridad.",
+     "numerales_literales": [
+      "30. Cuando",
+      "31. Cuando",
+      "32. Cuando",
+      "33. Cuando",
+      "34. Cuando",
+      "35. Cuando",
+      "36. Cuando",
+      "37. Cuando",
+      "38. Cuando se",
+      "39. Cuando",
+      "40. Cuando",
+      "41. Cuando",
+      "42. Cuando",
+      "43. Cuando",
+      "44. Cuando",
+      "45. Cuando"
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "41",
+     "encabezado": "",
+     "texto_principal": "El derecho a la jubilación, con disfrute del noventa por ciento del salario, se adquiere cuando el juez haya alcanzado la edad de sesenta años, si es hombre, o de cincuenta y cinco años si es mujer, siempre que hubiere cumplido por lo menos veinticinco años de servicio público, quince de los cuales en la Carrera Judicial como mínimo. Los que hubieren cumplido treinta años, quince de los cuales en la Carrera Judicial como mínimo, podrán jubilarse con disfrute del ciento por ciento del salario. Los jueces jubilados podrán ser nuevamente designados en los términos establecidos en la Ley, sin necesidad de concurso de oposición, en cuyo caso se suspenderá su jubilación mientras ejerce su función como juez. No tendrán derecho a la jubilación los jueces que hayan sido destituidos de acuerdo con la ley, o que hubieren renunciado para eludir un procedimiento disciplinario en su contra.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "42",
+     "encabezado": "",
+     "texto_principal": "Los Jueces que después del quinto año de servicio llegaren a inhabilitarse en forma permanente tendrán derecho a una pensión de tantos veinticincoavos de sueldo como años de servicio tengan y pasarán a la situación de retiro.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "43",
+     "encabezado": "",
+     "texto_principal": "Los Jueces impedidos de actuar temporalmente por causa de enfermedad, gozarán de sueldo en la forma indicada en el Artículo 37 de esta Ley.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "44",
+     "encabezado": "",
+     "texto_principal": "Los Jueces que cesaren en el ejercicio de sus funciones tendrán derecho al pago de la prestación de antigüedad prevista en la Ley Orgánica del Trabajo.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "45",
+     "encabezado": "",
+     "texto_principal": "En el ejercicio de la función judicial, no podrá sobrepasarse la edad de setenta y cinco años.\n\nA los efectos de la jubilación se computarán los años de servicio que haya prestado el funcionario en cualquier dependencia del Estado, siempre que hubiere cumplido por lo menos quince años de actividad como juez y esté desempeñando estas funciones para el momento de la jubilación.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "46",
+     "encabezado": "",
+     "texto_principal": "Cuando el Juez en el ejercicio del cargo o ya jubilado falleciere, su cónyuge mientras no contraiga nuevas nupcias y los hijos menores de veintiún años o los mayores de edad que sigan cursos de Educación Superior, durante el tiempo previsto en el plan regular de estudios, o aquellos que se encuentren incapacitados total o permanentemente, tendrán derecho a una pensión equivalente a la Jubilación que corresponde al Juez de acuerdo con las previsiones del artículo anterior.\n\nSi el cónyuge concurriera con los indicados descendientes, le corresponderá la mitad y la otra mitad a los hijos. No habiendo hijos sujetos a pensión la porción liberada no incrementará la mitad correspondiente al cónyuge. Los ascendientes que dependan económicamente del Juez fallecido tendrán derecho a una tercera parte de la pensión si concurrieran con el cónyuge y los hijos y a la mitad de ella sin aquél dejare solamente cónyuge o hijos, o si concurrieren solos.\n\nEn la misma proporción en que se incrementan los sueldos de los Jueces se incrementarán las correspondientes jubilaciones o pensiones que para la fecha se perciban de conformidad con las previsiones de los dos artículos anteriores.",
+     "numerales_literales": [],
+     "paragrafos": [
+      "Parágrafo Único.-"
+     ],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "47",
+     "encabezado": "",
+     "texto_principal": "Se garantiza a los jueces la independencia económica mediante un sistema de remuneración que tenga en cuenta, entre otros criterios, la capacidad y eficacia en el trabajo, la categoría y el tiempo de prestación de servicio, así como las responsabilidades del cargo.\n\nTambién se establecerá un sistema de previsión y seguridad social para los jueces y los familiares durante todo el tiempo que duren en el ejercicio de sus funciones o en el disfrute de la jubilación.\n\nEl reglamento de esta Ley establecerá los beneficios, compensaciones, primas por antigüedad, por capacitación y eficiencia y cualesquiera otras remuneraciones especiales que se concedan a los jueces.\n\nLos porcentajes que la ley respectiva destine para ser prorrateados entre todos los tribunales del país y entre los que generan arancel judicial serán distribuidos por igual entre consejeros, jueces, defensores públicos, secretarios y asistentes, según la categoría de cada tribunal.\n\nEl Consejo de la Judicatura determinará el porcentaje que corresponderá a cada consejero, a cada juez y a cada uno de los miembros del personal del respectivo tribunal, según su categoría, independientemente de que genere o no arancel judicial, y según el rendimiento y eficacia.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "48",
+     "encabezado": "",
+     "texto_principal": "La Escuela de la Judicatura tiene por objeto capacitar a los jueces y funcionarios auxiliares para que el desempeño de sus funciones sea acorde con los principios del Estado de Derecho. Para la realización de este objeto la Escuela podrá celebrar convenios con institutos de educación e investigación nacionales e internacionales.\n\nLa organización y funcionamiento de la Escuela de la Judicatura se regirá por el reglamento que dicte el Consejo de la Judicatura.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "49",
+     "encabezado": "",
+     "texto_principal": "El término de distancia para las pruebas que hayan de evacuarse fuera de la sede del Consejo de la Judicatura, se calculará a razón de un día por cada 200 kilómetros o fracción, pero no excederá de diez días continuos.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "50",
+     "encabezado": "",
+     "texto_principal": "Además de las partidas presupuestarias que se asignen para cubrir los gastos normales y ordinarios del funcionamiento de los Tribunales, Defensorías Públicas de Presos y órganos auxiliares, en el presupuesto de cada año se incluirán las asignaciones necesarias para el pago de las pensiones, jubilaciones, compensaciones, prestaciones sociales, primas, bonos vacacionales y contratación de seguro de hospitalización, maternidad y cirugía y demás remuneraciones especiales de los Jueces y Defensores Públicos de Presos. Igualmente se incluirá lo necesario para el pago de las jubilaciones, pensiones, prestaciones sociales y otros beneficios de los Secretarios, Relatores, Alguaciles, Oficiales y Amanuenses y demás empleados del Poder Judicial.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "51",
+     "encabezado": "",
+     "texto_principal": "Para el cálculo de las prestaciones e indemnizaciones que correspondan al Juez, sólo se tomará en cuenta el monto de las asignaciones percibidas por dicho funcionario en el último mes con cargo a la Ley de Presupuesto.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "52",
+     "encabezado": "",
+     "texto_principal": "Los Relatores, Oficiales o Amanuenses y los demás empleados de los Tribunales de Justicia, Ordinarios y Especiales, con excepción de los Militares, se regirán por el Estatuto del Personal Judicial que dicte el Consejo de la Judicatura.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "53",
+     "encabezado": "",
+     "texto_principal": "Mientras se promulgue la Ley que regule la institución de la defensa publica, los Defensores Públicos gozarán de los mismos beneficios y garantías acordados en esta Ley a los Jueces; en cuanto no sean incompatibles con sus funciones.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "54",
+     "encabezado": "",
+     "texto_principal": "Los bonos vacacionales y cualesquiera otros beneficios pecuniarios, que esta Ley acuerde a los Jueces, Secretarios y Alguaciles, se comenzarán a pagar a partir de su entrada en vigencia.\n\n",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "55",
+     "encabezado": "",
+     "texto_principal": "Esta Ley entrará en vigencia a partir del 23 de enero de 1999.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  }
+ ]
+}

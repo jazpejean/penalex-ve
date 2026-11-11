@@ -1,0 +1,1220 @@
+{
+ "ley_nombre": "Ley Orgánica del Servicio de Policía y del Cuerpo de Policía Nacional Boliv",
+ "estructura": [
+  {
+   "libro": null,
+   "titulo": "TÍTULO I — DISPOSICIONES GENERALES",
+   "capitulo": "Capítulo I — Objeto y Ámbito de Aplicación",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "1",
+     "encabezado": "Objeto",
+     "texto_principal": "La presente Ley tiene por objeto regular el Servicio de Policía en los distintos ámbitos político-territoriales y su rectoría, así como la creación, organización y competencias del Cuerpo de Policía Nacional Bolivariana, con fundamento en las normas, principios y valores establecidos en la Constitución de la República.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "2",
+     "encabezado": "Ámbito de Aplicación",
+     "texto_principal": "Las disposiciones de la presente Ley son de orden público y de aplicación obligatoria en todo el territorio de la República.\n\nLas normas y principios contenidos en la presente Ley, son de obligatorio cumplimiento para todos los particulares, los órganos y entes de la Administración Pública en los distintos ámbitos político-territoriales.\n\nTodo acto de rango legal o sublegal deberá ser dictado con observancia de las normas y principios aquí establecidos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO I — DISPOSICIONES GENERALES",
+   "capitulo": "Capítulo II — Definición, Funciones y Carácter del Servicio de Policía",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "3",
+     "encabezado": "Del Servicio de Policía",
+     "texto_principal": "El Servicio de Policía es el conjunto de acciones ejercidas en forma exclusiva por el Estado a través de los cuerpos de policía en todos sus niveles, conforme a los lineamientos y directrices contenidos en la legislación nacional y los que sean dictados por el Órgano Rector, con el propósito de proteger y garantizar los derechos de las personas frente a situaciones que constituyan amenaza, vulnerabilidad, riesgo o daño para su integridad física, sus propiedades, el ejercicio de sus derechos, el respeto de sus garantías, la paz social, la convivencia y el cumplimiento de la ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "4",
+     "encabezado": "De los Fines del Servicio de Policía",
+     "texto_principal": "Son fines del Servicio de Policía:",
+     "numerales_literales": [
+      "1. Proteger el libre ejercicio de los derechos humanos, las libertades públicas y garantizar la paz social.",
+      "2. Prevenir la comisión de delitos.",
+      "3. Apoyar el cumplimiento de las decisiones de la autoridad competente.",
+      "4. Controlar y vigilar las vías de circulación y el tránsito.",
+      "5. Facilitar la resolución de conflictos mediante el diálogo, la mediación y la conciliación."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "5",
+     "encabezado": "De la Naturaleza del Servicio de Policía",
+     "texto_principal": "El Servicio de Policía es predominantemente preventivo, interviniendo sobre los factores que favorecen o promueven el delito y se prestará de manera continua e ininterrumpida.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "6",
+     "encabezado": "Del Carácter del Servicio de Policía",
+     "texto_principal": "El Servicio de Policía es de carácter civil y profesional, lo cual se manifiesta funcionalmente en su mando, personal, dirección, estructura, cultura, estrategias, tácticas, equipamiento y dotación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "7",
+     "encabezado": "De la Responsabilidad del Servicio de Policía",
+     "texto_principal": "El Servicio de Policía es responsabilidad exclusiva del Estado, bajo la rectoría del Poder Nacional. En ningún concepto se permitirá ni se delegará el ejercicio de las funciones policiales a particulares.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO I — DISPOSICIONES GENERALES",
+   "capitulo": "Capítulo III — Principios Generales del Servicio de Policía",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "8",
+     "encabezado": "Principio de celeridad",
+     "texto_principal": "Los cuerpos de policía darán una respuesta oportuna, necesaria e inmediata para proteger a las personas y a las comunidades, frente a situaciones que constituyan amenaza, vulnerabilidad, riesgo o daño para su integridad física, a su hábitat y sus propiedades.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "9",
+     "encabezado": "Principio de Información",
+     "texto_principal": "Los cuerpos de policías informarán de manera oportuna, veraz e imparcial a las personas, comunidades, consejos comunales y organizaciones comunitarias, sobre su actuación y desempeño, e intercambiarán la información que a solicitud de los demás órganos y entes de seguridad ciudadana les sea requerida.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "10",
+     "encabezado": "Principio de Eficiencia",
+     "texto_principal": "Los cuerpos de policía propenderán al uso racional del talento humano y de los recursos materiales y presupuestarios. La asignación de los recursos a los cuerpos de policías se adaptará estrictamente a los requerimientos de su funcionamiento para el logro de sus metas y objetivos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "11",
+     "encabezado": "Principio de Cooperación",
+     "texto_principal": "Los cuerpos de policía desarrollarán actividades para el cumplimiento de los fines y objetivos del servicio de policía, colaborando y cooperando entre sí y con los demás órganos y entes de seguridad ciudadana.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "12",
+     "encabezado": "Principio de Respeto a los Derechos Humanos",
+     "texto_principal": "Los cuerpos de policía actuarán con estricto apego y respeto a los derechos humanos consagrados en la Constitución de la República Bolivariana de Venezuela, en los tratados sobre los derechos humanos suscritos y ratificados por la República y en las leyes que los desarrollen.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "13",
+     "encabezado": "Principio de Universalidad e Igualdad",
+     "texto_principal": "Los cuerpos de policía prestarán su servicio a toda la población sin distinción o discriminación alguna fundamentada en la posición económica, origen étnico, sexo, idioma, religión, nacionalidad, opinión política o de cualquier otra condición o índole. Los pueblos y las comunidades indígenas contarán con un servicio de policía que tome en cuenta su identidad étnica y cultural, atendiendo a sus valores y tradiciones.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "14",
+     "encabezado": "Principio de Imparcialidad",
+     "texto_principal": "Los cuerpos de policía actuarán con absoluta imparcialidad y objetividad en el ejercicio de sus funciones.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "15",
+     "encabezado": "Principio de Actuación Proporcional",
+     "texto_principal": "Los cuerpos de policía actuarán en proporción a la gravedad de la situación y al objetivo legítimo que se persiga, de conformidad con la Constitución de la República Bolivariana de Venezuela y la ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "16",
+     "encabezado": "Principio de la Participación Ciudadana",
+     "texto_principal": "Los cuerpos de policía atenderán las recomendaciones de las comunidades, los consejos comunales y las organizaciones comunitarias para el control y mejoramiento del servicio de policía, con fundamento en los valores de la solidaridad, el humanismo y en los principios de democracia participativa, corresponsable y protagónica establecidos en la Constitución de la República Bolivariana de Venezuela, favoreciendo el mantenimiento de la paz social y la convivencia.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO I — DISPOSICIONES GENERALES",
+   "capitulo": "Capítulo IV — Del Órgano Rector y del Sistema Integrado de Policía",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "17",
+     "encabezado": "Órgano Rector",
+     "texto_principal": "El Ejecutivo Nacional por órgano del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana es el Órgano Rector del servicio de policía.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "18",
+     "encabezado": "De las Atribuciones del Órgano Rector",
+     "texto_principal": "Son atribuciones del Órgano Rector:",
+     "numerales_literales": [
+      "1. Dictar políticas públicas en materia de seguridad ciudadana y velar por su ejecución.",
+      "2. Diseñar y formular políticas integrales en lo que respecta a procedimientos y actuaciones de los cuerpos de policía.",
+      "3. Regular, coordinar, supervisar y controlar la correcta prestación del servicio de policía.",
+      "4. Establecer los lineamientos administrativos, funcionales y operativos, conforme a los cuales se organizan los cuerpos de policía.",
+      "5. Proceder a la intervención y suspensión de los cuerpos de policía de conformidad con lo previsto en esta Ley.",
+      "6. Fijar, diseñar, implementar, controlar y evaluar las políticas, estándares, planes, programas y actividades relacionadas con la prestación del Servicio de Policía.",
+      "7. Adoptar las medidas que considere necesarias, en atención a las recomendaciones formuladas por el Consejo General de Policía, para el mejoramiento del desempeño policial.",
+      "8. Velar por la correcta actuación de los cuerpos de policía en materia de derechos humanos.",
+      "9. Diseñar, supervisar y evaluar, en conjunto con el Ministerio del Poder Popular con competencia en materia de educación superior, los programas de estudio relacionados con la formación, capacitación y mejoramiento profesional de los funcionarios y funcionarias policiales.",
+      "10. Establecer un sistema único de expedición de credenciales a los funcionarios y funcionarias de los cuerpos de policía.",
+      "11. Mantener un registro actualizado del personal policial, parque de armas, asignación personal del arma orgánica y equipamiento de los cuerpos de policía.",
+      "12. Acopiar y procesar la información relacionada con los índices de criminalidad, actuaciones policiales y cualquier otra en materia de seguridad ciudadana, que deben ser suministradas por los órganos y entes de la Administración Pública en los distintos ámbitos político territoriales, y las personas naturales y jurídicas de derecho privado cuando le sea solicitado.",
+      "13. Ejercer el control de desempeño y evaluación de los cuerpos de policía, de acuerdo con los estándares que defina el Órgano Rector.",
+      "14. Establecer y supervisar planes operativos especiales para los cuerpos de policía en circunstancias extraordinarias o de desastres, con el fin de enfrentar de forma efectiva situaciones que comprometan el ejercicio de los derechos ciudadanos, la paz social y convivencia. Dichos planes se ejecutarán de manera excepcional y temporal, con estricto apego y respeto a los derechos humanos.",
+      "15. Crear Oficinas Técnicas para ejercer con carácter permanente funciones de supervisión y fiscalización de la prestación del servicio de policía, de la aplicación de los estándares y programas de asistencia técnica.",
+      "16. Otorgar la habilitación requerida para formar cuerpos de policía.",
+      "17. Dictar las Resoluciones necesarias para el cumplimiento de las disposiciones contenidas en esta Ley.",
+      "18. Cualquier otra que le atribuyan los reglamentos de esta Ley."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "19",
+     "encabezado": "De las Oficinas Técnicas",
+     "texto_principal": "El Órgano Rector contará con Oficinas Técnicas encargadas de la supervisión y fiscalización de la prestación del servicio de policía, de la aplicación de los estándares y programas de asistencia técnica. Las Oficinas Técnicas estarán conformadas por un equipo multidisciplinario de profesionales designados por el Ministro o Ministra del Poder Popular con competencia en materia de seguridad ciudadana.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "20",
+     "encabezado": "Del Control Sobre el Desempeño Operativo",
+     "texto_principal": "Los cuerpos de policía deberán informar al Órgano Rector sobre su desempeño operativo, de acuerdo a lo establecido en el Reglamento que rija la materia.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "21",
+     "encabezado": "Del Sistema Integrado de Policía",
+     "texto_principal": "El Sistema Integrado de Policía comprende la articulación de los órganos y entes que ejercen el servicio de policía, y que coadyuvan a su prestación, a través del desarrollo de una estructura que asegure la gestión y eficiencia de los cuerpos de policía, mediante el cumplimiento de principios, normas y reglas comunes sobre la formación, la carrera, el desempeño operativo, los niveles y criterios de actuación, las atribuciones, deberes comunes y los mecanismos de supervisión y control.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "22",
+     "encabezado": "De la Conformación del Sistema Integrado de Policía",
+     "texto_principal": "El Sistema Integrado de Policía estará bajo la rectoría del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana, y lo conforman:",
+     "numerales_literales": [
+      "1. El Ministerio del Poder Popular con competencia en materia de seguridad ciudadana.",
+      "2. El cuerpo de Policía Nacional Bolivariana.",
+      "3. Los cuerpos de policía estadales.",
+      "4. Los cuerpos de policía municipales.",
+      "5. La institución académica nacional especializada en seguridad.",
+      "6. El Fondo Nacional Intergubernamental del Servicio de Policía.",
+      "7. Los demás órganos y entes que excepcionalmente ejerzan competencias propias del servicio de policía.",
+      "8. Cualquier órgano o ente que determine el Ejecutivo Nacional."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "23",
+     "encabezado": "Del Consejo General de Policía",
+     "texto_principal": "El Consejo General de Policía es una instancia de participación y asesoría para coadyuvar a la definición, planificación y coordinación de las políticas públicas en materia del servicio de policía, así como del desempeño profesional del policía. Es presidido por el Ministro o Ministra del Poder Popular con competencia en materia de seguridad ciudadana, e integrado por una representación de los gobernadores o gobernadoras, alcaldes o alcaldesas, Ministerio Público y la Defensoría del Pueblo, el cual se conformará y reunirá en los términos que se establezcan en el Reglamento Interno dictado mediante Resolución. Se podrá incorporar de forma excepcional a cualquier persona que estime pertinente el Presidente o Presidenta del Consejo. Este Consejo contará con una Secretaría Ejecutiva.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "24",
+     "encabezado": "De la Secretaría Ejecutiva del Consejo General de Policía",
+     "texto_principal": "La Secretaría Ejecutiva del Consejo General de Policía servirá como enlace y dará seguimiento a sus recomendaciones, facilitando la comunicación con las instancias que conforman el Sistema Integrado de Policía, así como cualquier otra comisión o grupo de trabajo que se considere pertinente para la consideración de un tema especializado.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "25",
+     "encabezado": "De las atribuciones del Consejo General de Policía",
+     "texto_principal": "Son atribuciones del Consejo General de Policía:",
+     "numerales_literales": [
+      "1. Proponer las políticas públicas y los planes en el ámbito policial a nivel nacional.",
+      "2. Proponer la adopción de los estándares del servicio, reglamentos de funcionamiento, manuales de procedimientos, organización común exigida para todos los cuerpos de policía, programas de formación policial y mecanismos de control y supervisión, a fin de uniformar lo necesario y facilitar el desempeño policial dentro de un marco previsible y confiable de actuación, incluyendo la aplicación de programas de asistencia técnica policial.",
+      "3. Recomendar al Órgano Rector la aplicación de los programas de asistencia técnica y la adopción de los correctivos correspondientes."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "26",
+     "encabezado": "Del Fondo Intergubernamental del Servicio de Policía",
+     "texto_principal": "Se crea el Fondo Intergubernamental del Servicio de Policía, con la finalidad de coadyuvar y contribuir en la dotación, entrenamiento, asistencia técnica y compensación a los diversos cuerpos de policía que conforman el Sistema Integrado de Policía. El Fondo dependerá administrativamente y financieramente del Órgano Rector. Su organización y régimen será desarrollado a través del instrumento que dicte el Ejecutivo Nacional.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO I — DISPOSICIONES GENERALES",
+   "capitulo": "Capítulo V — De las Autoridades y Competencias de Dirección Policial",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "27",
+     "encabezado": "Competencia para Organizar Cuerpos de Policía",
+     "texto_principal": "Son competentes para organizar cuerpos de policía, el Ejecutivo Nacional a través del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana, los estados y municipios a través de las instancias correspondientes, de conformidad con la Constitución de la República Bolivariana de Venezuela, la legislación nacional y los lineamientos dictados por el Órgano Rector. Para organizar cuerpos de policía, los estados y municipios, deberán presentar al Ministerio con competencia en materia de seguridad ciudadana el respectivo proyecto a efectos de la verificación del cumplimiento de los estándares y la habilitación correspondiente.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "28",
+     "encabezado": "De las Competencias en Materia de Servicio de Policía",
+     "texto_principal": "En materia de servicio de policía corresponde a los gobernadores o gobernadoras, alcaldes o alcaldesas, en la presente Ley, las siguientes funciones:",
+     "numerales_literales": [
+      "1. Promover la prevención y el control del delito, la participación de la comunidad y de otras instituciones públicas con responsabilidad en la materia para la definición de planes y supervisión.",
+      "2. Ajustar los indicadores del desempeño policial al cumplimiento de metas y a la adecuación de normas generales de actuación y respeto a los derechos humanos en su correspondiente ámbito político territorial, conforme a los programas y políticas generales dictadas por el Órgano Rector.",
+      "3. Designar a los directivos de los cuerpos de policía en su correspondiente ámbito político territorial, cumpliendo con los requisitos establecidos para tales cargos, previa aprobación del Órgano Rector.",
+      "4. Las demás señaladas en la Constitución de la República Bolivariana de Venezuela y la presente Ley."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "29",
+     "encabezado": "De las Autoridades de Dirección Policial",
+     "texto_principal": "Son autoridades de dirección policial en cada uno de los órganos correspondientes, los directores o directoras de los diferentes cuerpos de policía y las funcionarias o funcionarios con responsabilidades de comando en la relación jerárquica con sus subordinadas o subordinados.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "30",
+     "encabezado": "De las Competencias de las Autoridades de Dirección Policial",
+     "texto_principal": "Corresponde a las autoridades de dirección policial, en el ámbito funcional de los cuerpos de policía:",
+     "numerales_literales": [
+      "1. Ejecutar las políticas dictadas por el Órgano Rector, los principios y programas generales para la prevención y el control del delito, cumplir las metas establecidas y garantizar el respeto de los derechos humanos por parte del órgano que dirigen.",
+      "2. Aplicar las normas establecidas en las leyes y reglamentos, sobre el ingreso, ascenso, traslado, régimen disciplinario, suspensión, retiro y jubilación.",
+      "3. Aplicar los estándares y las normas establecidas en las leyes, reglamentos y la habilitación respectiva.",
+      "4. Las demás que establezcan los reglamentos de la presente Ley."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "31",
+     "encabezado": "De la Designación de los Directores o Directoras de los Cuerpos de Policía",
+     "texto_principal": "Los Directores y Directoras de los cuerpos de policía son de libre nombramiento y remoción por el Ministro o Ministra con competencia en materia de seguridad ciudadana, por los gobernadores o gobernadoras y por las alcaldesas o alcaldes, en los respectivos ámbitos político-territoriales, conforme a lo previsto en la presente Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "32",
+     "encabezado": "De los Requisitos del Director o Directora",
+     "texto_principal": "El Director o Directora de los cuerpos de policía deben cumplir los siguientes requisitos:",
+     "numerales_literales": [
+      "1. Ser venezolano o venezolana por nacimiento.",
+      "2. Ser profesional de carrera policial, habiendo obtenido el grado más alto dentro del correspondiente cuerpo de policía; o profesional en carrera afín, preferiblemente con estudios aprobados de cuarto nivel.",
+      "3. Ser de reconocida solvencia moral y no haber sido destituido o destituida de ningún otro cuerpo de policía.",
+      "4. No poseer antecedentes penales.",
+      "5. Las demás que fije el Reglamento de la presente Ley."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "33",
+     "encabezado": "De la Autoridad en la Investigación Penal",
+     "texto_principal": "Los cuerpos de policía en sus distintos ámbitos político-territoriales, estarán subordinados al Ministerio Público en materia de investigación penal.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO II — DE LAS ATRIBUCIONES DE LOS CUERPOS DE POLICÍA",
+   "capitulo": "Capítulo I — De las Atribuciones Comunes de los Cuerpos de Policía",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "34",
+     "encabezado": "De las Atribuciones Comunes",
+     "texto_principal": "Son atribuciones comunes de los cuerpos de policía:",
+     "numerales_literales": [
+      "1. Cumplir y hacer cumplir la Constitución de la República Bolivariana de Venezuela, las leyes y las demás disposiciones relacionadas con el servicio de policía.",
+      "2. Proteger a las personas y a las comunidades, frente a situaciones que constituyan amenaza, vulnerabilidad, riesgo o daño para la integridad física, sus propiedades y su hábitat.",
+      "3. Ejercer el servicio de policía en las áreas urbanas, extraurbanas y rurales.",
+      "4. Ejecutar las políticas emanadas del Órgano Rector en materia de seguridad ciudadana, incluyendo tránsito, sustancias estupefacientes y psicotrópicas, anticorrupción, antisecuestros, acaparamiento y especulación alimentaria, adulteración de medicinas y otros bienes de consumo esenciales para la vida, delincuencia organizada, turismo, ambiente y orden público.",
+      "5. Promover, desarrollar e implementar estrategias y procedimientos que garanticen la participación de la comunidad organizada en el servicio de policía comunal.",
+      "6. Proteger a las personas que participen en concentraciones públicas o manifestaciones pacíficas.",
+      "7. Cooperar con los demás órganos y entes de seguridad ciudadana en el ámbito de sus competencias.",
+      "8. Resguardar el lugar donde haya ocurrido un hecho punible, e impedir que las evidencias, rastros o trazas vinculados al mismo, se alteren o desaparezcan, a los fines de facilitar las investigaciones correspondientes.",
+      "9. Propender a la solución de conflictos a través de la mediación, conciliación y demás mecanismos alternativos, a fin de garantizar la paz social.",
+      "10. Recabar, procesar y evaluar la información conducente a mejorar el desempeño de los cuerpos de policía.",
+      "11. Colaborar con los demás órganos y entes de seguridad ciudadana ante situaciones de desastres, catástrofes o calamidades públicas.",
+      "12. Ejercer funciones auxiliares de investigación penal de conformidad con las leyes especiales.",
+      "13. Practicar detenciones en virtud de una orden judicial, o cuando la persona sea sorprendida en flagrancia de conformidad con la Constitución de la República Bolivariana de Venezuela y las leyes.",
+      "14. Proteger a los testigos y víctimas de hechos punibles y demás sujetos procesales por orden de la autoridad competente.",
+      "15. Controlar, vigilar y resguardar las vías públicas nacionales, urbanas y extraurbanas y el tránsito terrestre previniendo la comisión de delitos, participando en la investigación penal y aplicando el régimen de sanciones administrativas previsto en la ley.",
+      "16. Las demás que le establezca el reglamento de la presente ley."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO II — DE LAS ATRIBUCIONES DE LOS CUERPOS DE POLICÍA",
+   "capitulo": "Capítulo II — Del Cuerpo de Policía Nacional Bolivariana",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "35",
+     "encabezado": "Creación",
+     "texto_principal": "Se crea el Cuerpo de Policía Nacional Bolivariana, como un órgano desconcentrado de seguridad ciudadana, dependiente administrativa y funcional mente del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "36",
+     "encabezado": "Naturaleza",
+     "texto_principal": "El Cuerpo de Policía Nacional Bolivariana tiene carácter civil, público, permanente, profesional y organizado. Estará desplegado en todo el territorio nacional para garantizar el ejercicio de los derechos individuales y colectivos y el cumplimiento de la ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "37",
+     "encabezado": "De las Áreas del Servicio",
+     "texto_principal": "El Cuerpo de Policía Nacional Bolivariana tiene competencia en todo el territorio nacional en las siguientes áreas del servicio de policía: orden público, tránsito, fiscalización y aduanas, turismo, aeroportuaria, custodia diplomática y protección de personalidades, penitenciaria, migración, marítima, anticorrupción, sustancias estupefacientes y psicotrópicas, ambiental, delincuencia organizada, antisecuestro, seguridad alimentaria, grupos armados irregulares y aquéllas que la Constitución de la República Bolivariana de Venezuela y las leyes otorguen al Poder Público Nacional, y cualquier otra vinculada a la prevención del delito.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "38",
+     "encabezado": "Organización y Funcionamiento",
+     "texto_principal": "La estructura organizativa y funcional del Cuerpo de Policía Nacional Bolivariana se definirá en el Reglamento Orgánico respectivo.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "39",
+     "encabezado": "De las Atribuciones Exclusivas del Cuerpo de Policía Nacional Bolivariana",
+     "texto_principal": "Son atribuciones exclusivas del Cuerpo de Policía Nacional Bolivariana:",
+     "numerales_literales": [
+      "1. Ejecutar las políticas emanadas del Órgano Rector en las siguientes áreas del servicio de policía: fiscalización y aduanas, custodia diplomática y protección de personalidades, penitenciaria, migración, marítima, fronteras, antisecuestro y las demás que determinen las leyes y reglamentos.",
+      "2. Brindar a las policías extranjeras la colaboración y el auxilio de conformidad con lo establecido en los tratados y acuerdos internacionales suscritos y ratificados por la República.",
+      "3. Proteger y brindar seguridad a los miembros del Cuerpo Diplomático acreditado en el país, de conformidad con el ordenamiento jurídico aplicable en esta materia.",
+      "4. La creación de grupos o unidades tácticas de conformidad con el Reglamento que rija la materia.",
+      "5. Las demás que le confiere el ordenamiento jurídico vigente."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "40",
+     "encabezado": "Del Director o la Directora del Cuerpo de Policía Nacional Bolivariana",
+     "texto_principal": "El Cuerpo de Policía Nacional Bolivariana estará a cargo de un Director o Directora designado o designada por el Ministro o Ministra con competencia en materia de seguridad ciudadana, y será de libre nombramiento y remoción.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "41",
+     "encabezado": "Atribuciones del Director o Directora",
+     "texto_principal": "Son atribuciones de la Directora o Director del Cuerpo de Policía Nacional Bolivariana:",
+     "numerales_literales": [
+      "1. Instrumentar y ejecutar las políticas dictadas por el Órgano Rector en materia de seguridad ciudadana, y las demás órdenes e instrucciones emanadas de la autoridad competente.",
+      "2. Planificar, organizar, dirigir, controlar, coordinar y supervisar las actividades propias del Cuerpo de Policía Nacional Bolivariana.",
+      "3. Asesorar al Órgano Rector en materia de seguridad ciudadana, en la adopción de estrategias y medidas que contribuyan a proteger a las personas y a las comunidades.",
+      "4. Procurar la coordinación y cooperación con otros cuerpos de policía, a los fines de garantizar la seguridad, la convivencia y la paz social.",
+      "5. Promover la formación, adiestramiento y capacitación de los y las integrantes del Cuerpo de Policía Nacional Bolivariana.",
+      "6. Asegurar, que el talento humano, los recursos materiales, tecnológicos y financieros del Cuerpo de Policía Nacional Bolivariana, sean empleados en actividades propias del servicio de policía, de conformidad con las disposiciones legales.",
+      "7. Vigilar el cumplimiento de la normativa interna y las leyes que rigen la materia disciplinaria.",
+      "8. Velar por el estricto respeto de los derechos humanos y la correcta aplicación de la ley.",
+      "9. Promover medidas que favorezcan la incorporación activa del Cuerpo de Policía Nacional Bolivariana al desarrollo nacional.",
+      "10. Crear y fortalecer mecanismos institucionales que promuevan y faciliten la participación ciudadana para el mejor desempeño del servicio de policía.",
+      "11. Articular mecanismos internos y externos de seguimiento y control sobre el servicio de policía.",
+      "12. Promover los valores de solidaridad y paz social en el ejercicio del servicio de policía.",
+      "13. Las demás que le asigne el ordenamiento jurídico."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO II — DE LAS ATRIBUCIONES DE LOS CUERPOS DE POLICÍA",
+   "capitulo": "Capítulo III — De los Cuerpos de Policía Estadal",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "42",
+     "encabezado": "Naturaleza",
+     "texto_principal": "Los cuerpos de policía estadal son órganos o entes de seguridad ciudadana encargados de ejercer el servicio de policía en su espacio territorial y ámbito de competencia, primordialmente orientados hacia actividades preventivas y control del delito, con estricta sujeción a los principios y lineamientos establecidos en esta Ley, sus reglamentos y los lineamientos y directrices dictados por el Órgano Rector.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "43",
+     "encabezado": "Atribuciones",
+     "texto_principal": "Los cuerpos de policía estadal tendrán, además de las atribuciones comunes de los cuerpos de policía previstas en esta Ley, la facultad de organizar personal entrenado y equipado para el control de reuniones y manifestaciones que comprometan el orden público, la paz social y la convivencia, conforme a los lineamientos y directrices dictados por el Órgano Rector.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO II — DE LAS ATRIBUCIONES DE LOS CUERPOS DE POLICÍA",
+   "capitulo": "Capítulo IV — De los Cuerpos de Policía Municipal",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "44",
+     "encabezado": "Naturaleza",
+     "texto_principal": "Los cuerpos de policía municipal son órganos o entes de seguridad ciudadana encargados de ejercer el servicio de policía en su espacio territorial y ámbito de competencia, primordialmente orientados hacia actividades preventivas y control del delito, con estricta sujeción a los principios y lineamientos establecidos en esta Ley, sus reglamentos y los lineamientos y directrices dictados por el Órgano Rector.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "45",
+     "encabezado": "De la Mancomunidad",
+     "texto_principal": "Los municipios podrán asociarse en mancomunidades para la prestación del servicio de policía. Los Distritos Metropolitanos y Distritos Especiales no podrán organizar cuerpos de policía ni ejercer el servicio de policía.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "46",
+     "encabezado": "Atribuciones",
+     "texto_principal": "Los cuerpos de policía municipal tendrán, además de las atribuciones comunes de los cuerpos de policía previstas en esta Ley, competencia exclusiva en materia administrativa propia del municipio y protección vecinal.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO II — DE LAS ATRIBUCIONES DE LOS CUERPOS DE POLICÍA",
+   "capitulo": "Capítulo V — Del Servicio de Policía Comunal",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "47",
+     "encabezado": "De la Naturaleza del Servicio de Policía Comunal",
+     "texto_principal": "El servicio de policía comunal es profesional, predominantemente preventivo, proactivo, permanente, de proximidad, comprometido con el respeto de los valores, la identidad y la cultura propia de cada comunidad. A fin de dar cumplimiento a este servicio los cuerpos de policía, en el ámbito de su competencia, podrán crear núcleos de policía comunal.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "48",
+     "encabezado": "Propósito del Servicio de la Policía Comunal",
+     "texto_principal": "Los cuerpos de policía comunal, en el ámbito de su competencia, promoverán estrategias y procedimientos de proximidad a la comunidad, que permitan trabajar en espacios territoriales circunscritos, para facilitar el conocimiento óptimo del área y la comunicación e interacción con sus habitantes e instituciones locales, con la finalidad de garantizar y asegurar la paz social, la convivencia, el ejercicio de los derechos y el cumplimiento de la ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "49",
+     "encabezado": "Promoción del Servicio de Policía Comunal",
+     "texto_principal": "Los gobernadores o gobernadoras, alcaldes o alcaldesas promoverán el establecimiento del servicio de policía comunal, como estrategia para perfeccionar el trabajo conjunto y directo entre los cuerpos de policía y la comunidad. El Órgano Rector, a través de las Oficinas Técnicas, auxiliará en el diseño, organización y perfeccionamiento del Servicio de Policía Comunal.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO II — DE LAS ATRIBUCIONES DE LOS CUERPOS DE POLICÍA",
+   "capitulo": "Capítulo VI — De los Niveles y Criterios de Actuación de los Cuerpos de Policía",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "50",
+     "encabezado": "De los Niveles de Actuación",
+     "texto_principal": "Los cuerpos de policía trabajarán de forma coordinada y sus niveles de actuación se adecuarán a la capacidad y los medios necesarios para enfrentar y solucionar las situaciones que se presenten. Esta actuación se regirá por criterios de territorialidad, complejidad, intensidad y especificidad. En caso de no estar disponible un cuerpo de policía determinado, asumirá la ejecución de la tarea el cuerpo más cercano, preferentemente en orden ascendente.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "51",
+     "encabezado": "Criterio de Territorialidad",
+     "texto_principal": "Corresponden a los cuerpos de policía municipal las situaciones que se producen y limitan en el ámbito local, a los cuerpos de policía estadal las que se producen y extienden al ámbito territorial de los estados, y al Cuerpo de Policía Nacional Bolivariana la actuación en los diferentes hechos que se producen en todo el territorio nacional.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "52",
+     "encabezado": "Criterio de Complejidad",
+     "texto_principal": "Corresponden a los cuerpos de policía municipal las situaciones de baja complejidad, a los cuerpos de policía estadal las situaciones de complejidad media y al Cuerpo de Policía Nacional Bolivariana las situaciones de alta complejidad. Son indicadores de complejidad las redes y coaliciones grupales, la sofisticación de la modalidad delictiva y cualquier otro indicador que se establezca en el reglamento respectivo.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "53",
+     "encabezado": "Criterio de Intensidad",
+     "texto_principal": "Corresponden a los cuerpos de policía municipal las situaciones que requieran intervenciones de baja intensidad, a los cuerpos de policía estadal las situaciones que requieran intervenciones de intensidad media y al Cuerpo de Policía Nacional Bolivariana las situaciones que requieran intervenciones de alta intensidad. Son indicadores de intensidad los recursos materiales, tecnológicos o de fuerza empleados y cualquier otro indicador que se establezca en el reglamento respectivo.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "54",
+     "encabezado": "Criterio de Especificidad",
+     "texto_principal": "Corresponden a los cuerpos de policía municipal las situaciones genéricas, a los cuerpos de policía estadal las situaciones con mayor nivel de especificidad, y al Cuerpo de Policía Nacional Bolivariana las situaciones de alta especificidad. Son indicadores de especificidad el nivel de experticia requerido como consecuencia de la modalidad, organización o multiplicidad de implicaciones, así como cualquier otro indicador que se establezca en el reglamento respectivo.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO III — DE LA ORGANIZACIÓN, FORMACIÓN Y PROFESIONALIZACIÓN DEL SERVICIO DE POLICÍA",
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "55",
+     "encabezado": "Del Régimen de la Función Policial",
+     "texto_principal": "El Estatuto de la Función Policial establecerá el régimen de ingreso, jerarquías, ascenso, traslado, disciplina, suspensión, retiro, sistema de remuneraciones y demás situaciones laborales y administrativas de los funcionarios y funcionarias de los cuerpos de policía en los distintos ámbitos político territoriales.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "56",
+     "encabezado": "Organización Jerárquica y Distribución de Responsabilidades",
+     "texto_principal": "La Organización Jerárquica será única y aplicable a todos los cuerpos de policía y comprenderá una escala de tres niveles dividida en pasos conforme lo prevea el Estatuto de la Función Policial. El tercer nivel tendrá responsabilidades de alta dirección, planificación y evaluación, a nivel estratégico del cuerpo de policía. El segundo nivel tendrá responsabilidades de dirección media, diseño de operaciones, supervisión y evaluación, a nivel táctico del cuerpo de policía. El primer nivel tendrá responsabilidades en la ejecución de las actividades de contacto inmediato con la ciudadanía, a nivel operacional del cuerpo de policía.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "57",
+     "encabezado": "Ingreso a los Cuerpos de Policía",
+     "texto_principal": "Son requisitos de ingreso a los cuerpos de policía: ser venezolano o venezolana, mayor de dieciocho años de edad y menor de veinticinco años de edad, no poseer antecedentes penales, ni haber sido destituido o destituida de algún órgano militar o de cualquier organismo de seguridad del Estado, contar con el título de educación media diversificada y haber cursado y aprobado un año de formación en la institución académica nacional, así como cualquier otro que determine el reglamento respectivo.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "58",
+     "encabezado": "De la Formación Policial",
+     "texto_principal": "Los funcionarios y funcionarias policiales serán formados en la institución académica nacional, con un currículum común básico y con diversificación según las disciplinas y áreas especializadas del servicio. El Órgano Rector en conjunto con el Ministerio del Poder Popular con competencia en materia de Educación Superior determinará el diseño curricular, las políticas y acciones que garanticen la unidad del proceso de formación y el desarrollo profesional permanente, que debe aplicar la institución académica responsable del sistema único de formación policial.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "59",
+     "encabezado": "Formación Continua",
+     "texto_principal": "Los funcionarios y funcionarias policiales serán capacitados periódicamente y su nivel de formación continua y actualización serán requisitos para el ascenso y cargo en la carrera policial.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "60",
+     "encabezado": "Calificación de Servicio",
+     "texto_principal": "Los fundamentos para asignación de cargos, transferencias y otras situaciones administrativas de los funcionarios y funcionarias serán el resultado de un proceso de evaluación y calificación de servicio, considerando las condiciones éticas, profesionales, técnicas, físicas y psicológicas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "61",
+     "encabezado": "Del Régimen de Ascenso",
+     "texto_principal": "El Estatuto de la Función Policial establecerá un régimen único de ascensos bajo los siguientes parámetros: el tiempo mínimo de permanencia dentro de cada rango, el tipo de acreditación académica requerida para cada nivel, los méritos de servicio y una evaluación psicotécnica de la o del aspirante, entre otros.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "62",
+     "encabezado": "Derechos Laborales y de Seguridad Social",
+     "texto_principal": "Los cuerpos de policía adoptarán el sistema de seguridad social previsto en la Constitución de la República Bolivariana de Venezuela y en la ley respectiva. Se unificarán las distintas asignaciones socioeconómicas y las condiciones laborales, respetando el principio de intangibilidad y progresividad de los derechos laborales.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "63",
+     "encabezado": "Prohibición de Interrupción de Servicio",
+     "texto_principal": "Los funcionarios y funcionarias policiales se abstendrán de cualquier práctica que implique la interrupción, alteración o discontinuidad en la prestación del servicio de policía. No se permitirá la asociación en sindicatos ni la huelga.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "64",
+     "encabezado": "Régimen Disciplinario y Responsabilidad Penal",
+     "texto_principal": "El régimen disciplinario aplicable a los funcionarios y funcionarias policiales favorecerá la adhesión normativa y promoverá la corrección temprana de faltas policiales con oportunidad y eficacia. Se promoverá, dentro del Sistema de Defensa Pública del Tribunal Supremo de Justicia, una unidad especializada para los funcionarios y funcionarias policiales que en el cumplimiento del deber incurran en la comisión de hechos punibles, con el fin de brindar orientación y asistencia judicial.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO IV — DEL DESEMPEÑO POLICIAL",
+   "capitulo": "Capítulo I — De las Normas de Actuación de los Funcionarios y Funcionarias Policiales",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "65",
+     "encabezado": "De las Normas Básicas de Actuación Policial",
+     "texto_principal": "Son normas básicas de actuación de los funcionarios y funcionarias de los cuerpos de policía y demás órganos y entes que excepcionalmente ejerzan funciones del servicio de policía:",
+     "numerales_literales": [
+      "1. Respetar y proteger la dignidad humana, defender y promover los derechos humanos de todas las personas, sin discriminación por motivos de origen étnico, sexo, religión, nacionalidad, idioma, opinión política, posición económica o de cualquier otra índole.",
+      "2. Servir a la comunidad y proteger a todas las personas contra actos ilegales, con respeto y cumpliendo los deberes que les imponen la Constitución de la República Bolivariana de Venezuela y demás leyes.",
+      "3. Ejercer el servicio de policía con ética, imparcialidad, legalidad, transparencia, proporcionalidad y humanidad.",
+      "4. Valorar e incentivar la honestidad y en consecuencia, denunciar cualquier acto de corrupción que conozcan en la prestación del servicio de policía.",
+      "5. Observar en toda actuación un trato correcto y esmerado en sus relaciones con las personas, a quienes procurarán proteger y auxiliar en las circunstancias que fuesen requeridas.",
+      "6. Velar por el disfrute del derecho a reunión y del derecho a manifestar pública y pacíficamente, conforme a los principios de respeto a la dignidad, tolerancia, cooperación, intervención oportuna, proporcional y necesaria.",
+      "7. Respetar la integridad física de todas las personas y bajo ninguna circunstancia infligir, instigar o tolerar ningún acto arbitrario, ilegal, discriminatorio o de tortura u otros tratos o penas crueles, inhumanas o degradantes, que entrañen violencia física, psicológica y moral, en cumplimiento del carácter absoluto del derecho a la integridad física, psíquica y moral garantizado constitucionalmente.",
+      "8. Ejercer el servicio de policía utilizando los mecanismos y medios pertinentes y ajustados a la Constitución de la República Bolivariana de Venezuela para la preservación de la paz y la garantía de la seguridad individual y colectiva.",
+      "9. Extremar las precauciones, cuando la actuación policial esté dirigida hacia los niños, niñas y adolescentes, así como hacia los adultos y adultas mayores y las personas con discapacidad, para garantizar su seguridad e integridad física, psíquica y moral.",
+      "10. Abstenerse de ejecutar órdenes que comporten la práctica de acciones u omisiones ilícitas o que sean lesivas o menoscaben los derechos humanos garantizados en la Constitución de la República Bolivariana de Venezuela o en los tratados internacionales sobre la materia, y oponerse a toda violación de derechos humanos que conozcan.",
+      "11. Denunciar violaciones a los derechos humanos que conozcan o frente a los cuales haya indicio de que se van a producir.",
+      "12. Asegurar plena protección de la salud e integridad de las personas bajo custodia, adoptando las medidas inmediatas para proporcionar atención médica."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "66",
+     "encabezado": "De la Identificación",
+     "texto_principal": "Los funcionarios y funcionarias policiales están obligados u obligadas, durante el ejercicio de sus funciones, a utilizar los uniformes, insignias policiales y equipos autorizados, así como portar los documentos de identificación que los acrediten como funcionarios y funcionarias. El uniforme, insignia policial y equipo autorizado deberá encontrarse debidamente identificado de modo visible, con mención expresa al funcionario o funcionaria y cuerpo de policía al cual pertenece, estando obligados a identificarse a solicitud de las personas. Quedan a salvo las normas especiales sobre agentes encubiertos e inteligencia policial.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "67",
+     "encabezado": "Del Respeto, Obediencia y Subordinación",
+     "texto_principal": "Los funcionarios y funcionarias policiales deben respeto y consideración a sus superiores jerárquicos y obediencia legítima y subordinación a sus mandos funcionales. Acatarán y cumplirán las políticas, planes, programas, órdenes, instrucciones, decisiones y directrices que emanen de las autoridades competentes, salvo lo dispuesto en la presente Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO IV — DEL DESEMPEÑO POLICIAL",
+   "capitulo": "Capítulo II — Del uso de la Fuerza y el Registro de Armas",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "68",
+     "encabezado": "Principios Generales",
+     "texto_principal": "El uso de la fuerza por parte de los cuerpos de policía estará orientado por el principio de afirmación de la vida como valor supremo constitucional y legal, la adopción de escalas progresivas para el uso de la fuerza en función del nivel de resistencia y oposición de la ciudadana o ciudadano, los procedimientos de seguimiento y supervisión de su uso, entrenamiento policial permanente y difusión de instructivos entre la comunidad, a fin de facilitar la contraloría social en esta materia. El traspaso en el uso de la fuerza mortal sólo estará justificado para la defensa de la vida del funcionario o funcionaria policial o de un tercero.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "69",
+     "encabezado": "Medios para el uso de la Fuerza",
+     "texto_principal": "Los cuerpos de policía dispondrán de medios que permitan a los funcionarios y funcionarias policiales un uso diferenciado de la fuerza, debiendo ser capacitados permanentemente en su uso.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "70",
+     "encabezado": "Criterios para graduar el uso de la Fuerza",
+     "texto_principal": "Los funcionarios y funcionarias policiales emplearán la fuerza física con apego a los siguientes criterios:",
+     "numerales_literales": [
+      "1. El nivel del uso de la fuerza a aplicar está determinado por la conducta de la persona y no por la predisposición del funcionario o funcionaria.",
+      "2. El uso diferenciado de la fuerza implica que entre la intimidación psíquica y la fuerza potencialmente mortal, el funcionario o funcionaria graduará su utilización considerando la progresión desde la resistencia pasiva hasta la agresión que amenace la vida, por parte de la persona.",
+      "3. El funcionario o funcionaria policial debe mantener el menor nivel del uso de la fuerza posible para el logro del objetivo propuesto.",
+      "4. En ningún momento debe haber daño físico innecesario, ni maltratos morales a las personas objeto de la acción policial, ni emplearse la fuerza como forma de castigo directo."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "71",
+     "encabezado": "De las Armas y Equipos para el uso de la Fuerza",
+     "texto_principal": "Forman parte de la política sobre el uso de la fuerza:",
+     "numerales_literales": [
+      "1. La adquisición de armas y equipos en función del cometido civil de la policía, con base en el principio de la intervención menos lesiva y más efectiva.",
+      "2. La asignación, registro y control del armamento personalizado para cada funcionario y funcionaria.",
+      "3. El porte y utilización exclusiva, en actos de servicio, de armas y equipos orgánicos autorizados y homologados por el cuerpo de policía."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "72",
+     "encabezado": "Del Registro del Parque de Armas",
+     "texto_principal": "Los cuerpos de policía deben llevar un registro del parque de armas de acuerdo a los controles establecidos en el Reglamento que rija la materia. Todos los cuerpos de policía deben realizar el registro balístico de las armas orgánicas de sus respectivos parques, conforme a las normas aplicables en la materia. Tal información debe ser remitida al Registro Nacional de Armas Policiales dependiente del Órgano Rector.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO IV — DEL DESEMPEÑO POLICIAL",
+   "capitulo": "Capítulo III — De la Habilitación y Asistencia Técnica de los Cuerpos de Policía",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "73",
+     "encabezado": "Habilitación",
+     "texto_principal": "El Órgano Rector será el encargado de otorgar la habilitación para formar los cuerpos de policía. Evaluará de forma continua a los cuerpos de policía conforme a estándares de dotación, equipamiento, entrenamiento y desempeño, y tomará las acciones necesarias para garantizar su cumplimiento. Este proceso estará sometido a reglas generales que eleven la calidad del servicio y la tutela de los derechos fundamentales de las personas. Corresponde al Órgano Rector, fijar los parámetros y estándares de obligatorio cumplimiento de los cuerpos de policía en los distintos ámbitos político territoriales. El reglamento desarrollará lo concerniente al proceso de habilitación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "74",
+     "encabezado": "Asistencia Técnica",
+     "texto_principal": "El Órgano Rector implementará programas de asistencia técnica a los cuerpos de policía para el mejoramiento de su desempeño policial. Esta medida será de obligatorio cumplimiento.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "75",
+     "encabezado": "Intervención",
+     "texto_principal": "El Órgano Rector podrá intervenir los cuerpos de policía cuando se determine la participación masiva y continuada de sus funcionarias y funcionarios en violación de los derechos humanos, en redes delictivas o en actividades que atenten contra el orden constitucional, o a solicitud del Ministerio Público, del Gobernador o Gobernadora, alcalde o alcaldesa correspondiente. El cuerpo de policía objeto de intervención procederá a ajustar el desempeño policial a los estándares a los que se refiere la presente Ley a. Esta disposición no excluye la responsabilidad individual que pudiera corresponder a los funcionarios o funcionarias incursos en hechos ilícitos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "76",
+     "encabezado": "Suspensión",
+     "texto_principal": "Corresponde al Órgano Rector disponer la suspensión del ejercicio de las funciones de policía en aquellos cuerpos que de forma reiterada incumplan con los estándares y programas de asistencia técnica que se hubiesen adoptado. El Órgano Rector determinará las medidas conducentes para garantizar el servicio de policía.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO IV — DEL DESEMPEÑO POLICIAL",
+   "capitulo": "Capítulo IV — Del Control de Gestión y la Participación Ciudadana",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "77",
+     "encabezado": "De la Rendición de Cuentas",
+     "texto_principal": "El proceso de rendición de cuentas comprende la planificación, supervisión y evaluación sobre el desempeño policial, y se desarrollará conforme a los principios de transparencia, periodicidad, responsabilidad individual y por los actos de servicio, la adopción de estándares, el balance entre la supervisión interna y externa y la participación articulada de la comunidad. Son referentes para la evaluación del desempeño policial la adecuación al marco jurídico, la respuesta a las demandas sociales y la consecución de las metas propuestas. Quedan sujetos a la rendición de cuentas las autoridades, funcionarios y funcionarias que ejerzan la función policial conforme a esta Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "78",
+     "encabezado": "De las Formas de Participación",
+     "texto_principal": "Los ciudadanos y ciudadanas de forma individual o colectiva, especialmente a través de los Consejos Comunales, podrán participar activamente en la elaboración y seguimiento de planes y programas referidos a la seguridad ciudadana, en los respectivos ámbitos político territoriales, con base en los valores de la democracia participativa y protagónica, y en el principio de la corresponsabilidad entre el Estado y la comunidad para la seguridad ciudadana. Podrán elevar ante el Órgano Rector, los gobernadores o gobernadoras, los alcaldes o alcaldesas, o a los cuerpos de policía las observaciones y sugerencias respecto a la prestación del servicio de policía.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "79",
+     "encabezado": "Funciones de Contraloría Social",
+     "texto_principal": "Corresponde a la comunidad, a través de los Consejos Comunales o de cualquier otra forma de participación popular, ejercer las funciones de contraloría social sobre el servicio de policía, pudiendo solicitar informes respecto al desempeño operativo de dichos cuerpos de conformidad con la ley que rige la materia.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "80",
+     "encabezado": "Mecanismos Internos de Supervisión",
+     "texto_principal": "Los cuerpos de policía contarán con una instancia interna, independiente e imparcial, para la detección, sustanciación e identificación de responsabilidades en el caso de infracciones, con el fin de disminuirlas y fomentar buenas prácticas policiales. La autoridad que aplique la sanción disciplinaria será independiente de la instancia que realice la investigación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "81",
+     "encabezado": "Mecanismos Externos de Supervisión",
+     "texto_principal": "Los cuerpos de policía contarán con una instancia externa, con participación de la comunidad a través de los Consejos Comunales y demás formas de participación popular, para la revisión de los instructivos, prácticas policiales y procedimientos disciplinarios.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "82",
+     "encabezado": "Atención a las Víctimas",
+     "texto_principal": "Los cuerpos de policía contarán con una oficina de atención a las víctimas del delito o del abuso de poder, constituida por un equipo interdisciplinario, la cual funcionará conforme a mecanismos que aseguren a las víctimas un tratamiento con dignidad y respeto, reciban la asistencia material, legal, médica, psicológica y social necesaria, conozcan las implicaciones que para ellas tienen los procedimientos policiales o judiciales recibiendo información oportuna sobre las actuaciones, así como la decisión de sus causas, protegiendo su intimidad y garantizando su seguridad, la de sus familiares, de las y los testigos en su favor, contra todo acto de intimidación y represalia.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "83",
+     "encabezado": "De la Defensoría Delegada Especial de Asuntos Policiales",
+     "texto_principal": "La Defensoría Delegada Especial de Asuntos Policiales de la Defensoría del Pueblo tendrá como función emprender investigaciones independientes sobre violaciones de los derechos humanos cometidos por los funcionarios o funcionarias policiales, proponiendo las recomendaciones que estime oportunas para reducir sus efectos, compensar a las víctimas y mejorar el desempeño policial.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO IV — DEL DESEMPEÑO POLICIAL",
+   "capitulo": null,
+   "seccion": "DISPOSICIÓN DEROGATORIA",
+   "articulos": [
+    {
+     "tipo_norma": "Disposición Derogatoria",
+     "identificador": "Única",
+     "encabezado": "",
+     "texto_principal": "Quedan derogadas todas las disposiciones contenidas en leyes nacionales, estadales u ordenanzas municipales contrarias a la presente Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO IV — DEL DESEMPEÑO POLICIAL",
+   "capitulo": null,
+   "seccion": "DISPOSICIONES TRANSITORIAS",
+   "articulos": [
+    {
+     "tipo_norma": "Disposición Transitoria",
+     "identificador": "Primera",
+     "encabezado": "",
+     "texto_principal": "En un término no mayor de seis meses contados a partir de la entrada en vigencia de esta Ley, se dictarán los reglamentos y resoluciones necesarios para su desarrollo.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Disposición Transitoria",
+     "identificador": "Segunda",
+     "encabezado": "",
+     "texto_principal": "En un término no mayor de seis meses contados a partir de la entrada en vigencia de esta Ley, se dictará el Estatuto de la Función Policial.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Disposición Transitoria",
+     "identificador": "Tercera",
+     "encabezado": "",
+     "texto_principal": "En un término no mayor de un año, a partir de la entrada en vigencia de esta Ley, el Ministerio del Poder Popular con competencia en materia de seguridad ciudadana establecerá los mecanismos necesarios para la estructuración, organización y funcionamiento del Cuerpo de Policía Nacional Bolivariana.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Disposición Transitoria",
+     "identificador": "Cuarta",
+     "encabezado": "",
+     "texto_principal": "En un término no mayor de dos años, a partir de la entrada en vigencia de esta Ley, las policías estadales y municipales adecuarán su estructura organizativa, funcional y operativa a las disposiciones establecidas en la Ley y los estándares dictados por el Órgano Rector.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Disposición Transitoria",
+     "identificador": "Quinta",
+     "encabezado": "",
+     "texto_principal": "En un término no mayor de un año, a partir de la publicación de esta Ley, el Presidente o Presidenta de la República Bolivariana de Venezuela en Consejo de Ministros dictará el instrumento mediante el cual se establecerán los mecanismos necesarios para la integración del Cuerpo Técnico de Vigilancia de Tránsito y Transporte Terrestre, al Cuerpo de Policía Nacional Bolivariana.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Disposición Transitoria",
+     "identificador": "Sexta",
+     "encabezado": "",
+     "texto_principal": "Los Institutos Universitarios, Escuelas y Academias de Formación y Capacitación Policial de los cuerpos de policía en los distintos ámbitos político territoriales, ejercerán transitoriamente sus actividades académicas conforme a las políticas educativas de formación que sobre seguridad ciudadana dicte el Órgano Rector, hasta que se creen los núcleos regionales de la institución académica nacional especializada en seguridad, la cual asumirá las funciones de formación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Disposición Transitoria",
+     "identificador": "Séptima",
+     "encabezado": "",
+     "texto_principal": "Los grupos o unidades tácticas del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, de la Dirección de los Servicios de Inteligencia y Prevención, y de los demás cuerpos de policía continuarán operando, hasta tanto el Cuerpo de Policía Nacional Bolivariana conforme sus propias unidades.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Disposición Transitoria",
+     "identificador": "Octava",
+     "encabezado": "",
+     "texto_principal": "El proceso de transferencia al Cuerpo de Policía Nacional Bolivariana del material tecnológico, parque de armas de los grupos o unidades tácticas de los cuerpos a que se refiere la disposición transitoria séptima, se realizará al entrar en funcionamiento el Cuerpo de Policía Nacional Bolivariana.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Disposición Transitoria",
+     "identificador": "Novena",
+     "encabezado": "",
+     "texto_principal": "En un término no mayor de un año el órgano rector procederá a instrumentar lo previsto en el artículo 18 numeral 10. Las credenciales expedidas a los funcionarios y funcionarias de los cuerpos de policía tendrán vigencia hasta que el Órgano Rector dé cumplimiento a lo previsto en esta Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Disposición Transitoria",
+     "identificador": "Décima",
+     "encabezado": "",
+     "texto_principal": "En atención a lo previsto en el artículo 45 de la presente Ley, deberá efectuarse la supresión y liquidación de la Policía Metropolitana del Distrito Capital y el pago de los pasivos laborales correspondientes. El proceso de liquidación se ejecutará de forma progresiva de acuerdo a lo establecido en la presente Ley y su Reglamento.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO IV — DEL DESEMPEÑO POLICIAL",
+   "capitulo": null,
+   "seccion": "DISPOSICIÓN FINAL",
+   "articulos": [
+    {
+     "tipo_norma": "Disposición Final",
+     "identificador": "Única",
+     "encabezado": "",
+     "texto_principal": "La presente Ley entrará en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,457 @@
+{
+  "ley_nombre": "LEY ESPECIAL CONTRA LOS DELITOS INFORMÁTICOS",
+  "estructura": [
+    {
+      "libro": null,
+      "titulo": "TÍTULO I. DISPOSICIONES GENERALES",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "1",
+          "encabezado": "Objeto de la Ley",
+          "texto_principal": "La presente Ley tiene por objeto la protección integral de los sistemas que utilicen tecnologías de información, así como la prevención y sanción de los delitos cometidos contra tales sistemas o cualesquiera de sus componentes, o de los cometidos mediante el uso de dichas tecnologías, en los términos previstos en esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "2",
+          "encabezado": "Definiciones",
+          "texto_principal": "A efectos de la presente Ley, y cumpliendo con lo previsto en el artículo 9 de la Constitución de la República Bolivariana de Venezuela, se entiende por:",
+          "numerales_literales": [
+            "a. Tecnología de Información: rama de la tecnología que se dedica al estudio, aplicación y procesamiento de datos, lo cual involucra la obtención, creación, almacenamiento, administración, modificación, manejo, movimiento, control, visualización, transmisión o recepción de información en forma automática, así como el desarrollo y uso del \"hardware\", \"firmware\", \"software\", cualesquiera de sus componentes y todos los procedimientos asociados con el procesamiento de datos.",
+            "b. Sistema: cualquier arreglo organizado de recursos y procedimientos diseñados para el uso de tecnologías de información, unidos y regulados por interacción o interdependencia para cumplir una serie de funciones específicas, así como la combinación de dos o más componentes interrelacionados, organizados en un paquete funcional, de manera que estén en capacidad de realizar una función operacional o satisfacer un requerimiento dentro de unas especificaciones previstas.",
+            "c. Data (datos): hechos, conceptos, instrucciones o caracteres representados de una manera apropiada para que sean comunicados, transmitidos o procesados por seres humanos o por medios automáticos y a los cuales se les asigna o se les puede asignar un significado.",
+            "d. Información: significado que el ser humano le asigna a la data utilizando las convenciones conocidas y generalmente aceptadas.",
+            "e. Documento: registro incorporado en un sistema en forma de escrito, video, audio o cualquier otro medio, que contiene data o información acerca de un hecho o acto capaces de causar efectos jurídicos.",
+            "f. Computador: dispositivo o unidad funcional que acepta data, la procesa de acuerdo con un programa guardado y genera resultados, incluidas operaciones aritméticas o lógicas.",
+            "g. Hardware: equipos o dispositivos físicos considerados en forma independiente de su capacidad o función, que conforman un computador o sus componentes periféricos, de manera que pueden incluir herramientas, implementos, instrumentos, conexiones, ensamblajes, componentes y partes.",
+            "h. Firmware: programa o segmento de programa incorporado de manera permanente en algún componente de hardware.",
+            "i. Software: información organizada en forma de programas de computación, procedimientos y documentación asociados, concebidos para realizar la operación de un sistema, de manera que pueda proveer de instrucciones a los computadores así como de data expresada en cualquier forma, con el objeto de que los computadores realicen funciones específicas.",
+            "j. Programa: plan, rutina o secuencia de instrucciones utilizados para realizar un trabajo en particular o resolver un problema dado a través de un computador.",
+            "k. Procesamiento de Datos o de Información: realización sistemática de operaciones sobre data o sobre información, tales como manejo, fusión, organización o cómputo.",
+            "l. Seguridad: condición que resulta del establecimiento y mantenimiento de medidas de protección, que garanticen un estado de inviolabilidad de influencias o de actos hostiles específicos que puedan propiciar el acceso a la data de personas no autorizadas, o que afecten la operatividad de las funciones de un sistema de computación.",
+            "m. Virus: programa o segmento de programa indeseado que se desarrolla incontroladamente y que genera efectos destructivos o perturbadores en un programa o componente del sistema.",
+            "n. Tarjeta Inteligente: rótulo, cédula o carnet que se utiliza como instrumento de identificación; de acceso a un sistema; de pago o de crédito, y que contiene data, información o ambas, de uso restringido sobre el usuario autorizado para portarla.",
+            "o. Contraseña (password): secuencia alfabética, numérica o combinación de ambas, protegida por reglas de confidencialidad, utilizada para verificar la autenticidad de la autorización expedida a un usuario para acceder a la data o a la información contenidas en un sistema.",
+            "p. Mensaje de Datos: cualquier pensamiento, idea, imagen, audio, data o información, expresados en un lenguaje conocido que puede ser explícito o secreto (encriptado), preparados dentro de un formato adecuado para ser transmitido por un sistema de comunicaciones."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "3",
+          "encabezado": "Extraterritorialidad",
+          "texto_principal": "Cuando alguno de los delitos previstos en la presente Ley se cometa fuera del territorio de la República, el sujeto activo quedará sometido a sus disposiciones si dentro del territorio de la República se hubieren producido efectos del hecho punible, y el responsable no ha sido juzgado por el mismo hecho o ha evadido el juzgamiento o la condena por tribunales extranjeros.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "4",
+          "encabezado": "Sanciones",
+          "texto_principal": "Las sanciones por los delitos previstos en esta Ley serán principales y accesorias.\n\nLas sanciones principales concurrirán con las penas accesorias y ambas podrán también concurrir entre sí, de acuerdo con las circunstancias particulares del delito del cual se trate, en los términos indicados en la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "5",
+          "encabezado": "Responsabilidad de las personas jurídicas",
+          "texto_principal": "Cuando los delitos previstos en esta Ley fuesen cometidos por los gerentes, administradores, directores o dependientes de una persona jurídica, actuando en su nombre o representación, éstos responderán de acuerdo con su participación culpable.\n\nLa persona jurídica será sancionada en los términos previstos en esta Ley, en los casos en que el hecho punible haya sido cometido por decisión de sus órganos, en el ámbito de su actividad, con sus recursos sociales o en su interés exclusivo o preferente.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. DE LOS DELITOS",
+      "capitulo": "Capítulo I. De los Delitos Contra los Sistemas. que Utilizan Tecnologías de Información",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "6",
+          "encabezado": "Acceso indebido",
+          "texto_principal": "Toda persona que sin la debida autorización o excediendo la que hubiere obtenido, acceda, intercepte, interfiera o use un sistema que utilice tecnologías de información, será penado con prisión de uno a cinco años y multa de diez a cincuenta unidades tributarias.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "7",
+          "encabezado": "Sabotaje o daño a sistemas",
+          "texto_principal": "Todo aquel que con intención destruya, dañe, modifique o realice cualquier acto que altere el funcionamiento o inutilice un sistema que utilice tecnologías de información o cualesquiera de los componentes que lo conforman, será penado con prisión de cuatro a ocho años y multa de cuatrocientas a ochocientas unidades tributarias.\n\nIncurrirá en la misma pena quien destruya, dañe, modifique o inutilice la data o la información contenida en cualquier sistema que utilice tecnologías de información o en cualesquiera de sus componentes.\n\nLa pena será de cinco a diez años de prisión y multa de quinientas a mil unidades tributarias, si los efectos indicados en el presente artículo se realizaren mediante la creación, introducción o transmisión, por cualquier medio, de un virus o programa análogo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "8",
+          "encabezado": "Favorecimiento culposo del sabotaje o daño",
+          "texto_principal": "Si el delito previsto en el artículo anterior se cometiere por imprudencia, negligencia, impericia o inobservancia de las normas establecidas, se aplicará la pena correspondiente según el caso, con una reducción entre la mitad y dos tercios.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "9",
+          "encabezado": "Acceso indebido o sabotaje a sistemas protegidos",
+          "texto_principal": "Las penas previstas en los artículos anteriores se aumentarán entre una tercera parte y la mitad, cuando los hechos allí previstos o sus efectos recaigan sobre cualesquiera de los componentes de un sistema que utilice tecnologías de información protegido por medidas de seguridad, que esté destinado a funciones públicas o que contenga información personal o patrimonial de personas naturales o jurídicas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "10",
+          "encabezado": "Posesión de equipos o prestación de servicios de sabotaje",
+          "texto_principal": "Quien importe, fabrique, distribuya, venda o utilice equipos, dispositivos o programas; con el propósito de destinarlos a vulnerar o eliminar la seguridad de cualquier sistema que utilice tecnologías de información; o el que ofrezca o preste servicios destinados a cumplir los mismos fines, será penado con prisión de tres a seis años y multa de trescientas a seiscientas unidades tributarias.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "11",
+          "encabezado": "Espionaje informático",
+          "texto_principal": "Toda persona que indebidamente obtenga, revele o difunda la data o información contenidas en un sistema que utilice tecnologías de información o en cualesquiera de sus componentes, será penada con prisión de tres a seis años y multa de trescientas a seiscientas unidades tributarias.\n\nLa pena se aumentará de un tercio a la mitad, si el delito previsto en el presente artículo se cometiere con el fin de obtener algún tipo de beneficio para sí o para otro.\n\nEl aumento será de la mitad a dos tercios, si se pusiere en peligro la seguridad del Estado, la confiabilidad de la operación de las instituciones afectadas o resultare algún daño para las personas naturales o jurídicas, como consecuencia de la revelación de las informaciones de carácter reservado.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "12",
+          "encabezado": "Falsificación de documentos",
+          "texto_principal": "Quien, a través de cualquier medio, cree, modifique o elimine un documento que se encuentre incorporado a un sistema que utilice tecnologías de información; o cree, modifique o elimine datos del mismo; o incorpore a dicho sistema un documento inexistente, será penado con prisión de tres a seis años y multa de trescientas a seiscientas unidades tributarias.\n\nCuando el agente hubiere actuado con el fin de procurar para sí o para otro algún tipo de beneficio, la pena se aumentará entre un tercio y la mitad.\n\nEl aumento será de la mitad a dos tercios si del hecho resultare un perjuicio para otro.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. DE LOS DELITOS",
+      "capitulo": "Capítulo II. De los Delitos Contra la Propiedad",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "13",
+          "encabezado": "Hurto",
+          "texto_principal": "Quien a través del uso de tecnologías de información, acceda, intercepte, interfiera, manipule o use de cualquier forma un sistema o medio de comunicación para apoderarse de bienes o valores tangibles o intangibles de carácter patrimonial sustrayéndolos a su tenedor, con el fin de procurarse un provecho económico para sí o para otro, será sancionado con prisión de dos a seis años y multa de doscientas a seiscientas unidades tributarias.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "14",
+          "encabezado": "Fraude",
+          "texto_principal": "Todo aquel que, a través del uso indebido de tecnologías de información, valiéndose de cualquier manipulación en sistemas o cualquiera de sus componentes, o en la data o información en ellos contenida, consiga insertar instrucciones falsas o fraudulentas, que produzcan un resultado que permita obtener un provecho injusto en perjuicio ajeno, será penado con prisión de tres a siete años y multa de trescientas a setecientas unidades tributarias.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "15",
+          "encabezado": "Obtención indebida de bienes o servicios",
+          "texto_principal": "Quien, sin autorización para portarlos, utilice una tarjeta inteligente ajena o instrumento destinado a los mismos fines, o el que utilice indebidamente tecnologías de información para requerir la obtención de cualquier efecto, bien o servicio; o para proveer su pago sin erogar o asumir el compromiso de pago de la contraprestación debida, será castigado con prisión de dos a seis años y multa de doscientas a seiscientas unidades tributarias.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "16",
+          "encabezado": "Manejo fraudulento de tarjetas inteligentes o instrumentos análogos",
+          "texto_principal": "Toda persona que por cualquier medio, cree, capture, grabe, copie, altere, duplique o elimine la data o información contenidas en una tarjeta inteligente o en cualquier instrumento destinado a los mismos fines; o la persona que, mediante cualquier uso indebido de tecnologías de información, cree, capture, duplique o altere la data o información en un sistema, con el objeto de incorporar usuarios, cuentas, registros o consumos inexistentes o modifique la cuantía de éstos, será penada con prisión de cinco a diez años y multa de quinientas a mil unidades tributarias.\n\nEn la misma pena incurrirá quien, sin haber tomado parte en los hechos anteriores, adquiera, comercialice, posea, distribuya, venda o realice cualquier tipo de intermediación de tarjetas inteligentes o instrumentos destinados al mismo fin, o de la data o información contenidas en ellos o en un sistema.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "17",
+          "encabezado": "Apropiación de tarjetas inteligentes o instrumentos análogos",
+          "texto_principal": "Quien se apropie de una tarjeta inteligente o instrumento destinado a los mismos fines, que se haya perdido, extraviado o que haya sido entregado por equivocación, con el fin de retenerlo, usarlo, venderlo o transferirlo a una persona distinta del usuario autorizado o entidad emisora, será penado con prisión de uno a cinco años y multa de diez a cincuenta unidades tributarias.\n\nLa misma pena se impondrá a quien adquiera o reciba la tarjeta o instrumento a que se refiere el presente artículo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "18",
+          "encabezado": "Provisión indebida de bienes o servicios",
+          "texto_principal": "Todo aquel que, a sabiendas de que una tarjeta inteligente o instrumento destinado a los mismos fines, se encuentra vencido, revocado; se haya indebidamente obtenido, retenido, falsificado, alterado; provea a quien los presente de dinero, efectos, bienes o servicios, o cualquier otra cosa de valor económico será penado con prisión de dos a seis años y multa de doscientas a seiscientas unidades tributarias.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "19",
+          "encabezado": "Posesión de equipo para falsificaciones",
+          "texto_principal": "Todo aquel que sin estar debidamente autorizado para emitir, fabricar o distribuir tarjetas inteligentes o instrumentos análogos, reciba, adquiera, posea, transfiera, comercialice, distribuya, venda, controle o custodie cualquier equipo de fabricación de tarjetas inteligentes o de instrumentos destinados a los mismos fines, o cualquier equipo o componente que capture, grabe, copie o transmita la data o información de dichas tarjetas o instrumentos, será penado con prisión de tres a seis años y multa de trescientas a seiscientas unidades tributarias.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. DE LOS DELITOS",
+      "capitulo": "Capítulo III. De los Delitos Contra la Privacidad. de las Personas y de las Comunicaciones",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "20",
+          "encabezado": "Violación de la privacidad de la data o información de carácter personal",
+          "texto_principal": "Toda persona que intencionalmente se apodere, utilice, modifique o elimine por cualquier medio, sin el consentimiento de su dueño, la data o información personales de otro o sobre las cuales tenga interés legítimo, que estén incorporadas en un computador o sistema que utilice tecnologías de información, será penada con prisión de dos a seis años y multa de doscientas a seiscientas unidades tributarias.\n\nLa pena se incrementará de un tercio a la mitad si como consecuencia de los hechos anteriores resultare un perjuicio para el titular de la data o información o para un tercero.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "21",
+          "encabezado": "Violación de la privacidad de las comunicaciones",
+          "texto_principal": "Toda persona que mediante el uso de tecnologías de información, acceda, capture, intercepte, interfiera, reproduzca, modifique, desvíe o elimine cualquier mensaje de datos o señal de transmisión o comunicación ajena, será sancionada con prisión de dos a seis años y multa de doscientas a seiscientas unidades tributarias.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "22",
+          "encabezado": "Revelación indebida de data o información de carácter personal",
+          "texto_principal": "Quien revele, difunda o ceda, en todo o en parte, los hechos descubiertos, las imágenes, el audio o, en general, la data o información obtenidos por alguno de los medios indicados en los artículos 20 y 21, será sancionado con prisión de dos a seis años y multa de doscientas a seiscientas unidades tributarias.\n\nSi la revelación, difusión o cesión se hubieren realizado con un fin de lucro, o si resultare algún perjuicio para otro, la pena se aumentará de un tercio a la mitad.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. DE LOS DELITOS",
+      "capitulo": "Capítulo IV. De los Delitos Contra Niños, Niñas o Adolescentes",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "23",
+          "encabezado": "Difusión o exhibición de material pornográfico",
+          "texto_principal": "Todo aquel que, por cualquier medio que involucre el uso de tecnologías de información, exhiba, difunda, transmita o venda material pornográfico o reservado a personas adultas, sin realizar previamente las debidas advertencias para que el usuario restrinja el acceso a niños, niñas y adolescentes, será sancionado con prisión de dos a seis años y multa de doscientas a seiscientas unidades tributarias.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "24",
+          "encabezado": "Exhibición pornográfica de niños o adolescentes",
+          "texto_principal": "Toda persona que por cualquier medio que involucre el uso de tecnologías de información, utilice a la persona o imagen de un niño, niña o adolescente con fines exhibicionistas o pornográficos, será penada con prisión de cuatro a ocho años y multa de cuatrocientas a ochocientas unidades tributarias.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. DE LOS DELITOS",
+      "capitulo": "Capítulo V. De los Delitos Contra el Orden Económico",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "25",
+          "encabezado": "Apropiación de Propiedad Intelectual",
+          "texto_principal": "Quien sin autorización de su propietario y con el fin de obtener algún provecho económico, reproduzca, modifique, copie, distribuya o divulgue un software u otra obra del intelecto que haya obtenido mediante el acceso a cualquier sistema que utilice tecnologías de información, será sancionado con prisión de uno a cinco años y multa de cien a quinientas unidades tributarias.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "26",
+          "encabezado": "Oferta engañosa",
+          "texto_principal": "Toda persona que ofrezca, comercialice o provea de bienes o servicios, mediante el uso de tecnologías de información, y haga alegaciones falsas o atribuya características inciertas a cualquier elemento de dicha oferta, de modo que pueda resultar algún perjuicio para los consumidores, será sancionada con prisión de uno a cinco años y multa de cien a quinientas unidades tributarias, sin perjuicio de la comisión de un delito más grave.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DISPOSICIONES COMUNES",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "27",
+          "encabezado": "Agravantes",
+          "texto_principal": "La pena correspondiente a los delitos previstos en la presente Ley se incrementará entre un tercio y la mitad:",
+          "numerales_literales": [
+            "1. Si para la realización del hecho se hubiere hecho uso de alguna contraseña ajena indebidamente obtenida, quitada, retenida o que se hubiere perdido.",
+            "2. Si el hecho hubiere sido cometido mediante el abuso de la posición de acceso a data o información reservada, o al conocimiento privilegiado de contraseñas, en razón del ejercicio de un cargo o función."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "28",
+          "encabezado": "Agravante especial",
+          "texto_principal": ". La sanción aplicable a las personas jurídicas por los delitos cometidos en las condiciones señaladas en el artículo 5 de esta Ley, será únicamente de multa, pero por el doble del monto establecido para el referido delito.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "29",
+          "encabezado": "Penas accesorias",
+          "texto_principal": "Además de las penas principales previstas en los capítulos anteriores, se impondrán, necesariamente sin perjuicio de las establecidas en el Código Penal, las penas accesorias siguientes:",
+          "numerales_literales": [
+            "1. El comiso de equipos, dispositivos, instrumentos, materiales, útiles, herramientas y cualquier otro objeto que hayan sido utilizados para la comisión de los delitos previstos en los artículos 10 y 19 de la presente Ley.",
+            "2. El trabajo comunitario por el término de hasta tres años en los casos de los delitos previstos en los artículos 6 y 8 de esta Ley.",
+            "3. La inhabilitación para el ejercicio de funciones o empleos públicos; para el ejercicio de la profesión, arte o industria; o para laborar en instituciones o empresas del ramo por un período de hasta tres (3) años después de cumplida o conmutada la sanción principal, cuando el delito se haya cometido con abuso de la posición de acceso a data o información reservadas, o al conocimiento privilegiado de contraseñas, en razón del ejercicio de un cargo o función públicas, del ejercicio privado de una profesión u oficio, o del desempeño en una institución o empresa privada, respectivamente.",
+            "4. La suspensión del permiso, registro o autorización para operar o para el ejercicio de cargos directivos y de representación de personas jurídicas vinculadas con el uso de tecnologías de información, hasta por el período de tres (3) años después de cumplida o conmutada la sanción principal, si para cometer el delito el agente se hubiere valido o hubiere hecho figurar a una persona jurídica."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "30",
+          "encabezado": "Divulgación de la sentencia condenatoria",
+          "texto_principal": "El Tribunal podrá además, disponer la publicación o difusión de la sentencia condenatoria por el medio que considere más idóneo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "31",
+          "encabezado": "Indemnización civil",
+          "texto_principal": "En los casos de condena por cualquiera de los delitos previstos en los Capítulos II y V de esta Ley, el Juez impondrá en la sentencia una indemnización en favor de la víctima por un monto equivalente al daño causado.\n\nPara la determinación del monto de la indemnización acordada, el juez requerirá del auxilio de expertos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO IV. DISPOSICIONES FINALES",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "32",
+          "encabezado": "Vigencia",
+          "texto_principal": "La presente Ley entrará en vigencia, treinta días después de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "33",
+          "encabezado": "Derogatoria",
+          "texto_principal": "Se deroga cualquier disposición que colida con la presente Ley.\n\nDada, firmada y sellada en el Palacio Federal Legislativo, sede de la Asamblea Nacional, en Caracas a los cuatro días del mes de septiembre de dos mil uno. Año 191 de la Independencia y 142 de la Federación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    }
+  ]
+}

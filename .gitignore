@@ -77,7 +77,6 @@ tool_upload_*/
 tool/test/*.json
 ejemplos/
 tool/corpus/
-penalex-web/
 penalex-blog/
 
 # Keystore de release (secreto)

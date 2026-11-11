@@ -1,0 +1,783 @@
+{
+ "ley_nombre": "Ley Orgánica de Seguridad de la Nación",
+ "estructura": [
+  {
+   "libro": null,
+   "titulo": "TÍTULO I — DISPOSICIONES FUNDAMENTALES",
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "1",
+     "encabezado": "Objeto",
+     "texto_principal": "El presente Decreto con Rango Valor y Fuerza de Ley Orgánica, tiene por objeto regular la actividad del Estado y la sociedad, en materia de seguridad y defensa integral, en concordancia a los lineamientos, principios y fines constitucionales.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "2",
+     "encabezado": "Seguridad de la Nación",
+     "texto_principal": "La seguridad de la Nación está fundamentada en el desarrollo integral, y es la condición, estado o situación que garantiza el goce y ejercicio de los derechos y garantías en los ámbitos económico, social, político, cultural, geográfico, ambiental y militar de los principios y valores constitucionales por la población, las instituciones y cada una de las personas que conforman el Estado y la sociedad, con proyección generacional, dentro de un sistema democrático, participativo y protagónico, libre de amenazas a su sobrevivencia, su soberanía y a la integridad de su territorio y demás espacios geográficos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "3",
+     "encabezado": "Defensa Integral",
+     "texto_principal": "Defensa integral, a los fines de este Ley, es el conjunto de sistemas, métodos, medidas y acciones de defensa, cualesquiera sean su naturaleza e intensidad, que en forma activa formule, coordine y ejecute el Estado con la participación de las instituciones públicas y privadas, y las personas naturales y jurídicas, nacionales o extranjeras, con el objeto de salvaguardar la independencia, la libertad, la democracia, la soberanía, la integridad territorial y el desarrollo integral de la Nación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "4",
+     "encabezado": "Desarrollo Integral",
+     "texto_principal": "El desarrollo integral, a los fines de este Decreto con Rango, Valor y Fuerza de Ley Orgánica, consiste en la ejecución de planes, programas, proyectos y procesos continuos de actividades y labores que acordes, con la política general del Estado y en concordancia con el ordenamiento jurídico vigente, se realicen con la finalidad de satisfacer las necesidades individuales y colectivas de la población, en los ámbitos económico, social, político, cultural, geográfico, ambiental y militar.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "5",
+     "encabezado": "Corresponsabilidad entre el Estado y la Sociedad",
+     "texto_principal": "El Estado y la sociedad son corresponsables en materia de seguridad y defensa integral de la Nación, y las distintas actividades que realicen en los ámbitos económico, social, político, cultural, geográfico, ambiental y militar, estarán dirigidas a garantizar la satisfacción de los intereses y objetivos nacionales plasmados en la Constitución de la República Bolivariana de Venezuela y las leyes.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "6",
+     "encabezado": "Alcance de la Seguridad y Defensa Integral",
+     "texto_principal": "El alcance de la seguridad y defensa integral está circunscrito a lo establecido en la Constitución de la República Bolivariana de Venezuela y las leyes de la República, en los tratados, pactos y convenciones internacionales, no viciados de nulidad, que sean suscritos y ratificados por la República, y en aquellos espacios donde estén localizados nuestros intereses vitales.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "7",
+     "encabezado": "Ámbito de Aplicación",
+     "texto_principal": "Las disposiciones del presente Decreto con Rango, Valor y Fuerza de Ley Orgánica, serán de obligatorio cumplimiento para las personas naturales o jurídicas venezolanas, bien sean de derecho público o privado, cualquiera sea el lugar donde se encuentren, y para las personas naturales o jurídicas extranjeras, residentes o transeúntes en el espacio geográfico nacional con las excepciones que determinen las leyes respectivas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO II — DE LA SEGURIDAD Y DEFENSA INTEGRAL DE LA NACIÓN",
+   "capitulo": "Capítulo I — De la Seguridad de la Nación",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "8",
+     "encabezado": "Pluralidad Política y Participación Ciudadana",
+     "texto_principal": "El Estado debe fortalecer, a través de sus órganos gubernamentales, la institucionalidad democrática sobre la base de la pluralidad política y la libre participación ciudadana en los asuntos públicos, por medio de los mecanismos establecidos en la Constitución de la República Bolivariana de Venezuela y las leyes, apoyándose en los principios de honestidad, participación, celeridad, eficacia, transparencia, rendición de cuentas y responsabilidad en el ejercicio de la función pública y en el principio de corresponsabilidad que rige la seguridad de la Nación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "9",
+     "encabezado": "La Familia",
+     "texto_principal": "La familia será protegida como unidad insustituible en el desarrollo y formación integral del individuo, a través de políticas que garanticen el derecho a la vida y los servicios básicos, vivienda, salud, asistencia y previsión social, trabajo, educación, cultura, deporte, ciencia y tecnología, seguridad ciudadana y alimentaria, en armonía con los intereses nacionales, dirigidos a fortalecer y preservar la calidad de vida de venezolanos y venezolanas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "10",
+     "encabezado": "Patrimonio Cultural",
+     "texto_principal": "El patrimonio cultural, material e inmaterial, será desarrollado y protegido mediante un sistema educativo y de difusión del mismo, entendido éste como manifestación de la actividad humana que por sus valores sirven de testimonio y fuente de conocimiento, esencial para la preservación de la cultura, tradición e identidad nacional.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "11",
+     "encabezado": "Pueblos Indígenas",
+     "texto_principal": "Los pueblos indígenas como parte integrante del pueblo venezolano, único, soberano e indivisible, participarán activamente en la formulación, aplicación y evaluación de los planes y programas de seguridad, defensa y desarrollo integral de la Nación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "12",
+     "encabezado": "La Diversidad Biológica, los Recursos Genéticos y Otros Recursos Naturales",
+     "texto_principal": "La diversidad biológica, los recursos genéticos, los procesos ecológicos, los parques nacionales y monumentos naturales y las demás áreas de importancia ecológica serán conservadas, resguardadas y protegidas como patrimonio vital de la Nación, garantizándose a las generaciones futuras el uso y disfrute de una vida y ambiente sano, seguro y ecológicamente equilibrado.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "13",
+     "encabezado": "Genoma Humano",
+     "texto_principal": "El Estado se reserva el derecho de supervisión y control a toda actividad científica destinada a realizar investigaciones con el material genético de los seres humanos, las cuales deberán realizarse dentro de los límites establecidos en la Constitución de la República Bolivariana de Venezuela y las leyes nacionales, tratados, convenios y acuerdos internacionales vigentes y no viciados de nulidad suscritos por la República.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "14",
+     "encabezado": "Riesgos Tecnológicos y Científicos",
+     "texto_principal": "El conocimiento, la ciencia y la tecnología son recursos estratégicos para lograr el desarrollo sustentable, productivo y sostenible de nuestras generaciones. El Estado tiene la obligación de vigilar que las actividades tecnológicas y científicas que se realicen en el país no representen riesgo para la seguridad de la Nación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO II — DE LA SEGURIDAD Y DEFENSA INTEGRAL DE LA NACIÓN",
+   "capitulo": "Capítulo II — De la Defensa Integral de la Nación",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "15",
+     "encabezado": "Dimensión de la Defensa Integral de la Nación",
+     "texto_principal": "La Defensa Integral de la Nación abarca el territorio y demás espacios geográficos de la República, así como los ciudadanos y ciudadanas, y los extranjeros que se encuentren en él. Igualmente, contempla a los venezolanos y venezolanas, y bienes fuera del ámbito nacional, pertenecientes a la República.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "16",
+     "encabezado": "Competencia de los Poderes Públicos",
+     "texto_principal": "En materia de seguridad, defensa y desarrollo, se considera fundamental garantizar la definición y administración de políticas integrales, mediante la actuación articulada de los Poderes Públicos nacional, estadal y municipal, cuyos principios rectores serán la integridad territorial, cooperación, solidaridad, concurrencia y corresponsabilidad, a los fines de ejecutar dichas políticas en forma armónica en los distintos niveles e instancias del Poder Público.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "17",
+     "encabezado": "Calidad de Vida",
+     "texto_principal": "La calidad de vida de los ciudadanos y ciudadanas es objetivo fundamental para el Estado venezolano, el cual conjuntamente con la iniciativa privada fomentará a nivel nacional, estadal y municipal, el desarrollo integral, sustentable, productivo y sostenible, a fin de garantizar la participación de la sociedad y así otorgar el mayor bienestar a la población.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "18",
+     "encabezado": "Orden Interno",
+     "texto_principal": "El Estado garantiza la preservación del orden interno, entendido éste como el estado en el cual se administra justicia y se consolidan los valores y principios consagrados en la Constitución de la República Bolivariana de Venezuela y las leyes, mediante las previsiones y acciones que aseguren el cumplimiento de los deberes y el disfrute de los derechos y garantías por parte de los ciudadanos y ciudadanas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "19",
+     "encabezado": "Política Exterior",
+     "texto_principal": "La política exterior del Estado venezolano es un elemento esencial y concordante con los planes de la República; su proyección ante la comunidad internacional está basada fundamentalmente en la autodeterminación, la solidaridad y cooperación entre los pueblos, promocionando y favoreciendo la integración en sintonía con el desarrollo integral de la Nación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "20",
+     "encabezado": "Fuerza Armada Nacional",
+     "texto_principal": "La Fuerza Armada Nacional constituye uno de los elementos fundamentales para la defensa integral de la Nación, organizada por el Estado para conducir su defensa militar en corresponsabilidad con la sociedad. Sus componentes, en sus respectivos ámbitos de acción, tienen como responsabilidad la planificación, ejecución y control de las operaciones militares, a los efectos de garantizar la independencia y soberanía de la Nación, asegurar la integridad del territorio y demás espacios geográficos de la República, así como la cooperación en el mantenimiento del orden interno. Las leyes determinarán la participación de la Fuerza Armada Nacional en el desarrollo integral de la Nación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "21",
+     "encabezado": "Desarrollo de la Tecnología e Industria Militar",
+     "texto_principal": "El Estado promueve la iniciativa pública y privada en el desarrollo de la tecnología e industria militar, sin más limitaciones que las previstas en la Constitución de la República Bolivariana de Venezuela y las leyes, con el objeto de fortalecer el poder nacional; a tales efectos, podrá establecer alianzas estratégicas con otros Estados y con empresas nacionales e internacionales.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "22",
+     "encabezado": "Material de Guerra y Otras Armas",
+     "texto_principal": "El Material de guerra y otras armas, municiones, explosivos y afines, serán reglamentadas y controladas por el Ejecutivo Nacional a través de la Fuerza Armada Nacional, de acuerdo con la ley respectiva y sus reglamentos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "23",
+     "encabezado": "Órganos de Seguridad Ciudadana",
+     "texto_principal": "De acuerdo con lo previsto en la Constitución de la República Bolivariana de Venezuela y las leyes, el Ejecutivo Nacional organizará un cuerpo uniformado de policía nacional, un cuerpo de investigaciones científicas, penales y criminalísticas, un cuerpo de bomberos y una organización de protección civil que atenderá las emergencias y desastres, las cuales, sin menoscabo de las funciones específicas que se les asignen, deben trabajar coordinadamente a los fines de garantizar la preservación del orden interno.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "24",
+     "encabezado": "Sistema de Protección Civil",
+     "texto_principal": "El Sistema de Protección Civil se entenderá como una gestión social de riesgo en la cual actúan los distintos órganos del Poder Público a nivel nacional, estadal y municipal, con la participación de la sociedad, y se extiende desde la planificación del Estado hasta procesos específicos, con miras a la reducción de la vulnerabilidad ante los eventos de orden natural, técnico y social.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "25",
+     "encabezado": "Gestión Social de Riesgo",
+     "texto_principal": "La gestión social de riesgo comprende los objetivos, programas y acciones que dentro del proceso de planificación y desarrollo de la Nación, están orientadas a garantizar la calidad de vida de los ciudadanos y las ciudadanas, promoviendo el desenvolvimiento de los aspectos de prevención, preparación, mitigación, respuesta y recuperación ante eventos de orden natural, técnico y social que puedan afectar a la población, sus bienes y entorno, a nivel nacional, estadal y municipal.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "26",
+     "encabezado": "Sistema Nacional de Inteligencia y Contrainteligencia",
+     "texto_principal": "El Sistema Nacional de Inteligencia y Contrainteligencia se entenderá como el procesamiento del conjunto de actividades, informaciones y documentos que se produzcan en los sectores públicos y privados, en los ámbitos nacional e internacional, los cuales, por su carácter y repercusión, son de vital importancia a los fines de determinar las vulnerabilidades o fortalezas, tanto internas como externas, que afecten la seguridad de la Nación. La ley respectiva regulará lo atinente a su organización y funcionamiento.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "27",
+     "encabezado": "Clasificación de Actividades, Información y Documentos",
+     "texto_principal": "Las actividades, informaciones y documentos derivados de la planificación y ejecución de actividades u operaciones concernientes a la seguridad y defensa de la Nación, obtenidas por el Sistema Nacional de Inteligencia y Contrainteligencia, serán agrupados según la naturaleza de su contenido, en clasificados y no clasificados. Los clasificados se regirán por la ley respectiva, y los no clasificados serán de libre acceso.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO II — DE LA SEGURIDAD Y DEFENSA INTEGRAL DE LA NACIÓN",
+   "capitulo": "Capítulo III — De la Movilización y la Requisición",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "28",
+     "encabezado": "Movilización",
+     "texto_principal": "La movilización, a los fines de este Decreto con Rango Valor y Fuerza de Ley Orgánica, es el conjunto de previsiones y acciones preparatorias y ejecutivas destinadas a organizar el potencial existente y convertirlo en poder nacional, abarcando todos los sectores de la Nación tanto públicos como privados, para hacer más efectiva, armónica y oportuna la transición de una situación ordinaria a otra extraordinaria.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "29",
+     "encabezado": "Origen Legal de la Movilización",
+     "texto_principal": "Decretado el estado de excepción, el Presidente o Presidenta de la República podrá ordenar la movilización total o parcial en cualquiera de los ámbitos que establece la Constitución de la República Bolivariana de Venezuela y las leyes respectivas, en todo o en parte del territorio. La movilización de la Fuerza Armada Nacional se regirá por las disposiciones que sobre ella establezca la ley, sin que sea necesario decretar el estado de excepción.\n\nEl reglamento respectivo dispondrá las medidas necesarias para la preparación, movilización, aplicación eficiente del poder nacional y desmovilización.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "30",
+     "encabezado": "Autoridad Encargada de la Movilización",
+     "texto_principal": "El Presidente o Presidenta de la República es la máxima autoridad político-administrativa que dirige la movilización, y será asistido en esta actividad por el Consejo de Defensa de la Nación, los Ministerios del poder popular y demás organismos involucrados.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "31",
+     "encabezado": "Planes de Movilización",
+     "texto_principal": "Los Ministerios del Poder Popular y otros organismos especializados, son los encargados de la elaboración y ejecución de los planes de movilización, de acuerdo con sus competencias y a las directrices emanadas del Presidente o Presidenta de la República.\n\nLos gastos a que dé lugar la movilización se consideran inherentes a la seguridad y defensa de la Nación. El Presidente o Presidenta de la República adoptará las medidas que crea conducentes para adecuar el presupuesto de gastos a las circunstancias de excepción, de conformidad con las leyes.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "32",
+     "encabezado": "De los Servicios Públicos e Industrias Básicas del Estado",
+     "texto_principal": "El Presidente o Presidenta de la República podrá disponer el empleo de la Fuerza Armada Nacional para coadyuvar en el control y funcionamiento de los servicios públicos o de las empresas básicas del Estado para la vida económico-social de la República.\n\nIgualmente, podrá ordenar que el personal de tales servicios o empresas quede sometido temporalmente al régimen militar, si se hubiere decretado el estado de excepción.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "33",
+     "encabezado": "Requisiciones",
+     "texto_principal": "Decretada la movilización, el Presidente o Presidenta de la República podrá ordenar la requisición de los bienes necesarios para la defensa nacional, de acuerdo con lo establecido en el Reglamento respectivo.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO III — CONSEJO DE DEFENSA DE LA NACIÓN",
+   "capitulo": "Capítulo I — Disposiciones Generales",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "34",
+     "encabezado": "Misión",
+     "texto_principal": "El Consejo de Defensa de la Nación es el máximo órgano de consulta para la planificación y asesoramiento del Poder Público nacional, estadal y municipal, en los asuntos relacionados con la seguridad y defensa integral de la Nación, su soberanía y la integridad del territorio y demás espacios geográficos de la República, debiendo para ello, formular, recomendar y evaluar políticas y estrategias, así como otros asuntos relacionados con la materia que le sean sometidos a consulta por parte del Presidente o Presidenta de la República.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "35",
+     "encabezado": "Integrantes",
+     "texto_principal": "El Consejo de Defensa de la Nación contará con miembros permanentes y miembros no permanentes.\n\nSon miembros permanentes el Presidente o Presidenta de la República, quien ejercerá la Presidencia; el Vicepresidente o Vicepresidenta Ejecutivo, el Presidente o Presidenta de la Asamblea Nacional, el Presidente o Presidenta del Tribunal Supremo de Justicia, el Presidente o Presidenta del Consejo Moral Republicano, y los Ministros o Ministras del Poder Popular de los sectores de la defensa, la seguridad interior, las relaciones exteriores, la planificación y el ambiente.\n\nLos miembros no permanentes son de libre nombramiento y remoción por parte del Presidente o Presidenta del Consejo, y su participación se considerará pertinente, cada vez que la problemática a consultar lo amerite. Los miembros no permanentes sólo tendrán derecho a voz y cumplirán las funciones que se les asignen en su nombramiento, mientras se encuentren en el ejercicio de sus actividades dentro del Consejo de Defensa de la Nación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "36",
+     "encabezado": "Secretaría General",
+     "texto_principal": "El Consejo de Defensa de la Nación contará con una Secretaría General, organismo que cumplirá funciones permanentes como órgano de apoyo administrativo, técnico y de investigación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "37",
+     "encabezado": "Convocatoria",
+     "texto_principal": "El Consejo de Defensa de la Nación se reunirá de manera ordinaria por lo menos dos veces al año y de manera extraordinaria, cuando las circunstancias lo justifiquen.\n\nLa convocatoria estará a cargo del Presidente o Presidenta, la cual podrá realizar a través de la Secretaría General. El Reglamento establecerá todo lo referente a la convocatoria y el procedimiento a seguir en las reuniones respectivas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "38",
+     "encabezado": "Atribuciones del Consejo de Defensa de la Nación",
+     "texto_principal": "El Consejo de Defensa de la Nación tendrá las siguientes atribuciones:",
+     "numerales_literales": [
+      "1. Asesorar al Poder Público en la elaboración de los planes de seguridad, desarrollo y defensa integral, en los diversos ámbitos de la vida nacional.",
+      "2. Formular la política de seguridad, en armonía con los intereses y objetivos de la Nación para garantizar los fines supremos del Estado.",
+      "3. Elaborar el concepto estratégico de la Nación, teniendo como base vinculante el contenido de los principios fundamentales consagrados en la Constitución de la República Bolivariana de Venezuela y las leyes de la República, con un avance progresivo que atienda la coyuntura y en sintonía con los intereses nacionales.",
+      "4. Actualizar cuando se requiera el concepto estratégico de la Nación y sugerir lineamientos al Poder Público para la elaboración y ejecución de los planes que de él se deriven.",
+      "5. Constituir Comités de Trabajo Interinstitucionales y de Emergencia, los cuales estarán integrados por representantes de los distintos organismos involucrados en la problemática objeto de análisis y por otros expertos que se consideren necesarios. Las funciones de estos Comités serán establecidas en el Reglamento de este Decreto con Rango Valor y Fuerza de Ley Orgánica.",
+      "6. Fomentar la participación activa y permanente del Poder Público y de la sociedad, en los asuntos relacionados con la seguridad de la Nación.",
+      "7. Requerir de las personas naturales o jurídicas de carácter público y privado los datos, estadísticas e informaciones relacionados con la seguridad de la Nación, así como su necesario apoyo.",
+      "8. Asegurar que los sistemas de inteligencia, protección civil y demás organismos de seguridad ciudadana del Estado e instituciones afines, remitan los datos, informaciones y estadísticas relacionadas con la seguridad de la Nación.",
+      "9. Proponer al Presidente o Presidenta de la República intervenir aquellos órganos de seguridad del Estado, en cualquiera de sus niveles y espacios cuando las circunstancias lo ameriten.",
+      "10. Aprobar directivas para colaborar con la movilización y desmovilización total o parcial, en los diversos ámbitos.",
+      "11. Asegurar que los integrantes del Sistema de Protección Civil en sus diferentes niveles, programen y coordinen con el órgano respectivo, los recursos públicos y privados necesarios, a fin de prevenir, mitigar, dar respuestas y recuperar los daños ocasionados por eventos de origen natural, técnico y social, que obligatoriamente requieran del apoyo de las estructuras políticas, técnicas, sociales y económicas del Estado.",
+      "12. Fomentar la formación de equipos multidisciplinarios especializados en seguridad y defensa, del sector público y privado.",
+      "13. Dictar el reglamento para su organización y funcionamiento.",
+      "14. Otras que sean decididas en el seno del Consejo, al menos por las dos terceras partes de sus miembros permanentes."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO III — CONSEJO DE DEFENSA DE LA NACIÓN",
+   "capitulo": "Capítulo II — De los Miembros Permanentes del Consejo de Defensa de la Nación",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "39",
+     "encabezado": "Atribuciones",
+     "texto_principal": "Los miembros permanentes del Consejo de Defensa de la Nación tienen las siguientes atribuciones:",
+     "numerales_literales": [
+      "1. Acudir a la convocatoria del Presidente o Presidenta del Consejo.",
+      "2. Solicitar ante el Presidente o Presidenta del Consejo la convocatoria del mismo.",
+      "3. Derecho a voz y voto en las deliberaciones del Consejo de Defensa de la Nación.",
+      "4. Aportar toda la información y las recomendaciones necesarias para apoyar el proceso de decisiones.",
+      "5. Formar parte de los Comités de Trabajo Interinstitucionales y de Emergencia, o designar sus representantes, cuando sean requeridos.",
+      "6. Evaluar y analizar las propuestas presentadas por el Presidente o Presidenta del Consejo y emitir recomendaciones.",
+      "7. Proponer políticas de seguridad y defensa, así como las medidas para realizar los planes propuestos.",
+      "8. Las demás que señalen la Constitución de la República Bolivariana de Venezuela, leyes de la República y el Reglamento de este Decreto con Rango, Valor y Fuerza de Ley Orgánica."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO III — CONSEJO DE DEFENSA DE LA NACIÓN",
+   "capitulo": "Capítulo III — Del Presidente o Presidenta del Consejo de Defensa de la Nación",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "40",
+     "encabezado": "Del Presidente o Presidenta del Consejo de Defensa de la Nación",
+     "texto_principal": "El Presidente o Presidenta del Consejo de Defensa de la Nación tiene las siguientes atribuciones:",
+     "numerales_literales": [
+      "1. Presidir el Consejo de Defensa de la Nación.",
+      "2. Convocar al Consejo de Defensa de la Nación por propia iniciativa o respondiendo a la solicitud de uno o más miembros permanentes del Consejo.",
+      "3. Nombramiento y remoción del Secretario o Secretaria General del Consejo.",
+      "4. Dirigir y coordinar las sesiones de trabajo del Consejo.",
+      "5. Solicitar opinión sobre las políticas, estrategias y demás asuntos que orienten la acción de gobierno en materia de seguridad y defensa integral.",
+      "6. Solicitar de las autoridades nacionales, estadales, distritales y municipales la colaboración necesaria para atender los requerimientos del Consejo de Defensa de la Nación, a fin de cumplir con la misión encomendada.",
+      "7. Presentar ante el Consejo de Ministros, para su conocimiento y deliberación, los asuntos discutidos en el seno del Consejo de Defensa de la Nación y que se corresponden con sus atribuciones como Presidente o Presidenta de la República.",
+      "8. Las demás que le sean asignadas por el Consejo de Defensa de la Nación, a los fines de facilitar su desempeño como Presidente o Presidenta del referido Consejo."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO III — CONSEJO DE DEFENSA DE LA NACIÓN",
+   "capitulo": "Capítulo IV — De la Secretaría General del Consejo de Defensa de la Nación",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "41",
+     "encabezado": "Secretario o Secretaria",
+     "texto_principal": "La Secretaría General estará a cargo de un Secretario o Secretaria quien será de libre nombramiento y remoción por parte del Presidente o Presidenta del Consejo de Defensa de la Nación. Los requisitos del cargo serán establecidos en el Reglamento de este Decreto con Rango, Valor y Fuerza de Ley Orgánica.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "42",
+     "encabezado": "De las Atribuciones del Secretario o Secretaria General",
+     "texto_principal": "El Secretario o Secretaria General del Consejo de Defensa de la Nación tiene las siguientes funciones:",
+     "numerales_literales": [
+      "1. Asistir a las reuniones ordinarias o extraordinarias del Consejo de Defensa de la Nación.",
+      "2. Levantar las actas de las reuniones del Consejo de Defensa de la Nación.",
+      "3. Mantener informado al Presidente o Presidenta y demás miembros del Consejo de las actividades técnicas, administrativas y de investigación que se realicen en la Secretaría.",
+      "4. Asistir al Presidente o Presidenta del Consejo de Defensa de la Nación en la dirección y coordinación de las reuniones o sesiones de trabajo de dicho Consejo.",
+      "5. Apoyar, con el personal profesional especializado y técnico bajo su dirección y supervisión, el trabajo del Consejo de Defensa de la Nación y de los diferentes Comités que se constituyan.",
+      "6. Realizar seguimiento a las decisiones que se tomen en el Consejo y en los diferentes Comités que se constituyan.",
+      "7. Supervisar el funcionamiento de los sistemas automatizados para el manejo de la información requerida por el Consejo de Defensa de la Nación.",
+      "8. Velar por el cumplimiento de los requerimientos y solicitudes que realice el Consejo de Defensa de la Nación a las personas naturales o jurídicas, de derecho público o privado, de la información y documentación relacionada con la seguridad y defensa integral de la Nación necesaria para el cumplimiento de la misión del Consejo.",
+      "9. Dictar su Reglamento Interno, previa aprobación del Consejo de Defensa de la Nación y preparar los manuales que sean requeridos para su funcionamiento.",
+      "10. Las demás que por su naturaleza le correspondan."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "43",
+     "encabezado": "Organización",
+     "texto_principal": "La Secretaría General del Consejo de Defensa de la Nación estará integrada por los Comités Coordinadores, el Centro de Evaluación Estratégica, el Centro de Políticas y Estrategias, y una oficina administrativa que apoye su funcionamiento, de acuerdo con lo establecido en el presente Decreto con Rango, Valor y Fuerza de Ley Orgánica y en su respectivo Reglamento Interno.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "44",
+     "encabezado": "Comités Coordinadores",
+     "texto_principal": "Los Comités Coordinadores son los encargados de analizar la información para elaborar los planes, estudios e investigaciones que requieran los Comités de Trabajo, Interinstitucionales y de Emergencia, y están conformados por personal profesional civil y/o militar.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "45",
+     "encabezado": "Centro de Evaluación Estratégica",
+     "texto_principal": "El Centro de Evaluación Estratégica es el encargado de realizar el seguimiento y evaluación continua de la situación para producir oportunamente las alertas necesarias; teniendo bajo su responsabilidad la operación de la Sala de Situación del Presidente o Presidenta de la República.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "46",
+     "encabezado": "Centro de Políticas y Estrategias",
+     "texto_principal": "El Centro de Políticas y Estrategias es el encargado de proponer al Consejo de Defensa de la Nación a través de los Comités de Trabajo Interinstitucionales y Comités de Emergencia, políticas y estrategias para la solución de los problemas relacionados con la seguridad y defensa integral.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO IV — DE LAS ZONAS DE SEGURIDAD",
+   "capitulo": "Capítulo I — Definición y Clasificación",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "47",
+     "encabezado": "Zonas de Seguridad",
+     "texto_principal": "Se entiende por Zonas de Seguridad, los espacios del territorio nacional, que por su importancia estratégica, características y elementos que los conforman, están sujetos a regulación especial, en cuanto a las personas, bienes y actividades que ahí se encuentren, con la finalidad de garantizar la protección de estas zonas ante peligros o amenazas internas o externas. El Reglamento respectivo regulará todo lo referente a la materia.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "48",
+     "encabezado": "Clasificación de las Zonas de Seguridad",
+     "texto_principal": "El Ejecutivo Nacional, oída la opinión del Consejo de Defensa de la Nación, podrá declarar Zonas de Seguridad, los espacios geográficos del territorio nacional señalados a continuación:",
+     "numerales_literales": [
+      "1. Una Zona de Seguridad Fronteriza.",
+      "2. Una zona adyacente a la orilla del mar, de los lagos, de las islas y ríos navegables.",
+      "3. Los corredores de transmisión de oleoductos, gasoductos, poliductos, acueductos y tendidos eléctricos principales.",
+      "4. Las zonas que circundan las instalaciones militares y públicas, las industrias básicas, estratégicas y los servicios esenciales.",
+      "5. El espacio aéreo sobre las instalaciones militares, las industrias básicas, estratégicas y los servicios esenciales.",
+      "6. Las zonas adyacentes a las vías de comunicación aérea, terrestre y acuáticas de primer orden.",
+      "7. Cualquier otra zona de Seguridad que se consideren necesaria para la seguridad y defensa de la Nación."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "49",
+     "encabezado": "Zona de Seguridad Fronteriza",
+     "texto_principal": "A los efectos de esta Ley, se entiende por Zona de Seguridad Fronteriza, un área delimitada que comprende una franja de seguridad de fronteras, así como una extensión variable del territorio nacional, adyacente al límite político-territorial de la República, sujeta a regulación especial que estimule el desarrollo integral, con la finalidad de resguardar las fronteras y controlar la presencia y actividades de personas nacionales y extranjeras, quienes desde esos espacios geográficos, pudieran representar potenciales amenazas que afecten la integridad territorial y por ende la seguridad de la Nación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "50",
+     "encabezado": "Declaración de Utilidad Pública",
+     "texto_principal": "El Ejecutivo Nacional, previa opinión del Consejo de Defensa de la Nación, por vía reglamentaria podrá declarar de utilidad pública, a los fines del presente Decreto con Rango, Valor y Fuerza Ley Orgánica, los espacios geográficos que comprenden las Zonas de Seguridad, fijando la extensión de los mismos, en su totalidad o por sectores, pudiendo modificarlas cuando las circunstancias lo requieran y ejercer su control, regulando la presencia y actividad de personas nacionales y extranjeras, naturales y jurídicas en dichas áreas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "51",
+     "encabezado": "De la Restitución",
+     "texto_principal": "Los corredores viales terrestres, aéreos o acuáticos que dan acceso a las instalaciones que estén declaradas Zonas de Seguridad, no podrán ser obstruidos. En caso de presentarse esta situación, los responsables serán sancionados de acuerdo con lo establecido por las leyes y reglamentos que rigen la materia, estando obligadas las autoridades competentes a restituir de inmediato el libre acceso.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "52",
+     "encabezado": "Del Régimen Especial de las Zonas de Seguridad",
+     "texto_principal": "Los reglamentos especiales de las zonas de seguridad determinarán el procedimiento para su declaratoria, el régimen sobre personas, bienes y actividades en las mismas, así como las sanciones a que hubiere lugar, todo de conformidad con lo dispuesto en la presente Ley y el ordenamiento legal vigente.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO V — DE LAS SANCIONES Y PENAS",
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "53",
+     "encabezado": "Aplicación de Sanciones",
+     "texto_principal": "Quedan obligadas todas las personas residentes o transeúntes en el territorio nacional a atender los requerimientos que le hicieren los organismos del Estado en aquellos asuntos relacionados con la seguridad y defensa de la Nación; su incumplimiento acarreará la aplicación de sanciones civiles, penales, administrativas y pecuniarias de acuerdo con lo previsto en el ordenamiento legal vigente.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "54",
+     "encabezado": "Obligación de Suministrar Datos o Información",
+     "texto_principal": "Las personas naturales o jurídicas, nacionales o extranjeras, así como los funcionarios públicos que tengan la obligación de suministrar los datos e informaciones a que se refiere el presente Decreto con Rango, Valor y Fuerza de Ley Orgánica y se negaren a ello, o que las dieren falsas, serán penados con prisión de dos (2) a cuatro (4) años, en el caso de los particulares; y de cuatro (4) a seis (6) años, en el caso de los funcionarios públicos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "55",
+     "encabezado": "Reserva de Divulgación o Suministro de Datos o Información",
+     "texto_principal": "Todos aquellos funcionarios o funcionarias que presten servicio en cualquiera de los órganos del Poder Público o cualquier institución del Estado y divulguen o suministren datos o informaciones a cualquier particular o a otro Estado, comprometiendo la seguridad y defensa de la Nación, serán penados con prisión de cinco (5) a diez (10) años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "56",
+     "encabezado": "Incumplimiento al Régimen Especial de las Zonas de Seguridad",
+     "texto_principal": "Cualquiera que organice, sostenga o instigue a la realización de actividades dentro de las zonas de seguridad, que estén dirigidas a perturbar o afectar la organización y funcionamiento de las instalaciones militares, de los servicios públicos, industrias y empresas básicas, o la vida económico social del país, será penado con prisión de cinco (5) a diez (10) años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO VI — DISPOSICIONES TRANSITORIAS Y FINALES",
+   "capitulo": "Capítulo I — ",
+   "seccion": "Disposiciones Transitorias",
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "57",
+     "encabezado": "Actualización de Datos y Registros",
+     "texto_principal": "Las autoridades nacionales, estadales y municipales o aquellas que tengan dentro de sus funciones el registro y control de las personas, bienes y actividades que se encuentran dentro de las zonas de seguridad establecidas en este Decreto con Rango, Valor y Fuerza de Ley Orgánica, tendrán la obligación de actualizar y suministrar dichos datos e informaciones en un lapso no mayor de seis (6) meses, contados a partir de la publicación del presente Decreto con Rango, Valor y Fuerza de Ley Orgánica, a los fines de su remisión al Ejecutivo Nacional.\n\nEl Consejo de Defensa de la Nación está obligado a la creación de un registro nacional de las zonas de seguridad, a los fines de servir de resguardo de los datos e informaciones que permitan el seguimiento, control y supervisión de las personas, bienes y actividades que se encuentren en las mismas, por parte del Estado a través de sus órganos competentes.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "58",
+     "encabezado": "Vigencia de Normativas",
+     "texto_principal": "Las leyes y reglamentos que regulan los procedimientos para la declaratoria de las zonas de seguridad y el control de los bienes, personas y actividades que ahí se encuentran, se mantendrán vigentes siempre que no colidan con el presente Decreto con Rango, Valor y Fuerza de Ley Orgánica, hasta la promulgación del reglamento respectivo.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "59",
+     "encabezado": "Sistema de protección para la paz",
+     "texto_principal": "El Estado, a través del Ejecutivo Nacional, creará un sistema de protección para la paz, en el cual se integren todos los Poderes Públicos del estado, en todos los niveles político territoriales, con el pueblo organizado y las instancias de gobierno comunal, a fin de promover y ejecutar un nuevo modo de planificación de política criminal y la consecución de los planes en materia de seguridad ciudadana contra amenazas externas e internas a la seguridad de la nación. El instrumento de creación y los instrumentos normativos ejecutivos que regulen el sistema a que se refiere este artículo deberán desarrollar los subsistemas requeridos para la protección del pueblo, las autoridades encargadas de su coordinación y los mecanismos de articulación de los órganos y entes del poder Público Nacional, Estadal y Municipal, así como las instancias de gobierno comunal y el pueblo organizado.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO VI — DISPOSICIONES TRANSITORIAS Y FINALES",
+   "capitulo": "Capítulo II — ",
+   "seccion": "Disposiciones Finales",
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "60",
+     "encabezado": "Reglamentación",
+     "texto_principal": "El Ejecutivo Nacional deberá dictar los reglamentos que determina el presente Decreto con Rango, Valor y Fuerza de Ley Orgánica, dentro de los seis (6) meses siguientes a su promulgación.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "61",
+     "encabezado": "De las Sanciones Penales",
+     "texto_principal": "El régimen sancionatorio previsto en el presente Decreto con Rango, Valor y Fuerza de Ley Orgánica continuará en vigencia hasta tanto no sean contempladas las sanciones respectivas en el Código Penal o en el Código Orgánico de Justicia Militar, según sea el caso.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "62",
+     "encabezado": "Derogatoria",
+     "texto_principal": "Queda derogada la Ley Orgánica de Seguridad y Defensa, publicada en la Gaceta Oficial de la República de Venezuela N 1.899, Extraordinario, de fecha 26 de agosto de 1976; así mismo, quedan derogadas todas las normas que en cuanto a la Seguridad de la Nación colidan con el presente Decreto con Rango, Valor y Fuerza de Ley Orgánica.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "63",
+     "encabezado": "Entrada en Vigencia",
+     "texto_principal": "El presente Decreto con Rango, Valor y Fuerza de Ley Orgánica, entrará en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.\n\nDado en Caracas, a los trece días del mes de noviembre de dos mil catorce. Años 204 de la Independencia, 155 de la Federación y 15 de la Revolución Bolivariana.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  }
+ ]
+}

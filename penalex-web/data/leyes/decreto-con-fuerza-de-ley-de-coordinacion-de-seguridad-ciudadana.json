@@ -1,0 +1,496 @@
+{
+ "ley_nombre": "Decreto con Fuerza de Ley de Coordinación de Seguridad Ciudadana",
+ "estructura": [
+  {
+   "libro": null,
+   "titulo": "TÍTULO I DISPOSICIONES GENERALES",
+   "capitulo": "Capítulo I Objeto, Órganos y Deberes Comunes — Objeto y Definición",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "1",
+     "encabezado": "Objeto y Definición",
+     "texto_principal": "El presente Decreto Ley tiene por objeto regular la coordinación entre los Órganos de Seguridad Ciudadana, sus competencias concurrentes, cooperación recíproca y el establecimiento de parámetros en ámbito de su ejercicio.\n\nA los efectos de este Decreto Ley, se entiende por Coordinación, el mecanismo mediante el cual el Ejecutivo Nacional; los estados y los municipios, unen esfuerzos para la ejecución de acciones tendentes a desarrollar los principios de comunicación, reciprocidad y cooperación que permitan garantizar la Seguridad Ciudadana.\n\nSe entiende por Seguridad Ciudadana, el estado de sosiego, certidumbre y confianza que debe proporcionarse a la población, residente o de tránsito, mediante acciones dirigidas a proteger su integridad física y propiedades.\n\nSe entiende por Concurrencia, aquellas facultades cuya titularidad y ejercicio le son atribuidas por igual tanto al Poder Nacional como al Poder Estadal y Municipal.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "2",
+     "encabezado": "Órganos de Seguridad Ciudadana",
+     "texto_principal": "Son órganos de seguridad ciudadana:",
+     "numerales_literales": [
+      "1. La Policía Nacional.",
+      "2. Las Policías de cada Estado.",
+      "3. Las Policías de cada Municipio, y los servicios mancomunados de policías prestados a través de las Policías Metropolitanas.",
+      "4. El cuerpo de investigaciones científicas, penales y criminalísticas.",
+      "5. El cuerpo de bomberos y administración de emergencias de carácter civil.",
+      "6. La organización de protección civil y administración de desastre."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "3",
+     "encabezado": "Deberes Comunes",
+     "texto_principal": "Corresponde a los órganos de seguridad ciudadana, sin perjuicio de las competencias establecidas por la Ley que los regule:",
+     "numerales_literales": [
+      "1. Acatar y ejecutar sin demoras las instrucciones de coordinación que en materia de seguridad ciudadana sean emitidas por el Consejo de Seguridad Ciudadana.",
+      "2. Vigilar, en el ámbito de sus competencias territoriales, el cumplimiento de los planes de seguridad ciudadana fijados por el Consejo de Seguridad Ciudadana.",
+      "3. Organizar las unidades administrativas de coordinación que permitan el cabal cumplimiento de las previsiones establecidas en este Decreto Ley y su Reglamento.",
+      "4. Organizar y desarrollar sistemas informáticos, comunicacionales, administrativos y de cualquier otra naturaleza que permitan optimizar la coordinación entre los distintos órganos de seguridad ciudadana."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO I DISPOSICIONES GENERALES",
+   "capitulo": "Capítulo II Preceptos de Funcionamiento — Principios de Actuación",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "4",
+     "encabezado": "Principios de Actuación",
+     "texto_principal": "Las actuaciones de los órganos de seguridad ciudadana, se desarrollarán con estricta observancia a los derechos y garantías establecidas en la Constitución de la República Bolivariana de Venezuela, las leyes y los Tratados Internacionales suscritos por la República. Sus principios de actuación son la probidad, eficacia, eficiencia, subordinación, disciplina, cooperación y responsabilidad.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "5",
+     "encabezado": "Ejecución de Planes",
+     "texto_principal": "Los órganos de seguridad ciudadana participarán en la ejecución de los planes fijados en el Consejo de Seguridad Ciudadana; así como en la ejecución de las directrices que en materia de equipamiento logístico, disciplina, educación, doctrina y las otras que se dicten con el objeto de garantizar la uniformidad en estas materias.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "6",
+     "encabezado": "Régimen Disciplinario",
+     "texto_principal": "Los órganos correspondientes del Poder Público Nacional, Estadal y Municipal, dictarán las normas necesarias para establecer el régimen disciplinario aplicable a los funcionarios adscritos a los órganos de seguridad ciudadana, en atención a la naturaleza de la actividad que desempeñan y los principios establecidos en este Decreto Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "7",
+     "encabezado": "Régimen Especial",
+     "texto_principal": "Los funcionarios adscritos a los órganos de seguridad ciudadana forman parte del Sistema de Seguridad de la Nación, en consecuencia, los estados y municipios dictarán las normas jurídicas necesarias para crear mecanismos de protección a estos funcionarios acorde con la misión y el nivel de riesgos al que se encuentran expuestos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO II COMPETENCIAS CONCURRENTES Y ACTUACIÓN COMPARTIDA — Competencia Concurrente",
+   "capitulo": null,
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "8",
+     "encabezado": "Competencia Concurrente",
+     "texto_principal": "Cuando coincida la presencia de representantes de los órganos de seguridad correspondientes a más de uno de los noveles del Poder Público, para atender una situación relacionada con competencias concurrentes, asumirá la responsabilidad de coordinación y el manejo de la misma, el órgano que disponga en el lugar de los acontecimientos de la mayor capacidad de respuesta y cantidad de medios que se corresponda con la naturaleza del hecho. Los otros órganos darán apoyo al órgano coordinador.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "9",
+     "encabezado": "Competencia Excepcional",
+     "texto_principal": "Cuando resultare inminente el desbordamiento de la capacidad de respuesta del Órgano actuante para controlar la situación, debido a su magnitud o complejidad de la misma, asumirá la responsabilidad de coordinación y el manejo de este órgano de seguridad ciudadana que disponga de los medios y la capacidad de respuesta para ello.\n\nCuando resulten con igualdad de medios y capacidad de respuesta dos órganos diferentes al competente que resultó desbordado en su capacidad, se procederá de la siguiente manera:",
+     "numerales_literales": [
+      "1. Cuando el órgano actuante desbordado en su capacidad se corresponda con el nivel municipal, la coordinación la asumirá el órgano correspondiente al nivel estadal.",
+      "2. Cuando el órgano actuante desbordado en su capacidad se corresponda con el nivel estadal, la coordinación la asumirá el órgano correspondiente al nivel nacional."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "10",
+     "encabezado": "Alteraciones del Orden Público",
+     "texto_principal": "Los casos de alteración del orden público o manifestaciones colectivas, los órganos de seguridad ciudadana, prestarán auxilio y colaboración al órgano que haya asumido la coordinación y el manejo de la situación, a tenor de lo establecido en este Decreto Ley y su Reglamento.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "11",
+     "encabezado": "Ocurrencia de Hechos Punibles",
+     "texto_principal": "Cuando los órganos de seguridad ciudadana tengan conocimiento de la comisión de un hecho punible, deberán notificar de manera inmediata a la autoridad competente y practicarán las medidas de evacuación, aislamiento, aseguramiento de la zona, y conservación de las pruebas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "12",
+     "encabezado": "Persecución Delictual",
+     "texto_principal": "Cuando un cuerpo policial se encuentre en actividades de persecución de individuos presuntamente implicados en delitos o infracciones, podrán traspasar los límites de su jurisdicción, participando lo más pronto posible a las autoridades de la jurisdicción donde se realice la persecución, quienes deberán suministrar apoyo para dicha persecución.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "13",
+     "encabezado": "Situaciones Peligrosas",
+     "texto_principal": "De presentarse situaciones delictivas que en su curso impliquen peligro para las personas, sea el caso de retención de rehenes, secuestros y cualquier circunstancia de tensión semejante, los cuerpos de policía uniformada que se encuentren en el lugar, practicarán medidas de evacuación, aislamiento y aseguramiento de la zona en un radio de acción determinado por la situación, mientras hacen acto de presencia las autoridades competentes.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "14",
+     "encabezado": "Situaciones de Emergencias",
+     "texto_principal": "En caso de emergencias, las primeras autoridades que lleguen al sitio, notificarán al Cuerpo de Bomberos más cercano al lugar del hecho y realizarán las labores iniciales de atención, hasta la llegada de las unidades bomberiles, quienes atenderán la situación con el apoyo del resto de los órganos de seguridad ciudadana que se requieran.\n\nSe entienden por emergencias a los efectos de este Decreto Ley, toda situación que causa alteraciones intensas en los componentes sociales, físicos, ecológicos, económicos y culturales de la sociedad, poniendo en peligro inminente la vida humana y los bienes, y donde la capacidad de respuesta local para atender eficazmente sus consecuencias resulta suficiente.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "15",
+     "encabezado": "Situaciones de Desastres",
+     "texto_principal": "En los casos que la magnitud de la emergencia rebase la capacidad de los organismos actuantes, éstos notificarán a los órganos de administración de desastres, quienes asumirán la responsabilidad de coordinación y el manejo de la emergencia.\n\nSe entiende por desastre a los efectos de este Decreto Ley, toda situación que causa alteraciones intensas en los componentes sociales, físicos, ecológicos, económicos o culturales de la sociedad, poniendo en inminente peligro la vida humana o los bienes, y donde la capacidad de respuesta local para atender eficazmente sus consecuencias resulta insuficiente.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "16",
+     "encabezado": "Situaciones Excepcionales",
+     "texto_principal": "Cuando surja una situación cuya atención corresponda a los órganos de seguridad ciudadana, y la misma no se encuentre prevista en el presente Decreto Ley, la coordinación y el manejo de la misma será responsabilidad del Coordinador Nacional o el Coordinador Regional, según sea el caso.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "17",
+     "encabezado": "Responsabilidad",
+     "texto_principal": "Los funcionarios adscritos a los órganos de seguridad ciudadana, que contravinieran las disposiciones legales o reglamentarias relacionadas con la coordinación de seguridad ciudadana, omitieran, retardaren o cumplan negligentemente la ejecución de un acto propio de sus funciones, serán sancionados disciplinariamente conforme a la normativa que regule el ejercicio de sus funciones, sin perjuicio de las responsabilidades penales, civiles y administrativas que deriven de tales actos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO III ENTES DE COORDINACIÓN DE SEGURIDAD CIUDADANA Y LA PARTICIPACIÓN DE OTROS ÓRGANOS",
+   "capitulo": "Capítulo I Del Consejo de Seguridad Ciudadana — Objeto",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "18",
+     "encabezado": "Objeto",
+     "texto_principal": "El Consejo de Seguridad Ciudadana objeto el estudio, formulación y evaluación de nacionales en materia de Seguridad Ciudadana.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "19",
+     "encabezado": "Conformación",
+     "texto_principal": "El Consejo de Seguridad Ciudadana estará conformado por el Ministro del Interior y Justicia, quien lo presidirá; el Viceministro de Seguridad Ciudadana del Ministerio del Interior y Justicia; un representante de los Gobernadores de las entidades federales; un representante de los Alcaldes; el Coordinador Nacional de Policía; el Coordinador Nacional del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas; el Coordinador Nacional de Bomberos y el Coordinador Nacional de la Organización de Protección Civil y Administración de Desastres.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "20",
+     "encabezado": "Contribución de Instituciones o Personas",
+     "texto_principal": "Para casos y materias que considere pertinente, el Consejo de Seguridad Ciudadana podrá incorporar instituciones o personas que por su especialidad o conocimiento puedan contribuir con ellas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "21",
+     "encabezado": "Designación de Representantes",
+     "texto_principal": "La designación del representante de los Gobernadores y el de los Alcaldes se realizará mediante coordinación efectuada entre el Consejo Federal de Gobierno y el Consejo de Seguridad Ciudadana.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO III ENTES DE COORDINACIÓN DE SEGURIDAD CIUDADANA Y LA PARTICIPACIÓN DE OTROS ÓRGANOS",
+   "capitulo": "Capítulo II Coordinaciones de Seguridad Ciudadana — Coordinación",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "22",
+     "encabezado": "Coordinación",
+     "texto_principal": "El Ministerio del Interior y Justicia, ejercerá la coordinación de los órganos de Seguridad Ciudadana mediante la Coordinación Nacional de Seguridad Ciudadana y de las Coordinaciones Regionales de Seguridad Ciudadana en las diferentes entidades federales.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "23",
+     "encabezado": "Funciones",
+     "texto_principal": "La Coordinación Nacional de Seguridad Ciudadana y las Coordinaciones Regionales de Seguridad Ciudadana tendrán a su cargo la coordinación, seguimiento y evaluación de los planes y directrices que en la materia dicte el Consejo de Seguridad Ciudadana, para lo cual contarán con la cooperación de los Gobernadores y Alcaldes.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "24",
+     "encabezado": "Conformación",
+     "texto_principal": "La Coordinación Nacional y las Coordinaciones Regionales de Seguridad Ciudadana, deberán estar conformadas por un Coordinador de Policía, un Coordinador del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, un Coordinador de Bomberos y un Coordinador de la Organización de Protección Civil y Administración de Desastres.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "25",
+     "encabezado": "Organización",
+     "texto_principal": "La organización, atribuciones y funcionamiento del Consejo y de las Coordinaciones de Seguridad Ciudadana se desarrollará en el reglamento de este Decreto Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO III ENTES DE COORDINACIÓN DE SEGURIDAD CIUDADANA Y LA PARTICIPACIÓN DE OTROS ÓRGANOS",
+   "capitulo": "Capítulo III De la Participación de Otros Órganos — Participación de Otros Órganos",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "26",
+     "encabezado": "Participación de Otros Órganos",
+     "texto_principal": "Sin menoscabo de los preceptos enunciados en el presente Decreto Ley, los órganos de seguridad ciudadana podrán requerir el apoyo del resto de los órganos del Poder Público que en virtud de su función natural puedan ser necesarios para el adecuado desempeño de sus funciones.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "27",
+     "encabezado": "Participación de la Fuerza Armada",
+     "texto_principal": "La Fuerza Armada Nacional, ejercerá las actividades de policía administrativa y de investigación penal que le atribuya la Ley.\n\nCuando la Guardia Nacional o cualquiera de los componentes de la Fuerza Armada Nacional cumplan funciones de seguridad ciudadana, se regirán por lo previsto en el presente Decreto Ley y serán funcionalmente dependientes de la respectiva autoridad de seguridad ciudadana.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "28",
+     "encabezado": "Participación Ciudadana",
+     "texto_principal": "Los ciudadanos y ciudadanas, en forma individual o colectiva, de manera organizada, podrán participar activamente para la elaboración de los planes de seguridad ciudadana, planteando sugerencias, observaciones y comentarios sobre dichos planes. Así mismo podrán denunciar ante cualquiera de los Coordinadores de Seguridad Ciudadana, las deficiencias y actividades irregulares percibidas en la ejecución de los planes de seguridad ciudadana por cualesquiera de los funcionarios de los cuerpos mencionados en el presente Decreto Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO IV ORGANIZACIÓN E INTERCAMBIO DE INFORMACIÓN ENTRE LOS ÓRGANOS DE SEGURIDAD CIUDADANA",
+   "capitulo": "Capítulo I Objeto, Organización y Funcionamiento del Sistema Nacional de Registro Delictivo, Emergencias y Desastres — Creación",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "29",
+     "encabezado": "Creación",
+     "texto_principal": "Se crea el Sistema Nacional de Registro Delictivo, Emergencias y Desastres con la finalidad que los órganos de seguridad ciudadana dispongan de un sistema de información que facilite la debida planificación, formulación y ejecución integral de los planes, estrategias y acciones de seguridad ciudadana.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "30",
+     "encabezado": "",
+     "texto_principal": "El Sistema de Registro Delictivo, Emergencias y Desastres estará conformado por:\n\nEl Ministerio del Interior y Justicia ejercerá la coordinación y administración del sistema.",
+     "numerales_literales": [
+      "1. Un Subsistema Regional, para todo el país, integrado por el Despacho del Ministerio del Interior y Justicia, el Despacho del Vice Ministro de Seguridad Ciudadana, la Coordinación Nacional de Policía, la Coordinación Nacional del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, la Coordinación Nacional de Bomberos y la Coordinación Nacional de la Organización de Protección Civil y Administración de Desastres.",
+      "2. Un Subsistema Metropolitano, para el Distrito Metropolitano de Caracas, integrado por la Dirección General de la Policía Metropolitana de Caracas, la Dirección General de Policía del Municipio Libertador del Distrito Capital, la Dirección General de Policía del Municipio Chacao del Estado Miranda, la Dirección General de Policía del Municipio Baruta del Estado Miranda, la Dirección General de Policía del Municipio El Hatillo del Estado Miranda, la Dirección General de Policía del Municipio Sucre del Estado Miranda, la Comandancia General del Cuerpo de Bomberos de Caracas, y los órganos señalados en el numeral 1 de este artículo.",
+      "3. Un Subsistema Regional, para cada entidad federal, integrado por la Coordinación Regional de Seguridad Ciudadana del Ministerio del Interior y Justicia, la Dirección Regional de Policía Nacional, la Dirección General de la Policía Estadal, las Direcciones Generales de las Policías Municipales, la Dirección Regional de Defensa Civil, la Dirección General del Cuerpo de Bomberos del estado o municipio."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "31",
+     "encabezado": "Suministro de Información",
+     "texto_principal": "Con el objeto de dar funcionalidad al Sistema Nacional de Registro Delictivo, emergencias y Desastres los órganos responsables de la seguridad ciudadana, deberán incorporar a la base de datos del subsistema Metropolitano y de los Subsistemas Regionales, según sea el caso, toda la información relacionada con su ámbito de competencia; éstos harán lo propio al Subsistema Central, de la forma y con la frecuencia que establezca el Reglamento del presente Decreto Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "32",
+     "encabezado": "Reuniones",
+     "texto_principal": "Los integrantes de cada subsistema realizarán las reuniones necesarias, con el fin de evaluar diseñar los planes, estrategias y acciones a ejecutarse en sus respectivas jurisdicciones. Cuando se trate del Subsistema Central y del Subsistema Metropolitana, la convocatoria y coordinación de estas reuniones estará a cargo del Ministerio del Interior y Justicia, y cuando se refiera a lo Subsistemas Regionales le corresponderá hacerlo a las respectivas Coordinaciones Regionales de Seguridad Ciudadana de ese mismo Ministerio.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO IV ORGANIZACIÓN E INTERCAMBIO DE INFORMACIÓN ENTRE LOS ÓRGANOS DE SEGURIDAD CIUDADANA",
+   "capitulo": "Capítulo II Registro, Procesamiento y Distribución de la Información — Sistema de Información",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "33",
+     "encabezado": "Sistema de Información",
+     "texto_principal": "El Ministerio del Interior y Justicia organizará y administrará un sistema de información automatizado que permitirá a los integrantes del Sistema Nacional de Registro Delictivo, Emergencias y Desastres sus respectivos ámbitos de actuación, disponer de la información relacionada con cada módulo del sistema en una base de datos central.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "34",
+     "encabezado": "Sistema de Emergencia Nacional",
+     "texto_principal": "El servicio telefónico del Sistema de Emergencia Nacional 171 o el que contemple la ley respectiva, estará bajo la administración de los entes Coordinadores de Seguridad Ciudadana y tendrá entre sus funciones apoyar y complementar el Sistema Nacional de Registro Delictivo, Emergencias y Desastres.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "35",
+     "encabezado": "Utilidad Especializada",
+     "texto_principal": "Los integrantes del Sistema Nacional de Registro Delictivo, Emergencias y Desastres organizarán y activarán en sus respectivas instalaciones una unidad administrativa responsable de recopilación, organización, remisión e inserción de la información relacionada con cada módulo en la base de datos del sistema de información previsto en este Decreto Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "36",
+     "encabezado": "Procesamiento de la Información",
+     "texto_principal": "La Coordinación Nacional de Seguridad Ciudadana y las Coordinaciones Regionales de Seguridad Ciudadana, como administradores de las bases de datos de sus respectivas localidades, procesarán la data e información suministrada por los integrantes del sistema y generarán los reportes de información relacionados con el comportamiento de la acción delictiva, emergencias y situaciones de desastres.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "37",
+     "encabezado": "Clasificación de Información",
+     "texto_principal": "Las informaciones y documentos derivados del procesamiento de información realizado por el Sistema Nacional de Registro Delictivo, Emergencias y Desastres serán agrupados, según su contenido, en clasificados y no clasificados. La organización, la administración y el manejo de los clasificados se regirá por la ley que rige la materia, y los no clasificados estarán a la disposición de las autoridades o personas interesadas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "38",
+     "encabezado": "Utilización de Recursos",
+     "texto_principal": "Los medios, instrumentos y recursos tecnológicos empleados por el Sistema Nacional de Registro Delictivo, Emergencias y Desastres para el cumplimiento de la finalidad enunciada en este Decreto, están reservados a los órganos del Poder Público Nacional, Estadal y Municipal.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": "TÍTULO V — DISPOSICIONES FINALES",
+   "capitulo": null,
+   "seccion": "DISPOSICIONES FINALES",
+   "articulos": [
+    {
+     "tipo_norma": "Disposición Final",
+     "identificador": "Primera",
+     "encabezado": "",
+     "texto_principal": "El presente Decreto Ley entrará en vigencia seis (6) meses después de la fecha de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Disposición Final",
+     "identificador": "Segunda",
+     "encabezado": "",
+     "texto_principal": "Corresponderá al Ministerio del Interior y Justicia durante el lapso previo a la vigencia de este Decreto Ley, según lo dispuesto en el artículo precedente, la creación de las dependencias y autoridades de coordinación de seguridad ciudadana.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  }
+ ]
+}

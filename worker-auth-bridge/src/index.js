@@ -21,6 +21,15 @@ const CERT_URL =
 
 const MODELO_EMBEDDING = '@cf/baai/bge-m3';
 
+import { servirHtmlConSeo } from './seo_jurisprudencia.js';
+import { paginaBuscador } from './buscador_juridico.js';
+import {
+  servirPaginaLeyes,
+  servirPaginaLey,
+  servirPaginaArticulo,
+  servirIndice,
+} from './leyes_web.js';
+
 let certsCache = { data: null, at: 0 };
 
 function json(status, body) {
@@ -212,14 +221,17 @@ async function buscarSemantica(env, body) {
   const query = typeof body.query === 'string' ? body.query.trim().slice(0, 300) : '';
   if (!query) return { resultados: [] };
 
-  const categoria = body.categoria === 'doctrina' ? 'doctrina' : 'sentencia';
+  const categoria = body.categoria === 'doctrina' ? 'doctrina' : body.categoria === 'articulo' ? 'articulo' : 'sentencia';
   const sala = typeof body.sala === 'string' ? body.sala.trim().toLowerCase() : '';
   const anio = body.anio != null ? String(body.anio) : '';
   const limite = Math.min(Math.max(parseInt(body.limite ?? '30', 10) || 30, 5), 60);
 
-  // Colección según categoría: doctrinas van a su propia colección; el resto
-  // (sentencia, jurisprudencia, resolución) viven en sentencias_chunks.
-  const coleccion = categoria === 'doctrina' ? 'doctrinas_vectores' : 'sentencias_chunks';
+  // Colección según categoría: doctrinas a su colección; artículos de ley a
+  // articulos_vectores (bge-m3, 1024 dims); el resto (sentencia,
+  // jurisprudencia, resolución) viven en sentencias_chunks.
+  const coleccion = categoria === 'doctrina' ? 'doctrinas_vectores'
+    : categoria === 'articulo' ? 'articulos_vectores'
+    : 'sentencias_chunks';
 
   const vector = await generarEmbedding(env, query);
 
@@ -247,7 +259,8 @@ async function buscarSemantica(env, body) {
     hits = await buscarQdrant(env, coleccion, vector, null, limite);
   }
 
-  // Devolver solo lo útil para el RRF en la app (id de documento + score).
+  // Devolver lo útil para el RRF en la app. Para artículos de ley se
+  // incluyen los campos normativos (ley, articulo, titulo, texto).
   return {
     resultados: hits.map((h) => {
       const p = h.payload ?? {};
@@ -259,6 +272,10 @@ async function buscarSemantica(env, body) {
         sala: p.sala ?? '',
         anio: p.anio ?? '',
         fuente: p.fuente ?? '',
+        ley: p.ley ?? null,
+        articulo: p.articulo ?? null,
+        encabezado: p.encabezado ?? null,
+        titulo: p.titulo ?? null,
       };
     }),
   };
@@ -290,8 +307,152 @@ export default {
       }
     }
 
-    if (request.method === 'GET' && url.pathname === '/health') {
+    // GET o HEAD (crawlers/validadores usan HEAD; responder igual que GET)
+    const esLectura = request.method === 'GET' || request.method === 'HEAD';
+
+    if (esLectura && url.pathname === '/health') {
       return json(200, { ok: true });
+    }
+
+    // Buscador de jurisprudencia: página raíz /sentencias y /sentencias/.
+    // (indexable: listado inicial SSR con enlaces a las sentencias
+    // individuales, que son las páginas canónicas de contenido).
+    if (esLectura && (url.pathname === '/sentencias' || url.pathname === '/sentencias/')) {
+      try {
+        const html = await paginaBuscador(env);
+        return new Response(html, {
+          headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=300' },
+        });
+      } catch (e) {
+        console.error('Buscador falló:', e.message);
+        return json(500, { error: 'buscador falló: ' + e.message });
+      }
+    }
+
+    // Sección /leyes: índice SPA (noindex), páginas de ley y de artículo
+    // (indexables con SEO + JSON-LD Legislation).
+    // 0) /leyes/indice.json → índice plano de artículos (para la SPA)
+    if (esLectura && url.pathname === '/leyes/indice.json') {
+      try {
+        const res = await servirIndice(env, url);
+        if (res) return res;
+      } catch (e) {
+        console.error('Leyes índice json falló:', e.message);
+        return json(500, { error: 'leyes índice json falló: ' + e.message });
+      }
+    }
+    // 1) /leyes y /leyes/ → índice
+    if (esLectura && (url.pathname === '/leyes' || url.pathname === '/leyes/')) {
+      try {
+        const res = await servirPaginaLeyes(env, url);
+        if (res) return res;
+      } catch (e) {
+        console.error('Leyes índice falló:', e.message);
+        return json(500, { error: 'leyes índice falló: ' + e.message });
+      }
+    }
+    // 2) /leyes/{slug}/articulos/{id} → artículo indexable
+    if (esLectura && /^\/leyes\/[a-z0-9-]+\/articulos\/[a-z0-9-]+$/.test(url.pathname)) {
+      try {
+        const res = await servirPaginaArticulo(env, url);
+        if (res) return res;
+      } catch (e) {
+        console.error('Leyes artículo falló:', e.message);
+        return json(500, { error: 'leyes artículo falló: ' + e.message });
+      }
+    }
+    // 3) /leyes/{slug} → ley indexable
+    if (esLectura && /^\/leyes\/[a-z0-9-]+\/?$/.test(url.pathname)) {
+      try {
+        const res = await servirPaginaLey(env, url);
+        if (res) return res;
+      } catch (e) {
+        console.error('Leyes ley falló:', e.message);
+        return json(500, { error: 'leyes ley falló: ' + e.message });
+      }
+    }
+
+    // SEO de jurisprudencia: sirve los HTML íntegros de R2 con metadatos
+    // inyectados (title/meta/canonical/JSON-LD LegalCase).
+    // Rutas: /sentencias/... (canónica) y /html/... (compatibilidad).
+    if (esLectura && (url.pathname.startsWith('/sentencias/') || url.pathname.startsWith('/html/'))) {
+      try {
+        const res = await servirHtmlConSeo(env, url);
+        if (res) return res;
+      } catch (e) {
+        console.error('SEO html falló:', e.message);
+        return json(500, { error: 'seo falló: ' + e.message });
+      }
+    }
+
+    // robots.txt y sitemaps: se sirven desde el bucket (raíz), con su
+    // content-type correcto, para que Google encuentre Allow /sentencias/.
+    const archivosSeo = {
+      '/robots.txt': ['robots.txt', 'text/plain; charset=utf-8'],
+      '/sitemap.xml': ['sitemap.xml', 'application/xml; charset=utf-8'],
+      '/sitemap-jurisprudencia-1.xml': ['sitemap-jurisprudencia-1.xml', 'application/xml; charset=utf-8'],
+      '/sitemap-jurisprudencia-2.xml': ['sitemap-jurisprudencia-2.xml', 'application/xml; charset=utf-8'],
+      '/sitemap-leyes.xml': ['sitemap-leyes.xml', 'application/xml; charset=utf-8'],
+    };
+    if (esLectura && archivosSeo[url.pathname]) {
+      try {
+        const [key, tipo] = archivosSeo[url.pathname];
+        const obj = await env.R2_JURISPRUDENCIA.get(key);
+        if (!obj) return json(404, { error: 'no encontrado' });
+        const cuerpo = await obj.text();
+        const headers = { 'content-type': tipo, 'cache-control': 'public, max-age=3600' };
+        if (request.method === 'HEAD') {
+          return new Response(null, { headers, status: 200 });
+        }
+        return new Response(cuerpo, { headers });
+      } catch (e) {
+        console.error('SEO archivo falló:', e.message);
+        return json(500, { error: 'seo archivo falló: ' + e.message });
+      }
+    }
+
+    // Blog Nulidad Absoluta: SOLO los artículos individuales y sus assets se
+    // sirven desde R2 (prefijo blog/). El índice /articulos (SPA de la web)
+    // NO se toca: las rutas aquí son específicas (*.html, portada-dolo-*,
+    // estilos, logo, favicon) para no capturar las imágenes de la SPA.
+    if (esLectura && (
+      /^\/articulos\/[^/]+\.html$/.test(url.pathname) ||
+      /^\/articulos\/portada-(dolo-eventual|nulidad|ia|alcabalas)\.(webp|png|jpg|jpeg)$/.test(url.pathname) ||
+      url.pathname === '/autor/jean-jazpe' ||
+      url.pathname === '/estilos/revista.css' ||
+      url.pathname === '/logo-horizontal.png' ||
+      url.pathname === '/favicon.png' || url.pathname === '/favicon.ico'
+    )) {
+      try {
+        let key;
+        const mHtml = url.pathname.match(/^\/articulos\/([^/]+\.html)$/);
+        const mImg = url.pathname.match(/^\/articulos\/(portada-(?:dolo-eventual|nulidad|ia|alcabalas)\.(?:webp|png|jpg|jpeg))$/);
+        if (mHtml) {
+          key = 'blog/articulos/' + mHtml[1];
+        } else if (mImg) {
+          key = 'blog/articulos/' + mImg[1];
+        } else if (url.pathname === '/autor/jean-jazpe') {
+          key = 'blog/articulos/autor-jean-jazpe.html';
+        } else {
+          key = 'blog' + url.pathname;
+        }
+        const obj = await env.R2_JURISPRUDENCIA.get(key);
+        if (!obj) return json(404, { error: 'no encontrado' });
+        const headers = {
+          'content-type': key.endsWith('.css') ? 'text/css; charset=utf-8'
+            : key.endsWith('.webp') ? 'image/webp'
+            : key.endsWith('.png') ? 'image/png'
+            : key.endsWith('.jpg') || key.endsWith('.jpeg') ? 'image/jpeg'
+            : key.endsWith('.ico') ? 'image/x-icon'
+            : 'text/html; charset=utf-8',
+          'cache-control': 'public, max-age=3600',
+        };
+        if (request.method === 'HEAD') return new Response(null, { headers, status: 200 });
+        return new Response(await obj.arrayBuffer(), { headers });
+      } catch (e) {
+        console.error('Blog falló:', e.message);
+        return json(500, { error: 'blog falló: ' + e.message });
+      }
     }
 
     return json(404, { error: 'no encontrado' });

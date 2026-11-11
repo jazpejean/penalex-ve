@@ -1,0 +1,660 @@
+{
+ "ley_nombre": "Ley sobre el Delito de Contrabando",
+ "estructura": [
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": "Capítulo I — Disposiciones generales",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "1",
+     "encabezado": "Objeto",
+     "texto_principal": "La presente Ley tiene por objeto tipificar y sancionar los actos y omisiones que constituyan ilícitos penales o administrativos en materia de contrabando.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "2",
+     "encabezado": "Ámbito de aplicación",
+     "texto_principal": "Esta Ley es aplicable a las personas naturales o jurídicas de derecho público o privado, que se encuentren en el territorio y demás espacios geográficos de la República Bolivariana de Venezuela y que ilícitamente realicen actividades de introducción, extracción o tránsito aduanero de mercancías o bienes.\n\nA los efectos de esta Ley, el conocimiento de su ámbito de aplicación corresponderá a las jurisdicciones penales o administrativas respectivas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "3",
+     "encabezado": "Definición",
+     "texto_principal": "A los efectos de esta Ley se entiende por:\n\nContrabando: los actos u omisiones donde se eluda o intente eludir la intervención del Estado con el objeto de impedir el control en la introducción, extracción o tránsito de mercancías o bienes que constituyan delitos, faltas o infracciones administrativas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "4",
+     "encabezado": "Principios fundamentales",
+     "texto_principal": "Son principios fundamentales de esta Ley:",
+     "numerales_literales": [
+      "1. Las medidas aplicadas por el Estado para el combate del contrabando. Se fundamentan en la seguridad, defensa y desarrollo integral de la Nación y el régimen socioeconómico de la República Bolivariana de Venezuela.",
+      "2. Las políticas públicas diseñadas por el Ejecutivo Nacional, así como las actuaciones de los órganos y autoridades con competencia en materia de contrabando. Deben promover la defensa y protección de la soberanía económica, seguridad alimentaria y recursos naturales; así como la conservación del ambiente y la diversidad biológica.",
+      "3. La participación del pueblo a través del Poder Popular organizado. Serán corresponsables en la seguridad y defensa integral de la Nación, en consecuencia, se involucra en la promoción de las políticas diseñadas por el Estado para la prevención del contrabando."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "5",
+     "encabezado": "Órganos competentes",
+     "texto_principal": "El Ministerio Público es el órgano competente para ordenar y dirigir la investigación penal en la perpetración del delito de contrabando.\n\nDe igual manera tienen competencia en materia de contrabando conforme a las disposiciones establecidas en esta Ley: el Servicio Nacional Integrado de Administración Aduanera y Tributaria (SENIAT), la fuerza Armada Nacional Bolivariana, a través de la Guardia Nacional Bolivariana y dentro del ámbito de sus competencias como autoridad marítima en los espacios acuáticos e insulares a la Armada Bolivariana: el Cuerpo de Policía Nacional Bolivariana y demás autoridades del Estado que la ley les atribuya el carácter de órganos auxiliares de investigación penal.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "6",
+     "encabezado": "Autoridades de prevención",
+     "texto_principal": "Los cuerpos de policía integrantes del servicio de policía, en todos sus niveles, son autoridades competentes para la ejecución de las políticas de prevención del contrabando.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": "Capítulo II — Del contrabando, sus modalidades, faltas e infracciones administrativas",
+   "seccion": "Sección Primera — Del delito de contrabando y sus modalidades",
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "7",
+     "encabezado": "Contrabando simple",
+     "texto_principal": "Quien por cualquier vía introduzca al territorio y demás espacios geográficos de la República Bolivariana de Venezuela, extraiga de él mercancías o bienes públicos o privados, o haga tránsito aduanero por rutas o lugares no autorizados, sin cumplir o intentando incumplir los requisitos, formalidades o controles aduaneros establecidos por las autoridades del Estado y las leyes, será sancionado con prisión de cuatro a ocho años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "8",
+     "encabezado": "Auxiliares de la administración",
+     "texto_principal": "Los auxiliares de la administración aduanera responsables de la tenencia, depósito o almacenamiento de mercancías serán sancionados con prisión de cuatro a cinco años, cuando estas actividades se realicen en:",
+     "numerales_literales": [
+      "1. La zona primaria de la aduana pero en lugares distintos a los autorizados.",
+      "2. La zona primaria de la aduana sin la autorización correspondiente.",
+      "3. Lugares autorizados pero incumpliendo los requisitos establecidos por la administración aduanera para su almacenamiento."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "9",
+     "encabezado": "Despacho o entrega de mercancías sin autorización",
+     "texto_principal": "Cuando los auxiliares de la administración aduanera encargados del almacenamiento o depósito despachen o entreguen mercancías sin autorización de la aduana, serán sancionados con prisión de cuatro a seis años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "10",
+     "encabezado": "Contrabando de mercancías incautadas",
+     "texto_principal": "Cuando los funcionarios o funcionarias Actuantes o depositarios se apropien, dispongan, consuman o distribuyan las mercancías retenidas o incautadas por razones de contrabando o alteren su entrega a la autoridad competente, serán sancionados o sancionadas con prisión de cinco a nueve años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "11",
+     "encabezado": "Seguridad para el resguardo",
+     "texto_principal": "Quien sin estar autorizado, rompa, altere o destruya precintos, sellos, marcas, puertas, envases u otros medios de seguridad para el resguardo de las mercancías, cuyos trámites aduaneros no hayan sido perfeccionados o que no estén destinados al país y extraiga las mercancías o bienes resguardados, será sancionado o sancionada con prisión de cuatro a seis años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "12",
+     "encabezado": "Regímenes aduaneros especiales",
+     "texto_principal": "Quien introduzca al territorio aduanero mercancías procedentes de zonas francas, zonas libres, zonas fronterizas, puertos libres, depósitos aduaneros, almacenes libres de impuesto y otros regímenes aduaneros especiales previstos en las leyes y demás Convenios, Tratados o Acuerdos Internacionales, sin haber cumplido los controles aduaneros respectivos, será sancionado o sancionada con prisión de cuatro a seis años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "13",
+     "encabezado": "Mercancías extranjeras",
+     "texto_principal": "Quien tenga, deposite, almacene, comercialice, transporte o circule mercancías extranjeras, ilícitamente introducidas al territorio y demás espacios geográficos de la República o provenientes de comercio ilícito, será sancionado con prisión de cuatro a seis años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "14",
+     "encabezado": "Mercancías extranjeras en vehículos de cabotaje",
+     "texto_principal": "Quien transporte, deposite o tenga mercancías extranjeras en vehículos de cabotaje no autorizados por la autoridad competente para el tráfico mixto, será sancionado con prisión de cinco a siete años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "15",
+     "encabezado": "Transporte, depósito o tenencia",
+     "texto_principal": "Quien transporte, deposite o tenga mercancías nacionales o nacionalizadas en vehículos de cabotaje, sin cumplir con el procedimiento aduanero legalmente establecido, será sancionado con prisión de cinco a siete años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "16",
+     "encabezado": "Transporte o desembarque",
+     "texto_principal": "Quien por cualquier medio, transporte o desembarque mercancías extranjeras no destinadas al tráfico o comercio legítimo con la República Bolivariana de Venezuela u otra nación, será sancionado o sancionada con prisión de cinco a siete años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "17",
+     "encabezado": "Trasbordo",
+     "texto_principal": "Quien trasborde mercancías extranjeras en el territorio nacional y demás espacios geográficos de la República Bolivariana de Venezuela sin estar autorizado por la autoridad aduanera de la jurisdicción respectiva, será sancionado o sancionada con prisión de cinco a siete años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "18",
+     "encabezado": "Abandono de mercancía",
+     "texto_principal": "Quien abandone mercancías ilícitamente introducidas al territorio nacional y demás espacios geográficos de la República Bolivariana de Venezuela, será sancionado o sancionada con prisión de cuatro a seis años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "19",
+     "encabezado": "Ocultamiento",
+     "texto_principal": "Quien por cualquier medio, oculte mercancías para impedir o dificultar el control de la autoridad aduanera dentro de la zona primaria y demás recintos o lugares habilitados, será sancionado o sancionada con prisión de cuatro a seis años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "20",
+     "encabezado": "Contrabando agravado",
+     "texto_principal": "Serán sancionados o sancionadas con pena de prisión de seis a diez años, quienes",
+     "numerales_literales": [
+      "1. Carguen, descarguen o dispongan suministros, repuestos, provisiones de a bordo, destinados al uso o consumo en los vehículos de transporte, sin el cumplimiento de las formalidades legales.",
+      "2. Consuman, dispongan o sustituyan mercancías que se encuentren en proceso o sometidas a un régimen de almacén o de depósito aduanero, sin autorización del funcionario o funcionaria competente, o en traslados autorizados por la autoridad aduanera a los locales del interesado.",
+      "3. Declaren o presenten ante la aduana, como sustento de la base imponible o como fundamento del valor, facturas comerciales falsas, adulteradas, forjadas, no emitidas por el proveedor o emitidas por éste en forma irregular en complicidad o no con el declarante.",
+      "4. Declaren, presenten o registren electrónicamente ante la aduana, utilizando como sustento del origen declarado, un certificado falso, adulterado, forjado, no validado por el órgano o funcionario autorizado, o validado por éstos en forma irregular en complicidad o no con el declarante.",
+      "5. Utilicen, adulteren, tengan o preparen de manera irregular sellos, troqueles u otros mecanismos o sistemas informáticos o contables falsos, forjados o adulterados, en sustitución de aquel empleado por la entidad autorizada, destinados a aparentar el pago a la caución de cantidades debidas o a favor de la Tesorería Nacional.",
+      "6. Declaren, emitan, presenten registros electrónicos o utilicen delegaciones, licencias, permisos, informes de inspección o verificación, boletines de análisis de laboratorio, registros u otros requisitos o documentos falsos, adulterados, forjados, no emitidos por el órgano o funcionario autorizado o funcionaria autorizada emitidos por éstos en forma irregular, en complicidad o no con el presentante o declarante, cuando la circulación, transporte, depósito, tenencia, introducción o extracción de mercancías condicionan su exigibilidad.",
+      "7. Simulen, física, documental o electrónicamente, los regímenes aduaneros o actividades aduaneras.",
+      "8. Destinen mercancías en tránsito al comercio, uso o consumo en el territorio nacional.",
+      "9. Extraigan del territorio nacional a cualquier título, bienes que integren el patrimonio cultural de la nación, de interés cultural o aquellos catalogados como tales por el órgano con competencia en materia de cultura, sin la autorización respectiva.",
+      "10. Ingresen o extraigan del territorio nacional bienes del patrimonio cultural de otros países, sin la autorización de la autoridad competente cuando ésta sea requerida para el ingreso o salida del país de origen.",
+      "11. Reintroduzcan ilegalmente al país mercancías exportadas con beneficios fiscales.",
+      "12. Retiren o den salida de la aduana mercancías distintas a las descritas en los documentos registrados ante la autoridad aduanera competente, cuando el desaduanamiento se haya realizado a través de los canales de selectividad, en los procesos automatizados o es detectado luego que se haya autorizado la entrega de las mercancías, aunque las mismas no hayan salido del recinto aduanero.",
+      "13. Incluyan mercancías no declaradas en contenedores, en carga consolidada o en envíos realizados a través de empresas de mensajería internacional, cuya detección se realice en el reconocimiento o en una gestión de control posterior.",
+      "14. Transporten, comercialicen, depositen o tengan petróleo, combustibles, lubricantes, minerales o demás derivados, fuera del territorio aduanero o en espacios geográficos de la República, incumpliendo las formalidades establecidas en las leyes y demás disposiciones que regulan la materia.",
+      "15. Introduzcan o extraigan especímenes de fauna o flora silvestres, sus partes, derivados o productos desde o al territorio y demás espacios geográficos de la República Bolivariana de Venezuela, incumpliendo las formalidades establecidas en las leyes y demás disposiciones que regulan la materia.",
+      "16. Introduzcan o extraigan objetos de arte y de arqueología al o desde el territorio y demás espacios geográficos de la República Bolivariana de Venezuela, incumpliendo las formalidades establecidas en las leyes, demás disposiciones que regulan la materia y Tratados Internacionales suscritos y ratificados por la República Bolivariana de Venezuela."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "21",
+     "encabezado": "Introducción de petróleo o minerales",
+     "texto_principal": "Quien introduzca al territorio nacional y demás espacios geográficos petróleo, combustibles, minerales o demás derivados, sin cumplir las formalidades establecidas en las leyes y disposiciones que regulan la materia, será sancionado o sancionada con prisión de diez a doce años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "22",
+     "encabezado": "Extracción de petróleo o minerales",
+     "texto_principal": "Quien extraiga del territorio nacional y demás espacios geográficos petróleo, combustibles, minerales o demás derivados, sin cumplir las formalidades establecidas en las leyes y disposiciones que regulan la materia, será sancionado o sancionada con prisión de diez a catorce años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": "Sección Segunda — De las faltas en materia de contrabando",
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "23",
+     "encabezado": "Multa para mercancías sujetas a restricciones",
+     "texto_principal": "Cuando los supuestos de hecho previstos en el presente capítulo involucren como objeto de contrabando mercancías o bienes sujetos a restricciones arancelarias, prohibiciones, reserva, suspensión, registros sanitarios, certificados de calidad u otros requisitos aduaneros y su valor en aduana no exceda las quinientas Unidades Tributarias (500 U.T.), serán considerados como faltas. El conocimiento de estos supuestos corresponderá a los tribunales penales especializados en materia de contrabando, quienes aplicarán el procedimiento penal especial para los casos de falta establecidos en el Código Orgánico Procesal Penal y se sancionarán de la manera siguiente:",
+     "numerales_literales": [
+      "1. Multa equivalente a dos veces el valor en aduana de las mercancías, cuando ese valor no exceda de veinte Unidades Tributarias (20 U.T.).",
+      "2. Multa equivalente a tres veces el valor en aduana de las mercancías, cuando ese valor sea superior a veinte Unidades Tributarias (20 U.T.), y no exceda de cincuenta Unidades Tributarias (50 U.T.).",
+      "3. Multa equivalente a cuatro veces el valor en aduana de las mercancías, cuando ese valor sea superior a cincuenta Unidades Tributarias (50 U.T.), y no exceda de cien Unidades Tributarias (100 U.T.).",
+      "4. Multa equivalente a cinco veces el valor en aduana de las mercancías, cuando ese valor sea superior a cien Unidades Tributarias (100 U.T.), y no exceda de doscientas cincuenta Unidades Tributarias (200 U.T.)",
+      "5. Multa equivalente a seis veces el valor en aduana de las mercancías, cuando ese valor sea superior a doscientas cincuenta Unidades Tributarias (200 U.T.), y no exceda de quinientas Unidades Tributarias (500 U.T.)."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": "Sección Tercera — De las infracciones administrativas en materia de contrabando",
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "24",
+     "encabezado": "Multa para mercancía no sujetas a restricciones",
+     "texto_principal": "Cuando los supuestos de hecho previstos en el presente capítulo involucren como objeto de contrabando mercancías o bienes no sujetos a restricciones arancelarias, prohibiciones, reserva, suspensión, registros sanitarios, certificados de calidad u otros requisitos aduaneros y su valor en aduana sea menor a quinientas Unidades Tributarias (500 U.T.), serán considerados como infracciones administrativas. El conocimiento de esta causa corresponderá a la Administración Aduanera y Tributaria quien sancionará de la manera siguiente:\n\nPara estos supuestos se aplicará como sanción accesoria el comiso de la mercancía.",
+     "numerales_literales": [
+      "1. Multa equivalente a dos veces el valor en aduana de las mercancías, cuando ese valor no exceda de veinte Unidades Tributarias (20 U.T.).",
+      "2. Multa equivalente a tres veces el valor en aduana de las mercancías, cuando ese valor sea superior a veinte Unidades Tributarias (20 U.T.), y no exceda de cincuenta unidades tributarias (50 U.T.).",
+      "3. Multa equivalente a cuatro veces el valor en aduana de las mercancías, cuando ese valor sea superior a cincuenta Unidades Tributarias (50 U.T.), y no exceda de cien Unidades Tributarias (100 U.T.).",
+      "4. Multa equivalente a cinco veces el valor en aduana de las mercancías, cuando ese valor sea superior a cien Unidades Tributarias (100 U.T.), y no exceda de doscientas cincuenta Unidades Tributarias (250 U.T.).",
+      "5. Multa equivalente a seis veces el valor en aduana de las mercancías, cuando ese valor sea superior a doscientas cincuenta Unidades Tributarias (250 U.T.), y no exceda de quinientas Unidades Tributarias (500 U.T.).",
+      "6. Multa equivalente a siete veces el valor en aduana de las mercancías, cuando ese valor sea superior a quinientas Unidades Tributarias (500 U.T.), y no exceda de ochocientas Unidades Tributarias (800 U.T.)."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": "Capítulo III — De las sanciones accesorias del contrabando",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "25",
+     "encabezado": "Sanciones accesorias",
+     "texto_principal": "Son sanciones accesorias del contrabando:\n\nLa pena de comiso de una nave, aeronave, ferrocarril o vehículo de transporte terrestre o acuático, sólo se aplicará si su propietario tiene la condición de autor, coautor, cómplice o encubridor.",
+     "numerales_literales": [
+      "1. El comiso de las mercancías objeto de contrabando, así como el de los vehículos, semovientes, enseres, utensilios, aparejos u otras mercancías usadas para cometer, encubrir o disimular el delito.",
+      "2. El cierre del establecimiento y suspensión de la autorización para operarlo.",
+      "3. La inhabilitación para ocupar cargos públicos o para prestar servicio en la administración pública.",
+      "4. La inhabilitación para ejercer actividades de comercio exterior.",
+      "5. Las sanciones mencionadas en los numerales 2, 3 y 4 del presente artículo serán establecidas por un lapso no menor de seis meses ni mayor a sesenta meses."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": "Capítulo IV — De los agravantes y atenuantes del contrabando",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "26",
+     "encabezado": "Circunstancias agravantes",
+     "texto_principal": "Las sanciones previstas en el capítulo II de la presente Ley, serán aumentadas en su mitad:",
+     "numerales_literales": [
+      "1. El autor o autora, coautor o coautora o cómplice sea un funcionario público o funcionaria pública, contratado o contratada u obrero al servicio de la Administración Pública, auxiliar de la administración aduanera y tributaria o empleado o empleada de entidad aseguradora o bancaria.",
+      "2. En la perpetración del delito de contrabando se haya utilizado un medio de transporte acondicionado o modificado en su estructura original con la finalidad de impedir o evitar el control aduanero.",
+      "3. En la perpetración del delito de contrabando se haya hecho figurar como consignatario, exportador o remitente a personas naturales o jurídicas inexistentes.",
+      "4. Los efectos del contrabando sean mercancías que lesionen los derechos de propiedad intelectual, ya sea en materia de propiedad industrial o derecho de autor.",
+      "5. Sean objeto de contrabando, mercancías o bienes que se encuentren subsidiados por el Estado."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "27",
+     "encabezado": "Circunstancias atenuantes",
+     "texto_principal": "La sanción prevista para los supuestos establecidos en el capítulo II de la presente Ley, será disminuida en su mitad cuando:",
+     "numerales_literales": [
+      "1. Facilite el descubrimiento o la aprehensión de los efectos objeto del delito de contrabando.",
+      "2. Entregue voluntariamente no menos del cincuenta por ciento del total de los efectos no aprehendidos."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": "Capítulo V — Disposiciones comunes",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "28",
+     "encabezado": "Mercancías sujetas a restricciones arancelarias",
+     "texto_principal": "Cuando los delitos previstos en el capítulo II de la presente Ley involucren como objeto de contrabando mercancías o bienes sujetos a restricciones arancelarias, prohibiciones, reserva, suspensión, registros sanitarios, certificados de calidad u otros requisitos aduaneros y Su valor en aduana exceda las quinientas Unidades Tributarias (500 U.T.), serán sancionados como delito conforme a lo establecido con la sección primera del capítulo II para el respectivo hecho punible.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "29",
+     "encabezado": "Mercancías no sujetas a restricciones arancelarias",
+     "texto_principal": "Cuando los delitos previstos en el capítulo II de la presente Ley, involucren como objeto de contrabando mercancías no sujetas a restricciones arancelarias, prohibiciones, reserva, suspensión, registros sanitarios, certificados de calidad u otros requisitos aduaneros y cuyo valor en aduana exceda de ochocientas unidades tributarias, serán sancionados conforme a las penas previstas para cada hecho punible.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "30",
+     "encabezado": "Pago de tributos causados",
+     "texto_principal": "En cualquiera de los supuestos establecidos en el capítulo anterior, al momento de verificarse el incumplimiento de la obligación tributaria por parte de la persona involucrada, no impide a la administración aduanera y tributaria exigir el pago de los tributos causados por el ingreso de las mercancías o bienes al territorio nacional y demás espacios geográficos de la República Bolivariana de Venezuela.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "31",
+     "encabezado": "Mercancías no retenidas",
+     "texto_principal": "Si las mercancías objeto de contrabando no pudieren ser retenidas se aplicará al contraventor multa equivalente al valor en aduanas de las mismas, sin perjuicio de la aplicación de las demás sanciones que sean procedentes.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": "Capítulo VI — De los procedimientos",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "32",
+     "encabezado": "Declinatoria de competencia",
+     "texto_principal": "Una vez determinada la inexistencia del delito de contrabando a razón del valor en aduana de la mercancía o bienes objeto de contrabando, los tribunales penales especializados en materia de contrabando declinará el conocimiento de la causa a la autoridad administrativa competente. La oficina aduanera de la jurisdicción aplicará los procedimientos administrativos a que hubiere lugar y las sanciones establecidas en esta Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "33",
+     "encabezado": "Modos de proceder",
+     "texto_principal": "Los órganos con competencia en materia de contrabando conocerán de los supuestos previstos en esta Ley: de oficio o por denuncia de cualquier funcionario o funcionaria o particular, sin menoscabo de los casos de flagrancia, la cual se regirá conforme a lo establecido en el Código Orgánico Procesal Penal.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "34",
+     "encabezado": "Verificaciones aduaneras",
+     "texto_principal": "A los efectos de prevenir el contrabando, el Servicio Nacional Integrado de Administración Aduanera y Tributaria (SENIAT) y la Fuerza Armada Nacional Bolivariana a través de los funcionarios o funcionarias del componente Guardia Nacional Bolivariana con competencia en materia de resguardo nacional, podrán realizar verificaciones aduaneras de establecimientos comerciales o industriales, vehículos, libros o documentos, que estén sujetos al control aduanero.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "35",
+     "encabezado": "Notificación de actuación",
+     "texto_principal": "Cuando los supuestos establecidos en esta Ley, sean conocidos por funcionarios o funcionarias que no formen parte de los órganos competentes, deberán notificar y remitir de manera inmediata las actuaciones realizadas al Ministerio Público.\n\nLas mercancías o bienes retenidos quedarán a disposición del Ministerio Público o de la administración aduanera y tributaria, según sea el caso.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "36",
+     "encabezado": "Retención preventiva",
+     "texto_principal": "Cuando se presuma la comisión del contrabando los funcionarios o funcionarias actuantes deberán retener preventivamente las mercancías o bienes involucrados y remitirlos a la oficina aduanera de la jurisdicción, la cual será responsable de su custodia, control, valoración y depósito temporal. El jefe o jefa de la oficina aduanera, dentro de los tres días hábiles siguientes a la recepción de la mercancía o bienes, ordenará la determinación de su valor, ubicación arancelaria, tarifa y régimen legal, remitiendo la actuación correspondiente, si fuere el caso, dentro del mismo lapso al Ministerio Público.\n\nLos gastos que se generen por el traslado y conservación de la mercancía o bienes se incluirán en las costas procesales.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "37",
+     "encabezado": "Mercancías perecederas",
+     "texto_principal": "Cuando las mercancías o bienes retenidos preventivamente estén conformados por productos de carácter perecedero o estén expuestos al deterioro, descomposición o depreciación, el reconocimiento, inspección o experticia, solicitados como pruebas anticipadas a que tengan lugar, deben ser acordados el mismo día de la solicitud y practicados en un lapso no mayor de cuarenta y ocho horas continuas.\n\nUna vez practicadas las pruebas anticipadas, las mercancías o bienes retenidos preventivamente serán objeto de remate. El remate establecido en este artículo se regirá de acuerdo a lo previsto en la ley que rige la materia de aduanas, para los casos de abandono de mercancías.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "38",
+     "encabezado": "Mercancías de alto riesgo",
+     "texto_principal": "Cuando las mercancías retenidas sean armas, municiones o explosivos quedarán a disposición del Ministerio del Poder Popular para la defensa, a través de la dirección con competencia en materia de armas y explosivos, para su traslado al Parque Nacional de Armas en un lapso no mayor a veinticuatro horas.\n\nPor razones de seguridad, el reconocimiento, experticia y clasificación de este material se realizará conforme a los reglamentos que regulan la materia.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "39",
+     "encabezado": "Químicos o desechos tóxicos",
+     "texto_principal": "Cuando las mercancías retenidas sean químicos o desechos tóxicos, los funcionarios o funcionarias actuantes notificarán esta retención al órgano o autoridad competente, conforme al régimen legal aplicable en un lapso no mayor a veinticuatro horas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "40",
+     "encabezado": "Valor de las mercancías",
+     "texto_principal": "El valor en aduana de las mercancías será determinado según las normas de valoración aplicables para las mercancías objeto de importación definitiva, para la fecha de la comisión del presunto contrabando o cuando las autoridades tengan conocimiento del mismo.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "41",
+     "encabezado": "Disposición de mercancías o bienes",
+     "texto_principal": "Una vez declarado el contrabando mediante acto administrativo o sentencia definitivamente firme, las mercancías o bienes objeto de comiso serán rematadas, siguiendo el procedimiento establecido en la Ley Orgánica de Aduanas y su reglamento para el remate de mercancía abandonada.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "42",
+     "encabezado": "Comiso de armas, municiones o explosivos",
+     "texto_principal": "Cuando las mercancías o bienes objeto de contrabando sean armas, municiones o explosivos y se haya declarado su comiso mediante sentencia definitivamente firme, estos no serán objeto de remate ni de destrucción y se adjudicarán a la República Bolivariana de Venezuela.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "43",
+     "encabezado": "Producto del remate",
+     "texto_principal": "El producto del remate establecido en la presente Ley será depositado en una cuenta exclusiva e independiente que debe crear el órgano encargado de practicar el remate, conforme con lo establecido en el procedimiento de remate para mercancías abandonadas previsto en las leyes que regulan la materia aduanera y sus reglamentos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "44",
+     "encabezado": "Destino final de mercancías o bienes",
+     "texto_principal": "Las mercancías o bienes objeto de comiso, mediante sentencia definitivamente firme que afecten la seguridad, la salud pública, la moral y las buenas costumbres o aquellas que violen los derechos de propiedad intelectual, deben ser destruidas o incineradas en un lapso no mayor a seis meses prorrogables por una sola vez y por el mismo lapso, por el Servicio Nacional de Administración Aduanera y Tributaria (SENIAT) en acto público. En el acto de destrucción o incineración deberán estar presentes el juez o jueza que conoce la causa y un o una representante del Ministerio Público. Cuando las mercancías o bienes objeto de destrucción afecten la propiedad intelectual pero que por su naturaleza o características sean de interés social, éstas podrán ser donadas a instituciones, asociaciones o fundaciones sin fines de lucro, previo retiro de cualquier identificación con derechos reconocidos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "45",
+     "encabezado": "Confidencialidad",
+     "texto_principal": "La identidad del o la denunciante y las informaciones proporcionadas por él a los órganos competentes en materia de contrabando serán confidenciales, en consecuencia estarán sujetas a reserva total del Ministerio Público, tribunales penales especializados y órganos competentes en materia de contrabando, los cuales, de ser necesario, garantizarán la protección personal del o la denunciante.\n\nCuando los funcionarios o funcionarias que conozcan de la confidencialidad prevista en este artículo difundan la información sujeta a reserva total, serán sancionados con prisión de uno a dos años.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": "Capítulo VII — De las obvenciones",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "46",
+     "encabezado": "Obvenciones",
+     "texto_principal": "El Servicio Nacional Integrado de Administración Aduanera y Tributaria (SENIAT), una vez efectuado el remate de las mercancías o bienes comisados producto del contrabando, previa deducción del monto de los derechos e impuestos que hubiere causado su legítima introducción, producción o circulación en el país y costas procesales, distribuirá obvenciones del cuarenta por ciento (40%), del remanente entre los y las denunciantes, funcionarios o funcionarias y órganos a los cuales estos están adscritos; el sesenta por ciento (70%) (Sic) será distribuido equitativamente entre los Ministerios del Poder Popular con competencia en materia de salud, educación y deporte.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "47",
+     "encabezado": "Distribución",
+     "texto_principal": "Las obvenciones serán distribuidas de la manera siguiente:\n\nCuando no existiera denunciante, el porcentaje destinado a éste será prorrateado en partes iguales entre los órganos y funcionarios o funcionarias que realizaron la retención.",
+     "numerales_literales": [
+      "1. Denunciantes: cinco por ciento (5%).",
+      "2. Funcionarios o funcionarias que realizan la retención: veinticinco por ciento (25%).",
+      "3. Órganos a los cuales están adscritos los funcionarios o funcionarias que realizan la retención: diez por ciento (10%)."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": "Disposiciones Derogatorias",
+   "articulos": [
+    {
+     "tipo_norma": "Disposición Derogatorias",
+     "identificador": "Primera",
+     "encabezado": "",
+     "texto_principal": "Se deroga la Ley sobre el Delito de Contrabando, sancionada el quince de noviembre de 2005 y publicada en la Gaceta Oficial de la República Bolivariana de Venezuela N 38.327 del dos de diciembre de 2005.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Disposición Derogatorias",
+     "identificador": "Segunda",
+     "encabezado": "",
+     "texto_principal": "Se derogan los artículos que conforman el Capítulo I, del Título VI, así como el artículo 129 del Decreto N 5.879, con Rango, Valor y Fuerza de Ley de Reforma Parcial de la Ley Orgánica de Aduanas, publicada en la Gaceta Oficial de la República Bolivariana de Venezuela N 38.875 del veintiún de febrero de 2008.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Disposición Derogatorias",
+     "identificador": "Tercera",
+     "encabezado": "",
+     "texto_principal": "Se deroga el artículo 143 de la Ley para la Defensa de las Personas en el Acceso a los Bienes y Servicios, publicada en la Gaceta Oficial de la República Bolivariana de Venezuela N 39.358, del primero de febrero de 2010.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": "Disposición Transitoria",
+   "articulos": [
+    {
+     "tipo_norma": "Disposición Transitoria",
+     "identificador": "Única",
+     "encabezado": "",
+     "texto_principal": "Los tribunales de la Jurisdicción Penal Ordinaria conocerán el delito contemplado en esta Ley, hasta tanto se creen los tribunales penales especializados.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  }
+ ]
+}

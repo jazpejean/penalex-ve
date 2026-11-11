@@ -1,0 +1,491 @@
+{
+  "ley_nombre": "LEY CONTRA EL SECUESTRO Y LA EXTORSIÓN",
+  "estructura": [
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": "CAPÍTULO I. DISPOSICIONES GENERALES",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "1",
+          "encabezado": "Objeto de la Ley",
+          "texto_principal": "La presente Ley tiene por objeto prevenir, tipificar y sancionar los delitos de secuestro y extorsión, y garantizar la protección de la integridad física de las víctimas y sus bienes.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "2",
+          "encabezado": "Ámbito de aplicación",
+          "texto_principal": "La presente Ley es aplicable a las personas que perpetren las conductas tipificadas como delito de secuestro o extorsión en el espacio geográfico de la República Bolivariana de Venezuela, contra los ciudadanos venezolanos o extranjeros y las ciudadanas venezolanas o extranjeras que en ella se encuentren, o cuando sean ejecutadas contra su derechos, intereses o bienes que se encuentren dentro o fuera del espacio geográfico de la República Bolivariana de Venezuela.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": "CAPÍTULO II. DEL SECUESTRO",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "3",
+          "encabezado": "Secuestro",
+          "texto_principal": "Quien ilegítimamente prive de su libertad, retenga, oculte, arrebate o traslade a una o más personas, por cualquier medio, a un lugar distinto al que se hallaba, para obtener de ellas o de terceras personas dinero, bienes, títulos, documentos, beneficios, acciones u omisiones que produzcan efectos jurídicos o que alteren de cualquier manera sus derechos a cambio de su libertad, será sancionado o sancionada con prisión de veinte a treinta años.\n\nIncurrirá en la misma pena cuando las circunstancias del hecho evidencien la existencia de los supuestos previstos en este artículo, aun cuando el perpetrador o perpetradora no haya solicitado a la víctima o terceras personas u obtenido de ellas dinero, bienes, títulos, documentos, beneficios, acciones u omisiones que produzcan efectos jurídicos o que alteren de cualquier manera sus derechos a cambio de la libertad del secuestrado o secuestrada.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "4",
+          "encabezado": "Simulación de secuestro",
+          "texto_principal": "Quien simule estar secuestrado o secuestrada con el propósito de obtener dinero, bienes, títulos, documentos, beneficios, acciones u omisiones de parientes o parientas consanguíneos o afines, cónyuge, concubina o concubino, adoptante o adoptado, empresas, funcionarios públicos o funcionarias públicas o particulares, será sancionado o sancionada con prisión de cinco a diez años.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "5",
+          "encabezado": "Secuestro con fines políticos, conmoción o alarma",
+          "texto_principal": "Quien secuestre a una o más personas como parte de una conspiración contra la integridad de la Nación o sus instituciones, o con la finalidad de atentar contra la estabilidad de los órganos del Poder Público, dar publicidad o propaganda a una causa política, ideológica o religiosa; o para generar conmoción o alarma pública, será sancionado o sancionada con prisión de veinte a treinta años.\n\nIgual pena será aplicada para quienes perpetren el delito establecido en este artículo en asociación con países o repúblicas extranjeras, enemigos exteriores, grupos armados irregulares o subversivos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "6",
+          "encabezado": "Secuestro breve",
+          "texto_principal": "Quien secuestre por un tiempo no mayor de un día a una o más personas, para obtener de ellas o de terceras personas dinero, bienes, títulos, documentos, beneficios, acciones u omisiones que produzcan efectos jurídicos o que alteren de cualquier manera sus derechos a cambio de su libertad, será sancionado o sancionada con prisión de quince a veinte años.\n\nSi la víctima es rescatada dentro del tiempo señalado en este artículo por la acción de las autoridades competentes y sin que la liberación se produzca como consecuencia de la negociación con las autoridades, se aplicará la pena establecida en el artículo 3 de esta Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "7",
+          "encabezado": "Secuestro en medios de transporte",
+          "texto_principal": "Quien secuestre a los o las ocupantes de naves, aeronaves, vehículos o cualquier otro tipo de transporte, público o privado, con el fin de trasladarlos o trasladarlas en el mismo medio a un lugar distinto al de su destino, alterar su ruta o ejercer su control, será sancionado o sancionada con prisión de veinte a veinticinco años.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "8",
+          "encabezado": "Secuestro para canje de personas",
+          "texto_principal": "Quien secuestre a una o más personas para exigir la liberación de personas sujetas a una medida cautelar de privación judicial preventiva de libertad, o que se encuentren sentenciados o sentenciadas o condenados o condenadas como autores o autoras, cómplices, cooperadores o cooperadoras de cualquier delito, será sancionado o sancionada con prisión de diez a quince años.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "9",
+          "encabezado": "Alistamiento forzoso",
+          "texto_principal": "Quien, mediante amenaza o engaño, retenga, oculte, arrebate o traslade por cualquier medio a una o más personas para realizar un alistamiento forzoso, con el fin de formar parte de grupos armados irregulares, será sancionado o sancionada con prisión de quince a veinte años.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "10",
+          "encabezado": "Agravantes",
+          "texto_principal": "Las penas de los delitos previstos en los artículos anteriores serán aumentadas en una tercera parte, cuando:",
+          "numerales_literales": [
+            "1. La víctima fuere niño, niña o adolescente, adulto o adulta mayor, personas con discapacidad física o mental, mujeres en estado de gravidez o personas que padezcan enfermedades que comprometan su vida.",
+            "2. Se hayan ejercido actos de tortura o violencia física, sexual o psicológica en contra del secuestrado o secuestrada, o de cualquier otra forma hayan menoscabado sus derechos humanos.",
+            "3. Se hayan cometido contra funcionarios o funcionarias de elección popular, magistrados o magistradas, jueces o juezas del Poder Judicial, ministros o ministras, Procurador o Procuradora General de la República, el o la Fiscal General de la República, los o las fiscales del Ministerio Público, Contralor o Contralora General de la República, Defensor o Defensora del Pueblo, rectores o rectoras del Poder Electoral, los o las integrantes de la Fuerza Armada Nacional Bolivariana en situación de actividad y en el ejercicio de sus funciones, funcionarios o funcionarias de los cuerpos y órganos de seguridad ciudadana, jefes o jefas de misiones diplomáticas o consulares debidamente acreditados o acreditadas en el país, y de sus respectivos familiares dentro del tercer grado de consanguinidad y segundo de afinidad.",
+            "4. La persona secuestrada sea trasladada a territorio extranjero.",
+            "5. Es perpetrado contra un o una pariente dentro del cuarto grado de consanguinidad y segundo de afinidad, cónyuges o concubinos o concubinas, o aprovechando la confianza dada por la víctima al autor o autora.",
+            "6. Es cometido usando ilícitamente uniformes de las autoridades del Estado, hábito religioso o disfraz, en ocasión a la confianza que genera su investidura.",
+            "7. Por causa o consecuencia del secuestro sobrevenga la muerte de la víctima.",
+            "8. El secuestro se prolongue por un tiempo mayor de tres días.",
+            "9. Se hubiere cometido en lugar despoblado, rural o fronterizo.",
+            "10. La víctima sea entregada a un tercero o a un grupo delictivo a cambio de un beneficio.",
+            "11. Es cometido por funcionarios públicos o funcionarias públicas.",
+            "12. Es cometido mediante amenazas, sevicia, engaño o venganza.",
+            "13. Es cometido en zonas de seguridad establecidas en la ley respectiva.",
+            "14. La víctima es sometida a la mendicidad, prostitución o trabajo forzoso.",
+            "15. Es cometido para garantizar la huida o la impunidad de un hecho punible perpetrado con anterioridad al del secuestro.",
+            "16. Es cometido con armas.",
+            "17. Es cometido con el uso de estupefacientes o sustancias psicotrópicas."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": "CAPÍTULO II. DEL SECUESTRO",
+      "seccion": "Sección primera: De los Cómplices",
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "11",
+          "encabezado": "Cómplices",
+          "texto_principal": "Quien ejecute o realice cualquier actividad o suministre algún medio, destinado a facilitar la perpetración de los delitos previstos en la presente Ley, será sancionado con la pena correspondiente al tipo delictivo perpetrado rebajado en una cuarta parte, siempre que dicha actividad no se adecue a la modalidad de autoría o determinación.\n\nCuando los supuestos establecidos en este artículo sean perpetrados por personas jurídicas, serán sancionadas con las multas previstas en las leyes que regulen la materia y sus representantes serán sancionados o sancionadas de conformidad con lo establecido en este artículo.\n\nCuando el cómplice informe oportunamente a la autoridad competente la realización de cualquiera de las actividades establecidas en este artículo, la pena prevista será rebajada en un tercio.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": "CAPÍTULO II. DEL SECUESTRO",
+      "seccion": "Sección segunda: De los Beneficios de la Víctima y de sus Familiares",
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "12",
+          "encabezado": "Protección personal",
+          "texto_principal": "El Ministerio Público podrá ordenar a las autoridades competentes, por el tiempo que considere necesario y sólo cuando prevalezcan circunstancias que permitan determinar la existencia de una amenaza cierta de secuestro, la protección personal a cualquier ciudadano o ciudadana.\n\nCuando circunstancias urgentes así lo exijan, las autoridades competentes deberán brindar la protección personal establecida en este artículo, comunicando al Ministerio Público dentro de las doce horas siguientes la protección realizada.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "13",
+          "encabezado": "Asistencia psicológica y psiquiátrica",
+          "texto_principal": "Sin perjuicio de la asistencia psicológica y psiquiátrica a que tengan derecho el secuestrado o secuestrada y su núcleo familiar, durante y después del secuestro el Estado promoverá el desarrollo de programas de asistencia psicológica y psiquiátrica con el fin de lograr su recuperación integral.\n\nEspecial atención merecerán en estos programas los niños, niñas y adolescentes, el adulto mayor o adulta mayor, personas con discapacidad física o mental, mujeres en estado de gravidez o personas que padezcan enfermedades que hayan sido víctimas del delito de secuestro.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": "CAPÍTULO II. DEL SECUESTRO",
+      "seccion": "Sección tercera: Atenuante del Delito de Secuestro",
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "14",
+          "encabezado": "Atenuante por colaboración",
+          "texto_principal": "Cuando el perpetrador o perpetradora de los delitos previstos en el presente Capítulo, libere voluntariamente a la persona secuestrada en un tiempo no superior a veinticuatro horas, sin lograr el fin que se proponía y sin causar daño alguno, la pena aplicable será reducida a una cuarta parte.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": "CAPÍTULO II. DEL SECUESTRO",
+      "seccion": "Sección cuarta: De la Actuación de Protección",
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "15",
+          "encabezado": "Actuación de protección",
+          "texto_principal": "El Ministerio Público, al tener noticia cierta de la comisión de alguno de los delitos previstos en el presente Capítulo, practicará las actuaciones útiles y necesarias para proteger la integridad física de la víctima, de sus parientes cercanos y sus patrimonios.\n\nPara garantizar el objeto de la investigación, el Ministerio Público podrá verificar el patrimonio de la víctima y de sus parientes cercanos y solicitar medidas judiciales de protección.\n\nEl Ministerio Público requerirá al órgano encargado de la inspección, supervisión, vigilancia, regulación y control de los bancos, entidades de ahorro y préstamo y otras instituciones financieras, a las notarías y registros públicos, la información necesaria para la verificación patrimonial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": "CAPÍTULO III. DE LA EXTORSIÓN",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "16",
+          "encabezado": "La extorsión",
+          "texto_principal": "Quien por cualquier medio capaz de generar violencia, engaño, alarma o amenaza de graves daños contra personas o bienes, constriña él consentimiento de una persona para ejecutar acciones u omisiones capaces de generar perjuicio en su patrimonio o en el de un tercero, o para obtener de ellas dinero, bienes, títulos, documentos o beneficios, serán sancionados o sancionadas con prisión de diez a quince años.\n\nIncurrirá en la misma pena cuando las circunstancias del hecho evidencien la existencia de los supuestos previstos en este artículo, aun cuando el perpetrador o perpetradora no haya obtenido de la víctima o de terceras personas dinero, bienes, títulos, documentos o beneficios, acciones u omisiones que alteren de cualquier manera sus derechos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "17",
+          "encabezado": "Extorsión por relación especial",
+          "texto_principal": "Quien se valga de una relación contractual, gremial, laboral o de confianza para extorsionar a una persona con el fin de obtener de ella o de terceras personas, dinero, títulos, bienes, documentos, beneficios, acciones u omisiones capaces de generar perjuicio a su honor, reputación, patrimonio o a la eficacia y eficiencia de la Administración Pública, será sancionado o sancionada con prisión de ocho a quince años.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "18",
+          "encabezado": "Cambio ilícito del curso de naves y aeronaves u otro medio de transportes",
+          "texto_principal": "Quien por cualquier medio de extorsión capaz de generar violencia, engaño, alarma o amenaza de graves daños contra personas o bienes, constriña el consentimiento de una persona para cambiar el curso de aeronaves, naves o cualquier otro medio de transporte colectivo, de carga o particular con el fin de trasladarlos a un lugar distinto al de su destino o alterar su ruta, será sancionado o sancionada con prisión de quince a veinte años.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "19",
+          "encabezado": "Agravantes",
+          "texto_principal": "Las penas de los delitos previstos en los artículos anteriores serán aumentadas en una tercera parte, cuando:",
+          "numerales_literales": [
+            "1. La víctima fuere niño, niña o adolescente, adulto o adulta mayor, persona con discapacidad física o mental, mujeres en estado de gravidez o personas que padezcan enfermedades que comprometan su vida.",
+            "2. Se hayan ejercido actos de tortura o violencia física, sexual o psicológica en contra de la víctima, o de cualquier otra, forma hayan menoscabado sus derechos humanos.",
+            "3. Se hayan cometido contra funcionarios o funcionarias de elección popular magistrados o magistradas, jueces o juezas del Poder Judicial, ministros, ministras, Procurador o Procuradora General de la República, el o la Fiscal General de la República, los o las fiscales del Ministerio Público, Contralor o Contralora General de la República, Defensor o Defensora del Pueblo, rectores o rectoras del Poder Electoral, los o las integrantes de la Fuerza Armada Nacional Bolivariana en situación de actividad y en el ejercicio de sus funciones, funcionarios o funcionarias de los cuerpos y órganos de seguridad ciudadana, jefes o jefas de misiones diplomáticas o consulares debidamente acreditados o acreditadas en el país, y de sus respectivos familiares dentro del tercer grado de consanguinidad y segundo de afinidad.",
+            "4. Se cometan para causar conmoción o alarma pública.",
+            "5. Es perpetrado contra un pariente dentro del cuarto grado de consanguinidad y segundo de afinidad, cónyuges o concubinos o concubinas, o aprovechando la confianza dada por la víctima al autor o autora.",
+            "6. Es cometido usando ilícitamente uniformes de autoridades del Estado, hábito religioso o disfraz o en ocasión a la confianza que genera su investidura.",
+            "7. Es cometido por funcionarios públicos o funcionarias públicas.",
+            "8. Es cometido con armas.",
+            "9. Es cometido con el uso de estupefacientes o sustancias psicotrópicas."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": "CAPÍTULO IV. DISPOSICIONES COMUNES",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "20",
+          "encabezado": "Beneficios procesales y prescripción",
+          "texto_principal": "Quienes incurran en los delitos contemplados en esta Ley, podrán gozar de los beneficios procesales una vez cumplida las tres cuartas partes de la pena impuesta.\n\nEl órgano jurisdiccional analizará de forma restrictiva el otorgamiento de las medidas de coerción personal sustitutivas de libertad.\n\nPara los delitos establecidos en esta Ley sólo se aplicará la prescripción ordinaria.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "21",
+          "encabezado": "Colaboración en la investigación penal",
+          "texto_principal": "El Ministerio Público suspenderá el ejercicio de la acción penal conforme a lo establecido en el artículo 39 del Código Orgánico Procesal Penal a los autores o autoras, cooperadores o cooperadoras, cómplices o encubridores o encubridoras de los delitos tipificados en la presente Ley, que colaboren eficazmente con las autoridades competentes para lograr la frustración o el esclarecimiento del delito investigado, la aprehensión de otros autores o autoras, cooperadores o cooperadoras, cómplices o encubridores o encubridoras, la liberación de la persona o personas secuestradas o evitar que se realicen otros delitos.\n\nEl proceso penal será reanudado respecto al informante arrepentido o arrepentida y la pena establecida para estos casos será rebajada hasta la mitad, cuando las informaciones suministradas hayan satisfecho las expectativas por las cuales se suspendió el ejercicio de la acción penal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "22",
+          "encabezado": "Eximente de sanción para operaciones encubiertas",
+          "texto_principal": "Los ciudadanos autorizados y ciudadanas autorizadas por el Tribunal de Control y los funcionarios públicos o funcionarias públicas pertenecientes a unidades especializadas sobre los delitos previstos en esta Ley, que se encuentren infiltrados o infiltradas entre los autores o autoras, cooperadores o cooperadoras, cómplices o encubridores o encubridoras, quedan exentos o exentas de responsabilidad penal por el uso y mantenimiento de identidad falsa, creada para la realización de las operaciones encubiertas.\n\nLas acciones derivadas de las operaciones encubiertas deberán ser coordinadas con el Ministerio Público.\n\nLas operaciones encubiertas establecidas en este artículo y su eximente de responsabilidad penal, excluyen la posibilidad de alterar registros, archivos o libros públicos para la creación de la identidad falsa.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "23",
+          "encabezado": "Aseguramiento de bienes",
+          "texto_principal": "Los bienes muebles o inmuebles empleados o provenientes de la perpetración de los delitos tipificados en esta Ley, serán puestos a la orden del Ministerio Público para su aseguramiento en la investigación penal.\n\nCuando los bienes muebles o inmuebles señalados en el presente artículo, así como sus respectivas rentas, hayan pasado al patrimonio de la República mediante sentencia firme, el Ejecutivo Nacional dispondrá de ellos y destinará con prioridad la totalidad o una parte considerable, a la formación, capacitación y adiestramiento del personal integrante de las unidades policiales y militares especializadas en prevención e investigación de los delitos tipificados en esta Ley, así como a la adquisición de equipos técnicos y científicos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "24",
+          "encabezado": "Incremento patrimonial",
+          "texto_principal": "Quien obtenga, directa o indirectamente, para si o para terceros incremento patrimonial proveniente de la perpetración de los delitos tipificados en esta Ley, será sancionado o sancionada con prisión de veinte a veinticinco años.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "25",
+          "encabezado": "Inhabilitación para ejercer funciones públicas",
+          "texto_principal": "Quien haya cumplido la pena por los delitos previstos en esta Ley, queda inhabilitado o inhabilitada para ejercer funciones públicas por un término de quince años.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "26",
+          "encabezado": "Prohibiciones de otorgamiento de créditos, fianzas y avales",
+          "texto_principal": "Queda prohibido todo crédito, fianza, aval o cualquier suministro de recursos destinados al pago para la liberación de secuestrados o secuestradas o el pago de extorsiones.\n\nQuienes incumplan el contenido de esta norma, serán sancionados o sancionadas conforme con lo establecido en el artículo 11 de la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "27",
+          "encabezado": "De las empresas de seguros y reaseguros",
+          "texto_principal": "Se prohíbe todo contrato de seguro o reaseguro nacional o extranjero que contemple pólizas de pago para la liberación de la víctima o familiares de ésta por los delitos contemplados en el Capitulo II de la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": "CAPÍTULO V. DE LAS AUTORIDADES COMPETENTES",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "28",
+          "encabezado": "Autoridades competentes",
+          "texto_principal": "Son autoridades competentes en materia de secuestro y extorsión:",
+          "numerales_literales": [
+            "1. Para la investigación penal de los delitos tipificados en la presente Ley, bajo la dirección del Ministerio Público:",
+            "a) El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas (CICPC).",
+            "b) Los componentes de la Fuerza Armada Nacional Bolivariana, dentro de los límites de su competencia.",
+            "c) Autoridades de inteligencia policial.",
+            "d) El Cuerpo de Policía Nacional dentro del límite de sus funciones auxiliares de investigación penal.",
+            "e) Cualquier otro órgano auxiliar de investigación penal cuya intervención sea requerida por el Ministerio Público.",
+            "2. Para la prevención de los delitos tipificados en la presente Ley:",
+            "a) Cuerpo de Policía Nacional.",
+            "b) Cuerpos de Policía Estadal, Municipal y servicios de Policía Comunal, dentro del límite de sus competencias.\n\nLas autoridades competentes señaladas en el presente artículo, crearán en sus respectivas dependencias unidades especializadas de prevención e investigación de los delitos tipificados en esta Ley, según corresponda.\n\nLas autoridades competentes, inmediatamente cuando de cualquier modo tengan conocimiento de la perpetración de alguno de los delitos tipificados en esta Ley, deberán practicar las diligencias necesarias y urgentes para identificar y ubicar a los autores o las autoras y demás partícipes, e informar al Ministerio Público dentro de las doce horas siguientes."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": null,
+      "capitulo": "CAPÍTULO V. DE LAS AUTORIDADES COMPETENTES",
+      "seccion": "Sección primera: De la obligación con las autoridades competentes",
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "29",
+          "encabezado": "Obligación de suministrar información",
+          "texto_principal": "Las empresas u organismos públicos o privados que presten servicios de telecomunicaciones, bancarios o financieros, están obligados a suministrar las informaciones requeridas por el Ministerio Público, o cuando por razones de necesidad o urgencia, sean solicitadas por las autoridades competentes, las cuales deberán ser suministradas en el plazo requerido o en tiempo real.\n\nEn caso de omitir el suministro de la información en el tiempo indicado o de suministrar una información no veraz, el Ministerio Público ejercerá las acciones conducentes para aplicar las sanciones establecidas en las leyes respectivas, y en caso de reincidencia la pena a aplicar deberá ser aumentada en una tercera parte.\n\nLas empresas u órganos o entes públicos o privados que presten servicios de telecomunicaciones, crearán unidades permanentes de veinticuatro horas y de siete días a la semana encargadas de procesar y suministrar en tiempo real las informaciones requeridas por el Ministerio Público o las autoridades competentes.\n\nPara los efectos de este artículo se entiende por información en tiempo real, aquella que pueda ser suministrada al Ministerio Público o a las autoridades competentes, de manera inmediata al momento en que el hecho objeto de investigación se encuentre en desarrollo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "30",
+          "encabezado": "Obligatoriedad de denunciar",
+          "texto_principal": "Salvo las excepciones establecidas en la ley, toda persona está obligada a denunciar ante el Ministerio Público o demás autoridades competentes la comisión de los delitos tipificados en esta Ley. Su omisión será sancionada de acuerdo con lo establecido en el Código Penal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "DISPOSICIÓN DEROGATORIA",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Derogatoria",
+          "identificador": "Única",
+          "encabezado": null,
+          "texto_principal": "Se derogan todas las disposiciones contempladas en otras leyes que coliden con la presente Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "DISPOSICIÓN FINAL",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Final",
+          "identificador": "Única",
+          "encabezado": null,
+          "texto_principal": "La presente Ley entrará en vigencia el mismo día de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.\n\nDada, firmada y sellada en el Palacio Federal Legislativo, sede de la Asamblea Nacional, en Caracas, a los doce días del mes de mayo de dos mil nueve. Año 199 de la Independencia y 150 de la Federación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    }
+  ]
+}

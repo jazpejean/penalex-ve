@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/* ============================================================
+   PENALEX VE — Sistema de diseño editorial (tema claro)
+   Logo azul #031F4E + dorado #C5A059 + fondos claros
+   ============================================================ */
+
+:root {
+  --fondo: #f1f5f9;        /* fondo de página (gris pizarra claro, como la app) */
+  --superficie: #ffffff;   /* tarjetas y paneles */
+  --capa: #e2e8f0;         /* bordes y capas intermedias */
+  --texto: #031f4e;        /* azul del logo: texto principal y marca */
+  --texto-2: #475569;      /* texto secundario */
+  --azul: #031f4e;         /* primario institucional */
+  --azul-suave: #eef2f8;   /* fondo azul tenue */
+  --oro: #c5a059;          /* acento dorado */
+  --oro-2: #9a7a34;        /* dorado oscuro para legibilidad sobre claro */
+}
+
+@theme inline {
+  --color-background: var(--fondo);
+  --color-foreground: var(--texto);
+}
+
+body {
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Titulares editoriales (serif) */
+h1, h2, h3, .serif {
+  font-family: Georgia, "Times New Roman", "Playfair Display", serif;
+}
+
+/* Texto legal: párrafos con interlineado cómodo */
+.articulo-parrafo {
+  line-height: 1.8;
+  text-align: justify;
+}
+
+::selection {
+  background: rgba(197, 160, 89, 0.35);
+  color: #031f4e;
+}
+
+/* Scrollbar sutil */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* Inputs numéricos sin flechas */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="number"] { -moz-appearance: textfield; appearance: textfield; }

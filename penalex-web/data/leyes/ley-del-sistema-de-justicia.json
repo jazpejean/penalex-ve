@@ -1,0 +1,503 @@
+{
+ "ley_nombre": "Ley del Sistema de Justicia",
+ "estructura": [
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": "Capítulo I — Disposiciones Generales",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "1",
+     "encabezado": "Objeto",
+     "texto_principal": "Esta Ley tiene por objeto coordinar la organización y funcionamiento del Sistema de Justicia, a los fines de garantizar el acceso universal de todas las personas a dicho Sistema, para asegurar el disfrute y ejercicio de los derechos humanos.\n\nSe garantizarán las condiciones jurídicas y administrativas para que la igualdad ante la ley y el acceso universal de todas las personas al Sistema de Justicia sea real y efectivo, adoptando medidas positivas a favor de las personas en situación de vulnerabilidad.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "2",
+     "encabezado": "Componentes del Sistema de Justicia",
+     "texto_principal": "El Sistema de Justicia está constituido por: el Tribunal Supremo de Justicia y demás tribunales que determine la ley; el Ministerio Público; la Defensoría Pública, los órganos de investigación penal; los y las auxiliares, los funcionarios y funcionarias de justicia; el Sistema Penitenciario; los medios alternativos de justicia; los ciudadanos y ciudadanas que participan en la administración de justicia, conforme con la ley y los abogados autorizados y abogadas autorizadas para el ejercicio.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "3",
+     "encabezado": "Finalidades",
+     "texto_principal": "Esta Ley tiene las siguientes finalidades:",
+     "numerales_literales": [
+      "1. Integrar y organizar el Sistema de Justicia para coordinar los planes de cada uno de los órganos que lo constituyen, con el fin de garantizar la eficacia y eficiencia en la prestación de sus servicios, orientados al cumplimiento de los fines esenciales del Estado.",
+      "2. Garantizar el acceso universal de todas las personas al Sistema de Justicia para asegurar el efectivo disfrute y ejercicio de los derechos humanos, así como las condiciones jurídicas y administrativas para que la igualdad ante la ley y el acceso universal de todas las personas al Sistema de Justicia sea real y efectivo, adoptando medidas positivas a favor de las personas en situación de vulnerabilidad.",
+      "3. Crear y fortalecer los medios de participación protagónica del pueblo en la formulación, ejecución y control de las políticas del Sistema de Justicia, así como en los procesos judiciales.",
+      "4. Afirmar la soberanía nacional y asegurar el carácter popular del Sistema de Justicia, a fin de consolidar, a partir del Estado de Derecho, el Estado de Justicia.",
+      "5. Impulsar el compromiso de quienes laboran en el Sistema de Justicia con las transformaciones sociales, la lucha contra la exclusión social y la consolidación del Estado Democrático y Social de Derecho y de Justicia.",
+      "6. Las demás establecidas en la Constitución de la República y la ley."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "4",
+     "encabezado": "Principios de la justicia",
+     "texto_principal": "El Estado, a través del Sistema de Justicia, garantizará una justicia gratuita, accesible, imparcial, idónea, transparente, autónoma, independiente, responsable, equitativa y expedita, sin dilaciones indebidas, sin formalismos y reposiciones inútiles, preservándolas como un fin y un valor del Estado que no se sacrificará en su desarrollo por la omisión de formalismos innecesarios.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "5",
+     "encabezado": "Principios de organización y funcionamiento del Sistema de Justicia",
+     "texto_principal": "El Sistema de Justicia y los órganos que lo integran se rigen en su organización y funcionamiento por los principios de honestidad, participación, celeridad, eficacia, eficiencia, transparencia, rendición de cuentas, responsabilidad en el ejercicio de la función pública y sometimiento pleno a la ley y al derecho.\n\nCada una de las ramas del Poder Público que conforman el Sistema de Justicia tienen sus funciones propias, pero los órganos a los que incumbe su ejercicio colaborarán entre sí en la realización de los fines del Estado. En consecuencia, se rigen por los principios de integración, coordinación, complementación entre los componentes de dicho Sistema, a los fines de garantizar el derecho humano a la justicia.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "6",
+     "encabezado": "Cometido esencial y orden público",
+     "texto_principal": "Las actividades desarrolladas por los órganos del sistema de justicia, estarán orientadas al cumplimiento de los fines esenciales del estado.\n\nLas disposiciones de esta Ley son de orden público.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "7",
+     "encabezado": "Derechos de las personas ante el Sistema de Justicia",
+     "texto_principal": "Toda persona tiene, entre otros, los siguientes derechos ante el Sistema de Justicia:",
+     "numerales_literales": [
+      "1. Participar de manera organizada, directa y protagónica en la formación de las políticas y control de la gestión del Sistema de Justicia, a través de los consejos comunales y demás formas de organización del Poder Popular, incluyendo las que corresponden a los pueblos y a las comunidades indígenas, de conformidad con lo previsto en la ley y los reglamentos.",
+      "2. Recibir información, capacitación y formación sobre sus derechos, garantías y deberes relacionados con el Sistema de Justicia y todos sus componentes, especialmente para garantizar su derecho a participar y a ejercer la contraloría social.",
+      "3. Solicitar y recibir amplia, oportuna y veraz información sobre la organización, funcionamiento y actividades del Sistema de Justicia y todos sus componentes, igualmente sobre el proceso de selección, nombramiento y procedimientos disciplinarios de sus funcionarios y funcionarias, con el fin de participar y ejercer en forma organizada el control social sobre su gestión pública.",
+      "4. Acceder a los órganos que integran el Sistema de Justicia para hacer valer sus derechos e intereses, incluso los colectivos o difusos, a la tutela efectiva de los mismos y a obtener con prontitud la decisión correspondiente, sin dilaciones y formalismos innecesarios.",
+      "5. Participar de manera organizada, directa y personal en los procesos judiciales, de conformidad con lo establecido en la ley y sus reglamentos.",
+      "6. Al debido proceso de conformidad con la Constitución de la República y las leyes.",
+      "7. A la gratuidad de todos los servicios de los órganos y entes que integran el Sistema de Justicia."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "8",
+     "encabezado": "Deberes de las personas ante el Sistema de Justicia",
+     "texto_principal": "Toda persona tiene, entre otros, los siguientes deberes ante el Sistema de Justicia:",
+     "numerales_literales": [
+      "1. Conocer lo establecido en la Constitución de la República, las leyes y los reglamentos y fortalecer el ejercicio de la ciudadanía como fundamento de una sociedad democrática, basada en la participación y la inclusión social.",
+      "2. Participar en los procesos judiciales en condición de escabinos o escabinas, árbitros o árbitras, de conformidad con la Constitución de la República, las leyes y los reglamentos.",
+      "3. Actuar de buena fe, con lealtad y probidad ante el Sistema de Justicia, especialmente cuando intervengan o participen en los procesos.",
+      "4. Cooperar activa, solidaria y responsablemente con el Sistema de Justicia, especialmente en aquellos casos en que sea requerida su participación o servicios.",
+      "5. Brindar información al Sistema de Justicia cuando sea requerida para indagar y esclarecer la verdad en los procesos, con las garantías establecidas en la Constitución de la República y las leyes."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": "Capítulo II — Del Sistema de Justicia",
+   "seccion": "Sección primera: Comisión Nacional del Sistema de Justicia — Integrantes",
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "9",
+     "encabezado": "Integrantes",
+     "texto_principal": "Se crea la Comisión Nacional del Sistema de Justicia, como órgano de carácter permanente, para generar y coordinar las políticas de Estado que mejoran el funcionamiento del Sistema de Justicia. Esta Comisión estará integrada por:\n\nLa Comisión Nacional del Sistema de Justicia designará entre sus integrantes un Coordinador o Coordinadora y su suplente, quien ejercerá este cargo de forma rotativa por un período de un año.\n\nLa Comisión tendrá su sede en la capital de la República y podrá crear dependencias y sesionar válidamente en todo el territorio nacional.",
+     "numerales_literales": [
+      "1. Dos diputados o diputadas en representación de la Asamblea Nacional, designados o designadas en Sesión Plenaria, uno de los cuales se escogerá de la representación indígena.",
+      "2. El Presidente o Presidenta del Tribunal Supremo de Justicia.",
+      "3. El Ministro o Ministra del Poder Popular con competencia en materia de justicia, seguridad ciudadana y penitenciaria.",
+      "4. El o la Fiscal General de la República.",
+      "5. El Defensor o Defensora del Pueblo.",
+      "6. El Defensor Público General o Defensora Pública General.",
+      "7. El Procurador o Procuradora General de la República.",
+      "8. Un vocero o una vocera del Poder Popular, designado o designada conforme a lo que establece el Reglamento de la ley que rige la materia."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "10",
+     "encabezado": "Atribuciones",
+     "texto_principal": "La Comisión Nacional del Sistema de Justicia tiene las siguientes atribuciones:\n\nEl programa básico de formación y capacitación, incorporará contenidos referidos a la aplicación del Derecho Indígena.",
+     "numerales_literales": [
+      "1. Generar las políticas requeridas para el funcionamiento del Sistema de Justicia, a los fines de garantizar el acceso universal de todas las personas al mismo, mejorar su eficacia y eficiencia, asegurar el disfrute y ejercicio de los derechos humanos a la tutela judicial efectiva y al debido proceso.",
+      "2. Formular los lineamientos para la integración, coordinación y complementación de los órganos que conforman el Sistema de Justicia.",
+      "3. Analizar el contenido de los proyectos de presupuesto que correspondan a cada órgano que integra el Sistema de Justicia, antes de la presentación individual de ellos en el marco del proceso de elaboración del proyecto de Ley de Presupuesto Anual y conforme a lo establecido en la Constitución de la República y las leyes, y hacer observaciones así como recomendaciones que aseguren la articulación de los presupuestos para garantizar la eficacia y eficiencia en la administración de justicia, conforme a las competencias propias de cada órgano.",
+      "4. Evaluar y hacer seguimiento al proceso de transformación de la organización y funcionamiento del Sistema de Justicia y los órganos que lo integran, bajo los principios de integración, coordinación y complementación, a los fines de lograr los objetivos y metas establecidas en las políticas y planes de todo el Sistema de justicia y sus integrantes.",
+      "5. Evaluar los resultados, conclusiones y recomendaciones que cada uno de los órganos que integran el Sistema de Justicia presenten de su gestión, de conformidad con la Constitución de la República y las leyes.",
+      "6. Coordinar el registro, organización, funcionamiento y prestación de servicios de la jurisdicción especial indígena, de conformidad con la Ley Orgánica de Pueblos y Comunidades Indígenas, esta Ley, las leyes que la desarrollen y sus reglamentos.",
+      "7. Registrar, supervisar y coordinar, la organización, funcionamiento y prestación de servicios de los medios alternativos de solución de conflictos, de conformidad con esta Ley, las leyes que los desarrollen y sus reglamentos.",
+      "8. Presentar anualmente un informe de la gestión del Sistema de Justicia ante la Asamblea Nacional con la concurrencia de todos y todas sus integrantes, de conformidad con lo establecido en la ley y los reglamentos.",
+      "9. Promover el estudio de la Constitución de la República y las leyes, para fortalecer el ejercicio libre y responsable de la ciudadanía, así como la democracia participativa y protagónica.",
+      "10. Contribuir con la transformación social del país a través de la participación de quienes laboran en el Sistema de Justicia, para lograr la suprema felicidad del pueblo.",
+      "11. Promover los principios fundamentales que deben orientar la actuación de quienes laboran en el Sistema de Justicia, como los son: la vida, la libertad, la justicia, la igualdad, la solidaridad, la democracia, la responsabilidad social, la participación, el pluralismo político, la ética y la preeminencia de los derechos humanos, entre otros.",
+      "12. Aprobar el programa básico de formación y capacitación de quienes prestan servicio a los órganos del Sistema de Justicia, así como promoverlos para las personas, los consejos comunales y las demás formas de organización y participación social, garantizando su efectivo cumplimiento.",
+      "13. Aprobar los convenios relativos a los planes y programas de promoción, formación e investigación presentados como proyectos por la Secretaría Ejecutiva de la Comisión.",
+      "14. Elegir a su Coordinador o Coordinadora.",
+      "15. Designar y remover al Secretario Ejecutivo o Secretaria Ejecutiva.",
+      "16. Dictar el reglamento interno de la Comisión que sea necesario para regular su organización y funcionamiento y asegurar el cumplimiento de sus funciones.",
+      "17. Crear, modificar y suprimir Comisiones Especiales.",
+      "18. Aprobar el proyecto de plan y presupuesto anual de la Comisión, presentado a su consideración por el Secretario Ejecutivo o Secretaria Ejecutiva.",
+      "19. La organización y funcionamiento de la Secretaría Ejecutiva.",
+      "20. Las demás establecidas en esta Ley y sus reglamentos."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "11",
+     "encabezado": "Sesiones ordinarias y extraordinarias",
+     "texto_principal": "La Comisión Nacional del Sistema de Justicia se reunirá en sesiones ordinarias y en sesiones extraordinarias. Las sesiones ordinarias se realizarán, al menos, una vez al mes y las sesiones extraordinarias cuando sean convocadas por su Coordinador o Coordinadora, de oficio o a requerimiento de cualquiera de sus integrantes, conforme a las formalidades y plazos establecidos en el Reglamento interno.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "12",
+     "encabezado": "Quórum de las sesiones y decisiones",
+     "texto_principal": "Para la validez de las sesiones y deliberaciones de la Comisión Nacional del Sistema de Justicia se requiere la presencia de la mitad más uno de sus integrantes. Las decisiones de la Comisión serán adoptadas por consenso. Cuando ello no fuere posible, las decisiones serán adoptadas por la mayoría simple de los o las integrantes presentes y, en caso de empate, su Coordinador o Coordinadora tendrá doble voto. Quien tuviere conflicto de intereses con la materia considerada en la sesión, deberá manifestarlo expresamente y abstenerse de intervenir en las deliberaciones y en la votación, dejando constancia en el acta correspondiente.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "13",
+     "encabezado": "Actas de las sesiones",
+     "texto_principal": "De las sesiones ordinarias y extraordinarias de la Comisión Nacional del Sistema de Justicia se levantará un acta, en la cual se dejará constancia de los asuntos tratados, un resumen de las exposiciones de sus integrantes, de los acuerdos, resoluciones, así como del cumplimiento y ejecución de las decisiones adoptadas por la Comisión Nacional del Sistema de Justicia.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "14",
+     "encabezado": "Comisiones Especiales",
+     "texto_principal": "La Comisión Nacional del Sistema de Justicia podrá aprobar la creación de Comisiones Especiales bajo su adscripción, estableciendo sus integrantes, ámbito de actuación y atribuciones.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "15",
+     "encabezado": "Atribuciones y deberes del Coordinador o Coordinadora",
+     "texto_principal": "Son atribuciones y deberes del Coordinador o Coordinadora de la Comisión Nacional del Sistema de Justicia:",
+     "numerales_literales": [
+      "1. Dirigir y coordinar las labores de la Comisión.",
+      "2. Ejercer la representación de la Comisión.",
+      "3. Convocar a los y las integrantes de la Comisión a sus sesiones ordinarias y extraordinarias, así como coordinar sus reuniones.",
+      "4. Cumplir y hacer cumplir las decisiones de la Comisión.",
+      "5. Presentar a la Asamblea Nacional un informe anual de las labores de la Comisión Nacional del Sistema de Justicia, así como cualquier otro informe que le sea requerido por el Poder Legislativo Nacional.",
+      "6. Promover la articulación entre los componentes del Sistema de Justicia, así como con los demás órganos del Estado, para constatar a través de la Secretaría Ejecutiva, el cumplimiento y ejecución de los planes y programas aprobados por la Comisión.",
+      "7. Suscribir la correspondencia de la Comisión, pudiendo delegar esta atribución mediante la debida autorización en el Secretario Ejecutivo o Secretaria Ejecutiva.",
+      "8. Las establecidas en la ley, reglamentos y demás instrumentos internos de la Comisión."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "16",
+     "encabezado": "Régimen Presupuestario",
+     "texto_principal": "Del presupuesto ordinario nacional, se le asignará una partida anual variable al Sistema de Justicia, de conformidad con lo establecido en el artículo 254 de la Constitución de la República, dentro de la cual se incluirá el correspondiente al funcionamiento de la Comisión Nacional del Sistema de Justicia. Los órganos que conforman el Sistema de Justicia presentarán sus respectivos presupuestos a través de la Comisión Nacional del Sistema de Justicia, la cual podrá hacer observaciones con la finalidad de garantizar la eficacia y eficiencia en el funcionamiento del referido Sistema.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": "Sección segunda: De la Secretaría Ejecutiva — Del Secretario Ejecutivo o Secretaria Ejecutiva",
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "17",
+     "encabezado": "Del Secretario Ejecutivo o Secretaria Ejecutiva",
+     "texto_principal": "La Comisión Nacional del Sistema de Justicia tendrá para su funcionamiento una Secretaría Ejecutiva, quien será de libre nombramiento y remoción de la referida Comisión. A tal efecto, la Comisión adoptará esta decisión de conformidad con lo establecido en el artículo 12 de la presente Ley.\n\nPara ejercer el cargo de Secretario Ejecutivo o Secretaria Ejecutiva se requiere ser venezolano o venezolana, mayor de treinta (30) años, de reconocida honorabilidad y tener idoneidad.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "18",
+     "encabezado": "Atribuciones",
+     "texto_principal": "La Secretaría Ejecutiva de la Comisión Nacional del Sistema de Justicia, tiene las siguientes atribuciones y deberes:",
+     "numerales_literales": [
+      "1. Cumplir y hacer cumplir los acuerdos, resoluciones e instrucciones de la Comisión, así como supervisar, controlar y hacer seguimiento a su cumplimiento.",
+      "2. Preparar la agenda de las sesiones ordinarias y extraordinarias de la Comisión, tramitar las convocatorias, y elaborar las actas correspondientes.",
+      "3. Expedir las copias certificadas de los acuerdos, resoluciones y demás actuaciones de la Comisión, así como de cualquier otro documento original que repose en sus archivos.",
+      "4. Recibir, en nombre de la Comisión, las comunicaciones dirigidas a la misma y suscribir las que sean autorizadas por ésta, según corresponda.",
+      "5. Suscribir la correspondencia de la Comisión, por delegación expresa del Coordinador o Coordinadora.",
+      "6. Administrar el personal que labora para la Comisión, el cual será de libre nombramiento y remoción del Coordinador o Coordinadora.",
+      "7. Elaborar la propuesta de proyecto de plan y presupuesto anual de la Comisión.",
+      "8. Administrar y ejecutar el presupuesto anual de la Comisión.",
+      "9. Rendir cuenta periódica de su gestión, aportar cualquier información que le sea requerida por la Comisión Nacional del Sistema de Justicia y presentar informe anual de gestión ante ésta.",
+      "10. Elaborar y presentar ante el Coordinador o Coordinadora de la Comisión la propuesta de informe anual de la gestión del Sistema de Justicia a ser presentado a la Asamblea Nacional, de conformidad con lo establecido en la Ley y su reglamento interno.",
+      "11. Las demás establecidas en esta Ley y el Reglamento Interno de la Comisión."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "19",
+     "encabezado": "De la organización y funcionamiento de la Secretaría Ejecutiva",
+     "texto_principal": "La Comisión Nacional del Sistema de Justicia aprobará la organización y funcionamiento de la Secretaría Ejecutiva, mediante el reglamento que al efecto se dicte, en el cual se establecerá lo relativo al personal que ésta requiera.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": "Sección tercera: De los medios alternativos de solución de conflictos — Medios alternativos de solución de conflictos",
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "20",
+     "encabezado": "Medios alternativos de solución de conflictos",
+     "texto_principal": "El Sistema de Justicia promoverá los medios alternativos para la solución de conflictos, tales como el arbitraje, la conciliación, la mediación, la justicia de paz y el régimen especial indígena, siempre que no sean contrarios a la Constitución de la República, a la ley y sus reglamentos. La Comisión Nacional del Sistema de Justicia registrará, coordinará y supervisará la organización, funcionamiento y prestación de sus servicios, de conformidad con esta Ley, las leyes que los desarrollen y sus reglamentos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "21",
+     "encabezado": "Régimen especial indígena",
+     "texto_principal": "El régimen especial indígena consiste en la potestad que tienen los pueblos y comunidades indígenas, a través de sus autoridades legítimas, de adoptar decisiones de acuerdo con su derecho y conforme a los procedimientos tradicionales, para solucionar de forma autónoma y definitiva las controversias que se susciten entre sus integrantes, dentro de su hábitat y tierras, siempre que no sean contrarios a la Constitución de la República, a la ley y los reglamentos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": "Capítulo III — De la Participación Protagónica del Pueblo",
+   "seccion": null,
+   "articulos": [
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "22",
+     "encabezado": "Participación protagónica en la gestión",
+     "texto_principal": "Toda persona tiene derecho a participar de manera organizada, directa y protagónica en la formación de las políticas y control de la gestión del Sistema de Justicia, a través de los consejos comunales y las demás formas de organización del Poder Popular, incluyendo las que correspondan a los pueblos y comunidades indígenas, de conformidad con lo previsto en la ley y sus reglamentos. Así mismo, toda persona tiene derecho a participar de manera organizada, directa y personal en los procesos judiciales, de conformidad con los mecanismos establecidos en la ley y los reglamentos.\n\nEs obligación del Sistema de Justicia y de todos sus componentes, facilitar la generación de las condiciones más favorables para garantizar el ejercicio pleno y efectivo de este derecho.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "23",
+     "encabezado": "Participación en formación de las políticas, planes y normas",
+     "texto_principal": "El Sistema de Justicia y todos sus componentes deben realizar una consulta pública anual para la formulación de sus políticas y planes, así como para la elaboración de los proyectos de presupuesto anual. Así mismo, deberán presentar a consulta pública los actos administrativos de carácter normativo o de efectos generales.\n\nEstas consultas públicas se regularán de conformidad con lo establecido en esta Ley y sus reglamentos, y supletoriamente por la Ley Orgánica de la Administración Pública y sus reglamentos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "24",
+     "encabezado": "Participación en la selección de los funcionarios y funcionarias del Sistema de Justicia",
+     "texto_principal": "Toda persona tiene derecho a participar de manera directa y protagónica, así como a través de los consejos comunales y las demás formas de organización del Poder Popular, en el proceso de selección y designación de los funcionarios y funcionarias del Sistema de Justicia y de todos sus componentes, especialmente de los jueces y juezas, de conformidad con lo previsto en esta Ley, las leyes que la desarrollen y sus reglamentos. En este sentido, las leyes establecerán, entre otros:",
+     "numerales_literales": [
+      "1. El carácter público del proceso de selección de los funcionarios y funcionarias del Sistema de Justicia, así como la difusión y promoción del desarrollo de los mismos.",
+      "2. El acceso de toda persona a la información oportuna, veraz, imparcial y sin censura acerca de los procesos de selección de los funcionarios y funcionarias del Sistema de Justicia, así como de los datos personales y profesionales de quienes aspiran a ocupar dichos cargos, sin más límites que los establecidos en la Constitución de la República y las leyes para proteger los derechos al honor, reputación y vida privada.",
+      "3. La participación de los consejos comunales y las demás formas de organización del Poder Popular, en la postulación de aspirantes a los concursos de oposición públicos para la selección y designación de estos funcionarios y funcionarias.",
+      "4. La participación de los consejos comunales y las demás formas de organización del Poder Popular, en la postulación de aspirantes a los jurados de los circuitos judiciales responsables de los concursos de oposición públicos para la selección y designación de estos funcionarios y funcionarias."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "25",
+     "encabezado": "Rendición pública de cuentas",
+     "texto_principal": "El Sistema de Justicia y los órganos que lo integran deberán presentar anual y públicamente, un informe detallado y preciso de la gestión realizada durante ese período. En tal sentido, deberán brindar explicación suficiente y razonada de las políticas y planes formulados, su ejecución, metas alcanzadas y presupuesto utilizado, así como la descripción de las actividades realizadas durante este período.\n\nEl contenido, forma, lugar y oportunidad de estos informes anuales se regulará de conformidad con lo establecido en esta Ley y sus reglamentos, y supletoriamente por la Ley Orgánica de la Administración Pública y sus reglamentos.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "26",
+     "encabezado": "De la Contraloría Social",
+     "texto_principal": "Los consejos comunales y las demás formas de organización del Poder Popular, tienen derecho a participar y, especialmente, a ejercer la contraloría social sobre la gestión del Sistema de Justicia y de todos sus componentes. A tal efecto, tienen las siguientes funciones:",
+     "numerales_literales": [
+      "1. Vigilar y exigir el cumplimiento de esta Ley, las leyes que la desarrollen y sus reglamentos con el objeto de contribuir a que los servicios del Sistema de Justicia y de todos sus componentes garanticen los derechos humanos de todas las personas.",
+      "2. Promover la información, capacitación y formación de las comunidades sobre sus derechos, garantías y deberes relacionados con el Sistema de Justicia y todos sus componentes, especialmente para garantizar su derecho a participar y a ejercer la contraloría social.",
+      "3. Notificar y denunciar ante las autoridades competentes los hechos que puedan constituir infracciones a esta Ley, las leyes que la desarrollen y sus reglamentos, a los fines de iniciar los procedimientos administrativos o judiciales a que hubiere lugar, así como intervenir y participar directamente en los mismos, especialmente en los sancionatorios y disciplinarios.",
+      "4. Intervenir y participar en los Consejos Consultivos de los órganos del Sistema de Justicia.",
+      "5. La participación en los procesos de selección para ocupar los cargos de los órganos que forman parte del Sistema de Justicia sujetos a concursos, especialmente para verificar la idoneidad moral y profesional de las personas que optan para dichos cargos.",
+      "6. Las demás establecidas en la Constitución de la República, las leyes y los reglamentos."
+     ],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "27",
+     "encabezado": "Consejos Consultivos del Sistema de Justicia",
+     "texto_principal": "El Sistema de Justicia, a través de los órganos que lo integran, promoverá la constitución y funcionamiento de Consejos Consultivos como órganos asesores en la formulación de políticas y control en la gestión pública. Estos Consejos Consultivos podrán constituirse con carácter nacional, regional o local, así como por materia o colectivos de personas.\n\nLos Consejos Consultivos estarán constituidos por integrantes de los consejos comunales y las demás formas de organización del Poder Popular. Quienes integren dichos Consejos actuarán de forma voluntaria o en colaboración honoraria y no podrán recibir emolumentos, remuneraciones o beneficios de cualquier naturaleza por dichas actividades, so pena de ser sancionados, de conformidad con las leyes que rigen la materia.\n\nLa constitución, organización y funcionamiento de los Consejos Consultivos serán determinados en el acto de su creación, de conformidad con lo establecido en el reglamento de esta Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "28",
+     "encabezado": "Garantías de acceso a los servicios",
+     "texto_principal": "El Sistema de Justicia debe garantizar acceso, personal, directo y efectivo de todas las personas a sus servicios, especialmente de quienes se encuentran en situación de vulnerabilidad. A tal efecto, las leyes que regulen los órganos del Sistema de Justicia deberán establecer medidas dirigidas a asegurar esta garantía.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Artículo",
+     "identificador": "29",
+     "encabezado": "Acceso a la información para la participación popular",
+     "texto_principal": "El Sistema de Justicia, a través de todos los órganos que lo integran, deberá suministrar amplia, oportuna y veraz información sobre su organización, funcionamiento y actividades, con el fin de que el pueblo participe y ejerza control social sobre su gestión pública. A tal efecto, deberá crear un sistema de información que contenga el esquema actualizado de su organización, funcionamiento y régimen de guardias, de jueces, juezas, defensores públicos, defensoras públicas y fiscales.\n\nEl Sistema de Justicia y todos los órganos que lo integran deberán crear, mantener y actualizar un portal electrónico que contendrá, entre otras, la información contemplada en este artículo, así como un mecanismo de comunicación electrónica disponible para todas las personas. A tal efecto, las leyes que regulen los órganos del Sistema de Justicia deberán establecer medidas dirigidas a asegurar este derecho.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": "Disposición Derogatoria",
+   "articulos": [
+    {
+     "tipo_norma": "Disposición Derogatoria",
+     "identificador": "Única",
+     "encabezado": "",
+     "texto_principal": "Se derogan todas las disposiciones contenidas en las leyes y reglamentos contrarios a las normas a las que se refiere la presente Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": "Disposiciones Transitorias",
+   "articulos": [
+    {
+     "tipo_norma": "Disposición Transitoria",
+     "identificador": "Primera",
+     "encabezado": "",
+     "texto_principal": "Dentro de los treinta días siguientes a la publicación de la presente Ley en la Gaceta Oficial de la República Bolivariana de Venezuela, será instalada la Comisión Nacional del Sistema de Justicia y será elegido o elegida el Coordinador o Coordinadora, así como también será designado o designada el Secretario Ejecutivo o Secretaria Ejecutiva.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Disposición Transitoria",
+     "identificador": "Segunda",
+     "encabezado": "",
+     "texto_principal": "Dentro de los noventa días siguientes a la publicación de la presente Ley, el Ministerio del Poder Popular con competencia en materia de participación popular remitirá a la Comisión Nacional del Sistema de Justicia un informe contentivo del directorio de los Consejos Comunales, a los fines de facilitar el ejercicio del derecho a la participación conforme a las disposiciones contenidas en el Capítulo III de esta Ley.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Disposición Transitoria",
+     "identificador": "Tercera",
+     "encabezado": "",
+     "texto_principal": "Dentro de los noventa días siguientes a la publicación de la presente Ley, los órganos que integran el Sistema de Justicia presentarán a la Comisión Nacional del Sistema de Justicia un informe contentivo de las políticas desarrolladas y por cumplirse, con la finalidad de informar a los ciudadanos y ciudadanas sobre la dirección o ubicación geográfica de las sedes de sus oficinas, las competencias asignadas a éstas y de los procedimientos que pueden ejercerse ante ellas. De igual modo, dicho informe contendrá propuestas de las acciones que adelantarán los órganos para el conocimiento de dicha información por parte de los voceros y voceras de los consejos comunales y las demás formas de organización del Poder Popular en cada entidad federal, incluyendo las que corresponden a los pueblos y comunidades indígenas.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    },
+    {
+     "tipo_norma": "Disposición Transitoria",
+     "identificador": "Cuarta",
+     "encabezado": "",
+     "texto_principal": "Dentro de los ciento veinte días siguientes a la publicación de la presente Ley, los órganos que integran el Sistema de Justicia presentarán a la Comisión Nacional del Sistema de Justicia, un informe contentivo del régimen de horarios de labores de las oficinas a su cargo, con indicación de los días hábiles que presten servicios, régimen de guardias, régimen de vacaciones y suplencias, a fin de proponer medidas dirigidas a mejorar la coordinación y funcionamiento armónico de todos los órganos para garantizar una eficiente y eficaz administración de justicia.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  },
+  {
+   "libro": null,
+   "titulo": null,
+   "capitulo": null,
+   "seccion": "Disposiciones Finales",
+   "articulos": [
+    {
+     "tipo_norma": "Disposición Final",
+     "identificador": "Única",
+     "encabezado": "",
+     "texto_principal": "Esta Ley entrará en vigencia al momento de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.",
+     "numerales_literales": [],
+     "paragrafos": [],
+     "nota_jurisprudencial": null,
+     "estado": "vigente"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,323 @@
+{
+  "generado": "2026-11-05T08:21:36.067Z",
+  "leyes": [
+    {
+      "slug": "crbv",
+      "nombre": "Constitución 1999",
+      "orden": 1,
+      "articulos": 370
+    },
+    {
+      "slug": "copp",
+      "nombre": "Código Orgánico Procesal Penal",
+      "orden": 2,
+      "articulos": 522
+    },
+    {
+      "slug": "codigo-penal",
+      "nombre": "Código Penal",
+      "orden": 3,
+      "articulos": 549
+    },
+    {
+      "slug": "ley-de-violencia",
+      "nombre": "Ley Orgánica Sobre el Derecho de las Mujeres a una Vida Libre de Violencia",
+      "orden": 4,
+      "articulos": 149
+    },
+    {
+      "slug": "ley-organica-para-la-proteccion-de-ninos-ninas-y-adolescentes",
+      "nombre": "Ley Orgánica para la Protección de Niños, Niñas y Adolescentes",
+      "orden": 5,
+      "articulos": 755
+    },
+    {
+      "slug": "ley-organica-de-drogas",
+      "nombre": "Ley Orgánica de Drogas",
+      "orden": 6,
+      "articulos": 216
+    },
+    {
+      "slug": "ley-sobre-el-hurto-y-robo-de-vehiculos-automotores",
+      "nombre": "Ley sobre el Hurto y Robo de Vehículos Automotores",
+      "orden": 7,
+      "articulos": 17
+    },
+    {
+      "slug": "ley-organica-contra-la-delincuencia-organizada-y-financiamiento-al-terrorismo",
+      "nombre": "Ley Orgánica Contra la Delincuencia Organizada y Financiamiento al Terrorismo",
+      "orden": 8,
+      "articulos": 97
+    },
+    {
+      "slug": "ley-contra-el-secuestro-y-la-extorsion",
+      "nombre": "Ley Contra el Secuestro y la Extorsión",
+      "orden": 9,
+      "articulos": 32
+    },
+    {
+      "slug": "ley-especial-contra-los-delitos-informaticos",
+      "nombre": "Ley Especial contra los Delitos Informáticos",
+      "orden": 10,
+      "articulos": 33
+    },
+    {
+      "slug": "decreto-con-rango-valor-y-fuerza-de-ley-del-cuerpo-nacional-contra-la-corrupcion",
+      "nombre": "Decreto con Rango, Valor y Fuerza de Ley del Cuerpo Nacional Contra la Corrupción",
+      "orden": 11,
+      "articulos": 25
+    },
+    {
+      "slug": "ley-contra-la-corrupcion",
+      "nombre": "Ley Contra La Corrupción",
+      "orden": 11,
+      "articulos": 108
+    },
+    {
+      "slug": "ley-organica-contra-la-discriminacion-racial",
+      "nombre": "Ley Orgánica Contra La Discriminación Racial",
+      "orden": 12,
+      "articulos": 46
+    },
+    {
+      "slug": "ley-especial-para-prevenir-y-sancionar-la-tortura-y-otros-tratos-crueles-inhumanos-o-degradantes",
+      "nombre": "Ley Especial para Prevenir y Sancionar la Tortura y Otros Tratos Crueles, Inhumanos o Degradantes",
+      "orden": 13,
+      "articulos": 38
+    },
+    {
+      "slug": "ley-para-el-desarme-y-control-de-armas-y-municiones",
+      "nombre": "Ley para el Desarme y Control de Armas y Municiones",
+      "orden": 14,
+      "articulos": 135
+    },
+    {
+      "slug": "reglamento-de-la-ley-para-el-desarme-y-control-de-armas-y-municiones",
+      "nombre": "Reglamento de la Ley para el Desarme y Control de Armas y Municiones",
+      "orden": 14,
+      "articulos": 233
+    },
+    {
+      "slug": "ley-penal-del-ambiente",
+      "nombre": "Ley Penal del Ambiente",
+      "orden": 15,
+      "articulos": 113
+    },
+    {
+      "slug": "ley-penal-de-proteccion-a-la-actividad-ganadera",
+      "nombre": "Ley Penal de Protección a la Actividad Ganadera",
+      "orden": 16,
+      "articulos": 33
+    },
+    {
+      "slug": "ley-contra-la-estafa-inmobiliaria",
+      "nombre": "Ley Contra la Estafa Inmobiliaria",
+      "orden": 17,
+      "articulos": 43
+    },
+    {
+      "slug": "ley-para-la-prevencion-y-erradicacion-del-abuso-sexual-contra-ninas-ninos-y-adolescentes",
+      "nombre": "Ley para la Prevención y Erradicación del Abuso Sexual Contra Niñas, Niños y Adolescentes",
+      "orden": 18,
+      "articulos": 21
+    },
+    {
+      "slug": "ley-para-sancionar-los-crimenes-desapariciones-torturas-y-otras-violaciones-de-los-derechos-humanos-por-razones-politicas-en-el-periodo-1958-1998",
+      "nombre": "Ley para Sancionar los Crimenes, Desapariciones, Torturas y Otras Violaciones de los Derechos Humanos por Razones Políticas en el Período 1958-1998",
+      "orden": 19,
+      "articulos": 33
+    },
+    {
+      "slug": "ley-constitucional-contra-el-odio-por-la-convivencia-pacifica-y-la-tolerancia",
+      "nombre": "Ley Constitucional Contra El Odio, Por La Convivencia Pacífica Y La Tolerancia",
+      "orden": 20,
+      "articulos": 28
+    },
+    {
+      "slug": "ley-sobre-proteccion-a-la-privacidad-de-las-comunicaciones",
+      "nombre": "Ley Sobre Protección a la Privacidad de las Comunicaciones",
+      "orden": 21,
+      "articulos": 9
+    },
+    {
+      "slug": "ley-de-registro-de-antecedentes-penales",
+      "nombre": "Ley De Registro De Antecedentes Penales",
+      "orden": 22,
+      "articulos": 20
+    },
+    {
+      "slug": "ley-que-regula-el-uso-de-la-telefonia-celular-y-la-internet-en-el-interior-de-los-establecimientos-penitenciarios",
+      "nombre": "Ley que Regula el Uso de la Telefonía Celular y la Internet en el Interior de los Establecimientos Penitenciarios",
+      "orden": 23,
+      "articulos": 18
+    },
+    {
+      "slug": "ley-organica-de-extinsion-de-dominio",
+      "nombre": "Ley Orgánica de Extinción de Dominio",
+      "orden": 24,
+      "articulos": 53
+    },
+    {
+      "slug": "ley-organica-de-amparo-a-la-libertad",
+      "nombre": "Ley Orgánica de Amparo a la Libertad y Seguridad Personal",
+      "orden": 25,
+      "articulos": 21
+    },
+    {
+      "slug": "ley-organica-de-amparo-sobre-derechos-y-garantias-constitucionales",
+      "nombre": "Ley Orgánica de Amparo sobre Derechos y Garantías Constitucionales",
+      "orden": 26,
+      "articulos": 49
+    },
+    {
+      "slug": "codigo-organico-penitenciario",
+      "nombre": "Código Orgánico Penitenciario",
+      "orden": 27,
+      "articulos": 176
+    },
+    {
+      "slug": "codigo-organico-de-justicia-militar",
+      "nombre": "Código de Justicia Militar",
+      "orden": 28,
+      "articulos": 596
+    },
+    {
+      "slug": "ley-de-proteccion-de-victimas-testigos-y-demas-sujetos-procesales",
+      "nombre": "Ley de Protección de Victimas, Testigos y Demas Sujetos Procesales",
+      "orden": 29,
+      "articulos": 50
+    },
+    {
+      "slug": "ley-del-estatuto-de-la-funcion-policial",
+      "nombre": "Ley del Estatuto de la Función Policial",
+      "orden": 30,
+      "articulos": 112
+    },
+    {
+      "slug": "ley-del-estatuto-de-la-funcion-de-la-policia-de-investigacion",
+      "nombre": "Ley del Estatuto de la Función de la Policia de Investigación",
+      "orden": 32,
+      "articulos": 142
+    },
+    {
+      "slug": "ley-organica-del-servicio-de-policia-de-investigacion-el-cuerpo-de-investigaciones-cientificas-penales-y-criminalisticas-y-el-servicio-nacional-de-medicina-y-ciencias-forenses",
+      "nombre": "Ley Orgánica del Servicio de la Policía de Investigación, el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Instituto Nacional de Medicina y Ciencias Forenses",
+      "orden": 33,
+      "articulos": 106
+    },
+    {
+      "slug": "ley-organica-del-ministerio-publico",
+      "nombre": "Ley Orgánica del Ministerio Público",
+      "orden": 34,
+      "articulos": 128
+    },
+    {
+      "slug": "ley-organica-de-la-defensa-publica",
+      "nombre": "Ley Orgánica de la Defensa Pública",
+      "orden": 35,
+      "articulos": 155
+    },
+    {
+      "slug": "ley-organica-del-tribunal-supremo-de-justicia",
+      "nombre": "Ley Orgánica de Reforma Parcial de la Ley Orgánica del Tribunal Supremo de Justicia",
+      "orden": 36,
+      "articulos": 198
+    },
+    {
+      "slug": "ley-de-abogados",
+      "nombre": "Ley de Abogados",
+      "orden": 38,
+      "articulos": 93
+    },
+    {
+      "slug": "reglamento-de-la-ley-de-abogados",
+      "nombre": "Reglamento de la Ley de Abogados",
+      "orden": 38,
+      "articulos": 103
+    },
+    {
+      "slug": "ley-de-publicaciones-oficiales",
+      "nombre": "Ley de Publicaciones Oficiales",
+      "orden": 40,
+      "articulos": 18
+    },
+    {
+      "slug": "ley-sobre-el-delito-de-contrabando",
+      "nombre": "Ley sobre el Delito de Contrabando",
+      "orden": 999,
+      "articulos": 51
+    },
+    {
+      "slug": "reglamento-del-servicio-de-alguacilazgo-de-los-circuitos-judiciales-penales",
+      "nombre": "Reglamento del Servicio de Alguacilazgo de los Circuitos Judiciales Penales",
+      "orden": 999,
+      "articulos": 19
+    },
+    {
+      "slug": "codigo-de-etica-profesional-del-abogado-venezolano",
+      "nombre": "Código de Ética Profesional del Abogado Venezolano",
+      "orden": 999,
+      "articulos": 62
+    },
+    {
+      "slug": "ley-organica-del-poder-judicial",
+      "nombre": "Ley Orgánica del Poder Judicial",
+      "orden": 999,
+      "articulos": 121
+    },
+    {
+      "slug": "ley-organica-del-servicio-de-policia-y-del-cuerpo-de-policia-nacional-bolivariana",
+      "nombre": "Ley Orgánica del Servicio de Policía y del Cuerpo de Policía Nacional Bolivariana",
+      "orden": 999,
+      "articulos": 95
+    },
+    {
+      "slug": "ley-organica-de-seguridad-de-la-nacion",
+      "nombre": "Ley Orgánica de Seguridad de la Nación",
+      "orden": 999,
+      "articulos": 63
+    },
+    {
+      "slug": "ley-de-carrera-judicial",
+      "nombre": "Ley de Carrera Judicial",
+      "orden": 999,
+      "articulos": 55
+    },
+    {
+      "slug": "codigo-de-etica-del-juez-venezolano-y-jueza-venezolana",
+      "nombre": "Código de Ética del Juez Venezolano y Jueza Venezolana",
+      "orden": 999,
+      "articulos": 99
+    },
+    {
+      "slug": "ley-del-sistema-de-justicia",
+      "nombre": "Ley del Sistema de Justicia",
+      "orden": 999,
+      "articulos": 35
+    },
+    {
+      "slug": "decreto-con-fuerza-de-ley-de-coordinacion-de-seguridad-ciudadana",
+      "nombre": "Decreto con Fuerza de Ley de Coordinación de Seguridad Ciudadana",
+      "orden": 999,
+      "articulos": 40
+    },
+    {
+      "slug": "ley-constitucional-de-la-comision-para-la-verdad-la-justicia-la-paz-y-la-democracia",
+      "nombre": "Ley Constitucional de la Comisión para la Verdad, la Justicia, la Paz y la Tranquilidad Pública",
+      "orden": 999,
+      "articulos": 25
+    },
+    {
+      "slug": "reglamento-para-el-uso-de-la-camara-de-gesell-de-los-tribunales-de-proteccion-d",
+      "nombre": "Reglamento para el uso de la Cámara de Gesell de los Tribunales de Protección de Niños, Niñas y Adolescentes",
+      "orden": 999,
+      "articulos": 15
+    },
+    {
+      "slug": "decreto-con-rango-valor-y-fuerza-de-ley-organica-de-precios-justos",
+      "nombre": "Decreto con Rango, Valor y Fuerza de Ley Orgánica de Precios Justos",
+      "orden": 999,
+      "articulos": 93
+    }
+  ]
+}

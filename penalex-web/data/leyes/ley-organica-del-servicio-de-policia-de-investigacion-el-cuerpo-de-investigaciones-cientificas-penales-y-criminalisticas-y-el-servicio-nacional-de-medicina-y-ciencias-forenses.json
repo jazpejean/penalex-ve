@@ -1,0 +1,1451 @@
+{
+  "ley_nombre": "DECRETO CON RANGO, VALOR Y FUERZA DE LEY ORGÁNICA DEL SERVICIO DE POLICÍA DE INVESTIGACIÓN, EL CUERPO DE INVESTIGACIONES CIENTÍFICAS, PENALES Y CRIMINALÍSTICAS Y EL SERVICIO NACIONAL DE MEDICINA Y CIENCIAS FORENSES",
+  "estructura": [
+    {
+      "libro": null,
+      "titulo": "TÍTULO I. DISPOSICIONES GENERALES",
+      "capitulo": "Capítulo I. Objeto y ámbito de aplicación",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "1",
+          "encabezado": "Objeto",
+          "texto_principal": "El presente Decreto con Rango, Valor y Fuerza de Ley tiene por objeto regular el servicio de policía de Investigación y de auxilio a la administración de la justicia penal, así como la organización y competencias del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses, con fundamento en las normas, principios y valores establecidos en la Constitución de la República Bolivariana de Venezuela.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "2",
+          "encabezado": "Ámbito de aplicación",
+          "texto_principal": "Las disposiciones del presente Decreto con Rango, Valor y Fuerza de Ley son de orden público y de aplicación obligatoria en todo el territorio de la República Bolivariana de Venezuela.\n\nLas normas y principios contenidos en el presente Decreto con Rango, Valor y Fuerza de Ley, son de cumplimiento obligatorio para todos los particulares, los órganos y entes de la Administración Pública en los distintos ámbitos político- territoriales.\n\nTodo acto de rango legal o sublegal deberá ser dictado con observancia de las normas y principios aquí establecidos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO I. DISPOSICIONES GENERALES",
+      "capitulo": "Capítulo II. Definición, funciones y carácter del. Servicio de Policía de Investigación",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "3",
+          "encabezado": "Del Servicio de Policía de Investigación",
+          "texto_principal": "El servicio de policía de investigación es el conjunto de acciones ejercidas en forma exclusiva por el Estado a través de los órganos y entes con competencia en materia de investigación penal y policial, conforme a los lineamientos y directrices contenidos en la legislación nacional y los que sean dictados por el Órgano Rector, con el propósito de determinar la comisión de hechos punibles.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "4",
+          "encabezado": "De los fines del Servicio de Policía de Investigación",
+          "texto_principal": "Son fines del servicio de policía de investigación:",
+          "numerales_literales": [
+            "1. Contribuir a la determinación de la comisión del delito, la identificación de los autores, autoras, demás partícipes y víctimas, las circunstancias y modalidades de comisión delictiva, mediante la colección y preservación de las evidencias o desarrollo de elementos criminalísticos correspondientes con la finalidad de lograr la aplicación de la ley y el ejercicio de la función jurisdiccional.",
+            "2. Desarrollar la investigación penal con criterios técnicos y científicos para fundamentar los actos conclusivos del Ministerio Público en los procesos penales.",
+            "3. Brindar auxilio al sistema de justicia, en estricto apego a las competencias y atribuciones establecidas en la Constitución de la República Bolivariana de Venezuela y este Decreto con Rango, Valor y Fuerza de Ley.",
+            "4. Elaborar estadísticas de criminalidad, con la finalidad de informar al órgano rector en materia de seguridad ciudadana."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "5",
+          "encabezado": "De la naturaleza del Servicio de Policía de Investigación",
+          "texto_principal": "El servicio de policía de Investigación es de carácter Indagatorio y se prestará de manera continua e ininterrumpida.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "6",
+          "encabezado": "Del carácter del Servicio de Policía de Investigación",
+          "texto_principal": "El servicio de policía de investigación es de carácter civil y profesional, lo cual se manifiesta funcionalmente en su mando, personal, dirección, estructura, cultura, estrategias, tácticas, equipamiento y dotación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "7",
+          "encabezado": "De la responsabilidad del Servicio de Policía",
+          "texto_principal": "El servicio de policía de Investigación es responsabilidad exclusiva del Estado, bajo la rectoría del Poder Nacional. En ningún concepto se permitirá ni se delegará el ejercicio de las funciones de investigación penal o Policial a particulares.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO I. DISPOSICIONES GENERALES",
+      "capitulo": "Capítulo III. Principios generales del. Servicio de Policía de Investigación",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "8",
+          "encabezado": "Principios y garantías de actuación",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal y Policial desarrollarán su actuación con fundamento y estricta observancia con los principios, derechos y garantías consagradas en la Constitución de la República Bolivariana de Venezuela, los tratados Internacionales suscritos por la República y demás leyes que rijan la materia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "9",
+          "encabezado": "Principio de celeridad",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal y policial deben prestar sus servicios y actuar con diligencia, dando respuesta oportuna, inmediata y necesaria a las personas y víctimas, mediante la implementación de los medios breves y eficaces, evitándose las dilaciones Innecesarias sin afectar el debido proceso.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "10",
+          "encabezado": "Principio de eficiencia",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal y policial propenderán al uso racional del talento humano y de los recursos materiales y presupuestarios. La asignación de los recursos se adaptará estrictamente a los requerimientos para el logro de sus metas y objetivos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "11",
+          "encabezado": "Principio de cooperación",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal y policial desarrollarán actividades para el cumplimiento de los fines y objetivos del servicio de policía de investigación, colaborando y cooperando entre sí, con los demás órganos y entes de seguridad ciudadana y del sistema de justicia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "12",
+          "encabezado": "Principio de respeto a los derechos humanos y debido proceso",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal y policial actuarán con estricto apego, respeto y garantía de los derechos humanos y el debido proceso, consagrados en la Constitución República Bolivariana de Venezuela, los tratados sobre derechos humanos suscritos y ratificados por la República y en las leyes que lo desarrollen.\n\nLos órganos y entes con competencia en materia de investigación penal y policial deben respetar y garantizar la Inviolabilidad de la libertad personal, la cual solo podrá ser restringida por orden judicial o ante delitos flagrantes.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "13",
+          "encabezado": "Principio de universalidad e igualdad",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal y policial prestarán su servicio a toda la población sin distinción o discriminación alguna fundamentada en la posición económica, origen étnico, sexo, idioma, religión, nacionalidad, opinión política o de cualquier otra condición o índole.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "14",
+          "encabezado": "Pueblos y comunidades indígenas",
+          "texto_principal": "El servicio de policía de investigación en las regiones habitadas por pueblos y comunidades indígenas deberá adecuar sus procedimientos a las características socioculturales de éstos, siempre que no sean contrarios a la Constitución de la República Bolivariana de Venezuela. Los procedimientos deben realizarse garantizando el respeto a la identidad étnica y cultural y a la dignidad individual y colectiva de las personas indígenas. El Órgano Rector diseñará políticas integrales con respecto a estos procedimientos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "15",
+          "encabezado": "Principio de imparcialidad",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal y policial actuarán con absoluta Imparcialidad y objetividad en el ejercicio de sus funciones, con base en criterios objetivos y sin discriminación en la búsqueda de la verdad, con el propósito de resolver justamente una situación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "16",
+          "encabezado": "Principio de actuación proporcional",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal y policial actuarán en proporción a la gravedad de la situación y al objetivo legítimo que se persiga, de conformidad a lo establecido en la Constitución de la República Bolivariana de Venezuela y la ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "17",
+          "encabezado": "Principio de legalidad",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal y policial observarán en todas sus actuaciones el principio de legalidad conforme a las normas sustantivas y procesales consagradas en la Constitución de la República Bolivariana de Venezuela y la ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "18",
+          "encabezado": "Principio de la participación ciudadana",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal y policial atenderán las recomendaciones de las organizaciones comunitarias y sociales estructuradas para el mejoramiento del servicio de policía de investigación, con fundamento en los valores de la solidaridad, el humanismo y en los principios de democracia participativa, corresponsable y protagónica establecidos en la Constitución de la República Bolivariana de Venezuela, favoreciendo el mantenimiento de la paz social y la convivencia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO I. DISPOSICIONES GENERALES",
+      "capitulo": "Capítulo IV. Del Órgano Rector y del. Sistema Integrado de Policía de Investigación",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "19",
+          "encabezado": "Órgano Rector",
+          "texto_principal": "El Ejecutivo Nacional por órgano del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana es el Órgano Rector del servicio de policía de Investigación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "20",
+          "encabezado": "De las atribuciones del órgano Rector",
+          "texto_principal": "Son atribuciones del Órgano Rector:",
+          "numerales_literales": [
+            "1. Dictar políticas públicas en materia de servicio de policía de investigación y velar por su ejecución.",
+            "2. Diseñar y formular políticas integrales en lo que respecta a procedimientos y actuaciones de los órganos y entes con competencia en materia de investigación penal.",
+            "3. Regular, coordinar, supervisar y controlar la correcta prestación del servicio de policía de investigación.",
+            "4. Establecer los lineamientos administrativos, funcionales y operativos, conforme a los cuales se organizan los integrantes del Sistema Integrado de Policía de Investigación.",
+            "5. Proceder a la habilitación y suspensión del ejercicio de las atribuciones y competencias de los cuerpos de policía en materia de investigación penal y policial, de conformidad con lo previsto en este Decreto con Rango, Valor y Fuerza de Ley.",
+            "6. Fijar, diseñar, implementar, controlar y evaluar las políticas, estándares, planes, programas y actividades relacionadas con la prestación del servicio de policía de investigación.",
+            "7. Adoptar las medidas que considere necesarias, en atención a las recomendaciones formuladas por el Consejo General de Policía, para el mejoramiento del servicio de policía de investigación.",
+            "8. Velar que la correcta actuación los órganos y entes con competencia en materia de investigación penal se desarrolle con estricta sujeción a los derechos humanos.",
+            "9. Diseñar, supervisar y evaluar, en conjunto con el Ministerio del Poder Popular con competencia en materia de educación universitaria, los programas de estudio relacionados con la formación, capacitación y mejoramiento profesional de los funcionarios y funcionarias Policiales de investigación.",
+            "10. Establecer un sistema único de expedición de credenciales a los funcionarios y funcionarias Policiales de investigación integrado al previsto en la Ley Orgánica del Servicio de Policía y Cuerpo de Policía Nacional Bolivariana y la Ley del Estatuto de la Función Policial.",
+            "11. Mantener un registro actualizado del personal Policial de investigación, parque de armas, asignación personal del arma orgánica y equipamiento de los órganos y entes con competencia en materia de investigación penal.",
+            "12. Acopiar y procesar la información relacionada con los índices de criminalidad, actuaciones policiales y cualquier otra en materia de seguridad ciudadana, que deben ser suministradas por los órganos y entes de la Administración Pública en los distintos ámbitos político-territoriales, las personas naturales y jurídicas de derecho privado cuando le sea solicitado.",
+            "13. Ejercer el control de desempeño y evaluación de los órganos y entes con competencia en materia de investigación penal, de acuerdo con los estándares que defina el Órgano Rector.",
+            "14. Ejercer con carácter permanente funciones de supervisión y fiscalización de la prestación del servicio de policía de investigación, de la aplicación de los estándares y programas de asistencia técnica.",
+            "15. Dictar las resoluciones necesarias para el cumplimiento de las disposiciones contenidas en este Decreto con Rango, Valor y Fuerza de Ley.",
+            "16. Cualquier otra que le atribuyan los reglamentos de este Decreto con Rango, Valor y Fuerza de Ley.\n\nCuando se trate del Cuerpo de Policía Nacional Bolivariana y demás cuerpos de policía estadal y municipal, el órgano Rector ejercerá las atribuciones previstas en el presente artículo a través del Viceministerio del Sistema Integrado de Policía, salvo las previstas en el numeral 5 de este artículo."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "21",
+          "encabezado": "Del control sobre el desempeño operativo",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal y Policial deberán Informar al Órgano Rector sobre su desempeño operativo, de acuerdo a lo establecido en el reglamento y resoluciones que rijan la materia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "22",
+          "encabezado": "Del Sistema Integrado de Policía de Investigación",
+          "texto_principal": "El Sistema Integrado de Policía de Investigación comprende la articulación de los órganos y entes que ejercen el servicio de policía de investigación penal y policial, y que coadyuvan a su prestación, a través del desarrollo de una estructura que asegure su gestión y eficiencia, mediante el cumplimiento de principios normas y reglas comunes sobre la formación, la carrera, el desempeño operativo, los niveles y criterios de actuación, las atribuciones, deberes comunes y los mecanismos de supervisión y control.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "23",
+          "encabezado": "De la conformación del Sistema Integrado de Policía",
+          "texto_principal": "El Sistema Integrado de Policía de Investigación estará bajo la rectoría del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana, y lo conforman:",
+          "numerales_literales": [
+            "1. El Ministerio del Poder Popular con competencia en materia de seguridad ciudadana.",
+            "2. El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas.",
+            "3. Los cuerpos de policía debidamente habilitados para ejercer atribuciones y competencia en materia de investigación penal.",
+            "4. La Universidad Nacional Experimental de la Seguridad, en su carácter de institución académica nacional especializada en seguridad.",
+            "5. El Fondo Nacional intergubernamental del Servicio de Policía.",
+            "6. Los órganos y entes especiales de investigación penal.",
+            "7. Los órganos y entes de apoyo a la investigación penal.",
+            "8. El Servicio Nacional de Medicina y Ciencias Forenses.",
+            "9. Cualquier órgano o ente que determine el Ejecutivo Nacional."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "24",
+          "encabezado": "De los órganos y entes especiales de investigación penal",
+          "texto_principal": "Son órganos con competencia especial en investigación penal:",
+          "numerales_literales": [
+            "1. La Fuerza Armada Nacional Bolivariana, por órgano de sus componentes cuando estuvieren ejerciendo funciones de investigación de delitos en el ámbito de sus atribuciones legales.",
+            "2. Cualquier otro órgano al que se le asigne por ley orgánica esta competencia especial."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "25",
+          "encabezado": "De los órganos y entes de apoyo a la investigación penal",
+          "texto_principal": "Son órganos de apoyo a la investigación penal:",
+          "numerales_literales": [
+            "1. La Contraloría General de la República.",
+            "2. El órgano competente en materia de Identificación y extranjería.",
+            "3. Los órganos dependientes del Poder Ejecutivo encargados de la protección civil y administración de desastres.",
+            "4. Los cuerpos de bomberos y administración de emergencias.",
+            "5. Los cuerpos Policiales de inteligencia.",
+            "6. Los Jefes y oficiales de resguardo fiscales.",
+            "7. Los órganos y entes de guardería ambiental.",
+            "8. Los órganos y entes con competencias en materia del sistema financiero, de protección ambiental y socioproductivo.",
+            "9. Los capitanes o comandantes de aeronaves con matrícula de la República Bolivariana de Venezuela, respecto a los hechos punibles que sean cometidos en las mismas durante el vuelo.",
+            "10. Los capitanes de buques con pabellón de la República Bolivariana de Venezuela, respecto a los hechos punibles que sean cometidos en los mismos durante su travesía.",
+            "11. Las unidades de servicios autónomos, secciones, departamentos y demás dependencias de las universidades e institutos universitarios tecnológicos y científicos de carácter público y privado, dedicados a la investigación y desarrollo científico.",
+            "12. Las dependencias encargadas de la seguridad de los sistemas de transporte ferroviario y subterráneo, respecto a los delitos cometidos en sus instalaciones.",
+            "13. La Fuerza Armada Nacional Bolivariana.",
+            "14. Los demás que tengan atribuida esta competencia mediante ley especial."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "26",
+          "encabezado": "De la corresponsabilidad de los y las particulares",
+          "texto_principal": "Los y las particulares deberán colaborar con la investigación penal de los hechos punibles. A tal efecto, deberán brindar apoyo para la determinación de la comisión del delito, la identificación de los autores, autoras, demás partícipes y víctimas, las circunstancias y modalidades de comisión delictiva, de conformidad con las obligaciones y responsabilidades previstas en las leyes, reglamentos y resoluciones.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "27",
+          "encabezado": "Del Consejo General de Policía",
+          "texto_principal": "El Consejo General de Policía del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana ejercerá sus atribuciones y competencias en el ámbito del servicio de policía de investigación y el Sistema Integrado de Policía de Investigación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "28",
+          "encabezado": "Del Fondo Intergubernamental del Servicio de Policía",
+          "texto_principal": "El Fondo Intergubernamental del Servicio de Policía tendrá dentro de sus finalidades coadyuvar y contribuir en la dotación, entrenamiento, asistencia técnica y compensación a los diversos órganos y entes que conforman el Sistema Integrado de Policía de Investigación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "29",
+          "encabezado": "De la sujeción de los integrantes del Sistema Integrado de Policía de Investigación a los lineamientos y normas técnicas del órgano rector",
+          "texto_principal": "Todos los órganos y entes que conforman el Sistema Integrado de Policía de Investigación deben sujetar su actuación en materia de investigación penal a las políticas, lineamientos, resoluciones, estándares, planes y programas del órgano rector.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "30",
+          "encabezado": "Formación de los integrantes del Sistema Integrado de Policía de Investigación",
+          "texto_principal": "Todos los órganos y entes que conforman el Sistema Integrado de Policía de Investigación deben recibir formación en la Universidad Nacional Experimental de la Seguridad, en su carácter de institución académica nacional especializada en seguridad, para el ejercicio adecuado de sus atribuciones y competencias en materia de investigación penal y Policial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "31",
+          "encabezado": "Habilitación",
+          "texto_principal": "El Órgano Rector será el encargado de otorgar la habilitación para que los cuerpos de policía, en los distintos ámbitos político-territoriales, puedan asumir y ejercer las atribuciones y competencias en materia de Investigación penal contempladas en la Ley. Evaluará de forma continua a los cuerpos de policía conforme a estándares de dotación, equipamiento, entrenamiento y desempeño, y tomará las acciones necesarias para garantizar su cumplimiento.\n\nEste proceso estará sometido a reglas generales que garanticen la calidad del servicio y la tutela de los derechos fundamentales de las personas. Corresponde al Órgano Rector, fijar los parámetros y estándares de obligatorio cumplimiento de los cuerpos de policía en los distintos ámbitos político-territoriales. El reglamento y las resoluciones desarrollarán lo concerniente al proceso de habilitación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "32",
+          "encabezado": "Asistencia técnica",
+          "texto_principal": "El Órgano Rector implementará programas de asistencia técnica a los órganos y entes con competencia en materia de investigación penal y policial para el mejoramiento de su desempeño. Esta medida será de obligatorio cumplimiento.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "33",
+          "encabezado": "Suspensión",
+          "texto_principal": "Corresponde al Órgano Rector disponer la suspensión del ejercicio de las atribuciones y competencias de investigación penal a aquellos cuerpos de policía que de forma reiterada incumplan con los estándares y programas de asistencia técnica que se hubiesen adoptado.\n\nEl Órgano Rector determinará las medidas conducentes para garantizar el servicio de policía de investigación en estos casos.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO II. DE LA INVESTIGACIÓN PENAL Y. DE LAS ATRIBUCIONES EN LA MATERIA",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "34",
+          "encabezado": "De la investigación penal",
+          "texto_principal": "Se entenderá como investigación penal el conjunto de diligencias orientadas al descubrimiento y comprobación científica del delito, sus características, la identificación de sus autores, autoras, partícipes y víctimas, así como el aseguramiento de los objetos activos y pasivos.\n\nCorresponde al Ministerio Público ordenar y dirigir la investigación penal en los casos de perpetración de delitos, de conformidad con las competencias y atribuciones establecidas en la Constitución de la República Bolivariana de Venezuela, las leyes y reglamentos, orientando el ejercicio de estas atribuciones fundamentalmente a garantizar la constitucionalidad y legalidad de los actos y actuaciones de investigación penal y policial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "35",
+          "encabezado": "Atribuciones generales de los órganos y entes con competencias en materia de investigación penal",
+          "texto_principal": "Corresponde al Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y los cuerpos de policía debidamente habilitados para ejercer atribuciones y competencia en materia de investigación penal:",
+          "numerales_literales": [
+            "1. Definir y ejecutar el plan de investigación científico policial para el descubrimiento y comprobación de un hecho punible, sus características, la identificación de sus autores, autoras, partícipes y víctimas, así como el aseguramiento de los objetos activos y pasivos.",
+            "2. Informar y notificar al Ministerio Público, de forma permanente y oportuna, la definición y ejecución del plan de investigación científico policial de cada hecho punible.",
+            "3. Ejecutar oportunamente cualquier otro acto o actuación requeridos por el Ministerio Público, que no se encuentren contenidos en el plan de investigación científico policial, para el descubrimiento y comprobación de un hecho punible, sus características, la identificación de sus autores, autoras, partícipes y víctimas, así como el aseguramiento de los objetos activos y pasivos.",
+            "4. Las demás establecidas en las leyes, reglamentos y resoluciones.\n\nLas competencias establecidas en el presente artículo deberán ser ejercidas de conformidad con los lineamientos administrativos, funcionales y operativos, del Sistema Integrado de Policía de Investigación."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "36",
+          "encabezado": "De los niveles y criterios de actuación",
+          "texto_principal": "El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y los cuerpos de policía debidamente habilitados por el Órgano Rector para ejercer sus atribuciones y competencias en materia de investigación penal y policial trabajarán de forma coordinada y sus niveles de actuación se adecuarán a la capacidad y medios necesarios para desarrollar apropiadamente la investigación penal y policial. Sus competencias y actuación se regirán por los criterios de territorialidad, complejidad, intensidad y especificidad, de conformidad con el contenido y alcance establecidos para éstos en la Ley Orgánica del Servicio de Policía y Cuerpo de Policía Nacional Bolivariana. El Reglamento del presente Decreto con Rango, Valor y Fuerza de Ley establecerá las competencias y niveles de actuación de los cuerpos de Policía en sus diferentes ámbitos político-territoriales.\n\nLas funciones de policía de investigación penal que corresponden al Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y a los cuerpos de policía debidamente habilitados por el Órgano Rector, en la medida en que sean requeridos por el Ministerio Público, deberán actuar con estricta sujeción al ámbito de sus competencias, de conformidad con lo establecido, en el presente Decreto con Rango, Valor y Fuerza de Ley, sus reglamentos y resoluciones que regulen los niveles y criterios de su actuación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "37",
+          "encabezado": "Competencia de los órganos especiales de investigación penal",
+          "texto_principal": "Corresponde a los órganos especiales de investigación penal ejercer las atribuciones y competencias contempladas expresamente en las leyes orgánicas que regulan esta materia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "38",
+          "encabezado": "Competencia de los órganos de apoyo a la investigación penal",
+          "texto_principal": "Corresponde a los órganos de apoyo a la investigación penal, en el ámbito de su competencia:",
+          "numerales_literales": [
+            "1. Realizar las actividades encaminadas a resguardar el lugar del suceso.",
+            "2. Asegurar las evidencias, rastros o materialidades del hecho delictivo y proteger el estado de las cosas de tal forma que no se modifiquen ni desaparezcan hasta que llegue al lugar la autoridad competente.",
+            "3. Disponer que ninguna de las personas que se hallaren en el lugar del hecho, o en sus adyacencias, se aparten del mismo mientras se realicen las diligencias que corresponda.",
+            "4. Identificar y aprehender a los autores y autoras de delitos en casos de flagrancia y ponerlos a disposición del Ministerio Público.",
+            "5. Asegurar la identificación de los y las testigos del hecho.",
+            "6. Las demás que les sean atribuidas por la ley."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "39",
+          "encabezado": "Procedimiento Científico",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal y policial, están obligados a aplicar el procedimiento científico necesario para garantizar la cadena de custodia de las evidencias físicas, como modelo necesario dentro del desarrollo de la actividad criminalística. En consecuencia, emplearán con carácter obligatorio las normas establecidas a tal efecto por el Órgano Rector.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "40",
+          "encabezado": "Deber de informar la perpetración de un hecho punible",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal y policial al tener conocimiento de la perpetración de un hecho punible deberán comunicarlo al Ministerio Público dentro del lapso establecido en el Código Orgánico Procesal Penal. En caso de tratarse de cuerpos de policía debidamente habilitados por el Órgano Rector para ejercer atribuciones y competencias en materia de investigación penal y policial, cuando tengan noticia sobre la comisión de un hecho punible deberán comunicarlo adicionalmente dentro del mismo lapso al órgano principal en materia de investigación penal.\n\nEl funcionario o la funcionaria que retarde injustificadamente o incumpla con esta obligación, incurrirá en las responsabilidades a que hubiere lugar de conformidad con la ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "41",
+          "encabezado": "Inspecciones",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal y policial comprobarán, mediante inspecciones, el estado de los lugares públicos, cosas, rastros y efectos materiales que existan y sean de utilidad para la investigación del hecho, así como garantizar la identificación de las personas, que pudieran brindar información que contribuya con la investigación.\n\nLos funcionarios y funcionarias que participen en la inspección elaborarán un informe contentivo de lo actuado, donde describirán los elementos tomados en cuenta a los efectos de la investigación. El referido informe será remitido al Ministerio Público.\n\nLa realización de inspecciones por parte de los órganos y entes con competencia en materia de investigación penal y policial, se regirá por lo establecido en la Constitución de la República Bolivariana de Venezuela, el Código Orgánico Procesal Penal, el presente Decreto con Rango, Valor y Fuerza de Ley, sus reglamentos y resoluciones.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "42",
+          "encabezado": "Orden de allanamiento e Interceptación o grabación de comunicaciones privadas",
+          "texto_principal": "El o la fiscal del Ministerio Público encargado de la investigación, solicitará al juez o jueza competente la orden de allanamiento de inmuebles, así como la intercepción o grabación de comunicaciones privadas, sean éstas ambientales, telefónicas o realizadas por cualquier otro medio, cuyo contenido se transcribirá y agregará a las actuaciones, siempre y cuando se cumpla con los señalamientos sobre el delito investigado, lapso de caducidad, medios técnicos a ser empleados y el sitio o lugar desde donde se efectuará.\n\nLos funcionarios o las funcionarias de los órganos y entes con competencia en materia de investigación penal y policial a cargo de la investigación, podrán solicitar directamente la orden referida en el presente artículo, previa autorización por cualquier medio del Ministerio Público, de la cual dejarán constancia en sus respectivos libros diarios los funcionarios o las funcionarias intervinientes, siempre que se trate de un supuesto que por la necesidad o urgencia requiera celeridad en la realización de las actuaciones. En todo caso la solicitud deberá contener las razones que la justifican.\n\nLas actuaciones realizadas con prescindencia de lo previsto en el presente artículo se considerarán carentes de valor probatorio.\n\nSólo en los casos de delitos flagrantes, los funcionarios o las funcionarias del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas podrán actuar con prescindencia de lo establecido en el presente artículo. En todo caso se dejará constancia de lo actuado en el informe que se remitirá al Ministerio Público.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "43",
+          "encabezado": "Deber de informar",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal y policial podrán exigir tanto a particulares como a funcionarios públicos y funcionarias públicas las informaciones que contribuyan al proceso de investigación penal y policial, de conformidad con lo establecido en la Constitución de la República Bolivariana de Venezuela, el Código Orgánico Procesal Penal, el presente Decreto con Rango, Valor y Fuerza de Ley, sus reglamentos y resoluciones. Los particulares, funcionarios públicos y funcionarias públicas están en la obligación de suministrar las referidas informaciones, salvo las excepciones legalmente establecidas.\n\nLa negativa injustificada a colaborar con lo establecido en el presente artículo se considera desobediencia a la autoridad y generará las responsabilidades a que hubiere lugar de conformidad con la ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "44",
+          "encabezado": "Obligación de Superiores",
+          "texto_principal": "En los casos de investigaciones penales en el ámbito de la jurisdicción ordinaria en los cuales aparezcan como investigados, investigadas, imputados o imputadas integrantes de la Fuerza Armada Nacional Bolivariana o de los órganos de seguridad ciudadana, constituye obligación de sus superiores colaborar y facilitar el proceso de investigación en toda su extensión. La obstrucción de la investigación penal por parte de éstos se considera desobediencia a la autoridad y generará las responsabilidades a que hubiere lugar de conformidad con la ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "45",
+          "encabezado": "Protección del sitio del suceso",
+          "texto_principal": "El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y los cuerpos de policía debidamente habilitados por el Órgano Rector para ejercer atribuciones y competencias en materia de investigación penal y policial realizarán las actividades necesarias para la protección y cuidado riguroso del sitio del suceso, con el aseguramiento de las cosas, rastros y efectos materiales dejados en la comisión de un hecho punible, la identificación de personas que pudieran brindar información y que sean de utilidad para la investigación del hecho, su conservación e inalterabilidad, mientras se lleven a cabo las actividades que correspondan.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "46",
+          "encabezado": "Delitos flagrantes",
+          "texto_principal": "Los órganos de seguridad ciudadana que no ejerzan competencias en materia de investigación penal y policial, que practiquen detenciones por delitos flagrantes cuyos rastros materiales ameriten la aplicación de los métodos de investigación penal, deberán garantizar la protección del sitio del suceso y las evidencias hasta tanto se haga presente un órgano o ente con competencia en materia de investigación penal, y pondrá al aprehendido o aprehendida a la disposición del Ministerio Público.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "47",
+          "encabezado": "Responsabilidades y sanciones",
+          "texto_principal": "El tratamiento irregular del sitio del suceso y las evidencias, así como el desarrollo de actividades que involucren técnicas de investigación criminal, por parte de órganos de seguridad ciudadana que no ejerzan competencias en materia de investigación penal y policial, será considerada como modificación del lugar y generará las responsabilidades y sanciones a que hubiere lugar de conformidad con la ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO III. DEL CUERPO DE INVESTIGACIONES. CIENTÍFICAS, PENALES Y CRIMINALÍSTICAS",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "48",
+          "encabezado": "Naturaleza",
+          "texto_principal": "El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, es el órgano desconcentrado de investigación penal y seguridad ciudadana, dependiente administrativa y funcionalmente del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana.\n\nEl Cuerpo de Investigaciones Científicas, Penales y Criminalísticas es el órgano principal de investigación penal, tiene carácter civil, público, permanente, profesional y organizado. Estará desplegado en todo el territorio nacional para garantizar el ejercicio de la investigación penal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "49",
+          "encabezado": "De las áreas del servicio",
+          "texto_principal": "El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas tiene competencia en todo el territorio nacional en materia de investigación penal y policial y aquéllas que la Constitución de la República y las leyes otorguen al Poder Público Nacional.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "50",
+          "encabezado": "De las atribuciones del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas como órgano principal de investigación penal",
+          "texto_principal": "Son atribuciones del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas como órgano principal de investigación penal:",
+          "numerales_literales": [
+            "1. Practicar las diligencias encaminadas a investigar y hacer constar la comisión de un hecho punible con todas las circunstancias que puedan influir en su calificación y la responsabilidad de autores, autoras y partícipes, la identificación de las víctimas, de las personas que tengan conocimiento de los hechos, así como el aseguramiento de los objetos activos y pasivos relacionados con el hecho punible.",
+            "2. Organizar y mantener bases de datos sobre la criminalidad y de interés criminalístico, de todos los hechos punibles, y suministrarlos periódicamente o cuando sean requeridos por el Órgano Rector.",
+            "3. Auxiliar al órgano competente en materia de identificación, migración y extranjería y colaborar en la identificación, localización y aprehensión de ciudadanos o ciudadanas extranjeros o extranjeras solicitados por otros países.",
+            "4. Las demás establecidas en la Constitución de la República Bolivariana de Venezuela y las leyes orgánicas."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "51",
+          "encabezado": "De las atribuciones del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas cómo órgano de apoyo al Sistema de Justicia",
+          "texto_principal": "Son atribuciones del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas como órgano de apoyo al Sistema de Justicia:",
+          "numerales_literales": [
+            "1. Ejecutar las decisiones judiciales de naturaleza penal.",
+            "2. Ejecutar las decisiones judiciales de naturaleza no penal que impliquen la ubicación, búsqueda y aprehensión de personas naturales.",
+            "3. Ejecutar las órdenes de captura y aprehensión en aquellas investigaciones desarrolladas por el propio Cuerpo de Investigaciones Científicas, Penales y Criminalísticas.",
+            "4. Ejecutar mandatos de conducción.",
+            "5. Practicar Inspecciones y allanamientos.",
+            "6. Las demás establecidas en las leyes orgánicas."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "52",
+          "encabezado": "De las atribuciones del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas como órgano de apoyo en la ejecución de las decisiones",
+          "texto_principal": "Son atribuciones del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas como órgano encargado de ejecutar las decisiones de autoridades públicas:",
+          "numerales_literales": [
+            "1. Ejecutar las decisiones de autoridades públicas en materia de protección de niños, niñas y adolescentes.",
+            "2. Ejecutar las decisiones judiciales en materia de protección de mujeres y por motivos de violencia de género.",
+            "3. Ejecutar decisiones que impliquen la ubicación, búsqueda y aprehensión de personas naturales.",
+            "4. Servir de órgano de enlace entre la Organización Internacional de Policía Criminal (OIPC-INTERPOL) y el Ejecutivo Nacional y el Sistema de Justicia a los fines del cumplimiento de la ley y los procesos de colaboración policial en materia internacional.",
+            "5. Las demás establecidas en las leyes orgánicas."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "53",
+          "encabezado": "De las actividades prohibidas para el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas",
+          "texto_principal": "El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas no podrá desempeñar, ejercer o realizar las siguientes funciones, atribuciones, competencias o actividades:",
+          "numerales_literales": [
+            "1. Funciones propias de los cuerpos de policía preventiva, reguladas por la Ley Orgánica del Servicio de Policía y Cuerpo de Policía Nacional Bolivariana.",
+            "2. Mantener a personas bajo custodia en sus sedes o cualesquiera centros de detención o privación de libertad.",
+            "3. Traslado y custodia de detenidos, detenidas o personas privadas de la libertad, salvo en el caso de capturas o aprehensiones durante el tiempo indispensable para su entrega a un centro de privación de libertad.",
+            "4. Practicar notificaciones y citaciones judiciales.",
+            "5. Ejecutar decisiones judiciales en materia de naturaleza no penal, salvo que se trate de la búsqueda, ubicación y aprehensión de personas naturales.",
+            "6. Protección de víctimas, testigos y otros sujetos procesales, salvo en los casos en que sea de interés estratégico para el desarrollo de una investigación penal adelantada por el propio Cuerpo de Investigaciones Científicas, Penales y Criminalísticas.",
+            "7. Ejecutar órdenes de captura o aprehensión, salvo en aquellas investigaciones desarrolladas por el propio Cuerpo de Investigaciones Científicas, Penales y Criminalísticas."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "54",
+          "encabezado": "Organización y funcionamiento",
+          "texto_principal": "La estructura organizativa y funcional del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas se definirá en el reglamento orgánico respectivo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "55",
+          "encabezado": "Del Director o Directora del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas",
+          "texto_principal": "El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas estará a cargo de un Director o Directora designado o designada por el Ministro o Ministra del Poder Popular con competencia en materia de seguridad ciudadana, y será de libre nombramiento y remoción.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "56",
+          "encabezado": "Requisitos para ser Director o Directora General",
+          "texto_principal": "El Director o Directora del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas debe cumplir los siguientes requisitos:",
+          "numerales_literales": [
+            "1. Ser venezolano o venezolana por nacimiento.",
+            "2. Ser profesional de carrera policial de investigación penal, habiendo obtenido el grado más alto dentro del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, con estudios aprobados de cuarto nivel.",
+            "3. Ser de reconocida solvencia moral y no haber sido destituido o destituida de ningún otro cuerpo de policía.",
+            "4. No poseer antecedentes penales.",
+            "5. Las demás que fije el reglamento del presente Decreto con Rango, Valor y Fuerza de Ley."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "57",
+          "encabezado": "Atribuciones del Director o Directora",
+          "texto_principal": "Son atribuciones del Director o Directora del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas:",
+          "numerales_literales": [
+            "1. Instrumentar y ejecutar las políticas dictadas por el Órgano Rector en materia de seguridad ciudadana.",
+            "2. Planificar, organizar, dirigir, controlar, coordinar y supervisar las actividades propias del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas.",
+            "3. Asesorar al órgano Rector en materia de investigación penal.",
+            "4. Procurar la coordinación y cooperación con órganos y entes con competencia en materia de investigación penal.",
+            "5. Promover la formación, adiestramiento y capacitación de los y las integrantes del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas.",
+            "6. Asegurar, que el talento humano, los recursos materiales, tecnológicos y financieros del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, sean empleados en actividades propias del servicio de policía de investigación, de conformidad con las disposiciones legales.",
+            "7. Vigilar el cumplimiento de la normativa interna y las leyes que rigen la materia disciplinaria.",
+            "8. Velar por el estricto respeto de los derechos humanos y la correcta aplicación de la ley.",
+            "9. Promover medidas que favorezcan la incorporación activa del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas al desarrollo nacional.",
+            "10. Crear y fortalecer mecanismos institucionales que promuevan y faciliten la participación ciudadana para el mejor desempeño del servicio de policía de investigación.",
+            "11. Articular mecanismos internos y externos de seguimiento y control sobre el servicio de policía de investigación.",
+            "12. Promover los valores de solidaridad y paz social en el ejercicio del servicio de policía de investigación.",
+            "13. Las demás que le asigne el ordenamiento jurídico."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "58",
+          "encabezado": "Definición y perfil de la Unidad Especial de Apoyo a la Investigación",
+          "texto_principal": "El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas contará con una Unidad Especial de Apoyo a la Investigación para intervención en situaciones de alta complejidad e intensidad vinculadas a su función de investigación penal, con la finalidad de brindar soporte efectivo y altamente especializado a intervenciones vinculadas a estructuras criminales sofisticadas o individuos o casos en los cuales, debido al perfil, relaciones y modalidades de actuación, la intervención con medios y recursos usuales resulte insuficiente o inefectiva.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "59",
+          "encabezado": "Competencias de la Unidad Especial de Apoyo a la Investigación",
+          "texto_principal": "La Unidad Especial de Apoyo a la Investigación intervendrá exclusivamente como apoyo a los funcionarios y funcionarias de investigación del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas en situaciones de acceso y despeje de espacios físicos, resguardo de la integridad personal de funcionarios y funcionarias y auxiliares del sistema de justicia penal, aprehensión de personas solicitadas por orden judicial, protección de víctimas o personas en situación de alto riesgo y resguardo de trazas, evidencias y elementos de prueba vinculados con la investigación penal, cuando por sus características estuvieren expuestos a depredación o destrucción que los medios ordinarios de custodia no puedan razonablemente prevenir. La Unidad Especial de Apoyo a la Investigación no podrá intervenir en otras actuaciones u actividades distintas a las previstas taxativamente en la presente disposición.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "60",
+          "encabezado": "Prohibiciones de la Unidad Especial de Apoyo a la Investigación",
+          "texto_principal": "La Unidad Especial de Apoyo a la Investigación no podrá apartarse de los protocolos previamente señalados para su actuación, utilizar uniformes, insignias o equipamiento distinto al que se hubiere establecido con carácter general, entrenar a miembros de equipos especiales de cualquier naturaleza en cuerpos policiales o no policiales, bien como grupo o a través de funcionarios en particular, ni establecer asociaciones de cooperación con grupos tácticos o especiales de cualquier otro organismo de seguridad ciudadana o privado, nacional o internacional, salvo los convenios o decisiones que adopte el Ejecutivo Nacional de manera general como parte de programas establecidos de entrenamiento, formación continua o reentrenamiento.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "61",
+          "encabezado": "Del Órgano Rector",
+          "texto_principal": "Corresponde al Ministerio con competencia en seguridad ciudadana, a través del Viceministerio del Sistema de Investigación Penal, la definición y aprobación de protocolos, guías técnicas de actuación y formatos e instrumentos de rendición de cuentas de la Unidad Especial de Apoyo a la Investigación del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, de conformidad con los lineamientos de una política pública dirigida a incrementar la eficacia y eficiencia de la función policial de investigación penal dentro del marco de la Constitución de la República Bolivariana de Venezuela, los tratados internacionales, las leyes, reglamentos y resoluciones y que propenda la reducción de la frecuencia y la intensidad del uso de la fuerza física por parte de la policía de investigación penal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO IV. DE LA ORGANIZACIÓN, FORMACIÓN Y. PROFESIONALIZACIÓN. DEL CUERPO DE INVESTIGACIONES. CIENTÍFICAS, PENALES Y CRIMINALÍSTICAS",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "62",
+          "encabezado": "Del régimen de la Función de la Policía de Investigación",
+          "texto_principal": "El Estatuto de la Función de la Policía de Investigación establecerá el régimen de ingreso, jerarquías, ascenso, traslado, disciplina, suspensión, retiro, sistema de remuneraciones y demás situaciones laborales y administrativas de los funcionarios y funcionarias policiales de investigación del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas. Así mismo, establecerá las materias de este Estatuto que podrán ser aplicables a los expertos y expertas que cumplan funciones de investigación penal en dicho cuerpo de policía.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "63",
+          "encabezado": "Organización jerárquica y distribución de responsabilidades",
+          "texto_principal": "La organización jerárquica de los funcionarios y funcionarias policiales de investigación será única y comprenderá una escala de tres niveles dividida en pasos conforme lo prevea el Estatuto de la Función de la Policía de Investigación. El tercer nivel tendrá responsabilidades de alta dirección, planificación y evaluación, a nivel estratégico de la policía de investigación. El segundo nivel tendrá responsabilidades de dirección media, diseño de operaciones, supervisión y evaluación, a nivel táctico de la policía de investigación. El primer nivel tendrá responsabilidades en la ejecución de las actividades de contacto de investigación básica, a nivel operacional de la policía de investigación.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "64",
+          "encabezado": "Ingreso a la policía de investigación",
+          "texto_principal": "Son requisitos de ingreso al Cuerpo de Investigaciones Científicas, Penales y Criminalísticas de los funcionarios y funcionarias policiales de investigación: ser venezolano o venezolana, mayor de dieciocho años de edad y menor de veintiocho años de edad, no poseer antecedentes penales, ni haber sido destituido o destituida de algún órgano militar o de cualquier organismo de seguridad del Estado, contar con el título de educación media diversificada y haber cursado y aprobado un año como mínimo de formación en la institución académica nacional, así como cualquier otro que determine el reglamento respectivo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "65",
+          "encabezado": "De la formación policial de investigación",
+          "texto_principal": "Los funcionarios y funcionarias policiales de investigación del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas serán formados en la Universidad Nacional Experimental de la Seguridad, en su carácter de Institución académica nacional especializada en seguridad con un currículum común básico y con diversificación según las disciplinas y áreas especializadas del servicio. El Órgano Rector en conjunto con el Ministerio del Poder Popular con competencia en materia de educación universitaria, determinará el diseño curricular, las políticas y acciones que garanticen la unidad del proceso de formación y el desarrollo profesional permanente, que debe aplicar la institución académica responsable del sistema único de formación policial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "66",
+          "encabezado": "Formación continua",
+          "texto_principal": "Los funcionarios y funcionarias policiales de investigación del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas serán capacitados periódicamente y su nivel de formación continua y actualización serán requisitos para el ascenso y cargo en la carrera policial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "67",
+          "encabezado": "Calificación de servicio",
+          "texto_principal": "Los fundamentos para asignación de cargos, transferencias y otras situaciones administrativas de los funcionarios y funcionarias policiales de investigación del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas serán el resultado de un proceso de evaluación y calificación de Servicio, considerando las condiciones éticas, profesionales, técnicas, físicas y psicológicas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "68",
+          "encabezado": "Del régimen de ascenso",
+          "texto_principal": "El Estatuto de la Función de la Policía de Investigación establecerá un régimen único de ascensos bajo los siguientes parámetros: el tiempo mínimo de permanencia dentro de cada rango, el tipo de acreditación académica requerida para cada nivel, los méritos de servicio y una evaluación psicotécnica del o la aspirante, entre otros.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "69",
+          "encabezado": "Derechos laborales y de seguridad social",
+          "texto_principal": "La policía de investigación adoptará el sistema de seguridad social previsto en la Constitución de la República Bolivariana de Venezuela y en la ley respectiva. Se unificarán las distintas asignaciones socioeconómicas y las condiciones laborales con los demás órganos de seguridad ciudadana, respetando el principio de intangibilidad y progresividad de los derechos laborales.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "70",
+          "encabezado": "Prohibición de interrupción de servicio",
+          "texto_principal": "Los funcionarios y funcionarias policiales de investigación del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas se abstendrán de cualquier práctica que implique la interrupción, alteración o discontinuidad en la prestación del servicio de policía de investigación. No se permitirá la asociación en sindicatos ni la huelga.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "71",
+          "encabezado": "Régimen disciplinario y responsabilidad penal",
+          "texto_principal": "El régimen disciplinario aplicable a los funcionarios y funcionarias policiales de investigación del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas favorecerá la adhesión normativa y promoverá la corrección temprana de faltas policiales con oportunidad y eficacia. Se promoverá, dentro del Sistema Autónomo de Defensa Pública, una unidad especializada para los funcionarios y funcionarias policiales de investigación que, en el cumplimiento del deber, incurran en la comisión de hechos punibles, con el fin de brindar orientación y asistencia judicial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO V. DEL SERVICIO NACIONAL DE. MEDICINA Y CIENCIAS FORENSES",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "72",
+          "encabezado": "Naturaleza",
+          "texto_principal": "Se crea el Servicio Nacional de Medicina y Ciencias Forenses como órgano principal en materia de medicina y ciencias forenses en el servicio de investigación penal, con naturaleza de órgano desconcentrado de investigación penal y seguridad ciudadana, dependiente administrativa y funcionalmente del Ministerio del Poder Popular con competencia en materia de seguridad ciudadana.\n\nEl Servicio Nacional de Medicina y Ciencias Forenses tiene carácter civil, no policial, científico, público, permanente, profesional y organizado. Estará desplegado en todo el territorio nacional para garantizar el ejercicio de la investigación penal. El Servicio Nacional de Medicina y Ciencias Forenses es el órgano principal en materia de experticias en el servicio de investigación penal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "73",
+          "encabezado": "De las áreas del servicio",
+          "texto_principal": "El Servicio Nacional de Medicina y Ciencias Forenses tiene competencia en todo el territorio nacional en materia de las experticias, y la asesoría científica y técnica requerida para la investigación penal y policial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "74",
+          "encabezado": "De las atribuciones del Servicio Nacional de Medicina y Ciencias Forenses",
+          "texto_principal": "Son atribuciones del Servicio Nacional de Medicina y Ciencias Forenses como órgano principal de materia de experticias en el servicio de investigación penal:",
+          "numerales_literales": [
+            "1. Reunir, ordenar y asegurar científicamente las evidencias y los antecedentes necesarios para la investigación penal.",
+            "2. Garantizar y mantener, en coordinación con los demás órganos y entes competentes, la cadena de custodia de todos los instrumentos, objetos y demás elementos relacionados con el ejercicio de sus competencias.",
+            "3. Practicar las experticias requeridas y rendir los dictámenes periciales para el caso concreto, solicitando la colaboración de expertos nacionales o extranjeros, cuando se requieran conocimientos científicos o técnicos especiales.",
+            "4. Determinar la causa, tipología y data de muerte en todos los casos que legalmente se requiera, así como establecer la identificación no rutinaria del cadáver.",
+            "5. Realizar estudios en personas vivas, practicando exámenes forenses físicos y/o de salud mental.",
+            "6. Elaborar pruebas de identificación genética en personas vivas o fallecidas, restos óseos, piezas dentales u otro tejido humano que requiera estudio forense.",
+            "7. Efectuar las necropsias y exhumaciones a los cadáveres que a nivel forense lo requieran.",
+            "8. Desarrollar estudios en muestras y practicar exámenes auxiliares de ayuda al diagnóstico e identificación en casos forenses.",
+            "9. Prestar los servicios médico y de ciencias forenses que sean solicitados por el Ministerio Público, los órganos y entes competentes en materia de policía de investigación, la Defensoría del Pueblo y demás autoridades competentes de todo el territorio nacional.",
+            "10. Ser el centro científico de referencia nacional en todos los asuntos relacionados con la medicina y las ciencias forenses.",
+            "11. Servir de órgano de verificación y control de las pruebas periciales y exámenes médico-legales practicados por otros funcionarios y organismos por solicitud de autoridad competente.",
+            "12. Brindar asesoramiento científico forense al Poder Judicial, al Ministerio Público, los órganos y entes competentes en materia de policía de investigación, la Defensoría del Pueblo y demás autoridades competentes.",
+            "13. Asesorar y emitir consultas sobre experticias científicas y médico-legales a las autoridades competentes y a las instituciones vinculadas con el sistema de justicia.",
+            "14. Servir de órgano de acreditación y de certificación de laboratorios de pruebas periciales de entidades públicas y privadas, así como de personas dedicadas a estas actividades, dentro del ámbito de las materias de su competencia.",
+            "15. Las demás establecidas en la Constitución de la República Bolivariana de Venezuela, las leyes, reglamentos y resoluciones."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "75",
+          "encabezado": "Organización y funcionamiento",
+          "texto_principal": "La estructura organizativa y funcional del Servicio Nacional de Medicina y Ciencias Forenses se definirá en el reglamento orgánico respectivo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "76",
+          "encabezado": "Del Director o Directora del Servicio Nacional de Medicina y Ciencias Forenses",
+          "texto_principal": "El Servicio Nacional de Medicina y Ciencias Forenses estará a cargo de un Director o Directora designado o designada por el Ministro o Ministra del Poder Popular con competencia en materia de seguridad ciudadana, y será de libre nombramiento y remoción.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "77",
+          "encabezado": "Requisitos para ser Director o Directora General",
+          "texto_principal": "El Director o Directora del Servicio Nacional de Medicina y Ciencias Forenses debe cumplir los siguientes requisitos:",
+          "numerales_literales": [
+            "1. Ser venezolano o venezolana por nacimiento.",
+            "2. Ser profesional con estudios aprobados de cuarto nivel.",
+            "3. Ser de reconocida solvencia moral y no haber sido destituido o destituida de la administración pública.",
+            "4. No poseer antecedentes penales.",
+            "5. Las demás que fije el reglamento del presente Decreto con Rango, Valor y Fuerza de Ley."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "78",
+          "encabezado": "Atribuciones del Director o Directora",
+          "texto_principal": "Son atribuciones del Director o Directora del Servicio Nacional de Medicina y Ciencias Forenses:",
+          "numerales_literales": [
+            "1. Instrumentar y ejecutar las políticas dictadas por el Órgano Rector en materia de seguridad ciudadana.",
+            "2. Planificar, organizar, dirigir, controlar, coordinar y supervisar las actividades propias del Servicio Nacional de Medicina y Ciencias Forenses.",
+            "3. Asesorar al Órgano Rector en materia de experticias en la investigación penal.",
+            "4. Procurar la coordinación y cooperación con órganos y entes con competencia en materia de investigación penal.",
+            "5. Promover la formación, adiestramiento y capacitación de los y las integrantes del Servicio Nacional de Medicina y Ciencias Forenses.",
+            "6. Asegurar, que el talento humano, los recursos materiales, tecnológicos y financieros del Servicio Nacional de Medicina y Ciencias Forenses, sean empleados en actividades propias del servicio de policía de investigación, de conformidad con las disposiciones legales.",
+            "7. Vigilar el cumplimiento de la normativa interna y las leyes que rigen la materia disciplinaria.",
+            "8. Velar por el estricto respeto de los derechos humanos y la correcta aplicación de la ley.",
+            "9. Promover medidas que favorezcan la incorporación activa del Servicio Nacional de Medicina y Ciencias Forenses al desarrollo nacional.",
+            "10. Crear y fortalecer mecanismos institucionales que promuevan y faciliten la participación ciudadana para el mejor desempeño de los servicios médicos y de ciencias forenses.",
+            "11. Articular mecanismos internos y externos de seguimiento y control sobre el Servicio Nacional de Medicina y Ciencias Forenses.",
+            "12. Promover los valores de solidaridad y paz social.13. Las demás que le asigne el ordenamiento jurídico."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO VI. DEL DESEMPEÑO DE LA POLICÍA DE INVESTIGACIÓN",
+      "capitulo": "Capítulo I. De las normas de actuación de. los funcionarios y funcionarias policiales de investigación",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "79",
+          "encabezado": "De las normas básicas de actuación",
+          "texto_principal": "Son normas básicas de actuación de los funcionarios o funcionarias policiales de investigación, así como de cualesquiera otros funcionarios y funcionarias que ejerzan estas atribuciones y competencias como integrantes del Sistema Integrado de Policía de Investigación:",
+          "numerales_literales": [
+            "1. Desarrollar la actividad de investigación penal y policial con fundamento y estricta observancia con los principios, derechos y garantías consagradas en la Constitución de la República Bolivariana de Venezuela, tratados internacionales suscritos por la República y demás leyes, reglamentos y resoluciones que rijan la materia.",
+            "2. Respetar y proteger la dignidad humana, así como defender y promover los derechos humanos de todas las personas sin discriminación por motivos de origen étnico, sexo, religión, nacionalidad, idioma, opinión política, posición económica o de cualquier otra índole.",
+            "3. Ejercer el servicio de policía de investigación con ética, imparcialidad, legalidad, transparencia, proporcionalidad y humanidad.",
+            "4. Actuar con absoluta imparcialidad y objetividad en el ejercicio de sus funciones, con base a criterios objetivos y sin discriminación en la búsqueda de la verdad, con el propósito de coadyuvar en el sistema de administración de justicia.",
+            "5. Valorar e incentivar la honestidad y, en consecuencia, denunciar cualquier acto de corrupción que conozcan en la prestación del servicio de policía de investigación.",
+            "6. Observar en toda actuación un trato correcto y esmerado en sus relaciones con las personas durante el desempeño de sus funciones.",
+            "7. Respetar la integridad física, psíquica y moral de todas las personas y bajo ninguna circunstancia infligir, instigar o tolerar ningún acto arbitrario, ilegal, discriminatorio o de tortura u otros tratos o penas crueles, inhumanos o degradantes, que entrañen violencia física, psicológica y moral, en cumplimiento del carácter absoluto del derecho a la integridad física, psíquica y moral garantizado constitucionalmente.",
+            "8. Cooperar con otros órganos y entes del sistema de justicia y demás órganos de seguridad ciudadana para la realización de los fines y objetivos de la actividad de la investigación penal.",
+            "9. Extremar las precauciones cuando su actuación esté dirigida hacia niños, niñas o adolescentes, los y las adultos mayores y las personas con discapacidad, para garantizar su integridad física, psíquica y moral.",
+            "10. Abstenerse de ejecutar órdenes que comporten la práctica de acciones u omisiones ilícitas o que sean lesivas o menoscaben los derechos humanos garantizados en la Constitución de la República Bolivariana de Venezuela o en los tratados Internacionales sobre la materia, y oponerse a toda violación de derechos humanos que conozcan.",
+            "11. Denunciar violaciones de derechos humanos que conozcan o frente a las cuales haya indicio de que se van a producir.",
+            "12. Actuar en proporción a la gravedad de la situación y al objetivo legítimo que se persiga de conformidad a lo establecido en la Constitución de la República Bolivariana de Venezuela, los tratados internacionales y demás instrumentos normativos.",
+            "13. Garantizar la inviolabilidad de la libertad personal, la cual solo será restringida por orden judicial o ante la comisión de delitos flagrantes.",
+            "14. Garantizar a las personas capturadas o aprehendidas, entre otros, sus derechos a notificar el hecho de su detención a una persona de su elección, a conocer el lugar de su detención, a un abogado o abogada y a que se le practique un examen médico que deje constancia de sus condiciones generales de salud e integridad personal.",
+            "15. Garantizar a las personas que sean interrogadas, entre otros, sus derechos a conocer la identificación de las personas que practican el interrogatorio, la presencia de su abogado o abogada y al registro audiovisual o auditivo del mismo."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "80",
+          "encabezado": "Del respeto, disciplina, obediencia y subordinación",
+          "texto_principal": "Los funcionarios y funcionarias de policía de investigación deben respeto y consideración a sus superiores jerárquicos y obediencia legítima y subordinación a sus mandos funcionales. Acatarán y cumplirán las políticas, planes, programas, órdenes; instrucciones, decisiones y directrices que emanen de las autoridades competentes, siempre que sean legal y legítimamente impartidas.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "81",
+          "encabezado": "Medios de Identificación",
+          "texto_principal": "Los funcionarios o funcionarias del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas durante el ejercicio de sus funciones están obligados a usar como medio de identificación la placa, credencial y distintivo, así como los uniformes e insignias policiales, de conformidad con lo establecido por el Órgano Rector.\n\nNo se otorgarán credenciales, acreditaciones y demás medios de identificación a ciudadanos o ciudadanas ajenas al Cuerpo de Investigaciones Científicas, Penales y Criminalísticas. Se exceptúan de la anterior prohibición, aquellos funcionarios o funcionarias a quienes se les haya otorgado el beneficio de jubilación o pensión.\n\nEl Órgano Rector establecerá normas especiales para los funcionarios y funcionarias policiales de investigación encubiertos o de inteligencia policial.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "82",
+          "encabezado": "Instrumentos policiales",
+          "texto_principal": "Los funcionarios o funcionarias policiales de investigación del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas serán dotados de arma orgánica, chaleco y esposas. Todo lo relacionado con su asignación, retención y devolución se regirá de conformidad con lo establecido por el Órgano Rector.\n\nNo se asignarán bajo ningún concepto armas orgánicas y demás instrumentos policiales a ciudadanos o ciudadanas ajenas al Cuerpo de Investigaciones Científicas, Penales y Criminalísticas. Se incluyen en la anterior prohibición aquellos funcionarios o funcionarias que hayan egresado por cualquier medio del organismo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "83",
+          "encabezado": "Exclusividad",
+          "texto_principal": "La asignación de los medios de identificación e instrumentos policiales es personal e intransferible y los funcionarios o funcionarias del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, deberán utilizarlos solo en el ejercicio de sus funciones.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO VI. DEL DESEMPEÑO DE LA POLICÍA DE INVESTIGACIÓN",
+      "capitulo": "Capítulo II. Del uso de la fuerza y el registro de armas",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "84",
+          "encabezado": "Principios generales",
+          "texto_principal": "El uso de la fuerza por parte de los órganos y entes con competencia en materia de investigación penal estará orientado por el principio de afirmación de la vida como valor supremo constitucional y legal, la adopción de escalas progresivas para el uso de la fuerza en función del nivel de resistencia y oposición del ciudadano o ciudadana, los procedimientos de seguimiento y supervisión de su uso, entrenamiento policial permanente y difusión de instructivos entre la comunidad, a fin de facilitar la contraloría social en esta materia. El traspaso en el uso de la fuerza mortal sólo estará justificado para la defensa de la vida del funcionario o funcionaria policial o de un tercero.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "85",
+          "encabezado": "Medios para el uso de la fuerza",
+          "texto_principal": "Los órganos y entes con competencia en materia de investigación penal dispondrán de medios que permitan a los funcionarios y funcionarias policiales un uso diferenciado de la fuerza, debiendo ser capacitados permanentemente en esta materia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "86",
+          "encabezado": "Criterios para graduar el uso de la fuerza",
+          "texto_principal": "Los funcionarios y funcionarias policiales de investigación emplearán la fuerza física con apego a los siguientes criterios:",
+          "numerales_literales": [
+            "1. El nivel del uso de la fuerza a aplicar está determinado por la conducta de la persona y no por la predisposición del funcionario o funcionaria.",
+            "2. El uso diferenciado de la fuerza implica que entre la intimidación psíquica y la fuerza potencialmente mortal, el funcionario o funcionaria graduará su utilización considerando la progresión desde la resistencia pasiva hasta la agresión que amenace la vida, por parte de la persona.",
+            "3. El funcionario o funcionaria policial debe mantener el menor nivel del uso de la fuerza posible para el logro del objetivo propuesto.",
+            "4. En ningún momento debe haber daño físico innecesario, ni maltratos morales a las personas objeto de la acción policial, ni emplearse la fuerza como forma de castigo directo."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "87",
+          "encabezado": "De las armas y equipos para el uso de la fuerza",
+          "texto_principal": "Forman parte de la política sobre el uso de la fuerza:",
+          "numerales_literales": [
+            "1. La adquisición de armas y equipos en función del cometido civil de la policía, con base en el principio de la intervención menos lesiva y más efectiva.",
+            "2. La asignación, registro y control del armamento personalizado para cada funcionario y funcionaria.",
+            "3. El porte y utilización exclusiva, en actos de servicio, de armas y equipos orgánicos autorizados y homologados por el cuerpo de policía."
+          ],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "88",
+          "encabezado": "Del registro del parque de armas",
+          "texto_principal": "El Cuerpo de Investigaciones Científicas Penales y Criminalísticas debe llevar un registro del parque de armas de acuerdo a los controles establecidos en el reglamento que rija la materia.\n\nEl Cuerpo de Investigaciones Científicas Penales y Criminalísticas debe realizar el registro balístico de las armas orgánicas de sus respectivos parques, conforme a las normas aplicables en la materia. Tal información debe ser remitida al Registro Nacional de Armas Policiales dependiente del Órgano Rector.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "TÍTULO VI. DEL DESEMPEÑO DE LA POLICÍA DE INVESTIGACIÓN",
+      "capitulo": "Capítulo III. Del control de gestión y la participación ciudadana",
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "89",
+          "encabezado": "De la rendición de cuentas",
+          "texto_principal": "El proceso de rendición de cuentas comprende la planificación, supervisión y evaluación sobre el desempeño de la actividad de investigación penal, y se desarrollará conforme a los principios de transparencia, periodicidad, responsabilidad individual y por los actos de servicio, la adopción de estándares, el balance entre la supervisión interna y externa y la participación articulada de la comunidad organizada. Son referentes para la evaluación del desempeño de la actividad policial de investigación penal la adecuación al marco jurídico, la respuesta a las demandas sociales y la consecución de las metas propuestas. Quedan sujetos a la rendición de cuentas las autoridades, funcionarios y funcionarias que ejerzan esta función conforme a este Decreto con Rango, Valor y Fuerza de Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "90",
+          "encabezado": "De las formas de participación y corresponsabilidad",
+          "texto_principal": "El Órgano Rector, la Asamblea Nacional, el Ministerio Público y la Defensoría del Pueblo, podrán participar en la elaboración y seguimiento de planes y programas referidos a la investigación penal y policial, así como en el desempeño del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses con base en el principio de colaboración y corresponsabilidad entre las distintas instancias que conforman el Poder Público.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "91",
+          "encabezado": "Funciones de contraloría social",
+          "texto_principal": "Corresponde a las organizaciones comunitarias y sociales estructuradas ejercer las funciones de contraloría social sobre la actividad en materia de investigación penal del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses, al efecto podrán solicitar informes respecto al desempeño operativo de dichos órganos, de conformidad con la ley, reglamentos y resoluciones.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "92",
+          "encabezado": "Mecanismos internos de supervisión",
+          "texto_principal": "El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas contará con una instancia interna, independiente e imparcial, para la detección, sustanciación e identificación de responsabilidades en el caso de infracciones, con el fin de disminuirlas y fomentar buenas prácticas policiales de investigación. La autoridad que aplique la sanción disciplinaria será independiente de la instancia que realice la investigación de destitución.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "93",
+          "encabezado": "Mecanismos externos de supervisión",
+          "texto_principal": "El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses contarán con una instancia externa, con participación de las organizaciones comunitarias y sociales estructuradas, para la revisión de los instructivos, prácticas policiales y procedimientos disciplinarios.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "94",
+          "encabezado": "Atención a las víctimas",
+          "texto_principal": "El Cuerpo de Investigaciones Científicas, Penales y Criminalísticas contará con una oficina de atención a las víctimas del delito o del abuso de poder, constituida por un equipo interdisciplinario, la cual funcionará conforme a mecanismos que aseguren a las víctimas un tratamiento con dignidad y respeto, reciban la asistencia material, legal, médica, psicológica y social necesaria, conozcan las implicaciones que para ellas tienen los procedimientos policiales o judiciales recibiendo información oportuna sobre las actuaciones, así como la decisión de sus causas, protegiendo su intimidad y garantizando su seguridad, la de sus familiares, de los y las testigos en su favor, contra todo acto de intimidación y represalia.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Artículo",
+          "identificador": "95",
+          "encabezado": "De la Defensoría Delegada Especial de Asuntos Policiales",
+          "texto_principal": "La Defensoría Delegada Especial de Asuntos Policiales de la Defensoría del Pueblo tendrá como función emprender investigaciones independientes sobre violaciones de los derechos humanos cometidos por los funcionarios o funcionarias policiales de investigación penal, proponiendo las recomendaciones que estime oportunas para reducir sus efectos, compensar a las víctimas y mejorar el desempeño policial de investigación penal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "DISPOSICIONES DEROGATORIAS",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Derogatoria",
+          "identificador": "Primera",
+          "encabezado": null,
+          "texto_principal": "Se deroga la Ley del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas, publicada en la Gaceta Oficial de la República Bolivariana de Venezuela número 38.598, de fecha cinco (05) de enero de 2007.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Derogatoria",
+          "identificador": "Segunda",
+          "encabezado": null,
+          "texto_principal": "Quedan derogadas todas las disposiciones contenidas en leyes, reglamentos y resoluciones nacionales, así como en leyes estadales u ordenanzas municipales contrarias al presente Decreto con Rango, Valor y Fuerza de Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "DISPOSICIONES TRANSITORIAS",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Primera",
+          "encabezado": null,
+          "texto_principal": "En un término no mayor de un año contado a partir de la entrada en vigencia del presente Decreto con Rango, Valor y Fuerza de Ley, se dictarán los reglamentos y resoluciones necesarios para su desarrollo.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Segunda",
+          "encabezado": null,
+          "texto_principal": "En un término no mayor de seis meses, a partir de la entrada en vigencia de este Decreto con Rango, Valor y Fuerza de Ley, el Ministerio del Poder Popular con competencia en materia de seguridad ciudadana establecerá los mecanismos necesarios para la adecuación de la estructura, organización y funcionamiento del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas a lo establecido en el presente Decreto con Rango, Valor y Fuerza de Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Tercera",
+          "encabezado": null,
+          "texto_principal": "Se eliminan y suprimen la Brigada de Acciones Especiales y la Brigada de Respuesta Inmediata del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas. Se crea la Unidad Especial de Apoyo a la Investigación. En un término no mayor de seis meses, contado a partir de la entrada en vigencia de este presente Decreto con Rango, Valor y Fuerza de Ley, se dictarán los reglamentos y resoluciones necesarios para su organización, funcionamiento, control y supervisión.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Cuarta",
+          "encabezado": null,
+          "texto_principal": "En un término no mayor de seis meses, a partir de la entrada en vigencia de este Decreto con Rango, Valor y Fuerza de Ley, el Ministerio del Poder Popular con competencia en materia de seguridad ciudadana establecerá los mecanismos necesarios para la estructuración, organización y funcionamiento del Servicio Nacional de Medicina y Ciencias Forenses, de conformidad con lo establecido en el presente Decreto con Rango, Valor y Fuerza de Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Quinta",
+          "encabezado": null,
+          "texto_principal": "En un término no mayor de dos años, a partir de la entrada en vigencia del presente Decreto con Rango, Valor y Fuerza de Ley, los cuerpos de policía en los distintos ámbitos político-territoriales solicitarán su habilitación y adecuarán su estructura organizativa, funcional y operativa a las disposiciones establecidas en este Decreto con Rango, Valor y Fuerza de Ley y los estándares dictados por el Órgano Rector en materia de investigación penal.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Sexta",
+          "encabezado": null,
+          "texto_principal": "En un término no mayor de un año a partir de la entrada en vigencia del presente Decreto con Rango, Valor y Fuerza de Ley, el Órgano Rector procederá a instrumentar lo previsto en el artículo 20, numeral 10. Las credenciales expedidas a los funcionarios y funcionarias policiales de investigación del Cuerpo de Investigaciones Científicas, Penales y Criminalísticas tendrán vigencia hasta que el Órgano Rector dé cumplimiento a lo previsto en este Decreto con Rango, Valor y Fuerza de Ley.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Séptima",
+          "encabezado": null,
+          "texto_principal": "El órgano rector en materia de policía de investigación, conjuntamente con el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses, creará un equipo dirigido a recibir y atender la presuntas víctimas de violaciones a los derechos humanos en los que pudieran haber incurrido los funcionarios y funcionarias policiales de este órgano de investigación penal hasta la fecha de entrada en vigencia del presente Decreto con Rango, Valor y Fuerza de Ley, así como para investigar dichos hechos, establecer las responsabilidades y adoptar las medidas a que hubiere lugar.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        },
+        {
+          "tipo_norma": "Disposición Transitoria",
+          "identificador": "Octava",
+          "encabezado": null,
+          "texto_principal": "El órgano rector en materia de policía de investigación, conjuntamente con el Cuerpo de Investigaciones Científicas, Penales y Criminalísticas y el Servicio Nacional de Medicina y Ciencias Forenses, en coordinación con el Tribunal Supremo de Justicia, el Ministerio Público y la Defensoría del Pueblo, adoptarán todas las medidas necesarias para identificar, estudiar y evaluar los procedimientos administrativos y judiciales en materia penal y por violación de derechos humanos que cursen ante estos órganos del Poder Público en contra de los funcionarios y funcionarias policiales de este órgano de investigación penal hasta la fecha de entrada en vigencia del presente Decreto con Rango, Valor y Fuerza de Ley. Así mismo, desarrollarán los medios de coordinación idóneos para garantizar la celeridad y eficacia de dichos procedimientos, especialmente para establecer las responsabilidades y adoptar las medidas a que hubiere lugar.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    },
+    {
+      "libro": null,
+      "titulo": "DISPOSICIÓN FINAL",
+      "capitulo": null,
+      "seccion": null,
+      "articulos": [
+        {
+          "tipo_norma": "Disposición Final",
+          "identificador": "Única",
+          "encabezado": null,
+          "texto_principal": "El presente Decreto con Rango, Valor y Fuerza de Ley entrará en vigencia a partir de su publicación en la Gaceta Oficial de la República Bolivariana de Venezuela.\n\nDado en Caracas, a los quince días del mes de junio de dos mil doce. Año 202 de la Independencia, 153 de la Federación y 13 de la Revolución Bolivariana.",
+          "numerales_literales": [],
+          "paragrafos": [],
+          "estado": "vigente",
+          "nota_jurisprudencial": null,
+          "sentencias_relacionadas": []
+        }
+      ]
+    }
+  ]
+}
