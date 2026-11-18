@@ -9,7 +9,6 @@ import 'package:share_plus/share_plus.dart';
 import '../services/haptics_service.dart';
 import 'redactor_documentos_screen.dart';
 import '../config/app_theme.dart';
-import '../widgets/app_bar_institucional.dart';
 import '../widgets/main_bottom_bar.dart';
 import '../data/catalogo_vicios_procesales.dart';
 import '../models/chat_message.dart';
@@ -270,17 +269,6 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
     return Scaffold(
       backgroundColor: TemaGlobal.superficie,
       bottomNavigationBar: const MainBottomBar(),
-      appBar: AppBarInstitucional(
-        title: 'Detector de Vicios Procesales',
-        mostrarBack: true,
-        actions: [
-          IconButton(
-            tooltip: 'Limpiar',
-            onPressed: _limpiar,
-            icon: const Icon(Icons.refresh),
-          ),
-        ],
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           controller: _scrollController,
@@ -288,6 +276,8 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              _buildHeader(),
+              const SizedBox(height: 14),
               _buildExpedienteChip(),
               const SizedBox(height: 12),
               _buildIntroCard(),
@@ -318,6 +308,48 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildHeader() {
+    return Row(
+      children: [
+        IconButton(
+          tooltip: 'Volver',
+          onPressed: () => Navigator.of(context).maybePop(),
+          icon: Icon(Icons.arrow_back, color: TemaGlobal.texto),
+        ),
+        const SizedBox(width: 2),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Detector de Vicios',
+                style: TextStyle(
+                  fontSize: 21,
+                  fontWeight: FontWeight.w800,
+                  color: TemaGlobal.texto,
+                  letterSpacing: -0.5,
+                ),
+              ),
+              Text(
+                'Analiza autos y detecta nulidades',
+                style: TextStyle(
+                  fontSize: 12.5,
+                  fontWeight: FontWeight.w500,
+                  color: TemaGlobal.textoSecundario,
+                ),
+              ),
+            ],
+          ),
+        ),
+        IconButton(
+          tooltip: 'Limpiar',
+          onPressed: _limpiar,
+          icon: Icon(Icons.refresh, color: TemaGlobal.textoSecundario),
+        ),
+      ],
     );
   }
 
