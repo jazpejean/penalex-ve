@@ -22,6 +22,9 @@ class MapaTribunalesScreen extends StatefulWidget {
 }
 
 class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
+  final MapController _mapController = MapController();
+  bool _modoCircuitos = true; // Vista por defecto: circuitos judiciales
+  String? _circuitoSeleccionado;
   List<Tribunal> _tribunales = [];
   List<Tribunal> _visibles = [];
   bool _cargando = true;
@@ -271,12 +274,14 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
               : Column(
                   children: [
                     _buscadorBar(),
+                    _toggleModo(),
                     _filtrosBar(),
                     _contadorBar(),
                     Expanded(
                       child: Stack(
                         children: [
                           FlutterMap(
+                            mapController: _mapController,
                             options: MapOptions(
                               initialCenter: _centroVzla,
                               initialZoom: 5.6,
@@ -296,7 +301,11 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
                               ),
                             ],
                           ),
-                          if (_seleccionado != null)
+                          if (_modoCircuitos && _circuitoSeleccionado != null)
+                            _fichaCircuito(
+                                _circuitoSeleccionado!,
+                                _porCircuito[_circuitoSeleccionado!] ?? const []),
+                          if (!_modoCircuitos && _seleccionado != null)
                             _fichaTribunal(_seleccionado!),
                           if (_visibles.isEmpty)
                             const Center(
@@ -482,6 +491,38 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
     );
   }
 
+  Widget _toggleModo() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+      child: SegmentedButton<bool>(
+        segments: const [
+          ButtonSegment<bool>(
+            value: true,
+            label: Text('Circuitos', style: TextStyle(fontSize: 12)),
+            icon: Icon(Icons.account_balance, size: 16),
+          ),
+          ButtonSegment<bool>(
+            value: false,
+            label: Text('Tribunales', style: TextStyle(fontSize: 12)),
+            icon: Icon(Icons.gavel, size: 16),
+          ),
+        ],
+        selected: {_modoCircuitos},
+        onSelectionChanged: (v) {
+          setState(() {
+            _modoCircuitos = v.first;
+            _circuitoSeleccionado = null;
+            _seleccionado = null;
+          });
+        },
+        style: ButtonStyle(
+          visualDensity: VisualDensity.compact,
+          textStyle: WidgetStatePropertyAll(const TextStyle(fontSize: 12)),
+        ),
+      ),
+    );
+  }
+
   Widget _contadorBar() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(14, 6, 14, 0),
@@ -540,6 +581,7 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
   /// solo se ve el último dibujado; con el desplazamiento en espiral se
   /// ven todos y cada uno es tocable.
   List<Marker> _markersSeparados() {
+    if (_modoCircuitos) return _markersCircuitos();
     const radio = 0.0016; // ~170 m: separación visible en el zoom urbano.
     final conUbicacion =
         _visibles.where((t) => t.latLng != null).toList();
@@ -598,6 +640,196 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
       default:
         return Icons.location_on;
     }
+  }
+
+  // ============ MODO CIRCUITOS JUDICIALES ============
+
+  /// Agrupa los tribunales visibles por circunscripción judicial.
+  Map<String, List<Tribunal>> get _porCircuito {
+    final mapa = <String, List<Tribunal>>{};
+    for (final t in _visibles) {
+      mapa.putIfAbsent(t.circunscripcionJudicial, () => []).add(t);
+    }
+    // ordena alfabéticamente
+    final claves = mapa.keys.toList()..sort();
+    return {for (final k in claves) k: mapa[k]!};
+  }
+
+  /// Centroide de un grupo de tribunales con coordenadas.
+  LatLng? _centroide(List<Tribunal> grupo) {
+    final conGeo = grupo.where((t) => t.latLng != null).toList();
+    if (conGeo.isEmpty) return null;
+    var lat = 0.0;
+    var lng = 0.0;
+    for (final t in conGeo) {
+      lat += t.latLng!.latitude;
+      lng += t.latLng!.longitude;
+    }
+    return LatLng(lat / conGeo.length, lng / conGeo.length);
+  }
+
+  /// Marcadores de CIRCUITOS: uno por circunscripción, con el conteo.
+  List<Marker> _markersCircuitos() {
+    final markers = <Marker>[];
+    _porCircuito.forEach((circuito, grupo) {
+      final centro = _centroide(grupo);
+      if (centro == null) return;
+      final seleccionado = _circuitoSeleccionado == circuito;
+      markers.add(Marker(
+        point: centro,
+        width: 64,
+        height: 64,
+        child: GestureDetector(
+          onTap: () {
+            setState(() {
+              _circuitoSeleccionado = circuito;
+              _seleccionado = null;
+            });
+            _mapController.move(centro, 8.2);
+          },
+          child: _marcadorCircuito(grupo.length, seleccionado),
+        ),
+      ));
+    });
+    return markers;
+  }
+
+  Widget _marcadorCircuito(int cantidad, bool seleccionado) {
+    final color =
+        TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: seleccionado ? color : color.withValues(alpha: 0.92),
+            shape: BoxShape.circle,
+            border: Border.all(color: Colors.white, width: 2.5),
+            boxShadow: const [
+              BoxShadow(
+                  color: Colors.black38, blurRadius: 4, offset: Offset(0, 2)),
+            ],
+          ),
+          child: const Icon(Icons.account_balance,
+              color: Colors.white, size: 21),
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: color, width: 1),
+          ),
+          child: Text(
+            '$cantidad',
+            style: TextStyle(
+              color: color,
+              fontSize: 10,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Ficha de un circuito judicial con su lista de tribunales.
+  Widget _fichaCircuito(String circuito, List<Tribunal> grupo) {
+    return Positioned(
+      left: 12,
+      right: 12,
+      bottom: 16,
+      child: Card(
+        elevation: 6,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        clipBehavior: Clip.antiAlias,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxHeight: 300),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(14, 12, 8, 6),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            circuito,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 14.5),
+                          ),
+                          Text(
+                            '${grupo.length} tribunal(es) · ${grupo.map((t) => t.estado).toSet().join(', ')}',
+                            style: TextStyle(
+                              fontSize: 11.5,
+                              color: TemaGlobal.textoSecundario,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.close),
+                      onPressed: () =>
+                          setState(() => _circuitoSeleccionado = null),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(height: 1),
+              Flexible(
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: grupo.length,
+                  separatorBuilder: (_, __) => const Divider(height: 1),
+                  itemBuilder: (context, i) {
+                    final t = grupo[i];
+                    return ListTile(
+                      dense: true,
+                      leading: Icon(
+                        _iconoPorFuncion(t.funcion),
+                        size: 20,
+                        color: _colorPorFuncion(t.funcion),
+                      ),
+                      title: Text(
+                        t.nombre,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 12.5),
+                      ),
+                      subtitle: Text(
+                        [t.municipio, t.estado]
+                            .where((e) => e != null && e.isNotEmpty)
+                            .join(' · '),
+                        style: const TextStyle(fontSize: 10.5),
+                      ),
+                      trailing: t.latLng != null
+                          ? const Icon(Icons.my_location, size: 16)
+                          : null,
+                      onTap: () {
+                        setState(() {
+                          _seleccionado = t;
+                          _circuitoSeleccionado = null;
+                        });
+                        if (t.latLng != null) {
+                          _mapController.move(t.latLng!, 13.5);
+                        }
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _fichaTribunal(Tribunal t) {
