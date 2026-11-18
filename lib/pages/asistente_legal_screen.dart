@@ -6,7 +6,7 @@ import 'package:share_plus/share_plus.dart';
 import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../services/ai_service.dart';
-import '../services/document_text_extraction_service.dart';
+import '../services/deepseek_vision_service.dart';
 import '../services/chat_export_service.dart';
 import '../widgets/app_bar_institucional.dart';
 
@@ -106,14 +106,23 @@ Puedo ayudarte a:
         debugPrint('📎 Extrayendo texto de ${userMessage.attachedFiles.length} archivo(s)...');
         
         final paths = userMessage.attachedFiles.map((f) => f.path).toList();
-        final textosExtraidos = await DocumentTextExtractionService.extraerTextoDeMultiplesArchivos(paths);
-        
-        if (textosExtraidos.isNotEmpty) {
-          contextoArchivos = '\n\n${DocumentTextExtractionService.generarResumenExtraccion(textosExtraidos)}';
-          debugPrint('✅ Texto extraído de ${textosExtraidos.length} archivo(s)');
-        } else {
-          contextoArchivos = '\n\n[Archivos adjuntos: ${userMessage.attachedFiles.map((f) => f.name).join(', ')} - No se pudo extraer texto]';
-          debugPrint('⚠️ No se pudo extraer texto de los archivos');
+        // Lectura con IA de VISIÓN (sin OCR)
+        try {
+          final textoVision = await DeepSeekVisionService.transcribirDocumento(
+            rutasImagenes: paths,
+          );
+          if (textoVision.isNotEmpty &&
+              !textoVision.startsWith('⚠️') &&
+              !textoVision.startsWith('❌')) {
+            contextoArchivos = '\n\nDOCUMENTOS ADJUNTOS (leídos con IA de visión):\n$textoVision';
+          } else {
+            contextoArchivos =
+                '\n\n[Archivos adjuntos: ${userMessage.attachedFiles.map((f) => f.name).join(', ')} - No se pudo leer]';
+          }
+        } catch (e) {
+          debugPrint('⚠️ Visión no disponible: $e');
+          contextoArchivos =
+              '\n\n[Archivos adjuntos: ${userMessage.attachedFiles.map((f) => f.name).join(', ')}]';
         }
       }
 
