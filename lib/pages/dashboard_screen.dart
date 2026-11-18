@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'detector_vicios_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../services/haptics_service.dart';
@@ -8,7 +9,6 @@ import '../models/audiencia.dart';
 import '../config/app_theme.dart';
 import '../utils/main_tab_controller.dart';
 import '../config/app_colors.dart';
-import '../widgets/app_snackbar.dart';
 
 /// Pantalla principal (tab Inicio) — rediseño premium navy+oro:
 /// header con saludo y avatar, stats reales, hero Ulpiano, accesos
@@ -854,7 +854,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return GestureDetector(
       onTap: () {
         Haptics.tap();
-        AppSnackBar.success(context, 'Detector de Vicios: próximamente');
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => const DetectorViciosScreen(),
+          ),
+        );
       },
       child: Container(
         width: double.infinity,

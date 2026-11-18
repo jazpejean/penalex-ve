@@ -11,10 +11,13 @@ import '../services/documentos_service.dart';
 import '../services/expediente_service.dart';
 import '../services/haptics_service.dart';
 import '../widgets/app_bar_institucional.dart';
-import '../widgets/app_snackbar.dart';
 import 'calendario_judicial_screen.dart';
 import 'escanear_documento_screen.dart';
 import 'redactor_documentos_screen.dart';
+import 'detector_vicios_screen.dart';
+import 'chat_legal_screen.dart';
+import 'package:provider/provider.dart';
+import '../providers/expediente_activo_provider.dart';
 
 /// Workspace del Expediente (portafolio de una causa penal).
 ///
@@ -106,7 +109,16 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
 
   void _detectorVicios() {
     Haptics.tap();
-    AppSnackBar.success(context, 'Detector de Vicios: próximamente');
+    // Activar el expediente de esta causa para que el detector lo use.
+    final exp = _expediente;
+    if (exp != null) {
+      context.read<ExpedienteActivoProvider>().seleccionar(exp);
+    }
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => const DetectorViciosScreen(),
+      ),
+    );
   }
 
   @override
@@ -511,8 +523,16 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
       elevation: 6,
       onPressed: () {
         Haptics.tap();
-        AppSnackBar.success(
-            context, 'Ulpiano sobre este caso: próximamente');
+        // Activar la causa para que Ulpiano reciba su contexto.
+        final exp = _expediente;
+        if (exp != null) {
+          context.read<ExpedienteActivoProvider>().seleccionar(exp);
+        }
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => const ChatLegalScreen(),
+          ),
+        );
       },
       icon: const Icon(Icons.forum, size: 22),
       label: const Text(

@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:share_plus/share_plus.dart';
+import '../services/haptics_service.dart';
+import 'redactor_documentos_screen.dart';
 import '../config/app_theme.dart';
 import '../data/catalogo_vicios_procesales.dart';
 import '../models/chat_message.dart';
@@ -292,6 +299,10 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
               const SizedBox(height: 22),
               if (_detectando) const Center(child: CircularProgressIndicator()),
               if (_detectados.isNotEmpty) _buildResultadosDeterministicos(),
+              if (_detectados.isNotEmpty || _viciosIA.isNotEmpty) ...[
+                const SizedBox(height: 6),
+                _buildAcciones(),
+              ],
               if (_analizandoIA)
                 const Center(
                   child: Padding(
@@ -924,6 +935,184 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  // ============ ACCIONES "JOYA" DEL DETECTOR ============
+
+  /// Envía los vicios detectados al REDACTOR DE DOCUMENTOS (que tiene el
+  /// editor). El detector solo detecta; la redacción del escrito corresponde
+  /// al redactor.
+  void _enviarAlRedactor() {
+    final exp = context.read<ExpedienteActivoProvider>().expediente;
+    final vicios = <String>[];
+    for (final v in _detectados) {
+      vicios.add(
+          '- ${v.vicio.titulo} | ${v.vicio.norma} | ${v.vicio.gravedad} | Acción: ${v.vicio.accion}');
+    }
+    for (final v in _viciosIA) {
+      vicios.add('- ${v.titulo} | ${v.norma} | ${v.gravedad} | Acción: ${v.accion}');
+    }
+    if (vicios.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Primero detecta los vicios.')),
+      );
+      return;
+    }
+
+    final extracto = _textoController.text.trim();
+    final instruccion = '''
+Redacta un ESCRITO DE SOLICITUD DE NULIDAD ABSOLUTA ante el Juez de Control,
+con fundamento en el artículo 179 del COPP y la Constitución.
+
+DATOS DEL EXPEDIENTE:
+${exp != null ? 'Expediente: ${exp.numeroExpediente}\nImputado: ${exp.imputado}\nDelitos: ${exp.delitos ?? 'no indicados'}\nTribunal: ${exp.tribunalNombre ?? 'no indicado'}' : 'Usa placeholders [EXPEDIENTE] y [IMPUTADO].'}
+
+VICIOS DETECTADOS:
+${vicios.join('\n')}
+
+EXTRACTO DEL DOCUMENTO IMPUGNADO:
+"""
+${extracto.length > 4000 ? extracto.substring(0, 4000) : extracto}
+"""
+
+Estructura: encabezado con ciudadano y tribunal, I. DE LOS HECHOS, II. DEL DERECHO
+(cada vicio con su norma y el fundamento de nulidad), III. PETITORIO (nulidad del
+acto y de los actos consecutivos, artículo 180 del COPP), y cierre con firma.
+Español jurídico venezolano sobrio; no inventes hechos distintos a los dados.
+''';
+
+    Haptics.tap();
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => RedactorDocumentosScreen(initialPrompt: instruccion),
+      ),
+    );
+  }
+
+  /// Exporta el análisis de vicios a PDF y lo comparte.
+  Future<void> _exportarPdf() async {
+    final exp = context.read<ExpedienteActivoProvider>().expediente;
+    final pdf = pw.Document();
+    final vicios = <(String, String, String, String)>[];
+    for (final v in _detectados) {
+      vicios.add((v.vicio.titulo, v.vicio.norma, v.vicio.gravedad, v.vicio.accion));
+    }
+    for (final v in _viciosIA) {
+      vicios.add((v.titulo, v.norma, v.gravedad, v.accion));
+    }
+    if (vicios.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('No hay vicios detectados para exportar.')),
+      );
+      return;
+    }
+
+    pdf.addPage(
+      pw.MultiPage(
+        pageFormat: PdfPageFormat.a4,
+        build: (ctx) => [
+          pw.Header(
+            level: 0,
+            child: pw.Text('Reporte de vicios procesales'),
+          ),
+          pw.Text(
+            exp != null
+                ? 'Expediente: ${exp.numeroExpediente} · Imputado: ${exp.imputado}'
+                : 'Consulta aislada (sin expediente)',
+            style: pw.TextStyle(fontSize: 11),
+          ),
+          pw.SizedBox(height: 12),
+          for (final v in vicios) ...[
+            pw.Container(
+              margin: const pw.EdgeInsets.only(bottom: 10),
+              padding: const pw.EdgeInsets.all(8),
+              decoration: pw.BoxDecoration(
+                border: pw.Border.all(color: PdfColors.grey400),
+                borderRadius: pw.BorderRadius.circular(4),
+              ),
+              child: pw.Column(
+                crossAxisAlignment: pw.CrossAxisAlignment.start,
+                children: [
+                  pw.Text(v.$1,
+                      style: pw.TextStyle(
+                          fontSize: 12, fontWeight: pw.FontWeight.bold)),
+                  pw.SizedBox(height: 3),
+                  pw.Text('Norma: ${v.$2}', style: const pw.TextStyle(fontSize: 10)),
+                  pw.Text('Gravedad: ${v.$3}',
+                      style: const pw.TextStyle(fontSize: 10)),
+                  pw.Text('Acción: ${v.$4}',
+                      style: const pw.TextStyle(fontSize: 10)),
+                ],
+              ),
+            ),
+          ],
+          pw.SizedBox(height: 8),
+          pw.Text(
+            'Herramienta de apoyo. Verificar contra el expediente y las fuentes oficiales.',
+            style: pw.TextStyle(fontSize: 8, color: PdfColors.grey600),
+          ),
+        ],
+      ),
+    );
+
+    final bytes = await pdf.save();
+    final dir = await getTemporaryDirectory();
+    final archivo = File(
+        '${dir.path}/reporte_vicios_${DateTime.now().millisecondsSinceEpoch}.pdf');
+    await archivo.writeAsBytes(bytes);
+    await Share.shareXFiles([XFile(archivo.path)],
+        text: 'Reporte de vicios procesales');
+  }
+
+  Widget _buildAcciones() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 8),
+        Text(
+          'Acciones sobre los vicios',
+          style: TextStyle(
+            color: TemaGlobal.texto,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 10),
+        Row(
+          children: [
+            Expanded(
+              child: FilledButton.icon(
+                onPressed: _enviarAlRedactor,
+                icon: const Icon(Icons.edit_document, size: 18),
+                label: const Text('Enviar al redactor'),
+                style: FilledButton.styleFrom(
+                  backgroundColor:
+                      TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino,
+                  foregroundColor:
+                      TemaGlobal.isDark ? Colors.black : Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 13),
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+            OutlinedButton.icon(
+              onPressed: _exportarPdf,
+              icon: const Icon(Icons.picture_as_pdf, size: 18),
+              label: const Text('PDF'),
+              style: OutlinedButton.styleFrom(
+                foregroundColor:
+                    TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino,
+                side: BorderSide(
+                  color: (TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino)
+                      .withValues(alpha: 0.5),
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 14),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
