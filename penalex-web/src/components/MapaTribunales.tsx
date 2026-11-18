@@ -269,7 +269,7 @@ export default function MapaTribunales() {
           <input
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
-            placeholder="Buscar por tribunal, sede, municipio o circuito…"
+            placeholder="Busca tu tribunal: nombre, sede, municipio o circuito (ej. Los Teques)…"
             className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-[#031F4E]"
           />
           <select
@@ -335,6 +335,66 @@ export default function MapaTribunales() {
         </div>
       </div>
 
+
+      {/* Resultados del buscador: la lista aparece aquí, no en una lista fija */}
+      {hayFiltros ? (
+        <div className="max-h-72 overflow-auto border-b border-slate-200 bg-white">
+          {visibles.length === 0 ? (
+            <p className="p-4 text-center text-xs text-slate-500">
+              Sin resultados. Prueba con el nombre del tribunal, la sede, el
+              municipio o el circuito.
+            </p>
+          ) : (
+            <ul className="divide-y divide-slate-100">
+              {visibles.slice(0, 40).map((t) => (
+                <li key={t.id} className="flex items-start gap-3 px-3 py-2">
+                  {t.url_foto ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={t.url_foto}
+                      alt={`Foto del ${t.nombre}`}
+                      loading="lazy"
+                      className="h-14 w-14 shrink-0 rounded-lg object-cover"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).style.display = "none";
+                      }}
+                    />
+                  ) : null}
+                  <div className="min-w-0 flex-1">
+                    <div className="text-xs font-semibold text-[#031F4E]">
+                      {t.nombre}
+                    </div>
+                    <div className="text-[11px] text-slate-500">
+                      {[t.funcion, t.municipio, t.parroquia, circuitoDe(t)]
+                        .filter(Boolean)
+                        .join(" · ")}
+                    </div>
+                    <div className="mt-1 flex flex-wrap gap-1.5">
+                      <button
+                        onClick={() => irATribunal(t)}
+                        className="rounded-md border border-slate-200 px-2 py-0.5 text-[10.5px] font-semibold text-[#031F4E] hover:bg-slate-50"
+                      >
+                        🗺️ Ver en el mapa
+                      </button>
+                      {t.latitud != null && t.longitud != null ? (
+                        <a
+                          href={`https://www.google.com/maps?q=${t.latitud},${t.longitud}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="rounded-md bg-[#0F172A] px-2 py-0.5 text-[10.5px] font-semibold text-white hover:bg-[#1e293b]"
+                        >
+                          📍 Google Maps
+                        </a>
+                      ) : null}
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ) : null}
+
       {/* Mapa */}
       <div className="relative">
         <div ref={mapRef} className="h-[520px] w-full" />
@@ -366,6 +426,18 @@ export default function MapaTribunales() {
               {tribunalesDelCircuito.map((t) => (
                 <li key={t.id} className="py-2">
                   <div className="flex items-start justify-between gap-2">
+                    {t.url_foto ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={t.url_foto}
+                        alt={`Foto del ${t.nombre}`}
+                        loading="lazy"
+                        className="mt-0.5 h-12 w-12 shrink-0 rounded-md object-cover"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).style.display = "none";
+                        }}
+                      />
+                    ) : null}
                     <div className="min-w-0">
                       <div className="text-xs font-semibold text-[#031F4E]">
                         {t.nombre}
