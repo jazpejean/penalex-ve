@@ -9,6 +9,8 @@ import 'package:share_plus/share_plus.dart';
 import '../services/haptics_service.dart';
 import 'redactor_documentos_screen.dart';
 import '../config/app_theme.dart';
+import '../widgets/app_bar_institucional.dart';
+import '../widgets/main_bottom_bar.dart';
 import '../data/catalogo_vicios_procesales.dart';
 import '../models/chat_message.dart';
 import '../services/detector_vicios_service.dart';
@@ -267,11 +269,10 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TemaGlobal.superficie,
-      appBar: AppBar(
-        title: const Text('Detector de Vicios Procesales'),
-        backgroundColor: TemaGlobal.tarjeta,
-        foregroundColor: TemaGlobal.texto,
-        elevation: 0,
+      bottomNavigationBar: const MainBottomBar(),
+      appBar: AppBarInstitucional(
+        title: 'Detector de Vicios Procesales',
+        mostrarBack: true,
         actions: [
           IconButton(
             tooltip: 'Limpiar',
@@ -283,7 +284,7 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           controller: _scrollController,
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -506,11 +507,11 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
     return Row(
       children: [
         Expanded(
-          child: FilledButton.icon(
+          child: ElevatedButton.icon(
             onPressed: _detectando || _analizandoIA ? null : _detectar,
             icon: const Icon(Icons.search, size: 18),
             label: const Text('Detectar vicios'),
-            style: FilledButton.styleFrom(
+            style: ElevatedButton.styleFrom(
               backgroundColor:
                   TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino,
               foregroundColor: TemaGlobal.isDark ? Colors.black : Colors.white,
@@ -1082,11 +1083,11 @@ Español jurídico venezolano sobrio; no inventes hechos distintos a los dados.
         Row(
           children: [
             Expanded(
-              child: FilledButton.icon(
+              child: ElevatedButton.icon(
                 onPressed: _enviarAlRedactor,
                 icon: const Icon(Icons.edit_document, size: 18),
                 label: const Text('Enviar al redactor'),
-                style: FilledButton.styleFrom(
+                style: ElevatedButton.styleFrom(
                   backgroundColor:
                       TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino,
                   foregroundColor:
