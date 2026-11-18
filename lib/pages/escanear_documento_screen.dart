@@ -304,7 +304,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
             const SizedBox(height: 10),
             Text(
               'Toca "Escanear" para digitalizar tu primer documento.\n'
-              'Detección automática, filtros y OCR incluidos.',
+              'Detección automática y filtros. El texto se lee con IA de visión.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: TemaGlobal.textoSecundario,

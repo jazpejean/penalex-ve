@@ -196,7 +196,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
             _buildProveedorSection(
               'DeepSeek',
               Icons.code,
-              [AIModel.deepseekChat, AIModel.deepseekCoder],
+              [AIModel.deepseekChat, AIModel.deepseekCoder, AIModel.deepseekFlash],
               Colors.orange,
             ),
             

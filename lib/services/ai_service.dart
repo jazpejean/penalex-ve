@@ -788,7 +788,15 @@ enum AIModel {
       0.00014,
       'Especializado en código/lógica',
       Velocidad.rapida,
-      Calidad.buena);
+      Calidad.buena),
+  deepseekFlash(
+      'deepseek-flash',
+      'DeepSeek Flash (Visión)',
+      ProveedorIA.deepseek,
+      0.0003,
+      'Multimodal: analiza imágenes de documentos',
+      Velocidad.rapida,
+      Calidad.excelente);
 
   const AIModel(
     this.modelId,

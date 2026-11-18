@@ -5,6 +5,7 @@ import 'chat_legal_screen.dart';
 import 'redactor_documentos_screen.dart';
 import 'escanear_documento_screen.dart';
 import 'calculadora_prescripcion_screen.dart';
+import 'detector_vicios_screen.dart';
 
 /// Hub principal del Asistente Legal con IA
 /// Agrupa las 4 herramientas principales potenciadas por IA
@@ -126,6 +127,28 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const CalculadoraPrescripcionScreen(),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // DETECTOR DE VICIOS PROCESALES
+            _buildToolCard(
+              context,
+              icon: Icons.find_in_page,
+              iconColor:
+                  TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino,
+              title: 'Detector de Vicios Procesales',
+              badge: '🛡️ Defensa',
+              description:
+                  'Pega un auto, acta o sentencia y detecta los vicios del '
+                  'proceso: nulidades, prueba ilícita, detención arbitraria. '
+                  'Con norma, gravedad y acción procesal.',
+              stats: 'Catálogo + IA',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const DetectorViciosScreen(),
                 ),
               ),
             ),

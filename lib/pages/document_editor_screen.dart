@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import '../config/app_colors.dart';
-import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:provider/provider.dart';
+import '../providers/expediente_activo_provider.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -10,6 +11,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../config/app_theme.dart';
 import '../services/documentos_service.dart';
+import '../services/deepseek_vision_service.dart';
 import '../services/document_scanner_service_pro.dart';
 import '../services/escaneo_service.dart';
 import '../services/image_filter_service.dart';
@@ -17,7 +19,7 @@ import 'crop_adjust_screen.dart';
 
 /// Editor de documento escaneado, estilo CamScanner:
 /// vista previa grande, tira de miniaturas, filtros, recorte manual,
-/// rotar, reordenar, OCR y guardado.
+/// rotar, reordenar, lectura con IA de visión y guardado.
 class DocumentEditorScreen extends StatefulWidget {
   final List<String> paginas;
   final DocumentosService documentosService;
@@ -175,24 +177,21 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
     if (_procesando) return;
     setState(() => _procesando = true);
 
-    final textRecognizer = TextRecognizer();
-    final textoCompleto = StringBuffer();
+    String texto = '';
     try {
-      for (final imagePath in _paginas) {
-        final inputImage = InputImage.fromFilePath(imagePath);
-        final recognizedText = await textRecognizer.processImage(inputImage);
-        textoCompleto.writeln(recognizedText.text);
-        textoCompleto.writeln('\n---\n');
+      texto = await DeepSeekVisionService.transcribirDocumento(
+        rutasImagenes: _paginas,
+      );
+      if (texto.startsWith('⚠️') || texto.startsWith('❌')) {
+        texto = '';
       }
     } catch (e) {
-      debugPrint('❌ Error en OCR: $e');
-    } finally {
-      await textRecognizer.close();
+      debugPrint('❌ Error con IA de visión: $e');
     }
 
     if (mounted) {
       setState(() {
-        _textoOcr = textoCompleto.toString().trim();
+        _textoOcr = texto.trim().isEmpty ? null : texto.trim();
         _procesando = false;
       });
       _mostrarTextoExtraido();
@@ -292,12 +291,15 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
     if (_guardando) return;
     setState(() => _guardando = true);
 
+    final expedienteId =
+        context.read<ExpedienteActivoProvider>().expediente?.id;
     final documento = await widget.documentosService.guardarDocumento(
       titulo: _tituloController.text.trim().isEmpty
           ? 'Documento'
           : _tituloController.text.trim(),
       rutasImagenesLocales: _paginas,
       textoOcr: _textoOcr,
+      expedienteId: expedienteId,
     );
 
     if (!mounted) return;

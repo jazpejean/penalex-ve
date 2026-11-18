@@ -44,6 +44,7 @@ import 'pages/reset_password_page.dart';
 import 'pages/verify_email_page.dart';
 import 'providers/game_provider.dart';
 import 'providers/user_provider.dart';
+import 'providers/expediente_activo_provider.dart';
 import 'services/auth_service.dart'; // FIREBASE AUTH SERVICE
 import 'firebase_options.dart'; // Asegúrate de tener este archivo
 
@@ -91,6 +92,9 @@ class DosimetriaPenalApp extends StatelessWidget {
         // Providers de estado
         ChangeNotifierProvider<GameState>(create: (_) => GameState()),
         ChangeNotifierProvider<UserState>(create: (_) => UserState()),
+        // Expediente activo (contexto case-first para las herramientas)
+        ChangeNotifierProvider<ExpedienteActivoProvider>(
+            create: (_) => ExpedienteActivoProvider()),
       ],
       child: ValueListenableBuilder<bool>(
         valueListenable: TemaGlobal.oscuro,

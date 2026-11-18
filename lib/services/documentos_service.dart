@@ -13,7 +13,7 @@ class DocumentosService {
   static const String _bucketName = 'documents';
 
   /// Obtiene todos los documentos del usuario actual
-  Future<List<DocumentoEscaneado>> obtenerDocumentos() async {
+  Future<List<DocumentoEscaneado>> obtenerDocumentos({String? expedienteId}) async {
     try {
       final userId = _currentUserId;
       if (userId == null) {
@@ -21,11 +21,14 @@ class DocumentosService {
         return [];
       }
 
-      final response = await _supabase
+      var query = _supabase
           .from(_tableName)
           .select()
-          .eq('user_id', userId)
-          .order('fecha_creacion', ascending: false);
+          .eq('user_id', userId);
+      if (expedienteId != null) {
+        query = query.eq('expediente_id', expedienteId);
+      }
+      final response = await query.order('fecha_creacion', ascending: false);
 
       return (response as List)
           .map((json) => DocumentoEscaneado.fromJson(json))
@@ -41,6 +44,7 @@ class DocumentosService {
     required String titulo,
     required List<String> rutasImagenesLocales,
     String? textoOcr,
+    String? expedienteId,
   }) async {
     try {
       final userId = _currentUserId;
@@ -82,6 +86,7 @@ class DocumentosService {
         textoOcr: textoOcr,
         fechaCreacion: DateTime.now(),
         thumbnailUrl: thumbnailUrl,
+        expedienteId: expedienteId,
       );
 
       await _supabase.from(_tableName).insert(documento.toJson());

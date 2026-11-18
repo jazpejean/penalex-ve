@@ -8,7 +8,7 @@ import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 import '../services/document_chat_service.dart';
 import '../services/template_service.dart';
-import '../services/ocr_service.dart';
+import '../services/deepseek_vision_service.dart';
 import '../services/redactor_service.dart';
 import '../services/chat_legal_export_service.dart';
 import '../services/membrete_service.dart';
@@ -18,6 +18,9 @@ import '../models/chat_attachment.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'word_editor_screen.dart';
 import '../widgets/app_bar_institucional.dart';
+import 'package:provider/provider.dart';
+import '../providers/expediente_activo_provider.dart';
+import '../widgets/selector_expediente_sheet.dart';
 
 class RedactorDocumentosScreen extends StatefulWidget {
   /// Instrucción inicial (en lenguaje natural) que se envía automáticamente
@@ -46,6 +49,13 @@ class _RedactorDocumentosScreenState extends State<RedactorDocumentosScreen> {
   void initState() {
     super.initState();
     _initializeServices();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
+      final prov = context.read<ExpedienteActivoProvider>();
+      if (!prov.tieneExpediente) {
+        await SelectorExpedienteSheet.mostrar(context);
+      }
+    });
   }
 
   Future<void> _initializeServices() async {
@@ -142,11 +152,11 @@ class _RedactorDocumentosScreenState extends State<RedactorDocumentosScreen> {
     try {
       String response;
       
-      // Si hay archivos adjuntos, procesarlos primero con OCR
+      // Si hay archivos adjuntos, leerlos con IA de VISIÓN (DeepSeek)
       if (_attachments.isNotEmpty) {
         _addMessage(
           '📸 Analizando ${_attachments.length} documento(s) adjunto(s)...\n'
-          'Extrayendo texto con OCR...',
+          'Leyendo con IA de visión...',
           isUser: false,
         );
 
@@ -154,8 +164,10 @@ class _RedactorDocumentosScreenState extends State<RedactorDocumentosScreen> {
         for (final attachment in _attachments) {
           try {
             if (attachment.type == AttachmentType.image) {
-              final ocrText = await OCRService.extractTextFromImage(attachment.filePath);
-              extractedText += '\n\n=== ${attachment.fileName} ===\n$ocrText';
+              final textoVision = await DeepSeekVisionService.transcribirDocumento(
+                rutasImagenes: [attachment.filePath],
+              );
+              extractedText += '\n\n=== ${attachment.fileName} ===\n$textoVision';
             } else if (attachment.type == AttachmentType.pdf) {
               // TODO: Implementar extracción de texto de PDF
               extractedText += '\n\n=== ${attachment.fileName} ===\n📄 Archivo PDF adjunto';
@@ -168,9 +180,16 @@ class _RedactorDocumentosScreenState extends State<RedactorDocumentosScreen> {
         }
 
         // Enviar texto extraído + mensaje original a la IA
-        final combinedMessage = '''$text
+        final exp = context.read<ExpedienteActivoProvider>().expediente;
+        final contextoExpediente = exp == null
+            ? ''
+            : '\nEXPEDIENTE ACTIVO: ${exp.numeroExpediente} · Imputado: ${exp.imputado}'
+                '${exp.delitos != null && exp.delitos!.isNotEmpty ? ' · Delitos: ${exp.delitos}' : ''}'
+                '${exp.tribunalNombre != null ? ' · Tribunal: ${exp.tribunalNombre}' : ''}\n';
+        final combinedMessage = '''$contextoExpediente
+$text
 
-DOCUMENTOS ADJUNTOS (texto extraído con OCR):
+DOCUMENTOS ADJUNTOS (leídos con IA de visión):
 $extractedText
 
 Analiza los documentos adjuntos y extrae información relevante para el documento legal que estamos redactando (fechas, nombres, tribunal, delito, decisión, etc.). Si encuentras datos útiles, úsalos para prellenar campos automáticamente.''';

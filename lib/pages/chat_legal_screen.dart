@@ -12,12 +12,15 @@ import '../models/chat_message.dart';
 import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../services/chat_service.dart';
-import '../services/ocr_service.dart';
+import '../services/deepseek_vision_service.dart';
 import '../services/chat_legal_export_service.dart';
 import '../services/ulpiano_service.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'redactor_documentos_screen.dart' show RedactorDocumentosScreen;
 import '../widgets/app_bar_institucional.dart';
+import 'package:provider/provider.dart';
+import '../providers/expediente_activo_provider.dart';
+import '../widgets/selector_expediente_sheet.dart';
 
 /// Modelo para archivos adjuntos
 class AttachedFile {
@@ -76,6 +79,13 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
   void initState() {
     super.initState();
     _inicializar();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
+      final prov = context.read<ExpedienteActivoProvider>();
+      if (!prov.tieneExpediente) {
+        await SelectorExpedienteSheet.mostrar(context);
+      }
+    });
   }
 
   @override
@@ -139,7 +149,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                   _buildCategoriaDocumentos(
                     icon: Icons.document_scanner,
                     title: 'Documentos Escaneados',
-                    subtitle: 'Textos extraídos con OCR',
+                    subtitle: 'Documentos leídos con IA de visión',
                     color: AppColors.acento,
                     onTap: () {
                       Navigator.pop(context);
@@ -453,13 +463,13 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
     debugPrint('📤 Enviando mensaje: "$contenido"');
     _messageController.clear();
 
-    // Procesar adjuntos con OCR y combinarlos con el mensaje
+    // Procesar adjuntos con IA de VISIÓN (DeepSeek deepseek-flash)
     String contenidoFinal = contenido;
     if (_attachedFiles.isNotEmpty) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('🔍 Extrayendo texto de los adjuntos con OCR...'),
+            content: Text('🔍 Leyendo los documentos con IA de visión…'),
             duration: Duration(seconds: 2),
           ),
         );
@@ -468,22 +478,28 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
       for (final adj in _attachedFiles) {
         try {
           if (adj.isImage) {
-            final texto = await OCRService.extractTextFromImage(adj.file.path);
+            final texto = await DeepSeekVisionService.transcribirDocumento(
+              rutasImagenes: [adj.file.path],
+            );
             buffer.writeln('=== ${adj.name} ===');
-            buffer.writeln(texto.isEmpty ? '(sin texto detectado)' : texto);
+            buffer.writeln(
+              (texto.isEmpty || texto.startsWith('⚠️') || texto.startsWith('❌'))
+                  ? '(no se pudo leer el documento)'
+                  : texto,
+            );
           } else {
             buffer.writeln('=== ${adj.name} ===');
             buffer.writeln('(Documento adjunto)');
           }
         } catch (e) {
-          buffer.writeln('=== ${adj.name} === (no se pudo extraer texto)');
+          buffer.writeln('=== ${adj.name} === (no se pudo leer)');
         }
       }
       final extraido = buffer.toString().trim();
       if (extraido.isNotEmpty) {
         contenidoFinal = contenido.isEmpty
             ? 'Analiza el siguiente documento adjunto:\n\n$extraido'
-            : '$contenido\n\nDocumento adjunto (texto extraído con OCR):\n$extraido';
+            : '$contenido\n\nDocumento adjunto (leído con IA de visión):\n$extraido';
       }
       setState(() => _attachedFiles.clear());
     }
@@ -599,8 +615,14 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
       }
     }
 
+    final exp = context.read<ExpedienteActivoProvider>().expediente;
+    final contextoExpediente = exp == null
+        ? ''
+        : '\nEXPEDIENTE ACTIVO: ${exp.numeroExpediente} · Imputado: ${exp.imputado}'
+            '${exp.delitos != null && exp.delitos!.isNotEmpty ? ' · Delitos: ${exp.delitos}' : ''}'
+            '${exp.tribunalNombre != null ? ' · Tribunal: ${exp.tribunalNombre}' : ''}\n';
     return UlpianoService().generarRespuesta(
-      consulta: consulta,
+      consulta: '$contextoExpediente\n$consulta',
       contextoConversacion: contexto,
     );
   }
