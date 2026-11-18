@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Navbar from "../../components/Navbar";
+import HeaderHome from "../../components/HeaderHome";
 import RequiereSesion from "../../components/RequiereSesion";
 import {
   calcularConcursoDetallado,
@@ -919,7 +919,7 @@ export default function DosimetriaPage() {
 
   return (
     <RequiereSesion>
-      <Navbar />
+      <HeaderHome />
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-8">
         <div className="flex items-center justify-between">
           <h1 className="serif text-3xl font-bold text-[#0F172A]">

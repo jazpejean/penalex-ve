@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Navbar from "../../components/Navbar";
+import HeaderHome from "../../components/HeaderHome";
 import BuscadorArticulos from "../../components/BuscadorArticulos";
 import Icono from "../../components/Icono";
 import { listarLeyes } from "../../lib/supabase";
@@ -16,7 +16,7 @@ export default async function LeyesPage() {
 
   return (
     <>
-      <Navbar />
+      <HeaderHome />
       <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-10">
         <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[#e2e8f0] pb-6">
           <div>

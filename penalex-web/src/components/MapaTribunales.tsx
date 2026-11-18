@@ -1,24 +1,17 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { listarTribunalesConUbicacion, listarEstadosTribunales, type Tribunal } from "../lib/tribunales";
+import {
+  listarTribunalesConUbicacion,
+  listarEstadosTribunales,
+  type Tribunal,
+  circunscripcionJudicial,
+} from "../lib/tribunales";
 
 declare global {
   interface Window {
     L: any;
   }
-}
-
-const COLORES: Record<string, string> = {
-  CONTROL: "#1d4ed8",
-  JUICIO: "#6d28d9",
-  "EJECUCIÓN": "#c2410c",
-  APELACIÓN: "#0f766e",
-  OTRO: "#4b5563",
-};
-
-function colorFuncion(f: string | null | undefined): string {
-  return COLORES[f?.toUpperCase() ?? ""] ?? COLORES.OTRO;
 }
 
 function cargarLeaflet(): Promise<void> {
@@ -35,22 +28,36 @@ function cargarLeaflet(): Promise<void> {
   });
 }
 
+const COLORES: Record<string, string> = {
+  CONTROL: "#1d4ed8",
+  JUICIO: "#6d28d9",
+  EJECUCIÓN: "#c2410c",
+  APELACIÓN: "#0f766e",
+};
+
+function colorFuncion(f: string | null | undefined): string {
+  return COLORES[(f ?? "").toUpperCase()] ?? "#4b5563";
+}
+
+const circuitoDe = circunscripcionJudicial;
+
+type Modo = "circuitos" | "tribunales";
+
 export default function MapaTribunales() {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<any>(null);
   const markersRef = useRef<any[]>([]);
+
   const [tribunales, setTribunales] = useState<Tribunal[]>([]);
   const [estados, setEstados] = useState<string[]>([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [modo, setModo] = useState<Modo>("circuitos");
+  const [circuitoSel, setCircuitoSel] = useState<string | null>(null);
 
-  // Buscador + filtros
   const [busqueda, setBusqueda] = useState("");
   const [filtroEstado, setFiltroEstado] = useState("");
   const [filtroFuncion, setFiltroFuncion] = useState("");
-  const [filtroInstancia, setFiltroInstancia] = useState("");
-  const [filtroSeccion, setFiltroSeccion] = useState("");
-  const [avanzados, setAvanzados] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -70,44 +77,76 @@ export default function MapaTribunales() {
   }, []);
 
   const funciones = useMemo(
-    () => [...new Set(tribunales.map((t) => t.funcion ?? "").filter(Boolean))].sort(),
-    [tribunales]
-  );
-  const instancias = useMemo(
-    () => [...new Set(tribunales.map((t) => t.instancia).filter(Boolean))].sort(),
-    [tribunales]
-  );
-  const secciones = useMemo(
-    () => [...new Set(tribunales.map((t) => t.seccion ?? "").filter(Boolean))].sort(),
-    [tribunales]
+    () =>
+      [...new Set(tribunales.map((t) => t.funcion ?? "").filter(Boolean))].sort(),
+    [tribunales],
   );
 
   const visibles = useMemo(() => {
     const q = busqueda.trim().toLowerCase();
     return tribunales.filter((t) => {
       if (q) {
-        const haystack = [t.nombre, t.codigo, t.sede ?? "", t.municipio ?? "", t.estado, t.parroquia ?? "", t.seccion ?? ""]
+        const haystack = [
+          t.nombre,
+          t.codigo,
+          t.sede ?? "",
+          t.municipio ?? "",
+          t.estado,
+          t.parroquia ?? "",
+          circuitoDe(t),
+        ]
           .join(" ")
           .toLowerCase();
         if (!haystack.includes(q)) return false;
       }
       if (filtroEstado && t.estado !== filtroEstado) return false;
       if (filtroFuncion && (t.funcion ?? "") !== filtroFuncion) return false;
-      if (filtroInstancia && t.instancia !== filtroInstancia) return false;
-      if (filtroSeccion && (t.seccion ?? "") !== filtroSeccion) return false;
       return true;
     });
-  }, [tribunales, busqueda, filtroEstado, filtroFuncion, filtroInstancia, filtroSeccion]);
+  }, [tribunales, busqueda, filtroEstado, filtroFuncion]);
 
-  const hayFiltros = Boolean(busqueda || filtroEstado || filtroFuncion || filtroInstancia || filtroSeccion);
+  const hayFiltros = Boolean(busqueda || filtroEstado || filtroFuncion);
 
   function limpiarFiltros() {
     setBusqueda("");
     setFiltroEstado("");
     setFiltroFuncion("");
-    setFiltroInstancia("");
-    setFiltroSeccion("");
+    setCircuitoSel(null);
   }
+
+  /** Grupos por circuito judicial con su centroide. */
+  const circuitos = useMemo(() => {
+    const grupos = new Map<string, Tribunal[]>();
+    for (const t of visibles) {
+      const c = circuitoDe(t);
+      if (!grupos.has(c)) grupos.set(c, []);
+      grupos.get(c)!.push(t);
+    }
+    const lista = [...grupos.entries()].map(([nombre, grupo]) => {
+      const conGeo = grupo.filter((t) => t.latitud != null && t.longitud != null);
+      const centro =
+        conGeo.length > 0
+          ? {
+              lat:
+                conGeo.reduce((a, t) => a + (t.latitud as number), 0) /
+                conGeo.length,
+              lng:
+                conGeo.reduce((a, t) => a + (t.longitud as number), 0) /
+                conGeo.length,
+            }
+          : null;
+      return { nombre, grupo, centro };
+    });
+    return lista.sort((a, b) => a.nombre.localeCompare(b.nombre));
+  }, [visibles]);
+
+  const tribunalesDelCircuito = useMemo(
+    () =>
+      circuitoSel
+        ? visibles.filter((t) => circuitoDe(t) === circuitoSel)
+        : [],
+    [visibles, circuitoSel],
+  );
 
   useEffect(() => {
     if (!mapRef.current || !tribunales.length) return;
@@ -127,187 +166,254 @@ export default function MapaTribunales() {
       markersRef.current.forEach((m) => mapInstance.current.removeLayer(m));
       markersRef.current = [];
 
-      // Agrupa los tribunales que comparten la MISMA coordenada (varios en
-      // un mismo palacio de justicia) y los separa en espiral: sin esto,
-      // los ~16 de "Los Teques" se apilan en un solo punto y solo se ve el
-      // último dibujado (la Sala 1 de la Corte de Apelaciones).
-      const radio = 0.0016; // ~170 m de separación en zoom urbano
-      const grupos = new Map<string, Tribunal[]>();
-      visibles.forEach((t) => {
-        if (t.latitud == null || t.longitud == null) return;
-        const clave = `${t.latitud.toFixed(4)},${t.longitud.toFixed(4)}`;
-        if (!grupos.has(clave)) grupos.set(clave, []);
-        grupos.get(clave)!.push(t);
-      });
-      grupos.forEach((grupo) => {
-        if (grupo.length === 1) {
-          const t = grupo[0];
-          agregarMarker(t, t.latitud!, t.longitud!);
-          return;
-        }
-        grupo.forEach((t, i) => {
-          const angulo = i * 2.399963; // ángulo dorado (rad)
-          const d = radio * (0.4 + i * 0.22);
-          agregarMarker(
-            t,
-            t.latitud! + d * Math.cos(angulo),
-            t.longitud! + d * Math.sin(angulo)
-          );
-        });
-      });
-
-      function agregarMarker(t: Tribunal, lat: number, lng: number) {
-        const marker = L.marker([lat, lng], {
-          icon: L.divIcon({
+      if (modo === "circuitos") {
+        // Un marcador por CIRCUITO con su conteo (mucho más rápido y legible).
+        for (const c of circuitos) {
+          if (!c.centro) continue;
+          const seleccionado = circuitoSel === c.nombre;
+          const icono = L.divIcon({
             className: "",
-            html: `<div style="width:22px;height:22px;border-radius:50%;background:${colorFuncion(t.funcion)};border:2px solid white;box-shadow:0 1px 3px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-size:12px;color:white">⚖</div>`,
-            iconSize: [22, 22],
-            iconAnchor: [11, 11],
-          }),
-        }).addTo(mapInstance.current);
-        marker.bindPopup(
-          (t.url_foto
-            ? `<img src="${t.url_foto}" style="width:220px;height:110px;object-fit:cover;border-radius:8px;display:block;margin-bottom:6px" onerror="this.style.display='none'"/>`
-            : "") +
-            `<b>${t.nombre}</b><br/>${t.sede ?? ""}<br/>${t.estado}${t.municipio ? " · " + t.municipio : ""}<br/>` +
-            `<span style="font-size:12px;color:#555">${t.funcion ?? ""} · ${t.instancia}</span>`
-        );
-        markersRef.current.push(marker);
-      }
-
-      // Ajustar vista solo cuando hay filtros (evita saltos molestos)
-      if (visibles.length && (filtroEstado || filtroFuncion || filtroInstancia || filtroSeccion || busqueda)) {
-        const bounds = L.latLngBounds(
-          visibles.filter((t) => t.latitud != null && t.longitud != null).map((t) => [t.latitud, t.longitud])
-        );
-        mapInstance.current.fitBounds(bounds, { padding: [30, 30] });
+            html: `
+              <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+                <div style="width:40px;height:40px;border-radius:50%;background:${
+                  seleccionado ? "#C5A059" : "#0F172A"
+                };border:2.5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 2px 6px rgba(0,0,0,.35);">🏛️</div>
+                <div style="background:#fff;border:1px solid ${
+                  seleccionado ? "#C5A059" : "#0F172A"
+                };border-radius:10px;font-size:10px;font-weight:800;color:${
+                  seleccionado ? "#C5A059" : "#0F172A"
+                };padding:0 5px;">${c.grupo.length}</div>
+              </div>`,
+            iconSize: [44, 60],
+            iconAnchor: [22, 30],
+          });
+          const marker = L.marker([c.centro.lat, c.centro.lng], { icon: icono })
+            .addTo(mapInstance.current)
+            .on("click", () => {
+              setCircuitoSel(c.nombre);
+              mapInstance.current.setView([c.centro!.lat, c.centro!.lng], 8.2, {
+                animate: true,
+              });
+            });
+          markersRef.current.push(marker);
+        }
+      } else {
+        // Modo tribunales: marcadores individuales con popup.
+        const grupos = new Map<string, Tribunal[]>();
+        for (const t of visibles) {
+          if (t.latitud == null || t.longitud == null) continue;
+          const clave = `${t.latitud.toFixed(4)},${t.longitud.toFixed(4)}`;
+          if (!grupos.has(clave)) grupos.set(clave, []);
+          grupos.get(clave)!.push(t);
+        }
+        const radio = 0.0016;
+        for (const grupo of grupos.values()) {
+          grupo.forEach((t, i) => {
+            const ang = i * 2.399963;
+            const d = radio * (0.4 + i * 0.22);
+            const punto = [
+              (t.latitud as number) + d * Math.cos(ang),
+              (t.longitud as number) + d * Math.sin(ang),
+            ];
+            const icono = L.divIcon({
+              className: "",
+              html: `<div style="width:34px;height:34px;border-radius:50%;background:${colorFuncion(
+                t.funcion,
+              )};border:2px solid #fff;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;box-shadow:0 2px 5px rgba(0,0,0,.3);">⚖️</div>`,
+              iconSize: [34, 34],
+              iconAnchor: [17, 17],
+            });
+            const marker = L.marker(punto, { icon: icono })
+              .addTo(mapInstance.current)
+              .bindPopup(
+                `<strong>${t.nombre}</strong><br/>${[
+                  t.funcion,
+                  t.municipio,
+                  t.sede,
+                ]
+                  .filter(Boolean)
+                  .join(" · ")}`,
+              );
+            markersRef.current.push(marker);
+          });
+        }
       }
     })();
 
     return () => {
       cancelled = true;
     };
-  }, [visibles, filtroEstado, filtroFuncion, filtroInstancia, filtroSeccion, busqueda]);
+  }, [tribunales, visibles, circuitos, modo, circuitoSel]);
 
-  const selectCls =
-    "rounded-lg border border-gray-300 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#031F4E]/20";
+  function irATribunal(t: Tribunal) {
+    if (t.latitud == null || t.longitud == null) return;
+    setModo("tribunales");
+    setTimeout(() => {
+      mapInstance.current?.setView([t.latitud as number, t.longitud as number], 14);
+    }, 150);
+  }
+
+  if (error) {
+    return (
+      <div className="p-6 text-sm text-red-600">
+        No se pudieron cargar los tribunales: {error}
+      </div>
+    );
+  }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10">
-      <h1 className="text-3xl font-bold text-[#0f172a] mb-2">Mapa de Tribunales Penales</h1>
-      <p className="text-gray-600 mb-6">
-        Catálogo oficial del Tribunal Supremo de Justicia · {tribunales.length} tribunales de 1ª y 2ª
-        instancia (excluye menores/LOPNNA). Fuente: geoportal.tsj.gob.ve.
-      </p>
-
-      {error && (
-        <div className="mb-4 rounded-lg bg-red-50 border border-red-200 p-4 text-red-700 text-sm">{error}</div>
-      )}
-
-      {/* Buscador */}
-      <div className="mb-3 flex gap-2">
-        <div className="relative flex-1">
+    <div>
+      {/* Buscador y filtros */}
+      <div className="border-b border-slate-200 bg-white p-3">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <input
-            type="text"
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
-            placeholder="Buscar por nombre, código, sede, municipio, estado…"
-            className="w-full rounded-lg border border-gray-300 pl-9 pr-9 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#031F4E]/20"
+            placeholder="Buscar por tribunal, sede, municipio o circuito…"
+            className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-[#031F4E]"
           />
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">🔍</span>
-          {busqueda && (
-            <button
-              onClick={() => setBusqueda("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              aria-label="Limpiar búsqueda"
-            >
-              ✕
-            </button>
-          )}
-        </div>
-        <button
-          onClick={() => setAvanzados(!avanzados)}
-          className={`rounded-lg border px-3 py-2 text-sm font-medium ${avanzados ? "bg-[#031F4E] text-white border-[#031F4E]" : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"}`}
-          title="Filtros avanzados"
-        >
-          ⚙ Filtros
-        </button>
-        {hayFiltros && (
-          <button
-            onClick={limpiarFiltros}
-            className="rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700 bg-white hover:bg-gray-50"
+          <select
+            value={filtroEstado}
+            onChange={(e) => setFiltroEstado(e.target.value)}
+            className="rounded-lg border border-slate-200 px-3 py-2 text-sm"
           >
-            Limpiar
-          </button>
-        )}
-      </div>
-
-      {/* Filtros */}
-      <div className="mb-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-        <select value={filtroEstado} onChange={(e) => setFiltroEstado(e.target.value)} className={selectCls}>
-          <option value="">Todos los estados</option>
-          {estados.map((e) => (
-            <option key={e} value={e}>{e}</option>
-          ))}
-        </select>
-        <select value={filtroFuncion} onChange={(e) => setFiltroFuncion(e.target.value)} className={selectCls}>
-          <option value="">Todas las funciones</option>
-          {funciones.map((f) => (
-            <option key={f} value={f}>{f}</option>
-          ))}
-        </select>
-        {avanzados && (
-          <>
-            <select value={filtroInstancia} onChange={(e) => setFiltroInstancia(e.target.value)} className={selectCls}>
-              <option value="">Todas las instancias</option>
-              {instancias.map((i) => (
-                <option key={i} value={i}>{i}</option>
-              ))}
-            </select>
-            <select value={filtroSeccion} onChange={(e) => setFiltroSeccion(e.target.value)} className={selectCls}>
-              <option value="">Todas las secciones</option>
-              {secciones.map((s) => (
-                <option key={s} value={s}>{s}</option>
-              ))}
-            </select>
-          </>
-        )}
-      </div>
-
-      {/* Contador */}
-      <div className="mb-3 flex items-center gap-3 text-xs text-gray-600">
-        <span className="font-semibold">
-          {visibles.length} de {tribunales.length} tribunales
-        </span>
-        {Object.entries(COLORES).slice(0, 4).map(([k, c]) => (
-          <span key={k} className="flex items-center gap-1">
-            <span className="inline-block w-3 h-3 rounded-full" style={{ background: c }} />
-            {k.charAt(0) + k.slice(1).toLowerCase()}
+            <option value="">Todos los estados</option>
+            {estados.map((e) => (
+              <option key={e} value={e}>
+                {e}
+              </option>
+            ))}
+          </select>
+          <select
+            value={filtroFuncion}
+            onChange={(e) => setFiltroFuncion(e.target.value)}
+            className="rounded-lg border border-slate-200 px-3 py-2 text-sm"
+          >
+            <option value="">Todas las funciones</option>
+            {funciones.map((f) => (
+              <option key={f} value={f}>
+                {f}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+          <div className="inline-flex rounded-lg bg-slate-100 p-1 text-xs font-bold">
+            <button
+              onClick={() => {
+                setModo("circuitos");
+                setCircuitoSel(null);
+              }}
+              className={`rounded-md px-3 py-1.5 ${
+                modo === "circuitos" ? "bg-white text-[#031F4E] shadow" : "text-slate-500"
+              }`}
+            >
+              🏛️ Circuitos
+            </button>
+            <button
+              onClick={() => setModo("tribunales")}
+              className={`rounded-md px-3 py-1.5 ${
+                modo === "tribunales" ? "bg-white text-[#031F4E] shadow" : "text-slate-500"
+              }`}
+            >
+              ⚖️ Tribunales
+            </button>
+          </div>
+          <span className="text-xs text-slate-500">
+            {modo === "circuitos"
+              ? `${circuitos.length} circuitos · ${visibles.length} tribunales`
+              : `${visibles.length} tribunales`}
+            {hayFiltros ? (
+              <button
+                onClick={limpiarFiltros}
+                className="ml-2 text-[#031F4E] underline"
+              >
+                Limpiar filtros
+              </button>
+            ) : null}
           </span>
-        ))}
+        </div>
       </div>
 
-      <div
-        ref={mapRef}
-        className="w-full rounded-2xl overflow-hidden border border-gray-200 shadow-sm"
-        style={{ height: "540px", zIndex: 0 }}
-      >
-        {cargando && (
-          <div className="flex items-center justify-center h-full bg-gray-50 text-gray-500">
+      {/* Mapa */}
+      <div className="relative">
+        <div ref={mapRef} className="h-[520px] w-full" />
+        {cargando ? (
+          <div className="absolute inset-0 flex items-center justify-center bg-white/70 text-sm text-slate-500">
             Cargando mapa…
           </div>
-        )}
-        {!cargando && visibles.length === 0 && (
-          <div className="flex items-center justify-center h-full bg-gray-50 text-gray-500">
-            Sin tribunales con esos criterios
-          </div>
-        )}
-      </div>
+        ) : null}
 
-      <p className="mt-4 text-xs text-gray-400">
-        Los tribunales son datos públicos del TSJ. El estado de despacho diario no es publicado por el
-        TSJ; la app lo muestra como desconocido hasta que exista una fuente oficial.
-      </p>
+        {/* Panel del circuito seleccionado */}
+        {modo === "circuitos" && circuitoSel ? (
+          <div className="absolute bottom-3 left-3 right-3 max-h-64 overflow-auto rounded-xl border border-slate-200 bg-white p-3 shadow-xl sm:left-3 sm:right-auto sm:w-96">
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <div className="text-sm font-bold text-[#031F4E]">{circuitoSel}</div>
+                <div className="text-[11px] text-slate-500">
+                  {tribunalesDelCircuito.length} tribunales penales
+                </div>
+              </div>
+              <button
+                onClick={() => setCircuitoSel(null)}
+                className="text-slate-400 hover:text-slate-600"
+                aria-label="Cerrar"
+              >
+                ✕
+              </button>
+            </div>
+            <ul className="mt-2 divide-y divide-slate-100">
+              {tribunalesDelCircuito.map((t) => (
+                <li key={t.id} className="py-2">
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="min-w-0">
+                      <div className="text-xs font-semibold text-[#031F4E]">
+                        {t.nombre}
+                      </div>
+                      <div className="text-[11px] text-slate-500">
+                        {[t.municipio, t.parroquia, t.sede]
+                          .filter(Boolean)
+                          .join(" · ")}
+                      </div>
+                      {t.latitud != null && t.longitud != null ? (
+                        <div className="mt-0.5 font-mono text-[10px] text-slate-400">
+                          {t.latitud.toFixed(5)}, {t.longitud.toFixed(5)}
+                        </div>
+                      ) : null}
+                    </div>
+                    {t.funcion ? (
+                      <span
+                        className="mt-0.5 shrink-0 rounded-full px-2 py-0.5 text-[9px] font-bold uppercase text-white"
+                        style={{ background: colorFuncion(t.funcion) }}
+                      >
+                        {t.funcion}
+                      </span>
+                    ) : null}
+                  </div>
+                  <div className="mt-1.5 flex flex-wrap gap-1.5">
+                    <button
+                      onClick={() => irATribunal(t)}
+                      className="rounded-md border border-slate-200 px-2 py-1 text-[10.5px] font-semibold text-[#031F4E] hover:bg-slate-50"
+                    >
+                      🗺️ Ver en el mapa
+                    </button>
+                    {t.latitud != null && t.longitud != null ? (
+                      <a
+                        href={`https://www.google.com/maps?q=${t.latitud},${t.longitud}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-md bg-[#0F172A] px-2 py-1 text-[10.5px] font-semibold text-white hover:bg-[#1e293b]"
+                      >
+                        📍 Google Maps
+                      </a>
+                    ) : null}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }

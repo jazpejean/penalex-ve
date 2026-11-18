@@ -385,6 +385,65 @@ export default {
       }
     }
 
+    // sitemap-tribunales.xml dinámico: lista los estados con tribunales desde
+    // Supabase y genera las URLs del directorio SEO (/tribunales/[estado]).
+    if (esLectura && url.pathname === '/sitemap-tribunales.xml') {
+      try {
+        const slug = (t) => t.toLowerCase()
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        const resp = await fetch(
+          `${env.SUPABASE_URL}/rest/v1/tribunales?select=estado`,
+          {
+            headers: {
+              apikey: env.SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${env.SUPABASE_ANON_KEY}`,
+            },
+          },
+        );
+        const filas = resp.ok ? await resp.json() : [];
+        const estados = [...new Set((filas || []).map((r) => r.estado).filter(Boolean))].sort();
+        const urls = ['https://penalexve.com/tribunales'];
+        for (const e of estados) {
+          urls.push('https://penalexve.com/tribunales/' + slug(e));
+        }
+        const cuerpo = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+          urls.map((u) => '  <url>\n    <loc>' + u + '</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>').join('\n') +
+          '\n</urlset>\n';
+        const headers = { 'content-type': 'application/xml; charset=utf-8', 'cache-control': 'public, max-age=3600' };
+        if (request.method === 'HEAD') return new Response(null, { headers, status: 200 });
+        return new Response(cuerpo, { headers });
+      } catch (e) {
+        console.error('sitemap-tribunales falló:', e.message);
+        return json(500, { error: 'sitemap-tribunales falló: ' + e.message });
+      }
+    }
+
+    // sitemap-blog.xml se GENERA dinámicamente listando los artículos reales
+    // del bucket (blog/articulos/*.html). Nunca hay que editarlo a mano.
+    if (esLectura && url.pathname === '/sitemap-blog.xml') {
+      try {
+        const lista = await env.R2_JURISPRUDENCIA.list({ prefix: 'blog/articulos/', limit: 1000 });
+        const urls = ['https://penalexve.com/articulos'];
+        for (const o of lista.objects || []) {
+          const m = o.key.match(/^blog\/articulos\/([^/]+)\.html$/);
+          if (m && m[1] !== 'autor-jean-jazpe') urls.push('https://penalexve.com/articulos/' + m[1] + '.html');
+        }
+        urls.push('https://penalexve.com/autor/jean-jazpe');
+        const cuerpo = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+          urls.map(u => '  <url>\n    <loc>' + u + '</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>').join('\n') +
+          '\n</urlset>\n';
+        const headers = { 'content-type': 'application/xml; charset=utf-8', 'cache-control': 'public, max-age=3600' };
+        if (request.method === 'HEAD') return new Response(null, { headers, status: 200 });
+        return new Response(cuerpo, { headers });
+      } catch (e) {
+        console.error('sitemap-blog dinámico falló:', e.message);
+        return json(500, { error: 'sitemap-blog falló: ' + e.message });
+      }
+    }
+
     // robots.txt y sitemaps: se sirven desde el bucket (raíz), con su
     // content-type correcto, para que Google encuentre Allow /sentencias/.
     const archivosSeo = {

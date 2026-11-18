@@ -35,6 +35,7 @@ export default function HeaderHome() {
   const NAV_PRINCIPAL = [
     { href: "/sentencias", label: "Jurisprudencias" },
     { href: "/leyes", label: "Leyes" },
+    { href: "/tribunales", label: "Tribunales" },
     { href: "/articulos", label: "Blog · Nulidad Absoluta" },
   ];
 
