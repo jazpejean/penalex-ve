@@ -154,8 +154,8 @@ export default function HomePage() {
               </div>
               <div className="mt-10 grid max-w-lg grid-cols-3 divide-x divide-[#e2e8f0] border-y border-[#e2e8f0] py-4">
                 {[
-                  { v: "71", t: "leyes íntegras" },
-                  { v: "15.900+", t: "artículos indexados" },
+                  { v: "53", t: "leyes íntegras" },
+                  { v: "6.416", t: "artículos indexados" },
                   { v: "100%", t: "fuentes verificadas" },
                 ].map((m) => (
                   <div key={m.t} className="px-4 first:pl-0">
@@ -454,7 +454,7 @@ export default function HomePage() {
                 <ul className="mt-6 space-y-3.5 text-sm text-slate-700">
                   {[
                     "Cálculo técnico de penas con fundamento legal explícito",
-                    "71 leyes íntegras verificadas contra fuentes oficiales",
+                    "53 leyes íntegras penales verificadas contra fuentes oficiales",
                     "Búsqueda de artículos por número o tema en todo el corpus",
                     "Informes técnicos imprimibles con aviso legal",
                   ].map((b) => (
@@ -491,7 +491,7 @@ export default function HomePage() {
                 Todo el arsenal jurídico en un solo ecosistema
               </h2>
               <p className="mt-4 text-slate-600">
-                Ocho herramientas profesionales. Las mismas de la app, con la
+                Doce herramientas profesionales. Las mismas de la app, con la
                 misma cuenta y los mismos estándares de rigor.
               </p>
             </div>

@@ -31,7 +31,7 @@ export interface LeyEstructura {
   estructura: BloqueLey[];
 }
 
-/** Lista las 71 leyes (manifest) ordenadas por relevancia (campo `orden`). */
+/** Lista las 53 leyes penales (manifest de R2) ordenadas por relevancia. */
 export async function listarLeyes(): Promise<Array<{ slug: string; nombre: string; orden: number }>> {
   const manifestUrl = `${url}/storage/v1/object/public/leyes/manifest.json`;
   const res = await fetch(manifestUrl, {
