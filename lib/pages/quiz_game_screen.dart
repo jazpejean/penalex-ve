@@ -953,6 +953,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
         rango: rango,
         xp: _xp,
         codigo: codigo,
+        etapa: QuizRules.etapaCarrera(_xp),
       );
       _progreso = _service.registrarLogro(_progreso, {
         'rango': rango,
