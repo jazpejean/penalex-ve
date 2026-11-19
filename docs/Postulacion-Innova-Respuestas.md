@@ -11,11 +11,15 @@ el sector, escribe: **LegalTech · Inteligencia artificial jurídica**.
 ---
 
 ## Etapa del proyecto *
-**Selecciona: "En funcionamiento"**
+**Selecciona: "En incubación"**
 
-Motivo: la app Android y la web están operativas, con datos reales en producción
-(63.048 sentencias, 53 leyes, 867 tribunales). "Prototipo o MVP" queda corto y te
-resta en viabilidad técnica (20% de la nota).
+Motivo: las bases oficiales dicen literalmente: *"Se dará prioridad a las ideas en
+fase de incubación."* Penalex VE cumple esa etapa como startup: es un emprendimiento
+en incubación, sin financiamiento ni equipo formal, validando su modelo de negocio.
+Que el MVP ya esté en funcionamiento es un ACTIVO que suma en viabilidad técnica
+(20%), no lo contradice: muchas startups incubadas ya tienen producto.
+Refuérzalo en la descripción con la frase "startup en incubación con MVP en
+funcionamiento".
 
 ---
 
@@ -23,9 +27,9 @@ resta en viabilidad técnica (20% de la nota).
 
 ### Versión 800 caracteres (LA QUE DEBES PEGAR)
 
-> Penalex VE es la plataforma de IA jurídica para el proceso penal venezolano. En un tribunal, calcular una pena, hallar un criterio del TSJ o verificar una nulidad se hace a mano: días de trabajo y riesgo de error. Reunimos 63.048 sentencias del TSJ, 53 leyes (6.416 artículos) y 867 tribunales en un ecosistema de 12 herramientas que trabaja sobre el expediente: dosimetría penal con PDF, detector de vicios procesales (21 vicios con norma, gravedad y acción), redactor, escáner con IA de visión y agenda con lapsos. Cada respuesta cita la ley o la sentencia real. Está en funcionamiento (Android y web), escala a otros países cargando su corpus legal y fue seleccionada para The Next Gen Builder 2027 de ALAS. Fundador: analista judicial penal.
+> Penalex VE es una startup en incubación con MVP en funcionamiento: la plataforma de IA jurídica para el proceso penal venezolano. En un tribunal, calcular una pena, hallar un criterio del TSJ o verificar una nulidad se hace a mano: días de trabajo y riesgo de error. Reunimos 63.048 sentencias, 53 leyes (6.416 artículos) y 867 tribunales en 12 herramientas que trabajan sobre el expediente: dosimetría penal, detector de vicios procesales (21 vicios con norma y acción), redactor, escáner con IA de visión y agenda con lapsos. Cada respuesta cita la ley o la sentencia real. Escala a otros países cargando su corpus legal. Seleccionada para The Next Gen Builder 2027 de ALAS. Fundador: analista judicial penal.
 
-**Longitud: 745 caracteres** (cabe en 800 con margen de 55).
+**Longitud: 711 caracteres** (cabe en 800 con margen de 89).
 
 ---
 
