@@ -116,17 +116,33 @@ class QuizStorageService {
 
   /// Obtiene un caso hipotético de TODO el banco personal (sin materias),
   /// excluyendo falladas en reposo y respondidas. Baraja las opciones.
-  Future<CasoQuiz?> obtenerCaso({Set<String>? excluirIds}) async {
+  Future<CasoQuiz?> obtenerCaso({
+    Set<String>? excluirIds,
+    List<int>? dificultadesPreferidas,
+  }) async {
     final casos = await listarCasos();
     if (casos.isEmpty) return null;
 
     final excluir = excluirIds ?? <String>{};
 
     // 1. Casos disponibles (no fallados en reposo, no respondidos).
-    var candidatos =
-        casos.where((c) => !excluir.contains(c.id)).toList();
+    var candidatos = casos.where((c) => !excluir.contains(c.id)).toList();
 
-    // 2. Si el banco personal se agotó (todo respondido o en reposo), permite
+    // 2. Progresión por carrera judicial: si hay dificultades objetivo, se
+    //    filtra por ellas en orden de preferencia. Si el banco no tiene de esa
+    //    dificultad, se cae a la siguiente preferida y finalmente a cualquiera
+    //    (nunca se queda sin caso).
+    if (dificultadesPreferidas != null && dificultadesPreferidas.isNotEmpty) {
+      for (final d in dificultadesPreferidas) {
+        final filtrados = candidatos.where((c) => c.dificultad == d).toList();
+        if (filtrados.isNotEmpty) {
+          return filtrados[_random.nextInt(filtrados.length)]
+              .conOpcionesBarajadas(_random);
+        }
+      }
+    }
+
+    // 3. Si el banco personal se agotó (todo respondido o en reposo), permite
     //    repetir los fallados para que la sesión no se quede sin casos.
     if (candidatos.isEmpty) candidatos = casos;
 
@@ -245,13 +261,17 @@ class QuizStorageService {
   Set<String> idsExcluidos(Map<String, dynamic> progreso) {
     final excluir = <String>{};
 
-    // Reposo estricto: una pregunta fallada queda fuera mientras existan otras
-    // disponibles en el banco personal. Si el banco se agota, obtenerCaso()
-    // permite repetirlas (para no cortar la sesión).
+    // Reposo temporal: una pregunta fallada queda fuera hasta que vence su
+    // reposo (1, 2 o 4 días según las veces falladas). Al vencer vuelve para
+    // repaso; si se acierta, pasa a "respondidas" y no se repite más.
+    final ahora = DateTime.now();
     final falladas = (progreso['falladas'] as List<dynamic>? ?? const []);
     for (final f in falladas) {
       final map = f as Map<String, dynamic>;
-      excluir.add(map['caso_id'] as String);
+      final hasta = DateTime.tryParse(map['reposo_hasta'] as String? ?? '');
+      if (hasta == null || hasta.isAfter(ahora)) {
+        excluir.add(map['caso_id'] as String);
+      }
     }
 
     final respondidas = (progreso['respondidas'] as List<dynamic>? ?? const []);
@@ -261,19 +281,41 @@ class QuizStorageService {
   }
 
   /// Registra un fallo (para el cooldown de "no repetir").
+  /// Reposo base de una pregunta fallada: no reaparece en la misma sesión y
+  /// vuelve para repaso al día siguiente (se duplica con cada fallo nuevo).
+  static Duration _reposoPorFallos(int veces) {
+    switch (veces) {
+      case 1:
+        return const Duration(days: 1);
+      case 2:
+        return const Duration(days: 2);
+      default:
+        return const Duration(days: 4);
+    }
+  }
+
   Map<String, dynamic> registrarFallo(
       Map<String, dynamic> progreso, String casoId) {
     final falladas =
         (progreso['falladas'] as List<dynamic>? ?? const []).toList();
     final idx = falladas.indexWhere((f) => (f as Map)['caso_id'] == casoId);
-    final ahora = DateTime.now().toIso8601String();
+    final ahora = DateTime.now();
+    final ahoraIso = ahora.toIso8601String();
     if (idx >= 0) {
       final m = (falladas[idx] as Map<String, dynamic>);
-      m['veces'] = ((m['veces'] as num?)?.toInt() ?? 0) + 1;
-      m['ultima'] = ahora;
+      final veces = ((m['veces'] as num?)?.toInt() ?? 0) + 1;
+      m['veces'] = veces;
+      m['ultima'] = ahoraIso;
+      m['reposo_hasta'] = ahora.add(_reposoPorFallos(veces)).toIso8601String();
       falladas[idx] = m;
     } else {
-      falladas.add({'caso_id': casoId, 'veces': 1, 'ultima': ahora});
+      falladas.add({
+        'caso_id': casoId,
+        'veces': 1,
+        'ultima': ahoraIso,
+        'reposo_hasta':
+            ahora.add(_reposoPorFallos(1)).toIso8601String(),
+      });
     }
     final copia = Map<String, dynamic>.from(progreso);
     copia['falladas'] = falladas;
@@ -298,6 +340,11 @@ class QuizStorageService {
     if (!respondidas.contains(casoId)) respondidas.add(casoId);
     final copia = Map<String, dynamic>.from(progreso);
     copia['respondidas'] = respondidas;
+    // Si estaba en reposo por fallo y ahora se acierta, sale del reposo.
+    final falladas =
+        (progreso['falladas'] as List<dynamic>? ?? const []).toList();
+    falladas.removeWhere((f) => (f as Map)['caso_id'] == casoId);
+    copia['falladas'] = falladas;
     return copia;
   }
 }

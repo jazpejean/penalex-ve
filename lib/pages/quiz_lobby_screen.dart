@@ -647,6 +647,16 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                         fontWeight: FontWeight.w700,
                       ),
                     ),
+                    const SizedBox(height: 2),
+                    Text(
+                      QuizRules.etapaCarrera(_xp).toUpperCase(),
+                      style: const TextStyle(
+                        color: _grisClaro,
+                        fontSize: 10,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.8,
+                      ),
+                    ),
                     const SizedBox(height: 4),
                     Text(
                       '$_xp XP',

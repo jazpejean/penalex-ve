@@ -139,7 +139,13 @@ class _QuizGameScreenState extends State<QuizGameScreen>
     _arc.stop();
 
     final excluir = _service.idsExcluidos(_progreso);
-    final caso = await _service.obtenerCaso(excluirIds: excluir);
+    // La carrera judicial marca la dificultad: a mayor rango, casos más
+    // complejos (Alguacil → dificultad 1; Casación/TSJ → dificultad 3).
+    final dificultades = QuizRules.dificultadesParaXp(_xp);
+    final caso = await _service.obtenerCaso(
+      excluirIds: excluir,
+      dificultadesPreferidas: dificultades,
+    );
 
     if (!mounted) return;
     setState(() {

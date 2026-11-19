@@ -118,4 +118,31 @@ class QuizRules {
   /// Todos los hitos que otorgan certificado, en orden ascendente.
   static List<({int xp, String nombre})> get hitosConCertificado =>
       _rangos.where((r) => _xpConCertificado.contains(r.xp)).toList();
+
+  /// Dificultades objetivo según la carrera judicial alcanzada.
+  /// Al inicio (Alguacil/Escribiente) solo casos base; a medida que se sube de
+  /// rango se introducen los casos de aplicación y luego los complejos. La
+  /// primera de la lista es la preferida; el resto son respaldo si el banco
+  /// no tiene suficientes de esa dificultad.
+  static List<int> dificultadesParaXp(int xp) {
+    if (xp < 1500) return const [1]; // Alguacil, Asistente, Escribiente
+    if (xp < 3500) return const [1, 2]; // Secretario de Municipio
+    if (xp < 16000) return const [2, 1]; // Secretario de 1ª Instancia
+    if (xp < 80000) return const [2]; // Jueces de Municipio
+    if (xp < 260000) return const [2, 3]; // Juez de 1ª Instancia (accidental/suplente/provisorio)
+    if (xp < 620000) return const [3, 2]; // Juez Titular / competencia especial y nacional
+    return const [3]; // Cortes de Apelaciones, Casación y TSJ
+  }
+
+  /// Etiqueta de la etapa de la carrera (para UI y para el certificado).
+  static String etapaCarrera(int xp) {
+    if (xp < 1500) return 'Etapa inicial';
+    if (xp < 3500) return 'Secretaría de Municipio';
+    if (xp < 16000) return 'Secretaría de Primera Instancia';
+    if (xp < 80000) return 'Judicatura de Municipio';
+    if (xp < 620000) return 'Judicatura de Primera Instancia';
+    if (xp < 1380000) return 'Cortes de Apelaciones';
+    return 'Sala de Casación Penal y TSJ';
+  }
+
 }
