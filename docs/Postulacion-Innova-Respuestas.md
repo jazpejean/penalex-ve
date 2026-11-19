@@ -21,20 +21,17 @@ resta en viabilidad técnica (20% de la nota).
 
 ## Describe tu proyecto y el problema que resuelve *
 
-### Versión corta (recomendada si el campo no permite mucho texto)
+### Versión 800 caracteres (LA QUE DEBES PEGAR)
 
-Penalex VE es la plataforma de inteligencia artificial jurídica para el proceso
-penal venezolano. En un tribunal, calcular una pena, ubicar un criterio del TSJ o
-verificar una nulidad se hace a mano, con días de trabajo y riesgo de error.
-Penalex VE reúne 63.048 sentencias del TSJ, 53 leyes (6.416 artículos) y 867
-tribunales en un ecosistema de 12 herramientas que trabaja sobre el expediente:
-dosimetría penal con informe PDF, jurisprudencia, detector de vicios procesales
-(21 vicios con norma, gravedad y acción), redactor de escritos, escáner con IA de
-visión (sin OCR) y agenda con lapsos procesales. Su diferenciador es el rigor:
-cada respuesta cita la ley o la sentencia real. Está en funcionamiento (app
-Android y web) y fue seleccionada para The Next Gen Builder 2027 de ALAS.
+> Penalex VE es la plataforma de IA jurídica para el proceso penal venezolano. En un tribunal, calcular una pena, hallar un criterio del TSJ o verificar una nulidad se hace a mano: días de trabajo y riesgo de error. Reunimos 63.048 sentencias del TSJ, 53 leyes (6.416 artículos) y 867 tribunales en un ecosistema de 12 herramientas que trabaja sobre el expediente: dosimetría penal con PDF, detector de vicios procesales (21 vicios con norma, gravedad y acción), redactor, escáner con IA de visión y agenda con lapsos. Cada respuesta cita la ley o la sentencia real. Está en funcionamiento (Android y web), escala a otros países cargando su corpus legal y fue seleccionada para The Next Gen Builder 2027 de ALAS. Fundador: analista judicial penal.
 
-### Versión larga (si el campo permite párrafos)
+**Longitud: 745 caracteres** (cabe en 800 con margen de 55).
+
+---
+
+### Versión corta (alternativa, 662 caracteres)
+
+### Versión larga (solo si otro campo lo permite)
 
 Penalex VE es una plataforma de inteligencia artificial jurídica para el derecho
 penal venezolano. El problema: en la práctica judicial, el cálculo de una pena,
