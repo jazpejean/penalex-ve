@@ -53,6 +53,25 @@ subprojects {
 // para evitar "Inconsistent JVM Target Compatibility" entre plugins.
 gradle.projectsEvaluated {
     subprojects {
+        // Forzar compileSdk 36 en TODOS los módulos Android (los plugins antiguos
+        // se quedan en 33 y sus dependencias androidx exigen 34+). Se hace al
+        // final, cuando la configuración de cada plugin ya está aplicada.
+        val ext = extensions.findByName("android")
+        if (ext != null) {
+            try {
+                val setter = ext.javaClass.methods.firstOrNull {
+                    (it.name == "setCompileSdk" || it.name == "compileSdkVersion") &&
+                        it.parameterCount == 1
+                }
+                if (setter != null) {
+                    val tipo = setter.parameterTypes[0]
+                    val valor: Any = if (tipo == Int::class.javaPrimitiveType) 36 else 36.toString()
+                    setter.invoke(ext, valor)
+                }
+            } catch (_: Exception) {
+                // Si la DSL no expone el setter, se deja el valor del plugin.
+            }
+        }
         tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
             compilerOptions {
                 jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
