@@ -15,10 +15,6 @@ android {
         isCoreLibraryDesugaringEnabled = true
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-    }
-
     defaultConfig {
         applicationId = "com.penalex.ve"
         minSdk = flutter.minSdkVersion
@@ -68,6 +64,13 @@ android {
 
 flutter {
     source = "../.."
+}
+
+// AGP 9 / Kotlin 2.x: la DSL kotlinOptions fue retirada; se usa compilerOptions.
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+    }
 }
 
 dependencies {
