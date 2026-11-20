@@ -11,6 +11,9 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#0B0A09;font-fam
   repeating-linear-gradient(92deg, rgba(0,0,0,.16) 0 3px, rgba(255,255,255,.015) 3px 7px);
   opacity:.5}
 .vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%, transparent 40%, rgba(0,0,0,.75) 100%)}
+.tricolor{height:9px;background:linear-gradient(180deg,#FFCE00 0 33.3%,#0033A0 33.3% 66.6%,#CF142B 66.6% 100%)}
+.repub{font-size:13px;letter-spacing:3.5px;color:#5b4427;font-weight:900;text-align:center;margin-top:10px}
+.poder{font-size:11px;letter-spacing:4px;color:#8a6a3f;font-weight:800;text-align:center;margin-top:3px}
 /* Expediente */
 .scene{position:absolute;left:50%;top:52%;width:760px;height:1000px;transform:translate(-50%,-50%);perspective:1600px}
 .folder{position:absolute;left:50%;top:50%;width:640px;height:840px;transform:translate(-50%,-50%);transform-style:preserve-3d}
@@ -63,6 +66,9 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#0B0A09;font-fam
       <div class="back"></div>
       <div class="papers">
         <div class="sheet" id="sheet">
+          <div class="tricolor"></div>
+          <div class="repub">REPÚBLICA BOLIVARIANA DE VENEZUELA</div>
+          <div class="poder">PODER JUDICIAL · CIRCUITO PENAL</div>
           <div class="head"><div class="brand">PENALEX VE</div><div class="num">EXP. 1U-1337-26</div></div>
           <div class="lines">
             <div class="big" id="bigTxt">CASO<br>ABIERTO</div>
@@ -73,22 +79,38 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#0B0A09;font-fam
         </div>
       </div>
       <div class="cover" id="cover">
-        <div class="label">
+        <div class="tricolor" style="position:absolute;left:0;right:0;top:0;border-radius:18px 18px 0 0"></div>
+        <div class="repub" style="margin-top:34px;color:rgba(243,231,205,.86)">REPÚBLICA BOLIVARIANA DE VENEZUELA</div>
+        <div class="poder" style="color:rgba(243,231,205,.6)">PODER JUDICIAL · CIRCUITO PENAL</div>
+        <div class="label" style="top:210px">
           <div class="k">TRIBUNAL PENAL</div>
           <div class="t">EXPEDIENTE<br>DEL CASO</div>
           <div class="n">N.º 001 · PENALEX VE</div>
         </div>
-        <div class="seal"><span>PENALEX<br>VE</span></div>
+        <div class="seal">
+          <svg width="150" height="150" viewBox="0 0 100 100" style="position:absolute;inset:0;opacity:.35">
+            <g fill="none" stroke="#9E342C" stroke-width="2">
+              <circle cx="50" cy="50" r="22"/>
+              <g id="rays">
+                <path d="M50 12 L50 26"/><path d="M50 74 L50 88"/>
+                <path d="M12 50 L26 50"/><path d="M74 50 L88 50"/>
+                <path d="M23 23 L33 33"/><path d="M67 67 L77 77"/>
+                <path d="M23 77 L33 67"/><path d="M67 33 L77 23"/>
+              </g>
+            </g>
+          </svg>
+          <span style="position:relative;z-index:2">PENALEX<br>VE</span>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="stamp" id="stamp">
-    <div class="in"><div class="a">PENALEX VE</div><div class="b">AUDIENCIA<br>INICIADA</div><div class="c">CARRERA JUDICIAL</div></div>
+    <div class="in"><div class="a">EN NOMBRE DE LA REPÚBLICA</div><div class="b">AUDIENCIA<br>INICIADA</div><div class="c">POR AUTORIDAD DE LA LEY</div></div>
   </div>
 
   <div class="q" id="q">
-    <span class="tag">PREGUNTA 1 / 8</span>
+    <span class="tag">COPP · PREGUNTA 1 / 8</span>
     <div class="txt">Se practica la detención de una persona sin orden judicial y sin flagrancia. ¿Qué vicio procesal se configura?</div>
     <div class="opts">
       <div class="opt">A. Nulidad absoluta por detención ilegal</div>

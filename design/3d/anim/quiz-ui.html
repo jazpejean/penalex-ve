@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:#0B0A09;color:#0F172A}
+.screen{position:relative;width:1080px;height:1920px;overflow:hidden;background:#FBF8F1;display:none}
+.screen.on{display:block}
+.tricolor{height:9px;background:linear-gradient(180deg,#FFCE00 0 33.3%,#0033A0 33.3% 66.6%,#CF142B 66.6% 100%)}
+.repub{font-size:15px;letter-spacing:4px;color:#6B552F;font-weight:900;text-align:center;padding-top:36px}
+.poder{font-size:12px;letter-spacing:5px;color:#9A7A34;font-weight:800;text-align:center;margin-top:6px}
+.wrap{padding:0 64px}
+/* Lobby */
+.lobby-top{display:flex;align-items:center;gap:22px;margin-top:34px}
+.avatar{width:104px;height:104px;border-radius:26px;background:#0F172A;border:3px solid #C5A059;color:#C5A059;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:30px}
+.rk{font-size:15px;letter-spacing:3px;color:#9A7A34;font-weight:900}
+.rank{font-family:Georgia,serif;font-size:40px;font-weight:700;line-height:1.05;margin-top:4px}
+.xp{font-size:20px;color:#4A5568;margin-top:6px;font-weight:700}
+.bar{height:14px;border-radius:10px;background:#E7DEC8;margin-top:16px;overflow:hidden}
+.bar i{display:block;height:100%;width:62%;background:linear-gradient(90deg,#C5A059,#9A7A34)}
+.hero{margin-top:40px;background:#0F172A;border-radius:30px;padding:44px;color:#F5F1E8;position:relative;overflow:hidden;border:2px solid rgba(197,160,89,.5)}
+.hero .tag{display:inline-block;border:1px solid #C5A059;color:#C5A059;font-size:15px;font-weight:900;letter-spacing:4px;padding:8px 18px;border-radius:30px}
+.hero .h{font-family:Georgia,serif;font-size:66px;line-height:1;margin-top:20px;font-weight:700}
+.hero .s{font-size:20px;color:#CBD5E1;margin-top:14px}
+.stars{font-size:34px;letter-spacing:8px;color:#E9C86A;margin-top:18px}
+.btn{margin-top:30px;background:#C5A059;color:#0F172A;border-radius:18px;padding:28px;text-align:center;font-size:26px;font-weight:900;letter-spacing:3px}
+.sec-title{font-size:15px;letter-spacing:5px;color:#9A7A34;font-weight:900;margin-top:44px}
+.path{display:flex;justify-content:space-between;margin-top:26px;position:relative}
+.path:before{content:"";position:absolute;left:5%;right:5%;top:46px;height:3px;background:#E0D4B8}
+.node{position:relative;text-align:center;width:120px}
+.dot{width:86px;height:86px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:900;border:3px solid #D8C9A6;background:#fff;color:#9A7A34;position:relative;z-index:2}
+.dot.done{background:#0F172A;color:#C5A059;border-color:#C5A059}
+.dot.now{background:#C5A059;color:#0F172A;border-color:#0F172A;box-shadow:0 0 0 10px rgba(197,160,89,.18)}
+.dot.lock{background:#EFE7D6;color:#B9A883}
+.node .n{font-size:16px;font-weight:800;margin-top:12px;color:#4A5568}
+.cards{display:flex;gap:20px;margin-top:26px}
+.card{flex:1;background:#fff;border:2px solid #E2D8C0;border-radius:22px;padding:26px}
+.card .k{font-size:13px;letter-spacing:3px;color:#9A7A34;font-weight:900}
+.card .t{font-size:24px;font-weight:800;margin-top:10px;line-height:1.2}
+.card .d{font-size:17px;color:#6B7280;margin-top:8px}
+.stamprow{display:flex;gap:18px;margin-top:26px}
+.stamp{width:150px;height:150px;border-radius:50%;border:6px solid rgba(158,52,44,.8);display:flex;align-items:center;justify-content:center;transform:rotate(-9deg);color:rgba(158,52,44,.9)}
+.stamp.g{border-color:rgba(176,141,87,.85);color:#8C6D2F}
+.stamp .x{font-size:18px;font-weight:900;letter-spacing:1.5px;text-align:center;line-height:1.15}
+.bottom{position:absolute;left:0;right:0;bottom:0;height:130px;background:#0F172A;display:flex;justify-content:space-around;align-items:center;color:#94A3B8}
+.bottom div{font-size:14px;font-weight:800;text-align:center}
+.bottom .on{color:#C5A059}
+.bottom span{display:block;font-size:28px;margin-bottom:4px}
+/* Juego */
+.game-top{display:flex;justify-content:space-between;align-items:center;margin-top:30px}
+.timer{width:132px;height:132px;border-radius:50%;border:10px solid #E7DEC8;border-top-color:#C5A059;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900;color:#0F172A}
+.lives{display:flex;gap:10px}
+.life{width:52px;height:52px;border-radius:50%;background:#9E342C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px}
+.life.off{background:#E2D8C0;color:#B9A883}
+.streak{font-size:20px;font-weight:900;color:#9A7A34}
+.qcard{margin-top:34px;background:#fff;border:2px solid #E2D8C0;border-radius:28px;padding:40px;box-shadow:0 24px 60px rgba(0,0,0,.10)}
+.qtag{display:inline-block;background:#0F172A;color:#C5A059;font-size:15px;font-weight:900;letter-spacing:3px;padding:9px 20px;border-radius:30px}
+.qtext{font-family:Georgia,serif;font-size:44px;line-height:1.22;margin-top:26px;font-weight:700}
+.opts{display:flex;flex-direction:column;gap:18px;margin-top:32px}
+.opt{background:#FBF8F1;border:2px solid #E2D8C0;border-radius:18px;padding:28px;font-size:25px;font-weight:700;display:flex;gap:18px}
+.opt .l{width:44px;height:44px;border-radius:12px;background:#EFE7D6;color:#8C6D2F;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.opt.ok{border-color:#059669;background:#E9F7F0}
+.opt.ok .l{background:#059669;color:#fff}
+.opt.bad{border-color:#9E342C;background:#FBEDEC}
+.opt.bad .l{background:#9E342C;color:#fff}
+.confirm{margin-top:30px;background:#0F172A;color:#F5F1E8;border-radius:18px;padding:30px;text-align:center;font-size:25px;font-weight:900;letter-spacing:4px}
+.fund{margin-top:26px;background:#F3EDDF;border-left:8px solid #C5A059;border-radius:14px;padding:26px}
+.fund .k{font-size:14px;letter-spacing:3px;color:#9A7A34;font-weight:900}
+.fund .t{font-size:22px;line-height:1.4;margin-top:10px;color:#3A4454}
+.seal-big{position:absolute;right:64px;bottom:150px;width:250px;height:250px;border-radius:50%;border:14px solid rgba(158,52,44,.85);display:flex;align-items:center;justify-content:center;transform:rotate(-14deg);color:rgba(158,52,44,.92);opacity:.95}
+.seal-big.green{border-color:rgba(5,150,105,.85);color:rgba(5,150,105,.95)}
+.seal-big .x{font-size:28px;font-weight:900;letter-spacing:4px;text-align:center;line-height:1.1}
+/* Resumen */
+.sum{text-align:center;margin-top:50px}
+.sum .h{font-family:Georgia,serif;font-size:58px;font-weight:700}
+.sum .stars{font-size:70px;letter-spacing:16px;margin-top:26px}
+.kpis{display:flex;gap:18px;margin-top:40px}
+.kpi{flex:1;background:#fff;border:2px solid #E2D8C0;border-radius:20px;padding:26px;text-align:center}
+.kpi .v{font-size:42px;font-weight:900;color:#0F172A}
+.kpi .l{font-size:14px;letter-spacing:2px;color:#6B7280;font-weight:800;margin-top:8px}
+.near{margin-top:30px;background:#FBF2DD;border:2px solid #E9C86A;border-radius:18px;padding:26px;font-size:23px;font-weight:700;color:#7A5B1E;text-align:center}
+.btn2{margin-top:22px;border:2px solid #0F172A;color:#0F172A;border-radius:18px;padding:26px;text-align:center;font-size:24px;font-weight:900;letter-spacing:3px}
+</style></head>
+<body>
+
+<!-- ============ LOBBY ============ -->
+<div class="screen" id="lobby">
+  <div class="tricolor"></div>
+  <div class="repub">REPÚBLICA BOLIVARIANA DE VENEZUELA</div>
+  <div class="poder">PODER JUDICIAL · CARRERA JUDICIAL</div>
+  <div class="wrap">
+    <div class="lobby-top">
+      <div class="avatar">JJ</div>
+      <div style="flex:1">
+        <div class="rk">TU RANGO</div>
+        <div class="rank">Escribiente</div>
+        <div class="xp">620 XP · Secretaría de Municipio</div>
+        <div class="bar"><i></i></div>
+      </div>
+    </div>
+
+    <div class="hero">
+      <span class="tag">AUDIENCIA N.º 7</span>
+      <div class="h">El caso del<br>expediente abierto</div>
+      <div class="s">8 preguntas · 3 apelaciones · 30 s cada una</div>
+      <div class="stars">★★☆</div>
+      <div class="btn">ABRIR EL CASO</div>
+    </div>
+
+    <div class="sec-title">TU CAMINO EN LA CARRERA</div>
+    <div class="path">
+      <div class="node"><div class="dot done">✓</div><div class="n">4</div></div>
+      <div class="node"><div class="dot done">✓</div><div class="n">5</div></div>
+      <div class="node"><div class="dot done">✓</div><div class="n">6</div></div>
+      <div class="node"><div class="dot now">7</div><div class="n">AHORA</div></div>
+      <div class="node"><div class="dot lock">🔒</div><div class="n">8</div></div>
+    </div>
+
+    <div class="cards">
+      <div class="card"><div class="k">DILIGENCIA DEL DÍA</div><div class="t">Gana 3 audiencias</div><div class="d">1 de 3 completadas</div></div>
+      <div class="card"><div class="k">RACHA</div><div class="t">3 días seguidos</div><div class="d">Vuelve mañana para el bono</div></div>
+    </div>
+
+    <div class="sec-title">TUS SELLOS</div>
+    <div class="stamprow">
+      <div class="stamp green"><div class="x">ADMITIDO</div></div>
+      <div class="stamp"><div class="x">NULO</div></div>
+      <div class="stamp g"><div class="x">RACHA<br>×5</div></div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="on"><span>🏛️</span>Carrera</div>
+    <div><span>📚</span>Estudio</div>
+    <div><span>🏆</span>Sellos</div>
+    <div><span>👤</span>Perfil</div>
+  </div>
+</div>
+
+<!-- ============ PREGUNTA ============ -->
+<div class="screen" id="pregunta">
+  <div class="tricolor"></div>
+  <div class="wrap">
+    <div class="game-top">
+      <div class="timer">24</div>
+      <div style="text-align:center">
+        <div class="streak">RACHA ×3</div>
+        <div class="lives" style="margin-top:12px">
+          <div class="life">⚖️</div><div class="life">⚖️</div><div class="life">⚖️</div>
+        </div>
+      </div>
+      <div style="text-align:right"><div class="rk">PREGUNTA</div><div class="rank" style="font-size:38px">3 / 8</div></div>
+    </div>
+
+    <div class="qcard">
+      <span class="qtag">COPP · ART. 236</span>
+      <div class="qtext">Se detiene a una persona sin orden judicial y sin encontrarse en flagrancia. ¿Qué vicio se configura?</div>
+      <div class="opts">
+        <div class="opt"><div class="l">A</div>Nulidad absoluta por detención ilegal</div>
+        <div class="opt"><div class="l">B</div>Irregularidad sin consecuencia procesal</div>
+        <div class="opt"><div class="l">C</div>Nulidad relativa convalidable</div>
+        <div class="opt"><div class="l">D</div>Falta de jurisdicción del tribunal</div>
+      </div>
+    </div>
+    <div class="confirm">CONFIRMAR RESPUESTA</div>
+  </div>
+</div>
+
+<!-- ============ ACIERTO ============ -->
+<div class="screen" id="acierto">
+  <div class="tricolor"></div>
+  <div class="wrap">
+    <div class="game-top">
+      <div class="timer">18</div>
+      <div class="streak">RACHA ×4</div>
+      <div style="text-align:right"><div class="rk">PREGUNTA</div><div class="rank" style="font-size:38px">3 / 8</div></div>
+    </div>
+    <div class="qcard">
+      <span class="qtag">COPP · ART. 236</span>
+      <div class="qtext">Se detiene a una persona sin orden judicial y sin flagrancia. ¿Qué vicio se configura?</div>
+      <div class="opts">
+        <div class="opt ok"><div class="l">A</div>Nulidad absoluta por detención ilegal</div>
+        <div class="opt"><div class="l">B</div>Irregularidad sin consecuencia procesal</div>
+        <div class="opt"><div class="l">C</div>Nulidad relativa convalidable</div>
+        <div class="opt"><div class="l">D</div>Falta de jurisdicción del tribunal</div>
+      </div>
+      <div class="fund"><div class="k">FUNDAMENTACIÓN · +14 XP</div><div class="t">La detención sin orden ni flagrancia vulnera el art. 44.1 CRBV y el art. 236 COPP; el acto es nulo de nulidad absoluta (art. 175 COPP).</div></div>
+    </div>
+    <div class="confirm" style="margin-top:36px">SIGUIENTE PREGUNTA</div>
+    <div class="seal-big green"><div class="x">ADMITIDO</div></div>
+  </div>
+</div>
+
+<!-- ============ ERROR ============ -->
+<div class="screen" id="error">
+  <div class="tricolor"></div>
+  <div class="wrap">
+    <div class="game-top">
+      <div class="timer">12</div>
+      <div class="lives"><div class="life">⚖️</div><div class="life off">⚖️</div><div class="life off">⚖️</div></div>
+      <div style="text-align:right"><div class="rk">APELACIONES</div><div class="rank" style="font-size:38px">1 / 3</div></div>
+    </div>
+    <div class="qcard">
+      <span class="qtag">COPP · ART. 236</span>
+      <div class="qtext">Se detiene a una persona sin orden judicial y sin flagrancia. ¿Qué vicio se configura?</div>
+      <div class="opts">
+        <div class="opt"><div class="l">A</div>Nulidad absoluta por detención ilegal</div>
+        <div class="opt bad"><div class="l">B</div>Irregularidad sin consecuencia procesal</div>
+        <div class="opt"><div class="l">C</div>Nulidad relativa convalidable</div>
+        <div class="opt"><div class="l">D</div>Falta de jurisdicción del tribunal</div>
+      </div>
+      <div class="fund"><div class="k">LO CORRECTO</div><div class="t">A. La detención sin orden ni flagrancia es nula de nulidad absoluta (art. 44.1 CRBV · arts. 175 y 236 COPP).</div></div>
+    </div>
+    <div class="confirm" style="margin-top:36px">SIGUIENTE PREGUNTA</div>
+    <div class="seal-big"><div class="x">NULO</div></div>
+  </div>
+</div>
+
+<!-- ============ RESUMEN ============ -->
+<div class="screen" id="resumen">
+  <div class="tricolor"></div>
+  <div class="repub">AUDIENCIA FINALIZADA</div>
+  <div class="poder">EXPEDIENTE N.º 7 · CARRERA JUDICIAL</div>
+  <div class="wrap">
+    <div class="sum">
+      <div class="h">2 de 3 estrellas</div>
+      <div class="stars">★★☆</div>
+      <div class="kpis">
+        <div class="kpi"><div class="v">6</div><div class="l">ACIERTOS</div></div>
+        <div class="kpi"><div class="v">2</div><div class="l">FALLOS</div></div>
+        <div class="kpi"><div class="v">+96</div><div class="l">XP</div></div>
+      </div>
+      <div class="near">Te faltaron 2 aciertos para el sello de la audiencia.</div>
+      <div class="btn">REPETIR LA AUDIENCIA</div>
+      <div class="btn2">SEGUIR A LA SIGUIENTE</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SELLOS ============ -->
+<div class="screen" id="sellos">
+  <div class="tricolor"></div>
+  <div class="repub">TUS SELLOS DE CARRERA</div>
+  <div class="poder">EXPEDIENTE N.º 7 · PENALEX VE</div>
+  <div class="wrap" style="margin-top:44px">
+    <div class="cards" style="flex-wrap:wrap;gap:24px">
+      <div class="stamp green" style="width:300px;height:300px"><div class="x" style="font-size:32px">ADMITIDO</div></div>
+      <div class="stamp" style="width:300px;height:300px"><div class="x" style="font-size:32px">NULO</div></div>
+      <div class="stamp g" style="width:300px;height:300px"><div class="x" style="font-size:32px">RACHA ×5</div></div>
+      <div class="stamp" style="width:300px;height:300px;opacity:.35"><div class="x" style="font-size:32px">JUEZ</div></div>
+    </div>
+    <div class="sec-title">PRÓXIMO SELLO</div>
+    <div class="card" style="margin-top:20px"><div class="k">AUDIENCIA PERFECTA</div><div class="t">8 de 8 sin fallar</div><div class="d">Recompensa: certificado de ascenso</div></div>
+  </div>
+</div>
+
+<script>
+const p = new URLSearchParams(location.search).get('p') || 'lobby';
+document.querySelectorAll('.screen').forEach(s => s.classList.toggle('on', s.id === p));
+</script>
+</body></html>
