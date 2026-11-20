@@ -105,22 +105,22 @@ jobs:
 
       # AGP 9 exige API 34+ en los AAR; varios plugins de Flutter aún declaran
       # compileSdk 33 en su build.gradle. Se alinean a 36 antes de compilar.
+      # AGP 9 exige API 34+ en los AAR; varios plugins de Flutter aún declaran
+      # compileSdk 33 en su build.gradle. Se alinean a 36 antes de compilar.
       - name: Alinear compileSdk de los plugins (AGP 9)
         run: |
-          set -e
-          find ~/.pub-cache/hosted/pub.dev -path "*/android/build.gradle" -print0 \
-            | xargs -0 grep -lE "compileSdkVersion[[:space:]]+3[0-3]|compileSdk[[:space:]]*=[[:space:]]*3[0-3]" 2>/dev/null \
-            | while read -r f; do
-                echo "patch: $f"
-                sed -i -E 's/compileSdkVersion[[:space:]]+3[0-3]/compileSdkVersion 36/g; s/compileSdk[[:space:]]*=[[:space:]]*3[0-3]/compileSdk = 36/g' "$f"
-              done
-          echo "compileSdk alineado"
+          FILES=$(grep -rlE "compileSdkVersion[[:space:]]+3[0-3]|compileSdk[[:space:]]*=[[:space:]]*3[0-3]" ~/.pub-cache/hosted/pub.dev --include=build.gradle 2>/dev/null || true)
+          for f in $FILES; do
+            echo "patch compileSdk: $f"
+            sed -i -E 's/compileSdkVersion[[:space:]]+3[0-3]/compileSdkVersion 36/g; s/compileSdk[[:space:]]*=[[:space:]]*3[0-3]/compileSdk = 36/g' "$f"
+          done
           # edge_detection 1.1.3: onDraw cambió a Canvas no-null en SDK 34+.
-          find ~/.pub-cache/hosted/pub.dev -path "*edge_detection*/PaperRectangle.kt" -print0 \
-            | xargs -0 -r sed -i \
-                -e 's/override fun onDraw(canvas: Canvas?)/override fun onDraw(canvas: Canvas)/' \
-                -e 's/canvas?\./canvas./g'
-          echo "edge_detection parcheado"
+          KT=$(find ~/.pub-cache/hosted/pub.dev -path "*edge_detection*/PaperRectangle.kt" 2>/dev/null || true)
+          for f in $KT; do
+            echo "patch edge_detection: $f"
+            sed -i -e 's/override fun onDraw(canvas: Canvas?)/override fun onDraw(canvas: Canvas)/' -e 's/canvas?\./canvas./g' "$f"
+          done
+          echo "parches aplicados"
 
       - name: Compilar APK (release firmado, con WORKER_URL/INGEST_TOKEN)
         id: build
