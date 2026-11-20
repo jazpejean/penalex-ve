@@ -26,6 +26,12 @@ subprojects {
             // "resource android:attr/lStar not found" en google_mlkit_commons
             // (compila con SDK < 33, pero dependencias como material usan lStar).
             compileSdk = 36
+            // Alinear Java y Kotlin al mismo target en TODOS los plugins:
+            // audioplayers_android trae Java 1.8 y Kotlin 17 -> inconsistencia.
+            compileOptions {
+                sourceCompatibility = JavaVersion.VERSION_17
+                targetCompatibility = JavaVersion.VERSION_17
+            }
             if (namespace == null) {
                 val grupo = project.group.toString()
                 namespace = if (grupo.isNotEmpty() && grupo != "unspecified") {
