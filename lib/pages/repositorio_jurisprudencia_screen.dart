@@ -1873,6 +1873,15 @@ Widget _selectorValorCondicion(
                     constraints: const BoxConstraints(),
                     visualDensity: VisualDensity.compact,
                   ),
+                  IconButton(
+                    onPressed: () => _mostrarMetadata(sentencia),
+                    icon: Icon(Icons.info_outline,
+                        size: 20, color: TemaGlobal.textoTenue),
+                    tooltip: 'Ficha y datos de la sentencia',
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                    visualDensity: VisualDensity.compact,
+                  ),
                 ],
               ),
               const SizedBox(height: 10),
@@ -3554,14 +3563,6 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
 
   /// Texto de vista previa: prioriza ratio decidendi, luego resumen IA,
   /// luego extracto (mismo criterio que la pantalla de listado).
-  /// Expande o contrae el extracto dentro de la tarjeta, para que el usuario
-  /// pueda leer el resumen completo antes de decidir abrir la sentencia.
-  void _toggleResumen(SentenciaModel s) {
-    setState(() {
-      if (!_resumenExpandido.remove(s.id)) _resumenExpandido.add(s.id);
-    });
-  }
-
   String _textoResumen(SentenciaModel s) {
     final texto = s.ratioDecidendi.isNotEmpty
         ? s.ratioDecidendi
