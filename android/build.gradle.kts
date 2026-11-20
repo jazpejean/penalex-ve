@@ -21,7 +21,7 @@ subprojects {
 // original) para que el R generado coincida con los paquetes de su código.
 subprojects {
     plugins.withId("com.android.library") {
-        extensions.configure<com.android.build.gradle.LibraryExtension> {
+        extensions.configure<com.android.build.api.dsl.LibraryExtension> {
             // Alinear compileSdk de los plugins con el del app (36). Evita
             // "resource android:attr/lStar not found" en google_mlkit_commons
             // (compila con SDK < 33, pero dependencias como material usan lStar).
@@ -43,15 +43,13 @@ subprojects {
 // flutter_doc_scanner 17, audioplayers_android 1.8, google_mlkit_commons 1.8…).
 // Se lee en projectsEvaluated, cuando compileOptions ya está finalizado, y no se
 // fuerza ningún valor: solo se replica el target de Java del propio plugin.
+// AGP 9 / Kotlin 2: se fija JVM 17 en todos los módulos (igual que la app)
+// para evitar "Inconsistent JVM Target Compatibility" entre plugins.
 gradle.projectsEvaluated {
     subprojects {
-        if (extensions.findByName("android") != null) {
-            val android = extensions.getByName("android") as com.android.build.gradle.BaseExtension
-            val javaTarget = android.compileOptions.targetCompatibility.toString()
-            tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-                compilerOptions {
-                    jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(javaTarget))
-                }
+        tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+            compilerOptions {
+                jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
             }
         }
     }
