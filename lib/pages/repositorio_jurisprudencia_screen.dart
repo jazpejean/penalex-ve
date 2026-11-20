@@ -1803,7 +1803,7 @@ Widget _selectorValorCondicion(
       child: InkWell(
         // Al tocar la ficha se abre la ventana flotante con toda la
         // metadata y el botón "Leer sentencia completa".
-        onTap: () => _toggleResumen(sentencia),
+        onTap: () => _verSentencia(sentencia),
         borderRadius: BorderRadius.circular(16),
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -1946,12 +1946,16 @@ Widget _selectorValorCondicion(
               if (_textoResumen(sentencia).length > 220)
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: TextButton.icon(
+                  child: OutlinedButton.icon(
                     onPressed: () => _toggleResumen(sentencia),
-                    style: TextButton.styleFrom(
+                    style: OutlinedButton.styleFrom(
                       foregroundColor: AppColors.acento,
-                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      side: BorderSide(color: TemaGlobal.capa),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 6),
                       visualDensity: VisualDensity.compact,
+                      textStyle: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w700),
                     ),
                     icon: Icon(
                       _resumenExpandido.contains(sentencia.id)
@@ -1961,10 +1965,8 @@ Widget _selectorValorCondicion(
                     ),
                     label: Text(
                       _resumenExpandido.contains(sentencia.id)
-                          ? 'Ver menos'
+                          ? 'Ocultar resumen'
                           : 'Leer resumen completo',
-                      style: const TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.w600),
                     ),
                   ),
                 ),
@@ -1979,18 +1981,21 @@ Widget _selectorValorCondicion(
                       sentencia.decision != 'null')
                     Flexible(child: _chipDecision(sentencia.decision)),
                   const SizedBox(width: 8),
-                  TextButton(
+                  ElevatedButton(
                     onPressed: () => _verSentencia(sentencia),
-                    style: TextButton.styleFrom(
-                      foregroundColor: AppColors.acento,
-                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.azulMarino,
+                      foregroundColor: AppColors.onAzulMarino,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 14, vertical: 8),
                       visualDensity: VisualDensity.compact,
+                      textStyle: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w700),
                     ),
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text('Abrir',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        Text('Abrir sentencia'),
                         Icon(Icons.chevron_right, size: 18),
                       ],
                     ),

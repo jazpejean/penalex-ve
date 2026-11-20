@@ -780,17 +780,9 @@ function pintar(data, reemplazar, terminos) {
     const ruta = rutaSentencia(s);
     const titulo = 'Sentencia N° ' + numeroSentencia(s);
     const sala = nombreSala(s.sala);
-    let resumen = s.extracto || s.ratio_decidendi || s.decision || '';
-    if (terminos.length && resumen) {
-      const hay = terminos.filter((t) => normalizar(resumen).includes(normalizar(t)));
-      if (hay.length && resumen.length > 260) {
-        const idx = resumen.toLowerCase().indexOf(hay[0].toLowerCase());
-        if (idx > 60) resumen = '…' + resumen.slice(Math.max(0, idx - 60));
-        resumen = resumen.slice(0, 260) + '…';
-      }
-    } else if (resumen.length > 260) {
-      resumen = resumen.slice(0, 260) + '…';
-    }
+    // Texto COMPLETO (el recorte visual de 2 líneas lo hace el CSS).
+    // Nunca truncar aquí: al expandir debe leerse el resumen entero.
+    const resumen = s.extracto || s.ratio_decidendi || s.decision || '';
     const items = [];
     items.push('<span class="item">📅 ' + esc(s.fecha || '') + '</span>');
     if (s.ponente) items.push('<span class="item">⚖️ ' + esc(s.ponente) + '</span>');
