@@ -103,6 +103,19 @@ jobs:
           rm -rf ~/.gradle/daemon ~/.gradle/workers || true
           echo "daemons limpiados"
 
+      # AGP 9 exige API 34+ en los AAR; varios plugins de Flutter aún declaran
+      # compileSdk 33 en su build.gradle. Se alinean a 36 antes de compilar.
+      - name: Alinear compileSdk de los plugins (AGP 9)
+        run: |
+          set -e
+          find ~/.pub-cache/hosted/pub.dev -path "*/android/build.gradle" -print0 \
+            | xargs -0 grep -lE "compileSdkVersion[[:space:]]+3[0-3]|compileSdk[[:space:]]*=[[:space:]]*3[0-3]" 2>/dev/null \
+            | while read -r f; do
+                echo "patch: $f"
+                sed -i -E 's/compileSdkVersion[[:space:]]+3[0-3]/compileSdkVersion 36/g; s/compileSdk[[:space:]]*=[[:space:]]*3[0-3]/compileSdk = 36/g' "$f"
+              done
+          echo "compileSdk alineado"
+
       - name: Compilar APK (release firmado, con WORKER_URL/INGEST_TOKEN)
         id: build
         run: >
