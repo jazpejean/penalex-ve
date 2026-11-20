@@ -104,21 +104,37 @@ export default function PaginaIndiceJurisprudencia() {
           <ul className="mt-4 divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white">
             {recientes.map((s) => (
               <li key={s.slug} className="px-5 py-4">
-                <Link
-                  href={`/jurisprudencia/${s.slug}`}
-                  className="block hover:bg-slate-50"
-                >
-                  <p className="font-semibold text-[#031f4e]">
-                    {s.num_sentencia || s.expediente || s.id} · {nombreSala(s.sala)}
-                  </p>
-                  <p className="mt-1 text-sm text-slate-500">
-                    {s.fecha}
-                    {s.ponente ? ` · ${s.ponente}` : ""}
-                  </p>
-                  {s.extracto && (
-                    <p className="mt-1 text-sm text-slate-600 line-clamp-2">{s.extracto}</p>
-                  )}
-                </Link>
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="font-semibold text-[#031f4e]">
+                      {s.num_sentencia || s.expediente || s.id} · {nombreSala(s.sala)}
+                    </p>
+                    <p className="mt-1 text-sm text-slate-500">
+                      {s.fecha}
+                      {s.ponente ? ` · ${s.ponente}` : ""}
+                    </p>
+                  </div>
+                  <Link
+                    href={`/jurisprudencia/${s.slug}`}
+                    className="shrink-0 rounded-md bg-[#031f4e] px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#0a2a5e]"
+                  >
+                    Abrir sentencia
+                  </Link>
+                </div>
+                {s.extracto && (
+                  <details className="group mt-2">
+                    <summary className="cursor-pointer text-sm leading-relaxed text-slate-600 marker:content-none">
+                      <span className="line-clamp-2 group-open:hidden">{s.extracto}</span>
+                      <span className="hidden group-open:block">{s.extracto}</span>
+                      <span className="mt-1 block text-xs font-semibold text-[#9a7a34] group-open:hidden">
+                        Leer resumen completo
+                      </span>
+                      <span className="mt-1 hidden text-xs font-semibold text-[#9a7a34] group-open:block">
+                        Ver menos
+                      </span>
+                    </summary>
+                  </details>
+                )}
               </li>
             ))}
           </ul>
