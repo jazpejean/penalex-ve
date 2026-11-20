@@ -109,10 +109,10 @@ jobs:
       # compileSdk 33 en su build.gradle. Se alinean a 36 antes de compilar.
       - name: Alinear compileSdk de los plugins (AGP 9)
         run: |
-          FILES=$(grep -rlE "compileSdkVersion[[:space:]]+3[0-3]|compileSdk[[:space:]]*[=]?[[:space:]]*3[0-3]" ~/.pub-cache/hosted/pub.dev --include=build.gradle 2>/dev/null || true)
+          FILES=$(grep -rlE "compileSdkVersion[[:space:]]+3[0-9]|compileSdk[[:space:]]*[=]?[[:space:]]*3[0-9]" ~/.pub-cache/hosted/pub.dev --include=build.gradle 2>/dev/null || true)
           for f in $FILES; do
             echo "patch compileSdk: $f"
-            sed -i -E 's/compileSdkVersion[[:space:]]+3[0-3]/compileSdkVersion 36/g; s/compileSdk[[:space:]]*=[[:space:]]*3[0-3]/compileSdk = 36/g; s/compileSdk[[:space:]]+3[0-3]/compileSdk 36/g' "$f"
+            sed -i -E 's/compileSdkVersion[[:space:]]+3[0-9]/compileSdkVersion 36/g; s/compileSdk[[:space:]]*=[[:space:]]*3[0-9]/compileSdk = 36/g; s/compileSdk[[:space:]]+3[0-9]/compileSdk 36/g' "$f"
           done
           # edge_detection 1.1.3: onDraw cambió a Canvas no-null en SDK 34+.
           KT=$(find ~/.pub-cache/hosted/pub.dev -path "*edge_detection*/PaperRectangle.kt" 2>/dev/null || true)
