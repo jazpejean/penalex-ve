@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0b0908}canvas{display:block}</style>
+</head><body>
+<script type="importmap">
+{"imports":{
+  "three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+const W = window.innerWidth || 1080, H = window.innerHeight || 1920;
+const LOWFX = new URLSearchParams(location.search).get('lowfx') === '1';
+const T = parseFloat(new URLSearchParams(location.search).get('t') || '0');
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(W, H);
+renderer.setPixelRatio(1);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.95;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0b0908);
+scene.fog = new THREE.FogExp2(0x0b0908, 0.045);
+
+const camera = new THREE.PerspectiveCamera(30, W / H, 0.1, 100);
+camera.position.set(0, 3.1, 6.2);
+camera.lookAt(0, 0.05, 0.25);
+
+// ---------------- Texturas procedurales ----------------
+function papel(w=512, h=720) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const g = c.getContext('2d');
+  g.fillStyle = '#f4ecd8'; g.fillRect(0, 0, w, h);
+  g.globalAlpha = 0.06;
+  for (let i = 0; i < 2600; i++) { g.fillStyle = Math.random() > .5 ? '#8a7452' : '#fff'; g.fillRect(Math.random()*w, Math.random()*h, 2, 2); }
+  g.globalAlpha = 1;
+  g.fillStyle = '#2a1e10'; g.font = 'bold 40px Georgia'; g.fillText('REPÚBLICA BOLIVARIANA', 36, 74);
+  g.fillStyle = '#7a6134'; g.font = 'bold 20px Arial'; g.fillText('DE VENEZUELA · PODER JUDICIAL', 36, 106);
+  g.fillStyle = '#c5a059'; g.fillRect(36, 122, w-72, 3);
+  g.fillStyle = '#1a1207'; g.font = 'bold 74px Georgia'; g.fillText('CASO', 36, 250); g.fillText('ABIERTO', 36, 330);
+  g.fillStyle = '#7a6134'; g.font = 'bold 24px Arial'; g.fillText('AUDIENCIA N.º 1 · EXP. 1U-1337-26', 36, 384);
+  g.fillStyle = '#d6c7a6';
+  for (let i = 0; i < 9; i++) g.fillRect(36, 440 + i*38, (w-72) * (0.55 + Math.random()*0.4), 12);
+  const tex = new THREE.CanvasTexture(c); tex.anisotropy = 4; return tex;
+}
+function madera(w=512, h=512) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const g = c.getContext('2d');
+  g.fillStyle = '#3a2413'; g.fillRect(0, 0, w, h);
+  for (let i = 0; i < 140; i++) {
+    g.strokeStyle = `rgba(${90+Math.random()*60},${55+Math.random()*30},${25+Math.random()*20},.25)`;
+    g.lineWidth = 1 + Math.random()*4;
+    g.beginPath();
+    const y = Math.random()*h;
+    g.moveTo(0, y); g.bezierCurveTo(w*.3, y+12*Math.sin(i), w*.6, y-12*Math.cos(i), w, y+6*Math.sin(i*2));
+    g.stroke();
+  }
+  const tex = new THREE.CanvasTexture(c); tex.wrapS = tex.wrapT = THREE.RepeatWrapping; tex.repeat.set(3,3);
+  return tex;
+}
+function selloTex() {
+  const s = 512; const c = document.createElement('canvas'); c.width = c.height = s;
+  const g = c.getContext('2d'); g.clearRect(0,0,s,s);
+  g.strokeStyle = 'rgba(158,52,44,.95)'; g.lineWidth = 26;
+  g.beginPath(); g.arc(s/2, s/2, 200, 0, Math.PI*2); g.stroke();
+  g.lineWidth = 8; g.beginPath(); g.arc(s/2, s/2, 160, 0, Math.PI*2); g.stroke();
+  g.fillStyle = 'rgba(158,52,44,.95)'; g.textAlign = 'center';
+  g.font = 'bold 30px Arial'; g.fillText('EN NOMBRE DE LA REPÚBLICA', s/2, 170);
+  g.font = 'bold 62px Georgia'; g.fillText('AUDIENCIA', s/2, 265); g.fillText('INICIADA', s/2, 335);
+  g.font = 'bold 26px Arial'; g.fillText('POR AUTORIDAD DE LA LEY', s/2, 390);
+  const t = new THREE.CanvasTexture(c); return t;
+}
+
+// ---------------- Escritorio ----------------
+const woodTex = madera();
+const desk = new THREE.Mesh(
+  new THREE.BoxGeometry(10, 0.4, 8),
+  new THREE.MeshStandardMaterial({ map: woodTex, roughness: 0.55, metalness: 0.05 })
+);
+desk.position.y = -0.2; desk.receiveShadow = true; scene.add(desk);
+
+const wall = new THREE.Mesh(
+  new THREE.PlaneGeometry(20, 14),
+  new THREE.MeshStandardMaterial({ color: 0x14100c, roughness: 0.95 })
+);
+wall.position.set(0, 5, -4.5); scene.add(wall);
+
+// ---------------- Expediente 3D ----------------
+const folder = new THREE.Group();
+folder.position.set(0, 0.02, 0.2);
+folder.rotation.x = -0.05;
+scene.add(folder);
+
+const coverMat = new THREE.MeshStandardMaterial({ map: woodTex, color: 0xa07c4b, roughness: 0.55, metalness: 0.08 });
+const insideMat = new THREE.MeshStandardMaterial({ color: 0x6b4f2b, roughness: 0.75 });
+
+// base (carpeta abierta: mitad inferior)
+const base = new THREE.Mesh(new THREE.BoxGeometry(2.5, 0.06, 3.3), coverMat);
+base.position.set(0, 0, 0); base.castShadow = base.receiveShadow = true; folder.add(base);
+
+// hojas
+const sheetMat = new THREE.MeshStandardMaterial({ map: papel(), roughness: 0.95 });
+const sheet = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.02, 3.05), sheetMat);
+sheet.position.set(0, 0.05, 0); sheet.castShadow = true; folder.add(sheet);
+
+// tapa superior con bisagra en el borde superior
+const coverPivot = new THREE.Group();
+coverPivot.position.set(0, 0.04, -1.65);
+folder.add(coverPivot);
+const cover = new THREE.Mesh(new THREE.BoxGeometry(2.5, 0.05, 3.3), coverMat);
+cover.position.set(0, 0, 1.65);
+cover.castShadow = true;
+const innerFace = new THREE.Mesh(new THREE.BoxGeometry(2.44, 0.02, 3.22), insideMat);
+innerFace.position.set(0, -0.035, 1.65);
+coverPivot.add(cover, innerFace);
+
+// etiqueta de la portada
+const labelCanvas = document.createElement('canvas'); labelCanvas.width = 512; labelCanvas.height = 640;
+{
+  const g = labelCanvas.getContext('2d');
+  g.fillStyle = '#a07c4b'; g.fillRect(0,0,512,640);
+  g.fillStyle = '#f3e7cd'; g.textAlign = 'center';
+  g.font = 'bold 24px Arial'; g.fillText('TRIBUNAL PENAL', 256, 150);
+  g.font = 'bold 64px Georgia'; g.fillText('EXPEDIENTE', 256, 260); g.fillText('DEL CASO', 256, 330);
+  g.font = 'bold 22px Arial'; g.fillText('N.º 001 · PENALEX VE', 256, 410);
+  g.strokeStyle = 'rgba(158,52,44,.85)'; g.lineWidth = 8;
+  g.beginPath(); g.arc(256, 520, 62, 0, Math.PI*2); g.stroke();
+  g.fillStyle = 'rgba(158,52,44,.9)'; g.font = 'bold 18px Arial'; g.fillText('PENALEX', 256, 516); g.fillText('VE', 256, 540);
+}
+const labelTex = new THREE.CanvasTexture(labelCanvas);
+const label = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 2.75), new THREE.MeshStandardMaterial({ map: labelTex, roughness: 0.6 }));
+label.position.set(0, -0.03, 1.65); label.rotation.x = Math.PI / 2;
+coverPivot.add(label);
+
+// ---------------- Sello 3D ----------------
+const bronzeMat = new THREE.MeshStandardMaterial({ color: 0xb08d57, metalness: 0.95, roughness: 0.28 });
+const sealGroup = new THREE.Group();
+const sealBody = new THREE.Mesh(new THREE.CylinderGeometry(0.44, 0.44, 0.14, 48), bronzeMat);
+const sealNeck = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.14, 0.5, 24), bronzeMat);
+sealNeck.position.y = 0.32;
+const sealKnob = new THREE.Mesh(new THREE.SphereGeometry(0.17, 32, 24), bronzeMat);
+sealKnob.position.y = 0.62;
+const stampFace = new THREE.Mesh(new THREE.CircleGeometry(0.42, 48), new THREE.MeshStandardMaterial({ map: selloTex(), transparent: true }));
+stampFace.rotation.x = -Math.PI / 2; stampFace.position.y = -0.075;
+sealGroup.add(sealBody, sealNeck, sealKnob, stampFace);
+sealGroup.position.set(0, 2.2, 0.35);
+sealGroup.castShadow = true;
+scene.add(sealGroup);
+
+// ---------------- Luces ----------------
+scene.add(new THREE.AmbientLight(0x40342a, 0.55));
+const key = new THREE.DirectionalLight(0xffd9a0, 1.35);
+key.position.set(4, 6, 4); key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048); key.shadow.camera.near = 1; key.shadow.camera.far = 20;
+key.shadow.camera.left = -6; key.shadow.camera.right = 6; key.shadow.camera.top = 6; key.shadow.camera.bottom = -6;
+scene.add(key);
+const rim = new THREE.DirectionalLight(0x7fa6c9, 0.7); rim.position.set(-5, 4, -4); scene.add(rim);
+const spot = new THREE.SpotLight(0xffe6bf, 35, 16, 0.65, 0.55, 1.8);
+spot.position.set(0, 6, 1.5); spot.target.position.set(0, 0, 0.3); spot.castShadow = true;
+scene.add(spot, spot.target);
+const front = new THREE.PointLight(0xffe0b0, 25, 12, 2); front.position.set(0, 2.2, 2.6); scene.add(front);
+
+// ---------------- Post: bloom + DOF ----------------
+let composer = null;
+if (!LOWFX) {
+composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+}
+let bokeh = null;
+if (!LOWFX) {
+bokeh = new BokehPass(scene, camera, { focus: 6.2, aperture: 0.0005, maxblur: 0.007 });
+composer.addPass(bokeh);
+composer.addPass(new UnrealBloomPass(new THREE.Vector2(W, H), 0.16, 0.6, 0.9));
+}
+
+// ---------------- Animación determinista ----------------
+const clamp = (v,a,b)=>Math.min(b,Math.max(a,v));
+const ease = t => t<.5 ? 2*t*t : 1-Math.pow(-2*t+2,2)/2;
+const seg = (t0,t1)=>clamp((T-t0)/(t1-t0),0,1);
+
+// 0-0.5 entrada
+const inP = ease(seg(0.0,0.5));
+folder.scale.setScalar(0.86 + 0.14*inP);
+folder.position.y = 0.02 + (1-inP)*-0.6;
+camera.position.y = 3.1 + (1-inP)*0.4;
+
+// 0.5-1.6 la tapa se abre
+const openP = ease(seg(0.5,1.6));
+coverPivot.rotation.x = -1.15 * openP;
+
+// 1.4-2.4 sello cae
+const dropP = ease(seg(1.5,2.15));
+sealGroup.position.y = 2.2 - 1.75*dropP;
+sealGroup.rotation.z = (1-dropP)*0.35;
+sealGroup.rotation.x = (1-dropP)*0.2;
+
+// 2.15-2.5 impacto (sello se oculta y aparece el estampado en la hoja)
+const impactP = seg(2.15,2.6);
+sealGroup.visible = impactP < 0.35;
+sealGroup.scale.setScalar(1 - 0.15*impactP);
+stampFace.material.opacity = 0;
+// estampado sobre la hoja
+const stampOnPaper = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 1.5), new THREE.MeshBasicMaterial({ map: selloTex(), transparent: true, opacity: 0 }));
+stampOnPaper.rotation.x = -Math.PI/2; stampOnPaper.position.set(0, 0.07, 0.35);
+folder.add(stampOnPaper);
+stampOnPaper.material.opacity = Math.min(1, impactP*2.2) * (0.92);
+
+// 2.5-4.1 la cámara se acerca y el papel domina
+const closeP = ease(seg(2.5,4.0));
+camera.position.z = 6.2 - 1.6*closeP;
+camera.position.y = 3.1 - 1.0*closeP;
+camera.lookAt(0, 0.05 + 0.1*closeP, 0.25);
+if (bokeh) if (bokeh) bokeh.uniforms['focus'].value = 6.2 - 1.6*closeP;
+if (bokeh) bokeh.uniforms['aperture'].value = 0.0006 + 0.0006*closeP;
+
+// exposición final
+renderer.toneMappingExposure = 0.95 + 0.15*closeP;
+
+if (composer) { composer.render(); } else { renderer.render(scene, camera); }
+window.__ready = true;
+</script>
+</body></html>
