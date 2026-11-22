@@ -1,0 +1,3 @@
+# Ruta canonica unica de jurisprudencia: /sentencias
+/jurisprudencia /sentencias 301
+/jurisprudencia/* /sentencias/:splat 301
