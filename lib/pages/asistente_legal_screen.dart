@@ -33,7 +33,6 @@ class _AsistenteLegalScreenState extends State<AsistenteLegalScreen> {
   
   /// Acento de marca: azul marino en modo claro, AppColors.dorado en modo oscuro.
   
-  static Color get grisOscuro => TemaGlobal.tarjeta;
 
   @override
   void initState() {

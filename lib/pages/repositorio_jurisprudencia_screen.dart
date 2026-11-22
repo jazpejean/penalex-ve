@@ -1130,27 +1130,6 @@ Widget _selectorValorCondicion(
     );
   }
 
-  /// Etiqueta legible del campo de una condición avanzada.
-  String _nombreCampoCondicion(String campo) {
-    const nombres = {
-      'ponente': 'Ponente',
-      'procedimiento': 'Materia',
-      'decision': 'Decisión',
-      'expediente': 'Expediente',
-      'num_sentencia': 'Nº',
-    };
-    return nombres[campo] ?? campo;
-  }
-
-  /// Nombre corto para mostrar una sala activa (código BD → etiqueta).
-  String _nombreSalaCorto(String codigo) {
-    const nombres = {
-      'scp': 'Casación Penal',
-      'scon': 'Constitucional',
-    };
-    return nombres[codigo] ?? codigo;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
