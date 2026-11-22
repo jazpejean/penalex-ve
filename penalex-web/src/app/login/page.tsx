@@ -1,8 +1,8 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { loginGoogle, loginEmail, registrarEmail, cerrarSesion } from "../../lib/firebase";
+import { loginGoogle, loginEmail, registrarEmail, cerrarSesion, resultadoRedirect } from "../../lib/firebase";
 import Icono from "../../components/Icono";
 
 // Azul institucional del logo de Penalex
@@ -78,6 +78,20 @@ function LoginContent() {
   const [verConfirmar, setVerConfirmar] = useState(false);
 
   const [error, setError] = useState("");
+  const [errorCodigo, setErrorCodigo] = useState("");
+
+  // Si el navegador nos devolvió de la pantalla de Google (redirect),
+  // completamos la sesión y vamos al dashboard.
+  useEffect(() => {
+    let activo = true;
+    (async () => {
+      const u = await resultadoRedirect();
+      if (activo && u) router.push("/dashboard");
+    })();
+    return () => {
+      activo = false;
+    };
+  }, [router]);
   const [cargando, setCargando] = useState(false);
   const [dialogo, setDialogo] = useState<{ titulo: string; mensaje: string; esError: boolean } | null>(null);
 
@@ -86,7 +100,11 @@ function LoginContent() {
     setError("");
     try {
       const user = await loginGoogle();
-      if (user && !user.emailVerified) {
+      if (!user) {
+        // Se inició la redirección a Google: no navegar aquí.
+        return;
+      }
+      if (!user.emailVerified) {
         await cerrarSesion();
         setDialogo({
           titulo: "Correo no verificado",
@@ -98,6 +116,9 @@ function LoginContent() {
       }
       router.push("/dashboard");
     } catch (e) {
+      const code = (e as { code?: string })?.code ?? "";
+      console.error("[login Google] error:", code, e);
+      setErrorCodigo(code);
       setError(_firebaseError(e instanceof Error ? e.message : String(e)));
     } finally {
       setCargando(false);
@@ -220,7 +241,14 @@ function LoginContent() {
         {error && (
           <div className="mt-6 flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 p-3">
             <Icono nombre="fecha" size={16} className="shrink-0 text-red-500" />
-            <span className="text-sm text-red-500">{error}</span>
+            <div className="min-w-0">
+              <span className="text-sm text-red-500">{error}</span>
+              {errorCodigo ? (
+                <span className="mt-1 block font-mono text-[10px] text-red-400">
+                  {errorCodigo}
+                </span>
+              ) : null}
+            </div>
           </div>
         )}
 

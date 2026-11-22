@@ -6,6 +6,8 @@ import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
 import {
   getAuth,
   signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -58,10 +60,45 @@ function authRequerida() {
   return a;
 }
 
-export async function loginGoogle(): Promise<User> {
+/** Inicia sesión con Google. Intenta popup y, si el navegador lo bloquea
+ *  o el entorno no lo soporta, cae a redirección completa (más fiable en web).
+ *  Devuelve null cuando se inició una redirección (la página se recarga). */
+export async function loginGoogle(): Promise<User | null> {
+  const a = authRequerida();
   const provider = new GoogleAuthProvider();
-  const cred = await signInWithPopup(authRequerida(), provider);
-  return cred.user;
+  provider.setCustomParameters({ prompt: "select_account" });
+  try {
+    const cred = await signInWithPopup(a, provider);
+    return cred.user;
+  } catch (e: unknown) {
+    const code = (e as { code?: string })?.code ?? "";
+    console.error("[loginGoogle] popup falló:", code, e);
+    const caerARedirect =
+      code === "auth/popup-blocked" ||
+      code === "auth/popup-closed-by-user" ||
+      code === "auth/cancelled-popup-request" ||
+      code === "auth/operation-not-supported-in-this-environment" ||
+      code === "auth/web-storage-unsupported" ||
+      code === "auth/internal-error";
+    if (caerARedirect) {
+      await signInWithRedirect(a, provider);
+      return null;
+    }
+    throw e;
+  }
+}
+
+/** Completa el login si se volvió de una redirección de Google. */
+export async function resultadoRedirect(): Promise<User | null> {
+  const a = auth();
+  if (!a) return null;
+  try {
+    const r = await getRedirectResult(a);
+    return r?.user ?? null;
+  } catch (e) {
+    console.error("[resultadoRedirect] error:", e);
+    return null;
+  }
 }
 
 export async function loginEmail(email: string, password: string): Promise<User> {
