@@ -1263,7 +1263,7 @@ Widget _selectorValorCondicion(
     return Scaffold(
       drawer: const AppDrawer(currentRoute: '/repositorio_jurisprudencia'),
             appBar: AppBarInstitucional(
-        title: 'Super Buscador',
+        title: 'Buscador de Jurisprudencia',
         mostrarBack: true,
 
         actions: [
@@ -1305,6 +1305,13 @@ Widget _selectorValorCondicion(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Subtítulo como en penalexve.com/sentencias
+                Text(
+                  'Más de 55.000 sentencias de fondo del Tribunal Supremo '
+                  'de Justicia, con texto completo.',
+                  style: AppTokens.secundario,
+                ),
+                const SizedBox(height: 12),
                 // ✅ Barra de búsqueda premium: input + botón dorado
                 Row(
                   children: [
@@ -1369,9 +1376,23 @@ Widget _selectorValorCondicion(
                         borderRadius: BorderRadius.circular(12),
                         child: const Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 14),
-                          child: Icon(Icons.search,
-                              color: AppColors.onDorado, size: 22),
+                              horizontal: 14, vertical: 14),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.search,
+                                  color: AppColors.onDorado, size: 20),
+                              SizedBox(width: 6),
+                              Text(
+                                'Buscar',
+                                style: TextStyle(
+                                  color: AppColors.onDorado,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

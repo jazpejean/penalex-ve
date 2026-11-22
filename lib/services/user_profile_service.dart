@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
@@ -11,9 +13,15 @@ class UserProfileService {
   static final SupabaseClient _supabase = Supabase.instance.client;
   static final ImagePicker _picker = ImagePicker();
 
-  /// Se incrementa al cambiar algo del perfil (p. ej. la foto) para que
-  /// los StreamBuilder activos reciban datos nuevos sin Firestore.
-  static final ValueNotifier<int> revision = ValueNotifier<int>(0);
+  /// Emite cuando cambia algo del perfil (p. ej. la foto) para que los
+  /// StreamBuilder activos reciban datos nuevos sin Firestore.
+  static final StreamController<int> _revision =
+      StreamController<int>.broadcast();
+
+  static Stream<int> get revisionStream => _revision.stream;
+
+  /// Notifica a las pantallas abiertas que recarguen el perfil.
+  static void refrescarPerfil() => _revision.add(0);
 
   static const List<String> _adminEmails = <String>[
     'admin@penalex.ve',
@@ -42,7 +50,7 @@ class UserProfileService {
     final fb.User? user = _auth.currentUser;
     if (user == null) return;
     yield await _cargarPerfil(user.uid);
-    await for (final int _ in revision.stream) {
+    await for (final int _ in _revision.stream) {
       yield await _cargarPerfil(user.uid);
     }
   }
@@ -141,7 +149,7 @@ class UserProfileService {
         debugPrint('No se pudo actualizar updated_at del perfil: $e');
       }
 
-      revision.value++; // refresca el drawer sin recargar la app
+      _revision.add(0); // refresca el drawer sin recargar la app
       return avatarUrl(user.uid, version: version);
     } catch (e, stack) {
       debugPrint('Error al procesar imagen: $e');
