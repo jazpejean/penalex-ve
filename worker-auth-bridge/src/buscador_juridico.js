@@ -173,7 +173,7 @@ export async function paginaBuscador(env) {
     fp.set('select', columnas);
     fp.set('es_mero_tramite', 'eq.false');
     fp.set('tipo', 'eq.sentencia');
-    fp.set('order', 'id.desc');
+    fp.set('order', 'created_at.desc');
     fp.set('limit', '10');
     const res = await fetch(`${supabaseUrl}/rest/v1/sentencias?${fp.toString()}`, {
       headers: { apikey: anonKey, Authorization: 'Bearer ' + anonKey },
@@ -219,7 +219,7 @@ const state = {
   // de enero del 2000. Se carga el año completo por chunks y se ordena por
   // fecha real en el cliente (la columna fecha es texto; el orden del
   // servidor no respeta el mes).
-  crono: { activo: false, asc: true, anio: 2000, lista: [], idx: 0, offset: 0 },
+  crono: { activo: false, asc: false, anio: new Date().getFullYear(), lista: [], idx: 0, offset: 0 },
 };
 
 const $ = (id) => document.getElementById(id);
@@ -1206,6 +1206,7 @@ document.addEventListener('DOMContentLoaded', init);
     <nav class="hdr-nav" aria-label="Menú principal">
       <a href="/sentencias">Jurisprudencias</a>
       <a href="/leyes">Leyes</a>
+      <a href="/tribunales">Tribunales</a>
       <a href="/articulos">Blog · Nulidad Absoluta</a>
     </nav>
     <div class="hdr-acciones">
@@ -1219,6 +1220,7 @@ document.addEventListener('DOMContentLoaded', init);
   <nav class="hdr-menu" id="hdrMenu" aria-label="Menú móvil">
     <a href="/sentencias">Jurisprudencias</a>
     <a href="/leyes">Leyes</a>
+      <a href="/tribunales">Tribunales</a>
     <a href="/articulos">Blog · Nulidad Absoluta</a>
     <a class="hdr-link" href="/login">Iniciar sesión</a>
     <a class="hdr-btn" href="/login?modo=registro">Crear cuenta</a>
@@ -1236,7 +1238,7 @@ document.addEventListener('DOMContentLoaded', init);
   </div>
   <div class="ayuda-sintaxis">AND (espacio) · OR · <b>"frase exacta"</b> · <b>-excluir</b> · número o expediente exacto</div>
   <div class="barra-orden">
-    <button id="btnOrden" class="btn-orden">⬆ Antiguas primero (2000 →)</button>
+    <button id="btnOrden" class="btn-orden">⬇ Recientes primero (←2026)</button>
   </div>
 
   <div class="filtros">
