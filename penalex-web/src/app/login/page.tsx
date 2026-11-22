@@ -96,7 +96,7 @@ function LoginContent() {
         });
         return;
       }
-      router.push("/");
+      router.push("/dashboard");
     } catch (e) {
       setError(_firebaseError(e instanceof Error ? e.message : String(e)));
     } finally {
@@ -129,7 +129,7 @@ function LoginContent() {
           });
           return;
         }
-        router.push("/");
+        router.push("/dashboard");
       } catch (err) {
         setError(_firebaseError(err instanceof Error ? err.message : String(err)));
       } finally {
@@ -192,7 +192,7 @@ function LoginContent() {
         {/* Volver al inicio */}
         <div className="mb-8 flex justify-center">
           <button
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/dashboard")}
             className="group flex items-center gap-2 rounded-full border border-[#e2e8f0] bg-white px-5 py-2 text-sm font-medium text-[#031F4E] hover:bg-[#031F4E] hover:text-white"
           >
             <Icono nombre="flecha" size={14} className="rotate-180 transition group-hover:-translate-x-0.5" />

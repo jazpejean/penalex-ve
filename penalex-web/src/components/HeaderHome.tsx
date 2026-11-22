@@ -68,6 +68,12 @@ export default function HeaderHome() {
         <div className="hidden items-center gap-2 md:flex">
           {user ? (
             <>
+              <Link
+                href="/dashboard"
+                className="rounded-md bg-[#031F4E] px-3 py-2 text-sm font-semibold text-white hover:bg-[#06305f]"
+              >
+                Mi panel
+              </Link>
               <span className="max-w-[180px] truncate text-xs text-slate-500">
                 {user.email}
               </span>
@@ -131,6 +137,13 @@ export default function HeaderHome() {
           <div className="mt-4 border-t border-[#e2e8f0] pt-4">
             {user ? (
               <div className="flex flex-col gap-2">
+                <Link
+                  href="/dashboard"
+                  onClick={cerrarMenu}
+                  className="rounded-md bg-[#031F4E] px-3 py-3 text-center text-sm font-semibold text-white hover:bg-[#06305f]"
+                >
+                  Mi panel
+                </Link>
                 <span className="truncate px-3 text-xs text-slate-500">{user.email}</span>
                 <button
                   onClick={cerrar}
