@@ -29,42 +29,104 @@ const HERRAMIENTAS = [
     titulo: "Jurisprudencia",
     detalle: "55.208 sentencias del TSJ con extracto y texto completo.",
     icono: "⚖️",
-    etiqueta: "Corpus completo",
+    etiqueta: "Web",
+    web: true,
   },
   {
     href: "/leyes",
     titulo: "Biblioteca legal",
     detalle: "53 leyes penales y 6.416 artículos, con búsqueda por número o tema.",
     icono: "📚",
-    etiqueta: "53 leyes",
+    etiqueta: "Web",
+    web: true,
   },
   {
     href: "/tribunales",
     titulo: "Tribunales",
     detalle: "867 tribunales por circuito, con foto y enlace a Google Maps.",
     icono: "🗺️",
-    etiqueta: "114 circuitos",
+    etiqueta: "Web",
+    web: true,
   },
   {
     href: "/dosimetria",
     titulo: "Dosimetría penal",
-    detalle: "Cálculo de pena con los artículos 37, 74, 77 y 80 del Código Penal.",
+    detalle: "Pena individualizada con los artículos 37, 74, 77 y 80 del Código Penal.",
     icono: "🧮",
-    etiqueta: "Cálculo",
+    etiqueta: "Web",
+    web: true,
+  },
+  {
+    href: "/prescripcion",
+    titulo: "Prescripción",
+    detalle: "Cálculo de la prescripción de la acción y de la pena (arts. 108 y 112).",
+    icono: "⏳",
+    etiqueta: "Web",
+    web: true,
+  },
+  {
+    href: "/lapsos",
+    titulo: "Lapsos procesales",
+    detalle: "Días hábiles, audiencias y vencimientos del proceso penal.",
+    icono: "📅",
+    etiqueta: "Web",
+    web: true,
+  },
+  {
+    href: "/buscar",
+    titulo: "Búsqueda semántica",
+    detalle: "Encuentra criterios por significado, no solo por palabra exacta.",
+    icono: "🔎",
+    etiqueta: "Web",
+    web: true,
   },
   {
     href: "/articulos",
     titulo: "Análisis y doctrina",
     detalle: "Nulidad, dolo eventual, IA jurídica y alcabalas explicados.",
     icono: "📝",
-    etiqueta: "Blog",
+    etiqueta: "Web",
+    web: true,
   },
   {
-    href: "/sentencias",
-    titulo: "Buscador avanzado",
-    detalle: "Filtra por sala, año, ponente, materia o texto de la sentencia.",
-    icono: "🔎",
-    etiqueta: "Filtros",
+    href: "#app",
+    titulo: "Detector de vicios",
+    detalle: "21 vicios procesales con norma, gravedad y acción procesal.",
+    icono: "🛡️",
+    etiqueta: "App",
+    web: false,
+  },
+  {
+    href: "#app",
+    titulo: "Asistente Ulpiano",
+    detalle: "Chat jurídico con RAG sobre jurisprudencia y leyes, citando fuentes.",
+    icono: "🤖",
+    etiqueta: "App",
+    web: false,
+  },
+  {
+    href: "#app",
+    titulo: "Redactor de escritos",
+    detalle: "Escritos forenses sobre el expediente, con editor de documentos.",
+    icono: "✍️",
+    etiqueta: "App",
+    web: false,
+  },
+  {
+    href: "#app",
+    titulo: "Escáner con visión",
+    detalle: "Lee autos y sentencias desde la foto, sin OCR impreciso.",
+    icono: "📷",
+    etiqueta: "App",
+    web: false,
+  },
+  {
+    href: "#app",
+    titulo: "Quiz de carrera judicial",
+    detalle: "Formación gamificada con rangos y certificado de ascenso.",
+    icono: "🎓",
+    etiqueta: "App",
+    web: false,
   },
 ];
 
@@ -176,7 +238,13 @@ export default function ContenidoDashboard({
             >
               <div className="flex items-start justify-between">
                 <span className="text-2xl">{h.icono}</span>
-                <span className="rounded-full bg-[#f1f5f9] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-slate-500">
+                <span
+                  className={
+                    h.web
+                      ? "rounded-full bg-[#f1f5f9] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-slate-500"
+                      : "rounded-full bg-[#FBF2DD] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#9a7a34]"
+                  }
+                >
                   {h.etiqueta}
                 </span>
               </div>
@@ -187,7 +255,7 @@ export default function ContenidoDashboard({
                 {h.detalle}
               </p>
               <span className="mt-3 text-xs font-bold text-[#9a7a34]">
-                Abrir →
+                {h.web ? "Abrir →" : "Descargar app →"}
               </span>
             </Link>
           ))}
@@ -307,7 +375,7 @@ export default function ContenidoDashboard({
       </section>
 
       {/* Cuenta */}
-      <section className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <section id="app" className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="rounded-2xl border border-slate-200 bg-white p-5">
           <h2 className="text-sm font-bold text-[#031F4E]">Tu cuenta</h2>
           <p className="mt-2 text-sm text-slate-500">
