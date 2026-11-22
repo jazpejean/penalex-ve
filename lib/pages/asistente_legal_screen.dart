@@ -9,6 +9,7 @@ import '../services/ai_service.dart';
 import '../services/deepseek_vision_service.dart';
 import '../services/chat_export_service.dart';
 import '../widgets/app_bar_institucional.dart';
+import '../config/app_tokens.dart';
 
 class AsistenteLegalScreen extends StatefulWidget {
   const AsistenteLegalScreen({super.key});
@@ -201,7 +202,7 @@ Puedo ayudarte a:
       context: context,
       backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) => SafeArea(
         child: Column(
@@ -235,7 +236,7 @@ Puedo ayudarte a:
       context: context,
       backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) => SafeArea(
         child: Column(
@@ -567,7 +568,7 @@ Puedo ayudarte a:
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: message.isUser ? AppColors.dorado : grisOscuro,
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.1),
@@ -687,7 +688,7 @@ Puedo ayudarte a:
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: TemaGlobal.tarjeta,
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,

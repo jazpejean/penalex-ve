@@ -27,6 +27,7 @@ import '../widgets/quiz_icon.dart';
 import '../widgets/quiz_pulso_widget.dart';
 import 'quiz_game_screen.dart';
 import 'quiz_logros_screen.dart';
+import '../config/app_tokens.dart';
 
 /// Paleta del quiz adaptada del kit "Queezy" (fondo claro, violeta/lavanda/
 /// rosa/menta) con un pequeño ajuste para armonizar con el resto de Penalex:
@@ -431,10 +432,10 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
           const SizedBox(height: 16),
           Material(
             color: _blanco,
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
             elevation: 0,
             child: InkWell(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
               onTap: () {
                 Haptics.light();
                 Navigator.push(context, cortinaDorada(const QuizGameScreen()));
@@ -442,7 +443,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
               child: Ink(
                 padding: const EdgeInsets.symmetric(vertical: 13),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                 ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -493,10 +494,10 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
         const SizedBox(height: 12),
         Material(
           color: _blanco,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           elevation: 0,
           child: InkWell(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
             onTap: () {
               Haptics.light();
               Navigator.push(
@@ -505,7 +506,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                 border: Border.all(color: _bordeKit, width: 2),
               ),
               child: Row(
@@ -515,7 +516,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                     width: 44,
                     height: 44,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                       color: _lavanda,
                     ),
                     child: const Center(
@@ -565,7 +566,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   decoration: BoxDecoration(
                     color: _lavanda.withValues(alpha: 0.45),
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                   ),
                   child: Text(
                     d,
@@ -593,7 +594,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: _blanco,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: _bordeKit, width: 2),
         boxShadow: [
           BoxShadow(
@@ -740,7 +741,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: _blanco,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: _bordeKit, width: 2),
       ),
       child: Column(
@@ -784,7 +785,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: _fondoKit,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
       ),
       child: Row(
         children: [
@@ -918,7 +919,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
       periodo: const Duration(milliseconds: 1200),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           gradient: const LinearGradient(
             colors: [_primario, _secundario],
             begin: Alignment.topLeft,
@@ -935,7 +936,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
             onTap: () {
               Haptics.light();
               Navigator.push(context, cortinaDorada(const QuizGameScreen()));
@@ -973,7 +974,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
         side: const BorderSide(color: _bordeKit, width: 2),
         backgroundColor: _blanco,
         padding: const EdgeInsets.symmetric(vertical: 15),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
       ),
       onPressed: _descargarCertificado,
       icon: const QuizIcon('scroll_seal', color: _primario),
@@ -991,7 +992,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
         side: const BorderSide(color: _bordeKit, width: 2),
         backgroundColor: _blanco,
         padding: const EdgeInsets.symmetric(vertical: 15),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
       ),
       onPressed: () =>
           Navigator.push(context, cortinaDorada(const QuizLogrosScreen())),
@@ -1050,7 +1051,7 @@ class _QuizLobbyScreenState extends State<QuizLobbyScreen>
         Container(
           decoration: BoxDecoration(
             color: _blanco,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
             border: Border.all(color: _bordeKit, width: 2),
           ),
           child: Column(

@@ -7,6 +7,7 @@ import '../widgets/app_bar_institucional.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'redactor_documentos_screen.dart';
+import '../config/app_tokens.dart';
 
 /// Calculadora de Prescripción Penal (arts. 108 y 112 CP).
 ///
@@ -183,7 +184,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.tarjeta,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -253,7 +254,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.tarjeta,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -377,14 +378,14 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Material(
               color: activo ? AppColors.dorado : Colors.transparent,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(AppTokens.radioControl),
               child: InkWell(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(AppTokens.radioControl),
                 onTap: () => setState(() => _tipo = o.$1),
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(AppTokens.radioControl),
                     border: Border.all(color: AppColors.dorado.withValues(alpha: 0.4)),
                   ),
                   child: Text(
@@ -417,7 +418,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
           foregroundColor: AppColors.onDorado,
           padding: const EdgeInsets.symmetric(vertical: 16),
           textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
         ),
       ),
     );
@@ -448,7 +449,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
             color: prescrita
                 ? AppColors.error.withValues(alpha: AppColors.a48)
                 : AppColors.tarjeta,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
             border: Border.all(
               color: prescrita ? AppColors.error : AppColors.dorado,
               width: 1.5,

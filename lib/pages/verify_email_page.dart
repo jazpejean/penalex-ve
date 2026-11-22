@@ -9,6 +9,7 @@ import '../services/auth_service.dart';
 import '../services/local_auth_service.dart';
 import '../utils/main_tab_controller.dart';
 import '../widgets/app_bar_institucional.dart';
+import '../config/app_tokens.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({super.key});
@@ -58,7 +59,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
         content: Text(message),
         backgroundColor: isError ? AppColors.error : AppColors.success,
         behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppTokens.radioControl)),
         margin: const EdgeInsets.all(10),
       ),
     );

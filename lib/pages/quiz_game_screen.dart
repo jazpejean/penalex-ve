@@ -22,6 +22,7 @@ import '../services/quiz_storage_service.dart';
 import '../utils/quiz_seed.dart';
 import '../widgets/quiz_icon.dart';
 import '../widgets/quiz_pulso_widget.dart';
+import '../config/app_tokens.dart';
 
 /// Paleta oficial del quiz: navy + oro (alineada al resto de la app).
 /// Paleta del quiz adaptada del kit "Queezy" (fondo claro, violeta/lavanda/
@@ -578,11 +579,11 @@ class _QuizGameScreenState extends State<QuizGameScreen>
             duration: const Duration(milliseconds: 600),
             curve: Curves.easeOutCubic,
             builder: (context, v, _) => ClipRRect(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(AppTokens.radioControl),
               child: LinearProgressIndicator(
                 value: v,
                 minHeight: 8,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(AppTokens.radioControl),
                 backgroundColor: _bordeKit,
                 valueColor: const AlwaysStoppedAnimation(_oro),
               ),
@@ -722,7 +723,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: _blanco,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: _bordeKit, width: 2),
         boxShadow: [
           BoxShadow(
@@ -783,7 +784,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: _menta.withValues(alpha: 0.55),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           border: Border.all(color: _menta, width: 2),
         ),
         child: Column(
@@ -853,7 +854,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
 
     final boton = Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         gradient: const LinearGradient(
           colors: [_primario, _secundario],
           begin: Alignment.topLeft,
@@ -870,7 +871,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           onTap: habilitado ? _cargarCaso : null,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
@@ -977,7 +978,7 @@ class _QuizGameScreenState extends State<QuizGameScreen>
       ),
       pageBuilder: (context, _, __) => Dialog(
         backgroundColor: _blanco,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
         child: Padding(
           padding: const EdgeInsets.all(32),
           child: Column(
@@ -1200,7 +1201,7 @@ class _OpcionTarjetaState extends State<_OpcionTarjeta>
       curve: Curves.easeOut,
       decoration: BoxDecoration(
         color: fondo,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: borde, width: 1.5),
         boxShadow: widget.esCorrecta && widget.respondida
             ? [
@@ -1355,7 +1356,7 @@ class _AscensoOverlayState extends State<_AscensoOverlay>
             padding: const EdgeInsets.all(32),
             decoration: BoxDecoration(
               color: _blanco,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
               border: Border.all(color: _lavanda, width: 2),
               boxShadow: [
                 BoxShadow(

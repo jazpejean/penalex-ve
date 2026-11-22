@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import '../services/tribunales_service.dart';
+import '../config/app_tokens.dart';
 
 /// Ficha y geolocalización de un tribunal penal venezolano.
 ///
@@ -152,7 +153,7 @@ class TribunalDetailScreen extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           color: TemaGlobal.capa,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         ),
         alignment: Alignment.center,
         child: Text('Ubicación no disponible',
@@ -161,7 +162,7 @@ class TribunalDetailScreen extends StatelessWidget {
     }
     final punto = LatLng(lat, lng);
     return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
       child: SizedBox(
         height: 200,
         width: double.infinity,

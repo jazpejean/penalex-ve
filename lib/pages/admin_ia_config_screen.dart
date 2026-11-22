@@ -8,6 +8,7 @@ import '../widgets/role_guard.dart';
 import '../config/app_colors.dart';
 import '../widgets/app_snackbar.dart';
 import '../widgets/app_bar_institucional.dart';
+import '../config/app_tokens.dart';
 
 class AdminIAConfigScreen extends StatefulWidget {
   const AdminIAConfigScreen({super.key});
@@ -281,7 +282,7 @@ class _AdminIAConfigScreenState extends State<AdminIAConfigScreen> {
       decoration: BoxDecoration(
         // Azul marino sólido (sin degradado a blanco), según paleta acordada.
         color: AppColors.azulMarino,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -23,6 +23,7 @@ import '../widgets/app_drawer.dart';
 import '../widgets/main_bottom_bar.dart';
 import '../widgets/app_bar_institucional.dart';
 import '../widgets/app_snackbar.dart';
+import '../config/app_tokens.dart';
 
 class RepositorioJurisprudenciaScreen extends StatefulWidget {
   const RepositorioJurisprudenciaScreen({super.key});
@@ -282,7 +283,7 @@ void _abrirPanelFiltros() {
     isScrollControlled: true,
     backgroundColor: TemaGlobal.tarjeta,
     shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
     ),
     builder: (context) => StatefulBuilder(
       builder: (context, setSheetState) {
@@ -314,7 +315,7 @@ void _abrirPanelFiltros() {
                 fontSize: 12,
               ),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                 side: BorderSide(
                     color: activo ? AppColors.dorado : TemaGlobal.capa),
               ),
@@ -447,7 +448,7 @@ void _abrirPanelFiltros() {
                 padding: const EdgeInsets.all(3),
                 decoration: BoxDecoration(
                   color: TemaGlobal.capa,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
                 ),
                 child: Row(
                   children: [
@@ -719,7 +720,7 @@ Widget _dropdownCampoCondicion(
       value: cond.campo,
       isExpanded: true,
       isDense: true,
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(AppTokens.radioControl),
       dropdownColor: TemaGlobal.tarjeta,
       style: TextStyle(
         color: TemaGlobal.texto,
@@ -814,7 +815,7 @@ Widget _dropdownOperadorCondicion(
       value: cond.operador,
       isExpanded: true,
       isDense: true,
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(AppTokens.radioControl),
       dropdownColor: TemaGlobal.tarjeta,
       style: TextStyle(
         color: TemaGlobal.texto,
@@ -1011,7 +1012,7 @@ Widget _selectorValorCondicion(
             fontSize: 12,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
             side: BorderSide(
                 color: activo ? AppColors.dorado : TemaGlobal.capa),
           ),
@@ -1033,7 +1034,7 @@ Widget _selectorValorCondicion(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
             color: TemaGlobal.campoTexto,
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
             border: Border.all(
                 color: AppColors.acento.withValues(alpha: 0.45),
                 width: 1.2),
@@ -1044,7 +1045,7 @@ Widget _selectorValorCondicion(
               isExpanded: true,
               icon: Icon(Icons.arrow_drop_down,
                   color: AppColors.acento, size: 30),
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
               dropdownColor: TemaGlobal.tarjeta,
               style: TextStyle(
                 color: TemaGlobal.texto,
@@ -1116,7 +1117,7 @@ Widget _selectorValorCondicion(
                             horizontal: 6, vertical: 2),
                         decoration: BoxDecoration(
                           color: AppColors.dorado,
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(AppTokens.radioControl),
                         ),
                         child: Text(
                           '$_cantidadFiltrosActivos',
@@ -1137,7 +1138,7 @@ Widget _selectorValorCondicion(
                       horizontal: 12, vertical: 8),
                   visualDensity: VisualDensity.compact,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                   ),
                 ),
               ),
@@ -1417,7 +1418,7 @@ Widget _selectorValorCondicion(
                               decoration: BoxDecoration(
                                 color: AppColors.dorado
                                     .withValues(alpha: AppColors.a12),
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(AppTokens.radioControl),
                               ),
                               child: Row(
                                 children: [
@@ -1522,7 +1523,7 @@ Widget _selectorValorCondicion(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: TemaGlobal.tarjeta,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
             border: Border.all(color: TemaGlobal.capa, width: 1),
           ),
           child: Column(
@@ -1581,12 +1582,12 @@ Widget _selectorValorCondicion(
       shadowColor: AppColors.azulMarino.withValues(alpha: 0.08),
       // Guía 3.1: r16 para tarjetas de lista.
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         side: BorderSide(color: TemaGlobal.capa, width: 1),
       ),
       child: InkWell(
         onTap: () => _verDoctrina(doctrina),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         child: Padding(
           padding: const EdgeInsets.all(14),
           child: Column(
@@ -1671,7 +1672,7 @@ Widget _selectorValorCondicion(
       isScrollControlled: true,
       backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) => Padding(
         padding: const EdgeInsets.all(20),
@@ -1797,14 +1798,14 @@ Widget _selectorValorCondicion(
       shadowColor: AppColors.azulMarino.withValues(alpha: 0.08),
       // Guía 3.1: r16 para tarjetas de lista.
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         side: BorderSide(color: TemaGlobal.capa, width: 1),
       ),
       child: InkWell(
         // Al tocar la ficha se abre la ventana flotante con toda la
         // metadata y el botón "Leer sentencia completa".
         onTap: () => _verSentencia(sentencia),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -2119,7 +2120,7 @@ Widget _selectorValorCondicion(
       context: context,
       backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) {
         return Container(
@@ -2755,7 +2756,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
       isScrollControlled: true,
       backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) => DraggableScrollableSheet(
         expand: false,
@@ -2919,7 +2920,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: TemaGlobal.tarjeta,
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withValues(alpha: AppColors.a18),
@@ -3394,7 +3395,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: TemaGlobal.capa.withValues(alpha: 0.5),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(AppTokens.radioControl),
               border: Border.all(
                 color: AppColors.acento.withValues(alpha: 0.4),
               ),
@@ -3491,7 +3492,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: TemaGlobal.capa.withValues(alpha: 0.5),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(AppTokens.radioControl),
               border: Border.all(
                 color: AppColors.acento.withValues(alpha: 0.4),
               ),
@@ -3611,7 +3612,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
       context: context,
       backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) {
         return Container(

@@ -6,6 +6,7 @@ import 'glosario_screen.dart';
 import 'repositorio_jurisprudencia_screen.dart';
 import 'repositorio_leyes_screen.dart';
 import '../config/app_colors.dart';
+import '../config/app_tokens.dart';
 
 /// Hub de Consulta Jurídica.
 ///
@@ -171,7 +172,7 @@ class _HubConsultaJuridicaScreenState extends State<HubConsultaJuridicaScreen> {
       width: double.infinity,
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(
           color: AppColors.acento.withValues(alpha: 0.28),
           width: 1,
@@ -188,7 +189,7 @@ class _HubConsultaJuridicaScreenState extends State<HubConsultaJuridicaScreen> {
         color: Colors.transparent,
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           child: Padding(
             padding: const EdgeInsets.all(18),
             child: Row(

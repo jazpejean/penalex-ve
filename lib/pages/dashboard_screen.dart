@@ -9,6 +9,7 @@ import '../models/audiencia.dart';
 import '../config/app_theme.dart';
 import '../utils/main_tab_controller.dart';
 import '../config/app_colors.dart';
+import '../config/app_tokens.dart';
 
 /// Pantalla principal (tab Inicio) — rediseño premium navy+oro:
 /// header con saludo y avatar, stats reales, hero Ulpiano, accesos
@@ -172,7 +173,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           height: 44,
           decoration: BoxDecoration(
             color: AppColors.azulMarino,
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
             border: Border.all(color: AppColors.dorado, width: 2),
           ),
           child: Center(
@@ -233,7 +234,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: TemaGlobal.capa),
         boxShadow: <BoxShadow>[
           BoxShadow(
@@ -250,7 +251,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             height: 36,
             decoration: BoxDecoration(
               color: bg,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(AppTokens.radioControl),
             ),
             child: Icon(icon, size: 20, color: color),
           ),
@@ -312,7 +313,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
                 color: AppColors.dorado.withValues(alpha: 0.2),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
               ),
               child: const Text(
                 'ASISTENTE IA',
@@ -468,7 +469,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: TemaGlobal.tarjeta,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           border: Border.all(color: TemaGlobal.capa),
           boxShadow: <BoxShadow>[
             BoxShadow(
@@ -532,7 +533,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: TemaGlobal.tarjeta,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           border: Border.all(color: TemaGlobal.capa),
           boxShadow: <BoxShadow>[
             BoxShadow(
@@ -578,7 +579,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       height: 48,
       decoration: BoxDecoration(
         color: AppColors.dorado.withValues(alpha: AppColors.a12),
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
       ),
       child: Icon(icon, size: 26, color: AppColors.dorado),
     );
@@ -595,7 +596,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: TemaGlobal.tarjeta,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           border: Border.all(color: TemaGlobal.capa),
         ),
         child: Row(
@@ -655,7 +656,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: TemaGlobal.capa),
         boxShadow: <BoxShadow>[
           BoxShadow(
@@ -736,7 +737,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: TemaGlobal.capa),
       ),
       child: Row(
@@ -869,7 +870,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           boxShadow: <BoxShadow>[
             BoxShadow(
               color: AppColors.azulMarino.withValues(alpha: 0.3),
@@ -885,7 +886,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               height: 48,
               decoration: BoxDecoration(
                 color: AppColors.dorado.withValues(alpha: 0.2),
-                borderRadius: BorderRadius.circular(14),
+                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
               ),
               child: const Icon(Icons.gavel, color: AppColors.dorado, size: 26),
             ),
@@ -912,7 +913,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                         decoration: BoxDecoration(
                           color: AppColors.dorado,
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(AppTokens.radioControl),
                         ),
                         child: const Text(
                           'PROXIMAMENTE',

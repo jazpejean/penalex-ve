@@ -8,6 +8,7 @@ import '../utils/storage_manager.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/app_snackbar.dart';
 import '../widgets/app_bar_institucional.dart';
+import '../config/app_tokens.dart';
 
 /// Pantalla para ver y cargar cálculos guardados
 class CalculosGuardadosPage extends StatefulWidget {
@@ -146,7 +147,7 @@ class _CalculosGuardadosPageState extends State<CalculosGuardadosPage> {
                           height: 50,
                           decoration: BoxDecoration(
                             color: AppColors.azulMarino.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(AppTokens.radioControl),
                           ),
                           child: Icon(
                             Icons.calculate,

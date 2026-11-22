@@ -8,6 +8,7 @@ import '../widgets/main_bottom_bar.dart';
 import 'ley_estructura_screen.dart';
 import '../config/app_colors.dart';
 import '../widgets/app_bar_institucional.dart';
+import '../config/app_tokens.dart';
 
 /// Repositorio de Leyes (apariencia similar al repositorio de jurisprudencias).
 ///
@@ -252,11 +253,11 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
       elevation: 2,
       shadowColor: AppColors.azulMarino.withValues(alpha: AppColors.a12),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         side: BorderSide(color: AppColors.acento.withValues(alpha: 0.45), width: 1.2),
       ),
       child: InkWell(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         onTap: () => _abrirLey(ley),
         child: Padding(
           padding: const EdgeInsets.all(14),

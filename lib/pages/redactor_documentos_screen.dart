@@ -21,6 +21,7 @@ import '../widgets/app_bar_institucional.dart';
 import 'package:provider/provider.dart';
 import '../providers/expediente_activo_provider.dart';
 import '../widgets/selector_expediente_sheet.dart';
+import '../config/app_tokens.dart';
 
 class RedactorDocumentosScreen extends StatefulWidget {
   /// Instrucción inicial (en lenguaje natural) que se envía automáticamente
@@ -398,7 +399,7 @@ Analiza los documentos adjuntos y extrae información relevante para el document
       backgroundColor: TemaGlobal.tarjeta,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) => StatefulBuilder(
         builder: (context, setModalState) => SafeArea(
@@ -811,7 +812,7 @@ color: AppColors.dorado,
                 color: message.isUser
                     ? AppColors.azulMarino
                     : TemaGlobal.tarjeta,
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
               ),
               child: message.isUser
                   ? Text(
@@ -962,7 +963,7 @@ color: AppColors.dorado,
       context: context,
       backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) => SafeArea(
         child: Column(
@@ -1094,7 +1095,7 @@ color: AppColors.dorado,
       backgroundColor: TemaGlobal.tarjeta,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) => DraggableScrollableSheet(
         initialChildSize: 0.85,
@@ -1153,7 +1154,7 @@ color: AppColors.dorado,
                               color: TemaGlobal.capa,
                               margin: const EdgeInsets.only(bottom: 8),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(AppTokens.radioControl),
                               ),
                               child: ListTile(
                                 leading: const Icon(
@@ -1281,7 +1282,7 @@ color: AppColors.dorado,
       backgroundColor: TemaGlobal.tarjeta,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) => DraggableScrollableSheet(
         initialChildSize: 0.85,
@@ -1354,7 +1355,7 @@ color: AppColors.dorado,
       backgroundColor: TemaGlobal.tarjeta,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) => DraggableScrollableSheet(
         initialChildSize: 0.8,
@@ -1368,7 +1369,7 @@ color: AppColors.dorado,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: TemaGlobal.capa,
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
               ),
               child: Row(
                 children: [
@@ -1478,7 +1479,7 @@ color: AppColors.dorado,
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: color.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
                 ),
                 child: Icon(icon, color: color, size: 28),
               ),

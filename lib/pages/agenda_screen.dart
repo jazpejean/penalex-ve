@@ -16,6 +16,7 @@ import 'formulario_audiencia_screen.dart';
 import 'formulario_dia_sin_despacho_screen.dart';
 import 'tribunal_detail_screen.dart';
 import '../widgets/app_snackbar.dart';
+import '../config/app_tokens.dart';
 
 class AgendaScreen extends StatefulWidget {
   const AgendaScreen({super.key});
@@ -229,7 +230,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                       Container(
                         decoration: BoxDecoration(
                           color: TemaGlobal.tarjeta,
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                           border: Border.all(color: TemaGlobal.capa),
                           boxShadow: <BoxShadow>[
                             BoxShadow(
@@ -285,11 +286,11 @@ class _AgendaScreenState extends State<AgendaScreen> {
                               calendarStyle: CalendarStyle(
                                 selectedDecoration: BoxDecoration(
                                     color: AppColors.acento,
-                                    borderRadius: BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(AppTokens.radioControl)),
                                 todayDecoration: BoxDecoration(
                                     color: AppColors.dorado.withValues(
                                         alpha: AppColors.a12),
-                                    borderRadius: BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(AppTokens.radioControl)),
                                 // Texto del día seleccionado: contraste según
                                 // el modo (navy en claro → blanco; dorado en
                                 // oscuro → navy). Nunca navy sobre navy.
@@ -320,7 +321,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                         color: AppColors.error.withValues(
                                             alpha: 0.15),
                                         borderRadius:
-                                            BorderRadius.circular(10),
+                                            BorderRadius.circular(AppTokens.radioControl),
                                         border: Border.all(
                                             color: AppColors.error
                                                 .withValues(alpha: 0.35)),
@@ -344,7 +345,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                   decoration: BoxDecoration(
                                     color: AppColors.dorado.withValues(
                                         alpha: AppColors.a12),
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(AppTokens.radioControl),
                                   ),
                                   child: Text(
                                     '${day.day}',
@@ -362,7 +363,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                   decoration: BoxDecoration(
                                       color: AppColors.acento,
                                       borderRadius:
-                                          BorderRadius.circular(10)),
+                                          BorderRadius.circular(AppTokens.radioControl)),
                                   child: Text(
                                     '${day.day}',
                                     style: TextStyle(
@@ -516,7 +517,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: TemaGlobal.capa),
         boxShadow: <BoxShadow>[
           BoxShadow(
@@ -664,7 +665,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: TemaGlobal.tarjeta,
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
               border: Border.all(color: TemaGlobal.capa),
               boxShadow: <BoxShadow>[
                 BoxShadow(

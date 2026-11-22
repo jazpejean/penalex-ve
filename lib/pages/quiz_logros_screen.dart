@@ -14,6 +14,7 @@ import '../services/quiz_rules.dart';
 import '../services/quiz_storage_service.dart';
 import '../widgets/quiz_icon.dart';
 import '../widgets/quiz_pulso_widget.dart';
+import '../config/app_tokens.dart';
 
 const _fondoKit = Color(0xFFF7F6FF); // fondo del kit
 const _primario = Color(0xFF6A5AE0); // violeta primario del kit
@@ -158,7 +159,7 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
             color: _blanco,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
             border: Border.all(color: _bordeKit, width: 2),
           ),
           child: Column(
@@ -317,7 +318,7 @@ class _QuizLogrosScreenState extends State<QuizLogrosScreen>
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: desbloqueado ? _blanco : _fondoKit,
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                   border: Border.all(
                     color: desbloqueado ? _lavanda : _bordeKit,
                     width: desbloqueado ? 2 : 1,

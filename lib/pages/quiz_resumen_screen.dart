@@ -8,6 +8,7 @@ import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../widgets/quiz_icon.dart';
+import '../config/app_tokens.dart';
 
 /// Paleta del quiz adaptada del kit "Queezy" (fondo claro, violeta/lavanda/
 /// rosa/menta) con acentos navy/oro de Penalex en premios y medallas.
@@ -75,7 +76,7 @@ class _QuizResumenScreenState extends State<QuizResumenScreen> {
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
                     color: _blanco,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                     border: Border.all(color: _bordeKit, width: 2),
                     boxShadow: [
                       BoxShadow(
@@ -218,7 +219,7 @@ class _QuizResumenScreenState extends State<QuizResumenScreen> {
         padding: const EdgeInsets.symmetric(vertical: 14),
         decoration: BoxDecoration(
           color: _fondoKit,
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           border: Border.all(color: color.withValues(alpha: 0.35)),
         ),
         child: Column(

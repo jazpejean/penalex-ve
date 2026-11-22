@@ -6,6 +6,7 @@ import '../config/app_colors.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/main_bottom_bar.dart';
 import '../widgets/app_bar_institucional.dart';
+import '../config/app_tokens.dart';
 
 class GlosarioScreen extends StatefulWidget {
   const GlosarioScreen({super.key});
@@ -337,15 +338,15 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                 filled: true,
                 fillColor: TemaGlobal.campoTexto,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                   borderSide: BorderSide.none,
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                   borderSide: BorderSide(color: TemaGlobal.capa),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                   borderSide: const BorderSide(color: AppColors.dorado, width: 2),
                 ),
                 contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
@@ -480,7 +481,7 @@ class _GlosarioScreenState extends State<GlosarioScreen> {
                           shadowColor: AppColors.dorado.withValues(alpha: 0.1),
                           margin: const EdgeInsets.only(bottom: 12),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
+                            borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                             side: BorderSide(
                               color: AppColors.dorado.withValues(alpha: 0.3),
                               width: 1,

@@ -16,6 +16,7 @@ import 'asistente_legal_screen.dart';
 import 'glosario_screen.dart';
 import 'ley_estructura_screen.dart';
 import 'repositorio_jurisprudencia_screen.dart' show DetalleSentenciaScreen;
+import '../config/app_tokens.dart';
 
 enum AlcanceBusqueda { sentencias, leyes, glosario }
 
@@ -340,12 +341,12 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
     final habilitado = onTap != null;
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(AppTokens.radioControl),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 8),
         decoration: BoxDecoration(
           color: activo ? TemaGlobal.azulMarino : TemaGlobal.tarjeta,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(AppTokens.radioControl),
           border: Border.all(
             color: activo ? TemaGlobal.azulMarino : TemaGlobal.capa,
             width: 1,
@@ -509,7 +510,7 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
             padding: const EdgeInsets.symmetric(vertical: 11),
             decoration: BoxDecoration(
               color: activo ? TemaGlobal.azulMarino : TemaGlobal.tarjeta,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(AppTokens.radioControl),
               border: Border.all(
                 color: activo ? TemaGlobal.azulMarino : TemaGlobal.capa,
               ),
@@ -828,12 +829,12 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
   }) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(14),
+      borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
         decoration: BoxDecoration(
           color: TemaGlobal.tarjeta,
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           border: Border.all(color: TemaGlobal.capa, width: 1),
         ),
         child: Row(
@@ -917,12 +918,12 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
           ),
         );
       },
-      borderRadius: BorderRadius.circular(14),
+      borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
           color: TemaGlobal.tarjeta,
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           border: Border.all(color: TemaGlobal.capa, width: 1),
         ),
         child: Column(
@@ -1021,12 +1022,12 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
           ),
         );
       },
-      borderRadius: BorderRadius.circular(14),
+      borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
           color: TemaGlobal.tarjeta,
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           border: Border.all(color: TemaGlobal.capa, width: 1),
         ),
         child: Column(
@@ -1087,7 +1088,7 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: TemaGlobal.capa, width: 1),
       ),
       child: Column(
@@ -1126,7 +1127,7 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
       context: context,
       backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) => StatefulBuilder(
         builder: (context, setSheetState) {
@@ -1152,7 +1153,7 @@ class _BuscadorJuridicoScreenState extends State<BuscadorJuridicoScreen> {
                   fontSize: 12.5,
                 ),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                   side: BorderSide(
                     color: activo
                         ? (TemaGlobal.isDark

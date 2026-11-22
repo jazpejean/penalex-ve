@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
 import 'forgot_password_page.dart';
 import 'register_page.dart';
+import '../config/app_tokens.dart';
 
 String _getFirebaseErrorMessage(String errorCode) {
   if (errorCode.contains('email-already-in-use')) {
@@ -63,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
         content: Text(message),
         backgroundColor: isError ? AppColors.error : AppColors.success,
         behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppTokens.radioControl)),
         margin: const EdgeInsets.all(10),
       ),
     );
@@ -77,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
         title: Text(
           'Correo no verificado',
           style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold),

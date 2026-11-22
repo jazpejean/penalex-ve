@@ -6,6 +6,7 @@ import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
 import '../widgets/app_bar_institucional.dart';
+import '../config/app_tokens.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -52,7 +53,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
         title: Text(title, style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
         content: Text(message, style: TextStyle(color: isError ? AppColors.error : TemaGlobal.textoSecundario)),
         actions: <Widget>[

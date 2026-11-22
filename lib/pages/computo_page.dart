@@ -21,6 +21,7 @@ import '../widgets/dosimetria_stepper.dart';
 import 'dosimetria_page.dart';
 import '../config/app_colors.dart';
 import '../widgets/app_snackbar.dart';
+import '../config/app_tokens.dart';
 
 class ComputoPage extends StatefulWidget {
   const ComputoPage({
@@ -677,7 +678,7 @@ class _ComputoPageState extends State<ComputoPage> {
                     AppColors.azulMarino.withValues(alpha: 0.85),
                   ],
                 ),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                 boxShadow: [
                   BoxShadow(
                     color: AppColors.azulMarino.withValues(alpha: 0.3),
@@ -871,15 +872,15 @@ class _ComputoPageState extends State<ComputoPage> {
                                     filled: true,
                                     fillColor: TemaGlobal.campoTexto,
                                     border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(14),
+                                        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                                         borderSide: BorderSide(
                                             color: TemaGlobal.capa)),
                                     enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(14),
+                                        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                                         borderSide: BorderSide(
                                             color: TemaGlobal.capa)),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(14),
+                                        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                                         borderSide: BorderSide(
                                             color: AppColors.acento,
                                             width: 1.2)),
@@ -971,15 +972,15 @@ class _ComputoPageState extends State<ComputoPage> {
                                     filled: true,
                                     fillColor: TemaGlobal.campoTexto,
                                     border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(14),
+                                        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                                         borderSide: BorderSide(
                                             color: TemaGlobal.capa)),
                                     enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(14),
+                                        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                                         borderSide: BorderSide(
                                             color: TemaGlobal.capa)),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(14),
+                                        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                                         borderSide: BorderSide(
                                             color: AppColors.acento,
                                             width: 1.2)),
@@ -1052,7 +1053,7 @@ class _ComputoPageState extends State<ComputoPage> {
                       foregroundColor: TemaGlobal.texto,
                       fixedSize: const Size.fromHeight(48),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14)),
+                          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
                       side: BorderSide(color: TemaGlobal.capa),
                       elevation: 0,
                     ),
@@ -1081,7 +1082,7 @@ class _ComputoPageState extends State<ComputoPage> {
                           : AppColors.onAzulMarino,
                       fixedSize: const Size.fromHeight(48),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14)),
+                          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
                     ),
                   ),
                 ),
@@ -1112,7 +1113,7 @@ class _ComputoPageState extends State<ComputoPage> {
           foregroundColor: TemaGlobal.texto,
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
           textStyle:
               const TextStyle(fontWeight: FontWeight.w600, fontSize: 13.5),
         ),

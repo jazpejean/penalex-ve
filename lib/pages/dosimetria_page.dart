@@ -15,6 +15,7 @@ import '../widgets/app_drawer.dart';
 import '../widgets/app_snackbar.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'concurso_page.dart';
+import '../config/app_tokens.dart';
 
 enum UnidadTiempo {
   anos,
@@ -90,7 +91,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (BuildContext context) => SizedBox(
         height: MediaQuery.of(context).size.height * 0.8,
@@ -100,7 +101,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: TemaGlobal.tarjeta,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -133,7 +134,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
               child: Container(
                 decoration: BoxDecoration(
                   color: fondoGris,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
                 ),
                 child: savedCalculations.isEmpty
                     ? Center(
@@ -154,7 +155,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                             elevation: 0,
                             color: TemaGlobal.tarjeta,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                               side: BorderSide(color: TemaGlobal.capa),
                             ),
                             child: ListTile(
@@ -289,13 +290,13 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
           decoration: BoxDecoration(
             color: TemaGlobal.campoTexto,
             border: Border.all(color: TemaGlobal.capa),
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           ),
           child: DropdownButtonHideUnderline(
             child: DropdownButton<String>(
               value: effectiveValue,
               isExpanded: true,
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
               items: items
                   .map((String item) =>
                       DropdownMenuItem(value: item, child: Text(item)))
@@ -478,7 +479,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                   side: WidgetStatePropertyAll(
                       BorderSide(color: AppColors.capa)),
                   shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14))),
+                      borderRadius: BorderRadius.circular(AppTokens.radioTarjeta))),
                 ),
               ),
               const SizedBox(height: 16),
@@ -568,7 +569,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                   side: WidgetStatePropertyAll(
                       BorderSide(color: AppColors.capa)),
                   shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14))),
+                      borderRadius: BorderRadius.circular(AppTokens.radioTarjeta))),
                 ),
               ),
               const SizedBox(height: 16),
@@ -698,7 +699,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                         elevation: 0,
                         color: TemaGlobal.tarjeta,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                           side: BorderSide(color: AppColors.acento, width: 1.5),
                         ),
                         child: Padding(
@@ -747,7 +748,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                                 foregroundColor: TemaGlobal.texto,
                                 fixedSize: const Size.fromHeight(48),
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(14)),
+                                    borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
                               ),
                             ),
                           ),
@@ -775,7 +776,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                                     : AppColors.onAzulMarino,
                                 fixedSize: const Size.fromHeight(48),
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(14)),
+                                    borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
                               ),
                             ),
                           ),
@@ -796,7 +797,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
       margin: const EdgeInsets.only(bottom: 20),
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         side: BorderSide(color: AppColors.acento),
       ),
       color: TemaGlobal.tarjeta,
@@ -823,7 +824,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
                     color: TemaGlobal.capa,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -858,13 +859,13 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                       filled: true,
                       fillColor: TemaGlobal.campoTexto,
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                           borderSide: BorderSide(color: TemaGlobal.capa)),
                       enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                           borderSide: BorderSide(color: TemaGlobal.capa)),
                       focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                           borderSide: BorderSide(
                               color: AppColors.acento, width: 1.2)),
                     ),
@@ -961,7 +962,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     ? AppColors.onDorado
                     : AppColors.onAzulMarino,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14)),
+                    borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
               ),
             ),
             const SizedBox(height: 20),
@@ -1200,7 +1201,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                       side: WidgetStatePropertyAll(BorderSide(
                           color: TemaGlobal.capa)),
                       shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14))),
+                          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta))),
                     ),
                   ),
                 ),
@@ -1289,7 +1290,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                           ? AppColors.onDorado
                           : AppColors.onAzulMarino,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14)),
+                          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
                       fixedSize: const Size.fromHeight(48),
                     ),
                   ),
@@ -1413,13 +1414,13 @@ class _PenaInputRowState extends State<_PenaInputRow> {
           filled: true,
           fillColor: TemaGlobal.campoTexto,
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
               borderSide: BorderSide(color: TemaGlobal.capa)),
           enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
               borderSide: BorderSide(color: TemaGlobal.capa)),
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
               borderSide: BorderSide(
                   color: AppColors.acento, width: 1.2)),
           contentPadding:

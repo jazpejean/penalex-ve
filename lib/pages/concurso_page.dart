@@ -8,6 +8,7 @@ import '../models/delito.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/dosimetria_stepper.dart';
 import 'computo_page.dart';
+import '../config/app_tokens.dart';
 
 class ConcursoPage extends StatefulWidget {
   const ConcursoPage({required this.delitos, super.key});
@@ -226,7 +227,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                                 shape: WidgetStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius:
-                                            BorderRadius.circular(14))),
+                                            BorderRadius.circular(AppTokens.radioTarjeta))),
                               ),
                             ),
                           ],
@@ -241,7 +242,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                         padding: const EdgeInsets.all(14),
                         decoration: BoxDecoration(
                           color: AppColors.acento.withValues(alpha: 0.12),
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                           border: Border.all(
                               color: AppColors.acento.withValues(alpha: 0.35),
                               width: 1.5),
@@ -482,14 +483,14 @@ const SizedBox(height: 16),
                     Card(
                       elevation: 0,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                         side: const BorderSide(color: AppColors.dorado, width: 1.5),
                       ),
                       child: Container(
                         decoration: BoxDecoration(
                           // Azul marino sólido (sin degradado a blanco), paleta acordada.
                           color: AppColors.azulMarino,
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                         ),
                         child: Padding(
                         padding: const EdgeInsets.all(16),
@@ -537,7 +538,7 @@ const SizedBox(height: 16),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 5),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(14),
+                                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                                 border: Border.all(
                                     color: AppColors.dorado.withValues(alpha: 0.6)),
                               ),
@@ -598,7 +599,7 @@ const SizedBox(height: 16),
                                 padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   color: TemaGlobal.capa,
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
                                   border: Border.all(
                                       color: AppColors.acento.withValues(alpha: 0.25)),
                                 ),
@@ -660,7 +661,7 @@ const SizedBox(height: 16),
                               foregroundColor: TemaGlobal.texto,
                               fixedSize: const Size.fromHeight(48),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14)),
+                                  borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
                             ),
                           ),
                         ),
@@ -703,7 +704,7 @@ const SizedBox(height: 16),
                                   : AppColors.onAzulMarino,
                               fixedSize: const Size.fromHeight(48),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14)),
+                                  borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
                             ),
                           ),
                         ),

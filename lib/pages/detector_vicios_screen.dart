@@ -19,6 +19,7 @@ import '../models/documento_escaneado.dart';
 import '../providers/expediente_activo_provider.dart';
 import '../widgets/selector_expediente_sheet.dart';
 import 'package:provider/provider.dart';
+import '../config/app_tokens.dart';
 
 /// Detector de vicios procesales para autos, actas y sentencias.
 ///
@@ -151,7 +152,7 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
       context: context,
       backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (ctx) => SafeArea(
         child: Column(
@@ -423,7 +424,7 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(
           color: (TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino)
               .withValues(alpha: 0.30),
@@ -492,11 +493,11 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
         filled: true,
         fillColor: TemaGlobal.campoTexto,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           borderSide: BorderSide(color: TemaGlobal.textoTenue.withValues(alpha: 0.25)),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           borderSide: BorderSide(color: TemaGlobal.textoTenue.withValues(alpha: 0.25)),
         ),
         contentPadding: const EdgeInsets.all(16),
@@ -598,7 +599,7 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: colorGravedad.withValues(alpha: 0.35)),
       ),
       child: Theme(
@@ -649,7 +650,7 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: TemaGlobal.capa,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
                   border: Border(
                     left: BorderSide(
                       color: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino,
@@ -679,7 +680,7 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.14),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: color.withValues(alpha: 0.4)),
       ),
       child: Text(
@@ -810,7 +811,7 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: TemaGlobal.tarjeta,
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
               border: Border.all(
                 color: (TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino)
                     .withValues(alpha: 0.30),
@@ -904,7 +905,7 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: colorGravedad.withValues(alpha: 0.35)),
       ),
       child: Theme(
@@ -944,7 +945,7 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: TemaGlobal.capa,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
                   border: Border(
                     left: BorderSide(
                       color: TemaGlobal.isDark
@@ -1182,7 +1183,7 @@ Español jurídico venezolano sobrio; no inventes hechos distintos a los dados.
                     padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
                     decoration: BoxDecoration(
                       color: TemaGlobal.capa,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                       border: Border.all(
                         color: TemaGlobal.textoTenue.withValues(alpha: 0.25),
                       ),

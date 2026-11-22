@@ -16,6 +16,7 @@ import '../services/document_scanner_service_pro.dart';
 import '../services/escaneo_service.dart';
 import '../services/image_filter_service.dart';
 import 'crop_adjust_screen.dart';
+import '../config/app_tokens.dart';
 
 /// Editor de documento escaneado, estilo CamScanner:
 /// vista previa grande, tira de miniaturas, filtros, recorte manual,
@@ -163,7 +164,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
       context: context,
       backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (_) => _ReordenarPaginasSheet(paginas: _paginas),
     );
@@ -204,7 +205,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
       isScrollControlled: true,
       backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) => DraggableScrollableSheet(
         initialChildSize: 0.85,
@@ -423,7 +424,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
               color: Colors.black.withValues(alpha: 0.7),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
             ),
             child: Text(
               '${_paginaActual + 1} / ${_paginas.length}',
@@ -549,7 +550,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
       context: context,
       backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) => SafeArea(
         child: Padding(
@@ -672,7 +673,7 @@ class _ReordenarPaginasSheetState extends State<_ReordenarPaginasSheet> {
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     color: TemaGlobal.capa,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(AppTokens.radioControl),
                   ),
                   child: Row(
                     children: [

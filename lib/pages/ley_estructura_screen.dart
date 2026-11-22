@@ -8,6 +8,7 @@ import '../services/leyes_repositorio_service.dart';
 import '../widgets/tabla_anexo.dart';
 import '../config/app_colors.dart';
 import '../widgets/app_bar_institucional.dart';
+import '../config/app_tokens.dart';
 
 /// Navegación jerárquica de una ley: Libro → Título → Capítulo → Sección →
 /// Artículo. Al tocar un artículo se muestra su contenido y se puede preguntar
@@ -290,7 +291,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
                   color: AppColors.dorado,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                 ),
                 child: Text(
                   '${_ley!.totalArticulos} artículos',
@@ -340,11 +341,11 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
                 vertical: 10,
               ),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(AppTokens.radioControl),
                 borderSide: BorderSide.none,
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(AppTokens.radioControl),
                 borderSide: BorderSide(color: AppColors.acento, width: 1.5),
               ),
             ),
@@ -469,7 +470,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                   decoration: BoxDecoration(
                     color: AppColors.acento.withValues(alpha: AppColors.a12),
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(AppTokens.radioControl),
                   ),
                   child: Text(
                     _rangoArticulos(nodo),
@@ -517,7 +518,7 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: TemaGlobal.tarjeta,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(AppTokens.radioControl),
           border: Border.all(color: TemaGlobal.capa),
         ),
         child: Row(

@@ -12,6 +12,7 @@ import '../services/tribunales_service.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'tribunal_detail_screen.dart';
 import '../widgets/app_bar_institucional.dart';
+import '../config/app_tokens.dart';
 
 /// Mapa de tribunales penales de Venezuela (catálogo oficial TSJ).
 class MapaTribunalesScreen extends StatefulWidget {
@@ -341,7 +342,7 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
                 prefixIcon: const Icon(Icons.search),
                 isDense: true,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
                 ),
                 suffixIcon: _busquedaInput.isNotEmpty
                     ? IconButton(
@@ -719,7 +720,7 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(AppTokens.radioControl),
             border: Border.all(color: color, width: 1),
           ),
           child: Text(
@@ -743,7 +744,7 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
       bottom: 16,
       child: Card(
         elevation: 6,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
         clipBehavior: Clip.antiAlias,
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxHeight: 300),
@@ -839,7 +840,7 @@ class _MapaTribunalesScreenState extends State<MapaTribunalesScreen> {
       bottom: 16,
       child: Card(
         elevation: 6,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
         clipBehavior: Clip.antiAlias,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

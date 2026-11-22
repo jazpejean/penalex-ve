@@ -541,12 +541,24 @@ class _CalendarioJudicialScreenState extends State<CalendarioJudicialScreen> {
         title: Text(l.acto,
             style: TextStyle(
                 color: TemaGlobal.texto, fontWeight: FontWeight.w600)),
-        subtitle: Text(
-          _fechasHito(h),
-          style: TextStyle(
-              color: pendiente
-                  ? TemaGlobal.textoSecundario
-                  : TemaGlobal.azulMarino),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              _fechasHito(h),
+              style: TextStyle(
+                  color: pendiente
+                      ? TemaGlobal.textoSecundario
+                      : TemaGlobal.azulMarino),
+            ),
+            // Fundamentación jurídica siempre visible (base legal).
+            const SizedBox(height: 2),
+            Text(
+              '${l.baseLegal} — ${_textoLapso(l)}',
+              style: TextStyle(
+                  color: TemaGlobal.textoSecundario, fontSize: 11.5),
+            ),
+          ],
         ),
         children: <Widget>[
           _fila('Lapso legal', _textoLapso(l)),

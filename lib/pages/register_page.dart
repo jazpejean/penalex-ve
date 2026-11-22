@@ -7,6 +7,7 @@ import '../config/app_colors.dart';
 import '../config/app_theme.dart';
 import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
+import '../config/app_tokens.dart';
 
 // Función para traducir errores de Firebase
 String _getFirebaseErrorMessage(String errorCode) {
@@ -48,7 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),
         title: Text(titulo, style: TextStyle(color: TemaGlobal.texto, fontWeight: FontWeight.bold)),
         content: Text(mensaje, style: TextStyle(color: isError ? AppColors.error : TemaGlobal.textoSecundario)),
         actions: [

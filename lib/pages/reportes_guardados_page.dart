@@ -10,6 +10,7 @@ import '../services/pdf_service.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/app_snackbar.dart';
 import '../widgets/app_bar_institucional.dart';
+import '../config/app_tokens.dart';
 
 /// Pantalla para ver reportes PDF guardados localmente
 class ReportesGuardadosPage extends StatefulWidget {
@@ -233,7 +234,7 @@ class _ReportesGuardadosPageState extends State<ReportesGuardadosPage> {
                             gradient: LinearGradient(
                               colors: [AppColors.error, AppColors.error],
                             ),
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(AppTokens.radioControl),
                           ),
                           child: const Icon(
                             Icons.picture_as_pdf,

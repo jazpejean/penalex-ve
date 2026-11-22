@@ -9,6 +9,7 @@ import '../services/pdf_export_service.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'document_editor_screen.dart';
 import '../widgets/app_bar_institucional.dart';
+import '../config/app_tokens.dart';
 
 /// Lista de documentos escaneados (repositorio del escáner).
 class EscanearDocumentoScreen extends StatefulWidget {
@@ -148,7 +149,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
           filled: true,
           fillColor: TemaGlobal.campoTexto,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(AppTokens.radioControl),
             borderSide: BorderSide.none,
           ),
           isDense: true,
@@ -177,11 +178,11 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
   Widget _buildDocumentCard(DocumentoEscaneado doc) {
     return Material(
       color: TemaGlobal.tarjeta,
-      borderRadius: BorderRadius.circular(14),
+      borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
       elevation: 1,
       shadowColor: AppColors.azulMarino.withValues(alpha: AppColors.a06),
       child: InkWell(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         onTap: () => _abrirDocumento(doc),
         onLongPress: () => _mostrarOpciones(doc),
         child: Column(
@@ -190,7 +191,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
             Expanded(
               child: ClipRRect(
                 borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(14)),
+                    const BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
                 child: doc.thumbnailUrl != null
                     ? Image.network(
                         doc.thumbnailUrl!,
@@ -336,7 +337,7 @@ class _EscanearDocumentoScreenState extends State<EscanearDocumentoScreen> {
       context: context,
       backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) => SafeArea(
         child: Column(
@@ -547,7 +548,7 @@ class _DocumentViewerScreenState extends State<DocumentViewerScreen> {
                     ),
                     decoration: BoxDecoration(
                       color: Colors.black.withValues(alpha: AppColors.a48),
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                     ),
                     child: Text(
                       '${_pagina + 1} / ${doc.numeroPaginas}',

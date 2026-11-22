@@ -5,6 +5,7 @@ import 'chat_legal_screen.dart';
 import 'redactor_documentos_screen.dart';
 import 'escanear_documento_screen.dart';
 import 'detector_vicios_screen.dart';
+import '../config/app_tokens.dart';
 
 /// Hub principal del Asistente Legal con IA
 /// Agrupa las 4 herramientas principales potenciadas por IA
@@ -151,7 +152,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
     return Container(
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(
           color: (TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino)
               .withValues(alpha: 0.35),
@@ -169,7 +170,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
         color: Colors.transparent,
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           child: Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
@@ -183,7 +184,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                       decoration: BoxDecoration(
                         color: (TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino)
                             .withValues(alpha: 0.14),
-                        borderRadius: BorderRadius.circular(14),
+                        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                         border: Border.all(
                           color: (TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino)
                               .withValues(alpha: 0.4),
@@ -336,7 +337,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
     return Container(
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(
           color: (TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino)
               .withValues(alpha: 0.28),
@@ -354,7 +355,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
         color: Colors.transparent,
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Row(

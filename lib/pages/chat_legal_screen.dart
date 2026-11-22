@@ -21,6 +21,7 @@ import '../widgets/app_bar_institucional.dart';
 import 'package:provider/provider.dart';
 import '../providers/expediente_activo_provider.dart';
 import '../widgets/selector_expediente_sheet.dart';
+import '../config/app_tokens.dart';
 
 /// Modelo para archivos adjuntos
 class AttachedFile {
@@ -102,7 +103,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
       backgroundColor: grisOscuro,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) => DraggableScrollableSheet(
         initialChildSize: 0.8,
@@ -116,7 +117,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: AppColors.azulMarino,
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
               ),
               child: Row(
                 children: [
@@ -226,7 +227,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: color.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
                 ),
                 child: Icon(icon, color: color, size: 28),
               ),
@@ -632,7 +633,7 @@ class _ChatLegalScreenState extends State<ChatLegalScreen> {
       context: context,
       backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (context) => SafeArea(
         child: Column(
@@ -1071,7 +1072,7 @@ color: AppColors.dorado,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: isUser ? AppColors.dorado : grisOscuro,
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.1),
@@ -1413,7 +1414,7 @@ color: AppColors.dorado,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: TemaGlobal.tarjeta,
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,

@@ -7,6 +7,7 @@ import '../config/app_colors.dart';
 import '../services/image_filter_service.dart';
 import '../widgets/app_snackbar.dart';
 import '../widgets/app_bar_institucional.dart';
+import '../config/app_tokens.dart';
 
 /// Pantalla para previsualizar y seleccionar filtros
 /// Estilo CamScanner con previews de todos los filtros
@@ -187,7 +188,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               decoration: BoxDecoration(
                 color: Colors.black.withValues(alpha: AppColors.a48),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                 border: Border.all(
                   color: AppColors.dorado.withValues(alpha: AppColors.a48),
                   width: 1,
@@ -226,7 +227,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
                 color: Colors.black.withValues(alpha: AppColors.a48),
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -292,7 +293,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
             // Preview thumbnail
             Expanded(
               child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(AppTokens.radioControl)),
                 child: previewPath != null
                     ? Image.file(
                         File(previewPath),
@@ -323,7 +324,7 @@ class _FilterPreviewScreenState extends State<FilterPreviewScreen> {
                 color: isSelected 
                     ? AppColors.dorado.withValues(alpha: AppColors.a18)
                     : Colors.transparent,
-                borderRadius: const BorderRadius.vertical(bottom: Radius.circular(10)),
+                borderRadius: const BorderRadius.vertical(bottom: Radius.circular(AppTokens.radioControl)),
               ),
               child: Column(
                 children: [

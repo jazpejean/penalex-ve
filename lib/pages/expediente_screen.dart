@@ -18,6 +18,7 @@ import 'detector_vicios_screen.dart';
 import 'chat_legal_screen.dart';
 import 'package:provider/provider.dart';
 import '../providers/expediente_activo_provider.dart';
+import '../config/app_tokens.dart';
 
 /// Workspace del Expediente (portafolio de una causa penal).
 ///
@@ -271,7 +272,7 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: TemaGlobal.tarjeta,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           border: Border.all(color: TemaGlobal.capa),
           boxShadow: <BoxShadow>[
             BoxShadow(
@@ -335,7 +336,7 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: TemaGlobal.capa),
       ),
       child: Column(
@@ -373,7 +374,7 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: TemaGlobal.capa),
       ),
       child: Row(
@@ -383,7 +384,7 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
             height: 40,
             decoration: BoxDecoration(
               color: AppColors.dorado.withValues(alpha: AppColors.a12),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(AppTokens.radioControl),
             ),
             child: Icon(
               esPdf ? Icons.picture_as_pdf : Icons.image,
@@ -477,7 +478,7 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: TemaGlobal.tarjeta,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
           border: Border.all(color: TemaGlobal.capa),
         ),
         child: Column(
@@ -488,7 +489,7 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
               height: 36,
               decoration: BoxDecoration(
                 color: AppColors.dorado.withValues(alpha: AppColors.a12),
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(AppTokens.radioControl),
               ),
               child: Icon(icon, color: AppColors.dorado, size: 20),
             ),
