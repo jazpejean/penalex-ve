@@ -520,22 +520,13 @@ Puedo ayudarte a:
                 ),
                 const SizedBox(width: 12),
                 Container(
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [AppColors.dorado, AppColors.dorado],
-                    ),
+                  decoration: const BoxDecoration(
+                    color: AppColors.azulMarino,
                     shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.dorado.withValues(alpha: 0.3),
-                        blurRadius: 8,
-                        spreadRadius: 2,
-                      ),
-                    ],
                   ),
                   child: IconButton(
-                    icon: const Icon(Icons.send_rounded),
-                    color: AppColors.azulMarino,
+                    icon: const Icon(Icons.arrow_upward_rounded),
+                    color: AppColors.onAzulMarino,
                     onPressed: _isLoading ? null : _sendMessage,
                   ),
                 ),
@@ -556,26 +547,32 @@ Puedo ayudarte a:
             message.isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           if (!message.isUser) ...[
-            CircleAvatar(
-              backgroundColor: AppColors.dorado,
-              radius: 20,
-              child: const Icon(Icons.smart_toy, color: AppColors.azulMarino, size: 20),
+            Container(
+              width: 28,
+              height: 28,
+              decoration: BoxDecoration(
+                color: AppColors.dorado.withValues(alpha: 0.15),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(Icons.auto_awesome,
+                  color: AppColors.dorado, size: 16),
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: 10),
           ],
           Flexible(
             child: Container(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
-                color: message.isUser ? AppColors.dorado : grisOscuro,
-                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.1),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
+                // DeepSeek: usuario en burbuja navy a la derecha,
+                // asistente sin burbuja sobre el fondo.
+                color:
+                    message.isUser ? Colors.white : Colors.transparent,
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(18),
+                  topRight: const Radius.circular(18),
+                  bottomLeft: const Radius.circular(18),
+                  bottomRight: Radius.circular(message.isUser ? 4 : 18),
+                ),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -624,16 +621,16 @@ Puedo ayudarte a:
                         height: 1.4,
                       ),
                       h2: TextStyle(
-                        color: message.isUser ? AppColors.azulMarino : AppColors.acento,
+                        color: message.isUser ? Colors.white : AppColors.acento,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                       strong: TextStyle(
-                        color: message.isUser ? AppColors.azulMarino : AppColors.acento,
+                        color: message.isUser ? Colors.white : AppColors.acento,
                         fontWeight: FontWeight.bold,
                       ),
                       listBullet: TextStyle(
-                        color: message.isUser ? AppColors.azulMarino : AppColors.acento,
+                        color: message.isUser ? Colors.white : AppColors.acento,
                       ),
                     ),
                   ),

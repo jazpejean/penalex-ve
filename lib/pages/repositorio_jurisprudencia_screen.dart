@@ -994,7 +994,16 @@ Widget _selectorValorCondicion(
   /// Fila superior del Super Buscador: dropdown de categorías + Favoritas
   /// + botón Filtros.
   Widget _buildFiltros() {
-    const categorias = ['Sentencias', 'Jurisprudencias', 'Resoluciones', 'Doctrinas'];
+    const List<String> categorias = <String>[
+      'Sentencias',
+      'Jurisprudencias',
+      'Resoluciones',
+      'Doctrinas',
+    ];
+    final bool mostrarSala = _categoriaSeleccionada != 'Resoluciones' &&
+        _categoriaSeleccionada != 'Doctrinas';
+    final int currentYear = DateTime.now().year;
+    final int ultimaDecada = currentYear - (currentYear % 10);
 
     Widget chip(String label, {required bool activo, required VoidCallback onTap}) {
       return Padding(
@@ -1004,17 +1013,15 @@ Widget _selectorValorCondicion(
           selected: activo,
           onSelected: (_) => onTap(),
           selectedColor: AppColors.dorado,
-          backgroundColor: Colors.transparent,
+          backgroundColor: TemaGlobal.tarjeta,
           labelStyle: TextStyle(
-            // Guía 3.3: texto sobre dorado = onDorado.
             color: activo ? AppColors.onDorado : TemaGlobal.texto,
-            fontWeight: activo ? FontWeight.bold : FontWeight.normal,
+            fontWeight: activo ? FontWeight.bold : FontWeight.w500,
             fontSize: 12,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
-            side: BorderSide(
-                color: activo ? AppColors.dorado : TemaGlobal.capa),
+            borderRadius: BorderRadius.circular(AppTokens.radioPildora),
+            side: BorderSide(color: activo ? AppColors.dorado : TemaGlobal.capa),
           ),
           visualDensity: VisualDensity.compact,
           showCheckmark: false,
@@ -1022,217 +1029,103 @@ Widget _selectorValorCondicion(
       );
     }
 
+    Widget fila(String etiqueta, List<Widget> chips) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(etiqueta, style: AppTokens.etiqueta),
+          const SizedBox(height: 6),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(children: chips),
+          ),
+          const SizedBox(height: 12),
+        ],
+      );
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Dropdown de categorías PROMINENTE en su propia fila (el usuario
-        // reportó que quedaba diminuto comprimido junto a Favoritas/Orden/
-        // Filtros): altura 54, texto 16, ocupa todo el ancho.
-        Container(
-          width: double.infinity,
-          height: 54,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          decoration: BoxDecoration(
-            color: TemaGlobal.campoTexto,
-            borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
-            border: Border.all(
-                color: AppColors.acento.withValues(alpha: 0.45),
-                width: 1.2),
-          ),
-          child: DropdownButtonHideUnderline(
-            child: DropdownButton<String>(
-              value: _categoriaSeleccionada,
-              isExpanded: true,
-              icon: Icon(Icons.arrow_drop_down,
-                  color: AppColors.acento, size: 30),
-              borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
-              dropdownColor: TemaGlobal.tarjeta,
-              style: TextStyle(
-                color: TemaGlobal.texto,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-              items: [
-                for (final categoria in categorias)
-                  DropdownMenuItem(
-                    value: categoria,
-                    child: Text(categoria),
-                  ),
-              ],
-              onChanged: (categoria) {
-                if (categoria == null ||
-                    categoria == _categoriaSeleccionada) {
-                  return;
+        fila('TIPO', <Widget>[
+          for (final categoria in categorias)
+            chip(categoria,
+                activo: _categoriaSeleccionada == categoria, onTap: () {
+              if (categoria == _categoriaSeleccionada) return;
+              setState(() {
+                _categoriaSeleccionada = categoria;
+                if (categoria == 'Resoluciones' || categoria == 'Doctrinas') {
+                  _salaSeleccionada = null;
                 }
-                setState(() {
-                  _categoriaSeleccionada = categoria;
-                  // Al cambiar a Resoluciones/Doctrinas se oculta Sala
-                  // (regla estricta): limpiar el filtro de sala.
-                  if (categoria == 'Resoluciones' ||
-                      categoria == 'Doctrinas') {
-                    _salaSeleccionada = null;
-                  }
-                });
-                _buscar();
-              },
-            ),
-          ),
-        ),
-        const SizedBox(height: 10),
-        // Segunda fila: Favoritas + Orden + Filtros (accesorios, sin
-        // robarle protagonismo al dropdown de categorías).
+              });
+              _buscar();
+            }),
+        ]),
+        if (mostrarSala)
+          fila('SALA', <Widget>[
+            chip('Todas',
+                activo: _salaSeleccionada == null, onTap: () {
+              setState(() => _salaSeleccionada = null);
+              _buscar();
+            }),
+            chip('Penal',
+                activo: _salaSeleccionada == 'scp', onTap: () {
+              setState(() => _salaSeleccionada = 'scp');
+              _buscar();
+            }),
+            chip('Constitucional',
+                activo: _salaSeleccionada == 'scon', onTap: () {
+              setState(() => _salaSeleccionada = 'scon');
+              _buscar();
+            }),
+          ]),
+        fila('PERÍODO', <Widget>[
+          chip('Todos',
+              activo: _decadaSeleccionada == null, onTap: () {
+            setState(() {
+              _decadaSeleccionada = null;
+              _anioSeleccionado = null;
+            });
+            _buscar();
+          }),
+          for (var d = 2000; d <= ultimaDecada; d += 10)
+            chip('${d}s',
+                activo: _decadaSeleccionada == d, onTap: () {
+              setState(() {
+                _decadaSeleccionada = d;
+                _anioSeleccionado = null;
+              });
+              _buscar();
+            }),
+        ]),
         Row(
           children: [
-            // ⭐ Favoritas: solo aplica a sentencias/jurisprudencias/
-            // resoluciones (las doctrinas no se marcan como favoritas).
             if (_categoriaSeleccionada != 'Doctrinas')
-              chip('⭐ Favoritas', activo: _soloFavoritas, onTap: () {
+              chip('Favoritas',
+                  activo: _soloFavoritas, onTap: () {
                 setState(() => _soloFavoritas = !_soloFavoritas);
                 _aplicarFiltroFavoritas();
               }),
-            // 📅 Ordenar por (estilo Venley): Relevancia / Más recientes /
-            // Más antiguas.
             _dropdownOrden(),
-            // Botón Filtros con contador de filtros activos (Venley: badge
-            // circular con el número de filtros).
-            Padding(
-              padding: const EdgeInsets.only(left: 4),
-              child: OutlinedButton.icon(
-                onPressed: _abrirPanelFiltros,
-                icon: Icon(Icons.tune, size: 16, color: AppColors.acento),
-                label: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      'Filtros',
-                      style: TextStyle(
-                          color: AppColors.acento,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    if (_cantidadFiltrosActivos > 0) ...[
-                      const SizedBox(width: 6),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 6, vertical: 2),
-                        decoration: BoxDecoration(
-                          color: AppColors.dorado,
-                          borderRadius: BorderRadius.circular(AppTokens.radioControl),
-                        ),
-                        child: Text(
-                          '$_cantidadFiltrosActivos',
-                          style: TextStyle(
-                            color: AppColors.onDorado,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ],
+            const Spacer(),
+            OutlinedButton.icon(
+              onPressed: _abrirPanelFiltros,
+              icon: Icon(Icons.tune, size: 16, color: AppColors.acento),
+              label: Text(
+                'Más filtros',
+                style: TextStyle(color: AppColors.acento, fontSize: 12),
+              ),
+              style: OutlinedButton.styleFrom(
+                side: BorderSide(color: TemaGlobal.capa),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
                 ),
-                style: OutlinedButton.styleFrom(
-                  side: BorderSide(
-                      color: AppColors.acento.withValues(alpha: 0.4)),
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 12, vertical: 8),
-                  visualDensity: VisualDensity.compact,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
-                  ),
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                visualDensity: VisualDensity.compact,
               ),
             ),
           ],
         ),
-        const SizedBox(height: 10),
-        // Tabs Simple / Avanzado SIEMPRE visibles en pantalla (estilo TSJ).
-        // Al tocar una tab se abre el panel de filtros directamente en ese
-        // modo (no hace falta abrir el modal y cambiar).
-        Container(
-          height: 34,
-          padding: const EdgeInsets.all(3),
-          decoration: BoxDecoration(
-            color: TemaGlobal.capa,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Row(
-            children: [
-              for (final modo in const ['Simple', 'Avanzado'])
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() => _modoFiltros = modo);
-                      _abrirPanelFiltros();
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: _modoFiltros == modo
-                            ? AppColors.dorado
-                            : Colors.transparent,
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: Text(
-                        modo,
-                        style: TextStyle(
-                          color: _modoFiltros == modo
-                              ? AppColors.onDorado
-                              : TemaGlobal.textoSecundario,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        ),
-        // Resumen de filtros activos
-        if (_salaSeleccionada != null ||
-            _anioSeleccionado != null ||
-            _decadaSeleccionada != null ||
-            _condicionesAvanzadas.isNotEmpty) ...[
-          const SizedBox(height: 8),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                if (_salaSeleccionada != null)
-                  chip(_nombreSalaCorto(_salaSeleccionada!),
-                      activo: true, onTap: () {
-                    setState(() => _salaSeleccionada = null);
-                    _buscar();
-                  }),
-                if (_anioSeleccionado != null)
-                  chip('Año ${_anioSeleccionado}', activo: true, onTap: () {
-                    setState(() => _anioSeleccionado = null);
-                    _buscar();
-                  }),
-                if (_decadaSeleccionada != null && _anioSeleccionado == null)
-                  chip('Década ${_decadaSeleccionada}s', activo: true,
-                      onTap: () {
-                    setState(() => _decadaSeleccionada = null);
-                    _buscar();
-                  }),
-                for (final c in _condicionesAvanzadas)
-                  if (c.valores.isNotEmpty)
-                    chip(
-                        '${_nombreCampoCondicion(c.campo)} ${c.etiquetaOperador} "${c.valores.join(', ')}"',
-                        activo: true,
-                        onTap: () {
-                      setState(() {
-                        _condicionesAvanzadas = _condicionesAvanzadas
-                            .where((x) => x != c)
-                            .toList();
-                      });
-                      _buscar();
-                    }),
-              ],
-            ),
-          ),
-        ],
       ],
     );
   }
@@ -1367,7 +1260,7 @@ Widget _selectorValorCondicion(
                     const SizedBox(width: 8),
                     // Botón de búsqueda dorado (guía 3.2: primario acento).
                     Material(
-                      color: AppColors.dorado,
+                      color: AppColors.azulMarino,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -1381,12 +1274,12 @@ Widget _selectorValorCondicion(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Icon(Icons.search,
-                                  color: AppColors.onDorado, size: 20),
+                                  color: AppColors.onAzulMarino, size: 20),
                               SizedBox(width: 6),
                               Text(
                                 'Buscar',
                                 style: TextStyle(
-                                  color: AppColors.onDorado,
+                                  color: AppColors.onAzulMarino,
                                   fontWeight: FontWeight.w700,
                                   fontSize: 14,
                                 ),
@@ -1406,7 +1299,7 @@ Widget _selectorValorCondicion(
                         size: 12, color: AppColors.acento.withValues(alpha: AppColors.a48)),
                     const SizedBox(width: 4),
                     Text(
-                      'Búsqueda inteligente: prueba "matar", "robar", "drogas"...',
+                      'AND (espacio) · OR · "frase exacta" · -excluir · número exacto',
                       style: TextStyle(
                         color: TemaGlobal.textoSecundario,
                         fontSize: 12,
