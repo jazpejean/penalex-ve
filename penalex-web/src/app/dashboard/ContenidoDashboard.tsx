@@ -25,7 +25,7 @@ function nombreSala(codigo: string): string {
 
 const HERRAMIENTAS = [
   {
-    href: "/jurisprudencia",
+    href: "/sentencias",
     titulo: "Jurisprudencia",
     detalle: "55.208 sentencias del TSJ con extracto y texto completo.",
     icono: "⚖️",
@@ -132,7 +132,7 @@ export default function ContenidoDashboard({
           </p>
         </div>
         <Link
-          href="/jurisprudencia"
+          href="/sentencias"
           className="rounded-lg bg-[#031F4E] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#06305f]"
         >
           Buscar jurisprudencia
@@ -217,7 +217,7 @@ export default function ContenidoDashboard({
             Sentencias recientes
           </h2>
           <Link
-            href="/jurisprudencia"
+            href="/sentencias"
             className="text-xs font-bold text-[#9a7a34] hover:underline"
           >
             Ver todas →
@@ -254,13 +254,13 @@ export default function ContenidoDashboard({
                 ) : null}
                 <div className="mt-3 flex items-center gap-3">
                   <Link
-                    href={`/jurisprudencia/${s.slug}`}
+                    href={`/sentencias/${s.slug}`}
                     className="rounded-md bg-[#031F4E] px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#06305f]"
                   >
                     Abrir sentencia
                   </Link>
                   <Link
-                    href={`/jurisprudencia/${s.slug}`}
+                    href={`/sentencias/${s.slug}`}
                     className="text-xs font-semibold text-[#9a7a34] hover:underline"
                   >
                     Leer resumen

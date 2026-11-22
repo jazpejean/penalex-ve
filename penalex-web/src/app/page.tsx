@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Icono, { type NombreIcono } from "../components/Icono";
 import HeaderHome from "../components/HeaderHome";
 
-// Home en construcción: noindex selectivo (solo /jurisprudencia/** se indexa).
+// Home en construcción: noindex selectivo (solo /sentencias/** se indexa).
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
@@ -641,7 +641,7 @@ export default function HomePage() {
                     Nulidad Absoluta
                   </div>
                   <div className="text-[11px] text-slate-500">
-                    nulidadabsoluta.penalexve.com
+                    penalexve.com/articulos
                   </div>
                 </div>
               </div>
@@ -831,7 +831,7 @@ export default function HomePage() {
                 Doctrina y análisis del proceso penal venezolano.
               </p>
               <div className="mt-2 text-[10px] text-slate-600">
-                nulidadabsoluta.penalexve.com
+                penalexve.com/articulos
               </div>
             </a>
             <div className="mt-5 flex items-center gap-2 text-[11px] text-slate-500">

@@ -310,6 +310,17 @@ export default {
     // GET o HEAD (crawlers/validadores usan HEAD; responder igual que GET)
     const esLectura = request.method === 'GET' || request.method === 'HEAD';
 
+    // Ruta canónica única de jurisprudencia: /sentencias.
+    // La antigua /jurisprudencia (y sus detalles) redirige 301 para no romper
+    // enlaces ni perder posicionamiento.
+    if (
+      (url.pathname === '/jurisprudencia' || url.pathname.startsWith('/jurisprudencia/')) &&
+      (request.method === 'GET' || request.method === 'HEAD')
+    ) {
+      const destino = '/sentencias' + url.pathname.slice('/jurisprudencia'.length) + url.search;
+      return Response.redirect(new URL(destino, url).toString(), 301);
+    }
+
     if (esLectura && url.pathname === '/health') {
       return json(200, { ok: true });
     }

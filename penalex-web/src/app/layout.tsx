@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   // NOTA SEO: el noindex ya NO es global. Cada sección controla su propia
   // indexación: la home (en construcción) tiene noindex en su página, y
-  // /jurisprudencia/** es lo indexable (landings SEO por sentencia).
+  // /sentencias/** es lo indexable (landings SEO por sentencia).
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
