@@ -5,6 +5,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { cerrarSesion, escucharAuth } from "../../lib/firebase";
+import { cargarPanel, type PanelData } from "../../lib/panel-data";
 import type { SentenciaResumen } from "./types";
 
 const NOMBRES_SALAS: Record<string, string> = {
@@ -160,19 +161,29 @@ export default function ContenidoDashboard({
 }) {
   const [email, setEmail] = useState<string | null>(null);
   const [nombre, setNombre] = useState<string | null>(null);
+  const [panel, setPanel] = useState<PanelData | null>(null);
 
   useEffect(() => {
-    return escucharAuth((u) => {
+    let activo = true;
+    const desuscribir = escucharAuth((u) => {
       if (!u) {
         setEmail(null);
         setNombre(null);
+        setPanel(null);
         return;
       }
       setEmail(u.email);
       setNombre(
         u.displayName?.trim() || (u.email ? u.email.split("@")[0] : null),
       );
+      cargarPanel(u.uid, u.email).then((datos) => {
+        if (activo) setPanel(datos);
+      });
     });
+    return () => {
+      activo = false;
+      desuscribir();
+    };
   }, []);
 
   const saludo = nombre ? `Hola, ${nombre}` : "Hola";
@@ -220,6 +231,89 @@ export default function ContenidoDashboard({
           </div>
         ))}
       </div>
+
+      {/* Actividad real del usuario (Firestore + Supabase) */}
+      <section className="mt-10">
+        <div className="flex items-end justify-between gap-3">
+          <h2 className="text-lg font-bold text-[#031F4E]">Tu actividad</h2>
+          {panel?.perfil?.rol ? (
+            <span className="rounded-full bg-[#031F4E] px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+              {panel.perfil.rol}
+            </span>
+          ) : null}
+        </div>
+
+        {panel?.aviso ? (
+          <p className="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-700">
+            {panel.aviso}
+          </p>
+        ) : null}
+
+        <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
+          {/* Expedientes */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-5">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-bold text-[#031F4E]">Expedientes</h3>
+              <span className="rounded-full bg-[#f1f5f9] px-2.5 py-0.5 text-xs font-bold text-slate-600">
+                {panel?.totalExpedientes ?? 0}
+              </span>
+            </div>
+            {panel && panel.expedientes.length > 0 ? (
+              <ul className="mt-3 divide-y divide-slate-100">
+                {panel.expedientes.map((e, i) => (
+                  <li key={`${e.id ?? i}`} className="py-2">
+                    <p className="text-sm font-semibold text-[#031F4E]">
+                      {e.numero}
+                    </p>
+                    <p className="text-xs text-slate-500">
+                      {e.imputado}
+                      {e.delitos ? ` · ${e.delitos}` : ""}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="mt-3 text-sm text-slate-500">
+                Aún no tienes expedientes. Se crean al agendar un caso en la
+                app móvil y quedan disponibles aquí.
+              </p>
+            )}
+          </div>
+
+          {/* Favoritos */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-5">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-bold text-[#031F4E]">
+                Sentencias favoritas
+              </h3>
+              <span className="rounded-full bg-[#f1f5f9] px-2.5 py-0.5 text-xs font-bold text-slate-600">
+                {panel?.totalFavoritos ?? 0}
+              </span>
+            </div>
+            {panel && panel.favoritos.length > 0 ? (
+              <ul className="mt-3 divide-y divide-slate-100">
+                {panel.favoritos.map((f, i) => (
+                  <li key={`${f.documentoId}-${i}`} className="py-2">
+                    <Link
+                      href="/sentencias"
+                      className="text-sm font-semibold text-[#031F4E] hover:text-[#9a7a34]"
+                    >
+                      Ver en el buscador →
+                    </Link>
+                    <p className="text-xs text-slate-400">
+                      {f.documentoId.slice(0, 18)}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="mt-3 text-sm text-slate-500">
+                Marca sentencias como favoritas en la app y aparecerán aquí.
+              </p>
+            )}
+          </div>
+        </div>
+      </section>
 
       {/* Herramientas */}
       <section className="mt-10">
@@ -383,6 +477,11 @@ export default function ContenidoDashboard({
               ? `Sesión iniciada como ${email}. Es la misma cuenta que usas en la app móvil.`
               : "Sesión iniciada."}
           </p>
+          {panel?.perfil ? (
+            <p className="mt-2 text-xs text-slate-500">
+              Nivel {panel.perfil.nivel} · {panel.perfil.xp.toLocaleString("es-VE")} XP
+            </p>
+          ) : null}
           <button
             onClick={() => cerrarSesion()}
             className="mt-4 rounded-md border border-slate-200 px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50"
