@@ -1,10 +1,9 @@
 "use client";
 
-// Datos reales del panel: perfil (Firestore), expedientes y favoritos
-// (Supabase con token puente del worker). Nunca lanza: si algo falla,
-// devuelve lo que se pudo cargar y un aviso.
-import { doc, getDoc } from "firebase/firestore";
-import { getDb, idTokenActual } from "./firebase";
+// Datos reales del panel sin Firestore: perfil, nivel y XP desde Supabase
+// (user_profiles y quiz_ranking), expedientes y favoritos con el token puente
+// del worker. Nunca lanza: devuelve lo que se pudo cargar y un aviso.
+import { idTokenActual } from "./firebase";
 
 const WORKER =
   process.env.NEXT_PUBLIC_WORKER_URL ??
@@ -42,7 +41,6 @@ export interface PanelData {
   aviso: string;
 }
 
-/** Token de Supabase minteado a partir del idToken de Firebase. */
 async function tokenSupabase(): Promise<string | null> {
   const idToken = await idTokenActual();
   if (!idToken) return null;
@@ -66,25 +64,41 @@ async function consultar(
   jwt: string,
 ): Promise<unknown[]> {
   if (!SUPABASE_URL || !ANON) return [];
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/${tabla}?${query}`, {
-    headers: {
-      apikey: ANON,
-      Authorization: `Bearer ${jwt}`,
-      Prefer: "count=exact",
-    },
-  });
-  if (!res.ok) return [];
-  const data = await res.json();
-  return Array.isArray(data) ? data : [];
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${tabla}?${query}`, {
+      headers: { apikey: ANON, Authorization: `Bearer ${jwt}` },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
+  }
 }
 
 function texto(v: unknown): string {
   return typeof v === "string" ? v : "";
 }
 
-export async function cargarPanel(uid: string, email: string | null): Promise<PanelData> {
+function fotoUrl(uid: string, version: string): string {
+  if (!SUPABASE_URL) return "";
+  const base = `${SUPABASE_URL}/storage/v1/object/public/profile-pictures/${uid}/avatar.jpg`;
+  return version ? `${base}?v=${encodeURIComponent(version)}` : base;
+}
+
+export async function cargarPanel(
+  uid: string,
+  email: string | null,
+): Promise<PanelData> {
   const resultado: PanelData = {
-    perfil: null,
+    perfil: {
+      nombre: email ? email.split("@")[0] : null,
+      email,
+      foto: fotoUrl(uid, ""),
+      nivel: 1,
+      xp: 0,
+      rol: "Asistente Judicial",
+    },
     expedientes: [],
     favoritos: [],
     totalExpedientes: 0,
@@ -92,72 +106,65 @@ export async function cargarPanel(uid: string, email: string | null): Promise<Pa
     aviso: "",
   };
 
-  // 1) Perfil desde Firestore (mismo documento que escribe la app).
-  try {
-    const snap = await getDoc(doc(getDb(), "users", uid));
-    const d = snap.exists() ? (snap.data() as Record<string, unknown>) : {};
-    resultado.perfil = {
-      nombre: texto(d.displayName) || (email ? email.split("@")[0] : null),
-      email: texto(d.email) || email,
-      foto: texto(d.photoUrl) || null,
-      nivel: typeof d.nivel_actual === "number" ? d.nivel_actual : 1,
-      xp: typeof d.xp_total === "number" ? d.xp_total : 0,
-      rol:
-        texto(d.rol) ||
-        (email && email.toLowerCase().includes("jazpejean")
-          ? "Administrador"
-          : "Asistente Judicial"),
-    };
-  } catch {
-    resultado.aviso = "No se pudo leer el perfil completo.";
-  }
-
-  // 2) Datos de Supabase con token puente.
   const jwt = await tokenSupabase();
   if (!jwt) {
     resultado.aviso =
-      "No se pudo verificar la sesión con el servidor: los expedientes y favoritos no se pudieron cargar.";
+      "No se pudo verificar la sesión con el servidor. Vuelve a iniciar sesión.";
     return resultado;
   }
 
-  try {
-    const [exp, fav] = await Promise.all([
-      consultar(
-        "expedientes",
-        "select=*&order=created_at.desc&limit=5",
-        jwt,
-      ),
-      consultar(
-        "sentencias_favoritas",
-        "select=documento_id&order=created_at.desc&limit=6",
-        jwt,
-      ),
-    ]);
+  const [perfiles, ranking, exp, fav] = await Promise.all([
+    consultar("user_profiles", `select=name,email,role,updated_at&id=eq.${uid}`, jwt),
+    consultar("quiz_ranking", `select=xp,nivel_actual&user_id=eq.${uid}`, jwt),
+    consultar("expedientes", "select=*&order=created_at.desc&limit=5", jwt),
+    consultar(
+      "sentencias_favoritas",
+      "select=documento_id&order=created_at.desc&limit=6",
+      jwt,
+    ),
+  ]);
 
-    resultado.expedientes = exp.map((fila) => {
-      const f = fila as Record<string, unknown>;
-      return {
-        id: (f.id as string | number) ?? null,
-        numero:
-          texto(f.numero_expediente) ||
-          texto(f.numero) ||
-          texto(f.codigo) ||
-          "Sin número",
-        imputado: texto(f.imputado) || "Sin imputado",
-        delitos: texto(f.delitos) || "",
-        creado: texto(f.created_at) || "",
-      };
-    });
+  const p = perfiles[0] as Record<string, unknown> | undefined;
+  if (p) {
+    const version = texto(p.updated_at);
+    resultado.perfil = {
+      nombre: texto(p.name) || resultado.perfil?.nombre || null,
+      email: texto(p.email) || email,
+      foto: fotoUrl(uid, version),
+      nivel: resultado.perfil?.nivel ?? 1,
+      xp: resultado.perfil?.xp ?? 0,
+      rol: texto(p.role) === "admin" ? "Administrador" : "Asistente Judicial",
+    };
+  }
 
-    resultado.favoritos = fav.map((fila) => {
-      const f = fila as Record<string, unknown>;
-      return { documentoId: texto(f.documento_id) };
-    });
-    resultado.totalExpedientes = resultado.expedientes.length;
-    resultado.totalFavoritos = resultado.favoritos.length;
-  } catch {
+  const r = ranking[0] as Record<string, unknown> | undefined;
+  if (r && resultado.perfil) {
+    resultado.perfil.nivel =
+      typeof r.nivel_actual === "number" ? r.nivel_actual : 1;
+    resultado.perfil.xp = typeof r.xp === "number" ? r.xp : 0;
+  }
+
+  resultado.expedientes = exp.map((fila) => {
+    const f = fila as Record<string, unknown>;
+    return {
+      id: (f.id as string | number) ?? null,
+      numero: texto(f.numero_expediente) || "Sin número",
+      imputado: texto(f.imputado) || "Sin imputado",
+      delitos: texto(f.delitos) || "",
+      creado: texto(f.created_at) || "",
+    };
+  });
+
+  resultado.favoritos = fav.map((fila) => {
+    const f = fila as Record<string, unknown>;
+    return { documentoId: texto(f.documento_id) };
+  });
+  resultado.totalExpedientes = resultado.expedientes.length;
+  resultado.totalFavoritos = resultado.favoritos.length;
+
+  if (!p && !r) {
     resultado.aviso =
-      "No se pudieron cargar expedientes y favoritos en este momento.";
+      "Tu perfil se está sincronizando. Los expedientes y favoritos aparecerán en cuanto la app los registre.";
   }
 
   return resultado;

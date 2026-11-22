@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/foundation.dart';
@@ -9,7 +8,6 @@ import 'supabase_identity_bridge.dart';
 
 class AuthService {
   final firebase_auth.FirebaseAuth _auth = firebase_auth.FirebaseAuth.instance;
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
   final SupabaseClient _supabase = Supabase.instance.client;
   final DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
   final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -39,10 +37,15 @@ class AuthService {
     final user = _auth.currentUser;
     final deviceId = await _getDeviceId();
     if (user != null && deviceId != null) {
-      await _db.collection('users').doc(user.uid).set({
-        'lastDeviceId': deviceId,
-        'lastLogin': FieldValue.serverTimestamp(),
-      }, SetOptions(merge: true));
+      try {
+        await _supabase.from('user_profiles').upsert(<String, dynamic>{
+          'id': user.uid,
+          'last_device_id': deviceId,
+          'last_login': DateTime.now().toIso8601String(),
+        }, onConflict: 'id');
+      } catch (e) {
+        debugPrint('No se pudo guardar el dispositivo: $e');
+      }
     }
   }
 
@@ -51,11 +54,19 @@ class AuthService {
     final deviceId = await _getDeviceId();
     if (user == null || deviceId == null) return false;
 
-    final doc = await _db.collection('users').doc(user.uid).get();
-    if (!doc.exists) return true;
-
-    final savedId = doc.data()?['lastDeviceId'];
-    return savedId == deviceId;
+    try {
+      final fila = await _supabase
+          .from('user_profiles')
+          .select('last_device_id')
+          .eq('id', user.uid)
+          .maybeSingle();
+      if (fila == null) return true;
+      final savedId = fila['last_device_id'];
+      return savedId == null || savedId == deviceId;
+    } catch (e) {
+      debugPrint('No se pudo validar el dispositivo: $e');
+      return true;
+    }
   }
 
   /// Sincronizar usuario de Firebase a Supabase (crear o actualizar)
@@ -127,17 +138,8 @@ class AuthService {
         email: email, password: password);
     await res.user?.updateDisplayName(name);
     
-    // Guardar en Firebase Firestore
+    // Perfil en Supabase con el MISMO UID de Firebase
     if (res.user != null) {
-      await _db.collection('users').doc(res.user!.uid).set({
-        'name': name,
-        'email': email,
-        'role': 'user',
-        'createdAt': FieldValue.serverTimestamp(),
-        'emailVerified': false,
-      });
-      
-      // TAMBIÉN guardar en Supabase con el MISMO UID de Firebase
       await _syncUserToSupabase(res.user);
     }
     

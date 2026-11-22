@@ -3,7 +3,6 @@
 "use client";
 
 import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
-import { getFirestore, type Firestore } from "firebase/firestore";
 import {
   getAuth,
   signInWithPopup,
@@ -50,11 +49,6 @@ export const auth = () => {
   if (!firebaseConfigurado) return null;
   return getAuth(getFirebaseApp());
 };
-
-/** Firestore del mismo proyecto (perfil del usuario, igual que la app). */
-export function getDb(): Firestore {
-  return getFirestore(getFirebaseApp());
-}
 
 /** idToken vigente para el puente con Supabase (/auth/bridge del worker). */
 export async function idTokenActual(): Promise<string | null> {

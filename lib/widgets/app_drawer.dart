@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -146,16 +144,14 @@ class AppDrawer extends StatelessWidget {
         color: AppColors.azulMarino,
         child: Column(
           children: <Widget>[
-            StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+            StreamBuilder<Map<String, dynamic>>(
               stream: UserProfileService.userDocStream(),
               builder: (BuildContext context,
-                  AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>>
-                      snapshot) {
+                  AsyncSnapshot<Map<String, dynamic>> snapshot) {
                 final Map<String, dynamic> data =
-                    snapshot.data?.data() ?? <String, dynamic>{};
+                    snapshot.data ?? <String, dynamic>{};
                 
-                // Leer photoBase64 (nuevo) o photoUrl (legacy)
-                final String? photoBase64 = data['photoBase64'] as String?;
+                // Foto en Supabase Storage (ruta estable por uid).
                 final String? photoUrl = data['photoUrl'] as String? ?? user?.photoURL;
                 
                 final int nivel = (data['nivel_actual'] as int?) ?? 1;
@@ -182,16 +178,16 @@ class AppDrawer extends StatelessWidget {
                             CircleAvatar(
                               radius: 36,
                               backgroundColor: AppColors.dorado,
-                              backgroundImage: photoBase64 != null
-                                  ? MemoryImage(base64Decode(photoBase64))
-                                  : (photoUrl != null ? NetworkImage(photoUrl) : null) as ImageProvider?,
+                              backgroundImage: (photoUrl != null
+                                  ? NetworkImage(photoUrl)
+                                  : null) as ImageProvider?,
                               onBackgroundImageError: (exception, stackTrace) {
                                 // Silenciosamente ignorar errores de carga de imagen
                                 if (kDebugMode) {
                                   debugPrint('⚠️ Error cargando imagen de perfil: $exception');
                                 }
                               },
-                              child: (photoBase64 == null && photoUrl == null)
+                              child: (photoUrl == null)
                                   ? Text(inicial,
                                       style: const TextStyle(
                                           color: AppColors.azulMarino,
