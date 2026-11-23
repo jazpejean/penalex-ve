@@ -131,6 +131,87 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 
 ---
 
+## Favoritos por tema
+
+| ID | Problema | Propuesta | Estado |
+|---|---|---|---|
+| FAV-01 | Los favoritos son una lista plana sin clasificar | Al guardar, elegir tema (chips) y guardarlo | abierto |
+| FAV-02 | No se pueden crear temas propios | Temas predefinidos + personalizados por usuario | abierto |
+| FAV-03 | Sin filtro por tema en la lista de favoritos | Chips de tema con contador | abierto |
+| FAV-04 | Sin sincronización de favoritos entre app y web | Misma tabla y RLS | abierto |
+| FAV-05 | Sin "agregar a favorito" desde el resumen y el detalle | Botón de marcador en ambas vistas | abierto |
+| FAV-06 | Requiere columna `tema` en `sentencias_favoritas` o tabla `favoritos_temas` | DDL en Supabase (ver anexo) | abierto |
+
+**Temas sugeridos:** Penal general, Procesal, Constitucional, Prueba, Dosimetría, Nulidad, Jurisprudencia vinculante, Libres.
+
+---
+
+## Caché y ahorro de IA
+
+| ID | Problema | Propuesta | Estado |
+|---|---|---|---|
+| CAC-01 | Cada resumen de sentencia vuelve a llamar a la IA | Respuesta precalculada por `documento_id` + tipo de resumen | abierto |
+| CAC-02 | Sin caché de respuestas de texto | Tabla `ia_cache` con hash del prompt, modelo y versión | abierto |
+| CAC-03 | Sin caché en el borde | Cloudflare KV para lecturas instantáneas | abierto |
+| CAC-04 | Sin precalentado de lo más consultado | CRON que genera resúmenes de las sentencias top | abierto |
+| CAC-05 | Sin caché local en la app | Hive o SQLite para leyes y sentencias descargadas | abierto |
+| CAC-06 | Sin caché HTTP/CDN por ruta | ETag y `cache-control` por tipo de contenido | abierto |
+| CAC-07 | Sin caché de imágenes | Miniaturas y fotos de tribunales con CDN | abierto |
+| CAC-08 | Sin métricas de acierto | Hit rate y ahorro estimado en el panel | abierto |
+| CAC-09 | Sin invalidación por versión de prompt | `version_prompt` en la clave | abierto |
+| CAC-10 | Animación de "pensando" sin criterio | Latencia simulada breve (300 a 700 ms) y texto honesto | abierto |
+| CAC-11 | Riesgo de devolver caché de un usuario a otro | Las respuestas con datos del expediente se cachean por uid; solo las públicas se comparten | abierto |
+
+### Diseño de la caché de IA
+
+**Clave:** `sha256(prompt_normalizado + modelo + version_prompt + idioma + longitud)`
+
+**Flujo:**
+1. El worker normaliza el prompt y calcula la clave.
+2. Consulta KV (milisegundos). Si hay acierto, devuelve.
+3. Si no, consulta `ia_cache` en Supabase.
+4. Si no, llama a DeepSeek, guarda en `ia_cache` y en KV.
+5. Devuelve con la animación de carga breve.
+
+**Precalculado:** al indexar una sentencia se genera su resumen y se guarda con clave `resumen:{documento_id}:v1`. La primera consulta del usuario ya es instantánea.
+
+**Latencia simulada:** 300 a 700 ms con el texto "Recuperando análisis" en lugar de "Calculando desde cero". Se siente ágil y no miente al usuario.
+
+---
+
+## Anexo SQL propuesto
+
+```sql
+-- Favoritos por tema
+alter table public.sentencias_favoritas
+  add column if not exists tema text default 'Sin tema';
+
+create index if not exists sentencias_favoritas_tema_idx
+  on public.sentencias_favoritas (user_id, tema);
+
+-- Caché de IA
+create table if not exists public.ia_cache (
+  clave text primary key,
+  tipo text not null,
+  modelo text not null,
+  version_prompt int not null default 1,
+  respuesta text not null,
+  hits int not null default 0,
+  creado_en timestamptz not null default now(),
+  expira_en timestamptz
+);
+
+create index if not exists ia_cache_tipo_idx on public.ia_cache (tipo, creado_en desc);
+
+alter table public.ia_cache enable row level security;
+
+-- Solo el worker (service role) escribe y lee la caché.
+create policy "ia_cache_sin_acceso_cliente" on public.ia_cache
+  for all using (false);
+```
+
+---
+
 ## Concursos
 
 | ID | Problema | Propuesta | Estado |
