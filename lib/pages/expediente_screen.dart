@@ -8,6 +8,7 @@ import '../models/audiencia.dart';
 import '../models/documento_escaneado.dart';
 import '../models/expediente.dart';
 import '../services/documentos_service.dart';
+import '../services/pdf_export_service.dart';
 import '../services/expediente_service.dart';
 import '../services/haptics_service.dart';
 import '../widgets/app_bar_institucional.dart';
@@ -88,6 +89,11 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
 
   void _subirDocumento() async {
     Haptics.tap();
+    // Activar esta causa para que el editor del escáner guarde con su id.
+    final Expediente? exp = _expediente;
+    if (exp != null) {
+      context.read<ExpedienteActivoProvider>().seleccionar(exp);
+    }
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => const EscanearDocumentoScreen(),
@@ -369,61 +375,115 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
   Widget _buildDocItem(DocumentoEscaneado doc) {
     final bool esPdf = doc.titulo.toLowerCase().contains('pdf') ||
         doc.paginasUrls.any((String u) => u.toLowerCase().endsWith('.pdf'));
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
+    final String? mini = doc.thumbnailUrl;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Material(
         color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
-        border: Border.all(color: TemaGlobal.capa),
-      ),
-      child: Row(
-        children: <Widget>[
-          Container(
-            width: 40,
-            height: 40,
+        child: InkWell(
+          onTap: () => _abrirDocumento(doc),
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
+          child: Container(
+            padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
-              color: AppColors.dorado.withValues(alpha: AppColors.a12),
-              borderRadius: BorderRadius.circular(AppTokens.radioControl),
+              borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
+              border: Border.all(color: TemaGlobal.capa),
             ),
-            child: Icon(
-              esPdf ? Icons.picture_as_pdf : Icons.image,
-              color: AppColors.dorado,
-              size: 22,
-            ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
               children: <Widget>[
-                Text(
-                  doc.titulo,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: TemaGlobal.texto,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
+                  child: SizedBox(
+                    width: 46,
+                    height: 58,
+                    child: (mini != null && mini.isNotEmpty)
+                        ? Image.network(mini, fit: BoxFit.cover)
+                        : Container(
+                            color: AppColors.dorado
+                                .withValues(alpha: AppColors.a12),
+                            child: Icon(
+                              esPdf ? Icons.picture_as_pdf : Icons.image,
+                              color: AppColors.dorado,
+                              size: 22,
+                            ),
+                          ),
                   ),
                 ),
-                const SizedBox(height: 2),
-                Text(
-                  '${doc.paginasUrls.length} página(s) · '
-                  '${_fechaAmigable(doc.fechaCreacion)}',
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: TemaGlobal.textoSecundario,
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        doc.titulo,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                          color: TemaGlobal.texto,
+                        ),
+                      ),
+                      const SizedBox(height: 3),
+                      Text(
+                        '${doc.paginasUrls.length} página(s) · '
+                        '${_fechaAmigable(doc.fechaCreacion)}',
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: TemaGlobal.textoSecundario,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+                IconButton(
+                  tooltip: 'Eliminar',
+                  icon: Icon(Icons.delete_outline,
+                      color: TemaGlobal.textoSecundario, size: 20),
+                  onPressed: () => _eliminarDocumento(doc),
+                ),
+                Icon(Icons.chevron_right,
+                    color: TemaGlobal.textoSecundario, size: 20),
               ],
             ),
           ),
-          Icon(Icons.visibility,
-              color: TemaGlobal.textoSecundario, size: 20),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _abrirDocumento(DocumentoEscaneado doc) async {
+    Haptics.tap();
+    await PdfExportService.exportarYAbrir(doc);
+  }
+
+  Future<void> _eliminarDocumento(DocumentoEscaneado doc) async {
+    final bool? ok = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext ctx) => AlertDialog(
+        title: const Text('Eliminar documento'),
+        content: Text('¿Eliminar "${doc.titulo}" del portafolio?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: const Text('Cancelar'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            child: const Text('Eliminar'),
+          ),
         ],
       ),
     );
+    if (ok != true) return;
+    final bool borrado = await _documentosService.eliminarDocumento(doc.id);
+    if (!mounted) return;
+    if (borrado) {
+      setState(() {
+        _documentos.removeWhere((DocumentoEscaneado d) => d.id == doc.id);
+      });
+    }
   }
 
   String _fechaAmigable(DateTime fecha) {
