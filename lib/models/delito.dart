@@ -310,6 +310,25 @@ class Delito {
       });
     }
 
+    // 4.b. Complicidad correspectiva (Art. 424 CP): cuando en la muerte o
+    // las lesiones intervienen varias personas y no se puede descubrir quién
+    // las causó, la pena del delito se rebaja entre una tercera parte y la
+    // mitad. Se individualiza en el límite favorable (la mitad) y se informa
+    // el rango completo.
+    if (participacionEspecifica == 'Cómplice Correspectivo') {
+      final double minimo = pena * 0.5; // rebaja de la mitad
+      final double maximo = pena * (2 / 3); // rebaja de un tercio
+      final double rebaja = pena - minimo;
+      pena = minimo;
+      pasosCalculo.add(<String, dynamic>{
+        'descripcion': 'Rebaja por complicidad correspectiva (Art. 424 CP): '
+            'rango de ${DosimetriaEngine.formatNumero(minimo)} a '
+            '${DosimetriaEngine.formatNumero(maximo)} años',
+        'resultado': '-${DosimetriaEngine.formatNumero(rebaja)} años',
+        'pena_actual': pena,
+      });
+    }
+
     // 5. Delito continuado (Art. 99 CP): el aumento PUEDE superar el máximo.
     if (delitoContinuado) {
       final double aumento = pena * fraccionContinuidad;

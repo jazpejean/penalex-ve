@@ -131,6 +131,66 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 
 ---
 
+## Dosimetría
+
+| ID | Problema | Propuesta | Estado |
+|---|---|---|---|
+| DOS-01 | No existía la complicidad correspectiva del art. 424 | Grado "Cómplice Correspectivo" con rebaja de 1/3 a la mitad y rango informado | hecho |
+| DOS-02 | El rango del art. 424 no se mostraba completo | El paso de cálculo indica el rango entre la mitad y dos tercios | hecho |
+| DOS-03 | Sin prueba del cálculo con un caso real | Caso de prueba: homicidio con dos intervinientes no identificados | abierto |
+| DOS-04 | Sin exportar el cálculo a PDF | Exportar la dosimetría con el detalle de pasos | abierto |
+
+---
+
+## Leyes y contenido legal
+
+| ID | Problema | Propuesta | Estado |
+|---|---|---|---|
+| LEY-01 | En la web los artículos salían en un solo párrafo | `white-space: pre-line` en el cuerpo, verificado en producción | hecho |
+| LEY-02 | El art. 424 empezaba con un punto suelto | Limpieza de puntuación inicial en el render, verificada | hecho |
+| LEY-09 | Espacios antes de coma y dobles espacios | Normalización en cuerpo, numerales y párrafos | hecho |
+| LEY-03 | Sin auditoría ortográfica del corpus (53 leyes) | Auditoría ejecutada: 403 hallazgos reales en 53 leyes | hecho |
+| LEY-04 | Sin revisión de artículos con texto vacío o truncado | Detectados artículos cortos y dos leyes que no cargan | abierto |
+| LEY-06 | Dos leyes no cargan por JSON corrupto | Regenerar `ley-del-estatuto-de-la-funcion-de-la-policia-de-investigacion` y la del CICPC | abierto |
+| LEY-07 | 43 minúsculas tras punto y 46 puntos sin espacio | Revisión manual asistida (pueden ser abreviaturas legítimas) | abierto |
+| LEY-08 | 8 comillas y 14 paréntesis sin cerrar | Revisión manual artículo por artículo | abierto |
+| LEY-05 | Sin control de versiones de la ley (reformas) | Campo de vigencia y fecha de reforma | abierto |
+
+---
+
+## Roles y adaptación de la IA
+
+La idea es que el usuario declare su rol y que la IA, las herramientas y el tono se adapten a su función.
+
+| ID | Problema | Propuesta | Estado |
+|---|---|---|---|
+| ROL-01 | La IA responde igual a un fiscal, un defensor, un juez y un estudiante | Perfil profesional del usuario | abierto |
+| ROL-02 | Sin rol declarado, el resultado es genérico | Selección de rol en el registro y en ajustes | abierto |
+| ROL-03 | El detector no distingue la posición procesal | El rol define qué vicios son útiles (defensa vs fiscalía) | abierto |
+| ROL-04 | El redactor no cambia el enfoque | Plantillas y prompts por rol | abierto |
+| ROL-05 | Sin pruebas de rol en la base | Columna `perfil_profesional` en `user_profiles` (DDL) | abierto |
+| ROL-06 | El estudiante necesita explicación, no estrategia | Modo "académico" con fundamento y citas | abierto |
+| ROL-07 | El juez necesita neutralidad | Modo "análisis neutral" sin estrategia de parte | abierto |
+
+**Roles propuestos y efecto en la IA:**
+
+| Rol | Enfoque | Herramientas destacadas |
+|---|---|---|
+| Abogado defensor | Estrategia de defensa, garantías, vicios | Detector de vicios, redactor, prescripción |
+| Fiscal | Tipicidad, elementos del delito, prueba | Dosimetría, jurisprudencia, análisis de prueba |
+| Juez | Neutralidad, motivación, congruencia | Análisis neutral, dosimetría, nulidades |
+| Estudiante | Explicación, fundamento, citas | Glosario, jurisprudencia, quiz |
+| Asistente judicial | Gestión de causas y lapsos | Agenda, lapsos, portafolio |
+
+**Implementación sin fricción:**
+1. El rol se elige una vez y se puede cambiar.
+2. El rol se envía en cada consulta a Ulpiano y al detector.
+3. El prompt del sistema cambia según el rol.
+4. Las herramientas en el panel se reordenan por rol.
+5. Todo queda guardado en el perfil y se sincroniza con la web.
+
+---
+
 ## Colecciones de sentencias (favoritos del usuario)
 
 El usuario crea sus propias colecciones, con el nombre que quiera: "Homicidio", "Tráfico", "Nulidades", "Para el caso Pérez". Se comporta como guardar en una colección en redes sociales, no como una lista fija de temas.
@@ -229,6 +289,26 @@ insert into public.colecciones (user_id, nombre)
 select distinct user_id, 'Favoritos' from public.sentencias_favoritas
 on conflict do nothing;
 ```
+
+---
+
+## Auditoría del corpus
+
+Reporte completo: [docs/auditoria-leyes.md](auditoria-leyes.md)
+
+| Tipo de hallazgo | Casos |
+|---|---|
+| Empieza con signo de puntuación | 50 |
+| Punto seguido de mayúscula sin espacio | 46 |
+| Minúscula después de punto | 43 |
+| Espacio antes de coma o punto | 35 |
+| Paréntesis sin cerrar | 14 |
+| Comillas sin cerrar | 8 |
+| Leyes que no cargan | 2 |
+
+Corregidos automáticamente en el render: puntuación inicial, espacio antes de puntuación, doble espacio y saltos excesivos.
+
+Pendientes de revisión manual: minúsculas tras punto, puntos sin espacio, comillas y paréntesis.
 
 ---
 
