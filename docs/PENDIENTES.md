@@ -131,18 +131,28 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 
 ---
 
-## Favoritos por tema
+## Colecciones de sentencias (favoritos del usuario)
+
+El usuario crea sus propias colecciones, con el nombre que quiera: "Homicidio", "Tráfico", "Nulidades", "Para el caso Pérez". Se comporta como guardar en una colección en redes sociales, no como una lista fija de temas.
 
 | ID | Problema | Propuesta | Estado |
 |---|---|---|---|
-| FAV-01 | Los favoritos son una lista plana sin clasificar | Al guardar, elegir tema (chips) y guardarlo | abierto |
-| FAV-02 | No se pueden crear temas propios | Temas predefinidos + personalizados por usuario | abierto |
-| FAV-03 | Sin filtro por tema en la lista de favoritos | Chips de tema con contador | abierto |
-| FAV-04 | Sin sincronización de favoritos entre app y web | Misma tabla y RLS | abierto |
-| FAV-05 | Sin "agregar a favorito" desde el resumen y el detalle | Botón de marcador en ambas vistas | abierto |
-| FAV-06 | Requiere columna `tema` en `sentencias_favoritas` o tabla `favoritos_temas` | DDL en Supabase (ver anexo) | abierto |
+| COL-01 | Los favoritos son una lista plana sin organización | Colecciones creadas por el usuario, con nombre y color | abierto |
+| COL-02 | No se puede guardar una sentencia en una colección | Hoja "Guardar en..." con colecciones y opción "Nueva colección" | abierto |
+| COL-03 | Sin botón de guardar en el resumen y en el detalle | Marcador en la tarjeta y en la vista de la sentencia | abierto |
+| COL-04 | Sin vista de colecciones con portada y contador | Tarjetas de colección con nombre, número y miniaturas | abierto |
+| COL-05 | Sin renombrar, eliminar ni cambiar color | Menú de la colección | abierto |
+| COL-06 | Sin mover una sentencia de una colección a otra | Acción "Mover a..." | abierto |
+| COL-07 | Sin sincronización entre app y web | Mismas tablas y RLS | abierto |
+| COL-08 | Una sentencia puede estar en varias colecciones | Tabla puente, sin duplicados | abierto |
+| COL-09 | Riesgo de filtrar colecciones entre usuarios | RLS por `user_id = auth.uid()` | abierto |
+| COL-10 | Los favoritos actuales quedarían huérfanos | Migrar a una colección "Favoritos" por defecto | abierto |
 
-**Temas sugeridos:** Penal general, Procesal, Constitucional, Prueba, Dosimetría, Nulidad, Jurisprudencia vinculante, Libres.
+**Experiencia propuesta:**
+1. En el detalle o en el resumen, tocar el marcador.
+2. Se abre una hoja con las colecciones del usuario, su contador y "Nueva colección".
+3. Escribir el nombre, elegir color y guardar.
+4. En el perfil, sección "Mis colecciones" con portada, contador y filtro.
 
 ---
 
@@ -182,32 +192,42 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 ## Anexo SQL propuesto
 
 ```sql
--- Favoritos por tema
-alter table public.sentencias_favoritas
-  add column if not exists tema text default 'Sin tema';
-
-create index if not exists sentencias_favoritas_tema_idx
-  on public.sentencias_favoritas (user_id, tema);
-
--- Caché de IA
-create table if not exists public.ia_cache (
-  clave text primary key,
-  tipo text not null,
-  modelo text not null,
-  version_prompt int not null default 1,
-  respuesta text not null,
-  hits int not null default 0,
+-- Colecciones del usuario
+create table if not exists public.colecciones (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  nombre text not null,
+  descripcion text,
+  color text not null default '#C5A059',
   creado_en timestamptz not null default now(),
-  expira_en timestamptz
+  unique (user_id, nombre)
 );
 
-create index if not exists ia_cache_tipo_idx on public.ia_cache (tipo, creado_en desc);
+-- Sentencias dentro de cada colección
+create table if not exists public.coleccion_sentencias (
+  coleccion_id uuid not null references public.colecciones(id) on delete cascade,
+  documento_id text not null,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  agregado_en timestamptz not null default now(),
+  primary key (coleccion_id, documento_id)
+);
 
-alter table public.ia_cache enable row level security;
+create index if not exists coleccion_sentencias_user_idx
+  on public.coleccion_sentencias (user_id);
 
--- Solo el worker (service role) escribe y lee la caché.
-create policy "ia_cache_sin_acceso_cliente" on public.ia_cache
-  for all using (false);
+alter table public.colecciones enable row level security;
+alter table public.coleccion_sentencias enable row level security;
+
+create policy "colecciones_propias" on public.colecciones
+  for all using (user_id = auth.uid()) with check (user_id = auth.uid());
+
+create policy "coleccion_sentencias_propias" on public.coleccion_sentencias
+  for all using (user_id = auth.uid()) with check (user_id = auth.uid());
+
+-- Migración de los favoritos actuales a una colección "Favoritos"
+insert into public.colecciones (user_id, nombre)
+select distinct user_id, 'Favoritos' from public.sentencias_favoritas
+on conflict do nothing;
 ```
 
 ---
