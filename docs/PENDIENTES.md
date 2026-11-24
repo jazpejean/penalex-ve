@@ -41,8 +41,8 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 | APP-16 | Asistente con guion largo y badge que compite con el título | Microcopy limpio | abierto |
 | APP-17 | Versión del drawer dice v1.0 | Ahora dice v1.0.0+1 | hecho |
 | APP-18 | Estados vacíos distintos en cada pantalla | Componente `EmptyState` creado y aplicado en Agenda | hecho |
-| APP-19 | Sin modo oscuro coherente | Paleta oscura con los mismos tokens | abierto |
-| APP-20 | Sin accesibilidad: escalado de texto, `Semantics`, 48 dp | Escalado 2x verificado con tests en header y estado vacío; barra inferior con Semantics de botón y selección | parcial |
+| APP-19 | Sin modo oscuro coherente | Modo oscuro conectado con `TemaGlobal.oscuro` y `AppTheme.darkTheme`; coherencia visual pendiente de revisar en dispositivo | parcial |
+| APP-20 | Sin accesibilidad: escalado de texto, `Semantics`, 48 dp | Escalado 2x con tests; Semantics en barra inferior, buscador y acciones rápidas del Inicio | parcial |
 | APP-21 | El Inicio no muestra el potencial de las herramientas | Buscador global arriba y acciones rápidas Consultar, Redactar y Escanear bajo el hero | hecho |
 | APP-23 | El header de Concurso queda fijo y el de Dosimetría se desplaza con el scroll | El header de Dosimetría ahora está fuera del scroll, fijo como el de Concurso y Cómputo | hecho |
 | APP-22 | La barra inferior aparecía en Dosimetría pero no en Concurso ni en Cómputo | Barra añadida a las tres pantallas del flujo | hecho |

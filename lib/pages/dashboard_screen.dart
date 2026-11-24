@@ -157,7 +157,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   Widget _buildBuscadorGlobal(BuildContext context) {
-    return InkWell(
+    return Semantics(
+      button: true,
+      label: 'Buscar sentencias, leyes o artículos',
+      child: InkWell(
       onTap: () => _abrir(context, const BuscadorJuridicoScreen()),
       borderRadius: BorderRadius.circular(AppTokens.radioControl),
       child: Container(
@@ -177,6 +180,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ],
         ),
+      ),
       ),
     );
   }
@@ -220,7 +224,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
     String texto,
     VoidCallback onTap,
   ) {
-    return InkWell(
+    return Semantics(
+      button: true,
+      label: texto,
+      child: InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(AppTokens.radioControl),
       child: Container(
@@ -244,6 +251,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ],
         ),
+      ),
       ),
     );
   }
