@@ -1146,11 +1146,13 @@ Widget _selectorValorCondicion(
                   AppTokens.margen, 16, AppTokens.margen, 0),
               child: AppScreenHeader(
                 titulo: 'Jurisprudencia',
-                subtitulo: '55.000 sentencias de fondo del TSJ, texto completo',
+                subtitulo: 'Sentencias del Tribunal Supremo de Justicia, con texto completo',
                 acciones: <Widget>[
-                  if (!_cargando)
+                  if (!_cargando &&
+                      (_searchController.text.trim().isNotEmpty ||
+                          _cantidadFiltrosActivos > 0))
                     Text(
-                      '$_totalResultados',
+                      '$_totalResultados resultados',
                       style: TextStyle(
                         color: TemaGlobal.textoSecundario,
                         fontSize: 13,
