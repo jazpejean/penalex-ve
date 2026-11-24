@@ -1785,8 +1785,11 @@ Widget _selectorValorCondicion(
                 textBaseline: TextBaseline.alphabetic,
                 children: [
                   Expanded(
+                    flex: 2,
                     child: Text(
                       'Nº ${sentencia.numeroSentencia}',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: TemaGlobal.texto,
                         fontWeight: FontWeight.bold,
@@ -1794,10 +1797,16 @@ Widget _selectorValorCondicion(
                       ),
                     ),
                   ),
-                  Text(
-                    '${_nombreSala(sentencia.sala)} · ${sentencia.fechaSentencia}',
-                    style: TextStyle(
-                        color: TemaGlobal.textoSecundario, fontSize: 12),
+                  const SizedBox(width: 8),
+                  Flexible(
+                    flex: 3,
+                    child: Text(
+                      '${_nombreSala(sentencia.sala)} · ${sentencia.fechaSentencia}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                          color: TemaGlobal.textoSecundario, fontSize: 12),
                   ),
                 ],
               ),

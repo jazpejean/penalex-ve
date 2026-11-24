@@ -149,9 +149,9 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 | LEY-01 | En la web los artículos salían en un solo párrafo | `white-space: pre-line` en el cuerpo, verificado en producción | hecho |
 | LEY-02 | El art. 424 empezaba con un punto suelto | Limpieza de puntuación inicial en el render, verificada | hecho |
 | LEY-09 | Espacios antes de coma y dobles espacios | Normalización en cuerpo, numerales y párrafos | hecho |
-| LEY-03 | Sin auditoría ortográfica del corpus (53 leyes) | Auditoría ejecutada: 403 hallazgos reales en 53 leyes | hecho |
+| LEY-03 | Sin auditoría ortográfica del corpus (53 leyes) | Auditoría ejecutada: 196 hallazgos reales, con texto completo y error marcado | hecho |
 | LEY-04 | Sin revisión de artículos con texto vacío o truncado | Detectados artículos cortos y dos leyes que no cargan | abierto |
-| LEY-06 | Dos leyes no cargan por JSON corrupto | Regenerar `ley-del-estatuto-de-la-funcion-de-la-policia-de-investigacion` y la del CICPC | abierto |
+| LEY-06 | Se creyó que dos leyes no cargaban | **Descartado**: las leyes cargan bien en la web y en la app. Fue una descarga incompleta del script de auditoría | descartado |
 | LEY-07 | 43 minúsculas tras punto y 46 puntos sin espacio | Revisión manual asistida (pueden ser abreviaturas legítimas) | abierto |
 | LEY-08 | 8 comillas y 14 paréntesis sin cerrar | Revisión manual artículo por artículo | abierto |
 | LEY-05 | Sin control de versiones de la ley (reformas) | Campo de vigencia y fecha de reforma | abierto |
@@ -294,21 +294,22 @@ on conflict do nothing;
 
 ## Auditoría del corpus
 
-Reporte completo: [docs/auditoria-leyes.md](auditoria-leyes.md)
+Reporte completo con el texto de cada artículo y el error marcado: [docs/auditoria-leyes.md](auditoria-leyes.md)
 
 | Tipo de hallazgo | Casos |
 |---|---|
-| Empieza con signo de puntuación | 50 |
+| Empieza con signo de puntuación | 54 |
+| Minúscula después de punto | 46 |
 | Punto seguido de mayúscula sin espacio | 46 |
-| Minúscula después de punto | 43 |
 | Espacio antes de coma o punto | 35 |
-| Paréntesis sin cerrar | 14 |
-| Comillas sin cerrar | 8 |
-| Leyes que no cargan | 2 |
+| Comillas dobles sin cierre | 8 |
+| Paréntesis sin cerrar | 7 |
+
+El detector excluye abreviaturas conocidas (Dr., Sr., art., Nº, etc.) y números.
 
 Corregidos automáticamente en el render: puntuación inicial, espacio antes de puntuación, doble espacio y saltos excesivos.
 
-Pendientes de revisión manual: minúsculas tras punto, puntos sin espacio, comillas y paréntesis.
+Pendientes de validación del usuario: los 196 casos del reporte, con casilla para marcar si es correcto o error.
 
 ---
 
