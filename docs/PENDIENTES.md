@@ -80,8 +80,8 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 
 | ID | Problema | Propuesta | Estado |
 |---|---|---|---|
-| ESC-10 | Sin captura consecutiva | Flujo "página 1, 2, 3" sin salir | abierto |
-| ESC-11 | Sin galería múltiple | `pickMultiImage` | abierto |
+| ESC-10 | Sin captura consecutiva | El escáner ya permite hasta 30 páginas por sesión | hecho |
+| ESC-11 | Sin galería múltiple | Botón de galería con selección múltiple en el editor | hecho |
 | ESC-12 | Sin mejora de imagen (contraste, binarización) | Filtros suaves por página | abierto |
 | ESC-13 | Sin tira de miniaturas | Estados por página: pendiente, lista, error | abierto |
 | ESC-14 | PDF se arma descargando de Storage | Generar PDF local al instante | abierto |
