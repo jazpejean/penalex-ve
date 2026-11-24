@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'detector_vicios_screen.dart';
+import 'escanear_documento_screen.dart';
+import 'redactor_documentos_screen.dart';
+import 'chat_legal_screen.dart';
+import 'buscador_juridico_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../services/haptics_service.dart';
@@ -109,10 +113,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               _buildHeader(context, nombreUsuario),
+              const SizedBox(height: 14),
+              _buildBuscadorGlobal(context),
               const SizedBox(height: 20),
               _buildStats(),
               const SizedBox(height: 20),
               _buildHeroUlpiano(context),
+              const SizedBox(height: 16),
+              _buildAccionesRapidas(context),
               const SizedBox(height: 24),
               _buildSeccionTitulo(context, 'Herramientas de Cálculo'),
               const SizedBox(height: 12),
@@ -146,6 +154,105 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ? p
             : p[0].toUpperCase() + p.substring(1).toLowerCase())
         .join(' ');
+  }
+
+  Widget _buildBuscadorGlobal(BuildContext context) {
+    return InkWell(
+      onTap: () => _abrir(context, const BuscadorJuridicoScreen()),
+      borderRadius: BorderRadius.circular(AppTokens.radioControl),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
+        decoration: BoxDecoration(
+          color: TemaGlobal.tarjeta,
+          borderRadius: BorderRadius.circular(AppTokens.radioControl),
+          border: Border.all(color: TemaGlobal.capa),
+        ),
+        child: Row(
+          children: <Widget>[
+            Icon(Icons.search, size: 20, color: TemaGlobal.textoSecundario),
+            const SizedBox(width: 10),
+            Text(
+              'Buscar sentencias, leyes o artículos',
+              style: TextStyle(fontSize: 14, color: TemaGlobal.textoTenue),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAccionesRapidas(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: _accionRapida(
+            context,
+            Icons.auto_awesome,
+            'Consultar',
+            () => _abrir(context, const ChatLegalScreen()),
+          ),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: _accionRapida(
+            context,
+            Icons.edit_document,
+            'Redactar',
+            () => _abrir(context, const RedactorDocumentosScreen()),
+          ),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: _accionRapida(
+            context,
+            Icons.document_scanner_outlined,
+            'Escanear',
+            () => _abrir(context, const EscanearDocumentoScreen()),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _accionRapida(
+    BuildContext context,
+    IconData icono,
+    String texto,
+    VoidCallback onTap,
+  ) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(AppTokens.radioControl),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 14),
+        decoration: BoxDecoration(
+          color: TemaGlobal.tarjeta,
+          borderRadius: BorderRadius.circular(AppTokens.radioControl),
+          border: Border.all(color: TemaGlobal.capa),
+        ),
+        child: Column(
+          children: <Widget>[
+            Icon(icono, size: 22, color: AppColors.azulMarino),
+            const SizedBox(height: 6),
+            Text(
+              texto,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: TemaGlobal.texto,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _abrir(BuildContext context, Widget pantalla) {
+    Navigator.push(
+      context,
+      MaterialPageRoute<void>(builder: (_) => pantalla),
+    );
   }
 
   Widget _buildHeader(BuildContext context, String nombreUsuario) {

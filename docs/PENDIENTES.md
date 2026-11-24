@@ -43,7 +43,7 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 | APP-18 | Estados vacíos distintos en cada pantalla | Componente `EmptyState` creado y aplicado en Agenda | hecho |
 | APP-19 | Sin modo oscuro coherente | Paleta oscura con los mismos tokens | abierto |
 | APP-20 | Sin accesibilidad: escalado de texto, `Semantics`, 48 dp | Auditoría de accesibilidad | abierto |
-| APP-21 | El Inicio no muestra el potencial de las herramientas ni es intuitivo | Reorganizar por tarea: "qué necesito hacer" con acciones primarias, descripciones de valor y métricas útiles | abierto |
+| APP-21 | El Inicio no muestra el potencial de las herramientas | Buscador global arriba y acciones rápidas Consultar, Redactar y Escanear bajo el hero | hecho |
 | APP-23 | El header de Concurso queda fijo y el de Dosimetría se desplaza con el scroll | El header de Dosimetría ahora está fuera del scroll, fijo como el de Concurso y Cómputo | hecho |
 | APP-22 | La barra inferior aparecía en Dosimetría pero no en Concurso ni en Cómputo | Barra añadida a las tres pantallas del flujo | hecho |
 
@@ -51,7 +51,7 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 
 | ID | Problema | Propuesta | Estado |
 |---|---|---|---|
-| APP-30 | Sin búsqueda global (sentencias, leyes, glosario) | Un buscador único en la barra inferior | abierto |
+| APP-30 | Sin búsqueda global | Buscador en el Inicio que abre el buscador jurídico; falta unificar leyes y glosario en el mismo | parcial |
 | APP-31 | Sin modo offline para leyes y sentencias | Cada ley descargada se guarda y se lee sin conexión; sentencias y glosario pendientes | parcial |
 | APP-32 | Historial y favoritos no se sincronizan con la web | Tabla única y sincronización | abierto |
 | APP-33 | Sin notificaciones de audiencias y lapsos | Push con FCM y recordatorios | abierto |
