@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:penalex_ve/config/app_tokens.dart';
 import 'package:penalex_ve/widgets/app_screen_header.dart';
+import 'package:penalex_ve/widgets/empty_state.dart';
 
 /// Verifica que el patrón de diseño de docs/DISENO.md se cumpla en los
 /// widgets compartidos, sin necesidad de un dispositivo.
@@ -97,6 +98,45 @@ void main() {
       final String bloque = fuente.substring(idx, idx + 220);
       expect(bloque.contains('maxLines'), isFalse);
       expect(bloque.contains('TextOverflow.ellipsis'), isFalse);
+    });
+  });
+
+  group('Accesibilidad', () {
+    testWidgets('el header escala a texto 2x sin desbordar',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: MediaQuery(
+            data: MediaQueryData(textScaler: TextScaler.linear(2.0)),
+            child: Scaffold(
+              body: AppScreenHeader(
+                titulo: 'Agenda',
+                subtitulo: 'Audiencias, lapsos y días sin despacho',
+              ),
+            ),
+          ),
+        ),
+      );
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('el estado vacío escala a texto 2x sin desbordar',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: MediaQuery(
+            data: MediaQueryData(textScaler: TextScaler.linear(2.0)),
+            child: Scaffold(
+              body: EmptyState(
+                icono: Icons.calendar_month,
+                titulo: 'No hay audiencias fijadas.',
+                mensaje: 'Toca Nueva Audiencia para agendar la primera.',
+              ),
+            ),
+          ),
+        ),
+      );
+      expect(tester.takeException(), isNull);
     });
   });
 

@@ -59,7 +59,11 @@ class MainBottomBar extends StatelessWidget {
   ) {
     final bool isSelected = currentIndex == index;
     return Expanded(
-      child: InkWell(
+      child: Semantics(
+        button: true,
+        selected: isSelected,
+        label: label,
+        child: InkWell(
         onTap: () {
           mainTabIndex.value = index;
           Navigator.popUntil(context, (Route<dynamic> r) => r.isFirst);
@@ -97,6 +101,7 @@ class MainBottomBar extends StatelessWidget {
             ),
           ],
         ),
+      ),
       ),
     );
   }
