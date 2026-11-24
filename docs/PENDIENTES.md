@@ -488,10 +488,47 @@ El corpus es un dato y se puede copiar. Los pipelines son la capacidad de genera
 
 Un jurado compra la capacidad de producir y mantener el dato, no el archivo. Si el pipeline se presenta como un sistema de cinco etapas con métricas, el proyecto deja de ser "una app con datos" y pasa a ser "infraestructura de conocimiento legal".
 
+### La tesis del negocio
+
+La dificultad está en construir una base sólida. Una vez construida, el pipeline la mantiene actualizada sola y el costo marginal de producción es mínimo. Ese es el valor real: no el corpus, sino la capacidad de mantenerlo vivo a costo casi cero.
+
+**Los cuatro números que lo demuestran:**
+
+| Métrica | Qué prueba |
+|---|---|
+| Costo por sentencia procesada | El dato cuesta centavos, no horas |
+| Costo por doctrina verificada | La curaduría no depende de personas |
+| Tiempo desde que sale una sentencia hasta que está indexada | La base está viva |
+| % de campos completos por corrida | La calidad se mantiene sin intervención |
+
+**Los tres riesgos que hay que blindar antes de decirlo en público:**
+
+1. **Detección de cambios en la fuente.** Si el portal del TSJ cambia, el pipeline puede devolver cero y nadie se entera. Hace falta una alerta cuando el volumen diario cae por debajo de lo esperado.
+2. **Cola de revisión humana.** La verificación web acierta la mayoría de las veces, pero no siempre. Sin una cola de `dudosa` y `sin_fuente`, los errores se acumulan en silencio.
+3. **Reformas y derogatorias.** Una ley reformada cambia el corpus. Hay que detectar la reforma y marcar los artículos afectados, no solo agregar texto nuevo.
+
+**Forma del pipeline único:**
+
+``` 
+penalex-pipeline run --desde 2026-11-01
+  ├── ingesta       (portal, R2, Supabase)
+  ├── extraccion    (criterios y citas)
+  ├── curaduria     (verificacion web)
+  ├── indexacion    (vectores)
+  └── auditoria     (calidad y alertas)
+```
+
+Cada etapa es idempotente y deja un registro en `pipeline_runs` con fecha, registros, costo y errores. Un solo comando, cinco etapas, métricas en cada una.
+
 ### Tareas
 
 | ID | Tarea | Estado |
 |---|---|---|
+| PIPE-08 | Medir costo por sentencia y por doctrina | abierto |
+| PIPE-09 | Alerta cuando el volumen diario cae (posible cambio de portal) | abierto |
+| PIPE-10 | Cola de revisión humana con estados | abierto |
+| PIPE-11 | Detección de reformas y derogatorias de leyes | abierto |
+| PIPE-12 | Tabla `pipeline_runs` con registros, costo y errores | abierto |
 | PIPE-01 | Consolidar los 48 scripts en cinco pipelines con nombre y comando único | abierto |
 | PIPE-02 | Añadir idempotencia (upsert por clave) a los cinco | abierto |
 | PIPE-03 | Registrar costo de IA por corrida y por registro | abierto |
