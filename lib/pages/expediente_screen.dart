@@ -41,6 +41,17 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
   final DocumentosService _documentosService = DocumentosService();
   Expediente? _expediente;
   List<DocumentoEscaneado> _documentos = <DocumentoEscaneado>[];
+  String _busqueda = '';
+  String? _filtroTipo;
+
+  List<DocumentoEscaneado> get _documentosVisibles {
+    final String q = _busqueda.trim().toLowerCase();
+    return _documentos.where((DocumentoEscaneado d) {
+      final bool texto = q.isEmpty || d.titulo.toLowerCase().contains(q);
+      final bool tipo = _filtroTipo == null || d.tipo == _filtroTipo;
+      return texto && tipo;
+    }).toList();
+  }
   bool _cargando = true;
 
   @override
@@ -154,10 +165,18 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
                   _buildSeccionTitulo(context, 'Portafolio del Caso',
                       accion: 'Subir', onAccion: _subirDocumento),
                   const SizedBox(height: 12),
+                  if (_documentos.isNotEmpty) ...<Widget>[
+                    _buildBuscadorPortafolio(),
+                    const SizedBox(height: 10),
+                    _buildChipsTipo(),
+                    const SizedBox(height: 10),
+                  ],
                   if (_documentos.isEmpty)
                     _buildPortafolioVacio()
+                  else if (_documentosVisibles.isEmpty)
+                    _buildSinResultados()
                   else
-                    ..._documentos.map(_buildDocItem),
+                    ..._documentosVisibles.map(_buildDocItem),
                   const SizedBox(height: 24),
                   _buildSeccionTitulo(context, 'Inteligencia Artificial'),
                   const SizedBox(height: 12),
@@ -361,6 +380,67 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
     );
   }
 
+  Widget _buildBuscadorPortafolio() {
+    return TextField(
+      onChanged: (String v) => setState(() => _busqueda = v),
+      style: TextStyle(color: TemaGlobal.texto, fontSize: 14),
+      decoration: InputDecoration(
+        hintText: 'Buscar por título o fecha',
+        hintStyle: TextStyle(color: TemaGlobal.textoTenue, fontSize: 14),
+        prefixIcon: Icon(Icons.search, color: TemaGlobal.textoSecundario),
+        filled: true,
+        fillColor: TemaGlobal.campoTexto,
+        isDense: true,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppTokens.radioControl),
+          borderSide: BorderSide(color: TemaGlobal.capa),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppTokens.radioControl),
+          borderSide: BorderSide(color: TemaGlobal.capa),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildChipsTipo() {
+    final Map<String, int> conteo = <String, int>{};
+    for (final DocumentoEscaneado d in _documentos) {
+      conteo[d.tipo] = (conteo[d.tipo] ?? 0) + 1;
+    }
+    final List<String> tipos = conteo.keys.toList()..sort();
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: <Widget>[
+        ChoiceChip(
+          label: Text('Todos (${_documentos.length})'),
+          selected: _filtroTipo == null,
+          onSelected: (_) => setState(() => _filtroTipo = null),
+        ),
+        for (final String t in tipos)
+          ChoiceChip(
+            label: Text('$t (${conteo[t]})'),
+            selected: _filtroTipo == t,
+            onSelected: (bool v) =>
+                setState(() => _filtroTipo = v ? t : null),
+          ),
+      ],
+    );
+  }
+
+  Widget _buildSinResultados() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Center(
+        child: Text(
+          'Sin documentos que coincidan.',
+          style: TextStyle(color: TemaGlobal.textoSecundario),
+        ),
+      ),
+    );
+  }
+
   Widget _buildDocItem(DocumentoEscaneado doc) {
     final bool esPdf = doc.titulo.toLowerCase().contains('pdf') ||
         doc.paginasUrls.any((String u) => u.toLowerCase().endsWith('.pdf'));
@@ -406,17 +486,16 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
                     children: <Widget>[
                       Text(
                         doc.titulo,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
                           color: TemaGlobal.texto,
+                          height: 1.3,
                         ),
                       ),
                       const SizedBox(height: 3),
                       Text(
-                        '${doc.paginasUrls.length} página(s) · '
+                        '${doc.tipo} · ${doc.paginasUrls.length} página(s) · '
                         '${_fechaAmigable(doc.fechaCreacion)}',
                         style: TextStyle(
                           fontSize: 11,

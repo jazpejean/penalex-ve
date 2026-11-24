@@ -47,4 +47,26 @@ class DocumentoEscaneado {
 
   // Helper para compatibilidad con ScannedDocument local
   int get numeroPaginas => paginasUrls.length;
+
+  /// Tipo inferido por el nombre del documento. No requiere columna nueva
+  /// en la base: auto, providencia, escrito, prueba, sentencia, acta u otro.
+  String get tipo {
+    final String t = titulo.toLowerCase();
+    if (t.contains('auto')) return 'Auto';
+    if (t.contains('providencia') || t.contains('decreto')) return 'Providencia';
+    if (t.contains('escrito') ||
+        t.contains('demanda') ||
+        t.contains('recurso') ||
+        t.contains('contestación')) {
+      return 'Escrito';
+    }
+    if (t.contains('prueba') ||
+        t.contains('experticia') ||
+        t.contains('testimonio')) {
+      return 'Prueba';
+    }
+    if (t.contains('sentencia') || t.contains('fallo')) return 'Sentencia';
+    if (t.contains('acta')) return 'Acta';
+    return 'Otro';
+  }
 }

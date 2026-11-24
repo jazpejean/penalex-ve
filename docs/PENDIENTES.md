@@ -69,9 +69,9 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 | POR-02 | Sin miniatura real | Mostrar `thumbnail_url` | hecho |
 | POR-03 | Sin eliminar documento | Confirmación y borrado | hecho |
 | POR-04 | El escáner no quedaba vinculado al expediente | Activar `ExpedienteActivoProvider` antes de abrir | hecho |
-| POR-05 | Sin tipos de documento (auto, providencia, prueba, escrito) | Requiere columna `tipo` en `documentos_escaneados` | abierto |
-| POR-06 | Sin buscador dentro del portafolio | Filtro por título y fecha | abierto |
-| POR-07 | Sin contadores por tipo | Resumen en la cabecera del portafolio | abierto |
+| POR-05 | Sin tipos de documento (auto, providencia, prueba, escrito) | Tipo inferido por el nombre del documento, sin columna nueva. Se muestra en cada tarjeta | hecho |
+| POR-06 | Sin buscador dentro del portafolio | Buscador por título y chips de filtro por tipo | hecho |
+| POR-07 | Sin contadores por tipo | Conteo en cada chip de filtro | hecho |
 | POR-08 | Los escritos del redactor no se asocian al expediente | Falta `expediente_id` en `redactor_conversaciones` | abierto |
 
 ---
