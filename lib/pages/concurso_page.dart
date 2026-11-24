@@ -10,6 +10,7 @@ import '../widgets/main_bottom_bar.dart';
 import '../widgets/dosimetria_stepper.dart';
 import 'computo_page.dart';
 import '../config/app_tokens.dart';
+import '../widgets/app_screen_header.dart';
 
 class ConcursoPage extends StatefulWidget {
   const ConcursoPage({required this.delitos, super.key});
@@ -109,23 +110,13 @@ class _ConcursoPageState extends State<ConcursoPage> {
       bottomNavigationBar: const MainBottomBar(),
         body: Column(
           children: <Widget>[
-            SafeArea(
+            const SafeArea(
+              bottom: false,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(8, 4, 16, 0),
-                child: Row(
-                  children: <Widget>[
-                    const SizedBox(width: 4),
-                    Expanded(
-                      child: Text(
-                        'CONCURSO Y ADMISIÓN',
-                        style: TextStyle(
-                            color: AppColors.acento,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 0.6,
-                            fontSize: 16),
-                      ),
-                    ),
-                  ],
+                padding: EdgeInsets.fromLTRB(20, 16, 20, 0),
+                child: AppScreenHeader(
+                  titulo: 'Concurso y admisión',
+                  subtitulo: 'Acumulación de delitos y reglas de concurso',
                 ),
               ),
             ),

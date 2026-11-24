@@ -279,11 +279,10 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
                   children: [
                     Text(
                       ley.nombre,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 14,
+                        height: 1.3,
                         color: TemaGlobal.texto,
                       ),
                     ),

@@ -6,6 +6,7 @@ import 'redactor_documentos_screen.dart';
 import 'escanear_documento_screen.dart';
 import 'detector_vicios_screen.dart';
 import '../config/app_tokens.dart';
+import '../widgets/app_screen_header.dart';
 
 /// Hub principal del Asistente Legal con IA
 /// Agrupa las 4 herramientas principales potenciadas por IA
@@ -34,21 +35,26 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const AppScreenHeader(
+              titulo: 'Asistente',
+              subtitulo: 'Consulta, redacta y analiza con Ulpiano',
+            ),
+            const SizedBox(height: 20),
             // ULPIANO - El asistente (feature estrella)
             _buildStarFeatureCard(
               context,
               icon: Icons.auto_awesome,
               title: 'Ulpiano — Asistente Legal',
-              badge: '⭐ EL ASISTENTE',
+              badge: 'EL ASISTENTE',
               description:
                   'Pregúntale a Ulpiano: detecta si quieres consultar, redactar, '
                   'analizar, calcular o citar, y responde siempre con fuentes '
                   'verificables (artículos y sentencias del TSJ).',
               highlights: [
-                '🔍 Consulta con citas verificables',
-                '✍️ Redacta escritos con estilo forense',
-                '📄 Analiza documentos adjuntos',
-                '⚖️ Calcula dosimetría y lapsos',
+                'Consulta con citas verificables',
+                'Redacta escritos con estilo forense',
+                'Analiza documentos adjuntos',
+                'Calcula dosimetría y lapsos',
               ],
               onTap: () => Navigator.push(
                 context,
@@ -60,15 +66,8 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
             const SizedBox(height: 20),
 
             // Título de herramientas complementarias
-            Text(
-              'Herramientas Complementarias',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: TemaGlobal.texto,
-                letterSpacing: 0.5,
-              ),
-            ),
+            Text('Herramientas complementarias',
+                style: AppTokens.tituloSeccion),
             const SizedBox(height: 16),
 
             // REDACTOR DE DOCUMENTOS
@@ -77,7 +76,7 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
               icon: Icons.edit_document,
               iconColor: TemaGlobal.isDark ? TemaGlobal.dorado : TemaGlobal.azulMarino,
               title: 'Redactor de Documentos',
-              badge: '⚡ Ahorra tiempo',
+              badge: 'Ahorra tiempo',
               description:
                   'Genera escritos legales profesionales: demandas, recursos, '
                   'solicitudes y más con asistencia guiada de IA.',

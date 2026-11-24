@@ -23,6 +23,7 @@ import 'dosimetria_page.dart';
 import '../config/app_colors.dart';
 import '../widgets/app_snackbar.dart';
 import '../config/app_tokens.dart';
+import '../widgets/app_screen_header.dart';
 
 class ComputoPage extends StatefulWidget {
   const ComputoPage({
@@ -542,23 +543,13 @@ class _ComputoPageState extends State<ComputoPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SafeArea(
+          const SafeArea(
+            bottom: false,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(8, 4, 16, 0),
-              child: Row(
-                children: [
-                  const SizedBox(width: 4),
-                  Expanded(
-                    child: Text(
-                      'CÓMPUTO',
-                      style: TextStyle(
-                          color: AppColors.acento,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: 0.6,
-                          fontSize: 16),
-                    ),
-                  ),
-                ],
+              padding: EdgeInsets.fromLTRB(20, 16, 20, 0),
+              child: AppScreenHeader(
+                titulo: 'Cómputo de pena',
+                subtitulo: 'Tiempo de cumplimiento y línea de tiempo',
               ),
             ),
           ),

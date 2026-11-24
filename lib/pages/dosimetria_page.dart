@@ -16,6 +16,7 @@ import '../widgets/app_snackbar.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'concurso_page.dart';
 import '../config/app_tokens.dart';
+import '../widgets/app_screen_header.dart';
 
 enum UnidadTiempo {
   anos,
@@ -672,12 +673,14 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Column(
               children: <Widget>[
-                // Menú lateral + acciones de la herramienta.
-                Row(
-                  children: <Widget>[
-                    const Spacer(),
+                AppScreenHeader(
+                  titulo: 'Dosimetría',
+                  subtitulo:
+                      'Pena individualizada con los artículos 37, 74, 77 y 80',
+                  acciones: <Widget>[
                     IconButton(
-                      icon: Icon(Icons.menu_book_outlined, color: AppColors.acento),
+                      icon: Icon(Icons.menu_book_outlined,
+                          color: AppColors.acento),
                       onPressed: () {
                         Haptics.tap();
                         mostrarBuscadorArticulos(context);
@@ -685,7 +688,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                       tooltip: "Consultar artículos de la ley",
                     ),
                     IconButton(
-                      icon: Icon(Icons.refresh_rounded, color: AppColors.acento),
+                      icon: Icon(Icons.refresh_rounded,
+                          color: AppColors.acento),
                       onPressed: () {
                         Haptics.tap();
                         _resetCalculation();
@@ -693,7 +697,8 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                       tooltip: "Restablecer",
                     ),
                     IconButton(
-                      icon: Icon(Icons.folder_open_rounded, color: AppColors.acento),
+                      icon: Icon(Icons.folder_open_rounded,
+                          color: AppColors.acento),
                       onPressed: () {
                         Haptics.tap();
                         _showSavedCalculations();
