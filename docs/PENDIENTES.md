@@ -34,6 +34,7 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 |---|---|---|---|
 | APP-10 | Iconos de Inicio en gris claro sobre gris claro | Contraste AA en iconos y contenedores | abierto |
 | APP-11 | Leyenda del calendario con "Hoy" casi invisible | "Hoy" en azul marino con contraste | hecho |
+| APP-24 | El buscador de jurisprudencia tenía colores discordantes, filtros apretados y no mostraba resultados al entrar | Header único, buscador con botón navy, filtros en hoja aparte con chips navy y carga automática al entrar | hecho |
 | APP-12 | Botón primario dorado en unas pantallas y navy en otras | Botones principales de leyes, prescripción y redactor en navy con texto blanco | hecho |
 | APP-13 | Títulos de sección en dorado, negro y serif según pantalla | `AppTokens.tituloSeccion` en todas | en curso |
 | APP-14 | Drawer con sección "Recursos legales" incompleta | Ordenar y completar el menú | abierto |

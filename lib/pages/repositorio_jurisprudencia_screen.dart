@@ -24,6 +24,7 @@ import '../widgets/main_bottom_bar.dart';
 import '../widgets/app_bar_institucional.dart';
 import '../widgets/app_snackbar.dart';
 import '../config/app_tokens.dart';
+import '../widgets/app_screen_header.dart';
 
 class RepositorioJurisprudenciaScreen extends StatefulWidget {
   const RepositorioJurisprudenciaScreen({super.key});
@@ -98,7 +99,6 @@ class _RepositorioJurisprudenciaScreenState
   
   /// Acento de marca: azul marino en modo claro, AppColors.dorado en modo oscuro.
   
-  static Color get fondoGris => TemaGlobal.superficie;
 
   @override
   void initState() {
@@ -1012,16 +1012,17 @@ Widget _selectorValorCondicion(
           label: Text(label),
           selected: activo,
           onSelected: (_) => onTap(),
-          selectedColor: AppColors.dorado,
+          selectedColor: AppColors.azulMarino,
           backgroundColor: TemaGlobal.tarjeta,
           labelStyle: TextStyle(
-            color: activo ? AppColors.onDorado : TemaGlobal.texto,
+            color: activo ? Colors.white : TemaGlobal.texto,
             fontWeight: activo ? FontWeight.bold : FontWeight.w500,
             fontSize: 12,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppTokens.radioPildora),
-            side: BorderSide(color: activo ? AppColors.dorado : TemaGlobal.capa),
+            side: BorderSide(
+                color: activo ? AppColors.azulMarino : TemaGlobal.capa),
           ),
           visualDensity: VisualDensity.compact,
           showCheckmark: false,
@@ -1134,211 +1135,253 @@ Widget _selectorValorCondicion(
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const AppDrawer(currentRoute: '/repositorio_jurisprudencia'),
-            appBar: AppBarInstitucional(
-        title: 'Buscador de Jurisprudencia',
-        mostrarBack: true,
-
-        actions: [
-          // ✅ Contador de resultados
-          if (!_cargando &&
-              (_resultados.isNotEmpty || _doctrinas.isNotEmpty))
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: Text(
-                  '${_totalResultados} ${_totalResultados == 1 ? "resultado" : "resultados"}',
-                  style: const TextStyle(
-                    color: AppColors.dorado,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                  ),
-                ),
+      bottomNavigationBar: const MainBottomBar(),
+      backgroundColor: TemaGlobal.superficie,
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                  AppTokens.margen, 16, AppTokens.margen, 0),
+              child: AppScreenHeader(
+                titulo: 'Jurisprudencia',
+                subtitulo: '55.000 sentencias de fondo del TSJ, texto completo',
+                acciones: <Widget>[
+                  if (!_cargando)
+                    Text(
+                      '$_totalResultados',
+                      style: TextStyle(
+                        color: TemaGlobal.textoSecundario,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                ],
               ),
             ),
-        ],
-      ),
-      bottomNavigationBar: const MainBottomBar(),
-      backgroundColor: fondoGris,
-      body: Column(
-        children: [
-          // ✅ Barra de búsqueda SIMPLE y clara
-          Container(
-            padding: const EdgeInsets.all(AppTokens.margen),
-            decoration: BoxDecoration(
-              color: TemaGlobal.superficie,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: AppColors.a12),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Subtítulo como en penalexve.com/sentencias
-                Text(
-                  'Más de 55.000 sentencias de fondo del Tribunal Supremo '
-                  'de Justicia, con texto completo.',
-                  style: AppTokens.secundario,
-                ),
-                const SizedBox(height: 12),
-                // ✅ Barra de búsqueda premium: input + botón dorado
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: _searchController,
-                        style: TextStyle(color: TemaGlobal.texto, fontSize: 14),
-                        decoration: InputDecoration(
-                          // Placeholder premium (especificación del Super Buscador).
-                          hintText: 'Busca por número, delito, partes o tema...',
-                          hintStyle: TextStyle(
-                            color: TemaGlobal.textoTenue,
-                            fontSize: 14,
-                          ),
-                          prefixIcon:
-                              Icon(Icons.search, color: AppColors.acento, size: 22),
-                          suffixIcon: _searchController.text.isNotEmpty
-                              ? IconButton(
-                                  icon: Icon(Icons.clear,
-                                      color: AppColors.acento, size: 20),
-                                  onPressed: () {
-                                    _searchController.clear();
-                                    setState(() {});
-                                    _buscar();
-                                  },
-                                )
-                              : null,
-                          filled: true,
-                          fillColor: TemaGlobal.campoTexto,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide:
-                                BorderSide(color: AppColors.acento, width: 2),
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 14,
-                          ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                  AppTokens.margen, 14, AppTokens.margen, 10),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: TextField(
+                      controller: _searchController,
+                      style: TextStyle(color: TemaGlobal.texto, fontSize: 14),
+                      decoration: InputDecoration(
+                        hintText: 'Número, delito, partes o tema',
+                        hintStyle: TextStyle(
+                            color: TemaGlobal.textoTenue, fontSize: 14),
+                        prefixIcon: Icon(Icons.search,
+                            color: TemaGlobal.textoSecundario, size: 20),
+                        suffixIcon: _searchController.text.isNotEmpty
+                            ? IconButton(
+                                icon: Icon(Icons.clear,
+                                    color: TemaGlobal.textoSecundario,
+                                    size: 18),
+                                onPressed: () {
+                                  _searchController.clear();
+                                  setState(() {});
+                                  _buscar();
+                                },
+                              )
+                            : null,
+                        filled: true,
+                        fillColor: TemaGlobal.campoTexto,
+                        isDense: true,
+                        border: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.circular(AppTokens.radioControl),
+                          borderSide: BorderSide(color: TemaGlobal.capa),
                         ),
-                        onSubmitted: (_) => _buscar(),
-                        onChanged: (value) {
-                          setState(() {});
-                          if (value.isEmpty) {
-                            _buscar();
-                          }
-                        },
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.circular(AppTokens.radioControl),
+                          borderSide: BorderSide(color: TemaGlobal.capa),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.circular(AppTokens.radioControl),
+                          borderSide: const BorderSide(
+                              color: AppColors.azulMarino, width: 1.5),
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 12),
                       ),
+                      onSubmitted: (_) => _buscar(),
+                      onChanged: (String value) {
+                        setState(() {});
+                        if (value.isEmpty) _buscar();
+                      },
                     ),
-                    const SizedBox(width: 8),
-                    // Botón de búsqueda dorado (guía 3.2: primario acento).
-                    Material(
-                      color: AppColors.azulMarino,
+                  ),
+                  const SizedBox(width: 8),
+                  FilledButton(
+                    onPressed: _buscar,
+                    style: FilledButton.styleFrom(
+                      backgroundColor: AppColors.azulMarino,
+                      foregroundColor: Colors.white,
+                      minimumSize: const Size(0, 46),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: InkWell(
-                        onTap: _buscar,
-                        borderRadius: BorderRadius.circular(12),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 14, vertical: 14),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(Icons.search,
-                                  color: AppColors.onAzulMarino, size: 20),
-                              SizedBox(width: 6),
-                              Text(
-                                'Buscar',
-                                style: TextStyle(
-                                  color: AppColors.onAzulMarino,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        borderRadius:
+                            BorderRadius.circular(AppTokens.radioControl),
                       ),
                     ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                // ✅ Ayuda sutil con indicador de búsqueda semántica
-                Row(
-                  children: [
-                    Icon(Icons.auto_awesome,
-                        size: 12, color: AppColors.acento.withValues(alpha: AppColors.a48)),
-                    const SizedBox(width: 4),
-                    Text(
-                      'AND (espacio) · OR · "frase exacta" · -excluir · número exacto',
+                    child: const Text('Buscar'),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppTokens.margen),
+              child: Row(
+                children: <Widget>[
+                  OutlinedButton.icon(
+                    onPressed: _abrirFiltros,
+                    icon: const Icon(Icons.tune, size: 18),
+                    label: Text(
+                      _cantidadFiltrosActivos > 0
+                          ? 'Filtros ($_cantidadFiltrosActivos)'
+                          : 'Filtros',
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: TemaGlobal.texto,
+                      side: BorderSide(color: TemaGlobal.capa),
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(AppTokens.radioControl),
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: _abrirAyudaBusqueda,
+                    child: Text(
+                      'Cómo buscar',
                       style: TextStyle(
                         color: TemaGlobal.textoSecundario,
                         fontSize: 12,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 8),
+            if (_usoSemantica)
+              Container(
+                width: double.infinity,
+                margin: const EdgeInsets.fromLTRB(20, 4, 20, 0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: BoxDecoration(
+                  color: AppColors.azulMarino.withValues(alpha: 0.06),
+                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
+                ),
+                child: Row(
+                  children: <Widget>[
+                    Icon(Icons.auto_awesome,
+                        size: 14, color: AppColors.azulMarino),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Resultados por búsqueda semántica',
+                      style: TextStyle(
+                        color: AppColors.azulMarino,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
-                _buildFiltros(),
-              ],
+              ),
+            Expanded(
+              child: _cargando
+                  ? _buildSkeletons()
+                  : _listaVacia
+                      ? _buildEmptyState()
+                      : FadeTransition(
+                          opacity: _fadeAnimation,
+                          child: _categoriaSeleccionada == 'Doctrinas'
+                              ? _buildListaDoctrinas()
+                              : _buildListaSentencias(),
+                        ),
             ),
-          ),
+          ],
+        ),
+      ),
+    );
+  }
 
-          // ✅ Lista de resultados con skeletons + lazy load
-          Expanded(
-            child: _cargando
-                ? _buildSkeletons()
-                : _listaVacia
-                    ? _buildEmptyState()
-                    : Column(
-                        children: [
-                          // Etiqueta cuando el FTS no dio nada y se usó la
-                          // semántica de Qdrant (fallback automático).
-                          if (_usoSemantica)
-                            Container(
-                              width: double.infinity,
-                              margin: const EdgeInsets.fromLTRB(16, 12, 16, 0),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 8),
-                              decoration: BoxDecoration(
-                                color: AppColors.dorado
-                                    .withValues(alpha: AppColors.a12),
-                                borderRadius: BorderRadius.circular(AppTokens.radioControl),
-                              ),
-                              child: Row(
-                                children: [
-                                  Icon(Icons.auto_awesome,
-                                      size: 14, color: AppColors.dorado),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    'Resultados por búsqueda semántica',
-                                    style: TextStyle(
-                                      color: AppColors.dorado,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          Expanded(
-                            child: FadeTransition(
-                              opacity: _fadeAnimation,
-                              child: _categoriaSeleccionada == 'Doctrinas'
-                                  ? _buildListaDoctrinas()
-                                  : _buildListaSentencias(),
-                            ),
-                          ),
-                        ],
-                      ),
+  Future<void> _abrirFiltros() async {
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: TemaGlobal.tarjeta,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+            top: Radius.circular(AppTokens.radioTarjeta)),
+      ),
+      builder: (BuildContext ctx) {
+        return Padding(
+          padding: EdgeInsets.fromLTRB(
+            20,
+            20,
+            20,
+            20 + MediaQuery.of(ctx).viewInsets.bottom,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text('Filtros', style: AppTokens.tituloSeccion),
+              const SizedBox(height: 16),
+              _buildFiltros(),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton(
+                  onPressed: () {
+                    Navigator.pop(ctx);
+                    _buscar();
+                  },
+                  style: FilledButton.styleFrom(
+                    backgroundColor: AppColors.azulMarino,
+                    foregroundColor: Colors.white,
+                    minimumSize: const Size.fromHeight(48),
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(AppTokens.radioControl),
+                    ),
+                  ),
+                  child: const Text('Aplicar filtros'),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _abrirAyudaBusqueda() {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext ctx) => AlertDialog(
+        backgroundColor: TemaGlobal.tarjeta,
+        title: Text('Cómo buscar', style: AppTokens.tituloSeccion),
+        content: Text(
+          'Varias palabras separadas por espacio se buscan todas a la vez.\n\n'
+          '"frase exacta" busca la frase completa.\n\n'
+          '-palabra excluye ese término.\n\n'
+          'Un número exacto busca por expediente.',
+          style: AppTokens.cuerpo,
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Entendido'),
           ),
         ],
       ),
