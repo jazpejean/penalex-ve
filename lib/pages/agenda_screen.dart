@@ -394,8 +394,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                     AppColors.error, 'Sin despacho'),
                                 const SizedBox(width: 16),
                                 _buildLegendItem(
-                                    AppColors.dorado.withValues(alpha: 0.3),
-                                    'Hoy'),
+                                    AppColors.azulMarino, 'Hoy'),
                               ],
                             ),
                           ],

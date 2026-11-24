@@ -417,7 +417,7 @@ class AppDrawer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const Divider(color: Colors.white12),
-                  const Text('Penalex VE v1.0',
+                  const Text('Penalex VE v1.0.0+1',
                       style: TextStyle(fontSize: 12, color: Colors.white54)),
                   const SizedBox(height: 4),
                   GestureDetector(
