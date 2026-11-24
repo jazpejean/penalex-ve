@@ -103,15 +103,7 @@ class TribunalDetailScreen extends StatelessWidget {
   // Título: nombre limpio en negrita, azul marino.
   // -------------------------------------------------------------------------
   Widget _titulo() {
-    return Text(
-      tribunal.nombreLimpio,
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w700,
-        color: TemaGlobal.texto,
-        height: 1.3,
-      ),
-    );
+    return Text(tribunal.nombreLimpio, style: AppTokens.tituloPantalla);
   }
 
   // -------------------------------------------------------------------------
