@@ -180,7 +180,7 @@ La estrategia correcta no es esconder más, es **depender del servidor para lo v
 |---|---|---|---|
 | DOS-01 | No existía la complicidad correspectiva del art. 424 | Grado "Complicidad Correspectiva", renombrado y con el mismo patrón de cálculo que los demás grados | hecho |
 | DOS-02 | El rango del art. 424 no se mostraba completo | Slider de 1/3 a 1/2 que fija la fracción aplicada | hecho |
-| DOS-10 | **Bug confirmado por el usuario:** pena de 12 a 18 años, término medio 15. Al ingresar 2 en atenuante o agravante, en años, meses o días, el efecto es la mitad de la cifra | Caso de prueba: 12-18, modificador 2. Esperado: 17 con agravante y 13 con atenuante. Revisar el campo de entrada y el redondeo a YMD | abierto |
+| DOS-10 | **No se reproduce en la versión actual.** Reproducido en el dispositivo con pena 12-18: agravante 2 años da 17, atenuante 2 años da 13, agravante 2 meses da 15a 2m. Todos correctos | Pendiente: confirmar con el usuario si el fallo persiste en el APK instalado. El caso de 2 días quedó sin verificar por el foco del campo | abierto |
 | DOS-09 | El slider del delito continuado tenía puntos desigualmente espaciados | Slider por índices: paradas equiespaciadas y valores intactos (1/6, 1/4, 1/3, 1/2) | hecho |
 | DOS-08 | Texto del art. 424 verificado en la web | Dos apartes completos, sin punto inicial, con el segundo aparte sobre el cooperador inmediato | hecho |
 | DOS-03 | Sin prueba del cálculo con un caso real | Caso de prueba: homicidio con dos intervinientes no identificados | abierto |
