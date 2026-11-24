@@ -1256,6 +1256,8 @@ Widget _selectorValorCondicion(
                       ),
                     ),
                   ),
+                  const SizedBox(width: 8),
+                  _dropdownOrden(),
                   const Spacer(),
                   GestureDetector(
                     onTap: _abrirAyudaBusqueda,
