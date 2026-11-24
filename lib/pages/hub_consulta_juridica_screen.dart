@@ -103,22 +103,11 @@ class _HubConsultaJuridicaScreenState extends State<HubConsultaJuridicaScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(height: 4),
-              Text(
-                'Consulta Jurídica',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: TemaGlobal.texto,
-                  letterSpacing: 0.3,
-                ),
-              ),
-              const SizedBox(height: 4),
+              Text('Consulta Jurídica', style: AppTokens.tituloPantalla),
+              const SizedBox(height: 6),
               Text(
                 'Tres herramientas por separado: fallos, leyes y términos.',
-                style: TextStyle(
-                  fontSize: 13,
-                  color: TemaGlobal.textoSecundario,
-                ),
+                style: AppTokens.secundario,
               ),
               const SizedBox(height: 20),
               _buildHerramienta(
@@ -173,17 +162,7 @@ class _HubConsultaJuridicaScreenState extends State<HubConsultaJuridicaScreen> {
       decoration: BoxDecoration(
         color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
-        border: Border.all(
-          color: AppColors.acento.withValues(alpha: 0.28),
-          width: 1,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        border: Border.all(color: TemaGlobal.capa),
       ),
       child: Material(
         color: Colors.transparent,
@@ -196,16 +175,14 @@ class _HubConsultaJuridicaScreenState extends State<HubConsultaJuridicaScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  padding: const EdgeInsets.all(12),
+                  width: 46,
+                  height: 46,
                   decoration: BoxDecoration(
-                    color: AppColors.acento.withValues(alpha: 0.12),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: AppColors.acento.withValues(alpha: 0.35),
-                      width: 1,
-                    ),
+                    color: TemaGlobal.campoTexto,
+                    borderRadius: BorderRadius.circular(AppTokens.radioControl),
+                    border: Border.all(color: TemaGlobal.capa),
                   ),
-                  child: Icon(icon, color: AppColors.acento, size: 28),
+                  child: Icon(icon, color: AppColors.azulMarino, size: 24),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
@@ -216,27 +193,28 @@ class _HubConsultaJuridicaScreenState extends State<HubConsultaJuridicaScreen> {
                         titulo,
                         style: TextStyle(
                           fontSize: 17,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w700,
                           color: TemaGlobal.texto,
-                          letterSpacing: 0.3,
+                          height: 1.25,
                         ),
                       ),
-                      const SizedBox(height: 6),
+                      const SizedBox(height: 5),
                       Text(
                         descripcion,
                         style: TextStyle(
-                          fontSize: 13,
+                          fontSize: 13.5,
                           color: TemaGlobal.textoSecundario,
-                          height: 1.5,
+                          height: 1.45,
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 8),
                       Text(
                         detalle,
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 11.5,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.acento,
+                          letterSpacing: 0.2,
+                          color: TemaGlobal.textoTenue,
                         ),
                       ),
                     ],
@@ -244,9 +222,9 @@ class _HubConsultaJuridicaScreenState extends State<HubConsultaJuridicaScreen> {
                 ),
                 const SizedBox(width: 8),
                 Icon(
-                  Icons.arrow_forward_ios,
-                  size: 16,
-                  color: AppColors.acento,
+                  Icons.chevron_right,
+                  size: 20,
+                  color: TemaGlobal.textoTenue,
                 ),
               ],
             ),

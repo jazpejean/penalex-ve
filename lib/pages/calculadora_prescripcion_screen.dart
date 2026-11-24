@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../config/app_colors.dart';
+import '../config/app_theme.dart';
 import '../services/prescripcion_service.dart';
 import '../widgets/app_bar_institucional.dart';
 import '../widgets/app_drawer.dart';
@@ -514,7 +515,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
                 const SizedBox(height: 6),
                 Text(
                   termino.textoOrdinal!,
-                  style: TextStyle(color: Colors.white.withValues(alpha: 0.85), fontSize: 13),
+                  style: TextStyle(color: TemaGlobal.textoSecundario, fontSize: 13),
                 ),
               ],
             ),
@@ -544,7 +545,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
         const SizedBox(width: 10),
         Text(
           label,
-          style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 13),
+          style: TextStyle(color: TemaGlobal.textoSecundario, fontSize: 13),
         ),
         const Spacer(),
         Text(
@@ -563,14 +564,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Reglas del cómputo',
-          style: TextStyle(
-            color: AppColors.dorado,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        Text('Reglas del cómputo', style: AppTokens.tituloSeccion),
         const SizedBox(height: 12),
         _buildReglaCard(
           Icons.play_circle_outline,
@@ -588,9 +582,9 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
           'Cálculo orientativo: verifica el numeral aplicable y las causales '
           'de interrupción/suspensión de tu causa antes de invocarla.',
           style: TextStyle(
-            color: Colors.white.withValues(alpha: 0.6),
+            color: TemaGlobal.textoTenue,
             fontSize: 12,
-            height: 1.4,
+            height: 1.45,
           ),
         ),
       ],
@@ -602,8 +596,9 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
       width: double.infinity,
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: AppColors.tarjeta,
-        borderRadius: BorderRadius.circular(12),
+        color: TemaGlobal.tarjeta,
+        borderRadius: BorderRadius.circular(AppTokens.radioControl),
+        border: Border.all(color: TemaGlobal.capa),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -617,8 +612,8 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
                 Text(
                   titulo,
                   style: TextStyle(
-                    color: AppColors.texto,
-                    fontWeight: FontWeight.bold,
+                    color: TemaGlobal.texto,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                   ),
                 ),
@@ -626,9 +621,9 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
                 Text(
                   texto,
                   style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.75),
+                    color: TemaGlobal.textoSecundario,
                     fontSize: 12.5,
-                    height: 1.4,
+                    height: 1.45,
                   ),
                 ),
               ],
