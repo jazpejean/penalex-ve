@@ -138,6 +138,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   // ---------------------------------------------------------------- Header
+  String _capitalizar(String texto) {
+    return texto
+        .split(' ')
+        .map((String p) => p.isEmpty
+            ? p
+            : p[0].toUpperCase() + p.substring(1).toLowerCase())
+        .join(' ');
+  }
+
   Widget _buildHeader(BuildContext context, String nombreUsuario) {
     final iniciales = _iniciales(nombreUsuario);
     return Row(
@@ -147,23 +156,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Hola, $nombreUsuario',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w800,
-                  color: TemaGlobal.texto,
-                  letterSpacing: -0.5,
-                ),
+                'Hola, ${_capitalizar(nombreUsuario)}',
+                style: AppTokens.tituloPantalla,
               ),
-              const SizedBox(height: 2),
-              Text(
-                'Tu resumen de hoy',
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                  color: TemaGlobal.textoSecundario,
-                ),
-              ),
+              const SizedBox(height: 4),
+              Text('Tu resumen de hoy', style: AppTokens.secundario),
             ],
           ),
         ),
@@ -236,13 +233,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
         color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: TemaGlobal.capa),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
       ),
       child: Row(
         children: <Widget>[
@@ -374,14 +364,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   // ------------------------------------------------- Sección genérica
   Widget _buildSeccionTitulo(BuildContext context, String titulo) {
-    return Text(
-      titulo,
-      style: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.w800,
-        color: TemaGlobal.texto,
-      ),
-    );
+    return Text(titulo, style: AppTokens.tituloSeccion);
   }
 
   // ------------------------------------------- Herramientas de Cálculo
@@ -578,10 +561,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
       width: 48,
       height: 48,
       decoration: BoxDecoration(
-        color: AppColors.dorado.withValues(alpha: AppColors.a12),
-        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
+        color: TemaGlobal.campoTexto,
+        borderRadius: BorderRadius.circular(AppTokens.radioControl),
+        border: Border.all(color: TemaGlobal.capa),
       ),
-      child: Icon(icon, size: 26, color: AppColors.dorado),
+      child: Icon(icon, size: 24, color: AppColors.azulMarino),
     );
   }
 
@@ -658,13 +642,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
         color: TemaGlobal.tarjeta,
         borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         border: Border.all(color: TemaGlobal.capa),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
       ),
       child: Row(
         children: <Widget>[
