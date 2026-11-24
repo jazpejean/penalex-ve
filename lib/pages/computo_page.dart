@@ -17,6 +17,7 @@ import '../services/pdf_service.dart';
 import '../utils/pena_utils.dart';
 import '../utils/storage_manager.dart';
 import '../widgets/app_drawer.dart';
+import '../widgets/main_bottom_bar.dart';
 import '../widgets/dosimetria_stepper.dart';
 import 'dosimetria_page.dart';
 import '../config/app_colors.dart';
@@ -537,6 +538,7 @@ class _ComputoPageState extends State<ComputoPage> {
     return Scaffold(
       drawer: const AppDrawer(currentRoute: '/computo'),
       backgroundColor: fondoPantalla,
+      bottomNavigationBar: const MainBottomBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

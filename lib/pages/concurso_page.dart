@@ -6,6 +6,7 @@ import '../config/app_theme.dart';
 import '../logic/dosimetria_engine.dart';
 import '../models/delito.dart';
 import '../widgets/app_drawer.dart';
+import '../widgets/main_bottom_bar.dart';
 import '../widgets/dosimetria_stepper.dart';
 import 'computo_page.dart';
 import '../config/app_tokens.dart';
@@ -105,6 +106,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
   Widget build(BuildContext context) => Scaffold(
         drawer: const AppDrawer(currentRoute: "/concurso"),
         backgroundColor: fondoGris,
+      bottomNavigationBar: const MainBottomBar(),
         body: Column(
           children: <Widget>[
             SafeArea(
