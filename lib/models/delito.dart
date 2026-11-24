@@ -48,6 +48,7 @@ class Delito {
     this.participacionEspecifica = "Autor",
     this.delitoContinuado = false,
     this.fraccionContinuidad = 1 / 6,
+    this.fraccionCorrespectiva = 0.5,
     this.modificadorManual = 0,
     this.modificadorUnidad = "años",
     this.tipoPena = TipoPena.prision,
@@ -83,6 +84,8 @@ class Delito {
       delitoContinuado: (map["delitoContinuado"] as bool?) ?? false,
       fraccionContinuidad:
           (map["fraccionContinuidad"] as num?)?.toDouble() ?? 1 / 6,
+      fraccionCorrespectiva:
+          (map["fraccionCorrespectiva"] as num?)?.toDouble() ?? 0.5,
       modificadorManual: (map["modificadorManual"] as num?)?.toDouble() ?? 0,
       modificadorUnidad:
           _normalizeUnidad((map["modificadorUnidad"] as String?) ?? "años"),
@@ -107,6 +110,9 @@ class Delito {
   String participacionEspecifica;
   bool delitoContinuado;
   double fraccionContinuidad;
+
+  /// Rebaja de la complicidad correspectiva (art. 424): entre 1/3 y 1/2.
+  double fraccionCorrespectiva;
   double modificadorManual;
   String modificadorUnidad;
 
@@ -313,8 +319,8 @@ class Delito {
     // 4.b. Complicidad correspectiva (Art. 424 CP): igual que los demás
     // grados, la pena se multiplica por la fracción que corresponde.
     if (participacionEspecifica == 'Complicidad Correspectiva') {
-      final double rebaja = pena * 0.5;
-      pena = pena * 0.5;
+      final double rebaja = pena * fraccionCorrespectiva;
+      pena = pena * (1 - fraccionCorrespectiva);
       pasosCalculo.add(<String, dynamic>{
         'descripcion': 'Rebaja por complicidad correspectiva (Art. 424 CP)',
         'resultado': '-${DosimetriaEngine.formatNumero(rebaja)} años',
@@ -351,6 +357,7 @@ class Delito {
         'participacionEspecifica': participacionEspecifica,
         'delitoContinuado': delitoContinuado,
         'fraccionContinuidad': fraccionContinuidad,
+        'fraccionCorrespectiva': fraccionCorrespectiva,
         'modificadorManual': modificadorManual,
         'modificadorUnidad': modificadorUnidad,
         'tipoPena': tipoPena.index,

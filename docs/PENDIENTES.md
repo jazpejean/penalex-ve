@@ -136,7 +136,8 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 | ID | Problema | Propuesta | Estado |
 |---|---|---|---|
 | DOS-01 | No existía la complicidad correspectiva del art. 424 | Grado "Complicidad Correspectiva", renombrado y con el mismo patrón de cálculo que los demás grados | hecho |
-| DOS-02 | El rango del art. 424 no se mostraba completo | Se aplica la fracción igual que Cómplice No Necesario (pena × 0.5) | hecho |
+| DOS-02 | El rango del art. 424 no se mostraba completo | Slider de 1/3 a 1/2 que fija la fracción aplicada | hecho |
+| DOS-09 | El slider del delito continuado tenía puntos desigualmente espaciados | Slider por índices: paradas equiespaciadas y valores intactos (1/6, 1/4, 1/3, 1/2) | hecho |
 | DOS-08 | Texto del art. 424 verificado en la web | Dos apartes completos, sin punto inicial, con el segundo aparte sobre el cooperador inmediato | hecho |
 | DOS-03 | Sin prueba del cálculo con un caso real | Caso de prueba: homicidio con dos intervinientes no identificados | abierto |
 | DOS-05 | Orden de aplicación del art. 424 | Se mantiene el mismo orden que el resto de los grados (paso de participación) | hecho |

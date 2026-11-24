@@ -348,6 +348,46 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
         ],
       );
 
+  /// Slider con paradas equiespaciadas: el usuario ve puntos a la misma
+  /// distancia, pero cada uno conserva su valor jurídico real.
+  Widget _buildSliderPasos({
+    required String label,
+    required List<double> valores,
+    required double valorActual,
+    required ValueChanged<double> onChanged,
+  }) {
+    int indice = valores.indexWhere((double v) => (v - valorActual).abs() < 0.001);
+    if (indice < 0) indice = 0;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
+        const SizedBox(height: 8),
+        Row(
+          children: <Widget>[
+            Expanded(
+              child: Slider(
+                value: indice.toDouble(),
+                min: 0,
+                max: (valores.length - 1).toDouble(),
+                divisions: valores.length - 1,
+                label: _fraccionTexto(valores[indice]),
+                onChanged: (double v) => onChanged(valores[v.round()]),
+                activeColor: AppColors.dorado,
+                inactiveColor: AppColors.capa,
+              ),
+            ),
+            SizedBox(
+              width: 50,
+              child: Text(_fraccionTexto(valores[indice]),
+                  textAlign: TextAlign.center),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
   String _fraccionTexto(double valor) {
     const double epsilon = 0.001;
     if ((valor - 1 / 6).abs() < epsilon) return '1/6';
@@ -1121,6 +1161,21 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                 }
               },
             ),
+            if (delito.participacionEspecifica ==
+                'Complicidad Correspectiva') ...<Widget>[
+              const SizedBox(height: 12),
+              _buildSliderPasos(
+                label: 'Rebaja (Art. 424 CP)',
+                valores: const <double>[1 / 3, 0.5],
+                valorActual: delito.fraccionCorrespectiva,
+                onChanged: (double val) {
+                  setState(() {
+                    delito.fraccionCorrespectiva = val;
+                    _actualizarDelito(index, delito);
+                  });
+                },
+              ),
+            ],
             const SizedBox(height: 16),
 
             Row(
@@ -1152,17 +1207,13 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
             ),
             if (delito.delitoContinuado) ...<Widget>[
               const SizedBox(height: 12),
-              _buildSliderRow(
+              _buildSliderPasos(
                 label: 'Aumento (Art. 99 CP)',
-                min: 1 / 6,
-                max: 0.5,
-                currentValue: delito.fraccionContinuidad,
+                valores: const <double>[1 / 6, 1 / 4, 1 / 3, 0.5],
+                valorActual: delito.fraccionContinuidad,
                 onChanged: (double val) {
                   setState(() {
-                    const List<double> targets = <double>[1 / 6, 1 / 4, 1 / 3, 0.5];
-                    final double newVal = targets.reduce((double a, double b) =>
-                        (a - val).abs() < (b - val).abs() ? a : b);
-                    delito.fraccionContinuidad = newVal;
+                    delito.fraccionContinuidad = val;
                     _actualizarDelito(index, delito);
                   });
                 },
