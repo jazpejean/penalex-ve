@@ -310,7 +310,7 @@ export default function BuscadorArticulos({ conTexto = false }: { conTexto?: boo
                 onClick={() => setAbierto(false)}
                 className="text-slate-400 hover:text-[#031f4e]"
               >
-                ✕
+                
               </button>
             </div>
 
@@ -406,7 +406,7 @@ export default function BuscadorArticulos({ conTexto = false }: { conTexto?: boo
                 onClick={() => setArticulo(null)}
                 className="text-slate-400 hover:text-[#031f4e]"
               >
-                ✕
+                
               </button>
             </div>
             <div className="h-px bg-[#e2e8f0]" />

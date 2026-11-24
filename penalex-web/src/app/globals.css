@@ -6,6 +6,10 @@
    ============================================================ */
 
 :root {
+  /* Tokens espejo de la app (WEB-12) */
+  --radio-tarjeta: 20px;
+  --radio-control: 12px;
+  --margen: 20px;
   --fondo: #f1f5f9;        /* fondo de página (gris pizarra claro, como la app) */
   --superficie: #ffffff;   /* tarjetas y paneles */
   --capa: #e2e8f0;         /* bordes y capas intermedias */
@@ -30,9 +34,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Titulares editoriales (serif) */
+/* Titulares: misma familia sans que el cuerpo (WEB-11) */
 h1, h2, h3, .serif {
-  font-family: Georgia, "Times New Roman", "Playfair Display", serif;
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.02em;
 }
 
 /* Texto legal: párrafos con interlineado cómodo */

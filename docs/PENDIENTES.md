@@ -108,11 +108,11 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 
 | ID | Problema | Propuesta | Estado |
 |---|---|---|---|
-| WEB-10 | Emojis en el dashboard | Iconos lineales (`Icono.tsx`) | en curso |
-| WEB-11 | Títulos en serif en la UI | Sans en toda la interfaz | abierto |
-| WEB-12 | Radios y botones distintos a la app | Tokens CSS y componentes espejo | abierto |
+| WEB-10 | Emojis en el dashboard | Iconos lineales del set existente en dashboard, mapa y tribunales | hecho |
+| WEB-11 | Títulos en serif en la UI | h1, h2, h3 y .serif pasan a Inter | hecho |
+| WEB-12 | Radios y botones distintos a la app | Tokens CSS --radio-tarjeta, --radio-control y --margen | hecho |
 | WEB-13 | Herramientas IA solo en la app | Marcar claramente o portar Ulpiano | abierto |
-| WEB-14 | Falta PWA instalable y offline | Service worker | abierto |
+| WEB-14 | Falta PWA instalable y offline | Manifest instalable y theme-color; service worker offline pendiente | abierto |
 | WEB-15 | Sin deep links a la app | App Links para `/sentencias` | abierto |
 
 ---

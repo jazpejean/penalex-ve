@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { cerrarSesion, escucharAuth } from "../../lib/firebase";
 import { cargarPanel, type PanelData } from "../../lib/panel-data";
 import type { SentenciaResumen } from "./types";
+import Icono, { type NombreIcono } from "@/components/Icono";
 
 const NOMBRES_SALAS: Record<string, string> = {
   scp: "Sala de Casación Penal del Tribunal Supremo de Justicia",
@@ -29,7 +30,7 @@ const HERRAMIENTAS = [
     href: "/sentencias",
     titulo: "Jurisprudencia",
     detalle: "55.208 sentencias del TSJ con extracto y texto completo.",
-    icono: "⚖️",
+    icono: "balanza",
     etiqueta: "Web",
     web: true,
   },
@@ -37,7 +38,7 @@ const HERRAMIENTAS = [
     href: "/leyes",
     titulo: "Biblioteca legal",
     detalle: "53 leyes penales y 6.416 artículos, con búsqueda por número o tema.",
-    icono: "📚",
+    icono: "libro",
     etiqueta: "Web",
     web: true,
   },
@@ -45,7 +46,7 @@ const HERRAMIENTAS = [
     href: "/tribunales",
     titulo: "Tribunales",
     detalle: "867 tribunales por circuito, con foto y enlace a Google Maps.",
-    icono: "🗺️",
+    icono: "mapa",
     etiqueta: "Web",
     web: true,
   },
@@ -53,7 +54,7 @@ const HERRAMIENTAS = [
     href: "/dosimetria",
     titulo: "Dosimetría penal",
     detalle: "Pena individualizada con los artículos 37, 74, 77 y 80 del Código Penal.",
-    icono: "🧮",
+    icono: "calculadora",
     etiqueta: "Web",
     web: true,
   },
@@ -61,7 +62,7 @@ const HERRAMIENTAS = [
     href: "/prescripcion",
     titulo: "Prescripción",
     detalle: "Cálculo de la prescripción de la acción y de la pena (arts. 108 y 112).",
-    icono: "⏳",
+    icono: "calendario",
     etiqueta: "Web",
     web: true,
   },
@@ -69,7 +70,7 @@ const HERRAMIENTAS = [
     href: "/lapsos",
     titulo: "Lapsos procesales",
     detalle: "Días hábiles, audiencias y vencimientos del proceso penal.",
-    icono: "📅",
+    icono: "calendario",
     etiqueta: "Web",
     web: true,
   },
@@ -77,7 +78,7 @@ const HERRAMIENTAS = [
     href: "/buscar",
     titulo: "Búsqueda semántica",
     detalle: "Encuentra criterios por significado, no solo por palabra exacta.",
-    icono: "🔎",
+    icono: "lupa",
     etiqueta: "Web",
     web: true,
   },
@@ -85,7 +86,7 @@ const HERRAMIENTAS = [
     href: "/articulos",
     titulo: "Análisis y doctrina",
     detalle: "Nulidad, dolo eventual, IA jurídica y alcabalas explicados.",
-    icono: "📝",
+    icono: "documento",
     etiqueta: "Web",
     web: true,
   },
@@ -93,7 +94,7 @@ const HERRAMIENTAS = [
     href: "#app",
     titulo: "Detector de vicios",
     detalle: "21 vicios procesales con norma, gravedad y acción procesal.",
-    icono: "🛡️",
+    icono: "escudo",
     etiqueta: "App",
     web: false,
   },
@@ -101,7 +102,7 @@ const HERRAMIENTAS = [
     href: "#app",
     titulo: "Asistente Ulpiano",
     detalle: "Chat jurídico con RAG sobre jurisprudencia y leyes, citando fuentes.",
-    icono: "🤖",
+    icono: "robot",
     etiqueta: "App",
     web: false,
   },
@@ -109,7 +110,7 @@ const HERRAMIENTAS = [
     href: "#app",
     titulo: "Redactor de escritos",
     detalle: "Escritos forenses sobre el expediente, con editor de documentos.",
-    icono: "✍️",
+    icono: "editar",
     etiqueta: "App",
     web: false,
   },
@@ -117,7 +118,7 @@ const HERRAMIENTAS = [
     href: "#app",
     titulo: "Escáner con visión",
     detalle: "Lee autos y sentencias desde la foto, sin OCR impreciso.",
-    icono: "📷",
+    icono: "escaneo",
     etiqueta: "App",
     web: false,
   },
@@ -125,7 +126,7 @@ const HERRAMIENTAS = [
     href: "#app",
     titulo: "Quiz de carrera judicial",
     detalle: "Formación gamificada con rangos y certificado de ascenso.",
-    icono: "🎓",
+    icono: "birrete",
     etiqueta: "App",
     web: false,
   },
@@ -331,7 +332,7 @@ export default function ContenidoDashboard({
               className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-[#C5A059] hover:shadow-sm"
             >
               <div className="flex items-start justify-between">
-                <span className="text-2xl">{h.icono}</span>
+                <Icono nombre={h.icono as NombreIcono} className="w-6 h-6" />
                 <span
                   className={
                     h.web
@@ -356,7 +357,7 @@ export default function ContenidoDashboard({
 
           <div className="flex flex-col rounded-2xl border border-dashed border-slate-300 bg-white/60 p-5">
             <div className="flex items-start justify-between">
-              <span className="text-2xl">🛡️</span>
+              <Icono nombre="escudo" className="w-6 h-6" />
               <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-slate-400">
                 Próximamente
               </span>

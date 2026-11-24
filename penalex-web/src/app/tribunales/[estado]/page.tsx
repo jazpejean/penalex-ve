@@ -171,7 +171,7 @@ export default async function TribunalesEstadoPage({
                         rel="noopener noreferrer"
                         className="rounded-md bg-[#0F172A] px-2.5 py-1 text-[11px] font-semibold text-white hover:bg-[#1e293b]"
                       >
-                        📍 Cómo llegar (Google Maps)
+                         Cómo llegar (Google Maps)
                       </a>
                     </div>
                   ) : null}

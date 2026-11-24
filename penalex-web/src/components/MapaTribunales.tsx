@@ -177,7 +177,7 @@ export default function MapaTribunales() {
               <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
                 <div style="width:40px;height:40px;border-radius:50%;background:${
                   seleccionado ? "#C5A059" : "#0F172A"
-                };border:2.5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 2px 6px rgba(0,0,0,.35);">🏛️</div>
+                };border:2.5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 2px 6px rgba(0,0,0,.35);"></div>
                 <div style="background:#fff;border:1px solid ${
                   seleccionado ? "#C5A059" : "#0F172A"
                 };border-radius:10px;font-size:10px;font-weight:800;color:${
@@ -219,7 +219,7 @@ export default function MapaTribunales() {
               className: "",
               html: `<div style="width:34px;height:34px;border-radius:50%;background:${colorFuncion(
                 t.funcion,
-              )};border:2px solid #fff;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;box-shadow:0 2px 5px rgba(0,0,0,.3);">⚖️</div>`,
+              )};border:2px solid #fff;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;box-shadow:0 2px 5px rgba(0,0,0,.3);"></div>`,
               iconSize: [34, 34],
               iconAnchor: [17, 17],
             });
@@ -308,7 +308,7 @@ export default function MapaTribunales() {
                 modo === "circuitos" ? "bg-white text-[#031F4E] shadow" : "text-slate-500"
               }`}
             >
-              🏛️ Circuitos
+               Circuitos
             </button>
             <button
               onClick={() => setModo("tribunales")}
@@ -316,7 +316,7 @@ export default function MapaTribunales() {
                 modo === "tribunales" ? "bg-white text-[#031F4E] shadow" : "text-slate-500"
               }`}
             >
-              ⚖️ Tribunales
+               Tribunales
             </button>
           </div>
           <span className="text-xs text-slate-500">
@@ -374,7 +374,7 @@ export default function MapaTribunales() {
                         onClick={() => irATribunal(t)}
                         className="rounded-md border border-slate-200 px-2 py-0.5 text-[10.5px] font-semibold text-[#031F4E] hover:bg-slate-50"
                       >
-                        🗺️ Ver en el mapa
+                         Ver en el mapa
                       </button>
                       {t.latitud != null && t.longitud != null ? (
                         <a
@@ -383,7 +383,7 @@ export default function MapaTribunales() {
                           rel="noopener noreferrer"
                           className="rounded-md bg-[#0F172A] px-2 py-0.5 text-[10.5px] font-semibold text-white hover:bg-[#1e293b]"
                         >
-                          📍 Google Maps
+                           Google Maps
                         </a>
                       ) : null}
                     </div>
@@ -419,7 +419,7 @@ export default function MapaTribunales() {
                 className="text-slate-400 hover:text-slate-600"
                 aria-label="Cerrar"
               >
-                ✕
+                
               </button>
             </div>
             <ul className="mt-2 divide-y divide-slate-100">
@@ -467,7 +467,7 @@ export default function MapaTribunales() {
                       onClick={() => irATribunal(t)}
                       className="rounded-md border border-slate-200 px-2 py-1 text-[10.5px] font-semibold text-[#031F4E] hover:bg-slate-50"
                     >
-                      🗺️ Ver en el mapa
+                       Ver en el mapa
                     </button>
                     {t.latitud != null && t.longitud != null ? (
                       <a
@@ -476,7 +476,7 @@ export default function MapaTribunales() {
                         rel="noopener noreferrer"
                         className="rounded-md bg-[#0F172A] px-2 py-1 text-[10.5px] font-semibold text-white hover:bg-[#1e293b]"
                       >
-                        📍 Google Maps
+                         Google Maps
                       </a>
                     ) : null}
                   </div>

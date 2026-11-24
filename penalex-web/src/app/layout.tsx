@@ -1,7 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
+export const viewport: Viewport = {
+  themeColor: "#031f4e",
+};
+
 export const metadata: Metadata = {
+  manifest: "/manifest.webmanifest",
   title: "Penalex VE | Plataforma de Derecho Penal Venezolano",
   description:
     "Dosimetría penal, corpus legal completo, concurso de delitos y cómputo de lapsos. Herramientas profesionales para la autoridad judicial venezolana.",

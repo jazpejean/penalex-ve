@@ -26,7 +26,10 @@ export type NombreIcono =
   | "guardar"
   | "impresora"
   | "copiar"
-  | "mapa";
+  | "mapa"
+  | "escudo"
+  | "robot"
+  | "birrete";
 
 export default function Icono({
   nombre,
@@ -229,6 +232,28 @@ export default function Icono({
         <svg viewBox="0 0 24 24" style={s} className={className} aria-hidden>
           <rect x="8" y="8" width="12" height="12" rx="2" {...line} />
           <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" {...line} />
+        </svg>
+      );
+    case "escudo":
+      return (
+        <svg viewBox="0 0 24 24" style={s} className={className} aria-hidden>
+          <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" {...line} />
+        </svg>
+      );
+    case "robot":
+      return (
+        <svg viewBox="0 0 24 24" style={s} className={className} aria-hidden>
+          <rect x="4" y="8" width="16" height="12" rx="2" {...line} />
+          <path d="M12 8V4" {...line} />
+          <circle cx="9" cy="14" r="1" fill="currentColor" />
+          <circle cx="15" cy="14" r="1" fill="currentColor" />
+        </svg>
+      );
+    case "birrete":
+      return (
+        <svg viewBox="0 0 24 24" style={s} className={className} aria-hidden>
+          <path d="M2 9l10-5 10 5-10 5Z" {...line} />
+          <path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5" {...line} />
         </svg>
       );
     case "mapa":
