@@ -1810,24 +1810,6 @@ Widget _selectorValorCondicion(
                         ),
                       ),
                     ),
-                  ] else if (sentencia.tipo.toLowerCase().contains('resol')) ...[
-                    const SizedBox(width: 8),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 6, vertical: 3),
-                      decoration: BoxDecoration(
-                        color: TemaGlobal.capa,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Text(
-                        'Resolución',
-                        style: TextStyle(
-                          color: TemaGlobal.textoSecundario,
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
                   ],
                   const Spacer(),
                   IconButton(
