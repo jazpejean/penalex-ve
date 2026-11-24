@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math' as math;
 
 import 'package:image_picker/image_picker.dart';
 
@@ -20,6 +21,7 @@ import '../services/image_filter_service.dart';
 import 'crop_adjust_screen.dart';
 import '../config/app_tokens.dart';
 import 'camera_scanner_screen.dart';
+import '../services/secure_file_service.dart';
 
 /// Editor de documento escaneado, estilo CamScanner:
 /// vista previa grande, tira de miniaturas, filtros, recorte manual,
@@ -151,15 +153,17 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
     }
   }
 
-  void _eliminarPagina() {
-    if (_paginas.length <= 1) return;
+  Future<void> _eliminarPaginaSeguro(int indice) async {
+    final String ruta = _paginas[indice];
     setState(() {
-      _paginas.removeAt(_paginaActual);
-      _originales.removeAt(_paginaActual);
+      _paginas.removeAt(indice);
+      _originales.removeAt(indice);
       if (_paginaActual >= _paginas.length) {
         _paginaActual = _paginas.length - 1;
       }
+      if (_paginaActual < 0) _paginaActual = 0;
     });
+    await SecureFileService.borrarSeguro(ruta);
   }
 
   Future<void> _reordenar() async {
@@ -356,6 +360,39 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
     _pageController.jumpToPage(_paginaActual);
   }
 
+  /// Transcribe todas las páginas en cola (ESC-16).
+  Future<void> _transcribirTodas() async {
+    if (_procesando || _paginas.isEmpty) return;
+    setState(() => _procesando = true);
+    final StringBuffer buffer = StringBuffer();
+    try {
+      for (int i = 0; i < _paginas.length; i += 5) {
+        final List<String> lote = _paginas.sublist(
+            i, math.min(i + 5, _paginas.length));
+        final String texto =
+            await DeepSeekVisionService.transcribirDocumento(
+                rutasImagenes: lote);
+        if (texto.trim().isNotEmpty) buffer.writeln(texto.trim());
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _procesando = false;
+          _textoOcr = buffer.toString().trim();
+        });
+      }
+    }
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(_textoOcr!.isEmpty
+            ? 'No se pudo transcribir.'
+            : 'Texto transcrito: ${_textoOcr!.length} caracteres'),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
   /// Cámara con detección de bordes en vivo.
   Future<void> _abrirCamara() async {
     final List<String>? rutas = await Navigator.push<List<String>>(
@@ -530,6 +567,12 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
             icon: const Icon(Icons.photo_library_outlined),
             tooltip: 'Galería (varias páginas)',
             onPressed: _agregarDeGaleria,
+          ),
+          IconButton(
+            icon: Icon(Icons.text_snippet_outlined,
+                color: TemaGlobal.textoSecundario),
+            tooltip: 'Transcribir todas las páginas',
+            onPressed: _transcribirTodas,
           ),
           IconButton(
             icon: Icon(Icons.auto_fix_high, color: TemaGlobal.textoSecundario),
@@ -726,7 +769,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
           _accion(Icons.swap_vert, 'Orden', _reordenar),
           _accion(Icons.text_fields, 'OCR', _procesarOCR),
           if (_paginas.length > 1)
-            _accion(Icons.delete_outline, 'Quitar', _eliminarPagina),
+            _accion(Icons.delete_outline, 'Quitar', () => _eliminarPaginaSeguro(_paginaActual)),
         ],
       ),
     );

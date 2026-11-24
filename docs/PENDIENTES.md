@@ -86,9 +86,9 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 | ESC-13 | Sin tira de miniaturas | Estados por página: pendiente, lista, error | abierto |
 | ESC-14 | PDF se arma descargando de Storage | El editor ya arma el PDF en local con las páginas procesadas | hecho |
 | ESC-15 | Sin firma y sello | Pie con sello Penalex y fecha en cada página, y línea de firma en la última | hecho |
-| ESC-16 | Lectura con visión solo de la página actual | Procesar todas las páginas en cola | abierto |
+| ESC-16 | Lectura con visión solo de la página actual | Botón "Transcribir todas" que procesa las páginas por lotes de cinco | hecho |
 | ESC-17 | Sin límites de tamaño ni compresión configurable | Calidad y tamaño por página | abierto |
-| ESC-18 | Sin cifrado local de documentos sensibles | SQLCipher y borrado seguro | abierto |
+| ESC-18 | Sin cifrado local de documentos sensibles | Borrado seguro con sobrescritura de los temporales; cifrado en reposo pendiente | parcial |
 
 ---
 
