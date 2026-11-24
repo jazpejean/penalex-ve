@@ -204,6 +204,7 @@ La estrategia correcta no es esconder más, es **depender del servidor para lo v
 | LEY-11 | Quedan 36 puntos sin espacio y 29 minúsculas tras punto | Reporte con texto completo y casilla para validar | abierto |
 | LEY-12 | Los títulos V y VI del Reglamento de Abogados incluían la nota derogatoria en el título | Título limpio y nota en campo aparte, corregido en Supabase y R2 | hecho |
 | LEY-13 | La app lee las leyes de Supabase Storage, no de R2 | Documentar la arquitectura: Supabase para la app, R2 para la web. Cualquier corrección de datos debe ir a los dos | hecho |
+| LEY-14 | 18 leyes no penales estaban en el bucket de Supabase sin uso | Descargadas a backups, eliminadas del bucket y del manifest (71 → 53) | hecho |
 | LEY-03 | Sin auditoría ortográfica del corpus (53 leyes) | Auditoría completa ejecutada con texto y error marcado | hecho |
 | LEY-04 | Sin revisión de artículos con texto vacío o truncado | Detectados artículos cortos y dos leyes que no cargan | abierto |
 | LEY-06 | Se creyó que dos leyes no cargaban | **Descartado**: las leyes cargan bien en la web y en la app. Fue una descarga incompleta del script de auditoría | descartado |
