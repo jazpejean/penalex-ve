@@ -6,6 +6,17 @@ workers_dev = true
 # Identidad: traduce la sesión de Firebase a un JWT de Supabase.
 [vars]
 FIREBASE_PROJECT_ID = "penalex-ve"
+SITIO_JURISPRUDENCIA = "https://penalexve.com"
+# Config del cliente para el buscador web (/sentencias): la app Flutter ya
+# usa la misma anon key pública; aquí se inyecta en la página servida.
+SUPABASE_URL = "https://efxzcglhyosrxtafirhs.supabase.co"
+SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmeHpjZ2xoeW9zcnh0YWZpcmhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY0MDMxODgsImV4cCI6MjEwMTk3OTE4OH0.LYkvBjiO1l11hnRZsYIuFf2ZaQ3ShP9sU43HYB5l4_0"
+
+# SEO de jurisprudencia: bucket R2 con los HTML íntegros + chunks de
+# metadatos (seo_chunks/NNN.json generados por generar_chunks_seo.mjs).
+[[r2_buckets]]
+binding = "R2_JURISPRUDENCIA"
+bucket_name = "penalex-ve-v2"
 
 # Secrets (NO van en el repo; se configuran con `wrangler secret put`):
 #   SUPABASE_JWT_SECRET      — secreto de firma del JWT de Supabase

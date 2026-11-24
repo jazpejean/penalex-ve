@@ -25,14 +25,8 @@ REGLAS OBLIGATORIAS:
 4. Exactamente 4 opciones con distractores REALISTAS (penas vecinas, artículo erróneo, concurso mal aplicado, tentativa/consumado invertidos).
 5. La "fundamentacion" DEBE citar artículos EXACTOS que existan en el corpus de leyes adjunto (números correctos). Si el caso admite jurisprudencia, cita sentencias del corpus de referencia con su número y sala.
 6. "dificultad": 1 = identificación directa; 2 = un matiz (tentativa, participación, atenuante, pena); 3 = análisis complejo (concurso, agravantes, contraste jurisprudencial).
-7. "tramo" es un número del 1 al 5 según el corpus adjunto.
-8. TEMAS POR TRAMO (el escenario DEBE pertenecer al tema del tramo solicitado):
-   - tramo 1: teoría del delito APLICADA a delitos del Código Penal (tentativa, participación, concurso, penas, prescripción, agravantes/atenuantes).
-   - tramo 2: delitos contra las personas (homicidio, lesiones, amenazas, abuso sexual...).
-   - tramo 3: delitos contra la propiedad (hurto, robo, estafa, apropiación...).
-   - tramo 4: COPP (proceso penal: audiencias, medidas cautelares, recursos, nulidades).
-   - tramo 5: leyes especiales (drogas, armas, niños/niñas/adolescentes, corrupción, secuestro, delitos informáticos).
-   Los escenarios de drogas pertenecen SIEMPRE al tramo 5; los escenarios procesales al tramo 4.
+7. "tramo" es un número: 0 en modo MEZCLA (todo el derecho penal sin separar materias); 1-5 solo por compatibilidad.
+8. EN MODO MEZCLA (tramo 0): cada caso puede ser de CUALQUIER área (teoría del delito aplicada, delitos contra las personas, contra la propiedad, COPP, leyes especiales). UN MISMO LOTE DEBE MEZCLAR VARIAS ÁREAS — nunca todos los casos del mismo tema. Los escenarios de drogas, procesales, patrimoniales y de personas pueden convivir en el mismo lote.
 9. "contextoNarrativo" DEBE contener los términos clave del artículo citado tal como aparecen en el corpus (p. ej. art. 405: "intencionalmente"; art. 453: "abusando de la confianza"). Usa esas palabras EN EL ESCENARIO, no solo en la fundamentación.
 10. La opción correcta debe declarar la pena EXACTA del artículo citado según el corpus ("de doce a dieciocho años" → "12 a 18 años"; "de cuatro años a ocho años" → "4 a 8 años"). Los distractores con penas deben usar valores DIFERENTES de la pena legal del artículo.
 
@@ -134,9 +128,10 @@ function articulosTexto(ley, maxChars) {
   return out.join('\n').slice(0, maxChars);
 }
 
-/** Selecciona la(s) ley(es) del tramo. Devuelve contexto para el modelo (cap)
- * y corpus COMPLETO para el validador (las citas deben existir aunque el
- * artículo quede fuera del resumen). */
+/** Selecciona la(s) ley(es). tramo 0 (o indefinido) = MODO MEZCLA: carga varias
+ * leyes del corpus (penal + procesal + especiales) para generar casos
+ * hipotéticos de TODO el derecho penal sin separar por materias. Devuelve
+ * contexto para el modelo (cap) y corpus COMPLETO para el validador. */
 async function cargarLeyes(env, tramo) {
   try {
     const archivos = (await listarArchivos(env, 'leyes'))
@@ -151,18 +146,39 @@ async function cargarLeyes(env, tramo) {
     };
 
     let nombres;
-    switch (tramo) {
-      case 4:
-        nombres = elegir(['copp'], [archivos[0]]);
-        break;
-      case 5:
-        nombres = elegir(
-          ['ley-organica-de-drogas', 'ley-organica-para-la-proteccion-de-ninos'],
-          archivos.filter((n) => !n.includes('codigo-penal') && !n.includes('copp') && !n.includes('crbv') && !n.includes('penitenciario')),
-        );
-        break;
-      default:
-        nombres = elegir(['codigo-penal'], [archivos[0]]);
+    if (tramo === 0 || tramo == null) {
+      // MODO MEZCLA (sin materias): penal + procesal + especiales juntos.
+      const filtros = [
+        'codigo-penal',
+        'copp',
+        'ley-organica-de-drogas',
+        'ley-contra-la-corrupcion',
+        'ley-contra-el-secuestro',
+        'ley-especial-contra-los-delitos-informaticos',
+        'ley-organica-para-la-proteccion-de-ninos',
+        'ley-organica-sobre-el-derecho-de-las-mujeres',
+      ];
+      const encontrados = filtros
+        .map((f) => archivos.find((n) => n.includes(f)))
+        .filter(Boolean);
+      nombres = encontrados.length
+        ? encontrados
+        : archivos.filter(
+            (n) => !n.includes('crbv') && !n.includes('penitenciario') && !n.includes('militar'));
+    } else {
+      switch (tramo) {
+        case 4:
+          nombres = elegir(['copp'], [archivos[0]]);
+          break;
+        case 5:
+          nombres = elegir(
+            ['ley-organica-de-drogas', 'ley-organica-para-la-proteccion-de-ninos'],
+            archivos.filter((n) => !n.includes('codigo-penal') && !n.includes('copp') && !n.includes('crbv') && !n.includes('penitenciario')),
+          );
+          break;
+        default:
+          nombres = elegir(['codigo-penal'], [archivos[0]]);
+      }
     }
 
     let contexto = '';
@@ -402,16 +418,19 @@ function validarCaso(c, corpusText, tramo) {
   if (!c.fundamentacion || c.fundamentacion.length < 25) errores.push('fundamentación corta');
   if (!Array.isArray(c.articulos) || c.articulos.length === 0) errores.push('sin artículos');
 
-  // Tema del escenario vs tramo (evita casos de drogas en tramo 1, etc.).
-  const tema = `${c.contextoNarrativo ?? ''} ${c.opciones?.join(' ') ?? ''}`.toLowerCase();
-  const temaDrogas = /drog|estupefaciente|gramos de|psicotróp|narco/.test(tema);
-  const temaProcesal = /audiencia|recurso de|medida cautelar|imputado|acusaci|juicio oral|detención preventiva|nulidad/.test(tema);
-  const temaPatrimonial = /hurto|robo|estafa|apropiac|fraude|abigeato/.test(tema);
-  const temaPersonas = /homicidio|lesion(es)?|violaci|abuso sexual|integridad fisica|amenaza de muerte/.test(tema);
-  if (temaDrogas && tramo !== 5) errores.push('tema de drogas pero tramo != 5');
-  if (temaProcesal && tramo !== 4) errores.push('tema procesal pero tramo != 4');
-  if (temaPatrimonial && tramo === 2) errores.push('delito patrimonial pero tramo 2 (personas)');
-  if (temaPersonas && tramo === 3) errores.push('delito contra personas pero tramo 3 (propiedad)');
+  // Tema del escenario vs tramo (solo aplica en modo por-materias; en modo
+  // mezcla —tramo 0— cualquier tema es válido porque el quiz no separa).
+  if (tramo && tramo !== 0) {
+    const tema = `${c.contextoNarrativo ?? ''} ${c.opciones?.join(' ') ?? ''}`.toLowerCase();
+    const temaDrogas = /drog|estupefaciente|gramos de|psicotróp|narco/.test(tema);
+    const temaProcesal = /audiencia|recurso de|medida cautelar|imputado|acusaci|juicio oral|detención preventiva|nulidad/.test(tema);
+    const temaPatrimonial = /hurto|robo|estafa|apropiac|fraude|abigeato/.test(tema);
+    const temaPersonas = /homicidio|lesion(es)?|violaci|abuso sexual|integridad fisica|amenaza de muerte/.test(tema);
+    if (temaDrogas && tramo !== 5) errores.push('tema de drogas pero tramo != 5');
+    if (temaProcesal && tramo !== 4) errores.push('tema procesal pero tramo != 4');
+    if (temaPatrimonial && tramo === 2) errores.push('delito patrimonial pero tramo 2 (personas)');
+    if (temaPersonas && tramo === 3) errores.push('delito contra personas pero tramo 3 (propiedad)');
+  }
 
   // Las citas deben existir en el corpus de leyes.
   // TODO (validador Dart, Fase 2): validar la cita por LEY concreta (ej. si el
@@ -747,24 +766,28 @@ const TEMAS_POR_TRAMO = {
   5: /droga|estupefaciente|trafico|tenencia|gramos/i,
 };
 
-/** Selecciona artículos candidatos verificables para el tramo. */
+/** Selecciona artículos candidatos verificables. tramo 0 = MODO MEZCLA: toma
+ * candidatos de TODAS las leyes cargadas (sin separar materias). */
 function seleccionarCandidatos(leyes, tramo, cantidad) {
   const tema = TEMAS_POR_TRAMO[tramo] ?? null;
   const ley = leyes[0]; // la ley principal del tramo (CP / COPP / LOD)
   if (!ley) return [];
   const candidatos = [];
   const dia = Math.floor(Date.now() / 86400000);
-  for (let i = 0; i < ley.articulos.length; i++) {
-    const a = ley.articulos[i];
-    if (!a.texto || a.texto.length < 80) continue;
-    const distintivos = ley.distintivos?.get(a.numero) ?? new Set();
-    if (distintivos.size < 3) continue; // sin firma suficiente, no es verificable
-    if (tema && !tema.test(a.texto)) continue;
-    if (tramo === 4 && rangosDePena(a.texto).length > 0) continue; // COPP no es penas
-    if (tramo !== 4 && tramo !== 5 && rangosDePena(a.texto).length === 0) {
-      continue; // sustantivo: preferir artículos con pena (pregunta Tipo A)
+  const leyesFuente = tramo === 0 || tramo == null ? leyes : [ley];
+  for (const fuente of leyesFuente) {
+    for (let i = 0; i < fuente.articulos.length; i++) {
+      const a = fuente.articulos[i];
+      if (!a.texto || a.texto.length < 80) continue;
+      const distintivos = fuente.distintivos?.get(a.numero) ?? new Set();
+      if (distintivos.size < 3) continue; // sin firma suficiente, no es verificable
+      if (tema && !tema.test(a.texto)) continue;
+      if (tramo === 4 && rangosDePena(a.texto).length > 0) continue; // COPP no es penas
+      if (tramo !== 4 && tramo !== 5 && tramo !== 0 && rangosDePena(a.texto).length === 0) {
+        continue; // sustantivo: preferir artículos con pena (pregunta Tipo A)
+      }
+      candidatos.push({ ley: fuente, articulo: a, cita: `Art. ${a.numero} ${fuente.nombre}` });
     }
-    candidatos.push({ ley, articulo: a, cita: `Art. ${a.numero} ${ley.nombre}` });
   }
   // Barajar con semilla del día (variedad sin repetir el mismo orden).
   for (let i = candidatos.length - 1; i > 0; i--) {
@@ -799,8 +822,10 @@ SENTENCIAS DE REFERENCIA (opcional, solo si el artículo admite cita jurispruden
 ${(sentenciasCtx ?? '').slice(0, 1500)}`;
 }
 
-async function generarLote(env, { cantidad, tramo, dificultad }) {
-  const tramoOk = [1, 2, 3, 4, 5].includes(tramo) ? tramo : 1;
+async function generarLote(env, { cantidad, tramo, dificultad, uid }) {
+  // Sin materias: por defecto modo MEZCLA (tramo 0) = casos hipotéticos de
+  // todo el derecho penal. tramo 1-5 se mantiene solo por compatibilidad.
+  const tramoOk = tramo == null ? 0 : [0, 1, 2, 3, 4, 5].includes(tramo) ? tramo : 0;
   const leyes = await cargarLeyes(env, tramoOk);
   const sentenciasCtx = await cargarSentencias(env);
   const candidatos = seleccionarCandidatos(leyes.leyes, tramoOk, cantidad);
@@ -862,11 +887,14 @@ async function generarLote(env, { cantidad, tramo, dificultad }) {
   let lote = null;
   if (validos.length > 0) {
     lote = `lote_${Date.now()}.json`;
-    await subirObjeto(env, 'quiz', `pendientes/${lote}`, JSON.stringify(validos));
+    // Por usuario: cada usuario recibe SUS lotes en pendientes/{uid}/.
+    const ruta = uid ? `pendientes/${uid}/${lote}` : `pendientes/${lote}`;
+    await subirObjeto(env, 'quiz', ruta, JSON.stringify(validos));
   }
 
   return {
     tramo: tramoOk,
+    uid: uid ?? null,
     modelo: resultado.modelo,
     ai_error: errorAi,
     generados: casos.length,
@@ -874,7 +902,7 @@ async function generarLote(env, { cantidad, tramo, dificultad }) {
     rechazados: rechazados.length,
     razones: rechazados.slice(0, 5),
     lote,
-    pendientes: `quiz/pendientes/${lote ?? '—'}`,
+    pendientes: uid ? `quiz/pendientes/${uid}/${lote ?? '—'}` : `quiz/pendientes/${lote ?? '—'}`,
   };
 }
 
@@ -902,10 +930,16 @@ export default {
         return json({ error: 'JSON inválido' }, 400);
       }
       const cantidad = Math.min(Math.max(parseInt(body.cantidad ?? '5', 10) || 5, 1), 20);
-      const tramo = parseInt(body.tramo ?? '1', 10) || 1;
+      // Sin materias: tramo opcional; por defecto modo MEZCLA (todo el penal).
+      const tramo = body.tramo != null ? parseInt(body.tramo, 10) : 0;
       const dificultad = body.dificultad ? parseInt(body.dificultad, 10) : null;
+      // Por usuario: si llega uid, el lote se sube a pendientes/{uid}/ para
+      // que cada usuario reciba SUS preguntas (no compartidas).
+      const uid = typeof body.uid === 'string' && body.uid.trim()
+        ? body.uid.trim().slice(0, 64)
+        : null;
       try {
-        return json(await generarLote(env, { cantidad, tramo, dificultad }));
+        return json(await generarLote(env, { cantidad, tramo, dificultad, uid }));
       } catch (e) {
         return json({ error: e.message }, 500);
       }
@@ -915,8 +949,9 @@ export default {
   },
 
   async scheduled(_event, env) {
-    // Round-robin de tramos por día: lunes tramo 1 ... viernes tramo 5.
-    const tramo = (Math.floor(Date.now() / 86400000) % 5) + 1;
-    await generarLote(env, { cantidad: 20, tramo, dificultad: null });
+    // Sin materias: el cron genera casos hipotéticos MIXTOS de todo el derecho
+    // penal (modo mezcla) como pool de respaldo. Las preguntas PERSONALES por
+    // usuario se generan bajo demanda vía POST /generar con uid.
+    await generarLote(env, { cantidad: 20, tramo: 0, dificultad: null, uid: null });
   },
 };

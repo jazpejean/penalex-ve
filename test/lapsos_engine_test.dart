@@ -166,13 +166,47 @@ void main() {
   });
 
   group('secuencia procesal — violencia y menos graves', () {
-    test('violencia: catálogo tiene apelación 3 días (pendiente verificación)', () {
+    test('violencia: apelación 3 días hábiles (Art. 127 LOVMV, cotejado)', () {
       final List<LapsoCatalogo> catalogo = catalogoPorVia(ViaProcesal.violencia);
       final LapsoCatalogo apelacion = catalogo.firstWhere(
         (l) => l.acto.contains('Apelación de la sentencia'),
       );
       expect(apelacion.cantidadMin, 3);
-      expect(apelacion.pendienteVerificacion, isTrue);
+      expect(apelacion.computo, TipoComputo.habiles,
+          reason: 'El Art. 127 LOVMV dice "tres días hábiles"');
+      expect(apelacion.baseLegal, contains('127'));
+      expect(apelacion.pendienteVerificacion, isFalse);
+    });
+
+    test('violencia: acto conclusivo 30 días con prórroga de 15 (Art. 98 LOVMV Parágrafo Único, cotejado)', () {
+      final List<LapsoCatalogo> catalogo = catalogoPorVia(ViaProcesal.violencia);
+      final LapsoCatalogo conclusivo = catalogo.firstWhere(
+        (l) => l.acto.contains('Acto conclusivo'),
+      );
+      expect(conclusivo.cantidadMin, 30);
+      expect(conclusivo.computo, TipoComputo.continuo);
+      expect(conclusivo.baseLegal, contains('98'));
+      expect(conclusivo.descripcion, contains('quince días'));
+      expect(conclusivo.pendienteVerificacion, isFalse);
+      // 1 oct 2026 + 30 días continuos = 31 oct 2026.
+      final HitoCalculado hito = calcularHito(
+        lapso: conclusivo,
+        fechaBase: DateTime(2026, 10, 1),
+        excluidos: <DateTime>{},
+      );
+      expect(hito.fechaMin, DateTime(2026, 10, 31));
+    });
+
+    test('violencia: contestación 3 días hábiles (Art. 129 LOVMV, cotejado)', () {
+      final List<LapsoCatalogo> catalogo = catalogoPorVia(ViaProcesal.violencia);
+      final LapsoCatalogo contestacion = catalogo.firstWhere(
+        (l) => l.acto.contains('Contestación de la apelación'),
+      );
+      expect(contestacion.cantidadMin, 3);
+      expect(contestacion.computo, TipoComputo.habiles,
+          reason: 'El Art. 129 LOVMV dice "tres días hábiles"');
+      expect(contestacion.baseLegal, contains('129'));
+      expect(contestacion.pendienteVerificacion, isFalse);
     });
 
     test('menos graves: preliminar municipal 10-15 días hábiles', () {
