@@ -331,6 +331,9 @@ Pendientes de validación del usuario: los 196 casos del reporte, con casilla pa
 | EST-06 | El manifest no lleva tipo de escrito ni metadatos | Añadir categoría, tipo y etiquetas por modelo | abierto |
 | EST-07 | El redactor no ofrece "usar plantilla" | Selector de categoría y modelo dentro del redactor | abierto |
 | EST-08 | Sin prueba de que el modelo se use para el estilo | Generar un escrito con y sin modelo y comparar | abierto |
+| EST-09 | 17 teléfonos y 1 correo sin sanear en los modelos | Copia saneada con [TELÉFONO] y [CORREO] | hecho |
+| EST-10 | Las citas no se validan por pertinencia, solo por existencia | Revisión de un abogado sobre los 124 modelos | abierto |
+| EST-11 | Los modelos revisados no citan artículos derogados ni inexistentes | Auditoría de 1.131 citas contra 6.406 artículos | hecho |
 
 **Inventario verificado:**
 
