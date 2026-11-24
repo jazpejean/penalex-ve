@@ -392,8 +392,30 @@ El RAG ya incluye tres fuentes: sentencias, criterios de la Sala y doctrinas aca
 | RAG-08 | Medir precisión y recall del RAG con un conjunto de preguntas de prueba | abierto |
 | RAG-09 | Las citas académicas deben mostrar autor, obra, página y la sentencia que las recoge | abierto |
 | RAG-10 | Sincronizar la base local con Supabase y registrar la versión del corpus | abierto |
+| RAG-11 | La curaduría se hace con búsquedas web, sin registro de la fuente | Guardar URL, título de la fuente y fecha de consulta por cada dato completado | propuesta |
+| RAG-12 | Sin estados de curaduría | `pendiente`, `propuesta`, `verificada`, `dudosa`, `sin_fuente` por fila | propuesta |
+| RAG-13 | Riesgo de completar con datos inventados o de otra obra | Solo se aprueba con una fuente que muestre autor, obra y página | propuesta |
+| RAG-14 | Sin trazabilidad de quién aprobó | Campo de aprobación con fecha y usuario | propuesta |
+| RAG-15 | Sin métrica de avance de curaduría | Panel con total, completas, incompletas, dudosas y sin fuente | propuesta |
 
-### Lo que el RAG debe responder
+### Curaduría asistida por búsqueda web
+
+Cada fila incompleta pasa por este flujo:
+
+1. **Extraer** autor y obra tal como vienen en la fila.
+2. **Buscar** en fuentes verificables: Google Books, WorldCat, Dialnet, Google Scholar, catálogos de universidades venezolanas y revistas jurídicas.
+3. **Proponer** el dato encontrado con su evidencia: URL, título de la página, texto donde aparece la página del libro.
+4. **Comparar** con la evidencia de la sentencia: el párrafo citado debe coincidir con la obra y el autor.
+5. **Aprobar o descartar** con revisión humana.
+6. **Guardar** el estado y la fuente.
+
+Reglas estrictas:
+- Sin URL y texto de respaldo, el dato no se completa.
+- Si la búsqueda arroja dos obras distintas para el mismo autor, la fila se marca `dudosa`.
+- Si no hay coincidencia, se marca `sin_fuente` y el RAG no la cita como doctrina formal.
+- La página solo se completa cuando la fuente la muestra. No se infiere por cercanía.
+
+Lo que el RAG debe responder
 
 - Si no hay doctrina académica verificable, lo dice y fundamenta con jurisprudencia y ley.
 - Nunca presenta un criterio de sala como si fuera un autor académico.
