@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:image_picker/image_picker.dart';
+
 import 'package:flutter/material.dart';
 import '../config/app_colors.dart';
 import 'package:provider/provider.dart';
@@ -288,6 +290,79 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
     await Share.shareXFiles(archivos, text: 'Imágenes escaneadas');
   }
 
+  /// Galería con selección múltiple (ESC-11).
+  Future<void> _agregarDeGaleria() async {
+    final List<XFile> archivos =
+        await ImagePicker().pickMultiImage(imageQuality: 90);
+    if (archivos.isEmpty || !mounted) return;
+    setState(() {
+      for (final XFile f in archivos) {
+        _paginas.add(f.path);
+        _originales.add(f.path);
+      }
+      _paginaActual = _paginas.length - 1;
+    });
+    _pageController.jumpToPage(_paginaActual);
+  }
+
+  /// Reordenar páginas (ESC-03).
+  Future<void> _abrirGestorPaginas() async {
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: TemaGlobal.tarjeta,
+      builder: (BuildContext ctx) {
+        return StatefulBuilder(
+          builder: (BuildContext ctx, StateSetter setSheet) {
+            return SizedBox(
+              height: MediaQuery.of(ctx).size.height * 0.7,
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
+                    child: Row(
+                      children: <Widget>[
+                        Text('Páginas', style: AppTokens.tituloSeccion),
+                        const Spacer(),
+                        Text('${_paginas.length}',
+                            style: TextStyle(color: TemaGlobal.textoSecundario)),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: ReorderableListView.builder(
+                      itemCount: _paginas.length,
+                      onReorder: (int oldIndex, int newIndex) {
+                        setSheet(() {
+                          if (newIndex > oldIndex) newIndex -= 1;
+                          final String pagina = _paginas.removeAt(oldIndex);
+                          _paginas.insert(newIndex, pagina);
+                        });
+                        setState(() => _paginaActual = newIndex.clamp(0, _paginas.length - 1));
+                      },
+                      itemBuilder: (BuildContext c, int i) {
+                        return ListTile(
+                          key: ValueKey<String>('${_paginas[i]}-$i'),
+                          leading: ClipRRect(
+                            borderRadius: BorderRadius.circular(AppTokens.radioControl),
+                            child: Image.file(File(_paginas[i]),
+                                width: 40, height: 52, fit: BoxFit.cover),
+                          ),
+                          title: Text('Página ${i + 1}'),
+                          trailing: const Icon(Icons.drag_handle),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   Future<void> _guardar() async {
     if (_guardando) return;
     setState(() => _guardando = true);
@@ -332,19 +407,30 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
     return Scaffold(
       backgroundColor: AppColors.superficie,
       appBar: AppBar(
-        backgroundColor: AppColors.azulMarino,
+        backgroundColor: TemaGlobal.superficie,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.dorado),
+        iconTheme: IconThemeData(color: TemaGlobal.texto),
         title: TextField(
           controller: _tituloController,
-          style: const TextStyle(color: AppColors.onAzulMarino, fontSize: 16),
+          style: TextStyle(
+              color: TemaGlobal.texto, fontSize: 18, fontWeight: FontWeight.w700),
           decoration: InputDecoration(
             hintText: 'Nombre del documento',
-            hintStyle: TextStyle(color: AppColors.onAzulMarino.withValues(alpha: 0.48)),
+            hintStyle: TextStyle(color: TemaGlobal.textoTenue),
             border: InputBorder.none,
           ),
         ),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.photo_library_outlined),
+            tooltip: 'Galería (varias páginas)',
+            onPressed: _agregarDeGaleria,
+          ),
+          IconButton(
+            icon: const Icon(Icons.view_carousel_outlined),
+            tooltip: 'Reordenar páginas',
+            onPressed: _abrirGestorPaginas,
+          ),
           if (_guardando || _procesando)
             const Padding(
               padding: EdgeInsets.all(16),
@@ -359,17 +445,17 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
             )
           else ...[
             IconButton(
-              icon: const Icon(Icons.picture_as_pdf, color: AppColors.dorado),
+              icon: Icon(Icons.picture_as_pdf, color: TemaGlobal.textoSecundario),
               tooltip: 'Descargar como PDF',
               onPressed: _descargarPdf,
             ),
             IconButton(
-              icon: const Icon(Icons.image, color: AppColors.dorado),
+              icon: Icon(Icons.image, color: TemaGlobal.textoSecundario),
               tooltip: 'Descargar como imagen',
               onPressed: _descargarImagen,
             ),
             IconButton(
-              icon: const Icon(Icons.cloud_upload, color: AppColors.dorado),
+              icon: Icon(Icons.cloud_upload, color: TemaGlobal.textoSecundario),
               tooltip: 'Guardar en la nube',
               onPressed: _guardar,
             ),
