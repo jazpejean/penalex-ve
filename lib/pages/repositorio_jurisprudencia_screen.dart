@@ -1725,6 +1725,24 @@ Widget _selectorValorCondicion(
     );
   }
 
+  /// Distintivo de criterio cuando el texto lo declara. No requiere columna:
+  /// se lee del resumen, el ratio y el extracto.
+  String? _criterioPacifico(SentenciaModel s) {
+    final String t =
+        '${s.resumen} ${s.ratio} ${s.extracto}'.toLowerCase();
+    if (t.contains('criterio pacífico') ||
+        t.contains('criterio pacifico') ||
+        t.contains('doctrina pacífica') ||
+        t.contains('doctrina pacifica')) {
+      return 'Criterio pacífico';
+    }
+    if (t.contains('criterio reiterado') ||
+        t.contains('jurisprudencia reiterada')) {
+      return 'Criterio reiterado';
+    }
+    return null;
+  }
+
   String _etiquetaDelito(SentenciaModel s) {
     if (s.delito.isNotEmpty && s.delito != 'null') return s.delito;
     if (s.materia.isNotEmpty && s.materia != 'null') return s.materia;
@@ -1784,10 +1802,27 @@ Widget _selectorValorCondicion(
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
-                        'Vinculante',
+                        _criterioPacifico(sentencia) ?? 'Jurisprudencia',
                         style: TextStyle(
                           color: AppColors.onDorado,
-                          // Guía 3.6: badge 10px.
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ] else if (sentencia.tipo.toLowerCase().contains('resol')) ...[
+                    const SizedBox(width: 8),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6, vertical: 3),
+                      decoration: BoxDecoration(
+                        color: TemaGlobal.capa,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Text(
+                        'Resolución',
+                        style: TextStyle(
+                          color: TemaGlobal.textoSecundario,
                           fontSize: 10,
                           fontWeight: FontWeight.bold,
                         ),
