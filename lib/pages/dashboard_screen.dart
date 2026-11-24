@@ -200,8 +200,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
             icon: Icons.folder_open,
             valor: _cargando ? '…' : '$audienciasMes',
             etiqueta: 'Audiencias este mes',
-            color: TemaGlobal.texto,
-            bg: AppColors.dorado.withValues(alpha: AppColors.a12),
+            color: AppColors.azulMarino,
+            bg: TemaGlobal.campoTexto,
           ),
         ),
         const SizedBox(width: 12),
@@ -210,10 +210,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             icon: Icons.gavel,
             valor: _cargando ? '…' : '$proximas7',
             etiqueta: 'Próximos 7 días',
-            color: hayCritico ? AppColors.error : TemaGlobal.texto,
+            color: hayCritico ? AppColors.error : AppColors.azulMarino,
             bg: hayCritico
                 ? AppColors.error.withValues(alpha: AppColors.a12)
-                : AppColors.dorado.withValues(alpha: AppColors.a12),
+                : TemaGlobal.campoTexto,
           ),
         ),
       ],
@@ -282,11 +282,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         width: double.infinity,
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [AppColors.azulMarino, Color(0xFF1E293B)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
+          color: AppColors.azulMarino,
           borderRadius: BorderRadius.circular(24),
           boxShadow: <BoxShadow>[
             BoxShadow(
