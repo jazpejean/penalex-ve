@@ -42,6 +42,26 @@ void main() {
       expect(find.byType(Text), findsOneWidget);
     });
 
+    testWidgets('un título largo no desborda en pantalla estrecha',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: SizedBox(
+              width: 320,
+              child: AppScreenHeader(
+                titulo:
+                    'Ley Orgánica para la Protección de Niños, Niñas y Adolescentes en el contexto penal venezolano',
+                subtitulo:
+                    'Un subtítulo largo que también debe ajustarse sin desbordar',
+              ),
+            ),
+          ),
+        ),
+      );
+      expect(tester.takeException(), isNull);
+    });
+
     testWidgets('las acciones se muestran a la derecha',
         (WidgetTester tester) async {
       await tester.pumpWidget(
