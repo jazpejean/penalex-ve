@@ -33,14 +33,14 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 | ID | Problema | Propuesta | Estado |
 |---|---|---|---|
 | APP-10 | Iconos de Inicio en gris claro sobre gris claro | Contraste AA en iconos y contenedores | abierto |
-| APP-11 | Leyenda del calendario con "Hoy" casi invisible | Color con contraste suficiente | abierto |
+| APP-11 | Leyenda del calendario con "Hoy" casi invisible | "Hoy" en azul marino con contraste | hecho |
 | APP-12 | Botón primario dorado en unas pantallas y navy en otras | Un solo color de acción primaria | abierto |
 | APP-13 | Títulos de sección en dorado, negro y serif según pantalla | `AppTokens.tituloSeccion` en todas | en curso |
 | APP-14 | Drawer con sección "Recursos legales" incompleta | Ordenar y completar el menú | abierto |
 | APP-15 | Avatar con inicial gigante y botón de cámara desalineado | Avatar consistente con `photoUrl` | abierto |
 | APP-16 | Asistente con guion largo y badge que compite con el título | Microcopy limpio | abierto |
-| APP-17 | Versión del drawer dice v1.0 y el paquete es 1.0.0+1 | Unificar versión | abierto |
-| APP-18 | Estados vacíos distintos en cada pantalla | Componente `EmptyState` único | abierto |
+| APP-17 | Versión del drawer dice v1.0 | Ahora dice v1.0.0+1 | hecho |
+| APP-18 | Estados vacíos distintos en cada pantalla | Componente `EmptyState` creado y aplicado en Agenda | hecho |
 | APP-19 | Sin modo oscuro coherente | Paleta oscura con los mismos tokens | abierto |
 | APP-20 | Sin accesibilidad: escalado de texto, `Semantics`, 48 dp | Auditoría de accesibilidad | abierto |
 | APP-21 | El Inicio no muestra el potencial de las herramientas ni es intuitivo | Reorganizar por tarea: "qué necesito hacer" con acciones primarias, descripciones de valor y métricas útiles | abierto |

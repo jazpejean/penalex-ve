@@ -18,6 +18,7 @@ import 'tribunal_detail_screen.dart';
 import '../widgets/app_snackbar.dart';
 import '../config/app_tokens.dart';
 import '../widgets/app_screen_header.dart';
+import '../widgets/empty_state.dart';
 
 class AgendaScreen extends StatefulWidget {
   const AgendaScreen({super.key});
@@ -486,22 +487,10 @@ class _AgendaScreenState extends State<AgendaScreen> {
       ..sort((a, b) => a.hora.compareTo(b.hora));
 
     if (nonWorkingDays.isEmpty && audiencias.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(Icons.calendar_month,
-                color: TemaGlobal.textoSecundario, size: 48),
-            const SizedBox(height: 12),
-            Text(
-              'No hay audiencias fijadas.',
-              style: TextStyle(
-                fontSize: 14,
-                color: TemaGlobal.textoSecundario,
-              ),
-            ),
-          ],
-        ),
+      return const EmptyState(
+        icono: Icons.calendar_month,
+        titulo: 'No hay audiencias fijadas.',
+        mensaje: 'Toca Nueva Audiencia para agendar la primera.',
       );
     }
 
