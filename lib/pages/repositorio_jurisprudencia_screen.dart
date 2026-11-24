@@ -64,6 +64,7 @@ class _RepositorioJurisprudenciaScreenState
   String _categoriaSeleccionada = 'Sentencias';
   String? _salaSeleccionada;
   int? _anioSeleccionado;
+  DateTime? _fechaExacta;
   // 📅 Orden estilo Venley: 'relevancia' | 'recientes' | 'antiguas'.
   String _ordenVenley = 'relevancia';
 
@@ -145,7 +146,9 @@ class _RepositorioJurisprudenciaScreenState
       texto: _searchController.text.trim(),
       categoria: _categoriaSeleccionada,
       sala: _salaSeleccionada,
-      anio: _anioSeleccionado,
+      anio: _fechaExacta?.year ?? _anioSeleccionado,
+      mes: _fechaExacta?.month,
+      dia: _fechaExacta?.day,
       decada: _decadaSeleccionada,
       offset: 0,
       limit: _limitePagina,
@@ -184,7 +187,9 @@ class _RepositorioJurisprudenciaScreenState
       texto: _searchController.text.trim(),
       categoria: _categoriaSeleccionada,
       sala: _salaSeleccionada,
-      anio: _anioSeleccionado,
+      anio: _fechaExacta?.year ?? _anioSeleccionado,
+      mes: _fechaExacta?.month,
+      dia: _fechaExacta?.day,
       decada: _decadaSeleccionada,
       offset: _offset,
       limit: _limitePagina,
@@ -1343,6 +1348,46 @@ Widget _selectorValorCondicion(
               const SizedBox(height: 16),
               _buildFiltros(),
               const SizedBox(height: 16),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () async {
+                        final DateTime? elegida = await showDatePicker(
+                          context: ctx,
+                          initialDate: _fechaExacta ?? DateTime.now(),
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime.now(),
+                          helpText: 'Fecha exacta de la sentencia',
+                        );
+                        if (elegida != null) {
+                          setState(() {
+                            _fechaExacta = elegida;
+                            _anioSeleccionado = elegida.year;
+                          });
+                        }
+                      },
+                      icon: const Icon(Icons.event, size: 18),
+                      label: Text(
+                        _fechaExacta == null
+                            ? 'Fecha exacta'
+                            : '${_fechaExacta!.day.toString().padLeft(2, '0')}/'
+                                '${_fechaExacta!.month.toString().padLeft(2, '0')}/'
+                                '${_fechaExacta!.year}',
+                      ),
+                    ),
+                  ),
+                  if (_fechaExacta != null) ...<Widget>[
+                    IconButton(
+                      tooltip: 'Quitar fecha',
+                      onPressed: () =>
+                          setState(() => _fechaExacta = null),
+                      icon: const Icon(Icons.close, size: 18),
+                    ),
+                  ],
+                ],
+              ),
+              const SizedBox(height: 16),
               SizedBox(
                 width: double.infinity,
                 child: FilledButton(
@@ -1743,12 +1788,6 @@ Widget _selectorValorCondicion(
     return null;
   }
 
-  String _etiquetaDelito(SentenciaModel s) {
-    if (s.delito.isNotEmpty && s.delito != 'null') return s.delito;
-    if (s.materia.isNotEmpty && s.materia != 'null') return s.materia;
-    return 'Jurisprudencia Penal';
-  }
-
   Widget _buildSentenciaCard(SentenciaModel sentencia, int index) {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
@@ -1772,26 +1811,6 @@ Widget _selectorValorCondicion(
               // Fila superior: delito + vinculante + favorita
               Row(
                 children: [
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: AppColors.azulMarino,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      _etiquetaDelito(sentencia),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: AppColors.onAzulMarino,
-                        // Guía 3.6: badge 10px.
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 0.3,
-                      ),
-                    ),
-                  ),
                   if (sentencia.esJurisprudencia) ...[
                     const SizedBox(width: 8),
                     Container(
