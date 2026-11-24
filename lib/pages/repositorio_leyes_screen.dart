@@ -122,7 +122,7 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
 
   Widget _buildBarraBusqueda() {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AppTokens.margen),
       decoration: BoxDecoration(
         color: AppColors.azulMarino,
         boxShadow: [
@@ -229,7 +229,7 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
         return _buildEmpty();
       }
       return ListView.builder(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(AppTokens.margen),
         itemCount: _resultados.length,
         itemBuilder: (context, index) =>
             _buildResultadoCard(_resultados[index], index),
@@ -241,7 +241,7 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
       return _buildEmpty();
     }
     return ListView.builder(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+      padding: const EdgeInsets.fromLTRB(AppTokens.margen, 16, AppTokens.margen, 24),
       itemCount: _leyes.length,
       itemBuilder: (context, index) => _buildLeyCard(_leyes[index], index),
     );
@@ -314,7 +314,7 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
         borderRadius: BorderRadius.circular(12),
         onTap: () => _abrirArticulo(r.registro),
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(AppTokens.margen),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

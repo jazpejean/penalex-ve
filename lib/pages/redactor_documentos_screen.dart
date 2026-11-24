@@ -653,7 +653,7 @@ color: AppColors.dorado,
           Expanded(
             child: ListView.builder(
               controller: _scrollController,
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(AppTokens.margen),
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 final message = _messages[index];

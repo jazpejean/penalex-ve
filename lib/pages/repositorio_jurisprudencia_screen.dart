@@ -1163,7 +1163,7 @@ Widget _selectorValorCondicion(
         children: [
           // ✅ Barra de búsqueda SIMPLE y clara
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(AppTokens.margen),
             decoration: BoxDecoration(
               color: TemaGlobal.superficie,
               boxShadow: [
@@ -1353,7 +1353,7 @@ Widget _selectorValorCondicion(
   Widget _buildListaSentencias() {
     return ListView.builder(
       controller: _scrollController,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AppTokens.margen),
       itemCount: _resultados.length + (_tieneMas ? 1 : 0),
       itemBuilder: (context, index) {
         if (index >= _resultados.length) {
@@ -1381,7 +1381,7 @@ Widget _selectorValorCondicion(
   Widget _buildListaDoctrinas() {
     return ListView.builder(
       controller: _scrollController,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AppTokens.margen),
       itemCount: _doctrinas.length + (_tieneMas ? 1 : 0),
       itemBuilder: (context, index) {
         if (index >= _doctrinas.length) {
@@ -1407,13 +1407,13 @@ Widget _selectorValorCondicion(
   /// Esqueletos de carga mientras se busca (guía 3.1: tarjetas r16).
   Widget _buildSkeletons() {
     return ListView.builder(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AppTokens.margen),
       physics: const NeverScrollableScrollPhysics(),
       itemCount: 5,
       itemBuilder: (context, index) {
         return Container(
           margin: const EdgeInsets.only(bottom: 12),
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(AppTokens.margen),
           decoration: BoxDecoration(
             color: TemaGlobal.tarjeta,
             borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
@@ -1700,7 +1700,7 @@ Widget _selectorValorCondicion(
         onTap: () => _verSentencia(sentencia),
         borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(AppTokens.margen),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -2820,7 +2820,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.85,
                     margin: const EdgeInsets.only(bottom: 16),
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(AppTokens.margen),
                     decoration: BoxDecoration(
                       color: TemaGlobal.tarjeta,
                       borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
@@ -3047,7 +3047,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
   Widget _buildCopiaNoDisponible() {
     final s = widget.sentencia;
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AppTokens.margen),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -3113,7 +3113,7 @@ class _DetalleSentenciaScreenState extends State<DetalleSentenciaScreen> {
   Widget _buildContenidoWeb() {
     final s = widget.sentencia;
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AppTokens.margen),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
