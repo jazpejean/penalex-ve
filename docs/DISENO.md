@@ -89,6 +89,8 @@ AppScreenHeader(
 | Cómputo | `AppScreenHeader` | Sí | Sí | hecho |
 | Asistente | `AppScreenHeader` | Sí | Sí | hecho |
 | Detector de vicios | `AppScreenHeader` | Sí | Sí | hecho |
+| Tribunales (detalle) | Título propio con escala | Sí | No | hecho |
+| Quiz (lobby y juego) | Diseño propio de juego | Sí | Sí | regla |
 | Herramientas secundarias | `AppBarInstitucional` con atrás | Sí | Sí | regla |
 
 ## Regla de navegación
