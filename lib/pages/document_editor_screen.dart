@@ -19,6 +19,7 @@ import '../services/escaneo_service.dart';
 import '../services/image_filter_service.dart';
 import 'crop_adjust_screen.dart';
 import '../config/app_tokens.dart';
+import 'camera_scanner_screen.dart';
 
 /// Editor de documento escaneado, estilo CamScanner:
 /// vista previa grande, tira de miniaturas, filtros, recorte manual,
@@ -355,6 +356,23 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
     _pageController.jumpToPage(_paginaActual);
   }
 
+  /// Cámara con detección de bordes en vivo.
+  Future<void> _abrirCamara() async {
+    final List<String>? rutas = await Navigator.push<List<String>>(
+      context,
+      MaterialPageRoute<List<String>>(
+        builder: (_) => const CameraScannerScreen(),
+      ),
+    );
+    if (rutas == null || rutas.isEmpty || !mounted) return;
+    setState(() {
+      _paginas.addAll(rutas);
+      _originales.addAll(rutas);
+      _paginaActual = _paginas.length - 1;
+    });
+    _pageController.jumpToPage(_paginaActual);
+  }
+
   /// Mejora de imagen por página: binarización adaptativa Sauvola (ESC-12).
   Future<void> _mejorarPagina() async {
     if (_procesando) return;
@@ -503,6 +521,11 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
           ),
         ),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.photo_camera_outlined),
+            tooltip: 'Cámara con detección de bordes',
+            onPressed: _abrirCamara,
+          ),
           IconButton(
             icon: const Icon(Icons.photo_library_outlined),
             tooltip: 'Galería (varias páginas)',

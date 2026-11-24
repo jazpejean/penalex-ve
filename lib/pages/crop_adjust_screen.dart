@@ -8,17 +8,18 @@ import '../config/app_theme.dart';
 import '../services/document_scanner_service_pro.dart';
 import 'filter_preview_screen.dart';
 import '../widgets/app_bar_institucional.dart';
+import '../config/app_tokens.dart';
 
 /// Pantalla para ajustar manualmente las 4 esquinas del documento
 /// Permite arrastrar cada esquina para perfeccionar la detección automática
 class CropAdjustScreen extends StatefulWidget {
   final String imagePath;
-  final List<Offset> detectedCorners;
+  final List<Offset>? detectedCorners;
 
   const CropAdjustScreen({
     super.key,
     required this.imagePath,
-    required this.detectedCorners,
+    this.detectedCorners,
   });
 
   @override
@@ -36,7 +37,8 @@ class _CropAdjustScreenState extends State<CropAdjustScreen> {
   @override
   void initState() {
     super.initState();
-    _corners = List.from(widget.detectedCorners);
+    _corners = List<Offset>.from(
+        widget.detectedCorners ?? const <Offset>[]);
     _loadImage();
   }
 
@@ -45,12 +47,19 @@ class _CropAdjustScreenState extends State<CropAdjustScreen> {
     final codec = await ui.instantiateImageCodec(bytes);
     final frame = await codec.getNextFrame();
     
+    final double w = frame.image.width.toDouble();
+    final double h = frame.image.height.toDouble();
     setState(() {
       _image = frame.image;
-      _imageSize = Size(
-        frame.image.width.toDouble(),
-        frame.image.height.toDouble(),
-      );
+      _imageSize = Size(w, h);
+      if (_corners.length != 4) {
+        _corners = <Offset>[
+          Offset(w * 0.05, h * 0.05),
+          Offset(w * 0.95, h * 0.05),
+          Offset(w * 0.95, h * 0.95),
+          Offset(w * 0.05, h * 0.95),
+        ];
+      }
     });
   }
 
@@ -62,6 +71,24 @@ class _CropAdjustScreenState extends State<CropAdjustScreen> {
         title: 'Ajustar Bordes',
         mostrarBack: true,
 
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(AppTokens.margen),
+          child: ElevatedButton.icon(
+            onPressed: _isProcessing ? null : _applyAndContinue,
+            icon: const Icon(Icons.check),
+            label: Text(_isProcessing ? 'Procesando...' : 'Aplicar recorte'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.azulMarino,
+              foregroundColor: Colors.white,
+              minimumSize: const Size.fromHeight(52),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppTokens.radioControl),
+              ),
+            ),
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -287,7 +314,8 @@ class _CropAdjustScreenState extends State<CropAdjustScreen> {
 
   void _resetCorners() {
     setState(() {
-      _corners = List.from(widget.detectedCorners);
+      _corners = List<Offset>.from(
+        widget.detectedCorners ?? const <Offset>[]);
     });
     
     ScaffoldMessenger.of(context).showSnackBar(
