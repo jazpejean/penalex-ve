@@ -96,7 +96,7 @@ AppScreenHeader(
 ## Regla de navegación
 
 - **Pestañas principales** (Inicio, Agenda, Asistente, Consulta): usan `AppScreenHeader` y barra inferior.
-- **Pantallas empujadas** (Prescripción, Mapa, Glosario, Detector, Redactor, Escáner, Quiz): usan `AppBarInstitucional` con botón atrás, porque vuelven a la pantalla anterior.
+- **Pantallas empujadas** (Prescripción, Mapa, Glosario, Detector, Redactor, Escáner, Quiz): usan `AppBarInstitucional` con botón atrás, fondo claro, título 24/700 y 68 de alto, alineado al mismo patrón.
 - **Flujo de dosimetría** (Dosimetría, Concurso, Cómputo): las tres usan `AppScreenHeader` porque son pasos del mismo flujo.
 
 ## Leyes
