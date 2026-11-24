@@ -319,6 +319,77 @@ Pendientes de validación del usuario: los 196 casos del reporte, con casilla pa
 
 ---
 
+## Producto de primer nivel
+
+Lo que falta y no está en las secciones anteriores. Son las cosas que un abogado espera de una herramienta que usa todos los días y por las que paga.
+
+### Confianza y cumplimiento
+
+| ID | Problema | Propuesta | Prioridad |
+|---|---|---|---|
+| PROD-01 | Sin términos, privacidad ni consentimiento de datos | Páginas legales y aceptación en el registro | P0 |
+| PROD-02 | Sin registro de accesos | Auditoría de quién abrió, exportó o compartió un expediente | P0 |
+| PROD-03 | Sin PIN ni biometría para datos sensibles | Bloqueo de la app y de los expedientes | P1 |
+| PROD-04 | Sin política de retención ni borrado | Borrado de cuenta y de datos con confirmación | P1 |
+
+### Productividad jurídica
+
+| ID | Problema | Propuesta | Prioridad |
+|---|---|---|---|
+| PROD-10 | Sin plantillas de escritos | Plantillas por tipo: demanda, recurso, solicitud, amparo | P0 |
+| PROD-11 | Sin versiones de documentos | Historial de versiones y comparación lado a lado | P1 |
+| PROD-12 | Sin colaboración | Compartir expediente con un colega con permisos (ver, editar) | P1 |
+| PROD-13 | Sin notas internas | Notas por documento y por expediente, visibles solo para el equipo | P1 |
+| PROD-14 | Sin cronología del caso | Línea de tiempo de actuaciones y documentos | P2 |
+| PROD-15 | Sin exportar el expediente completo | PDF con índice, documentos y membrete | P0 |
+| PROD-16 | Sin alertas de lapsos | Notificación push y evento de calendario | P1 |
+
+### IA de primer nivel
+
+| ID | Problema | Propuesta | Prioridad |
+|---|---|---|---|
+| PROD-20 | Las respuestas no siempre enlazan la fuente | Cada cita con enlace al artículo o a la sentencia | P0 |
+| PROD-21 | Sin política de "no encontrado" | Si no hay fuente, la IA lo dice y no inventa | P0 |
+| PROD-22 | Sin feedback de calidad | Pulgar arriba/abajo por respuesta y reporte de error | P1 |
+| PROD-23 | Sin historial de conversaciones | Historial buscable por fecha y tema | P1 |
+| PROD-24 | Sin evaluación de calidad | Conjunto de preguntas de prueba y medición de acierto | P2 |
+
+### Operación y negocio
+
+| ID | Problema | Propuesta | Prioridad |
+|---|---|---|---|
+| PROD-30 | Sin analytics de producto | Eventos de uso con privacidad (Plausible o Umami) | P1 |
+| PROD-31 | Sin monitoreo de errores | Sentry en app y web, alertas de latencia y 5xx | P0 |
+| PROD-32 | Sin panel de administración | Usuarios, uso, límites y reportes | P2 |
+| PROD-33 | Sin planes ni límites | Free, Pro y Estudio con límites de IA | P1 |
+| PROD-34 | Sin facturación | Pasarela de pago y recibos | P2 |
+| PROD-35 | Sin onboarding | Tres pasos: rol, expediente y primera consulta | P0 |
+| PROD-36 | Sin soporte | Ayuda in-app y base de conocimiento | P1 |
+| PROD-37 | Sin backups probados | Respaldo automático y restauración verificada | P0 |
+| PROD-38 | Sin entorno de pruebas | Staging separado de producción | P1 |
+| PROD-39 | Sin pruebas E2E | Los 9 flujos críticos automatizados | P1 |
+
+### Plataforma
+
+| ID | Problema | Propuesta | Prioridad |
+|---|---|---|---|
+| PROD-40 | Sin diseño para tablet y escritorio | Diseño adaptativo en la app | P2 |
+| PROD-41 | Solo en español y solo Venezuela | Internacionalización y adaptación a otros códigos penales | P2 |
+
+---
+
+## Las que haría primero
+
+| Orden | Qué | Por qué |
+|---|---|---|
+| 1 | Citas verificables y política de "no encontrado" (PROD-20, PROD-21) | Es la diferencia entre una IA confiable y una que inventa |
+| 2 | Plantillas de escritos (PROD-10) | Es el uso diario del abogado |
+| 3 | Exportar el expediente completo (PROD-15) | Es lo que el cliente final entrega al tribunal |
+| 4 | Auditoría de accesos (PROD-02) | Confianza y cumplimiento |
+| 5 | Onboarding de tres pasos (PROD-35) | La primera impresión decide el uso |
+
+---
+
 ## Concursos
 
 | ID | Problema | Propuesta | Estado |
