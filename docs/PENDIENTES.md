@@ -365,11 +365,11 @@ Pendientes de validación del usuario: los 196 casos del reporte, con casilla pa
 
 ## Criterios sostenidos y abandonados (jurisprudencia viva)
 
-Archivo en curaduría: `penalex-scraper/criterios_sostenidos_y_abandonados.json`. Muestra de 50 criterios: 25 sostenidos (vigentes reiterados) y 25 abandonados (superados).
+Archivo de referencia: `penalex-scraper/criterios_sostenidos_y_abandonados.json`. **Es la versión vieja, sin curar.** El pipeline nuevo la reemplazará. Se registra aquí como muestra de la idea y de lo que hay que corregir.
 
 **Por qué es valioso:** evita citar jurisprudencia superada, que es uno de los errores más graves en un escrito. Ningún competidor lo tiene resuelto a este nivel.
 
-### Calidad de la muestra
+### Calidad de la versión vieja (referencia para el pipeline nuevo)
 
 | Dato | Resultado |
 |---|---|
@@ -448,7 +448,7 @@ La curaduría la ejecuta el usuario con un pipeline de IA y búsqueda web. **No 
 - El conteo por estado: verificadas, dudosas y sin fuente.
 - La versión del corpus curado para registrarla.
 
-**Muestra recibida el 2026-11-23:** `doctrinas_academicas_perfectas.json` con 1.007 registros curados (9% del total). Calidad verificada:
+**Muestra recibida el 2026-11-23:** `doctrinas_academicas_perfectas.json` con 1.007 registros (9% del total). La curaduría sigue en curso con el pipeline del usuario y no se cierra hasta su aviso. Calidad de la muestra:
 
 | Dato | Resultado |
 |---|---|
@@ -652,49 +652,6 @@ Lo que falta y no está en las secciones anteriores. Son las cosas que un abogad
 
 ---
 
-## Narrativa para los concursos
-
-**Posición real:** no se presenta una idea, se presenta un sistema en construcción con datos reales. Eso es más fuerte que una idea y más creíble que un producto "terminado".
-
-**One-liner:**
-> Penalex es la infraestructura de conocimiento legal de Venezuela: una base viva de leyes, jurisprudencia y doctrina, con IA que solo cita lo verificable y un pipeline que la mantiene actualizada a costo casi cero.
-
-**Lo que no se debe prometer:**
-- "Perfecto" o "sin errores". En datos legales es una bandera roja.
-- "Reemplaza al abogado".
-- "100% preciso".
-
-**Cómo reformular:**
-- "Cada cita tiene fuente, página y estado de vigencia."
-- "El pipeline corre solo y avisa cuando la fuente cambia."
-- "El abogado aprueba lo dudoso. La IA no decide."
-
-**Estructura de 10 láminas:**
-1. Problema: el abogado pierde de 4 a 6 horas por escrito y el riesgo de citar mal es alto.
-2. Por qué ahora: IA madura, datos disponibles y costo de cómputo bajo.
-3. Solución: base viva más herramientas de trabajo.
-4. Demo de 3 minutos.
-5. El foso: datos curados, verificación de vigencia y pipeline.
-6. Tracción: 55.208 sentencias, 6.416 artículos, 11.133 doctrinas, 867 tribunales, 124 modelos.
-7. Modelo de negocio: suscripción por abogado y por estudio.
-8. Pipeline y costo unitario por registro.
-9. Equipo y roadmap de 6 meses.
-10. Pedido concreto: monto, uso y qué se entrega.
-
-**Guion de demo de 3 minutos:**
-1. Escanear un auto y generar el PDF (30 s).
-2. Detector de vicios sobre el caso (30 s).
-3. Ulpiano fundamenta con artículo, sentencia vigente y doctrina con página (60 s).
-4. El redactor genera el escrito con estilo de modelo real (45 s).
-5. Cierre con el criterio marcado como vigente y su número de precedentes (15 s).
-
-**Los tres números que deben aparecer:**
-1. Costo por sentencia o doctrina procesada.
-2. Tiempo desde que sale una sentencia hasta que está indexada.
-3. Porcentaje de citas con fuente verificable.
-
----
-
 ## Concursos
 
 | ID | Problema | Propuesta | Estado |
@@ -703,9 +660,6 @@ Lo que falta y no está en las secciones anteriores. Son las cosas que un abogad
 | CON-11 | Sin métricas reales en el pitch | 55.208 sentencias, 53 leyes, 6.416 artículos, 867 tribunales | abierto |
 | CON-12 | Sin roadmap de 6 meses | Alineado a The Next Gen | abierto |
 | CON-13 | Sin testimonios de uso | 3 videos de abogados | abierto |
-| CON-14 | Sin mensaje central | One-liner: infraestructura de conocimiento legal con IA, base viva y citas verificables | abierto |
-| CON-15 | Sin guion de demo | Escanear, detectar vicio, fundamentar con cita vigente, redactar | abierto |
-| CON-16 | Riesgo de prometer "perfecto" | Reformular a "verificable, actualizado y con supervisión" | abierto |
 
 ---
 
