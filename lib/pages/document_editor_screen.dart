@@ -305,6 +305,19 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
     _pageController.jumpToPage(_paginaActual);
   }
 
+  /// Mejora de imagen por página: binarización adaptativa Sauvola (ESC-12).
+  Future<void> _mejorarPagina() async {
+    if (_procesando) return;
+    setState(() => _procesando = true);
+    final String? mejorada =
+        await ImageFilterService.binarizarDocumento(_paginas[_paginaActual]);
+    if (!mounted) return;
+    setState(() {
+      _procesando = false;
+      if (mejorada != null) _paginas[_paginaActual] = mejorada;
+    });
+  }
+
   /// Reordenar páginas (ESC-03).
   Future<void> _abrirGestorPaginas() async {
     await showModalBottomSheet<void>(
@@ -425,6 +438,11 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
             icon: const Icon(Icons.photo_library_outlined),
             tooltip: 'Galería (varias páginas)',
             onPressed: _agregarDeGaleria,
+          ),
+          IconButton(
+            icon: const Icon(Icons.auto_fix_high),
+            tooltip: 'Mejorar documento (blanco y negro)',
+            onPressed: _mejorarPagina,
           ),
           IconButton(
             icon: const Icon(Icons.view_carousel_outlined),
