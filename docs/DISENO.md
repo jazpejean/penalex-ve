@@ -84,9 +84,20 @@ AppScreenHeader(
 | Inicio | `AppScreenHeader` | Sí | Sí | hecho |
 | Agenda | `AppScreenHeader` | Sí | Sí | hecho |
 | Consulta | `AppScreenHeader` | Sí | Sí | hecho |
-| Dosimetría | Propio | Sí | Sí | pendiente |
-| Concurso | Propio | Sí | Sí | pendiente |
-| Cómputo | Propio | Sí | Sí | pendiente |
-| Asistente | Propio | Sí | Sí | pendiente |
-| Buscar | Propio | Sí | Sí | pendiente |
-| Prescripción | `AppBarInstitucional` | Sí | Sí | pendiente de alinear |
+| Dosimetría | `AppScreenHeader` | Sí | Sí | hecho |
+| Concurso | `AppScreenHeader` | Sí | Sí | hecho |
+| Cómputo | `AppScreenHeader` | Sí | Sí | hecho |
+| Asistente | `AppScreenHeader` | Sí | Sí | hecho |
+| Herramientas secundarias | `AppBarInstitucional` con atrás | Sí | Sí | regla |
+
+## Regla de navegación
+
+- **Pestañas principales** (Inicio, Agenda, Asistente, Consulta): usan `AppScreenHeader` y barra inferior.
+- **Pantallas empujadas** (Prescripción, Mapa, Glosario, Detector, Redactor, Escáner, Quiz): usan `AppBarInstitucional` con botón atrás, porque vuelven a la pantalla anterior.
+- **Flujo de dosimetría** (Dosimetría, Concurso, Cómputo): las tres usan `AppScreenHeader` porque son pasos del mismo flujo.
+
+## Leyes
+
+- El nombre de la ley se muestra completo en la lista y en el buscador.
+- Los títulos de libro, capítulo y sección se muestran completos, sin truncar.
+- Los artículos muestran encabezado completo y un extracto de tres líneas con enlace a la ficha.

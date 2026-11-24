@@ -320,20 +320,21 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
             children: [
               Row(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: AppColors.azulMarino,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      r.registro.leyNombre,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: AppColors.dorado,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
+                  Flexible(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: AppColors.azulMarino,
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Text(
+                        r.registro.leyNombre,
+                        style: const TextStyle(
+                          color: AppColors.dorado,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -353,12 +354,11 @@ class _RepositorioLeyesScreenState extends State<RepositorioLeyesScreen> {
                     Expanded(
                       child: Text(
                         r.registro.encabezado!,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           color: TemaGlobal.textoSecundario,
                           fontSize: 12,
+                          height: 1.3,
                         ),
                       ),
                     ),

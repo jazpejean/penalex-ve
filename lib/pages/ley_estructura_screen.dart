@@ -245,11 +245,10 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
                 const SizedBox(height: 4),
                 Text(
                   path,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: TemaGlobal.textoSecundario,
                     fontSize: 11,
+                    height: 1.3,
                   ),
                 ),
               ],
@@ -257,12 +256,11 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
                 const SizedBox(height: 6),
                 Text(
                   art.encabezado!,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: TemaGlobal.texto,
                     fontSize: 13,
                     fontWeight: FontWeight.bold,
+                    height: 1.3,
                   ),
                 ),
               ],
