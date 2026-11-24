@@ -363,6 +363,62 @@ Pendientes de validación del usuario: los 196 casos del reporte, con casilla pa
 
 ---
 
+## Prescripción de la acción penal (rediseño)
+
+La calculadora actual solo maneja la prescripción ordinaria con una tabla simplificada. Debe cubrir ordinaria, extraordinaria, interrupción, suspensión e imprescriptibilidad.
+
+### Contraste: PDF adjunto vs Código Penal (texto del corpus)
+
+| Tema | PDF | Código Penal real | Veredicto |
+|---|---|---|---|
+| Plazo 1 | "Hasta 30 años → 15 años" | Art. 108.1: prisión **mayor de 10 años** → 15 años | El PDF agrega un tope de 30 que no existe |
+| Plazo 2 | "Más de 10 → 10 años" | Art. 108.2: **más de 7 y hasta 10** → 10 años | PDF desplaza el rango |
+| Plazo 3 | "10 o menos → 7 años" | Art. 108.3: **más de 3 y hasta 7** → 7 años | PDF desplaza el rango |
+| Plazo 4 y 5 | Multa → 1 año; instancia de parte → 1 año | Art. 108.6: multa mayor de 150 UT → 1 año; art. 108.7: multa menor → 3 meses | PDF omite numerales y confunde |
+| Faltas | Art. 109 → 6 meses | No hay plazo de 6 meses en el art. 108; el art. 109 regula el **inicio del cómputo** | Referencia legal equivocada |
+| Inicio del cómputo | "Art. 111" | Es el **art. 109** (el 111 trata de condenado en nuevo juicio) | Referencia equivocada |
+| Interrupción | Orden de comparecencia, imputación, aprehensión, acusación | Art. 110: sentencia condenatoria, requisitoria por fuga, citación como imputado, querella, diligencias | El PDF describe otra norma |
+| Imprescriptibles | Corrupción "cuando el investigado esté prófugo" | CRBV 271: no prescriben las acciones contra derechos humanos, patrimonio público y tráfico de estupefacientes, sin condicionar a fuga | El PDF agrega una condición inexistente |
+
+**Conclusión:** el PDF sirve como guía conceptual, pero **no como fuente de plazos ni de referencias**. La calculadora debe regirse por el texto del Código Penal y de la Constitución.
+
+### Error detectado en el corpus
+
+El art. 108 del corpus tiene los numerales 3 y 4 inconsistentes: el 3 dice "prisión de siete años o menos" y el 4 "más de tres años", con rangos que se solapan. La escala correcta es:
+
+| Pena de prisión | Prescripción ordinaria |
+|---|---|
+| Más de 10 años | 15 años |
+| Más de 7 y hasta 10 | 10 años |
+| Más de 3 y hasta 7 | 7 años |
+| Más de 1 y hasta 3 | 5 años |
+| 1 año o menos, arresto mayor a 6 meses, relegación, confinamiento o expulsión | 3 años |
+| Arresto de 1 a 6 meses, multa mayor a 150 UT, suspensión de profesión | 1 año |
+| Multa menor a 150 UT o arresto menor a 1 mes | 3 meses |
+
+### Rediseño de la calculadora
+
+| ID | Requisito | Estado |
+|---|---|---|
+| PRE-01 | Prescripción ordinaria con los siete supuestos del art. 108 | abierto |
+| PRE-02 | Prescripción extraordinaria: ordinaria más su mitad (art. 110) | abierto |
+| PRE-03 | Inicio del cómputo según art. 109: consumado, tentativa, continuado o permanente | abierto |
+| PRE-04 | Interrupción con los actos del art. 110 y reinicio del cómputo | abierto |
+| PRE-05 | Suspensión por autorización especial, cuestión prejudicial, acuerdo reparatorio y suspensión condicional | abierto |
+| PRE-06 | Excluir del cálculo los delitos imprescriptibles (CRBV 29 y 271) | abierto |
+| PRE-07 | Notificar cuando el delito no prescribe, con el fundamento constitucional | abierto |
+| PRE-08 | Mostrar el rango completo: fecha de ordinaria, de extraordinaria y estado actual | abierto |
+| PRE-09 | Corregir los numerales 3 y 4 del art. 108 en el corpus | abierto |
+| PRE-10 | Advertir que la interrupción no opera en delitos imprescriptibles | abierto |
+
+### Cómo debe responder
+
+- Si el delito es imprescriptible: "No prescribe. Fundamento: artículo 29 o 271 de la Constitución" y no calcula fecha.
+- Si prescribe: muestra fecha de ordinaria, fecha de extraordinaria y cuántos actos interruptores se registraron.
+- Si hubo interrupción: explica que el cómputo se reinició y que la extraordinaria es el límite absoluto.
+
+---
+
 ## Criterios sostenidos y abandonados (jurisprudencia viva)
 
 Archivo de referencia: `penalex-scraper/criterios_sostenidos_y_abandonados.json`. **Es la versión vieja, sin curar.** El pipeline nuevo la reemplazará. Se registra aquí como muestra de la idea y de lo que hay que corregir.
