@@ -34,7 +34,7 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 |---|---|---|---|
 | APP-10 | Iconos de Inicio en gris claro sobre gris claro | Contraste AA en iconos y contenedores | abierto |
 | APP-11 | Leyenda del calendario con "Hoy" casi invisible | "Hoy" en azul marino con contraste | hecho |
-| APP-12 | Botón primario dorado en unas pantallas y navy en otras | Un solo color de acción primaria | abierto |
+| APP-12 | Botón primario dorado en unas pantallas y navy en otras | Botones principales de leyes, prescripción y redactor en navy con texto blanco | hecho |
 | APP-13 | Títulos de sección en dorado, negro y serif según pantalla | `AppTokens.tituloSeccion` en todas | en curso |
 | APP-14 | Drawer con sección "Recursos legales" incompleta | Ordenar y completar el menú | abierto |
 | APP-15 | Avatar con inicial gigante y botón de cámara desalineado | Avatar consistente con `photoUrl` | abierto |
@@ -51,7 +51,7 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 
 | ID | Problema | Propuesta | Estado |
 |---|---|---|---|
-| APP-30 | Sin búsqueda global | Buscador en el Inicio que abre el buscador jurídico; falta unificar leyes y glosario en el mismo | parcial |
+| APP-30 | Sin búsqueda global | El buscador jurídico ya tiene alcance sentencias, leyes y glosario, y el Inicio lo abre | hecho |
 | APP-31 | Sin modo offline para leyes y sentencias | Cada ley descargada se guarda y se lee sin conexión; sentencias y glosario pendientes | parcial |
 | APP-32 | Historial y favoritos no se sincronizan con la web | Tabla única y sincronización | abierto |
 | APP-33 | Sin notificaciones de audiencias y lapsos | Audiencias y prescripción con recordatorio el día anterior; lapsos procesales del expediente pendientes | parcial |

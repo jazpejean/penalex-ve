@@ -155,8 +155,8 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
               icon: const Icon(Icons.refresh),
               label: const Text('Reintentar'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.dorado,
-                foregroundColor: AppColors.azulMarino,
+                backgroundColor: AppColors.azulMarino,
+                foregroundColor: Colors.white,
               ),
             ),
           ],
@@ -776,8 +776,8 @@ class _ArticuloSheet extends StatelessWidget {
                 icon: const Icon(Icons.psychology),
                 label: const Text('Preguntar a la IA sobre este artículo'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.dorado,
-                  foregroundColor: AppColors.azulMarino,
+                  backgroundColor: AppColors.azulMarino,
+                  foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                 ),
               ),

@@ -873,8 +873,8 @@ color: AppColors.dorado,
                     icon: const Icon(Icons.edit, size: 16),
                     label: const Text('Editar'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.dorado,
-                      foregroundColor: TemaGlobal.azulMarino,
+                      backgroundColor: AppColors.azulMarino,
+                      foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 12,
                         vertical: 8,

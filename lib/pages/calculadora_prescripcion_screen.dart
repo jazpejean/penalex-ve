@@ -416,7 +416,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
         icon: const Icon(Icons.calculate),
         label: const Text('Calcular prescripción'),
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.dorado,
+          backgroundColor: AppColors.azulMarino,
           foregroundColor: AppColors.onDorado,
           padding: const EdgeInsets.symmetric(vertical: 16),
           textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
