@@ -84,8 +84,8 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 | ESC-11 | Sin galería múltiple | Botón de galería con selección múltiple en el editor | hecho |
 | ESC-12 | Sin mejora de imagen (contraste, binarización) | Binarización adaptativa Sauvola por página, con test, corre en isolate | hecho |
 | ESC-13 | Sin tira de miniaturas | Estados por página: pendiente, lista, error | abierto |
-| ESC-14 | PDF se arma descargando de Storage | Generar PDF local al instante | abierto |
-| ESC-15 | Sin firma y sello | Sello Penalex y firma | abierto |
+| ESC-14 | PDF se arma descargando de Storage | El editor ya arma el PDF en local con las páginas procesadas | hecho |
+| ESC-15 | Sin firma y sello | Pie con sello Penalex y fecha en cada página, y línea de firma en la última | hecho |
 | ESC-16 | Lectura con visión solo de la página actual | Procesar todas las páginas en cola | abierto |
 | ESC-17 | Sin límites de tamaño ni compresión configurable | Calidad y tamaño por página | abierto |
 | ESC-18 | Sin cifrado local de documentos sensibles | SQLCipher y borrado seguro | abierto |

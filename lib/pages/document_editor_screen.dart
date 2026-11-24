@@ -262,12 +262,50 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
     setState(() => _procesando = true);
     try {
       final pdf = pw.Document();
-      for (final p in _paginas) {
-        final bytes = File(p).readAsBytesSync();
+      final String fecha = DateTime.now().toIso8601String().substring(0, 10);
+      for (int i = 0; i < _paginas.length; i++) {
+        final bytes = File(_paginas[i]).readAsBytesSync();
+        final bool ultima = i == _paginas.length - 1;
         pdf.addPage(
           pw.Page(
             pageFormat: PdfPageFormat.a4,
-            build: (_) => pw.Image(pw.MemoryImage(bytes), fit: pw.BoxFit.contain),
+            margin: const pw.EdgeInsets.all(20),
+            build: (_) => pw.Column(
+              children: <pw.Widget>[
+                pw.Expanded(
+                  child: pw.Image(pw.MemoryImage(bytes),
+                      fit: pw.BoxFit.contain),
+                ),
+                if (ultima) ...<pw.Widget>[
+                  pw.SizedBox(height: 18),
+                  pw.Container(
+                    width: 200,
+                    padding: const pw.EdgeInsets.only(top: 4),
+                    decoration: const pw.BoxDecoration(
+                      border: pw.Border(
+                        top: pw.BorderSide(width: 0.6),
+                      ),
+                    ),
+                    child: pw.Text('Firma del abogado',
+                        style: pw.TextStyle(
+                            fontSize: 8, color: PdfColors.grey700)),
+                  ),
+                ],
+                pw.SizedBox(height: 8),
+                pw.Divider(thickness: 0.5, color: PdfColors.grey400),
+                pw.Row(
+                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                  children: <pw.Widget>[
+                    pw.Text('Penalex VE',
+                        style: pw.TextStyle(
+                            fontSize: 8, color: PdfColors.grey700)),
+                    pw.Text('Generado el $fecha',
+                        style: pw.TextStyle(
+                            fontSize: 8, color: PdfColors.grey700)),
+                  ],
+                ),
+              ],
+            ),
           ),
         );
       }
