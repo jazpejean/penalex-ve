@@ -398,6 +398,20 @@ El RAG ya incluye tres fuentes: sentencias, criterios de la Sala y doctrinas aca
 | RAG-14 | Sin trazabilidad de quién aprobó | Campo de aprobación con fecha y usuario | propuesta |
 | RAG-15 | Sin métrica de avance de curaduría | Panel con total, completas, incompletas, dudosas y sin fuente | propuesta |
 
+### Estado de la curaduría
+
+La curaduría la ejecuta el usuario con un pipeline de IA y búsqueda web. **No se toca la base hasta que él indique que culminó.** Al terminar hay que pedirle:
+
+- El esquema final de `doctrinas_academicas` (columnas de estado, fuente, URL, fecha y aprobación).
+- El conteo por estado: verificadas, dudosas y sin fuente.
+- La versión del corpus curado para registrarla.
+
+Cuando avise, se hace:
+1. Adaptar el RAG para citar solo las filas `verificada`.
+2. Medir cuántas citas quedan completas (autor, obra, página).
+3. Revisar duplicados y autores que son salas.
+4. Actualizar la auditoría del corpus.
+
 ### Curaduría asistida por búsqueda web
 
 Cada fila incompleta pasa por este flujo:
