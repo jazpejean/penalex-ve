@@ -96,13 +96,31 @@ class LeyesRepositorioService {
   // Descarga / parseo de leyes
   // ---------------------------------------------------------------------------
 
+  /// Caché local de una ley, para lectura sin conexión (APP-31).
+  Future<File> _archivoCache(String slug) async {
+    final Directory soporte = await getApplicationSupportDirectory();
+    final Directory carpeta = Directory('${soporte.path}/leyes');
+    if (!await carpeta.exists()) {
+      await carpeta.create(recursive: true);
+    }
+    return File('${carpeta.path}/$slug.json');
+  }
+
   Future<LeyEstructurada?> cargarLey(String slug) async {
     if (_leyesCache.containsKey(slug)) return _leyesCache[slug];
+
+    final File archivo = await _archivoCache(slug);
+
+    // 1) Red: si responde, se guarda la copia local.
     try {
       final url = _publicUrl('$slug.json');
-      final res = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 30));
+      final res = await http
+          .get(Uri.parse(url))
+          .timeout(const Duration(seconds: 30));
       if (res.statusCode == 200) {
-        final data = jsonDecode(utf8.decode(res.bodyBytes)) as Map<String, dynamic>;
+        await archivo.writeAsBytes(res.bodyBytes, flush: true);
+        final data =
+            jsonDecode(utf8.decode(res.bodyBytes)) as Map<String, dynamic>;
         final ley = LeyEstructurada.fromJson(data);
         _leyesCache[slug] = ley;
         return ley;
@@ -110,6 +128,20 @@ class LeyesRepositorioService {
       debugPrint('⚠️ Error descargando ley $slug: HTTP ${res.statusCode}');
     } catch (e) {
       debugPrint('❌ Error descargando ley $slug: $e');
+    }
+
+    // 2) Sin red: se usa la copia local si existe.
+    try {
+      if (await archivo.exists()) {
+        final data = jsonDecode(utf8.decode(await archivo.readAsBytes()))
+            as Map<String, dynamic>;
+        final ley = LeyEstructurada.fromJson(data);
+        _leyesCache[slug] = ley;
+        debugPrint('📴 Ley $slug desde caché local');
+        return ley;
+      }
+    } catch (e) {
+      debugPrint('❌ Error leyendo caché de $slug: $e');
     }
     return null;
   }

@@ -52,7 +52,7 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 | ID | Problema | Propuesta | Estado |
 |---|---|---|---|
 | APP-30 | Sin búsqueda global (sentencias, leyes, glosario) | Un buscador único en la barra inferior | abierto |
-| APP-31 | Sin modo offline para leyes y sentencias | Caché local y descarga por ley | abierto |
+| APP-31 | Sin modo offline para leyes y sentencias | Cada ley descargada se guarda y se lee sin conexión; sentencias y glosario pendientes | parcial |
 | APP-32 | Historial y favoritos no se sincronizan con la web | Tabla única y sincronización | abierto |
 | APP-33 | Sin notificaciones de audiencias y lapsos | Push con FCM y recordatorios | abierto |
 | APP-34 | Escritos no se exportan desde el portafolio | Exportar DOCX y PDF desde el expediente | abierto |
