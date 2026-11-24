@@ -457,6 +457,51 @@ Lo que el RAG debe responder
 
 ---
 
+## Pipelines como activo
+
+El corpus es un dato y se puede copiar. Los pipelines son la capacidad de generar y mantener ese dato, y eso no se copia. Hoy hay **48 scripts** en `penalex-scraper/`, muchos con nombres ad hoc (`fix_*`, `tmp_*`, `audit_cloud_v2`). Funcionan, pero no están presentados como activo.
+
+### Los cinco pipelines que hay que consolidar
+
+| # | Pipeline | Entrada | Salida | Métrica |
+|---|---|---|---|---|
+| 1 | Ingesta de sentencias | Portal del TSJ y R2 | `sentencias` + HTML en R2 | Sentencias nuevas por día y cobertura |
+| 2 | Extracción de criterios | Texto de la sentencia | `doctrinas` con ratio y evidencia | Criterios por sentencia y % con cita literal |
+| 3 | Curaduría académica | Citas de las sentencias | `doctrinas_academicas` verificadas | % con autor, obra, año y página |
+| 4 | Indexación | Textos y artículos | Vectores en Qdrant | Chunks indexados y latencia de búsqueda |
+| 5 | Auditoría y calidad | Corpus completo | Reportes de citas, duplicados y derogados | Errores detectados por corrida |
+
+### Lo que convierte un script en activo
+
+| Propiedad | Estado actual | Qué falta |
+|---|---|---|
+| Reproducibilidad | Scripts sueltos | Un comando por pipeline con parámetros |
+| Idempotencia | Riesgo de duplicar | Clave única y modo "upsert" |
+| Verificación con fuente | Sí en académicas | Guardar URL y fecha en todas |
+| Métricas de calidad | Reportes parciales | Tablero único por corrida |
+| Control de costo | Sin registro | Llamadas de IA y costo por registro |
+| Versionado del corpus | Sin versión | `corpus_version` en cada fila |
+| Documentación | Comentarios dispersos | Un documento por pipeline |
+| Supervisión humana | Aprobar a mano | Cola de revisión con estados |
+
+### Por qué importa para el concurso
+
+Un jurado compra la capacidad de producir y mantener el dato, no el archivo. Si el pipeline se presenta como un sistema de cinco etapas con métricas, el proyecto deja de ser "una app con datos" y pasa a ser "infraestructura de conocimiento legal".
+
+### Tareas
+
+| ID | Tarea | Estado |
+|---|---|---|
+| PIPE-01 | Consolidar los 48 scripts en cinco pipelines con nombre y comando único | abierto |
+| PIPE-02 | Añadir idempotencia (upsert por clave) a los cinco | abierto |
+| PIPE-03 | Registrar costo de IA por corrida y por registro | abierto |
+| PIPE-04 | Guardar URL y fecha de verificación en cada fila curada | abierto |
+| PIPE-05 | Un tablero de calidad por corrida (completas, dudosas, sin fuente, duplicados) | abierto |
+| PIPE-06 | Documento de arquitectura de los pipelines para el pitch | abierto |
+| PIPE-07 | Versionar el corpus y registrar cada corrida | abierto |
+
+---
+
 ## Producto de primer nivel
 
 Lo que falta y no está en las secciones anteriores. Son las cosas que un abogado espera de una herramienta que usa todos los días y por las que paga.
