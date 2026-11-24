@@ -15,8 +15,8 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 | APP-02 | Diseño | Textos invisibles en Prescripción ("Inicio del cómputo", "Interrupción", aviso legal) | Contraste AA sobre `TemaGlobal.texto` | abierto |
 | APP-03 | Navegación | "Inicio" y "Buscar" muestran la misma pantalla | Dar a "Buscar" su propio buscador global o fusionar pestañas | abierto |
 | APP-04 | Navegación | "Más" abre un drawer lateral, no una pantalla de ajustes | Pantalla "Más" con ajustes, cuenta, ayuda y sistema de diseño | abierto |
-| ESC-01 | Escáner | Detector de bordes tosco (`edge_detection` + Canny casero sin perspectiva real) | ML Kit Document Scanner o OpenCV con `warpPerspective` | abierto |
-| ESC-02 | Escáner | Solo captura de a una imagen, sin flujo multipágina | Captura consecutiva + galería con selección múltiple | abierto |
+| ESC-01 | Escáner | Detector de bordes tosco | Detector en Dart puro (Sobel + proyección de bordes) probado con imagen sintética; falta cámara en vivo con overlay | parcial |
+| ESC-02 | Escáner | Solo captura de a una imagen | Captura de hasta 30 páginas y galería múltiple | hecho |
 | ESC-03 | Escáner | No se pueden reordenar páginas | Hoja "Páginas" con arrastrar y soltar | hecho |
 | ESC-04 | Escáner | `CropAdjustScreen` existe pero no se abre desde ningún flujo | Conectarlo después de cada captura | abierto |
 | WEB-01 | Web | Iconos emoji y tipografía serif en la UI | Iconos lineales y sans en toda la interfaz | abierto |

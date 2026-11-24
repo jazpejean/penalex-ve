@@ -1,13 +1,13 @@
 import 'dart:io';
 import 'dart:math' as math;
-import 'dart:typed_data';
-import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:edge_detection/edge_detection.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:path_provider/path_provider.dart';
+
+import 'edge_detector.dart';
 
 /// Servicio profesional para escaneo de documentos
 /// Incluye detección de bordes, corrección de perspectiva y filtros
@@ -48,11 +48,19 @@ class DocumentScannerServicePro {
   static Future<List<Offset>?> detectEdgesManual(String imagePath) async {
     try {
       final bytes = await File(imagePath).readAsBytes();
+
+      // Detector principal: proyección de bordes en Dart puro.
+      final List<Offset>? robustas = EdgeDetector.detectar(bytes);
+      if (robustas != null) {
+        debugPrint('✅ Bordes detectados por proyección');
+        return robustas;
+      }
+
       final image = img.decodeImage(bytes);
-      
+
       if (image == null) return null;
-      
-      debugPrint('🔍 Detectando bordes manualmente...');
+
+      debugPrint('🔍 Detector de respaldo (Sobel)...');
       
       // Convertir a escala de grises
       final grayscale = img.grayscale(image);
