@@ -17,7 +17,7 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 | APP-04 | Navegación | "Más" abre un drawer lateral, no una pantalla de ajustes | Pantalla "Más" con ajustes, cuenta, ayuda y sistema de diseño | abierto |
 | ESC-01 | Escáner | Detector de bordes tosco (`edge_detection` + Canny casero sin perspectiva real) | ML Kit Document Scanner o OpenCV con `warpPerspective` | abierto |
 | ESC-02 | Escáner | Solo captura de a una imagen, sin flujo multipágina | Captura consecutiva + galería con selección múltiple | abierto |
-| ESC-03 | Escáner | No se pueden reordenar páginas | Arrastrar y soltar en la tira de miniaturas | abierto |
+| ESC-03 | Escáner | No se pueden reordenar páginas | Hoja "Páginas" con arrastrar y soltar | hecho |
 | ESC-04 | Escáner | `CropAdjustScreen` existe pero no se abre desde ningún flujo | Conectarlo después de cada captura | abierto |
 | WEB-01 | Web | Iconos emoji y tipografía serif en la UI | Iconos lineales y sans en toda la interfaz | abierto |
 | WEB-02 | Web | Diseño distinto a la app | Componentes espejo: ToolCard, SectionTitle, Badge, EmptyState | abierto |
