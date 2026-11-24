@@ -670,7 +670,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
         bottomNavigationBar: const MainBottomBar(),
         body: SafeArea(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: AppTokens.margen, vertical: 16),
             child: Column(
               children: <Widget>[
                 AppScreenHeader(

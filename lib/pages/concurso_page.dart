@@ -122,7 +122,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
             ),
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(AppTokens.margen),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -131,7 +131,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                       elevation: 0,
                       color: TemaGlobal.tarjeta,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
+                        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                         side: BorderSide(color: AppColors.acento),
                       ),
                       child: Padding(
@@ -301,7 +301,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                       elevation: 0,
                       color: TemaGlobal.tarjeta,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
+                        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                         side: BorderSide(color: AppColors.acento),
                       ),
                       child: Padding(
@@ -382,7 +382,7 @@ class _ConcursoPageState extends State<ConcursoPage> {
                       elevation: 0,
                       color: TemaGlobal.tarjeta,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
+                        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                         side: BorderSide(color: AppColors.acento),
                       ),
                       child: Padding(

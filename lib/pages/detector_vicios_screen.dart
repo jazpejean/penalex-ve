@@ -274,7 +274,7 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           controller: _scrollController,
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(AppTokens.margen),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

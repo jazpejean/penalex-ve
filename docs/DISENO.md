@@ -26,7 +26,7 @@ AppScreenHeader(
 | Elemento | Valor |
 |---|---|
 | Fondo | `TemaGlobal.superficie` |
-| Padding de pantalla | 20 px laterales |
+| Padding de pantalla | 20 px laterales, en Inicio, Agenda, Consulta, Asistente, Dosimetría, Concurso, Cómputo y Detector |
 | Separación entre secciones | 24 px |
 
 ## Tarjetas

@@ -555,7 +555,7 @@ class _ComputoPageState extends State<ComputoPage> {
           ),
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(AppTokens.margen),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -565,7 +565,7 @@ class _ComputoPageState extends State<ComputoPage> {
             Card(
               elevation: 0,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18),
+                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                 side: BorderSide(color: borde),
               ),
               color: TemaGlobal.tarjeta,
@@ -791,7 +791,7 @@ class _ComputoPageState extends State<ComputoPage> {
             Card(
               elevation: 0,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18),
+                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                 side: BorderSide(color: borde),
               ),
               color: TemaGlobal.tarjeta,
@@ -899,7 +899,7 @@ class _ComputoPageState extends State<ComputoPage> {
             Card(
               elevation: 0,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18),
+                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
                 side: BorderSide(color: borde),
               ),
               color: TemaGlobal.tarjeta,
@@ -1192,7 +1192,7 @@ class _TimelineComputo extends StatelessWidget {
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         side: BorderSide(color: AppColors.acento),
       ),
       color: TemaGlobal.tarjeta,

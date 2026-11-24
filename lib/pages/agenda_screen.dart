@@ -222,7 +222,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
           child: _isLoading
               ? const Center(child: CircularProgressIndicator())
               : Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                  padding: const EdgeInsets.fromLTRB(AppTokens.margen, 16, AppTokens.margen, 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
