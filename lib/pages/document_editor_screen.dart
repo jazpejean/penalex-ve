@@ -333,10 +333,22 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
     final List<XFile> archivos =
         await ImagePicker().pickMultiImage(imageQuality: 90);
     if (archivos.isEmpty || !mounted) return;
+    setState(() => _procesando = true);
+    final List<String> nuevas = <String>[];
+    for (final XFile f in archivos) {
+      final int tamano = await File(f.path).length();
+      // Compresión: páginas de más de 2 MB se reducen para el expediente.
+      final String? optimizada = tamano > 2 * 1024 * 1024
+          ? await ImageFilterService.comprimirImagen(f.path, quality: 82)
+          : null;
+      nuevas.add(optimizada ?? f.path);
+    }
+    if (!mounted) return;
     setState(() {
-      for (final XFile f in archivos) {
-        _paginas.add(f.path);
-        _originales.add(f.path);
+      _procesando = false;
+      for (final String ruta in nuevas) {
+        _paginas.add(ruta);
+        _originales.add(ruta);
       }
       _paginaActual = _paginas.length - 1;
     });
@@ -353,6 +365,25 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
     setState(() {
       _procesando = false;
       if (mejorada != null) _paginas[_paginaActual] = mejorada;
+    });
+  }
+
+  /// Aplica un filtro a la página actual (ESC-12).
+  Future<void> _aplicarFiltroDocumento(String modo) async {
+    if (_procesando) return;
+    final String rutaActual = _paginas[_paginaActual];
+    if (modo == 'original') {
+      setState(() => _paginas[_paginaActual] = _originales[_paginaActual]);
+      return;
+    }
+    setState(() => _procesando = true);
+    final String? resultado = modo == 'documento'
+        ? await ImageFilterService.binarizarDocumento(rutaActual)
+        : await ImageFilterService.aplicarBlancoYNegro(rutaActual);
+    if (!mounted) return;
+    setState(() {
+      _procesando = false;
+      if (resultado != null) _paginas[_paginaActual] = resultado;
     });
   }
 
@@ -478,9 +509,21 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
             onPressed: _agregarDeGaleria,
           ),
           IconButton(
-            icon: const Icon(Icons.auto_fix_high),
+            icon: Icon(Icons.auto_fix_high, color: TemaGlobal.textoSecundario),
             tooltip: 'Mejorar documento (blanco y negro)',
             onPressed: _mejorarPagina,
+          ),
+          PopupMenuButton<String>(
+            icon: Icon(Icons.tune, color: TemaGlobal.textoSecundario),
+            tooltip: 'Filtro de la página',
+            onSelected: _aplicarFiltroDocumento,
+            itemBuilder: (_) => const <PopupMenuEntry<String>>[
+              PopupMenuItem<String>(value: 'original', child: Text('Original')),
+              PopupMenuItem<String>(
+                  value: 'gris', child: Text('Escala de grises')),
+              PopupMenuItem<String>(
+                  value: 'documento', child: Text('Documento (blanco y negro)')),
+            ],
           ),
           IconButton(
             icon: const Icon(Icons.view_carousel_outlined),
