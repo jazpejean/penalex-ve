@@ -88,6 +88,7 @@ AppScreenHeader(
 | Concurso | `AppScreenHeader` | Sí | Sí | hecho |
 | Cómputo | `AppScreenHeader` | Sí | Sí | hecho |
 | Asistente | `AppScreenHeader` | Sí | Sí | hecho |
+| Detector de vicios | `AppScreenHeader` | Sí | Sí | hecho |
 | Herramientas secundarias | `AppBarInstitucional` con atrás | Sí | Sí | regla |
 
 ## Regla de navegación

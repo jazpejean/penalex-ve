@@ -20,6 +20,7 @@ import '../providers/expediente_activo_provider.dart';
 import '../widgets/selector_expediente_sheet.dart';
 import 'package:provider/provider.dart';
 import '../config/app_tokens.dart';
+import '../widgets/app_screen_header.dart';
 
 /// Detector de vicios procesales para autos, actas y sentencias.
 ///
@@ -314,35 +315,17 @@ class _DetectorViciosScreenState extends State<DetectorViciosScreen> {
 
   Widget _buildHeader() {
     return Row(
-      children: [
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
         IconButton(
           tooltip: 'Volver',
           onPressed: () => Navigator.of(context).maybePop(),
           icon: Icon(Icons.arrow_back, color: TemaGlobal.texto),
         ),
-        const SizedBox(width: 2),
         Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Detector de Vicios',
-                style: TextStyle(
-                  fontSize: 21,
-                  fontWeight: FontWeight.w800,
-                  color: TemaGlobal.texto,
-                  letterSpacing: -0.5,
-                ),
-              ),
-              Text(
-                'Analiza autos y detecta nulidades',
-                style: TextStyle(
-                  fontSize: 12.5,
-                  fontWeight: FontWeight.w500,
-                  color: TemaGlobal.textoSecundario,
-                ),
-              ),
-            ],
+          child: AppScreenHeader(
+            titulo: 'Detector de vicios',
+            subtitulo: 'Analiza autos y detecta nulidades',
           ),
         ),
         IconButton(
