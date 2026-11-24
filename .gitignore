@@ -81,3 +81,6 @@ penalex-blog/
 
 # Keystore de release (secreto)
 android/app/keystore/
+
+# Respaldos locales de datos (leyes, corpus)
+backups/

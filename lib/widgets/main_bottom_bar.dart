@@ -2,25 +2,24 @@ import 'package:flutter/material.dart';
 
 import '../utils/main_tab_controller.dart';
 import '../config/app_colors.dart';
+import '../config/app_theme.dart';
 
 /// Barra de navegación inferior compartida de Penalex VE.
 ///
-/// Misma identidad visual que la del MainScreen (navy + AppColors.dorado) pero
-/// manejada por [mainTabIndex] (ValueNotifier global): cualquier pantalla —
-/// incluso las herramientas externas apiladas sobre el MainScreen — puede
-/// incrustarla en su propio Scaffold y conservar la navegación principal.
-///
-/// Al tocar una pestaña: actualiza [mainTabIndex] y, si la pantalla actual
-/// es una ruta externa, vuelve a la raíz (MainScreen) con `popUntil`.
+/// Estilo sobrio: fondo claro, borde superior fino, iconos lineales y un
+/// indicador tenue detrás del ítem activo. Sin círculo central ni sombras.
 class MainBottomBar extends StatelessWidget {
   const MainBottomBar({super.key, this.onOpenDrawer});
 
   /// Opcional: abre el drawer del MainScreen (solo tiene sentido ahí).
   final VoidCallback? onOpenDrawer;
 
-  static const _fondoProfundo = AppColors.azulMarino;
-  static const _oro = AppColors.dorado;
-  static const _oroBrillante = AppColors.oroBrillante;
+  static const List<(IconData, String, int)> _items = <(IconData, String, int)>[
+    (Icons.home_outlined, 'Inicio', 0),
+    (Icons.calendar_month_outlined, 'Agenda', 1),
+    (Icons.auto_awesome, 'Asistente', 2),
+    (Icons.search, 'Buscar', 3),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -29,55 +28,19 @@ class MainBottomBar extends StatelessWidget {
       builder: (context, currentIndex, _) {
         return Container(
           decoration: BoxDecoration(
-            color: _fondoProfundo,
-            border: Border(
-              top: BorderSide(color: _oro.withValues(alpha: 0.35), width: 1),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.35),
-                blurRadius: 12,
-                offset: const Offset(0, -3),
-              ),
-            ],
+            color: TemaGlobal.tarjeta,
+            border: Border(top: BorderSide(color: TemaGlobal.capa)),
           ),
           child: SafeArea(
             top: false,
             child: SizedBox(
-              height: 68,
+              height: 62,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  _buildNavItem(
-                    context,
-                    Icons.home_outlined,
-                    'Inicio',
-                    0,
-                    currentIndex,
-                  ),
-                  _buildNavItem(
-                    context,
-                    Icons.calendar_month_outlined,
-                    'Agenda',
-                    1,
-                    currentIndex,
-                  ),
-                  _buildNavItem(
-                    context,
-                    Icons.auto_awesome,
-                    'Asistente',
-                    2,
-                    currentIndex,
-                    isCenter: true,
-                  ),
-                  _buildNavItem(
-                    context,
-                    Icons.search,
-                    'Buscar',
-                    3,
-                    currentIndex,
-                  ),
-                  _buildDrawerItem(context),
+                  for (final (IconData icono, String etiqueta, int indice)
+                      in _items)
+                    _buildItem(context, icono, etiqueta, indice, currentIndex),
+                  _buildMas(context),
                 ],
               ),
             ),
@@ -87,82 +50,49 @@ class MainBottomBar extends StatelessWidget {
     );
   }
 
-  Widget _buildNavItem(
+  Widget _buildItem(
     BuildContext context,
     IconData icon,
     String label,
     int index,
-    int currentIndex, {
-    bool isCenter = false,
-  }) {
+    int currentIndex,
+  ) {
     final bool isSelected = currentIndex == index;
-    final double iconSize = isCenter ? 26 : 22;
-
     return Expanded(
       child: InkWell(
         onTap: () {
           mainTabIndex.value = index;
-          // Si la pantalla actual es una ruta externa, volver a la raíz
-          // (MainScreen) para que el cambio de pestaña sea visible.
-          Navigator.popUntil(context, (r) => r.isFirst);
+          Navigator.popUntil(context, (Route<dynamic> r) => r.isFirst);
         },
-        borderRadius: BorderRadius.circular(12),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (isCenter)
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: isSelected
-                      ? _oro
-                      : _oro.withValues(alpha: 0.15),
-                  boxShadow: isSelected
-                      ? [
-                          BoxShadow(
-                            color: _oro.withValues(alpha: 0.5),
-                            blurRadius: 16,
-                            spreadRadius: 2,
-                          ),
-                        ]
-                      : null,
-                ),
-                child: Icon(
-                  icon,
-                  size: iconSize,
-                  color: isSelected ? _fondoProfundo : _oro,
-                ),
-              )
-            else
-              Icon(
-                icon,
-                size: iconSize,
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 160),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
+              decoration: BoxDecoration(
                 color: isSelected
-                    ? _oroBrillante
-                    : _oro.withValues(alpha: 0.6),
+                    ? AppColors.azulMarino.withValues(alpha: 0.08)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(10),
               ),
-            const SizedBox(height: 5),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  label,
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: isSelected
-                        ? FontWeight.w700
-                        : FontWeight.w500,
-                    letterSpacing: 0.2,
-                    color: isSelected
-                        ? _oroBrillante
-                        : _oro.withValues(alpha: 0.7),
-                  ),
-                ),
+              child: Icon(
+                icon,
+                size: 22,
+                color: isSelected
+                    ? AppColors.azulMarino
+                    : TemaGlobal.textoSecundario,
+              ),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              label,
+              maxLines: 1,
+              style: TextStyle(
+                fontSize: 10.5,
+                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                color:
+                    isSelected ? AppColors.azulMarino : TemaGlobal.textoTenue,
               ),
             ),
           ],
@@ -171,9 +101,9 @@ class MainBottomBar extends StatelessWidget {
     );
   }
 
-  /// Item "Más" del bottom nav: abre el drawer si se provee callback;
-  /// en pantallas externas vuelve al inicio (pestaña 0).
-  Widget _buildDrawerItem(BuildContext context) {
+  /// Item "Más": abre el drawer si se provee callback; en pantallas externas
+  /// vuelve al inicio (pestaña 0).
+  Widget _buildMas(BuildContext context) {
     return Expanded(
       child: InkWell(
         onTap: () {
@@ -181,35 +111,25 @@ class MainBottomBar extends StatelessWidget {
             onOpenDrawer!();
           } else {
             mainTabIndex.value = 0;
-            Navigator.popUntil(context, (r) => r.isFirst);
+            Navigator.popUntil(context, (Route<dynamic> r) => r.isFirst);
           }
         },
-        borderRadius: BorderRadius.circular(12),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(
               Icons.menu,
               size: 22,
-              color: _oro.withValues(alpha: 0.6),
+              color: TemaGlobal.textoSecundario,
             ),
-            const SizedBox(height: 5),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  'Más',
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 0.2,
-                    color: _oro.withValues(alpha: 0.7),
-                  ),
-                ),
+            const SizedBox(height: 2),
+            Text(
+              'Más',
+              maxLines: 1,
+              style: TextStyle(
+                fontSize: 10.5,
+                fontWeight: FontWeight.w500,
+                color: TemaGlobal.textoTenue,
               ),
             ),
           ],
