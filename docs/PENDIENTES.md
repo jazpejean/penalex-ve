@@ -43,6 +43,7 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 | APP-18 | Estados vacíos distintos en cada pantalla | Componente `EmptyState` único | abierto |
 | APP-19 | Sin modo oscuro coherente | Paleta oscura con los mismos tokens | abierto |
 | APP-20 | Sin accesibilidad: escalado de texto, `Semantics`, 48 dp | Auditoría de accesibilidad | abierto |
+| APP-21 | El Inicio no muestra el potencial de las herramientas ni es intuitivo | Reorganizar por tarea: "qué necesito hacer" con acciones primarias, descripciones de valor y métricas útiles | abierto |
 
 ### Flujos y producto
 
@@ -179,6 +180,7 @@ La estrategia correcta no es esconder más, es **depender del servidor para lo v
 |---|---|---|---|
 | DOS-01 | No existía la complicidad correspectiva del art. 424 | Grado "Complicidad Correspectiva", renombrado y con el mismo patrón de cálculo que los demás grados | hecho |
 | DOS-02 | El rango del art. 424 no se mostraba completo | Slider de 1/3 a 1/2 que fija la fracción aplicada | hecho |
+| DOS-10 | **Bug reportado:** al modificar la pena por atenuantes o agravantes, el aumento o la disminución aplicada es la mitad de la cifra ingresada | Reproducir con un caso concreto: delito, cifra, unidad y resultado esperado. Hipótesis: doble aplicación del término medio o unidad de tiempo distinta a la ingresada | abierto |
 | DOS-09 | El slider del delito continuado tenía puntos desigualmente espaciados | Slider por índices: paradas equiespaciadas y valores intactos (1/6, 1/4, 1/3, 1/2) | hecho |
 | DOS-08 | Texto del art. 424 verificado en la web | Dos apartes completos, sin punto inicial, con el segundo aparte sobre el cooperador inmediato | hecho |
 | DOS-03 | Sin prueba del cálculo con un caso real | Caso de prueba: homicidio con dos intervinientes no identificados | abierto |
