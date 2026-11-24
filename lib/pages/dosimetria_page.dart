@@ -668,12 +668,14 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
         drawer: const AppDrawer(currentRoute: '/dosimetria'),
         backgroundColor: fondoGris,
         bottomNavigationBar: const MainBottomBar(),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: AppTokens.margen, vertical: 16),
-            child: Column(
-              children: <Widget>[
-                AppScreenHeader(
+        body: Column(
+          children: <Widget>[
+            SafeArea(
+              bottom: false,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(
+                    AppTokens.margen, 16, AppTokens.margen, 0),
+                child: AppScreenHeader(
                   titulo: 'Dosimetría',
                   subtitulo:
                       'Pena individualizada con los artículos 37, 74, 77 y 80',
@@ -707,7 +709,15 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     ),
                   ],
                 ),
-                const DosimetriaStepper(pasoActual: 1),
+              ),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(
+                    AppTokens.margen, 12, AppTokens.margen, 16),
+                child: Column(
+                  children: <Widget>[
+                    const DosimetriaStepper(pasoActual: 1),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -822,9 +832,11 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     ],
                   ),
                 ),
-              ],
+                  ],
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       );
 
