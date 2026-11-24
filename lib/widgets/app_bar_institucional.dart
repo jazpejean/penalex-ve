@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
+import '../config/app_tokens.dart';
 
 /// AppBar institucional unificado de Penalex VE (patrón moderno).
 ///
@@ -49,12 +50,13 @@ class AppBarInstitucional extends StatelessWidget implements PreferredSizeWidget
                   ),
                 )
               : null),
+      titleSpacing: mostrarBack ? 0 : AppTokens.margen,
       title: Text(
         title,
         style: TextStyle(
           color: fg,
-          fontWeight: FontWeight.w800,
-          fontSize: 20,
+          fontWeight: FontWeight.w700,
+          fontSize: 24,
           letterSpacing: -0.3,
         ),
       ),
@@ -63,5 +65,5 @@ class AppBarInstitucional extends StatelessWidget implements PreferredSizeWidget
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(68);
 }
