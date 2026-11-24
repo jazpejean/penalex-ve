@@ -1075,7 +1075,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                 'Cooperador Inmediato',
                 'Cómplice Necesario',
                 'Cómplice No Necesario',
-                'Cómplice Correspectivo',
+                'Complicidad Correspectiva',
               ],
               onChanged: (String? val) {
                 if (val != null) {
@@ -1083,7 +1083,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                   _actualizarDelito(index, delito);
                   // El art. 424 solo cubre muerte o lesiones. Se avisa sin
                   // bloquear, porque el abogado decide el encuadre.
-                  if (val == 'Cómplice Correspectivo') {
+                  if (val == 'Complicidad Correspectiva') {
                     final String nombre = delito.nombre.toLowerCase();
                     final bool aplica = nombre.contains('homicidio') ||
                         nombre.contains('lesion') ||
@@ -1108,7 +1108,7 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                     'Se refiere a quienes coadyuvan en la ejecución del delito mediante instrucciones, suministros o auxilio secundario no indispensable. La pena correspondiente al autor principal se rebajará a la mitad (1/2) para este grado de participación.',
                   );
                 } else if (delito.participacionEspecifica ==
-                    'Cómplice Correspectivo') {
+                    'Complicidad Correspectiva') {
                   _showInfoDialog(
                     'Complicidad Correspectiva (Art. 424 CP)',
                     'Cuando en la perpetración de la muerte o las lesiones han tomado parte varias personas y no pudiere descubrirse quién las causó, se castigará a todos con las penas correspondientes al delito cometido, disminuidas de una tercera parte a la mitad. No se aplica esta rebaja al cooperador inmediato del hecho. La calculadora individualiza en el límite favorable (la mitad) e informa el rango completo.',

@@ -135,11 +135,11 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 
 | ID | Problema | Propuesta | Estado |
 |---|---|---|---|
-| DOS-01 | No existía la complicidad correspectiva del art. 424 | Grado "Cómplice Correspectivo" con rebaja de 1/3 a la mitad y rango informado | hecho |
-| DOS-02 | El rango del art. 424 no se mostraba completo | El paso de cálculo indica el rango entre la mitad y dos tercios | hecho |
+| DOS-01 | No existía la complicidad correspectiva del art. 424 | Grado "Complicidad Correspectiva", renombrado y con el mismo patrón de cálculo que los demás grados | hecho |
+| DOS-02 | El rango del art. 424 no se mostraba completo | Se aplica la fracción igual que Cómplice No Necesario (pena × 0.5) | hecho |
 | DOS-08 | Texto del art. 424 verificado en la web | Dos apartes completos, sin punto inicial, con el segundo aparte sobre el cooperador inmediato | hecho |
 | DOS-03 | Sin prueba del cálculo con un caso real | Caso de prueba: homicidio con dos intervinientes no identificados | abierto |
-| DOS-05 | La rebaja del art. 424 se aplica después de atenuantes y grado de ejecución | Revisión jurídica: la norma habla de "las penas correspondientes al delito", es decir, la pena base | abierto |
+| DOS-05 | Orden de aplicación del art. 424 | Se mantiene el mismo orden que el resto de los grados (paso de participación) | hecho |
 | DOS-06 | El art. 424 se podía elegir en cualquier delito | Advertencia visible cuando el delito no es de muerte o lesiones (implementada) | hecho |
 | DOS-07 | El art. 424 excluye al cooperador inmediato | Verificar que el selector no permita combinarlos (hoy son excluyentes) | hecho |
 | DOS-04 | Sin exportar el cálculo a PDF | Exportar la dosimetría con el detalle de pasos | abierto |
@@ -152,8 +152,10 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 |---|---|---|---|
 | LEY-01 | En la web los artículos salían en un solo párrafo | `white-space: pre-line` en el cuerpo, verificado en producción | hecho |
 | LEY-02 | El art. 424 empezaba con un punto suelto | Limpieza de puntuación inicial en el render, verificada | hecho |
-| LEY-09 | Espacios antes de coma y dobles espacios | Normalización en cuerpo, numerales y párrafos | hecho |
-| LEY-03 | Sin auditoría ortográfica del corpus (53 leyes) | Auditoría ejecutada: 196 hallazgos reales, con texto completo y error marcado | hecho |
+| LEY-09 | Espacios antes de coma y dobles espacios | 25 leyes corregidas en los datos de R2, con verificación de conteo y de la web | hecho |
+| LEY-10 | El dato del art. 424 empezaba con punto | Corregido en el JSON de R2, no solo en el render | hecho |
+| LEY-11 | Quedan 36 puntos sin espacio y 29 minúsculas tras punto | Reporte con texto completo y casilla para validar | abierto |
+| LEY-03 | Sin auditoría ortográfica del corpus (53 leyes) | Auditoría completa ejecutada con texto y error marcado | hecho |
 | LEY-04 | Sin revisión de artículos con texto vacío o truncado | Detectados artículos cortos y dos leyes que no cargan | abierto |
 | LEY-06 | Se creyó que dos leyes no cargaban | **Descartado**: las leyes cargan bien en la web y en la app. Fue una descarga incompleta del script de auditoría | descartado |
 | LEY-07 | 43 minúsculas tras punto y 46 puntos sin espacio | Revisión manual asistida (pueden ser abreviaturas legítimas) | abierto |
@@ -302,12 +304,11 @@ Reporte completo con el texto de cada artículo y el error marcado: [docs/audito
 
 | Tipo de hallazgo | Casos |
 |---|---|
-| Empieza con signo de puntuación | 54 |
-| Minúscula después de punto | 46 |
-| Punto seguido de mayúscula sin espacio | 46 |
-| Espacio antes de coma o punto | 35 |
-| Comillas dobles sin cierre | 8 |
-| Paréntesis sin cerrar | 7 |
+| Empieza con signo de puntuación | 0 (corregido en datos) |
+| Espacio antes de coma o punto | 0 (corregido en datos) |
+| Doble espacio | 0 (corregido en datos) |
+| Punto seguido de mayúscula sin espacio | 36 (revisión manual) |
+| Minúscula después de punto | 29 (revisión manual) |
 
 El detector excluye abreviaturas conocidas (Dr., Sr., art., Nº, etc.) y números.
 
