@@ -114,6 +114,48 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 
 ---
 
+## Protección del código y del conocimiento
+
+### La verdad técnica
+
+No existe forma de encriptar el cliente. El JavaScript de la web siempre se puede descargar y el APK siempre se puede descompilar. Cualquier esquema que prometa "código imposible de replicar" en el cliente es falso.
+
+Lo que sí protege:
+
+| Activo | Dónde debe vivir | Por qué |
+|---|---|---|
+| Prompts de IA | **Worker (servidor)** | El cliente nunca los ve; solo recibe la respuesta |
+| Reglas de negocio sensibles | **Worker** | Se ejecutan y no se descargan |
+| Calculadoras (dosimetría, prescripción) | Cliente, ofuscado | La ley es pública; el valor es la exactitud, no el secreto |
+| Corpus y pipeline | Backend con autenticación | Es el foso real |
+| Claves de IA | Solo secretos del worker | Nunca en el cliente |
+
+### Medidas concretas
+
+| ID | Medida | Efecto | Estado |
+|---|---|---|---|
+| SEC-01 | Mover todos los prompts al worker | El cliente no puede copiarlos | abierto |
+| SEC-02 | Mover al worker toda lógica que use IA | No se puede replicar sin el backend | abierto |
+| SEC-03 | Ofuscar el APK (`--obfuscate --split-debug-info`) | Dificulta leer el Dart compilado | abierto |
+| SEC-04 | R8 y ProGuard activos en Android | Reduce nombres y elimina código muerto | abierto |
+| SEC-05 | Minificar y dividir el bundle web | No protege, pero encarece copiar | abierto |
+| SEC-06 | Autenticación obligatoria en el worker | Sin token no hay respuestas | abierto |
+| SEC-07 | Rate limiting por usuario | Evita extracción masiva de respuestas | abierto |
+| SEC-08 | Marca de agua por usuario en respuestas | Permite detectar filtraciones | abierto |
+| SEC-09 | No exponer URLs de R2 sin control | El corpus no se descarga completo | abierto |
+| SEC-10 | Términos, licencia y aviso de propiedad | Protección legal | abierto |
+
+### Lo que sí es defendible
+
+1. **El corpus curado**: replicarlo toma años, no un fin de semana.
+2. **El pipeline**: la capacidad de mantenerlo actualizado.
+3. **La verificación de vigencia**: saber qué está superado.
+4. **El worker**: la lógica de IA vive ahí y se puede cambiar sin publicar app.
+
+La estrategia correcta no es esconder más, es **depender del servidor para lo valioso**. Así, aunque copien la interfaz, no tienen el producto.
+
+---
+
 ## Backend y seguridad
 
 | ID | Problema | Propuesta | Estado |
