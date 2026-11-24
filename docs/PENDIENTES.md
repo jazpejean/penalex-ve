@@ -137,7 +137,11 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 |---|---|---|---|
 | DOS-01 | No existía la complicidad correspectiva del art. 424 | Grado "Cómplice Correspectivo" con rebaja de 1/3 a la mitad y rango informado | hecho |
 | DOS-02 | El rango del art. 424 no se mostraba completo | El paso de cálculo indica el rango entre la mitad y dos tercios | hecho |
+| DOS-08 | Texto del art. 424 verificado en la web | Dos apartes completos, sin punto inicial, con el segundo aparte sobre el cooperador inmediato | hecho |
 | DOS-03 | Sin prueba del cálculo con un caso real | Caso de prueba: homicidio con dos intervinientes no identificados | abierto |
+| DOS-05 | La rebaja del art. 424 se aplica después de atenuantes y grado de ejecución | Revisión jurídica: la norma habla de "las penas correspondientes al delito", es decir, la pena base | abierto |
+| DOS-06 | El art. 424 se podía elegir en cualquier delito | Advertencia visible cuando el delito no es de muerte o lesiones (implementada) | hecho |
+| DOS-07 | El art. 424 excluye al cooperador inmediato | Verificar que el selector no permita combinarlos (hoy son excluyentes) | hecho |
 | DOS-04 | Sin exportar el cálculo a PDF | Exportar la dosimetría con el detalle de pasos | abierto |
 
 ---

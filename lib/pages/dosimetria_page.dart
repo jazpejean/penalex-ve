@@ -1081,6 +1081,24 @@ class _DosimetriaPageState extends State<DosimetriaPage> {
                 if (val != null) {
                   delito.participacionEspecifica = val;
                   _actualizarDelito(index, delito);
+                  // El art. 424 solo cubre muerte o lesiones. Se avisa sin
+                  // bloquear, porque el abogado decide el encuadre.
+                  if (val == 'Cómplice Correspectivo') {
+                    final String nombre = delito.nombre.toLowerCase();
+                    final bool aplica = nombre.contains('homicidio') ||
+                        nombre.contains('lesion') ||
+                        nombre.contains('muerte');
+                    if (!aplica) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'El art. 424 solo aplica a delitos de muerte o '
+                            'lesiones. Verifica el delito seleccionado.',
+                          ),
+                        ),
+                      );
+                    }
+                  }
                 }
               },
               onInfo: () {
