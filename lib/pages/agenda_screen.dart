@@ -17,6 +17,7 @@ import 'formulario_dia_sin_despacho_screen.dart';
 import 'tribunal_detail_screen.dart';
 import '../widgets/app_snackbar.dart';
 import '../config/app_tokens.dart';
+import '../widgets/app_screen_header.dart';
 
 class AgendaScreen extends StatefulWidget {
   const AgendaScreen({super.key});
@@ -227,11 +228,9 @@ class _AgendaScreenState extends State<AgendaScreen> {
                     children: <Widget>[
                       // Header uniforme: todas las pantallas muestran su
                       // título, independientemente de la barra inferior.
-                      Text('Agenda', style: AppTokens.tituloPantalla),
-                      const SizedBox(height: 4),
-                      Text(
-                        'Audiencias, lapsos y días sin despacho',
-                        style: AppTokens.secundario,
+                      const AppScreenHeader(
+                        titulo: 'Agenda',
+                        subtitulo: 'Audiencias, lapsos y días sin despacho',
                       ),
                       const SizedBox(height: 16),
                       Container(

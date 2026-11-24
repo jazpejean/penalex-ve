@@ -7,6 +7,7 @@ import 'repositorio_jurisprudencia_screen.dart';
 import 'repositorio_leyes_screen.dart';
 import '../config/app_colors.dart';
 import '../config/app_tokens.dart';
+import '../widgets/app_screen_header.dart';
 
 /// Hub de Consulta Jurídica.
 ///
@@ -103,11 +104,10 @@ class _HubConsultaJuridicaScreenState extends State<HubConsultaJuridicaScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(height: 4),
-              Text('Consulta Jurídica', style: AppTokens.tituloPantalla),
-              const SizedBox(height: 6),
-              Text(
-                'Tres herramientas por separado: fallos, leyes y términos.',
-                style: AppTokens.secundario,
+              const AppScreenHeader(
+                titulo: 'Consulta Jurídica',
+                subtitulo:
+                    'Tres herramientas por separado: fallos, leyes y términos.',
               ),
               const SizedBox(height: 20),
               _buildHerramienta(

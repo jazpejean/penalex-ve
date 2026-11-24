@@ -10,6 +10,7 @@ import '../config/app_theme.dart';
 import '../utils/main_tab_controller.dart';
 import '../config/app_colors.dart';
 import '../config/app_tokens.dart';
+import '../widgets/app_screen_header.dart';
 
 /// Pantalla principal (tab Inicio) — rediseño premium navy+oro:
 /// header con saludo y avatar, stats reales, hero Ulpiano, accesos
@@ -149,28 +150,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _buildHeader(BuildContext context, String nombreUsuario) {
     final iniciales = _iniciales(nombreUsuario);
-    return Row(
-      children: <Widget>[
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                'Hola, ${_capitalizar(nombreUsuario)}',
-                style: AppTokens.tituloPantalla,
-              ),
-              const SizedBox(height: 4),
-              Text('Tu resumen de hoy', style: AppTokens.secundario),
-            ],
-          ),
-        ),
-        // Avatar institucional: navy con borde dorado e iniciales
+    return AppScreenHeader(
+      titulo: 'Hola, ${_capitalizar(nombreUsuario)}',
+      subtitulo: 'Tu resumen de hoy',
+      acciones: <Widget>[
         Container(
           width: 44,
           height: 44,
           decoration: BoxDecoration(
             color: AppColors.azulMarino,
-            borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
+            borderRadius: BorderRadius.circular(AppTokens.radioControl),
             border: Border.all(color: AppColors.dorado, width: 2),
           ),
           child: Center(
