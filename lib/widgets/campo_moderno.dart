@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../config/app_colors.dart';
 import '../config/app_theme.dart';
+import '../config/app_tokens.dart';
 
 /// Campo de formulario moderno de Penalex (icono dorado a12, fondo
 /// `campoTexto`, bordes redondeados 12). Usado por los formularios de la
@@ -75,12 +76,12 @@ class CampoModerno extends StatelessWidget {
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(AppTokens.radioControl),
             borderSide: BorderSide(
                 color: TemaGlobal.textoTenue.withValues(alpha: 0.25)),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(AppTokens.radioControl),
             borderSide: BorderSide(color: AppColors.acento, width: 1.4),
           ),
         ),

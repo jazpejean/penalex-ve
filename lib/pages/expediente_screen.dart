@@ -176,19 +176,8 @@ class _ExpedienteScreenState extends State<ExpedienteScreen> {
       width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [AppColors.azulMarino, Color(0xFF1E293B)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: AppColors.azulMarino.withValues(alpha: 0.3),
-            blurRadius: 24,
-            offset: const Offset(0, 10),
-          ),
-        ],
+        color: AppColors.azulMarino,
+        borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

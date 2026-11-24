@@ -11,6 +11,7 @@ import '../services/auth_service.dart';
 import '../config/app_theme.dart';
 import '../services/user_profile_service.dart';
 import '../widgets/app_snackbar.dart';
+import '../config/app_tokens.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({required this.currentRoute, super.key});
@@ -163,8 +164,8 @@ class AppDrawer extends StatelessWidget {
                   decoration: const BoxDecoration(
                     color: AppColors.azulMarino,
                     borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(24),
-                        bottomRight: Radius.circular(24)),
+                        bottomLeft: Radius.circular(AppTokens.radioTarjeta),
+                        bottomRight: Radius.circular(AppTokens.radioTarjeta)),
                   ),
                   child: Row(
                     children: <Widget>[
@@ -233,7 +234,7 @@ class AppDrawer extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color: AppColors.dorado
                                     .withValues(alpha: 0.12),
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(AppTokens.radioControl),
                               ),
                               child: Text(rango,
                                   style: const TextStyle(
@@ -404,7 +405,7 @@ class AppDrawer extends StatelessWidget {
                       }
                     },
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
+                        borderRadius: BorderRadius.circular(AppTokens.radioControl)),
                     contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                   ),
                 ],
@@ -517,7 +518,7 @@ class AppDrawer extends StatelessWidget {
           _navigate(context, route, arguments: arguments);
         }
       },
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppTokens.radioControl)),
       contentPadding: const EdgeInsets.symmetric(horizontal: 20),
     );
   }

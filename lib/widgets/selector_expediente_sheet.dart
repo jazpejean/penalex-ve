@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../config/app_theme.dart';
 import '../models/expediente.dart';
 import '../providers/expediente_activo_provider.dart';
+import '../config/app_tokens.dart';
 
 /// Selector de expediente reutilizable ("case-first").
 ///
@@ -33,7 +34,7 @@ class SelectorExpedienteSheet extends StatefulWidget {
       isScrollControlled: true,
       backgroundColor: TemaGlobal.tarjeta,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(22)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       builder: (_) => SelectorExpedienteSheet(permitirAislada: permitirAislada),
     );
@@ -228,13 +229,13 @@ class _SelectorExpedienteSheetState extends State<SelectorExpedienteSheet> {
                     filled: true,
                     fillColor: TemaGlobal.campoTexto,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(AppTokens.radioControl),
                       borderSide: BorderSide(
                         color: TemaGlobal.textoTenue.withValues(alpha: 0.25),
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(AppTokens.radioControl),
                       borderSide: BorderSide(
                         color: TemaGlobal.textoTenue.withValues(alpha: 0.25),
                       ),

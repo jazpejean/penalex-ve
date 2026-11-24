@@ -4,6 +4,7 @@ import '../config/app_theme.dart';
 import '../services/leyes_repositorio_service.dart';
 import 'articulo_ley_sheet.dart';
 import '../config/app_colors.dart';
+import '../config/app_tokens.dart';
 
 /// Abre un buscador flotante de artículos de ley. El usuario busca, ve
 /// resultados y al tocar uno se abre el artículo completo en otra ventana
@@ -77,7 +78,7 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
       height: MediaQuery.of(context).size.height * 0.85,
       decoration: BoxDecoration(
         color: grisOscuro,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       child: Column(
         children: [
@@ -124,11 +125,11 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
                 filled: true,
                 fillColor: TemaGlobal.campoTexto,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
                   borderSide: BorderSide.none,
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
                   borderSide: const BorderSide(color: AppColors.dorado, width: 1.5),
                 ),
                 contentPadding:
@@ -218,13 +219,13 @@ class _BuscadorArticulosSheetState extends State<_BuscadorArticulosSheet> {
 
     return InkWell(
       onTap: () => mostrarArticuloLey(context, r),
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(AppTokens.radioControl),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 4),
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
           color: TemaGlobal.tarjeta,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(AppTokens.radioControl),
           border: Border.all(color: TemaGlobal.capa),
         ),
         child: Column(

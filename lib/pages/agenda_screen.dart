@@ -225,8 +225,15 @@ class _AgendaScreenState extends State<AgendaScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-                      // Calendario + leyenda (sin título: la pestaña ya se
-                      // identifica en la barra inferior).
+                      // Header uniforme: todas las pantallas muestran su
+                      // título, independientemente de la barra inferior.
+                      Text('Agenda', style: AppTokens.tituloPantalla),
+                      const SizedBox(height: 4),
+                      Text(
+                        'Audiencias, lapsos y días sin despacho',
+                        style: AppTokens.secundario,
+                      ),
+                      const SizedBox(height: 16),
                       Container(
                         decoration: BoxDecoration(
                           color: TemaGlobal.tarjeta,

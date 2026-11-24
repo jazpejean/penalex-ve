@@ -114,15 +114,6 @@ class _ConcursoPageState extends State<ConcursoPage> {
                 padding: const EdgeInsets.fromLTRB(8, 4, 16, 0),
                 child: Row(
                   children: <Widget>[
-                    Builder(
-                      builder: (BuildContext menuContext) => IconButton(
-                        icon: const Icon(Icons.menu),
-                        onPressed: () =>
-                            Scaffold.of(menuContext).openDrawer(),
-                        tooltip: 'Menú',
-                        color: AppColors.acento,
-                      ),
-                    ),
                     const SizedBox(width: 4),
                     Expanded(
                       child: Text(

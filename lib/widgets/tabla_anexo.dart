@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
 import '../models/ley_estructurada.dart';
 import '../config/app_colors.dart';
+import '../config/app_tokens.dart';
 
 /// Renderiza una tabla/anexo de un artículo (campo `tablas` del JSON de la ley)
 /// como una tabla real: encabezado (ej. "ANEXO I"), nombre de la tabla y
@@ -25,7 +26,7 @@ class TablaAnexoView extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: AppColors.azulMarino.withValues(alpha: AppColors.a48),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppTokens.radioControl),
         border: Border.all(color: AppColors.dorado.withValues(alpha: AppColors.a48)),
       ),
       child: Column(

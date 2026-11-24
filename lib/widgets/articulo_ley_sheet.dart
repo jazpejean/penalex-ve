@@ -4,6 +4,7 @@ import '../config/app_theme.dart';
 import '../services/leyes_repositorio_service.dart';
 import 'tabla_anexo.dart';
 import '../config/app_colors.dart';
+import '../config/app_tokens.dart';
 
 /// Muestra un artículo en una ventana flotante (bottom sheet), sin salir de la
 /// pantalla actual. Reutilizable desde la calculadora, el chat, etc.
@@ -38,7 +39,7 @@ class _ArticuloLeySheet extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.85,
       decoration: BoxDecoration(
         color: grisOscuro,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
       ),
       child: Column(
         children: [
