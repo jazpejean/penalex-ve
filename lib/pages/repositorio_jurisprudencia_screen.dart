@@ -1807,6 +1807,7 @@ Widget _selectorValorCondicion(
                       textAlign: TextAlign.right,
                       style: TextStyle(
                           color: TemaGlobal.textoSecundario, fontSize: 12),
+                    ),
                   ),
                 ],
               ),
