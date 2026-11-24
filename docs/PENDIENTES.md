@@ -54,7 +54,7 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 | APP-30 | Sin búsqueda global | Buscador en el Inicio que abre el buscador jurídico; falta unificar leyes y glosario en el mismo | parcial |
 | APP-31 | Sin modo offline para leyes y sentencias | Cada ley descargada se guarda y se lee sin conexión; sentencias y glosario pendientes | parcial |
 | APP-32 | Historial y favoritos no se sincronizan con la web | Tabla única y sincronización | abierto |
-| APP-33 | Sin notificaciones de audiencias y lapsos | Push con FCM y recordatorios | abierto |
+| APP-33 | Sin notificaciones de audiencias y lapsos | Recordatorio el día anterior a las 9:00 y a la hora exacta; lapsos pendientes | parcial |
 | APP-34 | Escritos no se exportan desde el portafolio | Exportar DOCX y PDF desde el expediente | abierto |
 | APP-35 | Sin multi-expediente con pestañas | Cambio rápido de causa activa | abierto |
 | APP-36 | Sin roles y permisos | Abogado, juez, administrador | abierto |

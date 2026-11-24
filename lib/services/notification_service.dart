@@ -95,6 +95,31 @@ class NotificationService {
     required String title,
     required DateTime dateTime,
   }) async {
+    // Recordatorio el día anterior a las 9:00, además del de la hora exacta.
+    final DateTime diaAnterior = DateTime(
+      dateTime.year,
+      dateTime.month,
+      dateTime.day,
+    ).subtract(const Duration(days: 1)).add(const Duration(hours: 9));
+    if (diaAnterior.isAfter(DateTime.now())) {
+      await _localNotifications.zonedSchedule(
+        audienceId.hashCode ^ 1,
+        'Audiencia mañana',
+        title,
+        tz.TZDateTime.from(diaAnterior, tz.local),
+        const NotificationDetails(
+          android: AndroidNotificationDetails(
+            'audience_reminder',
+            'Recordatorios de Audiencias',
+            channelDescription: 'Recordatorios para audiencias programadas',
+          ),
+        ),
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+      );
+    }
+
     await _localNotifications.zonedSchedule(
       audienceId.hashCode,
       'Recordatorio de Audiencia',
