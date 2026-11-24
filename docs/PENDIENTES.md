@@ -363,6 +363,48 @@ Pendientes de validación del usuario: los 196 casos del reporte, con casilla pa
 
 ---
 
+## Criterios sostenidos y abandonados (jurisprudencia viva)
+
+Archivo en curaduría: `penalex-scraper/criterios_sostenidos_y_abandonados.json`. Muestra de 50 criterios: 25 sostenidos (vigentes reiterados) y 25 abandonados (superados).
+
+**Por qué es valioso:** evita citar jurisprudencia superada, que es uno de los errores más graves en un escrito. Ningún competidor lo tiene resuelto a este nivel.
+
+### Calidad de la muestra
+
+| Dato | Resultado |
+|---|---|
+| Sostenidos | 25 |
+| Abandonados | 25 |
+| Con `superado_por` | 25 de 25 |
+| `n_precedentes` en sostenidos | entre 47 y 248 |
+| `sala` vacía | 25 de 25 (100%) |
+| `materia` vacía | 25 de 25 (100%) |
+| Instrumento y artículo | completos |
+| Fechas invertidas (`primera_fecha` mayor que `ultima_fecha`) | 12 de 25 |
+| Cita literal | en reproceso (el enunciado es una síntesis) |
+
+### Reglas para el RAG
+
+| ID | Regla | Estado |
+|---|---|---|
+| JUR-01 | Un criterio `superado` nunca se cita como vigente | propuesta |
+| JUR-02 | Si el usuario pregunta por un criterio superado, se responde con el que lo sustituye | propuesta |
+| JUR-03 | Los criterios con más precedentes se priorizan en el contexto | propuesta |
+| JUR-04 | Completar `sala` y `materia` en los 50 | abierto |
+| JUR-05 | Corregir las 12 fechas invertidas | abierto |
+| JUR-06 | No citar textualmente el enunciado hasta que la cita literal esté lista | abierto |
+| JUR-07 | Mostrar en el chat "criterio vigente" o "criterio superado" junto a la cita | abierto |
+| JUR-08 | Registrar la trazabilidad con `sentencias_que_lo_sostienen` | abierto |
+
+### Lo que debe mostrar al abogado
+
+> Criterio vigente, sostenido en 248 sentencias, desde 2005 hasta 2024.
+> O bien: criterio superado, sustituido por el criterio X en 2025.
+
+Eso es lo que separa una respuesta útil de una que hace perder un caso.
+
+---
+
 ## RAG y doctrinas académicas
 
 El RAG ya incluye tres fuentes: sentencias, criterios de la Sala y doctrinas académicas. La auditoría de la tabla `doctrinas_academicas` (11.133 filas) encontró los problemas que degradan la fundamentación.
