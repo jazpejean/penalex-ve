@@ -363,6 +363,44 @@ Pendientes de validación del usuario: los 196 casos del reporte, con casilla pa
 
 ---
 
+## RAG y doctrinas académicas
+
+El RAG ya incluye tres fuentes: sentencias, criterios de la Sala y doctrinas académicas. La auditoría de la tabla `doctrinas_academicas` (11.133 filas) encontró los problemas que degradan la fundamentación.
+
+### Calidad de los datos
+
+| Hallazgo | Filas | % | Efecto |
+|---|---|---|---|
+| Sin página | 8.648 | 78% | La cita no es verificable |
+| Sin obra | 6.206 | 56% | No se puede citar la fuente |
+| Sin autor | 169 | 1,5% | Cita incompleta |
+| Autor es una sala o tribunal | ~1.421 | 13% | Se presenta un criterio de sala como doctrina académica |
+| Autor es "tribunal" o "corte" | 817 | 7% | Igual problema |
+| Evidencias duplicadas | 1.514 | 14% | Contexto repetido, más tokens y confusión |
+
+### Reglas de curaduría propuestas
+
+| ID | Regla | Estado |
+|---|---|---|
+| RAG-01 | Autor + obra + página son obligatorios para citar como doctrina académica | propuesta |
+| RAG-02 | Si el autor es una sala, tribunal o corte, la fila pasa a criterios de la Sala, no a doctrina | propuesta |
+| RAG-03 | Si falta obra o página, la fila se marca `incompleta` y el RAG no la cita como fuente formal | propuesta |
+| RAG-04 | Deduplicar por autor + obra + página + evidencia | propuesta |
+| RAG-05 | Normalizar nombres de autores (mayúsculas, acentos, abreviaturas) | propuesta |
+| RAG-06 | Las obras que en realidad son leyes se excluyen del banco doctrinal | propuesta |
+| RAG-07 | El contexto debe llevar presupuesto de tamaño y orden por relevancia, no por tipo | abierto |
+| RAG-08 | Medir precisión y recall del RAG con un conjunto de preguntas de prueba | abierto |
+| RAG-09 | Las citas académicas deben mostrar autor, obra, página y la sentencia que las recoge | abierto |
+| RAG-10 | Sincronizar la base local con Supabase y registrar la versión del corpus | abierto |
+
+### Lo que el RAG debe responder
+
+- Si no hay doctrina académica verificable, lo dice y fundamenta con jurisprudencia y ley.
+- Nunca presenta un criterio de sala como si fuera un autor académico.
+- Cada doctrina citada lleva autor, obra y página.
+
+---
+
 ## Producto de primer nivel
 
 Lo que falta y no está en las secciones anteriores. Son las cosas que un abogado espera de una herramienta que usa todos los días y por las que paga.
