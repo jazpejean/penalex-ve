@@ -406,6 +406,26 @@ La curaduría la ejecuta el usuario con un pipeline de IA y búsqueda web. **No 
 - El conteo por estado: verificadas, dudosas y sin fuente.
 - La versión del corpus curado para registrarla.
 
+**Muestra recibida el 2026-11-23:** `doctrinas_academicas_perfectas.json` con 1.007 registros curados (9% del total). Calidad verificada:
+
+| Dato | Resultado |
+|---|---|
+| Autor, obra, año y página | 100% completos |
+| Editorial | 95% (58 vacíos) |
+| Ciudad | 99% (18 vacíos) |
+| Tomo | 100% vacío (no aplica) |
+| `verificado_web` | 1.007 de 1.007 |
+| `referencia_completa` | 1.007 de 1.007 |
+| `referencia_legible` | 949 completas |
+| Duplicados | 200 (20%) |
+| `fuente_verificacion` | "catalogo_biblioteca", sin URL |
+
+Recomendaciones sobre la muestra:
+1. **Deduplicar los 200** antes de subir.
+2. **Guardar la URL** del catálogo en `fuente_verificacion`, no solo el tipo, para poder auditar cada dato.
+3. `cita_textual` está vacío al 100%: la cita real es `parrafo_evidencia`. Conviene renombrar o eliminar el campo para no confundir.
+4. `referencia_legible` es exactamente lo que el RAG debe mostrar al abogado.
+
 Cuando avise, se hace:
 1. Adaptar el RAG para citar solo las filas `verificada`.
 2. Medir cuántas citas quedan completas (autor, obra, página).
