@@ -319,6 +319,47 @@ Pendientes de validación del usuario: los 196 casos del reporte, con casilla pa
 
 ---
 
+## Banco de estilos y modelos de escritos
+
+| ID | Problema | Propuesta | Estado |
+|---|---|---|---|
+| EST-01 | Hay 124 modelos convertidos a texto en `ejemplos_estilos/` (14 categorías) | Inventariados y sanitizados | hecho |
+| EST-02 | Hay 241 documentos originales en `ejemplos/` (12 MB) | Fuente de los modelos | hecho |
+| EST-03 | La app **no usa** los modelos: `assets/estilos/` solo tiene el manifest y `pubspec.yaml` no declara la carpeta | Empaquetarlos o descargarlos de Storage | abierto |
+| EST-04 | Supabase Storage `estilos` solo tiene 13 objetos, no los 124 | Subir los 124 con la estructura del manifest | abierto |
+| EST-05 | R2 no tiene estilos | Decidir si van a R2 o a Supabase Storage | abierto |
+| EST-06 | El manifest no lleva tipo de escrito ni metadatos | Añadir categoría, tipo y etiquetas por modelo | abierto |
+| EST-07 | El redactor no ofrece "usar plantilla" | Selector de categoría y modelo dentro del redactor | abierto |
+| EST-08 | Sin prueba de que el modelo se use para el estilo | Generar un escrito con y sin modelo y comparar | abierto |
+
+**Inventario verificado:**
+
+| Categoría | Modelos |
+|---|---|
+| ARCHIVOS IMPORTANTES | 39 |
+| PODER PENAL REVOCATORIO | 20 |
+| nuevos formato | 15 |
+| ACUERDO REPARATORIO | 11 |
+| SOLICITUDES DE ACUERDO REPARATORIO | 9 |
+| Raíz (sentencias reales) | 7 |
+| CONTESTACIONES PENALES | 4 |
+| CAUCIÓN JURATORIA | 4 |
+| SOLICITUD DE DECAIMIENTO | 4 |
+| INSPECCIÓN JUDICIAL | 3 |
+| MEDIDA CAUTELAR SUSTITUTIVA | 3 |
+| CONSIGNACIÓN DE FIADORES | 2 |
+| SOLICITUD DE TRASLADO MÉDICO | 2 |
+| ARCHIVO JUDICIAL | 1 |
+| **Total** | **124** |
+
+**Dónde están hoy:**
+- Local: `ejemplos_estilos/` (2 MB) y `ejemplos/` (12 MB)
+- Supabase Storage `estilos`: 13 objetos
+- R2: ninguno
+- App: solo `assets/estilos/manifest.json`, sin los textos
+
+---
+
 ## Producto de primer nivel
 
 Lo que falta y no está en las secciones anteriores. Son las cosas que un abogado espera de una herramienta que usa todos los días y por las que paga.
