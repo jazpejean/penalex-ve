@@ -9,6 +9,7 @@ import '../widgets/app_drawer.dart';
 import '../widgets/main_bottom_bar.dart';
 import 'redactor_documentos_screen.dart';
 import '../config/app_tokens.dart';
+import '../services/notification_service.dart';
 
 /// Calculadora de Prescripción Penal (arts. 108 y 112 CP).
 ///
@@ -425,6 +426,32 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
     );
   }
 
+  Widget _buildBotonRecordatorio(
+      DateTime fecha, TerminoPrescripcion termino) {
+    if (fecha.isBefore(DateTime.now())) return const SizedBox.shrink();
+    return Align(
+      alignment: Alignment.centerRight,
+      child: OutlinedButton.icon(
+        onPressed: () async {
+          await NotificationService().scheduleAudienceReminder(
+            audienceId: 'prescripcion_${fecha.millisecondsSinceEpoch}',
+            title: 'Prescripción: ${termino.tituloLargo}',
+            dateTime: fecha,
+          );
+          if (!mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Recordatorio programado para el día anterior.'),
+              behavior: SnackBarBehavior.floating,
+            ),
+          );
+        },
+        icon: const Icon(Icons.notifications_active_outlined),
+        label: const Text('Recordarme'),
+      ),
+    );
+  }
+
   Widget _buildResultado() {
     final termino = _termino!;
     final fecha = _fechaPrescripcion!;
@@ -442,6 +469,8 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
             fontWeight: FontWeight.bold,
           ),
         ),
+        const SizedBox(height: 12),
+        _buildBotonRecordatorio(fecha, termino),
         const SizedBox(height: 12),
         Container(
           width: double.infinity,
