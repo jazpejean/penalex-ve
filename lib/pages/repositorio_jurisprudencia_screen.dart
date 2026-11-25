@@ -75,7 +75,6 @@ class _RepositorioJurisprudenciaScreenState
   // 🎛️ Modo Avanzado (estilo TSJ): condiciones "campo operador valor".
   List<CondicionBusqueda> _condicionesAvanzadas = const [];
   // Tab activo del panel de filtros.
-  String _modoFiltros = 'Simple';
   // Década seleccionada (primer año de la década, ej. 2010 = 2010-2019).
   int? _decadaSeleccionada;
 
@@ -311,423 +310,7 @@ class _RepositorioJurisprudenciaScreenState
   /// Panel de filtros con 2 modos (estilo TSJ):
 ///   - Simple:  Fecha (décadas + año exacto) y Sala.
 ///   - Avanzado: condiciones "campo operador valor" con conteos.
-///
-/// REGLA ESTRICTA: el filtro de Sala se oculta automáticamente en las
-/// categorías Resoluciones y Doctrinas (no aplica a esos contenidos).
-void _abrirPanelFiltros() {
-  // Copia editable de las condiciones (se aplican al pulsar "Aplicar").
-  final List<CondicionBusqueda> condicionesEditable =
-      List.of(_condicionesAvanzadas);
 
-  showModalBottomSheet<void>(
-    context: context,
-    isScrollControlled: true,
-    backgroundColor: TemaGlobal.tarjeta,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
-    ),
-    builder: (context) => StatefulBuilder(
-      builder: (context, setSheetState) {
-        final int currentYear = DateTime.now().year;
-        final bool mostrarSala = _categoriaSeleccionada != 'Resoluciones' &&
-            _categoriaSeleccionada != 'Doctrinas';
-
-        // Décadas desde 2000 hasta la actual (siempre actualizado).
-        final int primeraDecada = 2000;
-        final int ultimaDecada = currentYear - (currentYear % 10);
-        final List<int> decadas = [
-          for (var d = primeraDecada; d <= ultimaDecada; d += 10) d,
-        ];
-
-        Widget chip(String label,
-            {required bool activo, required VoidCallback onTap}) {
-          return Padding(
-            padding: const EdgeInsets.only(right: 8, bottom: 4),
-            child: ChoiceChip(
-              label: Text(label),
-              selected: activo,
-              onSelected: (_) => onTap(),
-              selectedColor: AppColors.dorado,
-              backgroundColor: Colors.transparent,
-              labelStyle: TextStyle(
-                // Guía 3.3: texto sobre dorado = onDorado.
-                color: activo ? AppColors.onDorado : TemaGlobal.texto,
-                fontWeight: activo ? FontWeight.bold : FontWeight.normal,
-                fontSize: 12,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
-                side: BorderSide(
-                    color: activo ? AppColors.dorado : TemaGlobal.capa),
-              ),
-              visualDensity: VisualDensity.compact,
-              showCheckmark: false,
-            ),
-          );
-        }
-
-        // --- Widget de una condición editable ---
-        Widget condicionWidget(int i, VoidCallback onChanged) {
-          final cond = condicionesEditable[i];
-          return Container(
-            margin: const EdgeInsets.only(bottom: 10),
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: TemaGlobal.campoTexto,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: TemaGlobal.capa),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: _dropdownCampoCondicion(
-                        _superService,
-                        cond,
-                        i,
-                        onChanged,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      flex: 2,
-                      child: _dropdownOperadorCondicion(
-                        _superService,
-                        cond,
-                        i,
-                        onChanged,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        condicionesEditable.removeAt(i);
-                        setSheetState(() {});
-                      },
-                      icon: Icon(Icons.close,
-                          size: 18, color: TemaGlobal.textoSecundario),
-                      visualDensity: VisualDensity.compact,
-                      tooltip: 'Quitar condición',
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                // Valor: con conteos (lista) o texto libre.
-                _selectorValorCondicion(
-                  _superService,
-                  cond,
-                  i,
-                  onChanged,
-                  setSheetState,
-                ),
-              ],
-            ),
-          );
-        }
-
-        return Padding(
-          padding: EdgeInsets.only(
-            left: 20,
-            right: 20,
-            top: 20,
-            bottom: MediaQuery.of(context).viewInsets.bottom + 24,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    'Filtros',
-                    style: TextStyle(
-                      color: TemaGlobal.texto,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 20,
-                    ),
-                  ),
-                  const Spacer(),
-                  // Limpiar filtros (estilo Venley): solo visible si hay
-                  // algún filtro activo.
-                  if (_cantidadFiltrosActivos > 0)
-                    TextButton.icon(
-                      onPressed: () {
-                        setSheetState(() {
-                          _salaSeleccionada = null;
-                          _anioSeleccionado = null;
-                          _decadaSeleccionada = null;
-                          condicionesEditable.clear();
-                        });
-                      },
-                      icon: Icon(Icons.filter_alt_off,
-                          size: 16, color: AppColors.acento),
-                      label: Text(
-                        'Limpiar filtros',
-                        style: TextStyle(
-                            color: AppColors.acento,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        visualDensity: VisualDensity.compact,
-                      ),
-                    ),
-                  IconButton(
-                    icon: Icon(Icons.close,
-                        color: TemaGlobal.textoSecundario, size: 20),
-                    onPressed: () => Navigator.of(context).pop(),
-                  ),
-                ],
-              ),
-              const Divider(height: 20),
-              // Tabs Simple / Avanzado (estilo TSJ)
-              Container(
-                height: 40,
-                padding: const EdgeInsets.all(3),
-                decoration: BoxDecoration(
-                  color: TemaGlobal.capa,
-                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
-                ),
-                child: Row(
-                  children: [
-                    for (final modo in const ['Simple', 'Avanzado'])
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () => setSheetState(
-                              () => _modoFiltros = modo),
-                          child: Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: _modoFiltros == modo
-                                  ? AppColors.dorado
-                                  : Colors.transparent,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Text(
-                              modo,
-                              style: TextStyle(
-                                // Guía 3.3: dorado/onDorado en el activo.
-                                color: _modoFiltros == modo
-                                    ? AppColors.onDorado
-                                    : TemaGlobal.textoSecundario,
-                                fontSize: 13,
-                                fontWeight: _modoFiltros == modo
-                                    ? FontWeight.bold
-                                    : FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 18),
-
-              if (_modoFiltros == 'Simple') ...[
-                // Fecha: Todas + décadas + año exacto (siempre visibles)
-                Text(
-                  'Fecha',
-                  style: TextStyle(
-                    color: TemaGlobal.textoSecundario,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 13,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                // Décadas (2000s .. década actual, dinámicas)
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      chip('Todas',
-                          activo: _anioSeleccionado == null &&
-                              _decadaSeleccionada == null,
-                          onTap: () => setSheetState(() {
-                                _anioSeleccionado = null;
-                                _decadaSeleccionada = null;
-                              })),
-                      for (final d in decadas)
-                        chip('${d}s',
-                            activo: _decadaSeleccionada == d,
-                            onTap: () => setSheetState(() {
-                                  _decadaSeleccionada = d;
-                                  _anioSeleccionado = null;
-                                })),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 8),
-                // Año exacto: TODOS los años 2000..actual, siempre visibles
-                // (el usuario pidió poder filtrar por año específico).
-                Text(
-                  'Año exacto',
-                  style: TextStyle(
-                    color: TemaGlobal.textoTenue,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 11,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      chip('Todos',
-                          activo: _anioSeleccionado == null,
-                          onTap: () => setSheetState(() {
-                                _anioSeleccionado = null;
-                              })),
-                      for (var y = 2000; y <= currentYear; y++)
-                        chip('$y',
-                            activo: _anioSeleccionado == y,
-                            onTap: () => setSheetState(() {
-                                  _anioSeleccionado = y;
-                                  _decadaSeleccionada = null;
-                                })),
-                    ],
-                  ),
-                ),
-                // Sala (solo Sentencias y Jurisprudencias)
-                if (mostrarSala) ...[
-                  const SizedBox(height: 16),
-                  Text(
-                    'Sala',
-                    style: TextStyle(
-                      color: TemaGlobal.textoSecundario,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 13,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        chip('Todas',
-                            activo: _salaSeleccionada == null,
-                            onTap: () => setSheetState(
-                                () => _salaSeleccionada = null)),
-                        // Penalex solo indexa 2 salas del TSJ: Casación Penal
-                        // (scp) y Constitucional (scon). Verificado en la BD.
-                        chip('Casación Penal',
-                            activo: _salaSeleccionada == 'scp',
-                            onTap: () => setSheetState(
-                                () => _salaSeleccionada = 'scp')),
-                        chip('Constitucional',
-                            activo: _salaSeleccionada == 'scon',
-                            onTap: () => setSheetState(
-                                () => _salaSeleccionada = 'scon')),
-                      ],
-                    ),
-                  ),
-                ],
-              ] else ...[
-                // --- Modo Avanzado (estilo TSJ: "Cada condición acota la
-                // búsqueda. Marca dos o más para juntarlas en un grupo.") ---
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: TemaGlobal.capa,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                        color: AppColors.acento.withValues(alpha: 0.35)),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(Icons.info_outline,
-                          size: 16, color: TemaGlobal.textoSecundario),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Text(
-                          'Cada condición acota la búsqueda. Marca dos o '
-                          'más para juntarlas en un grupo.',
-                          style: TextStyle(
-                            color: TemaGlobal.textoSecundario,
-                            fontSize: 12,
-                            height: 1.4,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 14),
-                if (condicionesEditable.isEmpty)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Text(
-                      'Muestra las sentencias donde…',
-                      style: TextStyle(
-                        color: TemaGlobal.textoSecundario,
-                        fontSize: 13,
-                      ),
-                    ),
-                  ),
-                for (var i = 0; i < condicionesEditable.length; i++)
-                  condicionWidget(i, () => setSheetState(() {})),
-                // Agregar condición
-                TextButton.icon(
-                  onPressed: () {
-                    condicionesEditable.add(CondicionBusqueda(
-                      campo: 'ponente',
-                      operador: 'es',
-                    ));
-                    setSheetState(() {});
-                  },
-                  icon: Icon(Icons.add_circle_outline,
-                      size: 18, color: AppColors.acento),
-                  label: Text(
-                    'Agregar condición',
-                    style: TextStyle(
-                        color: AppColors.acento,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-              ],
-
-              const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Aplicar condiciones con al menos un valor.
-                    _condicionesAvanzadas = condicionesEditable
-                        .where((c) => c.valores.isNotEmpty)
-                        .toList();
-                    Navigator.of(context).pop();
-                    _buscar();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    // Guía 3.2: primario = acento dinámico.
-                    backgroundColor: AppColors.acento,
-                    foregroundColor: AppColors.acento == AppColors.dorado
-                        ? AppColors.onDorado
-                        : AppColors.onAzulMarino,
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text(
-                    'Aplicar filtros',
-                    style: TextStyle(
-                        fontSize: 15, fontWeight: FontWeight.w700),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    ),
-  );
-}
 
 // ═══════════════════════════════════════════════════════════════════════
 // Widgets del Modo Avanzado (campo / operador / valor con conteos)
@@ -737,244 +320,20 @@ void _abrirPanelFiltros() {
 // casillas de multiselección, botones Cancelar/Aceptar por condición).
 // ═══════════════════════════════════════════════════════════════════════
 
-/// Campos del Modo Avanzado: columna Supabase → etiqueta + descripción
-/// (estilo TSJ: "Ponente [lista] — el magistrado que la redactó").
-static const List<({String campo, String etiqueta, String descripcion, bool lista})>
-    _camposAvanzados = [
-  (campo: 'ponente', etiqueta: 'Ponente', descripcion: 'el magistrado que la redactó', lista: true),
-  (campo: 'procedimiento', etiqueta: 'Materia', descripcion: 'la materia o procedimiento', lista: true),
-  (campo: 'decision', etiqueta: 'Decisión', descripcion: 'el dispositivo del fallo', lista: true),
-  (campo: 'expediente', etiqueta: 'Expediente', descripcion: 'el número de expediente', lista: true),
-  (campo: 'num_sentencia', etiqueta: 'Nº de sentencia', descripcion: 'el número de la sentencia', lista: false),
-];
-
 /// Dropdown del campo de una condición avanzada (estilo TSJ: etiqueta +
 /// badge "lista" + descripción al pie).
-Widget _dropdownCampoCondicion(
-  SuperBuscadorService superService,
-  CondicionBusqueda cond,
-  int i,
-  VoidCallback onChanged,
-) {
-  return DropdownButtonHideUnderline(
-    child: DropdownButton<String>(
-      value: cond.campo,
-      isExpanded: true,
-      isDense: true,
-      borderRadius: BorderRadius.circular(AppTokens.radioControl),
-      dropdownColor: TemaGlobal.tarjeta,
-      style: TextStyle(
-        color: TemaGlobal.texto,
-        fontSize: 13,
-        fontWeight: FontWeight.w600,
-      ),
-      items: [
-        for (final c in _camposAvanzados)
-          DropdownMenuItem(
-            value: c.campo,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(c.etiqueta),
-                    if (c.lista) ...[
-                      const SizedBox(width: 6),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 4, vertical: 1),
-                        decoration: BoxDecoration(
-                          color: AppColors.acento.withValues(alpha: 0.15),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Text(
-                          'lista',
-                          style: TextStyle(
-                            color: AppColors.acento,
-                            fontSize: 9,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 0.4,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
-                Text(
-                  c.descripcion,
-                  style: TextStyle(
-                    color: TemaGlobal.textoTenue,
-                    fontSize: 11,
-                  ),
-                ),
-              ],
-            ),
-          ),
-      ],
-      onChanged: (v) {
-        if (v == null) return;
-        onChanged();
-        // Al cambiar el campo se limpia la selección (cambia la semántica)
-        // y se valida el operador: los campos con lista solo aceptan
-        // "es"/"no es"; los de texto libre "contiene"/"es".
-        cond.campo = v;
-        cond.valores = [];
-        final nuevoEsLista =
-            _camposAvanzados.firstWhere((c) => c.campo == v).lista;
-        if (nuevoEsLista &&
-            cond.operador != 'es' &&
-            cond.operador != 'no es') {
-          cond.operador = 'es';
-        } else if (!nuevoEsLista &&
-            cond.operador != 'es' &&
-            cond.operador != 'contiene') {
-          cond.operador = 'contiene';
-        }
-      },
-    ),
-  );
-}
+
 
 /// Dropdown del operador de una condición avanzada. Para campos con lista
 /// solo se ofrecen "es"/"no es" (la etiqueta cambia sola a "es cualquiera
 /// de"/"no es ninguno de" al sumar un segundo valor, igual que el TSJ).
-Widget _dropdownOperadorCondicion(
-  SuperBuscadorService superService,
-  CondicionBusqueda cond,
-  int i,
-  VoidCallback onChanged,
-) {
-  final esLista =
-      _camposAvanzados.firstWhere((c) => c.campo == cond.campo).lista;
-  final operadores = esLista
-      ? const [('es', 'es'), ('no es', 'no es')]
-      : const [('contiene', 'contiene'), ('es', 'es')];
-  return DropdownButtonHideUnderline(
-    child: DropdownButton<String>(
-      value: cond.operador,
-      isExpanded: true,
-      isDense: true,
-      borderRadius: BorderRadius.circular(AppTokens.radioControl),
-      dropdownColor: TemaGlobal.tarjeta,
-      style: TextStyle(
-        color: TemaGlobal.texto,
-        fontSize: 13,
-        fontWeight: FontWeight.w600,
-      ),
-      items: [
-        for (final o in operadores)
-          DropdownMenuItem(value: o.$1, child: Text(o.$2)),
-      ],
-      onChanged: (v) {
-        if (v == null) return;
-        onChanged();
-        cond.operador = v;
-      },
-    ),
-  );
-}
+
 
 /// Valor de una condición:
 ///  - Campos con lista: input "Buscar [campo]" + lista de valores con
 ///    conteos y casillas de multiselección (estilo TSJ).
 ///  - Otros campos: texto libre.
-Widget _selectorValorCondicion(
-  SuperBuscadorService superService,
-  CondicionBusqueda cond,
-  int i,
-  VoidCallback onChanged,
-  StateSetter setSheetState,
-) {
-  final esLista =
-      _camposAvanzados.firstWhere((c) => c.campo == cond.campo).lista;
-  if (!esLista) {
-    // Texto libre (ej. Nº de sentencia).
-    return TextField(
-      style: TextStyle(color: TemaGlobal.texto, fontSize: 13),
-      decoration: InputDecoration(
-        hintText: 'Valor…',
-        hintStyle: TextStyle(color: TemaGlobal.textoTenue, fontSize: 13),
-        isDense: true,
-        filled: true,
-        fillColor: TemaGlobal.superficie,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: TemaGlobal.capa),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: TemaGlobal.capa),
-        ),
-      ),
-      onSubmitted: (v) {
-        if (v.trim().isEmpty) return;
-        cond.valores = [v];
-        onChanged();
-      },
-      onChanged: (v) {
-        if (v.trim().isEmpty) return;
-        cond.valores = [v];
-        onChanged();
-      },
-    );
-  }
 
-  // Lista de valores con conteos (vistas SQL v_conteos_*).
-  return FutureBuilder<List<Map<String, dynamic>>>(
-    future: superService.listarValoresConCampo(cond.campo, limite: 30),
-    builder: (context, snapshot) {
-      final cargando = snapshot.connectionState != ConnectionState.done;
-      if (cargando) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: Text(
-            'Cargando valores…',
-            style: TextStyle(color: TemaGlobal.textoTenue, fontSize: 12),
-          ),
-        );
-      }
-      final valores = snapshot.data ?? const [];
-      if (valores.isEmpty) {
-        // La vista aún no existe: el usuario debe ejecutar el SQL
-        // vistas_conteos_super_buscador.sql en Supabase.
-        return TextField(
-          style: TextStyle(color: TemaGlobal.texto, fontSize: 13),
-          decoration: InputDecoration(
-            hintText: 'Valor… (ejecuta las vistas SQL para ver la lista)',
-            hintStyle: TextStyle(color: TemaGlobal.textoTenue, fontSize: 12),
-            isDense: true,
-            filled: true,
-            fillColor: TemaGlobal.superficie,
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: TemaGlobal.capa),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: TemaGlobal.capa),
-            ),
-          ),
-          onChanged: (v) {
-            if (v.trim().isEmpty) return;
-            cond.valores = [v];
-            onChanged();
-          },
-        );
-      }
-      return _ListaValoresCondicion(
-        superService: superService,
-        cond: cond,
-        valores: valores,
-        onChanged: onChanged,
-      );
-    },
-  );
-}
 
 /// Lista buscable de valores con casillas (multiselección, estilo TSJ:
 /// "Buscar magistrado" + filas con checkbox y conteo).
@@ -1037,23 +396,18 @@ Widget _selectorValorCondicion(
     );
   }
 
-  /// Fila superior del Super Buscador: dropdown de categorías + Favoritas
-  /// + botón Filtros.
+  /// Filtros avanzados (hoja): sala, período y favoritas.
+  /// El tipo va en la barra de categorías y el orden en la fila de acciones.
   Widget _buildFiltros() {
-    const List<String> categorias = <String>[
-      'Sentencias',
-      'Jurisprudencias',
-      'Resoluciones',
-      'Doctrinas',
-    ];
     final bool mostrarSala = _categoriaSeleccionada != 'Resoluciones' &&
         _categoriaSeleccionada != 'Doctrinas';
     final int currentYear = DateTime.now().year;
     final int ultimaDecada = currentYear - (currentYear % 10);
 
-    Widget chip(String label, {required bool activo, required VoidCallback onTap}) {
+    Widget chip(String label,
+        {required bool activo, required VoidCallback onTap}) {
       return Padding(
-        padding: const EdgeInsets.only(right: 8),
+        padding: const EdgeInsets.only(right: 8, bottom: 8),
         child: ChoiceChip(
           label: Text(label),
           selected: activo,
@@ -1063,7 +417,7 @@ Widget _selectorValorCondicion(
           labelStyle: TextStyle(
             color: activo ? Colors.white : TemaGlobal.texto,
             fontWeight: activo ? FontWeight.bold : FontWeight.w500,
-            fontSize: 12,
+            fontSize: 13,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppTokens.radioPildora),
@@ -1076,64 +430,43 @@ Widget _selectorValorCondicion(
       );
     }
 
-    Widget fila(String etiqueta, List<Widget> chips) {
+    Widget seccion(String etiqueta, List<Widget> chips) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           Text(etiqueta, style: AppTokens.etiqueta),
-          const SizedBox(height: 6),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(children: chips),
-          ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 8),
+          Wrap(children: chips),
+          const SizedBox(height: 16),
         ],
       );
     }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        fila('TIPO', <Widget>[
-          for (final categoria in categorias)
-            chip(categoria,
-                activo: _categoriaSeleccionada == categoria, onTap: () {
-              if (categoria == _categoriaSeleccionada) return;
-              setState(() {
-                _categoriaSeleccionada = categoria;
-                if (categoria == 'Resoluciones' || categoria == 'Doctrinas') {
-                  _salaSeleccionada = null;
-                }
-              });
-              _buscar();
-            }),
-        ]),
+      children: <Widget>[
         if (mostrarSala)
-          fila('SALA', <Widget>[
+          seccion('SALA', <Widget>[
             chip('Todas',
                 activo: _salaSeleccionada == null, onTap: () {
               setState(() => _salaSeleccionada = null);
-              _buscar();
             }),
             chip('Penal',
                 activo: _salaSeleccionada == 'scp', onTap: () {
               setState(() => _salaSeleccionada = 'scp');
-              _buscar();
             }),
             chip('Constitucional',
                 activo: _salaSeleccionada == 'scon', onTap: () {
               setState(() => _salaSeleccionada = 'scon');
-              _buscar();
             }),
           ]),
-        fila('PERÍODO', <Widget>[
+        seccion('PERÍODO', <Widget>[
           chip('Todos',
               activo: _decadaSeleccionada == null, onTap: () {
             setState(() {
               _decadaSeleccionada = null;
               _anioSeleccionado = null;
             });
-            _buscar();
           }),
           for (var d = 2000; d <= ultimaDecada; d += 10)
             chip('${d}s',
@@ -1142,38 +475,71 @@ Widget _selectorValorCondicion(
                 _decadaSeleccionada = d;
                 _anioSeleccionado = null;
               });
-              _buscar();
             }),
         ]),
-        Row(
-          children: [
-            if (_categoriaSeleccionada != 'Doctrinas')
-              chip('Favoritas',
-                  activo: _soloFavoritas, onTap: () {
-                setState(() => _soloFavoritas = !_soloFavoritas);
-                _aplicarFiltroFavoritas();
-              }),
-            _dropdownOrden(),
-            const Spacer(),
-            OutlinedButton.icon(
-              onPressed: _abrirPanelFiltros,
-              icon: Icon(Icons.tune, size: 16, color: AppColors.acento),
-              label: Text(
-                'Más filtros',
-                style: TextStyle(color: AppColors.acento, fontSize: 12),
-              ),
-              style: OutlinedButton.styleFrom(
-                side: BorderSide(color: TemaGlobal.capa),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
+        if (_categoriaSeleccionada != 'Doctrinas')
+          seccion('FAVORITAS', <Widget>[
+            chip('Solo favoritas',
+                activo: _soloFavoritas, onTap: () {
+              setState(() => _soloFavoritas = !_soloFavoritas);
+              _aplicarFiltroFavoritas();
+            }),
+          ]),
+      ],
+    );
+  }
+
+  /// Chips de categoría, visibles siempre.
+  Widget _buildCategorias() {
+    const List<String> categorias = <String>[
+      'Sentencias',
+      'Jurisprudencias',
+      'Resoluciones',
+      'Doctrinas',
+    ];
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(horizontal: AppTokens.margen),
+      child: Row(
+        children: <Widget>[
+          for (final String categoria in categorias)
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: ChoiceChip(
+                label: Text(categoria),
+                selected: _categoriaSeleccionada == categoria,
+                onSelected: (_) {
+                  if (_categoriaSeleccionada == categoria) return;
+                  setState(() {
+                    _categoriaSeleccionada = categoria;
+                    if (categoria == 'Resoluciones' ||
+                        categoria == 'Doctrinas') {
+                      _salaSeleccionada = null;
+                    }
+                  });
+                  _buscar();
+                },
+                selectedColor: AppColors.azulMarino,
+                backgroundColor: TemaGlobal.tarjeta,
+                labelStyle: TextStyle(
+                  color: _categoriaSeleccionada == categoria
+                      ? Colors.white
+                      : TemaGlobal.texto,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                visualDensity: VisualDensity.compact,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppTokens.radioPildora),
+                  side: BorderSide(
+                      color: _categoriaSeleccionada == categoria
+                          ? AppColors.azulMarino
+                          : TemaGlobal.capa),
+                ),
+                showCheckmark: false,
               ),
             ),
-          ],
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -1194,6 +560,12 @@ Widget _selectorValorCondicion(
                 titulo: 'Jurisprudencia',
                 subtitulo: 'Sentencias del Tribunal Supremo de Justicia, con texto completo',
                 acciones: <Widget>[
+                  IconButton(
+                    tooltip: 'Cómo buscar',
+                    icon: Icon(Icons.help_outline,
+                        color: TemaGlobal.textoSecundario),
+                    onPressed: _abrirAyudaBusqueda,
+                  ),
                   IconButton(
                     tooltip: 'Mis colecciones',
                     icon: Icon(Icons.collections_bookmark_outlined,
@@ -1229,7 +601,7 @@ Widget _selectorValorCondicion(
                       controller: _searchController,
                       style: TextStyle(color: TemaGlobal.texto, fontSize: 14),
                       decoration: InputDecoration(
-                        hintText: 'Número, delito, partes o tema',
+                        hintText: 'Número, delito o partes',
                         hintStyle: TextStyle(
                             color: TemaGlobal.textoTenue, fontSize: 14),
                         prefixIcon: Icon(Icons.search,
@@ -1292,11 +664,14 @@ Widget _selectorValorCondicion(
                 ],
               ),
             ),
+            _buildCategorias(),
+            const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppTokens.margen),
               child: Row(
                 children: <Widget>[
-                  OutlinedButton.icon(
+                  Expanded(
+                    child: OutlinedButton.icon(
                     onPressed: _buscarPorIdea,
                     icon: const Icon(Icons.auto_awesome, size: 18),
                     label: const Text('Por idea'),
@@ -1310,8 +685,10 @@ Widget _selectorValorCondicion(
                       ),
                     ),
                   ),
+                  ),
                   const SizedBox(width: 8),
-                  OutlinedButton.icon(
+                  Expanded(
+                    child: OutlinedButton.icon(
                     onPressed: _abrirFiltros,
                     icon: const Icon(Icons.tune, size: 18),
                     label: Text(
@@ -1328,20 +705,9 @@ Widget _selectorValorCondicion(
                       ),
                     ),
                   ),
+                  ),
                   const SizedBox(width: 8),
                   _dropdownOrden(),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: _abrirAyudaBusqueda,
-                    child: Text(
-                      'Cómo buscar',
-                      style: TextStyle(
-                        color: TemaGlobal.textoSecundario,
-                        fontSize: 12,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -2075,7 +1441,10 @@ Widget _selectorValorCondicion(
                   Flexible(
                     flex: 3,
                     child: Text(
-                      '${_nombreSala(sentencia.sala)} · ${sentencia.fechaSentencia}',
+                      sentencia.fechaSentencia.isEmpty ||
+                              sentencia.fechaSentencia == 'null'
+                          ? _nombreSala(sentencia.sala)
+                          : '${_nombreSala(sentencia.sala)} · ${sentencia.fechaSentencia}',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.right,
@@ -2117,7 +1486,7 @@ Widget _selectorValorCondicion(
                     ),
                   ),
                 ),
-              if (_textoResumen(sentencia).length > 200)
+              if (_textoResumen(sentencia).length > 120)
                 Align(
                   alignment: Alignment.centerLeft,
                   child: TextButton.icon(
