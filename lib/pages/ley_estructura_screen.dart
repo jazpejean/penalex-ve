@@ -578,14 +578,31 @@ class _LeyEstructuraScreenState extends State<LeyEstructuraScreen> {
   // Detalle de artículo (bottom sheet) + IA
   // ---------------------------------------------------------------------------
 
+  List<ArticuloLey> get _listaArticulos {
+    final List<ArticuloLey> salida = <ArticuloLey>[];
+    void recorrer(List<NodoArbol> nodos) {
+      for (final NodoArbol n in nodos) {
+        salida.addAll(n.articulos);
+        recorrer(n.hijos);
+      }
+    }
+
+    recorrer(_arbol);
+    return salida;
+  }
+
   void _mostrarArticulo(ArticuloLey art) {
+    final List<ArticuloLey> lista = _listaArticulos;
+    final int indice =
+        lista.indexWhere((ArticuloLey a) => a.identificador == art.identificador);
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (context) => _ArticuloSheet(
         leyNombre: _ley!.nombre,
-        articulo: art,
+        articulos: lista,
+        indiceInicial: indice < 0 ? 0 : indice,
       ),
     );
   }
@@ -610,22 +627,31 @@ class NodoArbol {
 /// Bottom sheet con el contenido completo de un artículo + botón de IA.
 class _ArticuloSheet extends StatefulWidget {
   final String leyNombre;
-  final ArticuloLey articulo;
+  final List<ArticuloLey> articulos;
+  final int indiceInicial;
 
-  const _ArticuloSheet({required this.leyNombre, required this.articulo});
+  const _ArticuloSheet({
+    required this.leyNombre,
+    required this.articulos,
+    required this.indiceInicial,
+  });
 
   @override
   State<_ArticuloSheet> createState() => _ArticuloSheetState();
 }
 
 class _ArticuloSheetState extends State<_ArticuloSheet> {
+  late int _indice = widget.indiceInicial;
+
+  ArticuloLey get _articulo => widget.articulos[_indice];
+
   String get _textoParaCopiar {
-    final String titulo = widget.articulo.tipoNorma == 'Artículo'
-        ? 'Artículo ${widget.articulo.identificador}'
-        : widget.articulo.tipoNorma;
+    final String titulo = _articulo.tipoNorma == 'Artículo'
+        ? 'Artículo ${_articulo.identificador}'
+        : _articulo.tipoNorma;
     return '$titulo — ${widget.leyNombre}\n\n'
-        '${widget.articulo.encabezado ?? ''}\n\n'
-        '${widget.articulo.textoCompleto}';
+        '${_articulo.encabezado ?? ''}\n\n'
+        '${_articulo.textoCompleto}';
   }
 
   void _copiar() {
@@ -641,10 +667,10 @@ class _ArticuloSheetState extends State<_ArticuloSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final esArticulo = widget.articulo.tipoNorma == 'Artículo';
+    final esArticulo = _articulo.tipoNorma == 'Artículo';
     final titulo = esArticulo
-        ? 'Artículo ${widget.articulo.identificador}'
-        : widget.articulo.tipoNorma;
+        ? 'Artículo ${_articulo.identificador}'
+        : _articulo.tipoNorma;
 
     return Container(
       height: MediaQuery.of(context).size.height * 0.85,
@@ -720,9 +746,9 @@ class _ArticuloSheetState extends State<_ArticuloSheet> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (widget.articulo.encabezado != null && widget.articulo.encabezado!.isNotEmpty)
+                  if (_articulo.encabezado != null && _articulo.encabezado!.isNotEmpty)
                     Text(
-                      widget.articulo.encabezado!,
+                      _articulo.encabezado!,
                       style: TextStyle(
                         color: TemaGlobal.texto,
                         fontSize: 17,
@@ -732,7 +758,7 @@ class _ArticuloSheetState extends State<_ArticuloSheet> {
                     ),
                   const SizedBox(height: 12),
                   Text(
-                    widget.articulo.textoPrincipal,
+                    _articulo.textoPrincipal,
                     style: TextStyle(
                       color: TemaGlobal.texto,
                       fontSize: 15,
@@ -740,10 +766,10 @@ class _ArticuloSheetState extends State<_ArticuloSheet> {
                     ),
                     textAlign: TextAlign.justify,
                   ),
-                  if (widget.articulo.numeralesLiterales.isNotEmpty) ...[
+                  if (_articulo.numeralesLiterales.isNotEmpty) ...[
                     const SizedBox(height: 16),
                     _subtitulo('Numerales'),
-                    ...widget.articulo.numeralesLiterales.map((n) => Padding(
+                    ..._articulo.numeralesLiterales.map((n) => Padding(
                           padding: const EdgeInsets.only(bottom: 8),
                           child: Text(
                             n,
@@ -755,14 +781,14 @@ class _ArticuloSheetState extends State<_ArticuloSheet> {
                           ),
                         )),
                   ],
-                  if (widget.articulo.tablas.isNotEmpty) ...[
+                  if (_articulo.tablas.isNotEmpty) ...[
                     const SizedBox(height: 4),
-                    ...widget.articulo.tablas.map((t) => TablaAnexoView(tabla: t)),
+                    ..._articulo.tablas.map((t) => TablaAnexoView(tabla: t)),
                   ],
-                  if (widget.articulo.paragrafos.isNotEmpty) ...[
+                  if (_articulo.paragrafos.isNotEmpty) ...[
                     const SizedBox(height: 16),
                     _subtitulo('Parágrafos'),
-                    ...widget.articulo.paragrafos.map((p) => Padding(
+                    ..._articulo.paragrafos.map((p) => Padding(
                           padding: const EdgeInsets.only(bottom: 8),
                           child: Text(
                             p,
@@ -774,11 +800,11 @@ class _ArticuloSheetState extends State<_ArticuloSheet> {
                           ),
                         )),
                   ],
-                  if (widget.articulo.estado != 'vigente')
+                  if (_articulo.estado != 'vigente')
                     Padding(
                       padding: const EdgeInsets.only(top: 12),
                       child: Text(
-                        'Estado: ${widget.articulo.estado.toUpperCase()}',
+                        'Estado: ${_articulo.estado.toUpperCase()}',
                         style: TextStyle(
                           color: TemaGlobal.isDark
                               ? AppColors.warning
@@ -790,6 +816,32 @@ class _ArticuloSheetState extends State<_ArticuloSheet> {
                     ),
                 ],
               ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: OutlinedButton.icon(
+                    onPressed: _indice > 0
+                        ? () => setState(() => _indice -= 1)
+                        : null,
+                    icon: const Icon(Icons.chevron_left, size: 18),
+                    label: const Text('Anterior'),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: OutlinedButton.icon(
+                    onPressed: _indice < widget.articulos.length - 1
+                        ? () => setState(() => _indice += 1)
+                        : null,
+                    icon: const Icon(Icons.chevron_right, size: 18),
+                    label: const Text('Siguiente'),
+                  ),
+                ),
+              ],
             ),
           ),
           Padding(
@@ -805,7 +857,7 @@ class _ArticuloSheetState extends State<_ArticuloSheet> {
                       builder: (context) => LeyChatIAPage(
                         leyNombre: widget.leyNombre,
                         contextoInicial:
-                            '${titulo}${widget.articulo.encabezado != null ? ' · ${widget.articulo.encabezado}' : ''}\n\n${widget.articulo.textoCompleto}',
+                            '${titulo}${_articulo.encabezado != null ? ' · ${_articulo.encabezado}' : ''}\n\n${_articulo.textoCompleto}',
                       ),
                     ),
                   );
