@@ -1956,12 +1956,28 @@ Widget _selectorValorCondicion(
                   alignment: Alignment.topCenter,
                   child: Text.rich(
                     _resaltarCoincidencias(_textoResumen(sentencia)),
-                    maxLines: null,
-                    overflow: TextOverflow.visible,
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 13,
                       height: 1.45,
                       color: TemaGlobal.texto,
+                    ),
+                  ),
+                ),
+              if (_textoResumen(sentencia).length > 200)
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton.icon(
+                    onPressed: () => _mostrarResumenCompleto(sentencia),
+                    icon: const Icon(Icons.open_in_full, size: 16),
+                    label: const Text('Leer resumen completo'),
+                    style: TextButton.styleFrom(
+                      foregroundColor: AppColors.azulMarino,
+                      padding: EdgeInsets.zero,
+                      visualDensity: VisualDensity.compact,
+                      textStyle: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),
@@ -2006,6 +2022,88 @@ Widget _selectorValorCondicion(
 
   /// Texto de vista previa: prioriza ratio decidendi, luego resumen IA,
   /// luego extracto (igual que el detalle).
+  Future<void> _mostrarResumenCompleto(SentenciaModel s) async {
+    final String texto = _textoResumen(s);
+    if (texto.isEmpty) return;
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: TemaGlobal.tarjeta,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+            top: Radius.circular(AppTokens.radioTarjeta)),
+      ),
+      builder: (BuildContext ctx) {
+        return DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.7,
+          minChildSize: 0.4,
+          maxChildSize: 0.95,
+          builder: (BuildContext ctx, ScrollController controller) {
+            return Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 16, 12, 4),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text('Resumen',
+                            style: AppTokens.tituloSeccion),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () => Navigator.pop(ctx),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    controller: controller,
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+                    child: Text(
+                      texto,
+                      style: TextStyle(
+                        fontSize: 14,
+                        height: 1.55,
+                        color: TemaGlobal.texto,
+                      ),
+                    ),
+                  ),
+                ),
+                SafeArea(
+                  top: false,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 4, 20, 16),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: FilledButton(
+                        onPressed: () {
+                          Navigator.pop(ctx);
+                          _verSentencia(s);
+                        },
+                        style: FilledButton.styleFrom(
+                          backgroundColor: AppColors.azulMarino,
+                          foregroundColor: Colors.white,
+                          minimumSize: const Size.fromHeight(48),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                                AppTokens.radioControl),
+                          ),
+                        ),
+                        child: const Text('Abrir sentencia completa'),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
   String _textoResumen(SentenciaModel s) {
     final texto = s.ratioDecidendi.isNotEmpty
         ? s.ratioDecidendi
