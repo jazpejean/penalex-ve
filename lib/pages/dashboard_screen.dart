@@ -15,6 +15,7 @@ import '../utils/main_tab_controller.dart';
 import '../config/app_colors.dart';
 import '../config/app_tokens.dart';
 import '../widgets/app_screen_header.dart';
+import 'criterio_del_dia_screen.dart';
 
 /// Pantalla principal (tab Inicio) — rediseño premium navy+oro:
 /// header con saludo y avatar, stats reales, hero Ulpiano, accesos
@@ -120,6 +121,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 20),
               _buildHeroUlpiano(context),
               const SizedBox(height: 16),
+              _buildCriterioDia(context),
+              const SizedBox(height: 16),
               _buildAccionesRapidas(context),
               const SizedBox(height: 24),
               _buildSeccionTitulo(context, 'Herramientas de Cálculo'),
@@ -181,6 +184,60 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
       ),
+      ),
+    );
+  }
+
+  Widget _buildCriterioDia(BuildContext context) {
+    return InkWell(
+      onTap: () => _abrir(context, const CriterioDelDiaScreen()),
+      borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: TemaGlobal.tarjeta,
+          borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
+          border: Border.all(color: TemaGlobal.capa),
+        ),
+        child: Row(
+          children: <Widget>[
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: AppColors.dorado.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(AppTokens.radioControl),
+              ),
+              child: const Icon(Icons.lightbulb_outline,
+                  color: AppColors.dorado, size: 22),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'Criterio del día',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                      color: TemaGlobal.texto,
+                    ),
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    'Un tip de alto valor y la minuta del TSJ',
+                    style: TextStyle(
+                      fontSize: 12.5,
+                      color: TemaGlobal.textoSecundario,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(Icons.chevron_right, color: TemaGlobal.textoTenue),
+          ],
+        ),
       ),
     );
   }
