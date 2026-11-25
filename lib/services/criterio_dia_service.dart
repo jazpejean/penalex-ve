@@ -2,6 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../models/sentencia_model.dart';
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'ai_service.dart';
 
 /// Tip jurídico curado. Cada uno lleva su base legal verificada en el corpus.
 class TipDelDia {
@@ -83,23 +86,102 @@ class CriterioDiaService {
 
   static TipDelDia get tipDelDia => tips[_semilla % tips.length];
 
-  /// Sentencia de alto valor del día: jurisprudencia, con resumen.
+  /// Tip generado automáticamente a partir de una sentencia real.
+  ///
+  /// No pasa por revisión humana, pero no se publica si el modelo no cita una
+  /// base legal. Se guarda por día para no repetir la llamada.
+  static Future<TipDelDia?> tipDesdeSentencia(SentenciaModel s) async {
+    final String clave = 'tip_dia_$_semilla';
+    try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      final String? guardado = prefs.getString(clave);
+      if (guardado != null) {
+        final Map<String, dynamic> m =
+            jsonDecode(guardado) as Map<String, dynamic>;
+        return TipDelDia(
+          titulo: (m['titulo'] ?? '').toString(),
+          texto: (m['texto'] ?? '').toString(),
+          baseLegal: (m['baseLegal'] ?? '').toString(),
+        );
+      }
+    } catch (_) {}
+
+    final String material = s.ratioDecidendi.isNotEmpty
+        ? s.ratioDecidendi
+        : (s.resumen.isNotEmpty ? s.resumen : s.extracto);
+    if (material.trim().isEmpty) return null;
+
+    final String prompt = '''
+Eres un abogado penalista venezolano. A partir de esta sentencia, escribe un
+tip breve para abogados: una regla práctica que se desprenda del fallo.
+
+Devuelve SOLO un objeto JSON, sin markdown:
+{"titulo": "...", "texto": "...", "baseLegal": "Art. X de ..."}
+
+Reglas:
+- No inventes artículos. Usa solo los que aparecen en el texto.
+- Si la sentencia no permite un tip claro, devuelve las tres claves vacías.
+- Máximo tres frases. Español de Venezuela.
+
+Sentencia Nº ${s.numeroSentencia} (${s.sala}, ${s.fechaSentencia}):
+$material
+''';
+
+    try {
+      final String respuesta = await AIService.procesarConsultaGeneral(prompt);
+      final int inicio = respuesta.indexOf('{');
+      final int fin = respuesta.lastIndexOf('}');
+      if (inicio < 0 || fin <= inicio) return null;
+      final Map<String, dynamic> m =
+          jsonDecode(respuesta.substring(inicio, fin + 1))
+              as Map<String, dynamic>;
+      final String titulo = (m['titulo'] ?? '').toString().trim();
+      final String texto = (m['texto'] ?? '').toString().trim();
+      final String base = (m['baseLegal'] ?? '').toString().trim();
+      if (titulo.isEmpty || texto.isEmpty || base.isEmpty) return null;
+      final TipDelDia tip = TipDelDia(
+        titulo: titulo,
+        texto: texto,
+        baseLegal: base,
+      );
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString(
+        clave,
+        jsonEncode(<String, String>{
+          'titulo': tip.titulo,
+          'texto': tip.texto,
+          'baseLegal': tip.baseLegal,
+        }),
+      );
+      return tip;
+    } catch (e) {
+      debugPrint('No se pudo generar el tip automático: $e');
+      return null;
+    }
+  }
+
+  /// Sentencia de alto valor del día. Se toma del archivo histórico, así que
+  /// hay criterio aunque el TSJ no publique nada ese día. Las jurisprudencias
+  /// tienen prioridad; si no hay, entra cualquier sentencia con resumen.
   static Future<SentenciaModel?> criterioDelDia() async {
     try {
       final List<dynamic> filas = await _db
           .from('sentencias')
           .select('*')
-          .eq('es_jurisprudencia', true)
           .order('fecha_sentencia', ascending: false)
-          .limit(40);
-      if (filas.isEmpty) return null;
+          .limit(150);
       final List<SentenciaModel> candidatas = <SentenciaModel>[
         for (final dynamic f in filas)
           SentenciaModel.fromSupabase(f as Map<String, dynamic>),
       ]..removeWhere((SentenciaModel s) =>
           s.resumen.trim().isEmpty || s.resumen == 'null');
       if (candidatas.isEmpty) return null;
-      return candidatas[_semilla % candidatas.length];
+      final List<SentenciaModel> jurisprudencias = candidatas
+          .where((SentenciaModel s) => s.esJurisprudencia)
+          .toList();
+      final List<SentenciaModel> pool =
+          jurisprudencias.isNotEmpty ? jurisprudencias : candidatas;
+      return pool[_semilla % pool.length];
     } catch (e) {
       debugPrint('No se pudo cargar el criterio del día: $e');
       return null;
@@ -107,8 +189,9 @@ class CriterioDiaService {
   }
 
   /// Minuta: lo publicado hoy antes de las 8:00. Si no hay nada, las más
-  /// recientes de alto valor.
-  static Future<List<SentenciaModel>> minutaDelDia({int limite = 5}) async {
+  /// recientes de alto valor y `nuevas` queda en false.
+  static Future<({List<SentenciaModel> sentencias, bool nuevas})>
+      minutaDelDia({int limite = 5}) async {
     final DateTime ahora = DateTime.now();
     final DateTime inicioDia = DateTime(ahora.year, ahora.month, ahora.day);
     final DateTime corteOcho = DateTime(ahora.year, ahora.month, ahora.day, 8);
@@ -122,10 +205,13 @@ class CriterioDiaService {
           .order('created_at', ascending: false)
           .limit(limite);
       if (hoy.isNotEmpty) {
-        return <SentenciaModel>[
-          for (final dynamic f in hoy)
-            SentenciaModel.fromSupabase(f as Map<String, dynamic>),
-        ];
+        return (
+          sentencias: <SentenciaModel>[
+            for (final dynamic f in hoy)
+              SentenciaModel.fromSupabase(f as Map<String, dynamic>),
+          ],
+          nuevas: true,
+        );
       }
       final List<dynamic> filas = await _db
           .from('sentencias')
@@ -133,13 +219,16 @@ class CriterioDiaService {
           .eq('es_jurisprudencia', true)
           .order('fecha_sentencia', ascending: false)
           .limit(limite);
-      return <SentenciaModel>[
-        for (final dynamic f in filas)
-          SentenciaModel.fromSupabase(f as Map<String, dynamic>),
-      ];
+      return (
+        sentencias: <SentenciaModel>[
+          for (final dynamic f in filas)
+            SentenciaModel.fromSupabase(f as Map<String, dynamic>),
+        ],
+        nuevas: false,
+      );
     } catch (e) {
       debugPrint('No se pudo cargar la minuta: $e');
-      return <SentenciaModel>[];
+      return (sentencias: <SentenciaModel>[], nuevas: false);
     }
   }
 }

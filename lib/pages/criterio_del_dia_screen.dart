@@ -21,6 +21,8 @@ class _CriterioDelDiaScreenState extends State<CriterioDelDiaScreen> {
   SentenciaModel? _criterio;
   List<SentenciaModel> _minuta = <SentenciaModel>[];
   bool _cargando = true;
+  bool _nuevasHoy = false;
+  TipDelDia _tip = CriterioDiaService.tipDelDia;
 
   @override
   void initState() {
@@ -30,11 +32,20 @@ class _CriterioDelDiaScreenState extends State<CriterioDelDiaScreen> {
 
   Future<void> _cargar() async {
     final SentenciaModel? criterio = await CriterioDiaService.criterioDelDia();
-    final List<SentenciaModel> minuta = await CriterioDiaService.minutaDelDia();
+    final ({List<SentenciaModel> sentencias, bool nuevas}) minuta =
+        await CriterioDiaService.minutaDelDia();
+    TipDelDia tip = CriterioDiaService.tipDelDia;
+    if (criterio != null) {
+      final TipDelDia? automatico =
+          await CriterioDiaService.tipDesdeSentencia(criterio);
+      if (automatico != null) tip = automatico;
+    }
     if (!mounted) return;
     setState(() {
       _criterio = criterio;
-      _minuta = minuta;
+      _minuta = minuta.sentencias;
+      _nuevasHoy = minuta.nuevas;
+      _tip = tip;
       _cargando = false;
     });
   }
@@ -65,7 +76,7 @@ class _CriterioDelDiaScreenState extends State<CriterioDelDiaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final TipDelDia tip = CriterioDiaService.tipDelDia;
+    final TipDelDia tip = _tip;
     return Scaffold(
       backgroundColor: TemaGlobal.superficie,
       appBar: AppBar(
@@ -196,7 +207,10 @@ class _CriterioDelDiaScreenState extends State<CriterioDelDiaScreen> {
                   Text('Minuta del día', style: AppTokens.tituloSeccion),
                   const SizedBox(height: 4),
                   Text(
-                    'Sentencias de alto valor publicadas recientemente.',
+                    _nuevasHoy
+                        ? 'Publicadas hoy antes de las 8:00.'
+                        : 'Hoy no hubo publicaciones nuevas. Estas son las '
+                            'más recientes.',
                     style: AppTokens.secundario,
                   ),
                   const SizedBox(height: 10),
