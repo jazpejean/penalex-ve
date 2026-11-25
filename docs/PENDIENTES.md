@@ -177,6 +177,7 @@ La estrategia correcta no es esconder más, es **depender del servidor para lo v
 | BE-08 | Sin tests E2E de los flujos críticos | Playwright y widget tests | abierto |
 | BE-09 | Quiz con banco incompleto y uid de pendientes mal | Completar 3.000 y unificar ruta | abierto |
 | BE-10 | RLS no auditada tabla por tabla | Revisión y pruebas de acceso | abierto |
+| BE-11 | Hay dos bases (local y cloud) y las tablas nuevas no se crean en ambas | Aplicar `docs/migrations/001_colecciones.sql` en las dos y mantenerlas alimentadas en paralelo mientras se decide cuál queda | abierto |
 
 ---
 

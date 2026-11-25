@@ -28,6 +28,7 @@ import '../widgets/app_screen_header.dart';
 import '../services/cache_busqueda_service.dart';
 import '../services/buscador_ia_service.dart';
 import '../services/coleccion_service.dart';
+import 'mis_colecciones_screen.dart';
 
 class RepositorioJurisprudenciaScreen extends StatefulWidget {
   const RepositorioJurisprudenciaScreen({super.key});
@@ -1193,6 +1194,17 @@ Widget _selectorValorCondicion(
                 titulo: 'Jurisprudencia',
                 subtitulo: 'Sentencias del Tribunal Supremo de Justicia, con texto completo',
                 acciones: <Widget>[
+                  IconButton(
+                    tooltip: 'Mis colecciones',
+                    icon: Icon(Icons.collections_bookmark_outlined,
+                        color: TemaGlobal.textoSecundario),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (_) => const MisColeccionesScreen(),
+                      ),
+                    ),
+                  ),
                   if (!_cargando &&
                       (_searchController.text.trim().isNotEmpty ||
                           _cantidadFiltrosActivos > 0))

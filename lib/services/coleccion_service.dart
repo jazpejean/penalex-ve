@@ -115,4 +115,42 @@ class ColeccionService {
       return <String>[];
     }
   }
+
+  /// Total de sentencias de una colección.
+  static Future<int> conteo(String coleccionId) async {
+    try {
+      final dynamic r = await _db
+          .from('coleccion_sentencias')
+          .select('sentencia_id')
+          .eq('coleccion_id', coleccionId);
+      return (r as List<dynamic>).length;
+    } catch (e) {
+      debugPrint('No se pudo contar la colección: $e');
+      return 0;
+    }
+  }
+
+  /// Sentencias de una colección, con su contenido.
+  static Future<List<Map<String, dynamic>>> sentenciasDe(
+      String coleccionId) async {
+    final List<String> ids = await idsEn(coleccionId);
+    if (ids.isEmpty) return <Map<String, dynamic>>[];
+    try {
+      final List<dynamic> filas = await _db
+          .from('sentencias')
+          .select(
+              'id, tipo, sala, num_sentencia, fecha_sentencia, ponente, '
+              'tipo_sentencia, materia, partes, delito, decision, resumen, '
+              'extracto, ratio_decidendi, analisis_ia, url_tsj, url_html, '
+              'url_txt, url_ficha_penalex, contenido_completo, expediente, '
+              'es_jurisprudencia, tiene_pdf')
+          .inFilter('id', ids);
+      return <Map<String, dynamic>>[
+        for (final dynamic f in filas) f as Map<String, dynamic>,
+      ];
+    } catch (e) {
+      debugPrint('No se pudieron leer las sentencias de la colección: $e');
+      return <Map<String, dynamic>>[];
+    }
+  }
 }
