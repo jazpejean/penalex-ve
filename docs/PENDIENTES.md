@@ -115,6 +115,9 @@ Documento vivo con todo lo que hay que arreglar o mejorar, expuesto por el usuar
 | WEB-13 | Herramientas IA solo en la app | Marcar claramente o portar Ulpiano | abierto |
 | WEB-14 | Falta PWA instalable y offline | Manifest instalable y theme-color; service worker offline pendiente | abierto |
 | WEB-15 | Sin deep links a la app | App Links para `/sentencias` | abierto |
+| WEB-16 | El buscador web no tenía orden ni distintivo de jurisprudencia | Orden recientes/antiguas en cliente y badge de jurisprudencia | hecho |
+| WEB-17 | El buscador por idea de la app no existe en la web | Endpoint en el worker con la clave de IA y botón en `/buscar` | abierto |
+| WEB-18 | Los guardados de artículos viven solo en el dispositivo | Moverlos a Supabase con el uid para verlos en app y web | abierto |
 
 ---
 

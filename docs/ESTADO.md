@@ -70,3 +70,8 @@ Resumen de lo implementado en las sesiones automáticas. Lo que falta depende de
 
 - Cifrado en reposo de los documentos. Necesita definir dónde vive la clave del usuario.
 - Provider de detección de bordes si se quiere cubrir dispositivos sin Google Play Services.
+
+
+## Integración app y web
+
+Regla: toda funcionalidad y todo dato accesibles desde ambas plataformas. Detalle en [ARQUITECTURA_WEB.md](ARQUITECTURA_WEB.md).

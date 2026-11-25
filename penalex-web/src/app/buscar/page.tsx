@@ -20,6 +20,8 @@ interface Hit {
   articulo: string | null;
   encabezado: string | null;
   titulo: string | null;
+  es_jurisprudencia?: string | boolean;
+  ponente?: string | null;
 }
 
 const SALAS: Record<string, string> = {
@@ -37,6 +39,13 @@ export default function BuscarPage() {
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState("");
   const [buscado, setBuscado] = useState(false);
+  const [orden, setOrden] = useState<"recientes" | "antiguas">("recientes");
+
+  const ordenados = [...resultados].sort((a, b) => {
+    const an = Number(a.anio) || 0;
+    const bn = Number(b.anio) || 0;
+    return orden === "recientes" ? bn - an : an - bn;
+  });
 
   async function buscar(e: React.FormEvent) {
     e.preventDefault();
@@ -76,7 +85,7 @@ export default function BuscarPage() {
           <Link href="/" className="text-[#031F4E]">Inicio</Link> · Búsqueda
           semántica
         </nav>
-        <h1 className="mt-3 font-serif text-3xl font-bold text-[#031F4E] sm:text-4xl">
+        <h1 className="mt-3 text-3xl font-bold tracking-tight text-[#031F4E] sm:text-4xl">
           Búsqueda semántica
         </h1>
         <p className="mt-3 text-sm leading-relaxed text-slate-600">
@@ -108,13 +117,25 @@ export default function BuscarPage() {
         ) : null}
 
         {buscado && !cargando && !error ? (
-          <p className="mt-6 text-xs font-semibold uppercase tracking-wide text-slate-500">
-            {resultados.length} resultado(s)
-          </p>
+          <div className="mt-6 flex items-center justify-between gap-3">
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              {resultados.length} resultado(s)
+            </p>
+            <select
+              value={orden}
+              onChange={(e) =>
+                setOrden(e.target.value as "recientes" | "antiguas")
+              }
+              className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-[#031F4E]"
+            >
+              <option value="recientes">Más recientes</option>
+              <option value="antiguas">Más antiguas</option>
+            </select>
+          </div>
         ) : null}
 
         <div className="mt-3 space-y-3">
-          {resultados.map((h, i) => (
+          {ordenados.map((h, i) => (
             <article
               key={`${h.documento_id ?? i}-${i}`}
               className="rounded-xl border border-slate-200 bg-white p-5"
@@ -128,6 +149,12 @@ export default function BuscarPage() {
                 {h.anio ? (
                   <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-bold text-slate-500">
                     {h.anio}
+                  </span>
+                ) : null}
+                {h.es_jurisprudencia === true ||
+                h.es_jurisprudencia === "true" ? (
+                  <span className="rounded-full bg-[#C5A059] px-2.5 py-0.5 text-[10px] font-bold text-[#031F4E]">
+                    Jurisprudencia
                   </span>
                 ) : null}
                 {h.ley ? (
