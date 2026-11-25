@@ -267,6 +267,7 @@ class _RepositorioJurisprudenciaScreenState
       _salaSeleccionada = null;
       _anioSeleccionado = null;
       _decadaSeleccionada = null;
+      _fechaExacta = null;
       _condicionesAvanzadas = const [];
     });
     _buscar();
@@ -948,8 +949,12 @@ Widget _selectorValorCondicion(
   int get _cantidadFiltrosActivos {
     var n = 0;
     if (_salaSeleccionada != null) n++;
-    if (_anioSeleccionado != null) n++;
-    if (_decadaSeleccionada != null && _anioSeleccionado == null) n++;
+    if (_fechaExacta != null) {
+      n++;
+    } else {
+      if (_anioSeleccionado != null) n++;
+      if (_decadaSeleccionada != null) n++;
+    }
     n += _condicionesAvanzadas.where((c) => c.valores.isNotEmpty).length;
     return n;
   }
@@ -968,7 +973,7 @@ Widget _selectorValorCondicion(
       decoration: BoxDecoration(
         color: TemaGlobal.campoTexto,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.acento.withValues(alpha: 0.35)),
+        border: Border.all(color: TemaGlobal.capa),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
@@ -976,7 +981,8 @@ Widget _selectorValorCondicion(
           isDense: true,
           borderRadius: BorderRadius.circular(12),
           dropdownColor: TemaGlobal.tarjeta,
-          icon: Icon(Icons.arrow_drop_down, color: AppColors.acento, size: 20),
+          icon: Icon(Icons.arrow_drop_down,
+              color: TemaGlobal.textoSecundario, size: 20),
           style: TextStyle(
             color: TemaGlobal.texto,
             fontSize: 12,
@@ -1340,7 +1346,8 @@ Widget _selectorValorCondicion(
             20,
             20 + MediaQuery.of(ctx).viewInsets.bottom,
           ),
-          child: Column(
+          child: SingleChildScrollView(
+            child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -1408,6 +1415,7 @@ Widget _selectorValorCondicion(
                 ),
               ),
             ],
+          ),
           ),
         );
       },
