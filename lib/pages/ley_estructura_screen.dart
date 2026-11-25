@@ -9,6 +9,9 @@ import '../widgets/tabla_anexo.dart';
 import '../config/app_colors.dart';
 import '../widgets/app_bar_institucional.dart';
 import '../config/app_tokens.dart';
+import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
+import '../services/favoritos_leyes_service.dart';
 
 /// Navegación jerárquica de una ley: Libro → Título → Capítulo → Sección →
 /// Artículo. Al tocar un artículo se muestra su contenido y se puede preguntar
@@ -606,20 +609,66 @@ class NodoArbol {
 }
 
 /// Bottom sheet con el contenido completo de un artículo + botón de IA.
-class _ArticuloSheet extends StatelessWidget {
-  
-  
-  
-
+class _ArticuloSheet extends StatefulWidget {
   final String leyNombre;
   final ArticuloLey articulo;
 
   const _ArticuloSheet({required this.leyNombre, required this.articulo});
 
   @override
+  State<_ArticuloSheet> createState() => _ArticuloSheetState();
+}
+
+class _ArticuloSheetState extends State<_ArticuloSheet> {
+  bool _esFavorito = false;
+
+  String get _idFavorito =>
+      '${widget.leyNombre}_${widget.articulo.identificador}';
+
+  @override
+  void initState() {
+    super.initState();
+    _cargarFavorito();
+  }
+
+  Future<void> _cargarFavorito() async {
+    final Set<String> favs = await FavoritosLeyesService.leer();
+    if (!mounted) return;
+    setState(() => _esFavorito = favs.contains(_idFavorito));
+  }
+
+  Future<void> _alternarFavorito() async {
+    final bool agregado = await FavoritosLeyesService.alternar(_idFavorito);
+    if (!mounted) return;
+    setState(() => _esFavorito = agregado);
+  }
+
+  String get _textoParaCopiar {
+    final String titulo = widget.articulo.tipoNorma == 'Artículo'
+        ? 'Artículo ${widget.articulo.identificador}'
+        : widget.articulo.tipoNorma;
+    return '$titulo — ${widget.leyNombre}\n\n'
+        '${widget.articulo.encabezado ?? ''}\n\n'
+        '${widget.articulo.textoCompleto}';
+  }
+
+  void _copiar() {
+    Clipboard.setData(ClipboardData(text: _textoParaCopiar));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Artículo copiado.')),
+    );
+  }
+
+  Future<void> _compartir() async {
+    await Share.share(_textoParaCopiar, subject: widget.leyNombre);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final esArticulo = articulo.tipoNorma == 'Artículo';
-    final titulo = esArticulo ? 'Artículo ${articulo.identificador}' : articulo.tipoNorma;
+    final esArticulo = widget.articulo.tipoNorma == 'Artículo';
+    final titulo = esArticulo
+        ? 'Artículo ${widget.articulo.identificador}'
+        : widget.articulo.tipoNorma;
 
     return Container(
       height: MediaQuery.of(context).size.height * 0.85,
@@ -660,7 +709,7 @@ class _ArticuloSheet extends StatelessWidget {
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    leyNombre,
+                    widget.leyNombre,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -668,6 +717,28 @@ class _ArticuloSheet extends StatelessWidget {
                       fontSize: 13,
                     ),
                   ),
+                ),
+                IconButton(
+                  tooltip: _esFavorito ? 'Quitar de guardados' : 'Guardar',
+                  icon: Icon(
+                    _esFavorito ? Icons.bookmark : Icons.bookmark_border,
+                    color: _esFavorito
+                        ? AppColors.dorado
+                        : TemaGlobal.textoSecundario,
+                  ),
+                  onPressed: _alternarFavorito,
+                ),
+                IconButton(
+                  tooltip: 'Copiar artículo',
+                  icon: Icon(Icons.copy,
+                      color: TemaGlobal.textoSecundario, size: 20),
+                  onPressed: _copiar,
+                ),
+                IconButton(
+                  tooltip: 'Compartir artículo',
+                  icon: Icon(Icons.share,
+                      color: TemaGlobal.textoSecundario, size: 20),
+                  onPressed: _compartir,
                 ),
                 IconButton(
                   icon: Icon(Icons.close, color: TemaGlobal.textoSecundario),
@@ -683,9 +754,9 @@ class _ArticuloSheet extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (articulo.encabezado != null && articulo.encabezado!.isNotEmpty)
+                  if (widget.articulo.encabezado != null && widget.articulo.encabezado!.isNotEmpty)
                     Text(
-                      articulo.encabezado!,
+                      widget.articulo.encabezado!,
                       style: TextStyle(
                         color: TemaGlobal.texto,
                         fontSize: 17,
@@ -695,7 +766,7 @@ class _ArticuloSheet extends StatelessWidget {
                     ),
                   const SizedBox(height: 12),
                   Text(
-                    articulo.textoPrincipal,
+                    widget.articulo.textoPrincipal,
                     style: TextStyle(
                       color: TemaGlobal.texto,
                       fontSize: 15,
@@ -703,10 +774,10 @@ class _ArticuloSheet extends StatelessWidget {
                     ),
                     textAlign: TextAlign.justify,
                   ),
-                  if (articulo.numeralesLiterales.isNotEmpty) ...[
+                  if (widget.articulo.numeralesLiterales.isNotEmpty) ...[
                     const SizedBox(height: 16),
                     _subtitulo('Numerales'),
-                    ...articulo.numeralesLiterales.map((n) => Padding(
+                    ...widget.articulo.numeralesLiterales.map((n) => Padding(
                           padding: const EdgeInsets.only(bottom: 8),
                           child: Text(
                             n,
@@ -718,14 +789,14 @@ class _ArticuloSheet extends StatelessWidget {
                           ),
                         )),
                   ],
-                  if (articulo.tablas.isNotEmpty) ...[
+                  if (widget.articulo.tablas.isNotEmpty) ...[
                     const SizedBox(height: 4),
-                    ...articulo.tablas.map((t) => TablaAnexoView(tabla: t)),
+                    ...widget.articulo.tablas.map((t) => TablaAnexoView(tabla: t)),
                   ],
-                  if (articulo.paragrafos.isNotEmpty) ...[
+                  if (widget.articulo.paragrafos.isNotEmpty) ...[
                     const SizedBox(height: 16),
                     _subtitulo('Parágrafos'),
-                    ...articulo.paragrafos.map((p) => Padding(
+                    ...widget.articulo.paragrafos.map((p) => Padding(
                           padding: const EdgeInsets.only(bottom: 8),
                           child: Text(
                             p,
@@ -737,11 +808,11 @@ class _ArticuloSheet extends StatelessWidget {
                           ),
                         )),
                   ],
-                  if (articulo.estado != 'vigente')
+                  if (widget.articulo.estado != 'vigente')
                     Padding(
                       padding: const EdgeInsets.only(top: 12),
                       child: Text(
-                        'Estado: ${articulo.estado.toUpperCase()}',
+                        'Estado: ${widget.articulo.estado.toUpperCase()}',
                         style: TextStyle(
                           color: TemaGlobal.isDark
                               ? AppColors.warning
@@ -766,9 +837,9 @@ class _ArticuloSheet extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => LeyChatIAPage(
-                        leyNombre: leyNombre,
+                        leyNombre: widget.leyNombre,
                         contextoInicial:
-                            '${titulo}${articulo.encabezado != null ? ' · ${articulo.encabezado}' : ''}\n\n${articulo.textoCompleto}',
+                            '${titulo}${widget.articulo.encabezado != null ? ' · ${widget.articulo.encabezado}' : ''}\n\n${widget.articulo.textoCompleto}',
                       ),
                     ),
                   );
