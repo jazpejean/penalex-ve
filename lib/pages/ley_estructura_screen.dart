@@ -11,7 +11,6 @@ import '../widgets/app_bar_institucional.dart';
 import '../config/app_tokens.dart';
 import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
-import '../services/favoritos_leyes_service.dart';
 
 /// Navegación jerárquica de una ley: Libro → Título → Capítulo → Sección →
 /// Artículo. Al tocar un artículo se muestra su contenido y se puede preguntar
@@ -620,29 +619,6 @@ class _ArticuloSheet extends StatefulWidget {
 }
 
 class _ArticuloSheetState extends State<_ArticuloSheet> {
-  bool _esFavorito = false;
-
-  String get _idFavorito =>
-      '${widget.leyNombre}_${widget.articulo.identificador}';
-
-  @override
-  void initState() {
-    super.initState();
-    _cargarFavorito();
-  }
-
-  Future<void> _cargarFavorito() async {
-    final Set<String> favs = await FavoritosLeyesService.leer();
-    if (!mounted) return;
-    setState(() => _esFavorito = favs.contains(_idFavorito));
-  }
-
-  Future<void> _alternarFavorito() async {
-    final bool agregado = await FavoritosLeyesService.alternar(_idFavorito);
-    if (!mounted) return;
-    setState(() => _esFavorito = agregado);
-  }
-
   String get _textoParaCopiar {
     final String titulo = widget.articulo.tipoNorma == 'Artículo'
         ? 'Artículo ${widget.articulo.identificador}'
@@ -717,16 +693,6 @@ class _ArticuloSheetState extends State<_ArticuloSheet> {
                       fontSize: 13,
                     ),
                   ),
-                ),
-                IconButton(
-                  tooltip: _esFavorito ? 'Quitar de guardados' : 'Guardar',
-                  icon: Icon(
-                    _esFavorito ? Icons.bookmark : Icons.bookmark_border,
-                    color: _esFavorito
-                        ? AppColors.dorado
-                        : TemaGlobal.textoSecundario,
-                  ),
-                  onPressed: _alternarFavorito,
                 ),
                 IconButton(
                   tooltip: 'Copiar artículo',

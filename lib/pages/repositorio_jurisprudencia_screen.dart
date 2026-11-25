@@ -27,6 +27,7 @@ import '../config/app_tokens.dart';
 import '../widgets/app_screen_header.dart';
 import '../services/cache_busqueda_service.dart';
 import '../services/buscador_ia_service.dart';
+import '../services/coleccion_service.dart';
 
 class RepositorioJurisprudenciaScreen extends StatefulWidget {
   const RepositorioJurisprudenciaScreen({super.key});
@@ -2020,6 +2021,15 @@ Widget _selectorValorCondicion(
                     visualDensity: VisualDensity.compact,
                   ),
                   IconButton(
+                    onPressed: () => _abrirColecciones(sentencia),
+                    icon: Icon(Icons.playlist_add,
+                        size: 20, color: TemaGlobal.textoTenue),
+                    tooltip: 'Guardar en colección',
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                    visualDensity: VisualDensity.compact,
+                  ),
+                  IconButton(
                     onPressed: () => _mostrarMetadata(sentencia),
                     icon: Icon(Icons.info_outline,
                         size: 20, color: TemaGlobal.textoTenue),
@@ -2152,6 +2162,106 @@ Widget _selectorValorCondicion(
 
   /// Texto de vista previa: prioriza ratio decidendi, luego resumen IA,
   /// luego extracto (igual que el detalle).
+  Future<void> _abrirColecciones(SentenciaModel sentencia) async {
+    final List<Coleccion> colecciones = await ColeccionService.listar();
+    if (!mounted) return;
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: TemaGlobal.tarjeta,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+            top: Radius.circular(AppTokens.radioTarjeta)),
+      ),
+      builder: (BuildContext ctx) {
+        return StatefulBuilder(
+          builder: (BuildContext ctx, StateSetter setSheet) {
+            Future<void> crear() async {
+              final TextEditingController nombre = TextEditingController();
+              final String? elegido = await showDialog<String>(
+                context: ctx,
+                builder: (BuildContext c) => AlertDialog(
+                  backgroundColor: TemaGlobal.tarjeta,
+                  title: Text('Nueva colección',
+                      style: AppTokens.tituloSeccion),
+                  content: TextField(
+                    controller: nombre,
+                    autofocus: true,
+                    decoration: const InputDecoration(
+                      hintText: 'Ej: Debido proceso',
+                    ),
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(c),
+                      child: const Text('Cancelar'),
+                    ),
+                    FilledButton(
+                      onPressed: () =>
+                          Navigator.pop(c, nombre.text.trim()),
+                      child: const Text('Crear'),
+                    ),
+                  ],
+                ),
+              );
+              if (elegido == null || elegido.isEmpty) return;
+              final Coleccion? nueva =
+                  await ColeccionService.crear(elegido);
+              if (nueva == null) return;
+              await ColeccionService.agregar(nueva.id, sentencia.id);
+              if (!mounted) return;
+              Navigator.pop(ctx);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Guardada en "$elegido".')),
+              );
+            }
+
+            return SafeArea(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 18, 20, 8),
+                    child: Text('Guardar en colección',
+                        style: AppTokens.tituloSeccion),
+                  ),
+                  if (colecciones.isEmpty)
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+                      child: Text(
+                        'Todavía no tienes colecciones.',
+                        style: AppTokens.secundario,
+                      ),
+                    ),
+                  for (final Coleccion c in colecciones)
+                    ListTile(
+                      leading: const Icon(Icons.folder_outlined),
+                      title: Text(c.nombre),
+                      onTap: () async {
+                        await ColeccionService.agregar(c.id, sentencia.id);
+                        if (!mounted) return;
+                        Navigator.pop(ctx);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Guardada en "${c.nombre}".')),
+                        );
+                      },
+                    ),
+                  ListTile(
+                    leading: const Icon(Icons.add),
+                    title: const Text('Nueva colección'),
+                    onTap: crear,
+                  ),
+                  const SizedBox(height: 12),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   Future<void> _mostrarResumenCompleto(SentenciaModel s) async {
     final String texto = _textoResumen(s);
     if (texto.isEmpty) return;
