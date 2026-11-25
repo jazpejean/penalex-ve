@@ -273,8 +273,8 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
           if (_modoPena || _tipo == TipoPenaPrescripcion.prision) ...[
             Text(
               _modoPena
-                  ? 'Pena impuesta (años, ej. 12.5)'
-                  : 'Pena máxima del delito (años, ej. 12.5)',
+                  ? 'Pena impuesta (años enteros)'
+                  : 'Pena máxima del delito (años enteros)',
               style: TextStyle(color: AppColors.textoSecundario, fontSize: 13),
             ),
             const SizedBox(height: 8),
@@ -417,7 +417,7 @@ Estructura: identificación de la causa y las partes, fundamentos de hecho (fech
         label: const Text('Calcular prescripción'),
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.azulMarino,
-          foregroundColor: AppColors.onDorado,
+          foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 16),
           textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppTokens.radioTarjeta)),

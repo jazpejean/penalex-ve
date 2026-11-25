@@ -1408,7 +1408,7 @@ class _RepositorioJurisprudenciaScreenState
                     visualDensity: VisualDensity.compact,
                   ),
                   IconButton(
-                    onPressed: () => _mostrarMetadata(sentencia),
+                    onPressed: () => _mostrarResumenCompleto(sentencia),
                     icon: Icon(Icons.info_outline,
                         size: 20, color: TemaGlobal.textoTenue),
                     tooltip: 'Ficha y datos de la sentencia',
@@ -1445,7 +1445,7 @@ class _RepositorioJurisprudenciaScreenState
                               sentencia.fechaSentencia == 'null'
                           ? _nombreSala(sentencia.sala)
                           : '${_nombreSala(sentencia.sala)} · ${sentencia.fechaSentencia}',
-                      maxLines: 1,
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.right,
                       style: TextStyle(
@@ -1645,7 +1645,6 @@ class _RepositorioJurisprudenciaScreenState
 
   Future<void> _mostrarResumenCompleto(SentenciaModel s) async {
     final String texto = _textoResumen(s);
-    if (texto.isEmpty) return;
     await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -1657,10 +1656,42 @@ class _RepositorioJurisprudenciaScreenState
       builder: (BuildContext ctx) {
         return DraggableScrollableSheet(
           expand: false,
-          initialChildSize: 0.7,
+          initialChildSize: 0.75,
           minChildSize: 0.4,
           maxChildSize: 0.95,
           builder: (BuildContext ctx, ScrollController controller) {
+            Widget fila(String etiqueta, String valor) {
+              if (valor.isEmpty || valor == 'null') {
+                return const SizedBox.shrink();
+              }
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      width: 96,
+                      child: Text(
+                        etiqueta,
+                        style: TextStyle(
+                            fontSize: 12, color: TemaGlobal.textoSecundario),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        valor,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: TemaGlobal.texto,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
+
             return Column(
               children: <Widget>[
                 Padding(
@@ -1668,8 +1699,12 @@ class _RepositorioJurisprudenciaScreenState
                   child: Row(
                     children: <Widget>[
                       Expanded(
-                        child: Text('Resumen',
-                            style: AppTokens.tituloSeccion),
+                        child: Text(
+                          s.numeroSentencia.isEmpty
+                              ? 'Sentencia'
+                              : 'Sentencia Nº ${s.numeroSentencia}',
+                          style: AppTokens.tituloSeccion,
+                        ),
                       ),
                       IconButton(
                         icon: const Icon(Icons.close),
@@ -1682,13 +1717,31 @@ class _RepositorioJurisprudenciaScreenState
                   child: SingleChildScrollView(
                     controller: controller,
                     padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
-                    child: Text(
-                      texto,
-                      style: TextStyle(
-                        fontSize: 14,
-                        height: 1.55,
-                        color: TemaGlobal.texto,
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        fila('Sala', _nombreSala(s.sala)),
+                        fila('Ponente', s.ponente),
+                        fila('Fecha', s.fechaSentencia),
+                        fila('Expediente', s.expediente),
+                        fila('Materia', s.materia),
+                        fila('Partes', s.partes),
+                        const Divider(height: 24),
+                        Text('Resumen', style: AppTokens.tituloSeccion),
+                        const SizedBox(height: 8),
+                        if (texto.isEmpty)
+                          Text('Esta sentencia no tiene resumen cargado.',
+                              style: AppTokens.secundario)
+                        else
+                          Text(
+                            texto,
+                            style: TextStyle(
+                              fontSize: 14,
+                              height: 1.55,
+                              color: TemaGlobal.texto,
+                            ),
+                          ),
+                      ],
                     ),
                   ),
                 ),
@@ -1708,11 +1761,11 @@ class _RepositorioJurisprudenciaScreenState
                           foregroundColor: Colors.white,
                           minimumSize: const Size.fromHeight(48),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                AppTokens.radioControl),
+                            borderRadius:
+                                BorderRadius.circular(AppTokens.radioControl),
                           ),
                         ),
-                        child: const Text('Abrir sentencia completa'),
+                        child: const Text('Leer sentencia completa'),
                       ),
                     ),
                   ),
@@ -1820,196 +1873,9 @@ class _RepositorioJurisprudenciaScreenState
     );
   }
 
-  void _mostrarMetadata(SentenciaModel s) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: TemaGlobal.tarjeta,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(AppTokens.radioTarjeta)),
-      ),
-      builder: (context) {
-        return Container(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Container(
-                    width: 40,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: TemaGlobal.capa,
-                      borderRadius: BorderRadius.circular(2),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  'Sentencia Nº ${s.numeroSentencia}',
-                  style: TextStyle(
-                    color: AppColors.acento,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17,
-                  ),
-                ),
-                const SizedBox(height: 14),
-                _filaMeta('Sala', _nombreSala(s.sala)),
-                _filaMeta('Ponente', s.ponente),
-                _filaMeta('Fecha', s.fechaSentencia),
-                _filaMeta('Delito', s.delito),
-                _filaMeta('Materia', s.materia),
-                _filaMeta('Partes', s.partes),
-                _filaMeta('Tipo', s.tipoSentencia),
-                // ⚖️ Criterios jurisprudenciales de la sentencia
-                if (_criterios.isNotEmpty) ...[
-                  const SizedBox(height: 18),
-                  Divider(color: TemaGlobal.capa, height: 1),
-                  const SizedBox(height: 12),
-                  Text(
-                    '⚖️ Criterios jurisprudenciales (${_criterios.length})',
-                    style: TextStyle(
-                      color: AppColors.acento,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  for (final c in _criterios)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 12),
-                      child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: TemaGlobal.capa,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              (c['tipo'] ?? '') == 'jurisprudencia'
-                                  ? '★ Criterio oficial de la Sala'
-                                  : 'Criterio de la Sala',
-                              style: TextStyle(
-                                color: AppColors.acento,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 11,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              _textoCriterio(c),
-                              style: TextStyle(
-                                color: TemaGlobal.texto,
-                                fontSize: 13,
-                                height: 1.45,
-                              ),
-                            ),
-                            if (_citaCriterio(c).isNotEmpty) ...[
-                              const SizedBox(height: 6),
-                              Text(
-                                '«${_citaCriterio(c)}»',
-                                style: TextStyle(
-                                  color: TemaGlobal.textoSecundario,
-                                  fontStyle: FontStyle.italic,
-                                  fontSize: 12,
-                                  height: 1.4,
-                                ),
-                              ),
-                            ],
-                          ],
-                        ),
-                      ),
-                    ),
-                ],
-                // 📖 Leer sentencia completa
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: double.infinity,
-                  child: FilledButton.icon(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      _verSentencia(s);
-                    },
-                    // Guía 3.2: primario = AppColors.acento con su fg.
-                    style: FilledButton.styleFrom(
-                      backgroundColor: AppColors.acento,
-                      foregroundColor:
-                          AppColors.acento == AppColors.dorado
-                              ? AppColors.onDorado
-                              : AppColors.onAzulMarino,
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    icon: const Icon(Icons.menu_book_outlined, size: 20),
-                    label: Text(
-                      'Leer sentencia completa',
-                      style: const TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
 
-  Widget _filaMeta(String etiqueta, String valor) {
-    if (valor.isEmpty) return const SizedBox.shrink();
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: 90,
-            child: Text(
-              etiqueta,
-              style: TextStyle(
-                color: TemaGlobal.textoSecundario,
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-          Expanded(
-            child: Text(
-              valor,
-              style: TextStyle(color: TemaGlobal.texto, fontSize: 14),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
-  // Criterios de la sentencia para la ficha técnica del listado
-  // (se mantienen vacíos aquí; el detalle es quien los carga).
-  List<Map<String, dynamic>> _criterios = [];
 
-  String _textoCriterio(Map<String, dynamic> c) {
-    final texto = (c['texto_ratio'] ?? '').toString().trim();
-    if (texto.isNotEmpty && texto != 'null') return texto;
-    return (c['resumen'] ?? '').toString().trim();
-  }
-
-  String _citaCriterio(Map<String, dynamic> c) {
-    final ev = (c['parrafo_evidencia'] ?? '').toString().trim();
-    if (ev.isEmpty || ev == 'null') return '';
-    final texto = _textoCriterio(c);
-    // Si la cita es casi el mismo texto que el criterio, no duplicar.
-    if (texto.isNotEmpty && ev == texto) return '';
-    if (ev.length > 600) return '${ev.substring(0, 600)}…';
-    return ev;
-  }
 
   Future<void> _verSentencia(SentenciaModel sentencia) async {
     await Navigator.push(
