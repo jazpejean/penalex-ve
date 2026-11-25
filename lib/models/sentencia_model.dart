@@ -184,4 +184,30 @@ class SentenciaModel {
       'tiene_pdf': tienePDF,
     };
   }
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'id': id,
+        'tipo': tipo,
+        'sala': sala,
+        'num_sentencia': numeroSentencia,
+        'fecha_sentencia': fechaSentencia,
+        'ponente': ponente,
+        'tipo_sentencia': tipoSentencia,
+        'materia': materia,
+        'partes': partes,
+        'delito': delito,
+        'decision': decision,
+        'resumen': resumen,
+        'extracto': extracto,
+        'ratio_decidendi': ratioDecidendi,
+        'analisis_ia': analisisIa,
+        'url_tsj': urlTSJ,
+        'url_html': urlHTML,
+        'url_txt': urlTXT,
+        'url_ficha_penalex': urlFichaPenalex,
+        'contenido_completo': contenidoCompleto,
+        'expediente': expediente,
+        'es_jurisprudencia': esJurisprudencia,
+        'tiene_pdf': tienePDF,
+      };
 }

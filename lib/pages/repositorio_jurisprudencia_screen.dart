@@ -25,6 +25,7 @@ import '../widgets/app_bar_institucional.dart';
 import '../widgets/app_snackbar.dart';
 import '../config/app_tokens.dart';
 import '../widgets/app_screen_header.dart';
+import '../services/cache_busqueda_service.dart';
 
 class RepositorioJurisprudenciaScreen extends StatefulWidget {
   const RepositorioJurisprudenciaScreen({super.key});
@@ -41,7 +42,6 @@ class _RepositorioJurisprudenciaScreenState
   final SuperBuscadorService _superService = SuperBuscadorService();
   final TextEditingController _searchController = TextEditingController();
 
-  final Set<String> _resumenExpandido = {};
   List<SentenciaModel> _resultados = [];
   List<SentenciaModel> _todosResultados = [];
 
@@ -175,7 +175,38 @@ class _RepositorioJurisprudenciaScreenState
         _cargando = false;
         _offset = _limitePagina;
       });
+      _guardarCache();
+      if (_errorBusqueda != null && _resultados.isEmpty) {
+        await _cargarCache();
+      }
     }
+  }
+
+  String get _claveCache =>
+      '${_searchController.text.trim()}|$_categoriaSeleccionada|'
+      '$_salaSeleccionada|${_fechaExacta?.toIso8601String() ?? _anioSeleccionado}|'
+      '$_decadaSeleccionada|$_ordenVenley';
+
+  Future<void> _guardarCache() async {
+    if (_categoriaSeleccionada == 'Doctrinas' || _resultados.isEmpty) return;
+    await CacheBusquedaService.guardar(
+      _claveCache,
+      _resultados.map((SentenciaModel s) => s.toJson()).toList(),
+    );
+  }
+
+  Future<void> _cargarCache() async {
+    final List<Map<String, dynamic>> datos =
+        await CacheBusquedaService.leer(_claveCache);
+    if (datos.isEmpty || !mounted) return;
+    setState(() {
+      _resultados =
+          datos.map(SentenciaModel.fromSupabase).toList();
+      _todosResultados = List<SentenciaModel>.from(_resultados);
+      _usoSemantica = false;
+      _cargando = false;
+      _errorBusqueda = null;
+    });
   }
 
   /// Siguiente página del lazy load (scroll infinito).
@@ -1925,43 +1956,12 @@ Widget _selectorValorCondicion(
                   alignment: Alignment.topCenter,
                   child: Text.rich(
                     _resaltarCoincidencias(_textoResumen(sentencia)),
-                    maxLines:
-                        _resumenExpandido.contains(sentencia.id) ? null : 4,
-                    overflow: _resumenExpandido.contains(sentencia.id)
-                        ? TextOverflow.visible
-                        : TextOverflow.ellipsis,
+                    maxLines: null,
+                    overflow: TextOverflow.visible,
                     style: TextStyle(
                       fontSize: 13,
                       height: 1.45,
                       color: TemaGlobal.texto,
-                    ),
-                  ),
-                ),
-              // Leer el extracto completo sin abrir la sentencia.
-              if (_textoResumen(sentencia).length > 220)
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: OutlinedButton.icon(
-                    onPressed: () => _toggleResumen(sentencia),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: AppColors.acento,
-                      side: BorderSide(color: TemaGlobal.capa),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 6),
-                      visualDensity: VisualDensity.compact,
-                      textStyle: const TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.w700),
-                    ),
-                    icon: Icon(
-                      _resumenExpandido.contains(sentencia.id)
-                          ? Icons.expand_less
-                          : Icons.expand_more,
-                      size: 18,
-                    ),
-                    label: Text(
-                      _resumenExpandido.contains(sentencia.id)
-                          ? 'Ocultar resumen'
-                          : 'Leer resumen completo',
                     ),
                   ),
                 ),
@@ -2006,14 +2006,6 @@ Widget _selectorValorCondicion(
 
   /// Texto de vista previa: prioriza ratio decidendi, luego resumen IA,
   /// luego extracto (igual que el detalle).
-  /// Expande o contrae el extracto dentro de la tarjeta, para que el usuario
-  /// pueda leer el resumen completo antes de decidir abrir la sentencia.
-  void _toggleResumen(SentenciaModel s) {
-    setState(() {
-      if (!_resumenExpandido.remove(s.id)) _resumenExpandido.add(s.id);
-    });
-  }
-
   String _textoResumen(SentenciaModel s) {
     final texto = s.ratioDecidendi.isNotEmpty
         ? s.ratioDecidendi
