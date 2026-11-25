@@ -1943,7 +1943,7 @@ Widget _selectorValorCondicion(
   /// se lee del resumen, el ratio y el extracto.
   String? _criterioPacifico(SentenciaModel s) {
     final String t =
-        '${s.resumen} ${s.ratio} ${s.extracto}'.toLowerCase();
+        '${s.resumen} ${s.ratioDecidendi} ${s.extracto}'.toLowerCase();
     if (t.contains('criterio pacífico') ||
         t.contains('criterio pacifico') ||
         t.contains('doctrina pacífica') ||
