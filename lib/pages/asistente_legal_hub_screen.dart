@@ -259,14 +259,15 @@ class _AsistenteLegalHubScreenState extends State<AsistenteLegalHubScreen> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            highlight.substring(0, 2),
-                            style: const TextStyle(fontSize: 16),
+                          Icon(
+                            Icons.check_circle_outline,
+                            size: 18,
+                            color: AppColors.dorado,
                           ),
                           const SizedBox(width: 8),
                           Expanded(
                             child: Text(
-                              highlight.substring(3),
+                              highlight,
                               style: TextStyle(
                                 fontSize: 13,
                                 color: TemaGlobal.textoSecundario,
