@@ -26,6 +26,7 @@ import '../widgets/app_snackbar.dart';
 import '../config/app_tokens.dart';
 import '../widgets/app_screen_header.dart';
 import '../services/cache_busqueda_service.dart';
+import '../services/buscador_ia_service.dart';
 
 class RepositorioJurisprudenciaScreen extends StatefulWidget {
   const RepositorioJurisprudenciaScreen({super.key});
@@ -65,6 +66,7 @@ class _RepositorioJurisprudenciaScreenState
   String? _salaSeleccionada;
   int? _anioSeleccionado;
   DateTime? _fechaExacta;
+  String? _interpretacionIa;
   // 📅 Orden estilo Venley: 'relevancia' | 'recientes' | 'antiguas'.
   String _ordenVenley = 'relevancia';
 
@@ -1282,6 +1284,21 @@ Widget _selectorValorCondicion(
               child: Row(
                 children: <Widget>[
                   OutlinedButton.icon(
+                    onPressed: _buscarPorIdea,
+                    icon: const Icon(Icons.auto_awesome, size: 18),
+                    label: const Text('Por idea'),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: AppColors.azulMarino,
+                      side: BorderSide(
+                          color: AppColors.azulMarino.withValues(alpha: 0.35)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(AppTokens.radioControl),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  OutlinedButton.icon(
                     onPressed: _abrirFiltros,
                     icon: const Icon(Icons.tune, size: 18),
                     label: Text(
@@ -1342,6 +1359,42 @@ Widget _selectorValorCondicion(
                   ],
                 ),
               ),
+            if (_interpretacionIa != null && _interpretacionIa!.isNotEmpty)
+              Container(
+                margin: const EdgeInsets.fromLTRB(
+                    AppTokens.margen, 0, AppTokens.margen, 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: BoxDecoration(
+                  color: AppColors.azulMarino.withValues(alpha: 0.06),
+                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
+                ),
+                child: Row(
+                  children: <Widget>[
+                    Icon(Icons.auto_awesome,
+                        size: 16, color: AppColors.azulMarino),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        'Entendí: $_interpretacionIa',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: AppColors.azulMarino,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(),
+                      icon: Icon(Icons.close,
+                          size: 16, color: AppColors.azulMarino),
+                      onPressed: () =>
+                          setState(() => _interpretacionIa = null),
+                    ),
+                  ],
+                ),
+              ),
             Expanded(
               child: _cargando
                   ? _buildSkeletons()
@@ -1358,6 +1411,83 @@ Widget _selectorValorCondicion(
         ),
       ),
     );
+  }
+
+  Future<void> _buscarPorIdea() async {
+    final TextEditingController controller = TextEditingController();
+    final String? idea = await showDialog<String>(
+      context: context,
+      builder: (BuildContext ctx) => AlertDialog(
+        backgroundColor: TemaGlobal.tarjeta,
+        title: Text('¿Qué necesitas buscar?', style: AppTokens.tituloSeccion),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              'Escribe la idea con tus palabras. La IA la convierte en una '
+              'búsqueda real sobre las sentencias.',
+              style: AppTokens.secundario,
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: controller,
+              autofocus: true,
+              maxLines: 3,
+              style: TextStyle(color: TemaGlobal.texto, fontSize: 14),
+              decoration: InputDecoration(
+                hintText: 'Ej: un caso donde no se respetó el debido proceso',
+                hintStyle:
+                    TextStyle(color: TemaGlobal.textoTenue, fontSize: 13),
+                filled: true,
+                fillColor: TemaGlobal.campoTexto,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(AppTokens.radioControl),
+                  borderSide: BorderSide(color: TemaGlobal.capa),
+                ),
+              ),
+            ),
+          ],
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancelar'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, controller.text),
+            style: FilledButton.styleFrom(
+              backgroundColor: AppColors.azulMarino,
+              foregroundColor: Colors.white,
+            ),
+            child: const Text('Buscar'),
+          ),
+        ],
+      ),
+    );
+    if (idea == null || idea.trim().isEmpty || !mounted) return;
+
+    setState(() => _cargando = true);
+    final InterpretacionBusqueda? interpretacion =
+        await BuscadorIaService.interpretar(idea);
+    if (!mounted) return;
+    if (interpretacion == null) {
+      setState(() => _cargando = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('No se pudo interpretar la idea.')),
+      );
+      return;
+    }
+
+    setState(() {
+      _searchController.text = interpretacion.consulta;
+      _categoriaSeleccionada = interpretacion.categoria;
+      _salaSeleccionada = interpretacion.sala;
+      _anioSeleccionado = interpretacion.anio;
+      _fechaExacta = null;
+      _interpretacionIa = interpretacion.interpretacion;
+    });
+    await _buscar();
   }
 
   Future<void> _abrirFiltros() async {
