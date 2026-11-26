@@ -8,6 +8,7 @@ import '../config/app_tokens.dart';
 import '../models/sentencia_model.dart';
 import '../services/criterio_dia_service.dart';
 import '../widgets/app_screen_header.dart';
+import '../widgets/dialogo_criterio.dart';
 
 /// Criterio del día, tip de alto valor y minuta de sentencias.
 class CriterioDelDiaScreen extends StatefulWidget {
@@ -94,6 +95,29 @@ class _CriterioDelDiaScreenState extends State<CriterioDelDiaScreen> {
                   AppScreenHeader(
                     titulo: 'Criterio del día',
                     subtitulo: _fechaHoy(),
+                  ),
+                  const SizedBox(height: 12),
+                  OutlinedButton.icon(
+                    onPressed: _criterio == null
+                        ? null
+                        : () => showDialog<void>(
+                              context: context,
+                              builder: (_) => DialogoCriterio(
+                                sentencia: _criterio!,
+                                tip: _tip,
+                              ),
+                            ),
+                    icon: const Icon(Icons.ios_share, size: 18),
+                    label: const Text('Ver tarjeta para compartir'),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: AppColors.azulMarino,
+                      side: BorderSide(color: TemaGlobal.capa),
+                      minimumSize: const Size.fromHeight(44),
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(AppTokens.radioControl),
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 16),
                   // Tip
