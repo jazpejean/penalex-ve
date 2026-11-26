@@ -153,13 +153,10 @@ class TarjetaCriterio extends StatelessWidget {
           const SizedBox(height: 22),
           Row(
             children: <Widget>[
-              const Text(
-                'Penalex VE',
-                style: TextStyle(
-                  color: _tinta,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w800,
-                ),
+              Image.asset(
+                'assets/images/logo-horizontal.png',
+                height: 56,
+                fit: BoxFit.contain,
               ),
               const Spacer(),
               Text(
