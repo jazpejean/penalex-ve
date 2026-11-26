@@ -16,6 +16,10 @@ import '../config/app_colors.dart';
 import '../config/app_tokens.dart';
 import '../widgets/app_screen_header.dart';
 import 'criterio_del_dia_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../services/criterio_dia_service.dart';
+import '../models/sentencia_model.dart';
+import '../widgets/dialogo_criterio.dart';
 
 /// Pantalla principal (tab Inicio) — rediseño premium navy+oro:
 /// header con saludo y avatar, stats reales, hero Ulpiano, accesos
@@ -36,6 +40,30 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     super.initState();
     _cargarDatos();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => _mostrarCriterioDelDia());
+  }
+
+  /// Una vez al día, al abrir la app: tarjeta del criterio del día.
+  Future<void> _mostrarCriterioDelDia() async {
+    try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      final String hoy = DateTime.now().toIso8601String().substring(0, 10);
+      if (prefs.getString('criterio_dia_visto') == hoy) return;
+      final SentenciaModel? sentencia =
+          await CriterioDiaService.criterioDelDia();
+      if (sentencia == null || !mounted) return;
+      final TipDelDia? tip =
+          await CriterioDiaService.tipDesdeSentencia(sentencia);
+      if (!mounted) return;
+      await prefs.setString('criterio_dia_visto', hoy);
+      await showDialog<void>(
+        context: context,
+        builder: (_) => DialogoCriterio(sentencia: sentencia, tip: tip),
+      );
+    } catch (e) {
+      debugPrint('No se pudo mostrar el criterio del día: $e');
+    }
   }
 
   Future<void> _cargarDatos() async {
