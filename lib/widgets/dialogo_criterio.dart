@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../config/app_colors.dart';
-import '../config/app_theme.dart';
 import '../config/app_tokens.dart';
 import '../models/sentencia_model.dart';
 import '../services/criterio_dia_service.dart';
