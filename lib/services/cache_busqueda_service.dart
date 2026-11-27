@@ -11,8 +11,9 @@ import 'package:path_provider/path_provider.dart';
 class CacheBusquedaService {
   CacheBusquedaService._();
 
+  // v2: invalida las cachés guardadas con la fecha equivocada.
   static String _clave(String consulta) =>
-      consulta.hashCode.toRadixString(16);
+      'v2_${consulta.hashCode.toRadixString(16)}';
 
   static Future<File> _archivo(String consulta) async {
     final Directory dir = await getApplicationSupportDirectory();
