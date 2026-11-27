@@ -228,7 +228,7 @@ class _CriterioDelDiaScreenState extends State<CriterioDelDiaScreen> {
                     ),
                   ],
                   const SizedBox(height: 20),
-                  Text('Minuta del día', style: AppTokens.tituloSeccion),
+                  Text('Últimas sentencias', style: AppTokens.tituloSeccion),
                   const SizedBox(height: 4),
                   Text(
                     _nuevasHoy

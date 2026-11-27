@@ -153,11 +153,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 16),
               _buildAccionesRapidas(context),
               const SizedBox(height: 24),
-              _buildSeccionTitulo(context, 'Herramientas de Cálculo'),
+              _buildSeccionTitulo(context, 'Cálculo'),
               const SizedBox(height: 12),
               _buildHerramientasCalculo(context),
               const SizedBox(height: 24),
-              _buildSeccionTitulo(context, 'Tu Despacho Digital'),
+              _buildSeccionTitulo(context, 'Tu despacho'),
               const SizedBox(height: 12),
               _buildDespacho(context),
               const SizedBox(height: 24),
@@ -168,8 +168,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               _buildSeccionTitulo(context, 'Explorar'),
               const SizedBox(height: 12),
               _buildExplorar(context),
-              const SizedBox(height: 20),
-              _buildDetectorVicios(context),
+
             ],
           ),
         ),
@@ -577,51 +576,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ),
             const SizedBox(width: 12),
-            Expanded(
-              child: _buildToolSmall(
-                context,
-                icon: Icons.menu_book,
-                titulo: 'Leyes',
-                subtitulo: 'Código Penal, COPP y leyes vigentes',
-                route: '/repositorio_leyes',
-              ),
-            ),
           ],
         ),
       ],
     );
   }
 
-  // --------------------------------------------- Tu Despacho Digital
+  // --------------------------------------------- Tu despacho
   Widget _buildDespacho(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Expanded(
-          child: _buildToolSmall(
-            context,
-            icon: Icons.document_scanner,
-            titulo: 'Escáner',
-            subtitulo: 'Digitaliza documentos y guárdalos en tu expediente',
-            route: '/escaner',
-            alto: 150,
-            maxLinesSub: 2,
-          ),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: _buildToolSmall(
-            context,
-            icon: Icons.calendar_month,
-            titulo: 'Agenda',
-            subtitulo: 'Audiencias, lapsos y días sin despacho',
-            route: '/agenda',
-            alto: 150,
-            maxLinesSub: 2,
-          ),
-        ),
-      ],
-    );
+    return _buildDetectorVicios(context);
   }
 
   Widget _buildToolWide(BuildContext context, {
@@ -966,6 +929,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 titulo: 'Jurisprudencia',
                 subtitulo: 'Sentencias de la Sala de Casación Penal y Constitucional',
                 route: '/repositorio_jurisprudencia',
+                alto: 150,
+                maxLinesSub: 2,
+              ),
+              const SizedBox(height: 12),
+              _buildToolSmall(
+                context,
+                icon: Icons.menu_book,
+                titulo: 'Leyes',
+                subtitulo: 'Código Penal, COPP y leyes vigentes',
+                route: '/repositorio_leyes',
                 alto: 150,
                 maxLinesSub: 2,
               ),

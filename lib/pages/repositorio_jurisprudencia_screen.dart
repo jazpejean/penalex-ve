@@ -1337,199 +1337,115 @@ class _RepositorioJurisprudenciaScreenState
   }
 
   Widget _buildSentenciaCard(SentenciaModel sentencia, int index) {
+    final String texto = _textoResumen(sentencia);
+    final String? criterio = _criterioPacifico(sentencia);
+    final String fecha = sentencia.fechaSentencia == 'null'
+        ? ''
+        : sentencia.fechaSentencia;
+    final String expediente =
+        sentencia.expediente == 'null' ? '' : sentencia.expediente;
+
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
-      elevation: 1,
-      shadowColor: AppColors.azulMarino.withValues(alpha: 0.08),
-      // Guía 3.1: r16 para tarjetas de lista.
+      elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
-        side: BorderSide(color: TemaGlobal.capa, width: 1),
+        side: BorderSide(color: TemaGlobal.capa),
       ),
       child: InkWell(
-        // Al tocar la ficha se abre la ventana flotante con toda la
-        // metadata y el botón "Leer sentencia completa".
-        onTap: () => _verSentencia(sentencia),
+        onTap: () => _mostrarResumenCompleto(sentencia),
         borderRadius: BorderRadius.circular(AppTokens.radioTarjeta),
         child: Padding(
           padding: const EdgeInsets.all(AppTokens.margen),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Fila superior: delito + vinculante + favorita
+            children: <Widget>[
               Row(
-                children: [
-                  if (sentencia.esJurisprudencia) ...[
-                    const SizedBox(width: 8),
+                children: <Widget>[
+                  Expanded(
+                    child: Text(
+                      _nombreSala(sentencia.sala),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: TemaGlobal.textoSecundario,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                  if (fecha.isNotEmpty)
+                    Text(
+                      fecha,
+                      style: TextStyle(
+                        color: TemaGlobal.textoSecundario,
+                        fontSize: 12,
+                      ),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 6),
+              Text.rich(
+                TextSpan(
+                  children: <InlineSpan>[
+                    TextSpan(
+                      text: 'Nº ${sentencia.numeroSentencia}',
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w800,
+                        color: TemaGlobal.texto,
+                      ),
+                    ),
+                    if (expediente.isNotEmpty)
+                      TextSpan(
+                        text: '  ·  Exp. $expediente',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: TemaGlobal.textoSecundario,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              if (texto.isNotEmpty) ...<Widget>[
+                const SizedBox(height: 8),
+                Text(
+                  texto,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 13.5,
+                    height: 1.45,
+                    color: TemaGlobal.texto,
+                  ),
+                ),
+              ],
+              const SizedBox(height: 12),
+              Row(
+                children: <Widget>[
+                  if (sentencia.esJurisprudencia)
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 6, vertical: 3),
+                          horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
                         color: AppColors.dorado,
-                        borderRadius: BorderRadius.circular(4),
+                        borderRadius: BorderRadius.circular(6),
                       ),
                       child: Text(
-                        _criterioPacifico(sentencia) ?? 'Jurisprudencia',
-                        style: TextStyle(
-                          color: AppColors.onDorado,
+                        criterio ?? 'Jurisprudencia',
+                        style: const TextStyle(
                           fontSize: 10,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.azulMarino,
                         ),
                       ),
                     ),
-                  ],
                   const Spacer(),
-                  IconButton(
-                    onPressed: () => _toggleFavorita(sentencia),
-                    icon: Icon(
-                      _idsFavoritos.contains(sentencia.id)
-                          ? Icons.star
-                          : Icons.star_border,
-                      size: 20,
-                      color: _idsFavoritos.contains(sentencia.id)
-                          // Guía 3.5: favorita = dorado (igual que el detalle).
-                          ? AppColors.dorado
-                          : TemaGlobal.textoTenue,
-                    ),
-                    tooltip: _idsFavoritos.contains(sentencia.id)
-                        ? 'Quitar de favoritas'
-                        : 'Agregar a favoritas',
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(),
-                    visualDensity: VisualDensity.compact,
-                  ),
-                  IconButton(
-                    onPressed: () => _abrirColecciones(sentencia),
-                    icon: Icon(Icons.playlist_add,
-                        size: 20, color: TemaGlobal.textoTenue),
-                    tooltip: 'Guardar en colección',
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(),
-                    visualDensity: VisualDensity.compact,
-                  ),
-                  IconButton(
-                    onPressed: () => _mostrarResumenCompleto(sentencia),
-                    icon: Icon(Icons.info_outline,
-                        size: 20, color: TemaGlobal.textoTenue),
-                    tooltip: 'Ficha y datos de la sentencia',
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(),
-                    visualDensity: VisualDensity.compact,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              // Número + sala · fecha
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                textBaseline: TextBaseline.alphabetic,
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Text(
-                      'Nº ${sentencia.numeroSentencia}',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: TemaGlobal.texto,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Flexible(
-                    flex: 3,
-                    child: Text(
-                      sentencia.fechaSentencia.isEmpty ||
-                              sentencia.fechaSentencia == 'null'
-                          ? _nombreSala(sentencia.sala)
-                          : '${_nombreSala(sentencia.sala)} · ${sentencia.fechaSentencia}',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                          color: TemaGlobal.textoSecundario, fontSize: 12),
-                    ),
-                  ),
-                ],
-              ),
-              // Expediente (estilo Venley: "Exp. 23-311")
-              if (sentencia.expediente.isNotEmpty &&
-                  sentencia.expediente != 'null')
-                Padding(
-                  padding: const EdgeInsets.only(top: 2),
-                  child: Text(
-                    'Exp. ${sentencia.expediente}',
-                    style: TextStyle(
-                      color: TemaGlobal.textoTenue,
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-              const SizedBox(height: 10),
-              // Preview del texto con la coincidencia resaltada (Venley:
-              // "la búsqueda muestra coincidencias dentro de cada sentencia").
-              if (_textoResumen(sentencia).isNotEmpty)
-                AnimatedSize(
-                  duration: const Duration(milliseconds: 220),
-                  curve: Curves.easeInOut,
-                  alignment: Alignment.topCenter,
-                  child: Text.rich(
-                    _resaltarCoincidencias(_textoResumen(sentencia)),
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 13,
-                      height: 1.45,
-                      color: TemaGlobal.texto,
-                    ),
-                  ),
-                ),
-              if (_textoResumen(sentencia).length > 120)
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: TextButton.icon(
-                    onPressed: () => _mostrarResumenCompleto(sentencia),
-                    icon: const Icon(Icons.open_in_full, size: 16),
-                    label: const Text('Leer resumen completo'),
-                    style: TextButton.styleFrom(
-                      foregroundColor: AppColors.azulMarino,
-                      padding: EdgeInsets.zero,
-                      visualDensity: VisualDensity.compact,
-                      textStyle: const TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.w700),
-                    ),
-                  ),
-                ),
-              const SizedBox(height: 12),
-              // Pie: decisión (chip) + acciones
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // La decisión se muestra como chip corto con color según
-                  // el sentido del fallo (nunca ocupa el ancho de la tarjeta).
-                  if (sentencia.decision.isNotEmpty &&
-                      sentencia.decision != 'null')
-                    Flexible(child: _chipDecision(sentencia.decision)),
-                  const SizedBox(width: 8),
-                  ElevatedButton(
-                    onPressed: () => _verSentencia(sentencia),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.azulMarino,
-                      foregroundColor: AppColors.onAzulMarino,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 14, vertical: 8),
-                      visualDensity: VisualDensity.compact,
-                      textStyle: const TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.w700),
-                    ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text('Abrir sentencia'),
-                        Icon(Icons.chevron_right, size: 18),
-                      ],
+                  Text(
+                    'Abrir  →',
+                    style: const TextStyle(
+                      fontSize: 12.5,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.azulMarino,
                     ),
                   ),
                 ],
@@ -1745,6 +1661,35 @@ class _RepositorioJurisprudenciaScreenState
                     ),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Row(
+                    children: <Widget>[
+                      IconButton(
+                        tooltip: 'Favorita',
+                        onPressed: () {
+                          _toggleFavorita(s);
+                          setState(() {});
+                        },
+                        icon: Icon(
+                          _idsFavoritos.contains(s.id)
+                              ? Icons.star
+                              : Icons.star_border,
+                          color: _idsFavoritos.contains(s.id)
+                              ? AppColors.dorado
+                              : TemaGlobal.textoSecundario,
+                        ),
+                      ),
+                      IconButton(
+                        tooltip: 'Guardar en colección',
+                        onPressed: () => _abrirColecciones(s),
+                        icon: Icon(Icons.playlist_add,
+                            color: TemaGlobal.textoSecundario),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                ),
                 SafeArea(
                   top: false,
                   child: Padding(
@@ -1788,90 +1733,12 @@ class _RepositorioJurisprudenciaScreenState
   /// Construye el preview con el término de búsqueda resaltado en dorado
   /// (estilo Venley: "La búsqueda muestra coincidencias dentro de cada
   /// sentencia"). Insensible a mayúsculas/acentos.
-  TextSpan _resaltarCoincidencias(String texto) {
-    final query = _searchController.text.trim();
-    if (query.isEmpty) {
-      return TextSpan(text: texto);
-    }
-    // Normaliza para localizar (quita acentos) pero conserva el texto
-    // original para pintar.
-    String sinAcentos(String s) => s
-        .toLowerCase()
-        .replaceAll(RegExp(r'[áàäâã]'), 'a')
-        .replaceAll(RegExp(r'[éèëê]'), 'e')
-        .replaceAll(RegExp(r'[íìïî]'), 'i')
-        .replaceAll(RegExp(r'[óòöôõ]'), 'o')
-        .replaceAll(RegExp(r'[úùüû]'), 'u')
-        .replaceAll(RegExp(r'ñ'), 'n');
-    final q = sinAcentos(query);
-    final t = sinAcentos(texto);
-    final spans = <InlineSpan>[];
-    var i = 0;
-    while (i < texto.length) {
-      final idx = t.indexOf(q, i);
-      if (idx < 0) {
-        spans.add(TextSpan(text: texto.substring(i)));
-        break;
-      }
-      if (idx > i) spans.add(TextSpan(text: texto.substring(i, idx)));
-      spans.add(TextSpan(
-        text: texto.substring(idx, idx + q.length),
-        style: TextStyle(
-          color: AppColors.acento,
-          fontWeight: FontWeight.bold,
-        ),
-      ));
-      i = idx + q.length;
-    }
-    return TextSpan(children: spans);
-  }
+
 
   /// Chip de decisión con color según el sentido del fallo.
   /// Fondo translúcido (alpha) sobre la superficie actual y texto con tono
   /// adaptado al modo claro/oscuro: legible sin destellar en modo oscuro.
-  Widget _chipDecision(String decision) {
-    final d = decision.toUpperCase();
-    final oscuro = TemaGlobal.isDark;
-    Color bg;
-    Color fg;
-    if (d.contains('CON LUGAR')) {
-      bg = AppColors.success.withValues(alpha: oscuro ? 0.22 : 0.14);
-      fg = oscuro ? AppColors.success : AppColors.success;
-    } else if (d.contains('SIN LUGAR') ||
-        d.contains('IMPROCEDENTE') ||
-        d.contains('INADMISIBLE')) {
-      bg = AppColors.error.withValues(alpha: oscuro ? 0.22 : 0.14);
-      fg = oscuro ? AppColors.error : AppColors.error;
-    } else if (d.contains('REVOCA') ||
-        d.contains('ANULA') ||
-        d.contains('NULIDAD')) {
-      bg = AppColors.warning.withValues(alpha: oscuro ? 0.22 : 0.14);
-      fg = oscuro ? AppColors.warning : AppColors.warning;
-    } else {
-      bg = TemaGlobal.capa;
-      fg = TemaGlobal.textoSecundario;
-    }
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: bg,
-        borderRadius: BorderRadius.circular(6),
-      ),
-      child: Text(
-        decision,
-        // Decisiones largas: máximo 2 líneas con puntos suspensivos (el
-        // Flexible del Row ya limita el ancho disponible).
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-          color: fg,
-          fontSize: 10,
-          fontWeight: FontWeight.bold,
-          height: 1.3,
-        ),
-      ),
-    );
-  }
+
 
 
 
