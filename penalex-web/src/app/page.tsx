@@ -139,12 +139,17 @@ export default function HomePage() {
                 estudiante de derecho.
               </p>
               <div className="mt-9 flex flex-wrap items-center gap-3">
-                <Link href="/sentencias" className="rounded-lg bg-[#031F4E] px-6 py-3 text-sm font-bold text-white hover:bg-[#06305f]">Buscar sentencias</Link>
                 <Link
                   href="/sentencias"
-                  className="rounded-md border border-[#e2e8f0] bg-white px-7 py-3.5 text-sm font-semibold text-[#031F4E] hover:bg-[#f1f5f9]"
+                  className="rounded-lg bg-[#031F4E] px-6 py-3 text-sm font-bold text-white hover:bg-[#06305f]"
                 >
                   Buscar sentencias
+                </Link>
+                <Link
+                  href="/leyes"
+                  className="rounded-md border border-[#e2e8f0] bg-white px-7 py-3.5 text-sm font-semibold text-[#031F4E] hover:bg-[#f1f5f9]"
+                >
+                  Explorar leyes
                 </Link>
               </div>
               <div className="mt-10 grid max-w-lg grid-cols-3 divide-x divide-[#e2e8f0] border-y border-[#e2e8f0] py-4">
@@ -165,126 +170,16 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Mockup: UI de la calculadora dibujada en código (fiel a la app) */}
+            {/* Captura real de la app */}
             <div className="relative mx-auto w-full max-w-[320px]">
               <div className="absolute -inset-6 rounded-[36px] bg-gradient-to-br from-[#C5A059]/25 to-transparent blur-2xl" />
-              <div className="relative overflow-hidden rounded-[30px] border-[6px] border-[#0F172A] bg-white shadow-2xl shadow-[#031F4E]/30">
-                {/* Barra de estado */}
-                <div className="flex items-center justify-between bg-[#0F172A] px-4 pt-2.5 pb-1.5">
-                  <span className="text-[10px] font-semibold text-[#C5A059]">
-                    9:41
-                  </span>
-                  <span className="rounded-full px-2 py-0.5 text-[9px] font-bold tracking-wider text-[#C5A059] ring-1 ring-[#C5A059]/40">
-                    PENALEX VE
-                  </span>
-                  <span className="h-2 w-2 rounded-full bg-[#C5A059]" />
-                </div>
-                {/* Contenido de la calculadora */}
-                <div className="space-y-4 p-4">
-                  {/* Stepper */}
-                  <div className="flex items-center gap-1.5">
-                    {["DELITOS", "CONCURSO", "CÓMPUTO"].map((s, i) => (
-                      <div
-                        key={s}
-                        className={`flex items-center gap-1 rounded-md px-2 py-1 text-[8px] font-bold tracking-wide ${
-                          i === 0
-                            ? "bg-[#031F4E] text-[#C5A059]"
-                            : "bg-[#eef2f8] text-slate-400"
-                        }`}
-                      >
-                        {i === 0 && <span className="h-1.5 w-1.5 rounded-full bg-[#C5A059]" />}
-                        {s}
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Delito */}
-                  <div className="rounded-xl border border-[#e2e8f0] p-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-bold text-[#031F4E]">
-                        DELITO 1
-                      </span>
-                      <span className="rounded bg-[#eef2f8] px-1.5 py-0.5 text-[8px] font-semibold text-[#475569]">
-                        Homicidio (Art. 405)
-                      </span>
-                    </div>
-                    {/* Pena mín/máx */}
-                    <div className="mt-2.5 grid grid-cols-2 gap-2">
-                      <div>
-                        <span className="text-[8px] font-semibold uppercase text-slate-400">
-                          Pena mínima
-                        </span>
-                        <div className="mt-1 flex items-center gap-1 rounded-md bg-[#f1f5f9] px-2 py-1.5">
-                          <span className="text-[10px] font-bold text-[#031F4E]">12</span>
-                          <span className="text-[7px] text-slate-400">años</span>
-                        </div>
-                      </div>
-                      <div>
-                        <span className="text-[8px] font-semibold uppercase text-slate-400">
-                          Pena máxima
-                        </span>
-                        <div className="mt-1 flex items-center gap-1 rounded-md bg-[#f1f5f9] px-2 py-1.5">
-                          <span className="text-[10px] font-bold text-[#031F4E]">18</span>
-                          <span className="text-[7px] text-slate-400">años</span>
-                        </div>
-                      </div>
-                    </div>
-                    {/* Ejecución */}
-                    <div className="mt-2.5 flex gap-1.5">
-                      <span className="rounded-md bg-[#031F4E] px-2 py-1 text-[8px] font-semibold text-white">
-                        Consumado
-                      </span>
-                      <span className="rounded-md bg-[#eef2f8] px-2 py-1 text-[8px] text-slate-500">
-                        Frustrado
-                      </span>
-                      <span className="rounded-md bg-[#eef2f8] px-2 py-1 text-[8px] text-slate-500">
-                        Tentativa
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Pena individualizada */}
-                  <div className="rounded-xl border-2 border-[#C5A059] bg-[#eef2f8] p-3 text-center">
-                    <span className="text-[8px] font-extrabold uppercase tracking-widest text-[#9a7a34]">
-                      Pena individualizada
-                    </span>
-                    <div className="mt-1 text-xl font-black text-[#031F4E]">
-                      15 años de presidio
-                    </div>
-                    <div className="text-[8px] text-slate-500">
-                      Término medio (12 + 18) ÷ 2 · Art. 37 CP
-                    </div>
-                  </div>
-
-                  {/* Delito único */}
-                  <div className="flex items-center justify-between rounded-xl border border-[#e2e8f0] p-3">
-                    <span className="text-[10px] font-bold text-[#031F4E]">
-                      Pena definitiva
-                    </span>
-                    <span className="text-sm font-black text-[#9a7a34]">15 años</span>
-                  </div>
-
-                  {/* Botón */}
-                  <div className="rounded-lg bg-[#031F4E] py-2.5 text-center text-[10px] font-bold text-white">
-                    SIGUIENTE
-                  </div>
-                </div>
-              </div>
-              {/* Tarjeta flotante */}
-              <div className="absolute -left-8 top-1/3 hidden rounded-xl border border-[#e2e8f0] bg-white px-4 py-3 shadow-xl sm:block">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-md bg-[#eef2f8] text-[#031F4E]">
-                    <Icono nombre="calculadora" size={16} />
-                  </span>
-                  <div>
-                    <div className="text-[11px] font-bold text-[#031F4E]">
-                      Dosimetría Penal
-                    </div>
-                    <div className="text-[10px] text-slate-500">
-                      Art. 37 CP · término medio
-                    </div>
-                  </div>
-                </div>
+              <div className="relative overflow-hidden rounded-[30px] border-[6px] border-[#0F172A] shadow-2xl shadow-[#031F4E]/30">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/producto/app-inicio.png"
+                  alt="Penalex VE en Android"
+                  className="block w-full"
+                />
               </div>
             </div>
           </div>
@@ -349,128 +244,69 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Producto en acción: panel de la app dibujado en código */}
+        {/* En producción: capturas reales de la web */}
         <section className="border-t border-[#e2e8f0] bg-white py-16">
           <div className="mx-auto max-w-6xl px-4">
-            <div className="grid items-center gap-12 lg:grid-cols-2">
-              <div className="order-2 lg:order-1">
-                <div className="relative">
-                  <div className="absolute -inset-4 rounded-[28px] bg-[#C5A059]/15 blur-2xl" />
-                  <div className="relative overflow-hidden rounded-2xl border border-[#e2e8f0] bg-white shadow-xl">
-                    {/* Barra de navegador */}
-                    <div className="flex items-center gap-2 border-b border-[#e2e8f0] bg-[#f8fafc] px-4 py-2.5">
-                      <span className="h-2.5 w-2.5 rounded-full bg-[#f87171]" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-[#fbbf24]" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-[#34d399]" />
-                      <span className="ml-3 flex-1 truncate rounded-md bg-white px-3 py-1 text-[10px] text-slate-400 ring-1 ring-[#e2e8f0]">
-                        penalexve.com · Panel profesional
-                      </span>
+            <div className="max-w-2xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9a7a34]">
+                En producción
+              </p>
+              <h2 className="serif mt-4 text-3xl font-bold text-[#031F4E] sm:text-4xl">
+                El buscador, las leyes y los tribunales, hoy
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-slate-600">
+                Cuatro herramientas abiertas al público, con datos reales del
+                país. No son maquetas: son capturas de la plataforma en vivo.
+              </p>
+            </div>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {[
+                {
+                  img: "/producto/web-sentencias.png",
+                  t: "Buscador de jurisprudencia",
+                  d: "Más de 55.000 sentencias, búsqueda semántica y filtros avanzados",
+                  href: "/sentencias",
+                },
+                {
+                  img: "/producto/web-leyes.png",
+                  t: "Leyes",
+                  d: "53 leyes íntegras y 6.416 artículos verificados",
+                  href: "/leyes",
+                },
+                {
+                  img: "/producto/web-tribunales.png",
+                  t: "Tribunales",
+                  d: "868 tribunales penales con mapa y circuito",
+                  href: "/tribunales",
+                },
+                {
+                  img: "/producto/web-blog.png",
+                  t: "Blog · Nulidad Absoluta",
+                  d: "Análisis escritos con el mismo RAG, con fuente",
+                  href: "/articulos",
+                },
+              ].map((x) => (
+                <Link
+                  key={x.t}
+                  href={x.href}
+                  className="group overflow-hidden rounded-2xl border border-[#e2e8f0] bg-white shadow-sm transition hover:shadow-lg"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={x.img}
+                    alt={x.t}
+                    className="h-48 w-full object-cover object-top"
+                  />
+                  <div className="p-4">
+                    <div className="text-sm font-bold text-[#031F4E]">
+                      {x.t}
                     </div>
-                    {/* Panel: tarjetas de herramientas (como el dashboard de la app) */}
-                    <div className="space-y-4 p-4">
-                      {/* Bienvenida */}
-                      <div className="flex items-center justify-between rounded-xl border border-[#e2e8f0] bg-[#fafcff] px-4 py-3">
-                        <div>
-                          <div className="text-sm font-bold text-[#031F4E]">
-                            Panel profesional
-                          </div>
-                          <div className="text-[11px] text-slate-500">
-                            Bienvenido, Dr./Dra.
-                          </div>
-                        </div>
-                        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#031F4E] text-[#C5A059]">
-                          <Icono nombre="gavel" size={17} />
-                        </span>
-                      </div>
-                      {/* Cuadrícula de herramientas */}
-                      <div className="grid grid-cols-3 gap-2.5">
-                        {[
-                          { i: "estrella" as NombreIcono, t: "Ulpiano", n: "NUEVO", d: "#C5A059" },
-                          { i: "calculadora" as NombreIcono, t: "Dosimetría", n: "", d: "#031F4E" },
-                          { i: "libro" as NombreIcono, t: "Legislación", n: "", d: "#031F4E" },
-                          { i: "balanza" as NombreIcono, t: "Jurisprudencia", n: "", d: "#031F4E" },
-                          { i: "documento" as NombreIcono, t: "Redactor", n: "", d: "#031F4E" },
-                          { i: "chat" as NombreIcono, t: "Glosario", n: "", d: "#031F4E" },
-                        ].map((h) => (
-                          <div
-                            key={h.t}
-                            className="relative rounded-xl border border-[#e2e8f0] bg-white p-2.5 text-center"
-                          >
-                            {h.n && (
-                              <span className="absolute -top-1.5 left-1/2 -translate-x-1/2 rounded bg-[#C5A059] px-1.5 py-0.5 text-[7px] font-bold text-[#0F172A]">
-                                {h.n}
-                              </span>
-                            )}
-                            <span
-                              className="mx-auto flex h-8 w-8 items-center justify-center rounded-lg bg-[#eef2f8]"
-                              style={{ color: h.d }}
-                            >
-                              <Icono nombre={h.i} size={15} />
-                            </span>
-                            <div className="mt-1.5 text-[9px] font-bold text-[#031F4E]">
-                              {h.t}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                      {/* Cálculo reciente */}
-                      <div className="rounded-xl border-2 border-[#C5A059]/60 bg-[#eef2f8] p-3">
-                        <div className="text-[9px] font-extrabold uppercase tracking-wider text-[#9a7a34]">
-                          Último cálculo
-                        </div>
-                        <div className="mt-1 flex items-center justify-between">
-                          <span className="text-[11px] font-semibold text-[#031F4E]">
-                            Homicidio · Art. 405 CP
-                          </span>
-                          <span className="text-sm font-black text-[#031F4E]">
-                            15 años
-                          </span>
-                        </div>
-                        <div className="mt-0.5 text-[9px] text-slate-500">
-                          Delito único · término medio (Art. 37 CP)
-                        </div>
-                      </div>
+                    <div className="mt-1 text-xs leading-relaxed text-slate-500">
+                      {x.d}
                     </div>
                   </div>
-                </div>
-              </div>
-              <div className="order-1 lg:order-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9a7a34]">
-                  El producto en acción
-                </p>
-                <h2 className="serif mt-4 text-3xl font-bold text-[#031F4E] sm:text-4xl">
-                  Una plataforma para el trabajo jurídico
-                </h2>
-                <p className="mt-4 text-base leading-relaxed text-slate-600">
-                  Acceso profesional con la misma cuenta de Firebase que usas en
-                  la app móvil. El panel reúne dosimetría, legislación,
-                  jurisprudencia, glosario y agenda en un solo lugar.
-                </p>
-                <ul className="mt-6 space-y-3.5 text-sm text-slate-700">
-                  {[
-                    "Cálculo técnico de penas con fundamento legal explícito",
-                    "53 leyes íntegras penales verificadas contra fuentes oficiales",
-                    "Búsqueda de artículos por número o tema en todo el corpus",
-                    "Informes técnicos imprimibles con aviso legal",
-                  ].map((b) => (
-                    <li key={b} className="flex items-start gap-3">
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#eef2f8] text-[#031F4E]">
-                        <Icono nombre="gavel" size={11} />
-                      </span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-8">
-                  <Link
-                    href="/dosimetria"
-                    className="inline-flex items-center gap-2 rounded-md bg-[#031F4E] px-6 py-3 text-sm font-semibold text-white hover:bg-[#06305f]"
-                  >
-                    Probar la calculadora
-                    <Icono nombre="flecha" size={15} />
-                  </Link>
-                </div>
-              </div>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
