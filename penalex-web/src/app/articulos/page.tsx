@@ -155,9 +155,7 @@ export default function ArticulosPage() {
                 </Link>
               </li>
               <li>
-                <Link href="/login" className="text-slate-400 transition hover:text-white">
-                  Iniciar sesión
-                </Link>
+                
               </li>
               <li>
                 <Link href="/leyes" className="text-slate-400 transition hover:text-white">
