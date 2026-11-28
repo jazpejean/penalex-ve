@@ -180,9 +180,9 @@ export default function MapaTribunales() {
             className: "",
             html: `
               <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
-                <div style="width:40px;height:40px;border-radius:50%;background:${
+                <div style="width:26px;height:26px;border-radius:50%;background:${
                   seleccionado ? "#C5A059" : "#0F172A"
-                };border:2.5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 2px 6px rgba(0,0,0,.35);"></div>
+                };border:2.5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:12px;box-shadow:0 2px 6px rgba(0,0,0,.35);"></div>
                 <div style="background:#fff;border:1px solid ${
                   seleccionado ? "#C5A059" : "#0F172A"
                 };border-radius:10px;font-size:10px;font-weight:800;color:${
