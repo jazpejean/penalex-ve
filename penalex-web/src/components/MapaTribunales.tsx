@@ -19,10 +19,10 @@ function cargarLeaflet(): Promise<void> {
     if (window.L) return resolve();
     const css = document.createElement("link");
     css.rel = "stylesheet";
-    css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+    css.href = "/leaflet/leaflet.css";
     document.head.appendChild(css);
     const js = document.createElement("script");
-    js.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+    js.src = "/leaflet/leaflet.js";
     js.onload = () => resolve();
     document.head.appendChild(js);
   });
@@ -51,6 +51,7 @@ export default function MapaTribunales() {
   const [tribunales, setTribunales] = useState<Tribunal[]>([]);
   const [estados, setEstados] = useState<string[]>([]);
   const [cargando, setCargando] = useState(true);
+  const [mapaActivo, setMapaActivo] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [modo, setModo] = useState<Modo>("circuitos");
   const [circuitoSel, setCircuitoSel] = useState<string | null>(null);
@@ -157,7 +158,11 @@ export default function MapaTribunales() {
       if (cancelled) return;
       const L = window.L;
       if (!mapInstance.current) {
-        mapInstance.current = L.map(mapRef.current).setView([9.3, -66.2], 5.6);
+        mapInstance.current = L.map(mapRef.current, {
+          scrollWheelZoom: false,
+          dragging: false,
+          tap: true,
+        }).setView([9.3, -66.2], 5.6);
         L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
           attribution: "&copy; OpenStreetMap",
           maxZoom: 18,
@@ -398,6 +403,25 @@ export default function MapaTribunales() {
       {/* Mapa */}
       <div className="relative">
         <div ref={mapRef} className="h-[520px] w-full" />
+        <button
+          type="button"
+          onClick={() => {
+            const m = mapInstance.current;
+            if (!m) return;
+            if (m.dragging.enabled()) {
+              m.dragging.disable();
+              m.scrollWheelZoom.disable();
+              setMapaActivo(false);
+            } else {
+              m.dragging.enable();
+              m.scrollWheelZoom.enable();
+              setMapaActivo(true);
+            }
+          }}
+          className="absolute right-3 top-3 z-[500] rounded-md bg-white px-3 py-1.5 text-xs font-semibold text-[#031F4E] shadow-md ring-1 ring-slate-200"
+        >
+          {mapaActivo ? "Bloquear mapa" : "Mover mapa"}
+        </button>
         {cargando ? (
           <div className="absolute inset-0 flex items-center justify-center bg-white/70 text-sm text-slate-500">
             Cargando mapa…
