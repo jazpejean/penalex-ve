@@ -152,11 +152,12 @@ export default function HomePage() {
                   Explorar leyes
                 </Link>
               </div>
-              <div className="mt-10 grid max-w-lg grid-cols-3 divide-x divide-[#e2e8f0] border-y border-[#e2e8f0] py-4">
+              <div className="mt-10 grid max-w-xl grid-cols-2 gap-y-4 divide-x sm:grid-cols-4 divide-[#e2e8f0] border-y border-[#e2e8f0] py-4">
                 {[
+                  { v: "63.048", t: "sentencias del TSJ" },
                   { v: "53", t: "leyes íntegras" },
-                  { v: "6.416", t: "artículos indexados" },
-                  { v: "100%", t: "fuentes verificadas" },
+                  { v: "11.133", t: "doctrinas" },
+                  { v: "867", t: "tribunales" },
                 ].map((m) => (
                   <div key={m.t} className="px-4 first:pl-0">
                     <div className="serif text-2xl font-bold text-[#031F4E]">
