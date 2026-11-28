@@ -139,17 +139,12 @@ export default function HomePage() {
                 estudiante de derecho.
               </p>
               <div className="mt-9 flex flex-wrap items-center gap-3">
+                <Link href="/sentencias" className="rounded-lg bg-[#031F4E] px-6 py-3 text-sm font-bold text-white hover:bg-[#06305f]">Buscar sentencias</Link>
                 <Link
-                  href="/login?modo=registro"
-                  className="rounded-md bg-[#031F4E] px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#031F4E]/25 hover:bg-[#06305f]"
-                >
-                  Crear cuenta profesional
-                </Link>
-                <Link
-                  href="/login"
+                  href="/sentencias"
                   className="rounded-md border border-[#e2e8f0] bg-white px-7 py-3.5 text-sm font-semibold text-[#031F4E] hover:bg-[#f1f5f9]"
                 >
-                  Iniciar sesión
+                  Buscar sentencias
                 </Link>
               </div>
               <div className="mt-10 grid max-w-lg grid-cols-3 divide-x divide-[#e2e8f0] border-y border-[#e2e8f0] py-4">
@@ -340,7 +335,7 @@ export default function HomePage() {
               </div>
               <div className="lg:w-[340px]">
                 <Link
-                  href="/login"
+                  href="/sentencias"
                   className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#C5A059] py-4 text-base font-bold text-[#0F172A] transition hover:bg-[#E9C86A]"
                 >
                   Hablar con Ulpiano
@@ -677,17 +672,12 @@ export default function HomePage() {
               tu sesión de la app.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <Link href="/sentencias" className="rounded-lg bg-[#031F4E] px-6 py-3 text-sm font-bold text-white hover:bg-[#06305f]">Buscar sentencias</Link>
               <Link
-                href="/login?modo=registro"
-                className="rounded-md bg-[#031F4E] px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#031F4E]/25 hover:bg-[#06305f]"
-              >
-                Crear cuenta profesional
-              </Link>
-              <Link
-                href="/login"
+                href="/sentencias"
                 className="rounded-md border border-[#e2e8f0] bg-white px-8 py-3.5 text-sm font-semibold text-[#031F4E] hover:bg-[#f1f5f9]"
               >
-                Iniciar sesión
+                Buscar sentencias
               </Link>
             </div>
           </div>
@@ -739,7 +729,7 @@ export default function HomePage() {
             </div>
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
-                <Link href="/login?modo=registro" className="flex items-center gap-2 text-slate-400 hover:text-white">
+                <Link href="/sentencias" className="flex items-center gap-2 text-slate-400 hover:text-white">
                   <Icono nombre="estrella" size={13} className="shrink-0 text-[#C5A059]" />
                   Ulpiano · Asistente Legal
                 </Link>
@@ -784,15 +774,15 @@ export default function HomePage() {
             </div>
             <ul className="mt-4 space-y-2.5 text-sm text-slate-400">
               <li>
-                <Link href="/login" className="flex items-center gap-2 hover:text-white">
+                <Link href="/sentencias" className="flex items-center gap-2 hover:text-white">
                   <Icono nombre="usuario" size={13} className="shrink-0 text-[#C5A059]" />
-                  Iniciar sesión
+                  Buscar sentencias
                 </Link>
               </li>
               <li>
-                <Link href="/login?modo=registro" className="flex items-center gap-2 hover:text-white">
+                <Link href="/sentencias" className="flex items-center gap-2 hover:text-white">
                   <Icono nombre="correo" size={13} className="shrink-0 text-[#C5A059]" />
-                  Crear cuenta
+                  Buscar sentencias
                 </Link>
               </li>
               <li>

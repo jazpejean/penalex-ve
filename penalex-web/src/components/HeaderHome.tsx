@@ -87,16 +87,16 @@ export default function HeaderHome() {
           ) : (
             <>
               <Link
-                href="/login"
+                href="/leyes"
                 className="rounded-md border border-[#e2e8f0] px-3 py-2 text-sm font-medium text-slate-600 hover:bg-[#f1f5f9] hover:text-[#031F4E]"
               >
-                Iniciar sesión
+                Leyes
               </Link>
               <Link
-                href="/login?modo=registro"
+                href="/sentencias"
                 className="rounded-md bg-[#031F4E] px-3 py-2 text-sm font-semibold text-white hover:bg-[#06305f]"
               >
-                Crear cuenta
+                Buscar sentencias
               </Link>
             </>
           )}
@@ -155,18 +155,18 @@ export default function HeaderHome() {
             ) : (
               <div className="flex flex-col gap-2">
                 <Link
-                  href="/login"
+                  href="/leyes"
                   onClick={cerrarMenu}
                   className="rounded-md border border-[#e2e8f0] px-3 py-3 text-center text-sm font-medium text-slate-600 hover:bg-[#f1f5f9] hover:text-[#031F4E]"
                 >
-                  Iniciar sesión
+                  Leyes
                 </Link>
                 <Link
-                  href="/login?modo=registro"
+                  href="/sentencias"
                   onClick={cerrarMenu}
                   className="rounded-md bg-[#031F4E] px-3 py-3 text-center text-sm font-semibold text-white hover:bg-[#06305f]"
                 >
-                  Crear cuenta
+                  Buscar sentencias
                 </Link>
               </div>
             )}
