@@ -22,7 +22,9 @@ export interface Tribunal {
 export async function listarTribunalesConUbicacion(): Promise<Tribunal[]> {
   const { data, error } = await supabase
     .from("tribunales")
-    .select()
+    .select(
+      "id, codigo, nombre, sede, estado, municipio, parroquia, latitud, longitud, materia, instancia, funcion, seccion, tipo_sede, condicion_sede, url_foto",
+    )
     .not("latitud", "is", null)
     .not("longitud", "is", null)
     .order("estado")
