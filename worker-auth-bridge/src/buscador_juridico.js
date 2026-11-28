@@ -1210,8 +1210,8 @@ document.addEventListener('DOMContentLoaded', init);
       <a href="/articulos">Blog · Nulidad Absoluta</a>
     </nav>
     <div class="hdr-acciones">
-      <a class="hdr-link" href="/login">Iniciar sesión</a>
-      <a class="hdr-btn" href="/login?modo=registro">Crear cuenta</a>
+      <a class="hdr-link" href="/leyes">Leyes</a>
+      <a class="hdr-btn" href="/dosimetria">Dosimetría</a>
     </div>
     <button class="hdr-burger" aria-label="Abrir menú" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -1222,8 +1222,8 @@ document.addEventListener('DOMContentLoaded', init);
     <a href="/leyes">Leyes</a>
       <a href="/tribunales">Tribunales</a>
     <a href="/articulos">Blog · Nulidad Absoluta</a>
-    <a class="hdr-link" href="/login">Iniciar sesión</a>
-    <a class="hdr-btn" href="/login?modo=registro">Crear cuenta</a>
+    <a class="hdr-link" href="/leyes">Leyes</a>
+    <a class="hdr-btn" href="/dosimetria">Dosimetría</a>
   </nav>
 </header>
 <main>
